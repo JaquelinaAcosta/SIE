@@ -39,6 +39,7 @@ class Usuario
      * @var int
      *
      * @ORM\Column(name="persona", type="integer")
+     * @ORM\ManyToOne(targetEntity="Persona", mappedBy="id")
      */
     private $persona;
 

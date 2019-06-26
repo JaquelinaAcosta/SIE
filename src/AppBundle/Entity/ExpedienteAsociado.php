@@ -25,6 +25,7 @@ class ExpedienteAsociado
      * @var int
      *
      * @ORM\Column(name="expediente_padre", type="integer")
+     * @ORM\ManyToOne(targetEntity="Expedientes", mappedBy="id")
      */
     private $expedientePadre;
 

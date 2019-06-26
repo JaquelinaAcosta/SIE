@@ -24,6 +24,15 @@ class MesaEntrada extends Ubicacion
     /**
      * @var int
      *
+     * @ORM\Column(name="id_ubicacion", type="integer")
+     * @ORM\ManyToOne(targetEntity="Ubicacion", mappedBy="id")
+     * @ORM\Id
+     */
+    private $idUbicacion;
+
+    /**
+     * @var int
+     *
      * @ORM\Column(name="codigo_expediente", type="integer")
      */
     private $codigoExpediente;

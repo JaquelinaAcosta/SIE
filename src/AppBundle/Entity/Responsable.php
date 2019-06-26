@@ -25,6 +25,7 @@ class Responsable
      * @var int
      *
      * @ORM\Column(name="ubicacion", type="integer")
+     * @ORM\ManyToOne(targetEntity="Ubicacion", mappedBy="id")
      */
     private $ubicacion;
 
@@ -32,6 +33,7 @@ class Responsable
      * @var int
      *
      * @ORM\Column(name="usuario", type="integer")
+     * @ORM\ManyToOne(targetEntity="Usuario", mappedBy="id")
      */
     private $usuario;
 

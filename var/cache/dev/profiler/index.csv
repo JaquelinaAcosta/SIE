@@ -8,3 +8,5 @@ f498cb,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/config.php,1560950567,
 90dee0,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/home,1561121878,,200
 15c3cf,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/,1561463467,,404
 2a373c,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/home,1561463475,,200
+d162eb,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/,1561549577,,404
+49ac71,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/home,1561549586,,200
