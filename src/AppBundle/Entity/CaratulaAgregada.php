@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\Expediente;
 
 /**
  * CaratulaAgregada
@@ -24,8 +25,9 @@ class CaratulaAgregada
     /**
      * @var int
      *
-     * @ORM\Column(name="expediente", type="integer")
-     * @ORM\ManyToOne(targetEntity="Expedientes", mappedBy="id")
+     * @ORM\Column(name="expediente")
+     * @ORM\ManyToOne(targetEntity="Expediente", inversedBy="nroExpediente")
+     * @ORM\JoinColumn(name="blog_id", referencedColumnName="id", nullable=false)
      */
     
     private $expediente;
@@ -34,7 +36,6 @@ class CaratulaAgregada
      * @var int
      *
      * @ORM\Column(name="tema", type="integer")
-     * @ORM\OneToOne(targetEntity="Tema", mappedBy="id")
      */
     private $tema;
 
