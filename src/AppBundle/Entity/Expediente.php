@@ -19,6 +19,7 @@ class Expediente
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\OneToMany(targetEntity="CaratulaAgregada", mappedBy="expediente")
      */
     private $id;
 
@@ -26,14 +27,14 @@ class Expediente
      * @var int
      *
      * @ORM\Column(name="nro_expediente")
-     * @ORM\OneToMany(targetEntity="CaratulaAgregada", mappedBy="expediente")
      */
     private $nroExpediente;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="tema", type="integer")
+     * @ORM\OneToOne(targetEntity="Tema")
+     * @ORM\JoinColumn(name="tema", referencedColumnName="id", nullable=false)
      */
     private $tema;
 
@@ -85,6 +86,16 @@ class Expediente
      * @ORM\Column(name="ubicacion_actual", type="string", length=255)
      */
     private $ubicacionActual;
+
+
+    /**
+    *@ORM\OneToMany(targetEntity="CaratulaAgregada", mappedBy="expediente")
+    */
+    private $caratulas;
+
+    public function __construct(){
+        $this->caratulas = new ArrayCollection();
+    }
 
 
     /**
@@ -312,5 +323,38 @@ class Expediente
     {
         return $this->ubicacionActual;
     }
-}
 
+    /**
+     * Add caratula
+     *
+     * @param \AppBundle\Entity\CaratulaAgregada $caratula
+     *
+     * @return Expediente
+     */
+    public function addCaratula(\AppBundle\Entity\CaratulaAgregada $caratula)
+    {
+        $this->caratulas[] = $caratula;
+
+        return $this;
+    }
+
+    /**
+     * Remove caratula
+     *
+     * @param \AppBundle\Entity\CaratulaAgregada $caratula
+     */
+    public function removeCaratula(\AppBundle\Entity\CaratulaAgregada $caratula)
+    {
+        $this->caratulas->removeElement($caratula);
+    }
+
+    /**
+     * Get caratulas
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCaratulas()
+    {
+        return $this->caratulas;
+    }
+}
