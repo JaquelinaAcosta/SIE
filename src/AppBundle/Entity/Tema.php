@@ -18,6 +18,8 @@ class Tema
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\OneToOne(targetEntity="CaratulaAgregada", mappedBy="tema")
+     * @ORM\OneToOne(targetEntity="Expediente", mappedBy="tema")
      */
     private $id;
 
@@ -63,4 +65,3 @@ class Tema
         return $this->descripcion;
     }
 }
-

@@ -25,17 +25,15 @@ class CaratulaAgregada
     /**
      * @var int
      *
-     * @ORM\Column(name="expediente")
-     * @ORM\ManyToOne(targetEntity="Expediente", inversedBy="nroExpediente")
-     * @ORM\JoinColumn(name="blog_id", referencedColumnName="id", nullable=false)
-     */
-    
+     * @ORM\ManyToOne(targetEntity="Expediente", inversedBy="caratulas")
+     * @ORM\JoinColumn(name="expediente", referencedColumnName="id", nullable=false)
+     */    
     private $expediente;
 
     /**
      * @var int
-     *
-     * @ORM\Column(name="tema", type="integer")
+     * @ORM\OneToOne(targetEntity="Tema")
+     * @ORM\JoinColumn(name="tema", referencedColumnName="id", nullable=false)
      */
     private $tema;
 
