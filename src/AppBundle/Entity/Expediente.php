@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\CaratulaAgregada;
 
 /**
  * Expediente
@@ -24,7 +25,8 @@ class Expediente
     /**
      * @var int
      *
-     * @ORM\Column(name="nro_expediente", type="integer")
+     * @ORM\Column(name="nro_expediente")
+     * @ORM\OneToMany(targetEntity="CaratulaAgregada", mappedBy="expediente")
      */
     private $nroExpediente;
 
@@ -32,7 +34,6 @@ class Expediente
      * @var int
      *
      * @ORM\Column(name="tema", type="integer")
-     * @ORM\OneToOne(targetEntity="Tema", mappedBy="id")
      */
     private $tema;
 
@@ -61,7 +62,6 @@ class Expediente
      * @var int
      *
      * @ORM\Column(name="iniciador_dependencia", type="integer")
-     * @ORM\OneToOne(targetEntity="Dependencia", mappedBy="id")
      */
     private $iniciadorDependencia;
 

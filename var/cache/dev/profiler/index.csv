@@ -1,12 +1,4 @@
-f498cb,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/config.php,1560950567,967272,200
-967272,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/config.php,1560950567,,404
-6fae7c,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/home,1560950572,,200
-2d6fb0,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/home,1560950593,,200
-63d675,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/home,1560952967,,200
-9308b0,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/home,1560953009,,200
-93a1c9,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/home,1561110067,,200
-90dee0,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/home,1561121878,,200
-15c3cf,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/,1561463467,,404
-2a373c,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/home,1561463475,,200
-d162eb,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/,1561549577,,404
-49ac71,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/home,1561549586,,200
+9a250e,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/home,1561558077,,200
+8aaf02,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/home,1561558761,,200
+4893e3,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/home,1561558857,,200
+396cc9,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/home,1561559023,,200

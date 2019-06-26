@@ -25,16 +25,8 @@ class LugarFisico extends Ubicacion
      * @var int
      *
      * @ORM\Column(name="id_ubicacion", type="integer")
-     * @ORM\ManyToOne(targetEntity="Ubicacion", mappedBy="id")
-     * @ORM\Id
      */
-    private $idUbicacion;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="tipo", type="string", length=255)
-     */
     private $tipo;
 
     /**

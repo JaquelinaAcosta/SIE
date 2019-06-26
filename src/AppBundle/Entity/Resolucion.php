@@ -25,7 +25,6 @@ class Resolucion
      * @var int
      *
      * @ORM\Column(name="expediente", type="integer")
-     * @ORM\OneToOne(targetEntity="Expedientes", mappedBy="id")
      */
     private $expediente;
 
@@ -54,7 +53,6 @@ class Resolucion
      * @var string
      *
      * @ORM\Column(name="responsable", type="string", length=255)
-     * @ORM\ManyToOne(targetEntity="Usuario", mappedBy="id")
      */
     private $responsable;
 

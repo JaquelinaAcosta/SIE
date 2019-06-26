@@ -25,7 +25,6 @@ class Ubicacion
      * @var int
      *
      * @ORM\Column(name="dependencia", type="integer")
-     * @ORM\ManyToOne(targetEntity="Dependencia", mappedBy="id")
      */
     private $dependencia;
 
