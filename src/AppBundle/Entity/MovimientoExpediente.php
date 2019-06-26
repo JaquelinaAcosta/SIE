@@ -25,6 +25,7 @@ class MovimientoExpediente
      * @var int
      *
      * @ORM\Column(name="expediente", type="integer")
+     * @ORM\ManyToOne(targetEntity="Expedientes", mappedBy="id")
      */
     private $expediente;
 
@@ -32,6 +33,7 @@ class MovimientoExpediente
      * @var int
      *
      * @ORM\Column(name="ubicacion", type="integer")
+     * @ORM\ManyToOne(targetEntity="Ubicacion", mappedBy="id")
      */
     private $ubicacion;
 

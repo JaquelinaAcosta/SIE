@@ -32,6 +32,7 @@ class Expediente
      * @var int
      *
      * @ORM\Column(name="tema", type="integer")
+     * @ORM\OneToOne(targetEntity="Tema", mappedBy="id")
      */
     private $tema;
 
@@ -60,6 +61,7 @@ class Expediente
      * @var int
      *
      * @ORM\Column(name="iniciador_dependencia", type="integer")
+     * @ORM\OneToOne(targetEntity="Dependencia", mappedBy="id")
      */
     private $iniciadorDependencia;
 

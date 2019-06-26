@@ -25,13 +25,16 @@ class CaratulaAgregada
      * @var int
      *
      * @ORM\Column(name="expediente", type="integer")
+     * @ORM\ManyToOne(targetEntity="Expedientes", mappedBy="id")
      */
+    
     private $expediente;
 
     /**
      * @var int
      *
      * @ORM\Column(name="tema", type="integer")
+     * @ORM\OneToOne(targetEntity="Tema", mappedBy="id")
      */
     private $tema;
 
