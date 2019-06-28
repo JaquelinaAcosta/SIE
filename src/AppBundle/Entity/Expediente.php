@@ -4,6 +4,10 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\CaratulaAgregada;
+use AppBundle\Entity\Resolucion;
+use AppBundle\Entity\Dependencia;
+
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Expediente
@@ -60,9 +64,9 @@ class Expediente
     private $tipo;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="iniciador_dependencia", type="integer")
+     * @var int 
+     * @ORM\ManyToOne(targetEntity="Dependencia")
+     * @ORM\JoinColumn(name="iniciadorDependencia", referencedColumnName="id", nullable=false)
      */
     private $iniciadorDependencia;
 
@@ -75,7 +79,6 @@ class Expediente
 
     /**
      * @var \DateTime
-     *
      * @ORM\Column(name="fecha_fin", type="datetime")
      */
     private $fechaFin;
@@ -87,14 +90,30 @@ class Expediente
      */
     private $ubicacionActual;
 
+    /**
+    *@ORM\OneToOne(targetEntity="Resolucion", mappedBy="expediente")
+    */
+    private $resolucion;
 
     /**
     *@ORM\OneToMany(targetEntity="CaratulaAgregada", mappedBy="expediente")
     */
     private $caratulas;
 
+     /**
+    *@ORM\OneToMany(targetEntity="ExpedienteAsociado", mappedBy="expdientePadre")
+    */
+    private $expedientesAsociados;
+
+    /**
+    *@ORM\OneToMany(targetEntity="MovimientoExpediente", mappedBy="expediente")
+    */
+    private $movimientos;
+
     public function __construct(){
         $this->caratulas = new ArrayCollection();
+        $this->expedientesAsociados = new ArrayCollection();
+        $this->movimientos = new ArrayCollection();
     }
 
 
@@ -356,5 +375,96 @@ class Expediente
     public function getCaratulas()
     {
         return $this->caratulas;
+    }
+
+    /**
+     * Set resolucion
+     *
+     * @param \AppBundle\Entity\Resolucion $resolucion
+     *
+     * @return Expediente
+     */
+    public function setResolucion(\AppBundle\Entity\Resolucion $resolucion = null)
+    {
+        $this->resolucion = $resolucion;
+        return $this;
+    }
+
+    /**
+     * Get resolucion
+     *
+     * @return \AppBundle\Entity\Resolucion
+     */
+    public function getResolucion()
+    {
+        return $this->resolucion;
+    }
+
+    /**
+     * Add expedientesAsociado
+     *
+     * @param \AppBundle\Entity\ExpedienteAsociado $expedientesAsociado
+     *
+     * @return Expediente
+     */
+    public function addExpedientesAsociado(\AppBundle\Entity\ExpedienteAsociado $expedientesAsociado)
+    {
+        $this->expedientesAsociados[] = $expedientesAsociado;
+
+        return $this;
+    }
+
+    /**
+     * Remove expedientesAsociado
+     *
+     * @param \AppBundle\Entity\ExpedienteAsociado $expedientesAsociado
+     */
+    public function removeExpedientesAsociado(\AppBundle\Entity\ExpedienteAsociado $expedientesAsociado)
+    {
+        $this->expedientesAsociados->removeElement($expedientesAsociado);
+    }
+
+    /**
+     * Get expedientesAsociados
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getExpedientesAsociados()
+    {
+        return $this->expedientesAsociados;
+    }
+
+    /**
+     * Add movimiento
+     *
+     * @param \AppBundle\Entity\MovimientoExpediente $movimiento
+     *
+     * @return Expediente
+     */
+    public function addMovimiento(\AppBundle\Entity\MovimientoExpediente $movimiento)
+    {
+        $this->movimientos[] = $movimiento;
+
+        return $this;
+    }
+
+    /**
+     * Remove movimiento
+     *
+     * @param \AppBundle\Entity\MovimientoExpediente $movimiento
+     */
+    public function removeMovimiento(\AppBundle\Entity\MovimientoExpediente $movimiento)
+    {
+        $this->movimientos->removeElement($movimiento);
+    }
+
+    /**
+     * Get movimientos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMovimientos()
+    {
+        return $this->movimientos;
     }
 }

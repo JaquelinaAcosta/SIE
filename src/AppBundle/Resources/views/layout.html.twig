@@ -10,12 +10,18 @@
 			  src="https://code.jquery.com/jquery-1.12.4.js"
 			  integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
 			  crossorigin="anonymous"></script>
-		
+	<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">	
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-    </head>
-    <body>
         
+        <style>
+            a{
+                color:grey;
+            }
+        </style>
+        
+    </head>
+    <body>       
         <header>  
             <nav class="navbar navbar-default">
                 <div class="container-fluid">
@@ -34,8 +40,7 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">                        
                             {% block menu %}  
-                            <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                            <li><a href="#">Link</a></li>
+                          
                             {% endblock %}
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
@@ -65,11 +70,32 @@
                 </div><!-- /.container-fluid -->
             </nav>
         </header>
-        <section id="content">
+            <div class="row row-offcanvas row-offcanvas-left">
+        <div class="sideb col-sm-3 sidebar-offcanvas" id="custom-sidebar" role="navigation" >
+            <div class="sidebar-nav">
+                <ul class="nav">
+                    <li class="active"><a href="#">Carga Expediente</a></li>
+                    <li><a  href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
+                    <li class="nav-divider"></li>
+                    <li class="active"><a href="#">Consultas</a></li>
+                    <li><a href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
+                    <li><a href="#">Link</a></li>
+                </ul>
+            </div>
+            <!--/.well -->
+        </div>
+        <!--/span-->            
+        <section id="content"> 
+            
             {% block content %}Content default{% endblock %}   
         </section>
         <footer>
-            DPV
         </footer>
         
     </body>

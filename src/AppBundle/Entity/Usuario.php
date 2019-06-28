@@ -42,6 +42,13 @@ class Usuario
      */
     private $persona;
 
+    
+    /**
+    * @ORM\OneToMany(targetEntity="Responsable",mappedBy="usuario")
+    */
+    private $responsable;
+    
+    
     /**
      * Get id
      *
@@ -123,5 +130,45 @@ class Usuario
     {
         return $this->persona;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->responsable = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add responsable
+     *
+     * @param \AppBundle\Entity\Responsable $responsable
+     *
+     * @return Usuario
+     */
+    public function addResponsable(\AppBundle\Entity\Responsable $responsable)
+    {
+        $this->responsable[] = $responsable;
+
+        return $this;
+    }
+
+    /**
+     * Remove responsable
+     *
+     * @param \AppBundle\Entity\Responsable $responsable
+     */
+    public function removeResponsable(\AppBundle\Entity\Responsable $responsable)
+    {
+        $this->responsable->removeElement($responsable);
+    }
+
+    /**
+     * Get responsable
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getResponsable()
+    {
+        return $this->responsable;
+    }
+}
