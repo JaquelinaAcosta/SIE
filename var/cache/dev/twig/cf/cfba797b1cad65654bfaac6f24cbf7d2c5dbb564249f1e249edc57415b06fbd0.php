@@ -51,12 +51,18 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 \t\t\t  src=\"https://code.jquery.com/jquery-1.12.4.js\"
 \t\t\t  integrity=\"sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=\"
 \t\t\t  crossorigin=\"anonymous\"></script>
-\t\t
+\t<link href=\"https://use.fontawesome.com/releases/v5.0.6/css/all.css\" rel=\"stylesheet\">\t
         <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js\"></script>
         <link href=\"https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css\" rel=\"stylesheet\">
-    </head>
-    <body>
         
+        <style>
+            a{
+                color:grey;
+            }
+        </style>
+        
+    </head>
+    <body>       
         <header>  
             <nav class=\"navbar navbar-default\">
                 <div class=\"container-fluid\">
@@ -75,9 +81,9 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                     <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">
                         <ul class=\"nav navbar-nav\">                        
                             ";
-        // line 36
+        // line 42
         $this->displayBlock('menu', $context, $blocks);
-        // line 40
+        // line 45
         echo "                        </ul>
                         <ul class=\"nav navbar-nav navbar-right\">
 
@@ -106,14 +112,35 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                 </div><!-- /.container-fluid -->
             </nav>
         </header>
-        <section id=\"content\">
+            <div class=\"row row-offcanvas row-offcanvas-left\">
+        <div class=\"sideb col-sm-3 sidebar-offcanvas\" id=\"custom-sidebar\" role=\"navigation\" >
+            <div class=\"sidebar-nav\">
+                <ul class=\"nav\">
+                    <li class=\"active\"><a href=\"#\">Carga Expediente</a></li>
+                    <li><a  href=\"#\">Link</a></li>
+                    <li><a href=\"#\">Link</a></li>
+                    <li class=\"nav-divider\"></li>
+                    <li class=\"active\"><a href=\"#\">Consultas</a></li>
+                    <li><a href=\"#\">Link</a></li>
+                    <li><a href=\"#\">Link</a></li>
+                    <li><a href=\"#\">Link</a></li>
+                    <li><a href=\"#\">Link</a></li>
+                    <li><a href=\"#\">Link</a></li>
+                    <li><a href=\"#\">Link</a></li>
+                    <li><a href=\"#\">Link</a></li>
+                </ul>
+            </div>
+            <!--/.well -->
+        </div>
+        <!--/span-->            
+        <section id=\"content\"> 
+            
             ";
-        // line 69
+        // line 96
         $this->displayBlock('content', $context, $blocks);
         echo "   
         </section>
         <footer>
-            DPV
         </footer>
         
     </body>
@@ -146,7 +173,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     }
 
-    // line 36
+    // line 42
     public function block_menu($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -156,8 +183,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "menu"));
 
         echo "  
-                            <li class=\"active\"><a href=\"#\">Link <span class=\"sr-only\">(current)</span></a></li>
-                            <li><a href=\"#\">Link</a></li>
+                          
                             ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -167,7 +193,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     }
 
-    // line 69
+    // line 96
     public function block_content($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -192,7 +218,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     public function getDebugInfo()
     {
-        return array (  171 => 69,  150 => 36,  132 => 7,  112 => 69,  81 => 40,  79 => 36,  47 => 7,  39 => 1,);
+        return array (  197 => 96,  177 => 42,  159 => 7,  140 => 96,  87 => 45,  85 => 42,  47 => 7,  39 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -217,12 +243,18 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 \t\t\t  src=\"https://code.jquery.com/jquery-1.12.4.js\"
 \t\t\t  integrity=\"sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=\"
 \t\t\t  crossorigin=\"anonymous\"></script>
-\t\t
+\t<link href=\"https://use.fontawesome.com/releases/v5.0.6/css/all.css\" rel=\"stylesheet\">\t
         <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js\"></script>
         <link href=\"https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css\" rel=\"stylesheet\">
-    </head>
-    <body>
         
+        <style>
+            a{
+                color:grey;
+            }
+        </style>
+        
+    </head>
+    <body>       
         <header>  
             <nav class=\"navbar navbar-default\">
                 <div class=\"container-fluid\">
@@ -241,8 +273,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                     <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">
                         <ul class=\"nav navbar-nav\">                        
                             {% block menu %}  
-                            <li class=\"active\"><a href=\"#\">Link <span class=\"sr-only\">(current)</span></a></li>
-                            <li><a href=\"#\">Link</a></li>
+                          
                             {% endblock %}
                         </ul>
                         <ul class=\"nav navbar-nav navbar-right\">
@@ -272,11 +303,32 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                 </div><!-- /.container-fluid -->
             </nav>
         </header>
-        <section id=\"content\">
+            <div class=\"row row-offcanvas row-offcanvas-left\">
+        <div class=\"sideb col-sm-3 sidebar-offcanvas\" id=\"custom-sidebar\" role=\"navigation\" >
+            <div class=\"sidebar-nav\">
+                <ul class=\"nav\">
+                    <li class=\"active\"><a href=\"#\">Carga Expediente</a></li>
+                    <li><a  href=\"#\">Link</a></li>
+                    <li><a href=\"#\">Link</a></li>
+                    <li class=\"nav-divider\"></li>
+                    <li class=\"active\"><a href=\"#\">Consultas</a></li>
+                    <li><a href=\"#\">Link</a></li>
+                    <li><a href=\"#\">Link</a></li>
+                    <li><a href=\"#\">Link</a></li>
+                    <li><a href=\"#\">Link</a></li>
+                    <li><a href=\"#\">Link</a></li>
+                    <li><a href=\"#\">Link</a></li>
+                    <li><a href=\"#\">Link</a></li>
+                </ul>
+            </div>
+            <!--/.well -->
+        </div>
+        <!--/span-->            
+        <section id=\"content\"> 
+            
             {% block content %}Content default{% endblock %}   
         </section>
         <footer>
-            DPV
         </footer>
         
     </body>
