@@ -53,7 +53,8 @@ class Resolucion
     /**
      * @var string
      *
-     * @ORM\Column(name="responsable", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="Usuario",inversedBy="resolucion")
+     * @ORM\JoinColumn(name="responsable", referencedColumnName="id", nullable=false)
      */
     private $responsable;
 

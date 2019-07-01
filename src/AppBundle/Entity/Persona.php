@@ -40,6 +40,12 @@ class Persona extends Ubicacion
      * @ORM\Column(name="cargo", type="string", length=255)
      */
     private $cargo;
+    
+     /**
+     * @ORM\OneToOne(targetEntity="Usuario",mappedBy="persona")
+     */
+    private $usuario;
+    
 
     /**
      * Get id
@@ -175,5 +181,29 @@ class Persona extends Ubicacion
     public function getCargo()
     {
         return $this->cargo;
+    }
+
+    /**
+     * Set usuario
+     *
+     * @param \AppBundle\Entity\Usuario $usuario
+     *
+     * @return Persona
+     */
+    public function setUsuario(\AppBundle\Entity\Usuario $usuario = null)
+    {
+        $this->usuario = $usuario;
+
+        return $this;
+    }
+
+    /**
+     * Get usuario
+     *
+     * @return \AppBundle\Entity\Usuario
+     */
+    public function getUsuario()
+    {
+        return $this->usuario;
     }
 }

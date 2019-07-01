@@ -40,6 +40,12 @@ class Persona extends Ubicacion
      * @ORM\Column(name="cargo", type="string", length=255)
      */
     private $cargo;
+    
+     /**
+     * @ORM\OneToOne(targetEntity="Usuario",mappedBy="persona")
+     */
+    private $usuario;
+    
 
     /**
      * Get id

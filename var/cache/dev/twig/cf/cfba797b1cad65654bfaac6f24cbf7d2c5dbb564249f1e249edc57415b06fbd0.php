@@ -59,6 +59,9 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
             a{
                 color:grey;
             }
+            .active{
+                color:grey;
+            }
         </style>
         
     </head>
@@ -74,16 +77,16 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                             <span class=\"icon-bar\"></span>
                             <span class=\"icon-bar\"></span>
                         </button>
-                        <a class=\"navbar-brand\" href=\"#\">SIE - Sistema de Pases Internos de Expedientes</a>
+                        <a class=\"navbar-brand\" href=\"#\">Sistema de Pases Internos de Expedientes</a>
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">
                         <ul class=\"nav navbar-nav\">                        
                             ";
-        // line 42
-        $this->displayBlock('menu', $context, $blocks);
         // line 45
+        $this->displayBlock('menu', $context, $blocks);
+        // line 48
         echo "                        </ul>
                         <ul class=\"nav navbar-nav navbar-right\">
 
@@ -116,7 +119,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         <div class=\"sideb col-sm-3 sidebar-offcanvas\" id=\"custom-sidebar\" role=\"navigation\" >
             <div class=\"sidebar-nav\">
                 <ul class=\"nav\">
-                    <li class=\"active\"><a href=\"#\">Carga Expediente</a></li>
+                    <li class=\"active\">Carga Expediente</li>
                     <li><a  href=\"#\">Link</a></li>
                     <li><a href=\"#\">Link</a></li>
                     <li class=\"nav-divider\"></li>
@@ -136,7 +139,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         <section id=\"content\"> 
             
             ";
-        // line 96
+        // line 99
         $this->displayBlock('content', $context, $blocks);
         echo "   
         </section>
@@ -164,7 +167,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
 
-        echo "SIE - Sistemas de Pasesos Internos de Expedientes";
+        echo "SIE";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
@@ -173,7 +176,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     }
 
-    // line 42
+    // line 45
     public function block_menu($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -193,7 +196,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     }
 
-    // line 96
+    // line 99
     public function block_content($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -218,7 +221,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     public function getDebugInfo()
     {
-        return array (  197 => 96,  177 => 42,  159 => 7,  140 => 96,  87 => 45,  85 => 42,  47 => 7,  39 => 1,);
+        return array (  200 => 99,  180 => 45,  162 => 7,  143 => 99,  90 => 48,  88 => 45,  47 => 7,  39 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -237,7 +240,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         
         <meta charset=\"utf-8\" />
         <title>            
-            {% block title %}SIE - Sistemas de Pasesos Internos de Expedientes{% endblock %}           
+            {% block title %}SIE{% endblock %}           
         </title>
         <script
 \t\t\t  src=\"https://code.jquery.com/jquery-1.12.4.js\"
@@ -249,6 +252,9 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         
         <style>
             a{
+                color:grey;
+            }
+            .active{
                 color:grey;
             }
         </style>
@@ -266,7 +272,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                             <span class=\"icon-bar\"></span>
                             <span class=\"icon-bar\"></span>
                         </button>
-                        <a class=\"navbar-brand\" href=\"#\">SIE - Sistema de Pases Internos de Expedientes</a>
+                        <a class=\"navbar-brand\" href=\"#\">Sistema de Pases Internos de Expedientes</a>
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -307,7 +313,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         <div class=\"sideb col-sm-3 sidebar-offcanvas\" id=\"custom-sidebar\" role=\"navigation\" >
             <div class=\"sidebar-nav\">
                 <ul class=\"nav\">
-                    <li class=\"active\"><a href=\"#\">Carga Expediente</a></li>
+                    <li class=\"active\">Carga Expediente</li>
                     <li><a  href=\"#\">Link</a></li>
                     <li><a href=\"#\">Link</a></li>
                     <li class=\"nav-divider\"></li>
