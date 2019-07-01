@@ -117,6 +117,11 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::indexAction',  '_route' => 'nuevoExpediente',);
         }
 
+        // moverExpediente
+        if ('/movimientoExpediente' === $pathinfo) {
+            return array (  '_controller' => 'AppBundle\\Controller\\MovimientoExpedienteController::indexAction',  '_route' => 'moverExpediente',);
+        }
+
         // persona
         if ('/persona' === $pathinfo) {
             return array (  '_controller' => 'AppBundle\\Controller\\PersonaController::indexAction',  '_route' => 'persona',);
