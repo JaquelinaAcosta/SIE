@@ -38,7 +38,8 @@ class Usuario
     /**
      * @var int
      *
-     * @ORM\Column(name="persona", type="integer")
+     * @ORM\OneToOne(targetEntity="Persona",inversedBy="usuario")
+     * @ORM\JoinColumn(name="persona", referencedColumnName="id", nullable=false)
      */
     private $persona;
 
@@ -47,6 +48,12 @@ class Usuario
     * @ORM\OneToMany(targetEntity="Responsable",mappedBy="usuario")
     */
     private $responsable;
+    
+    
+    /**
+    * @ORM\OneToMany(targetEntity="Resolucion",mappedBy="responsable")
+    */
+    private $resolucion;
     
     
     /**
@@ -129,5 +136,46 @@ class Usuario
     public function getPersona()
     {
         return $this->persona;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->responsable = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add responsable
+     *
+     * @param \AppBundle\Entity\Responsable $responsable
+     *
+     * @return Usuario
+     */
+    public function addResponsable(\AppBundle\Entity\Responsable $responsable)
+    {
+        $this->responsable[] = $responsable;
+
+        return $this;
+    }
+
+    /**
+     * Remove responsable
+     *
+     * @param \AppBundle\Entity\Responsable $responsable
+     */
+    public function removeResponsable(\AppBundle\Entity\Responsable $responsable)
+    {
+        $this->responsable->removeElement($responsable);
+    }
+
+    /**
+     * Get responsable
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getResponsable()
+    {
+        return $this->responsable;
     }
 }
