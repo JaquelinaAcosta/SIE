@@ -142,6 +142,6 @@ class __TwigTemplate_6d0b85345aedaeb0f67a813cd20c0f0434757838258e9d05af7bf1a6573
             {{form_end(form)}}
         </div>
     </div>
-{% endblock %}", "AppBundle:Persona:index.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/Persona/index.html.twig");
+{% endblock %}", "AppBundle:Persona:index.html.twig", "/var/www/html/gitSIE/src/AppBundle/Resources/views/Persona/index.html.twig");
     }
 }
