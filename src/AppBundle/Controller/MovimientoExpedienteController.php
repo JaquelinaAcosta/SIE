@@ -20,6 +20,10 @@ class MovimientoExpedienteController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager(); 
         $dependencia = $em->getRepository("AppBundle:Dependencia")->find(3);
+        
+        //no se is la ubicacion hay que traerla o llevarla a la base de datos
+        $ubicacion = $em->getRepository("AppBundle:Tema")->find(3);
+        
         $movimientoExpediente = new MovimientoExpediente();
         
         
