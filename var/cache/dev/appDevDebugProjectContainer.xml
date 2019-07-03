@@ -511,10 +511,16 @@
     <service id="AppBundle\Controller\ExpedienteController" class="AppBundle\Controller\ExpedienteController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
     </service>
+    <service id="AppBundle\Controller\MovimientoExpedienteController" class="AppBundle\Controller\MovimientoExpedienteController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+    </service>
     <service id="AppBundle\Controller\PersonaController" class="AppBundle\Controller\PersonaController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
     </service>
     <service id="AppBundle\Form\ExpedienteType" class="AppBundle\Form\ExpedienteType" public="false" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="AppBundle\Form\MovimientoExpedienteType" class="AppBundle\Form\MovimientoExpedienteType" public="false" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="AppBundle\Form\PersonaType" class="AppBundle\Form\PersonaType" public="false" autowire="true" autoconfigure="true">
@@ -770,6 +776,7 @@
       </argument>
       <argument type="collection">
         <argument>AppBundle\Form\ExpedienteType</argument>
+        <argument>AppBundle\Form\MovimientoExpedienteType</argument>
         <argument>AppBundle\Form\PersonaType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
@@ -984,7 +991,7 @@
       <argument type="service" id="form.resolved_type_factory"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id="service_locator.feucpjk"/>
+      <argument type="service" id="service_locator.uny4wbd"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -3718,10 +3725,14 @@
     <service id="abstract.instanceof.AppBundle\Controller\DefaultController" class="AppBundle\Controller\DefaultController" public="true" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\ExpedienteController" class="AppBundle\Controller\ExpedienteController" public="true" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Controller\ExpedienteController" class="AppBundle\Controller\ExpedienteController" public="true" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\MovimientoExpedienteController" class="AppBundle\Controller\MovimientoExpedienteController" public="true" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.AppBundle\Controller\MovimientoExpedienteController" class="AppBundle\Controller\MovimientoExpedienteController" public="true" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\PersonaController" class="AppBundle\Controller\PersonaController" public="true" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Controller\PersonaController" class="AppBundle\Controller\PersonaController" public="true" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\ExpedienteType" class="AppBundle\Form\ExpedienteType" public="false" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Form\ExpedienteType" class="AppBundle\Form\ExpedienteType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\MovimientoExpedienteType" class="AppBundle\Form\MovimientoExpedienteType" public="false" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.AppBundle\Form\MovimientoExpedienteType" class="AppBundle\Form\MovimientoExpedienteType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\PersonaType" class="AppBundle\Form\PersonaType" public="false" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Form\PersonaType" class="AppBundle\Form\PersonaType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="service_locator.sr6ctxe" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
@@ -3747,10 +3758,11 @@
         <argument key="inline" type="service" id="fragment.renderer.inline"/>
       </argument>
     </service>
-    <service id="service_locator.feucpjk" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id="service_locator.uny4wbd" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="AppBundle\Form\ExpedienteType" type="service" id="AppBundle\Form\ExpedienteType"/>
+        <argument key="AppBundle\Form\MovimientoExpedienteType" type="service" id="AppBundle\Form\MovimientoExpedienteType"/>
         <argument key="AppBundle\Form\PersonaType" type="service" id="AppBundle\Form\PersonaType"/>
         <argument key="Symfony\Bridge\Doctrine\Form\Type\EntityType" type="service" id="form.type.entity"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service" id="form.type.choice"/>
