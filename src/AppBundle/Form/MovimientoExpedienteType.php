@@ -23,11 +23,11 @@ class MovimientoExpedienteType extends AbstractType
                "placeholder"=>"00000-000000000-0"
             )
         ))
-                ->add('ubicacion', TextType::class, array(
-            "label"=>"Ubicación: ","attr"=> array(
-               "class"=>"form-name form-control" 
-            )
-        ))
+//                ->add('ubicacion', TextType::class, array(
+//            "label"=>"Ubicación: ","attr"=> array(
+//               "class"=>"form-name form-control" 
+//            )
+//        ))
                 ->add('fojas', TextType::class,array(
             "label"=>"Nro. de fojas:","attr"=> array(
                "class"=>"form-name form-control" ,

@@ -323,6 +323,6 @@ class __TwigTemplate_829aa766f6c19aa9d341046c393195850e0ed42ff7f25e11b9b8ae55a82
             </div>
         </div>
     </div>
-{% endblock %}", "AppBundle:Expediente:index.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/Expediente/index.html.twig");
+{% endblock %}", "AppBundle:Expediente:index.html.twig", "/var/www/html/gitSIE/src/AppBundle/Resources/views/Expediente/index.html.twig");
     }
 }
