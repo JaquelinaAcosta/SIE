@@ -32,7 +32,7 @@ class PersonaController extends Controller
         }
         
         // replace this example code with whatever you need
-        return $this->render('AppBundle:Persona:index.html.twig', [
+        return $this->render('AppBundle:Ubicacion:persona.html.twig', [
             'form'=> $form->createView() 
         ]);
     }

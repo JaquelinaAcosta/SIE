@@ -109,13 +109,16 @@ class Expediente
     *@ORM\OneToMany(targetEntity="MovimientoExpediente", mappedBy="expediente")
     */
     private $movimientos;
+    
+    public function __toString() {
+        return $this->nroExpediente;
+    }
 
     public function __construct(){
         $this->caratulas = new ArrayCollection();
         $this->expedientesAsociados = new ArrayCollection();
         $this->movimientos = new ArrayCollection();
     }
-
 
     /**
      * Get id

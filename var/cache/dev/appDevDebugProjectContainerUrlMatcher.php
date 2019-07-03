@@ -117,14 +117,24 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::indexAction',  '_route' => 'nuevoExpediente',);
         }
 
+        // lugarFisico
+        if ('/lugarFisico' === $pathinfo) {
+            return array (  '_controller' => 'AppBundle\\Controller\\LugarFisicoController::indexAction',  '_route' => 'lugarFisico',);
+        }
+
         // moverExpediente
-        if ('/movimientoExpediente' === $pathinfo) {
+        if ('/expediente/movimientoExpediente' === $pathinfo) {
             return array (  '_controller' => 'AppBundle\\Controller\\MovimientoExpedienteController::indexAction',  '_route' => 'moverExpediente',);
         }
 
         // persona
         if ('/persona' === $pathinfo) {
             return array (  '_controller' => 'AppBundle\\Controller\\PersonaController::indexAction',  '_route' => 'persona',);
+        }
+
+        // usuario
+        if ('/usuario' === $pathinfo) {
+            return array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::indexAction',  '_route' => 'usuario',);
         }
 
         if ('/' === $pathinfo && !$allow) {
