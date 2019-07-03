@@ -15,14 +15,22 @@
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
         
         <style>
-            a{
-                color:grey;
-            }
+
             .active{
                 color:grey;
+                margin-left: 10px;
+                font-size: 20px;
             }
         </style>
-        
+          <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+  </script>
     </head>
     <body>       
         <header>  
@@ -74,14 +82,15 @@
             </nav>
         </header>
             <div class="row row-offcanvas row-offcanvas-left">
-        <div class="sideb col-sm-3 sidebar-offcanvas" id="custom-sidebar" role="navigation" >
+        <div class=" sideb col-sm-3 sidebar-offcanvas" id="custom-sidebar" role="navigation" >
             <div class="sidebar-nav">
                 <ul class="nav">
-                    <li class="active">Carga Expediente</li>
-                    <li><a  href="#">Link</a></li>
-                    <li><a href="#">Link</a></li>
+                    <li class="active">Carga de datos</li>
+                    <li><a  href="#">Expediente</a></li>
+                    <li><a href="#">Movimiento de Expediente</a></li>
+                    <li><a href="#">Nuevo Tema</a></li>
                     <li class="nav-divider"></li>
-                    <li class="active"><a href="#">Consultas</a></li>
+                    <li class="active">Consultas - Modificaciones</li>
                     <li><a href="#">Link</a></li>
                     <li><a href="#">Link</a></li>
                     <li><a href="#">Link</a></li>

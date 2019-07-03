@@ -56,14 +56,22 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         <link href=\"https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css\" rel=\"stylesheet\">
         
         <style>
-            a{
-                color:grey;
-            }
+
             .active{
                 color:grey;
+                margin-left: 10px;
+                font-size: 20px;
             }
         </style>
-        
+          <link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css\">
+  <link rel=\"stylesheet\" href=\"/resources/demos/style.css\">
+  <script src=\"https://code.jquery.com/jquery-1.12.4.js\"></script>
+  <script src=\"https://code.jquery.com/ui/1.12.1/jquery-ui.js\"></script>
+  <script>
+  \$( function() {
+    \$( \"#datepicker\" ).datepicker();
+  } );
+  </script>
     </head>
     <body>       
         <header>  
@@ -84,9 +92,9 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                     <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">
                         <ul class=\"nav navbar-nav\">                        
                             ";
-        // line 45
+        // line 53
         $this->displayBlock('menu', $context, $blocks);
-        // line 48
+        // line 56
         echo "                        </ul>
                         <ul class=\"nav navbar-nav navbar-right\">
 
@@ -116,14 +124,15 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
             </nav>
         </header>
             <div class=\"row row-offcanvas row-offcanvas-left\">
-        <div class=\"sideb col-sm-3 sidebar-offcanvas\" id=\"custom-sidebar\" role=\"navigation\" >
+        <div class=\" sideb col-sm-3 sidebar-offcanvas\" id=\"custom-sidebar\" role=\"navigation\" >
             <div class=\"sidebar-nav\">
                 <ul class=\"nav\">
-                    <li class=\"active\">Carga Expediente</li>
-                    <li><a  href=\"#\">Link</a></li>
-                    <li><a href=\"#\">Link</a></li>
+                    <li class=\"active\">Carga de datos</li>
+                    <li><a  href=\"#\">Expediente</a></li>
+                    <li><a href=\"#\">Movimiento de Expediente</a></li>
+                    <li><a href=\"#\">Nuevo Tema</a></li>
                     <li class=\"nav-divider\"></li>
-                    <li class=\"active\"><a href=\"#\">Consultas</a></li>
+                    <li class=\"active\">Consultas - Modificaciones</li>
                     <li><a href=\"#\">Link</a></li>
                     <li><a href=\"#\">Link</a></li>
                     <li><a href=\"#\">Link</a></li>
@@ -139,7 +148,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         <section id=\"content\"> 
             
             ";
-        // line 99
+        // line 108
         $this->displayBlock('content', $context, $blocks);
         echo "   
         </section>
@@ -176,7 +185,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     }
 
-    // line 45
+    // line 53
     public function block_menu($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -196,7 +205,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     }
 
-    // line 99
+    // line 108
     public function block_content($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -221,7 +230,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     public function getDebugInfo()
     {
-        return array (  200 => 99,  180 => 45,  162 => 7,  143 => 99,  90 => 48,  88 => 45,  47 => 7,  39 => 1,);
+        return array (  209 => 108,  189 => 53,  171 => 7,  152 => 108,  98 => 56,  96 => 53,  47 => 7,  39 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -251,14 +260,22 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         <link href=\"https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css\" rel=\"stylesheet\">
         
         <style>
-            a{
-                color:grey;
-            }
+
             .active{
                 color:grey;
+                margin-left: 10px;
+                font-size: 20px;
             }
         </style>
-        
+          <link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css\">
+  <link rel=\"stylesheet\" href=\"/resources/demos/style.css\">
+  <script src=\"https://code.jquery.com/jquery-1.12.4.js\"></script>
+  <script src=\"https://code.jquery.com/ui/1.12.1/jquery-ui.js\"></script>
+  <script>
+  \$( function() {
+    \$( \"#datepicker\" ).datepicker();
+  } );
+  </script>
     </head>
     <body>       
         <header>  
@@ -310,14 +327,15 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
             </nav>
         </header>
             <div class=\"row row-offcanvas row-offcanvas-left\">
-        <div class=\"sideb col-sm-3 sidebar-offcanvas\" id=\"custom-sidebar\" role=\"navigation\" >
+        <div class=\" sideb col-sm-3 sidebar-offcanvas\" id=\"custom-sidebar\" role=\"navigation\" >
             <div class=\"sidebar-nav\">
                 <ul class=\"nav\">
-                    <li class=\"active\">Carga Expediente</li>
-                    <li><a  href=\"#\">Link</a></li>
-                    <li><a href=\"#\">Link</a></li>
+                    <li class=\"active\">Carga de datos</li>
+                    <li><a  href=\"#\">Expediente</a></li>
+                    <li><a href=\"#\">Movimiento de Expediente</a></li>
+                    <li><a href=\"#\">Nuevo Tema</a></li>
                     <li class=\"nav-divider\"></li>
-                    <li class=\"active\"><a href=\"#\">Consultas</a></li>
+                    <li class=\"active\">Consultas - Modificaciones</li>
                     <li><a href=\"#\">Link</a></li>
                     <li><a href=\"#\">Link</a></li>
                     <li><a href=\"#\">Link</a></li>
@@ -340,6 +358,6 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
     </body>
     
 </html>
-", "AppBundle::layout.html.twig", "/var/www/html/gitSIE/src/AppBundle/Resources/views/layout.html.twig");
+", "AppBundle::layout.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/layout.html.twig");
     }
 }

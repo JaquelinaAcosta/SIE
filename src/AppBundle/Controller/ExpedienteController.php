@@ -25,7 +25,7 @@ class ExpedienteController extends Controller
         $expediente->setFojas(3);
         
         $form = $this->createForm(ExpedienteType::class,$expediente);
-                $expediente->setIniciadorDependencia($dependencia);
+                //$expediente->setIniciadorDependencia($dependencia);
         
         $form->handleRequest($request);
         

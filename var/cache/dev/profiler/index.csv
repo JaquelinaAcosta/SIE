@@ -282,3 +282,4 @@ cbcb86,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/movimientoExpedient
 bcec7a,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/movimientoExpediente,1561995691,,200
 c4f6ea,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/movimientoExpediente,1561996107,,200
 d68888,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/movimientoExpediente,1561996515,,200
+136803,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/add/expediente,1562154083,,200
