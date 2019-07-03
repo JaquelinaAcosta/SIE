@@ -37,7 +37,7 @@ class Expediente
     /**
      * @var int
      *
-     * @ORM\OneToOne(targetEntity="Tema")
+     * @ORM\ManyToOne(targetEntity="Tema")
      * @ORM\JoinColumn(name="tema", referencedColumnName="id", nullable=false)
      */
     private $tema;

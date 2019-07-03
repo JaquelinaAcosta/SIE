@@ -178,4 +178,38 @@ class Usuario
     {
         return $this->responsable;
     }
+
+    /**
+     * Add resolucion
+     *
+     * @param \AppBundle\Entity\Resolucion $resolucion
+     *
+     * @return Usuario
+     */
+    public function addResolucion(\AppBundle\Entity\Resolucion $resolucion)
+    {
+        $this->resolucion[] = $resolucion;
+
+        return $this;
+    }
+
+    /**
+     * Remove resolucion
+     *
+     * @param \AppBundle\Entity\Resolucion $resolucion
+     */
+    public function removeResolucion(\AppBundle\Entity\Resolucion $resolucion)
+    {
+        $this->resolucion->removeElement($resolucion);
+    }
+
+    /**
+     * Get resolucion
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getResolucion()
+    {
+        return $this->resolucion;
+    }
 }
