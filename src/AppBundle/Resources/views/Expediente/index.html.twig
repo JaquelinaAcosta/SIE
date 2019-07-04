@@ -25,7 +25,7 @@
     </style>
 
 
-    <div class="col-xs-9">
+    <div class="col-xs-9 col-md-offset-1">
         <div class="panel panel-primary ">
             <div class="title panel-heading">Carga de datos -> Expediente</div>
             <div class="panel panel-body">
@@ -55,13 +55,13 @@
                     </div>   
                      <div class="col-lg-3">
                         <label class="text-default">FECHA DE INICIO</label>
-                         {{ form_row(form.fechaInicio, { 'id': 'datepicker' })}} 
+                         {{ form_row(form.fechaInicio, { 'id': 'date1' })}} 
                         {{ form_errors(form.fechaInicio) }}
                         {{ form_widget(form.fechaInicio) }}
                     </div>  
                       <div class="col-lg-3">
                         <label class="text-default">FECHA DE FINALIZACION</label>
-                        {{ form_row(form.fechaFin, { 'id': 'datepicker' })}} 
+                        {{ form_row(form.fechaFin, { 'id': 'date2' })}} 
                         {{ form_errors(form.fechaFin) }}
                         {{ form_widget(form.fechaFin) }}
                     </div>   
