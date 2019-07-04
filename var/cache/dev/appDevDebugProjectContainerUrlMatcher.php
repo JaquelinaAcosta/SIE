@@ -107,9 +107,24 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
+        // caratulaAgregada
+        if ('/caratulaAgregada' === $pathinfo) {
+            return array (  '_controller' => 'AppBundle\\Controller\\CaratulaAgregadaController::indexAction',  '_route' => 'caratulaAgregada',);
+        }
+
         // homepage
         if ('/home' === $pathinfo) {
             return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'homepage',);
+        }
+
+        // expedienteAsociado
+        if ('/expedienteAsociado' === $pathinfo) {
+            return array (  '_controller' => 'AppBundle\\Controller\\ExpedienteAsociadoController::indexAction',  '_route' => 'expedienteAsociado',);
+        }
+
+        // moverExpediente
+        if ('/expediente/movimientoExpediente' === $pathinfo) {
+            return array (  '_controller' => 'AppBundle\\Controller\\MovimientoExpedienteController::indexAction',  '_route' => 'moverExpediente',);
         }
 
         // nuevoExpediente
@@ -122,14 +137,19 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return array (  '_controller' => 'AppBundle\\Controller\\LugarFisicoController::indexAction',  '_route' => 'lugarFisico',);
         }
 
-        // moverExpediente
-        if ('/expediente/movimientoExpediente' === $pathinfo) {
-            return array (  '_controller' => 'AppBundle\\Controller\\MovimientoExpedienteController::indexAction',  '_route' => 'moverExpediente',);
+        // mesaEntrada
+        if ('/mesaEntrada' === $pathinfo) {
+            return array (  '_controller' => 'AppBundle\\Controller\\MesaEntradaController::indexAction',  '_route' => 'mesaEntrada',);
         }
 
         // persona
         if ('/persona' === $pathinfo) {
             return array (  '_controller' => 'AppBundle\\Controller\\PersonaController::indexAction',  '_route' => 'persona',);
+        }
+
+        // resolucion
+        if ('/resolucion' === $pathinfo) {
+            return array (  '_controller' => 'AppBundle\\Controller\\ResolucionController::indexAction',  '_route' => 'resolucion',);
         }
 
         // usuario

@@ -505,7 +505,13 @@
   <services>
     <service id="service_container" class="Symfony\Component\DependencyInjection\ContainerInterface" public="true" synthetic="true"/>
     <service id="AppBundle\AppBundle" class="AppBundle\AppBundle" public="false" autowire="true" autoconfigure="true"/>
+    <service id="AppBundle\Controller\CaratulaAgregadaController" class="AppBundle\Controller\CaratulaAgregadaController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+    </service>
     <service id="AppBundle\Controller\DefaultController" class="AppBundle\Controller\DefaultController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+    </service>
+    <service id="AppBundle\Controller\ExpedienteAsociadoController" class="AppBundle\Controller\ExpedienteAsociadoController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
     </service>
     <service id="AppBundle\Controller\ExpedienteController" class="AppBundle\Controller\ExpedienteController" public="true" autowire="true" autoconfigure="true">
@@ -523,8 +529,17 @@
     <service id="AppBundle\Controller\PersonaController" class="AppBundle\Controller\PersonaController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
     </service>
+    <service id="AppBundle\Controller\ResolucionController" class="AppBundle\Controller\ResolucionController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+    </service>
     <service id="AppBundle\Controller\UsuarioController" class="AppBundle\Controller\UsuarioController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
+    </service>
+    <service id="AppBundle\Form\CaratulaAgregadaType" class="AppBundle\Form\CaratulaAgregadaType" public="false" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="AppBundle\Form\ExpedienteAsociadoType" class="AppBundle\Form\ExpedienteAsociadoType" public="false" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
     </service>
     <service id="AppBundle\Form\ExpedienteType" class="AppBundle\Form\ExpedienteType" public="false" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
@@ -532,10 +547,16 @@
     <service id="AppBundle\Form\LugarFisicoType" class="AppBundle\Form\LugarFisicoType" public="false" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
+    <service id="AppBundle\Form\MesaEntradaType" class="AppBundle\Form\MesaEntradaType" public="false" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
     <service id="AppBundle\Form\MovimientoExpedienteType" class="AppBundle\Form\MovimientoExpedienteType" public="false" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="AppBundle\Form\PersonaType" class="AppBundle\Form\PersonaType" public="false" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
+    <service id="AppBundle\Form\ResolucionType" class="AppBundle\Form\ResolucionType" public="false" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
     <service id="AppBundle\Form\UsuarioType" class="AppBundle\Form\UsuarioType" public="false" autowire="true" autoconfigure="true">
@@ -790,10 +811,14 @@
         <argument>Symfony\Bridge\Doctrine\Form\Type</argument>
       </argument>
       <argument type="collection">
+        <argument>AppBundle\Form\CaratulaAgregadaType</argument>
+        <argument>AppBundle\Form\ExpedienteAsociadoType</argument>
         <argument>AppBundle\Form\ExpedienteType</argument>
         <argument>AppBundle\Form\LugarFisicoType</argument>
+        <argument>AppBundle\Form\MesaEntradaType</argument>
         <argument>AppBundle\Form\MovimientoExpedienteType</argument>
         <argument>AppBundle\Form\PersonaType</argument>
+        <argument>AppBundle\Form\ResolucionType</argument>
         <argument>AppBundle\Form\UsuarioType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
@@ -1008,7 +1033,7 @@
       <argument type="service" id="form.resolved_type_factory"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id="service_locator.ku0rj29"/>
+      <argument type="service" id="service_locator.j7ymfvq"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -1677,14 +1702,6 @@
       </call>
       <call method="addListener">
         <argument>kernel.request</argument>
-        <argument type="collection">
-          <argument type="service" id="debug.debug_handlers_listener"/>
-          <argument>configure</argument>
-        </argument>
-        <argument>2048</argument>
-      </call>
-      <call method="addListener">
-        <argument>console.command</argument>
         <argument type="collection">
           <argument type="service" id="debug.debug_handlers_listener"/>
           <argument>configure</argument>
@@ -3746,8 +3763,12 @@
         <argument>server:log</argument>
       </call>
     </service>
+    <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\CaratulaAgregadaController" class="AppBundle\Controller\CaratulaAgregadaController" public="true" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.AppBundle\Controller\CaratulaAgregadaController" class="AppBundle\Controller\CaratulaAgregadaController" public="true" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\DefaultController" class="AppBundle\Controller\DefaultController" public="true" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Controller\DefaultController" class="AppBundle\Controller\DefaultController" public="true" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\ExpedienteAsociadoController" class="AppBundle\Controller\ExpedienteAsociadoController" public="true" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.AppBundle\Controller\ExpedienteAsociadoController" class="AppBundle\Controller\ExpedienteAsociadoController" public="true" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\ExpedienteController" class="AppBundle\Controller\ExpedienteController" public="true" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Controller\ExpedienteController" class="AppBundle\Controller\ExpedienteController" public="true" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\LugarFisicoController" class="AppBundle\Controller\LugarFisicoController" public="true" autowire="true" abstract="true"/>
@@ -3758,16 +3779,26 @@
     <service id="abstract.instanceof.AppBundle\Controller\MovimientoExpedienteController" class="AppBundle\Controller\MovimientoExpedienteController" public="true" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\PersonaController" class="AppBundle\Controller\PersonaController" public="true" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Controller\PersonaController" class="AppBundle\Controller\PersonaController" public="true" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\ResolucionController" class="AppBundle\Controller\ResolucionController" public="true" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.AppBundle\Controller\ResolucionController" class="AppBundle\Controller\ResolucionController" public="true" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\UsuarioController" class="AppBundle\Controller\UsuarioController" public="true" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Controller\UsuarioController" class="AppBundle\Controller\UsuarioController" public="true" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\CaratulaAgregadaType" class="AppBundle\Form\CaratulaAgregadaType" public="false" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.AppBundle\Form\CaratulaAgregadaType" class="AppBundle\Form\CaratulaAgregadaType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\ExpedienteAsociadoType" class="AppBundle\Form\ExpedienteAsociadoType" public="false" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.AppBundle\Form\ExpedienteAsociadoType" class="AppBundle\Form\ExpedienteAsociadoType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\ExpedienteType" class="AppBundle\Form\ExpedienteType" public="false" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Form\ExpedienteType" class="AppBundle\Form\ExpedienteType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\LugarFisicoType" class="AppBundle\Form\LugarFisicoType" public="false" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Form\LugarFisicoType" class="AppBundle\Form\LugarFisicoType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\MesaEntradaType" class="AppBundle\Form\MesaEntradaType" public="false" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.AppBundle\Form\MesaEntradaType" class="AppBundle\Form\MesaEntradaType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\MovimientoExpedienteType" class="AppBundle\Form\MovimientoExpedienteType" public="false" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Form\MovimientoExpedienteType" class="AppBundle\Form\MovimientoExpedienteType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\PersonaType" class="AppBundle\Form\PersonaType" public="false" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Form\PersonaType" class="AppBundle\Form\PersonaType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\ResolucionType" class="AppBundle\Form\ResolucionType" public="false" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.AppBundle\Form\ResolucionType" class="AppBundle\Form\ResolucionType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\UsuarioType" class="AppBundle\Form\UsuarioType" public="false" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Form\UsuarioType" class="AppBundle\Form\UsuarioType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="service_locator.sr6ctxe" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
@@ -3793,13 +3824,17 @@
         <argument key="inline" type="service" id="fragment.renderer.inline"/>
       </argument>
     </service>
-    <service id="service_locator.ku0rj29" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id="service_locator.j7ymfvq" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="AppBundle\Form\CaratulaAgregadaType" type="service" id="AppBundle\Form\CaratulaAgregadaType"/>
+        <argument key="AppBundle\Form\ExpedienteAsociadoType" type="service" id="AppBundle\Form\ExpedienteAsociadoType"/>
         <argument key="AppBundle\Form\ExpedienteType" type="service" id="AppBundle\Form\ExpedienteType"/>
         <argument key="AppBundle\Form\LugarFisicoType" type="service" id="AppBundle\Form\LugarFisicoType"/>
+        <argument key="AppBundle\Form\MesaEntradaType" type="service" id="AppBundle\Form\MesaEntradaType"/>
         <argument key="AppBundle\Form\MovimientoExpedienteType" type="service" id="AppBundle\Form\MovimientoExpedienteType"/>
         <argument key="AppBundle\Form\PersonaType" type="service" id="AppBundle\Form\PersonaType"/>
+        <argument key="AppBundle\Form\ResolucionType" type="service" id="AppBundle\Form\ResolucionType"/>
         <argument key="AppBundle\Form\UsuarioType" type="service" id="AppBundle\Form\UsuarioType"/>
         <argument key="Symfony\Bridge\Doctrine\Form\Type\EntityType" type="service" id="form.type.entity"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service" id="form.type.choice"/>
