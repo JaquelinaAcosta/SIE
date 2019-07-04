@@ -34,9 +34,6 @@ class LugarFisico extends Ubicacion
     private $acceso;
 
 
-    public function __construct(){
-        $this->idUbicacion = getUbicacionId();
-    }
 
     /**
      * Get id

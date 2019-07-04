@@ -20,9 +20,6 @@ class MesaEntrada extends Ubicacion
     private $codigoExpediente;
 
 
-    public function __construct(){
-        $this->idUbicacion = getUbicacionId();
-    }
 
     /**
      * Get id
