@@ -33,7 +33,7 @@ class UsuarioType extends AbstractType
                   "class"=>"form-exp form-control" 
                  )
             ))
-                 ->add('Guardar', SubmitType::class,array("attr"=> array(
+                 ->add('Aceptar', SubmitType::class,array("attr"=> array(
                "class"=>"form-submit btn btn-primary" 
             )
         ));

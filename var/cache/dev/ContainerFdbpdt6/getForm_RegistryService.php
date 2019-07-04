@@ -12,6 +12,8 @@ include_once $this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Component
 
 return $this->services['form.registry'] = new \Symfony\Component\Form\FormRegistry([0 => new \Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension(new \Symfony\Component\DependencyInjection\ServiceLocator(['AppBundle\\Form\\ExpedienteType' => function () {
     return ${($_ = isset($this->services['AppBundle\\Form\\ExpedienteType']) ? $this->services['AppBundle\\Form\\ExpedienteType'] : ($this->services['AppBundle\\Form\\ExpedienteType'] = new \AppBundle\Form\ExpedienteType())) && false ?: '_'};
+}, 'AppBundle\\Form\\LugarFisicoType' => function () {
+    return ${($_ = isset($this->services['AppBundle\\Form\\LugarFisicoType']) ? $this->services['AppBundle\\Form\\LugarFisicoType'] : ($this->services['AppBundle\\Form\\LugarFisicoType'] = new \AppBundle\Form\LugarFisicoType())) && false ?: '_'};
 }, 'AppBundle\\Form\\MovimientoExpedienteType' => function () {
     return ${($_ = isset($this->services['AppBundle\\Form\\MovimientoExpedienteType']) ? $this->services['AppBundle\\Form\\MovimientoExpedienteType'] : ($this->services['AppBundle\\Form\\MovimientoExpedienteType'] = new \AppBundle\Form\MovimientoExpedienteType())) && false ?: '_'};
 }, 'AppBundle\\Form\\PersonaType' => function () {

@@ -5,6 +5,8 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class LugarFisicoType extends AbstractType
 {
@@ -14,9 +16,27 @@ class LugarFisicoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-                ->add('tipo')
-                ->add('descripcion')
-                ->add('acceso');
+                ->add('tipo', TextType::class,array(
+            "label"=>"Tipo:","attr"=> array(
+               "class"=>"form-name form-control" 
+            )
+        ))
+                ->add('descripcion', TextType::class,array(
+            "label"=>"Descripción: ","attr"=> array(
+               "class"=>"form-name form-control" ,
+                "placeholder"=>"Descripción..."
+            )
+        ))
+                ->add('acceso', TextType::class,array(
+            "label"=>"Acceso: ","attr"=> array(
+               "class"=>"form-name form-control" ,
+                "placeholder"=>" "
+            )
+        ))
+                 ->add('Aceptar', SubmitType::class,array("attr"=> array(
+               "class"=>"form-submit btn btn-primary" 
+            )
+        ));
     }/**
      * {@inheritdoc}
      */
