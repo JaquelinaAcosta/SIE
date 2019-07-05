@@ -54,28 +54,54 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 \t<link href=\"https://use.fontawesome.com/releases/v5.0.6/css/all.css\" rel=\"stylesheet\">\t
         <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js\"></script>
         <link href=\"https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css\" rel=\"stylesheet\">
-        
+           
         <style>
-
             .active{
                 color:grey;
                 margin-left: 10px;
                 font-size: 20px;
             }
+            .footer {
+
+                position: fixed;
+
+                bottom: 0;
+
+                width: 100%;
+
+                height: 55px;
+
+                background-color: #3e3e3e;
+
+            }
+            .container{
+                background-color: #3e3e3e;
+                padding:15px;
+            }
+            .footer p{
+                text-align: center;
+               color:#fff;
+            }
         </style>
           <link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css\">
   <link rel=\"stylesheet\" href=\"/resources/demos/style.css\">
-  <script src=\"https://code.jquery.com/jquery-1.12.4.js\"></script>
+";
+        // line 55
+        echo "  <script src=\"https://code.jquery.com/jquery-1.12.4.js\"></script>
   <script src=\"https://code.jquery.com/ui/1.12.1/jquery-ui.js\"></script>
   <script>
-  \$( function() {
-    \$( \"#datepicker\" ).datepicker();
-  } );
+   \$(function() {
+    \$( \".datepicker\" ).datepicker({
+      inline: true,
+      showOtherMonths: true,
+      dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+    });    
+  });
   </script>
     </head>
     <body>       
         <header>  
-            <nav class=\"navbar navbar-default\">
+            <nav class=\"navbar navbar-sticky-top navbar-default\">
                 <div class=\"container-fluid\">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class=\"navbar-header\">
@@ -85,16 +111,19 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                             <span class=\"icon-bar\"></span>
                             <span class=\"icon-bar\"></span>
                         </button>
-                        <a class=\"navbar-brand\" href=\"#\">Sistema de Pases Internos de Expedientes</a>
+                        <a class=\"navbar-brand\" href=\"";
+        // line 79
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("homepage");
+        echo "\">Sistema de Pases Internos de Expedientes</a>
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">
                         <ul class=\"nav navbar-nav\">                        
                             ";
-        // line 53
+        // line 85
         $this->displayBlock('menu', $context, $blocks);
-        // line 56
+        // line 88
         echo "                        </ul>
                         <ul class=\"nav navbar-nav navbar-right\">
 
@@ -115,7 +144,6 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
                                         <li><a href=\"#\">Salir</a></li>
 
-                                   
                                 </ul>
                             </li>
                         </ul>
@@ -123,36 +151,21 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                 </div><!-- /.container-fluid -->
             </nav>
         </header>
-            <div class=\"row row-offcanvas row-offcanvas-left\">
-        <div class=\" sideb col-sm-3 sidebar-offcanvas\" id=\"custom-sidebar\" role=\"navigation\" >
-            <div class=\"sidebar-nav\">
-                <ul class=\"nav\">
-                    <li class=\"active\">Carga de datos</li>
-                    <li><a  href=\"#\">Expediente</a></li>
-                    <li><a href=\"#\">Movimiento de Expediente</a></li>
-                    <li><a href=\"#\">Nuevo Tema</a></li>
-                    <li class=\"nav-divider\"></li>
-                    <li class=\"active\">Consultas - Modificaciones</li>
-                    <li><a href=\"#\">Link</a></li>
-                    <li><a href=\"#\">Link</a></li>
-                    <li><a href=\"#\">Link</a></li>
-                    <li><a href=\"#\">Link</a></li>
-                    <li><a href=\"#\">Link</a></li>
-                    <li><a href=\"#\">Link</a></li>
-                    <li><a href=\"#\">Link</a></li>
-                </ul>
-            </div>
-            <!--/.well -->
-        </div>
-        <!--/span-->            
-        <section id=\"content\"> 
-            
+           
+        <section id=\"content\">             
             ";
-        // line 108
+        // line 117
         $this->displayBlock('content', $context, $blocks);
         echo "   
         </section>
-        <footer>
+        <footer class=\"footer\">
+
+            <div class=\"container\">
+
+                <p>&copy;DPV - DIRECCIÓN PROVINCIAL DE VIALIDAD - SANTA FE</p>
+
+            </div>
+
         </footer>
         
     </body>
@@ -185,7 +198,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     }
 
-    // line 53
+    // line 85
     public function block_menu($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -205,7 +218,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     }
 
-    // line 108
+    // line 117
     public function block_content($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -228,9 +241,14 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         return "AppBundle::layout.html.twig";
     }
 
+    public function isTraitable()
+    {
+        return false;
+    }
+
     public function getDebugInfo()
     {
-        return array (  209 => 108,  189 => 53,  171 => 7,  152 => 108,  98 => 56,  96 => 53,  47 => 7,  39 => 1,);
+        return array (  222 => 117,  202 => 85,  184 => 7,  158 => 117,  127 => 88,  125 => 85,  116 => 79,  90 => 55,  47 => 7,  39 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -258,28 +276,60 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 \t<link href=\"https://use.fontawesome.com/releases/v5.0.6/css/all.css\" rel=\"stylesheet\">\t
         <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js\"></script>
         <link href=\"https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css\" rel=\"stylesheet\">
-        
+           
         <style>
-
             .active{
                 color:grey;
                 margin-left: 10px;
                 font-size: 20px;
             }
+            .footer {
+
+                position: fixed;
+
+                bottom: 0;
+
+                width: 100%;
+
+                height: 55px;
+
+                background-color: #3e3e3e;
+
+            }
+            .container{
+                background-color: #3e3e3e;
+                padding:15px;
+            }
+            .footer p{
+                text-align: center;
+               color:#fff;
+            }
         </style>
           <link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css\">
   <link rel=\"stylesheet\" href=\"/resources/demos/style.css\">
+{#  <link href=\"{{ asset('css/jquery-ui.css') }}\" rel=\"stylesheet\">
+  <link href=\"{{ asset('css/jquery-ui.min.css') }}\" rel=\"stylesheet\">
+  <link href=\"{{ asset('css/jquery-ui.structure.css') }}\" rel=\"stylesheet\">
+  <link href=\"{{ asset('css/jquery-ui.theme.css') }}\" rel=\"stylesheet\">
+  <link href=\"{{ asset('css/jquery-ui.theme.min.css') }}\" rel=\"stylesheet\">
+  
+    <script src=\"{{ asset('css/jquery-ui.js') }}\"></script>
+     <script src=\"{{ asset('css/jquery-ui.min.js') }}\"></script>#}
   <script src=\"https://code.jquery.com/jquery-1.12.4.js\"></script>
   <script src=\"https://code.jquery.com/ui/1.12.1/jquery-ui.js\"></script>
   <script>
-  \$( function() {
-    \$( \"#datepicker\" ).datepicker();
-  } );
+   \$(function() {
+    \$( \".datepicker\" ).datepicker({
+      inline: true,
+      showOtherMonths: true,
+      dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+    });    
+  });
   </script>
     </head>
     <body>       
         <header>  
-            <nav class=\"navbar navbar-default\">
+            <nav class=\"navbar navbar-sticky-top navbar-default\">
                 <div class=\"container-fluid\">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class=\"navbar-header\">
@@ -289,7 +339,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                             <span class=\"icon-bar\"></span>
                             <span class=\"icon-bar\"></span>
                         </button>
-                        <a class=\"navbar-brand\" href=\"#\">Sistema de Pases Internos de Expedientes</a>
+                        <a class=\"navbar-brand\" href=\"{{ path(\"homepage\") }}\">Sistema de Pases Internos de Expedientes</a>
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -318,7 +368,6 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
                                         <li><a href=\"#\">Salir</a></li>
 
-                                   
                                 </ul>
                             </li>
                         </ul>
@@ -326,38 +375,23 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                 </div><!-- /.container-fluid -->
             </nav>
         </header>
-            <div class=\"row row-offcanvas row-offcanvas-left\">
-        <div class=\" sideb col-sm-3 sidebar-offcanvas\" id=\"custom-sidebar\" role=\"navigation\" >
-            <div class=\"sidebar-nav\">
-                <ul class=\"nav\">
-                    <li class=\"active\">Carga de datos</li>
-                    <li><a  href=\"#\">Expediente</a></li>
-                    <li><a href=\"#\">Movimiento de Expediente</a></li>
-                    <li><a href=\"#\">Nuevo Tema</a></li>
-                    <li class=\"nav-divider\"></li>
-                    <li class=\"active\">Consultas - Modificaciones</li>
-                    <li><a href=\"#\">Link</a></li>
-                    <li><a href=\"#\">Link</a></li>
-                    <li><a href=\"#\">Link</a></li>
-                    <li><a href=\"#\">Link</a></li>
-                    <li><a href=\"#\">Link</a></li>
-                    <li><a href=\"#\">Link</a></li>
-                    <li><a href=\"#\">Link</a></li>
-                </ul>
-            </div>
-            <!--/.well -->
-        </div>
-        <!--/span-->            
-        <section id=\"content\"> 
-            
+           
+        <section id=\"content\">             
             {% block content %}Content default{% endblock %}   
         </section>
-        <footer>
+        <footer class=\"footer\">
+
+            <div class=\"container\">
+
+                <p>&copy;DPV - DIRECCIÓN PROVINCIAL DE VIALIDAD - SANTA FE</p>
+
+            </div>
+
         </footer>
         
     </body>
     
 </html>
-", "AppBundle::layout.html.twig", "/var/www/html/gitSIE/src/AppBundle/Resources/views/layout.html.twig");
+", "AppBundle::layout.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/layout.html.twig");
     }
 }

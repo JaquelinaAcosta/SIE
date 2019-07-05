@@ -112,11 +112,6 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return array (  '_controller' => 'AppBundle\\Controller\\CaratulaAgregadaController::indexAction',  '_route' => 'caratulaAgregada',);
         }
 
-        // homepage
-        if ('/home' === $pathinfo) {
-            return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'homepage',);
-        }
-
         // expedienteAsociado
         if ('/expedienteAsociado' === $pathinfo) {
             return array (  '_controller' => 'AppBundle\\Controller\\ExpedienteAsociadoController::indexAction',  '_route' => 'expedienteAsociado',);
@@ -141,6 +136,21 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         if ('/mesaEntrada' === $pathinfo) {
             return array (  '_controller' => 'AppBundle\\Controller\\MesaEntradaController::indexAction',  '_route' => 'mesaEntrada',);
         }
+
+        // homepage
+        if ('' === $trimmedPathinfo) {
+            $ret = array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::indexAction',  '_route' => 'homepage',);
+            if ('/' === substr($pathinfo, -1)) {
+                // no-op
+            } elseif ('GET' !== $canonicalMethod) {
+                goto not_homepage;
+            } else {
+                return array_replace($ret, $this->redirect($rawPathinfo.'/', 'homepage'));
+            }
+
+            return $ret;
+        }
+        not_homepage:
 
         // persona
         if ('/persona' === $pathinfo) {
