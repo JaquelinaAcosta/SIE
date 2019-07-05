@@ -69,14 +69,14 @@ class ExpedienteType extends AbstractType
                 ->add('fechaInicio', TextType::class,array(
             "label"=>false,"attr"=>array(
                 "class"=>'datepicker form-control',
-                "placeholder"=>'mm-dd-aaaa'
+                "placeholder"=>'MM-DD-AAAA'
             )
             
         ))
                 ->add('fechaFin', TextType::class,array(
             "label"=>false,"attr"=>array(
                 "class"=>'datepicker form-control',
-                "placeholder"=>'MM-DD-'
+                "placeholder"=>'MM-DD-AAAA'
                 
             )
             
