@@ -38,8 +38,10 @@ class ResolucionType extends AbstractType
                "class"=>"form-name form-control" 
             )
         ) )
-                ->add('fechaResolucion', DateType::class,array(
-            "label"=>"Fecha:"
+                ->add('fechaResolucion', TextType::class,array(
+            "label"=>"Fecha:","attr"=> array(
+               "class"=>'datepicker form-control',
+                "placeholder"=>'MM-DD-')
         ))
                 ->add('Aceptar', SubmitType::class,array("attr"=> array(
             "class"=>"form-submit btn btn-primary" 

@@ -20,6 +20,13 @@
             <h2 class="text-center">Resolución</h2>
             <hr/>
             {{form_start(form,{'action':'','method':'POST'})}}
+            
+             <label class="text-default">FECHA DE RESOLUCION</label>
+                         {{ form_row(form.fechaResolucion, { 'id': 'date1' })}} 
+                        {{ form_errors(form.fechaResolucion) }}
+                        {{ form_widget(form.fechaResolucion) }}
+            
+            
             {{form_end(form)}}
         </div>
     </div>

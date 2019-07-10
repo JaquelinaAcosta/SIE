@@ -112,14 +112,22 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return array (  '_controller' => 'AppBundle\\Controller\\CaratulaAgregadaController::indexAction',  '_route' => 'caratulaAgregada',);
         }
 
-        // expedienteAsociado
-        if ('/expedienteAsociado' === $pathinfo) {
-            return array (  '_controller' => 'AppBundle\\Controller\\ExpedienteAsociadoController::indexAction',  '_route' => 'expedienteAsociado',);
-        }
+        if (0 === strpos($pathinfo, '/expediente')) {
+            // expedienteAsociado
+            if ('/expedienteAsociado' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\ExpedienteAsociadoController::indexAction',  '_route' => 'expedienteAsociado',);
+            }
 
-        // moverExpediente
-        if ('/expediente/movimientoExpediente' === $pathinfo) {
-            return array (  '_controller' => 'AppBundle\\Controller\\MovimientoExpedienteController::indexAction',  '_route' => 'moverExpediente',);
+            // expediente
+            if (preg_match('#^/expediente/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'expediente']), array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::expedienteAction',));
+            }
+
+            // moverExpediente
+            if ('/expediente/movimientoExpediente' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\MovimientoExpedienteController::indexAction',  '_route' => 'moverExpediente',);
+            }
+
         }
 
         // nuevoExpediente
@@ -127,9 +135,19 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::indexAction',  '_route' => 'nuevoExpediente',);
         }
 
+        // listaExpediente
+        if ('/listaExpediente' === $pathinfo) {
+            return array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::listaExpedientesAction',  '_route' => 'listaExpediente',);
+        }
+
         // lugarFisico
         if ('/lugarFisico' === $pathinfo) {
             return array (  '_controller' => 'AppBundle\\Controller\\LugarFisicoController::indexAction',  '_route' => 'lugarFisico',);
+        }
+
+        // delete
+        if (0 === strpos($pathinfo, '/delete') && preg_match('#^/delete/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, ['_route' => 'delete']), array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::deleteAction',));
         }
 
         // mesaEntrada
