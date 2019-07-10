@@ -7,9 +7,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
-use Symfony\Component\Form\Extension\Core\Type\ButtonType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -32,8 +29,9 @@ class ExpedienteType extends AbstractType
         ))
                 ->add('iniciadorDependencia', EntityType::class,array(
                 "label"=>"Dependencia:",
+                "placeholder"=>"--Seleccione--",
                 "class"=>'AppBundle:Dependencia',"attr"=> array(
-               "class"=>"form-control"
+                "class"=>"form-control"
             ))
         )
                 ->add('concepto', TextareaType::class, array(
@@ -42,26 +40,32 @@ class ExpedienteType extends AbstractType
                "placeholder"=>"Concepto..."
             )
         ))
-//                ->add('tema', TextType::class,array(
-//            "label"=>"Tema:","attr"=> array(
-//               "class"=>"form-name form-control" ,
-//               "placeholder"=>"Tema..."
-//            )
-//        ))
+                ->add('tema', TextType::class,array(
+            "label"=>"Tema:","attr"=> array(
+               "class"=>"form-name form-control" ,
+               "placeholder"=>"Ej:01983"
+            )
+        ))
                 ->add('fojas', TextType::class,array(
             "label"=>"Nro. de fojas:","attr"=> array(
                "class"=>"align-center form-control" ,
                "placeholder"=>"1...2..."
             )
         ))
-                ->add('tipo', TextType::class,array(
-            "label"=>"Tipo:","attr"=> array(
+                ->add('tipo', TextareaType::class,array(
+                "label"=>"Tipo:","attr"=> array(
                "class"=>"form-name form-control" ,
                "placeholder"=>"¿Que es?"
             )
         ))
-                 ->add('ubicacionActual', TextType::class,array(
-            "label"=>"Ubicación Actual:","attr"=> array(
+                 ->add('ubicacionActual', ChoiceType::class,array(                
+                "choices"=>array(
+                "--Seleccione--"=>0,
+                "Mesa de Entrada"=>1,
+                "Persona"=>2,
+                "Lugar Físico"=>3
+                ),
+            "label"=>false,"attr"=> array(
                "class"=>"form-name form-control"
             )
         ))
@@ -82,10 +86,19 @@ class ExpedienteType extends AbstractType
             
         ))
                
+                ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
+                    $persona = $event->getData();
+                    
+                    
+        })
+        
                 ->add('Guardar', SubmitType::class,array("attr"=> array(
                "class"=>"form-submit btn btn-primary" 
             )
-        ));
+        ))
+                
+                
+                ;
     }/**
      * {@inheritdoc}
      */

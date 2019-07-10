@@ -18,7 +18,7 @@ class PersonaType extends AbstractType
     {
         $builder
         ->add('nombre', TextType::class,array(
-            "label"=>"Ingrese nombre:","attr"=> array(
+            "label"=>false,"attr"=> array(
                "class"=>"form-name form-control" ,
                "placeholder"=>"Nombre"
             )

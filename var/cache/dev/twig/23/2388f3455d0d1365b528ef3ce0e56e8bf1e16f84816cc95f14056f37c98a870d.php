@@ -64,9 +64,7 @@ class __TwigTemplate_f00a9fe82af130be4151094a955578bdb99db76fa1545477496e9c6c74b
         }
         
         .main{              
-            width:auto;
-            
-
+            width:auto;          
         }
         .header p{
             margin-left:3%;
@@ -108,13 +106,13 @@ class __TwigTemplate_f00a9fe82af130be4151094a955578bdb99db76fa1545477496e9c6c74b
         }
 
         .add{
-            background-color: #ffcd03;           
+            background-color: #f5b92f;           
         }
         .list{
-            background-color:#9fd96f;       
+            background-color:#6bc238;       
         }
         .search{
-            background-color: #84cee3;
+            background-color: #6eb6ff;
         }
         
         .add:hover{
@@ -143,11 +141,7 @@ class __TwigTemplate_f00a9fe82af130be4151094a955578bdb99db76fa1545477496e9c6c74b
            transition-duration:  0.05s;
            transition-timing-function: linear;
           
-        }
-
-
-        
-        
+        }       
     </style>
     
     <div class=\"main\">
@@ -156,12 +150,12 @@ class __TwigTemplate_f00a9fe82af130be4151094a955578bdb99db76fa1545477496e9c6c74b
             <hr/>
             <div class=\"opciones\">
                 <a href=\"";
-        // line 102
+        // line 96
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nuevoExpediente");
         echo "\" class=\"add\"> 
                     <div class=\"content\">
                         <img src=\"";
-        // line 104
+        // line 98
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("Icons/add.png"), "html", null, true);
         echo "\" width=\"170\"/>
                         <h4><strong>CARGAR UN EXPEDIENTE</strong></h4>
@@ -171,7 +165,7 @@ class __TwigTemplate_f00a9fe82af130be4151094a955578bdb99db76fa1545477496e9c6c74b
                 <a href=\"#\" class=\"search\"> 
                     <div class=\"content\">
                         <img src=\"";
-        // line 111
+        // line 105
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("Icons/search.png"), "html", null, true);
         echo "\" width=\"170\"/>
                         <h4><strong>BUSCAR EXPEDIENTES</strong></h4>
@@ -181,10 +175,10 @@ class __TwigTemplate_f00a9fe82af130be4151094a955578bdb99db76fa1545477496e9c6c74b
                 <a href=\"#\" class=\"list\"> 
                     <div class=\"content\">
                         <img src=\"";
-        // line 118
+        // line 112
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("Icons/list.png"), "html", null, true);
         echo "\" width=\"170\"/>
-                        <h4><strong>EXPEDIENTES CARGADOS POR MI</strong></h4>
+                        <h4><strong>HISTORIAL DE EXPEDIENTES</strong></h4>
                         <p>Aquí se podran ver los expedientes cargados por un usuario específico.</p> 
                     </div>
                 </a>
@@ -214,7 +208,7 @@ class __TwigTemplate_f00a9fe82af130be4151094a955578bdb99db76fa1545477496e9c6c74b
 
     public function getDebugInfo()
     {
-        return array (  185 => 118,  175 => 111,  165 => 104,  160 => 102,  51 => 3,  29 => 1,);
+        return array (  179 => 112,  169 => 105,  159 => 98,  154 => 96,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -237,9 +231,7 @@ class __TwigTemplate_f00a9fe82af130be4151094a955578bdb99db76fa1545477496e9c6c74b
         }
         
         .main{              
-            width:auto;
-            
-
+            width:auto;          
         }
         .header p{
             margin-left:3%;
@@ -281,13 +273,13 @@ class __TwigTemplate_f00a9fe82af130be4151094a955578bdb99db76fa1545477496e9c6c74b
         }
 
         .add{
-            background-color: #ffcd03;           
+            background-color: #f5b92f;           
         }
         .list{
-            background-color:#9fd96f;       
+            background-color:#6bc238;       
         }
         .search{
-            background-color: #84cee3;
+            background-color: #6eb6ff;
         }
         
         .add:hover{
@@ -316,11 +308,7 @@ class __TwigTemplate_f00a9fe82af130be4151094a955578bdb99db76fa1545477496e9c6c74b
            transition-duration:  0.05s;
            transition-timing-function: linear;
           
-        }
-
-
-        
-        
+        }       
     </style>
     
     <div class=\"main\">
@@ -345,7 +333,7 @@ class __TwigTemplate_f00a9fe82af130be4151094a955578bdb99db76fa1545477496e9c6c74b
                 <a href=\"#\" class=\"list\"> 
                     <div class=\"content\">
                         <img src=\"{{ asset(\"Icons/list.png\") }}\" width=\"170\"/>
-                        <h4><strong>EXPEDIENTES CARGADOS POR MI</strong></h4>
+                        <h4><strong>HISTORIAL DE EXPEDIENTES</strong></h4>
                         <p>Aquí se podran ver los expedientes cargados por un usuario específico.</p> 
                     </div>
                 </a>
