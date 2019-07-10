@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+USE Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Entity\CaratulaAgregada;
 use AppBundle\Entity\Resolucion;
 use AppBundle\Entity\Dependencia;
@@ -110,6 +111,12 @@ class Expediente
     */
     private $movimientos;
     
+    /**
+     *@Assert\Type(type="AppBundle\Entity\Persona")
+     *@Assert\Valid
+     */
+    private $persona;
+    
     public function __toString() {
         return $this->nroExpediente;
     }
@@ -120,6 +127,18 @@ class Expediente
         $this->movimientos = new ArrayCollection();
     }
 
+     public function getPersona()
+    {
+        return $this->persona;
+    }
+
+    public function setPersona(Persona $persona = null)
+    {
+        $this->persona = $persona;
+    }
+    
+    
+    
     /**
      * Get id
      *

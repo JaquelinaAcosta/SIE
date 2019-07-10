@@ -37,6 +37,10 @@ class Tema
      */
     private $descripcion;
 
+    
+    public function __toString() {
+        return $this->codigo;
+    }
 
     /**
      * Get id

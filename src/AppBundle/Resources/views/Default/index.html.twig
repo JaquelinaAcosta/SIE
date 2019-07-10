@@ -1,25 +1,9 @@
 {% extends "AppBundle::layout.html.twig" %}
 
 {% block content %}
-    
-    <style>
-        input[type=text]{
-            margin-bottom: 10px;
-            padding:10px;            
-         }
-         input[type=submit]{
-            margin-bottom: 10px;
-            padding:10px;            
-         }
+       
+    {{ dump(expdientes) }}
+    {% for expediente in expedientes %}
+    {% endfor %}
 
-    </style>
-    
-    <div class="formu col-lg-4 col-md-offset-1">
-        <div class="border border-primary">
-            <h2 class="text-center">Expediente</h2>
-            <hr/>
-            {{form_start(form,{'action':'','method':'POST'})}}
-            {{form_end(form)}}
-        </div>
-    </div>
 {% endblock %}
