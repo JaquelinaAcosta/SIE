@@ -1,0 +1,59 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block content %}
+    
+    <style>
+        input[type=text]{
+            margin-bottom: 10px;
+            padding:10px;            
+         }
+         input[type=submit]{
+            margin-bottom: 10px;
+            padding:10px;            
+         }
+
+    </style>
+    
+    <div class="formu col-lg-4 col-md-offset-1">
+        <div class="border border-primary">
+            <h2 class="text-center ">Expediente Nro: {{ expediente.nroExpediente}}</h2>
+            <hr/>
+            
+            <div class="list-group">
+               
+                    <p class="list-group-item-text">Tema: {{ expediente.tema}}</p>
+                    <p class="list-group-item-text">Concepto: {{ expediente.concepto}}</p>
+                    <p class="list-group-item-text">Cantidad de fojas: {{ expediente.fojas}}</p>
+                    <p class="list-group-item-text">Tipo: {{ expediente.tipo}}</p>
+                    <p class="list-group-item-text">Dependencia: {{ expediente.iniciadorDependencia}}</p>
+                    <p class="list-group-item-text">Fecha de Inicio: {{ expediente.fechaInicio|date("d/m/Y")}}</p>
+                    <p class="list-group-item-text">Fecha de Fin: {{ expediente.fechaFin|date("d/m/Y")}}</p>
+                    <p class="list-group-item-text">Ubicación Actual: {{ expediente.ubicacionActual}}</p>
+                    
+                    <hr>
+                    <p class="list-group-item-text">Resolución: {{ expediente.resolucion}}</p>
+                    
+                    <hr>
+                    {#  <p class="list-group-item-text">Carátulas: {{ expediente.caratulas}}</p>#}
+                    
+                    <hr>
+                    {#<p class="list-group-item-text">Expedientes asociados: {{ expediente.expedientesAsociados}}</p>#}
+                  
+                    <hr>
+                    {#<p class="list-group-item-text">Movimientos: {{ expediente.movimientos}}</p>#}
+                    
+                    <hr>
+                    {# no se si hace falta lo de persona.......
+                    <p class="list-group-item-text">Usuario: {{ expediente.persona}}</p>#}
+                    
+                    <hr>
+                    <a class="btn btn-default" onclick="history.back()"  role="button">Volver</a>
+                   
+            </div>
+            
+           
+      
+        </div>
+    </div>
+    
+{% endblock %}
