@@ -72,15 +72,15 @@ class Expediente
     private $iniciadorDependencia;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="fecha_inicio", type="datetime")
+     * @ORM\Column(name="fecha_inicio", type="string",length=255)
      */
     private $fechaInicio;
 
     /**
-     * @var \DateTime
-     * @ORM\Column(name="fecha_fin", type="datetime")
+     * @var string
+     * @ORM\Column(name="fecha_fin", type="string",length=255)
      */
     private $fechaFin;
 
@@ -117,6 +117,21 @@ class Expediente
      */
     private $persona;
     
+    
+    /**
+     *@Assert\Type(type="AppBundle\Entity\MesaEntrada")
+     *@Assert\Valid
+     */
+    private $mesaentrada;
+    
+    
+    /**
+     *@Assert\Type(type="AppBundle\Entity\LugarFisico")
+     *@Assert\Valid
+     */
+    private $lugarfisico;
+    
+    
     public function __toString() {
         return $this->nroExpediente;
     }
@@ -126,18 +141,35 @@ class Expediente
         $this->expedientesAsociados = new ArrayCollection();
         $this->movimientos = new ArrayCollection();
     }
-
-     public function getPersona()
+    
+    
+     public function getLugarfisico()
+    {
+        return $this->lugarfisico;
+    }
+    public function setLugarfisico(Lugarfisico $lugarfisico = null)
+    {
+        $this->lugarfisico = $lugarfisico;
+    }
+    
+    public function getPersona()
     {
         return $this->persona;
     }
-
     public function setPersona(Persona $persona = null)
     {
         $this->persona = $persona;
     }
+    public function setMesaentrada(MesaEntrada $mesaentrada = null)
+    {
+        $this->mesaentrada = $mesaentrada;
+    }
     
-    
+     public function getMesaentrada()
+    {
+        return $this->mesaentrada;
+    }
+
     
     /**
      * Get id
@@ -183,7 +215,6 @@ class Expediente
     public function setTema($tema)
     {
         $this->tema = $tema;
-
         return $this;
     }
 

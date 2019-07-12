@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+USE Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Entity\CaratulaAgregada;
 use AppBundle\Entity\Resolucion;
 use AppBundle\Entity\Dependencia;
@@ -109,14 +110,67 @@ class Expediente
     *@ORM\OneToMany(targetEntity="MovimientoExpediente", mappedBy="expediente")
     */
     private $movimientos;
+    
+    /**
+     *@Assert\Type(type="AppBundle\Entity\Persona")
+     *@Assert\Valid
+     */
+    private $persona;
+    
+    
+    /**
+     *@Assert\Type(type="AppBundle\Entity\MesaEntrada")
+     *@Assert\Valid
+     */
+    private $mesaentrada;
+    
+    
+    /**
+     *@Assert\Type(type="AppBundle\Entity\LugarFisico")
+     *@Assert\Valid
+     */
+    private $lugarfisico;
+    
+    
+    public function __toString() {
+        return $this->nroExpediente;
+    }
 
     public function __construct(){
         $this->caratulas = new ArrayCollection();
         $this->expedientesAsociados = new ArrayCollection();
         $this->movimientos = new ArrayCollection();
     }
+    
+    
+     public function getLugarfisico()
+    {
+        return $this->lugarfisico;
+    }
+    public function setLugarfisico(Lugarfisico $lugarfisico = null)
+    {
+        $this->lugarfisico = $lugarfisico;
+    }
+    
+    public function getPersona()
+    {
+        return $this->persona;
+    }
+    public function setPersona(Persona $persona = null)
+    {
+        $this->persona = $persona;
+    }
+    public function setMesaentrada(MesaEntrada $mesaentrada = null)
+    {
+        $this->mesaentrada = $mesaentrada;
+    }
+    
+     public function getMesaentrada()
+    {
+        return $this->mesaentrada;
+    }
 
-
+    
     /**
      * Get id
      *
@@ -161,7 +215,6 @@ class Expediente
     public function setTema($tema)
     {
         $this->tema = $tema;
-
         return $this;
     }
 

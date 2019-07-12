@@ -16,8 +16,8 @@ class MesaEntradaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-                ->add('codigoExpediente', TextType::class,array(
-            "label"=>"Nro. de Expediente:","attr"=> array(
+               ->add('codigoExpediente', TextType::class,array(
+               "label"=>"Nro. de Expediente:","attr"=> array(
                "class"=>"form-exp form-control" ,
                "placeholder"=>"00000-000000000-0"
             )
