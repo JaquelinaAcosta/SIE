@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class LugarFisicoType extends AbstractType
 {
@@ -21,8 +22,8 @@ class LugarFisicoType extends AbstractType
                "class"=>"form-name form-control" 
             )
         ))
-                ->add('descripcion', TextType::class,array(
-            "label"=>"Descripción: ","attr"=> array(
+                ->add('descripcion', TextareaType::class,array(
+             "label"=>"Descripción: ","attr"=> array(
                "class"=>"form-name form-control" ,
                 "placeholder"=>"Descripción..."
             )

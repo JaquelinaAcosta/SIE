@@ -24,26 +24,28 @@ class PersonaType extends AbstractType
             )
         ))
         ->add('apellido', TextType::class,array(
-            "label"=>"Ingrese apellido","attr"=> array(
+            "label"=>false,"attr"=> array(
                "class"=>"form-name form-control",
                "placeholder"=>"Apellido"
             )
         ))       
         ->add('dni', TextType::class,array(
-            "label"=>"Ingrese DNI","attr"=> array(
+            "label"=>false,"attr"=> array(
                "class"=>"form-name form-control",
-               "placeholder"=>"D.N.I" 
+               "placeholder"=>"Ej:40323795" 
             )
         ))
         ->add('cargo', TextType::class,array(
-            "label"=>"Ingrese un cargo","attr"=> array(
+            "label"=>false,"attr"=> array(
                "class"=>"form-name form-control",
                "placeholder"=>"Cargo" 
             )
         ))
         ->add('Aceptar', SubmitType::class,array("attr"=> array(
                "class"=>"form-submit btn btn-primary" 
-            )));
+            )
+        ))        
+        ;
     }/**
      * {@inheritdoc}
      */

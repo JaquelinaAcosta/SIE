@@ -18,6 +18,7 @@ class PersonaController extends Controller
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getEntityManager(); 
+        
         $dependencia = $em->getRepository("AppBundle:Dependencia")->find(3);
         $persona = new Persona();
         $persona->setDependencia($dependencia);

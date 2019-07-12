@@ -4,6 +4,8 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * Tema
  *
@@ -37,6 +39,15 @@ class Tema
      */
     private $descripcion;
 
+    
+   /**
+    * @ORM\OneToMany(targetEntity="Expediente",mappedBy="tema")
+    */
+    private $expedientes;
+    
+    public function __construct() {
+        $this->expedientes = new ArrayCollection();
+    }
     
     public function __toString() {
         return $this->codigo;
@@ -98,5 +109,39 @@ class Tema
     public function getCodigo()
     {
         return $this->codigo;
+    }
+
+    /**
+     * Add expediente
+     *
+     * @param \AppBundle\Entity\Expediente $expediente
+     *
+     * @return Tema
+     */
+    public function addExpediente(\AppBundle\Entity\Expediente $expediente)
+    {
+        $this->expedientes[] = $expediente;
+
+        return $this;
+    }
+
+    /**
+     * Remove expediente
+     *
+     * @param \AppBundle\Entity\Expediente $expediente
+     */
+    public function removeExpediente(\AppBundle\Entity\Expediente $expediente)
+    {
+        $this->expedientes->removeElement($expediente);
+    }
+
+    /**
+     * Get expedientes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getExpedientes()
+    {
+        return $this->expedientes;
     }
 }

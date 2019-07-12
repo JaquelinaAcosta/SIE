@@ -19,33 +19,33 @@ class Persona extends Ubicacion
      *
      * @ORM\Column(name="apellido", type="string", length=255)
      */
-    private $apellido;
+    protected $apellido;
 
     /**
      * @var string
      *
      * @ORM\Column(name="nombre", type="string", length=255)
      */
-    private $nombre;
+    protected $nombre;
 
     /**
      * @var string
      *
      * @ORM\Column(name="dni", type="string", length=255)
      */
-    private $dni;
+    protected $dni;
 
     /**
      * @var string
      *
      * @ORM\Column(name="cargo", type="string", length=255)
      */
-    private $cargo;
+    protected $cargo;
     
      /**
      * @ORM\OneToOne(targetEntity="Usuario",mappedBy="persona")
      */
-    private $usuario;
+    protected $usuario;
     
 
     /**
@@ -82,12 +82,6 @@ class Persona extends Ubicacion
     {
         return $this->idUbicacion;
     }
-
-    
-    
-    
-    
-    
     /**
      * Set apellido
      *

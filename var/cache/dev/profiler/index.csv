@@ -1158,3 +1158,9 @@ a2f571,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/delete/1,1562773844
 7c9181,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/listaExpediente,1562773844,,200
 b36d75,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/listaExpediente,1562773904,,200
 430add,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/expediente/2,1562773907,,200
+a48fbd,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/add/expediente,1562939418,ef4b69,200
+ef4b69,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/add/expediente,1562939418,,500
+f59ed2,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/add/expediente,1562939447,b85c9c,200
+b85c9c,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/add/expediente,1562939447,,500
+c236a2,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/add/expediente,1562939531,8c74ac,200
+8c74ac,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/add/expediente,1562939531,,500

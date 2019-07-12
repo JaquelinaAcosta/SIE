@@ -12,98 +12,89 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 
+use AppBundle\Form\Event\Listener\AddStateFieldSubscriber;
 
-class ExpedienteType extends AbstractType
-{
+class ExpedienteType extends AbstractType {
+
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-                ->add('nroExpediente', TextType::class,array(
-            "label"=>"Nro. de Expediente:","attr"=> array(
-               "class"=>"form-exp form-control" ,
-               "placeholder"=>"00000-000000000-0"
-            )
-        ))
-                ->add('iniciadorDependencia', EntityType::class,array(
-                "label"=>"Dependencia:",
-                "placeholder"=>"--Seleccione--",
-                "class"=>'AppBundle:Dependencia',"attr"=> array(
-                "class"=>"form-control"
-            ))
-        )
+
+                ->add('nroExpediente', TextType::class, array(
+                    "label" => "Nro. de Expediente:", "attr" => array(
+                        "class" => "form-exp form-control",
+                        "placeholder" => "00000-000000000-0"
+                    )
+                ))
+                ->add('iniciadorDependencia', EntityType::class, array(
+                    "label" => "Dependencia:",
+                    "placeholder" => "--Seleccione--",
+                    "class" => 'AppBundle:Dependencia', "attr" => array(
+                        "class" => "form-control"
+                    ))
+                )
                 ->add('concepto', TextareaType::class, array(
-            "label"=>"Concepto: ","attr"=> array(
-               "class"=>"form-name form-control" ,
-               "placeholder"=>"Concepto..."
-            )
-        ))
-                ->add('tema', TextType::class,array(
-            "label"=>"Tema:","attr"=> array(
-               "class"=>"form-name form-control" ,
-               "placeholder"=>"Ej:01983"
-            )
-        ))
-                ->add('fojas', TextType::class,array(
-            "label"=>"Nro. de fojas:","attr"=> array(
-               "class"=>"align-center form-control" ,
-               "placeholder"=>"1...2..."
-            )
-        ))
-                ->add('tipo', TextareaType::class,array(
-                "label"=>"Tipo:","attr"=> array(
-               "class"=>"form-name form-control" ,
-               "placeholder"=>"¿Que es?"
-            )
-        ))
-                 ->add('ubicacionActual', ChoiceType::class,array(                
-                "choices"=>array(
-                "--Seleccione--"=>0,
-                "Mesa de Entrada"=>1,
-                "Persona"=>2,
-                "Lugar Físico"=>3
-                ),
-            "label"=>false,"attr"=> array(
-               "class"=>"form-name form-control"
-            )
-        ))
-                
-                ->add('fechaInicio', TextType::class,array(
-            "label"=>false,"attr"=>array(
-                "class"=>'datepicker form-control',
-                "placeholder"=>'MM-DD-AAAA'
-            )
-            
-        ))
-                ->add('fechaFin', TextType::class,array(
-            "label"=>false,"attr"=>array(
-                "class"=>'datepicker form-control',
-                "placeholder"=>'MM-DD-AAAA'
-                
-            )
-            
-        ))
-               
-                ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
-                    $persona = $event->getData();
-                    
-                    
-        })
-        
-                ->add('Guardar', SubmitType::class,array("attr"=> array(
-               "class"=>"form-submit btn btn-primary" 
-            )
-        ))
-                
-                
-                ;
-    }/**
+                    "label" => "Concepto: ", "attr" => array(
+                        "class" => "form-name form-control",
+                        "placeholder" => "Concepto..."
+                    )
+                ))
+                ->add('tema', EntityType::class, array(
+                    "label" => "Tema:",
+                    "class"=>'AppBundle:Tema', "attr" => array(
+                        "class" => "form-name form-control",
+                        "placeholder" => "Ej:01983"
+                    )
+                ))
+                ->add('fojas', TextType::class, array(
+                    "label" => "Nro. de fojas:", "attr" => array(
+                        "class" => "align-center form-control",
+                        "placeholder" => "1...2..."
+                    )
+                ))
+                ->add('tipo', TextareaType::class, array(
+                    "label" => "Tipo:", "attr" => array(
+                        "class" => "form-name form-control",
+                        "placeholder" => "¿Que es?"
+                    )
+                ))
+//                ->add('ubicacionActual', ChoiceType::class, array(
+//                    "choices" => array(
+//                        "--Seleccione--" => 0,
+//                        "Mesa de Entrada" => 1,
+//                        "Persona" => 2,
+//                        "Lugar Físico" => 3
+//                    ),
+//                    "label" => false, "attr" => array(
+//                        "class" => "form-name form-control"
+//                    )
+//                ))
+                ->add('fechaInicio', TextType::class, array(
+                    "label" => false, "attr" => array(
+                        "class" => 'datepicker form-control',
+                        "placeholder" => 'MM-DD-AAAA'
+                    )
+                ))
+                ->add('fechaFin', TextType::class, array(
+                    "label" => false, "attr" => array(
+                        "class" => 'datepicker form-control',
+                        "placeholder" => 'MM-DD-AAAA'
+                    )
+                ))
+                ->add('Guardar', SubmitType::class, array("attr" => array(
+                        "class" => "form-submit btn btn-primary"
+                    )
+        ));
+        // $builder->addEventSubscriber(new AddStateFieldSubscriber());
+    }
+
+/**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
-    {
+
+    public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\Expediente'
         ));
@@ -112,10 +103,9 @@ class ExpedienteType extends AbstractType
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix()
-    {
-        return 'appbundle_expediente';
+    public function getBlockPrefix() {
+        return 'expediente';
     }
-
-
 }
+
+
