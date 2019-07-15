@@ -47,8 +47,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         $this->displayBlock('title', $context, $blocks);
         echo "           
         </title>
-        <script
-\t\t\t  src=\"https://code.jquery.com/jquery-1.12.4.js\"
+        <script src=\"https://code.jquery.com/jquery-1.12.4.js\"
 \t\t\t  integrity=\"sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=\"
 \t\t\t  crossorigin=\"anonymous\"></script>
 \t<link href=\"https://use.fontawesome.com/releases/v5.0.6/css/all.css\" rel=\"stylesheet\">\t
@@ -85,9 +84,6 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         </style>
           <link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css\">
   <link rel=\"stylesheet\" href=\"/resources/demos/style.css\">
-";
-        // line 55
-        echo "  <script src=\"https://code.jquery.com/jquery-1.12.4.js\"></script>
   <script src=\"https://code.jquery.com/ui/1.12.1/jquery-ui.js\"></script>
   <script>
    \$(function() {
@@ -112,7 +108,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                             <span class=\"icon-bar\"></span>
                         </button>
                         <a class=\"navbar-brand\" href=\"";
-        // line 79
+        // line 69
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("homepage");
         echo "\">Sistema de Pases Internos de Expedientes</a>
                     </div>
@@ -121,9 +117,9 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                     <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">
                         <ul class=\"nav navbar-nav\">                        
                             ";
-        // line 85
+        // line 75
         $this->displayBlock('menu', $context, $blocks);
-        // line 88
+        // line 78
         echo "                        </ul>
                         <ul class=\"nav navbar-nav navbar-right\">
 
@@ -154,7 +150,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
            
         <section id=\"content\">             
             ";
-        // line 117
+        // line 107
         $this->displayBlock('content', $context, $blocks);
         echo "   
         </section>
@@ -198,7 +194,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     }
 
-    // line 85
+    // line 75
     public function block_menu($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -218,7 +214,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     }
 
-    // line 117
+    // line 107
     public function block_content($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -248,7 +244,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     public function getDebugInfo()
     {
-        return array (  222 => 117,  202 => 85,  184 => 7,  158 => 117,  127 => 88,  125 => 85,  116 => 79,  90 => 55,  47 => 7,  39 => 1,);
+        return array (  218 => 107,  198 => 75,  180 => 7,  154 => 107,  123 => 78,  121 => 75,  112 => 69,  47 => 7,  39 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -269,8 +265,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         <title>            
             {% block title %}SIE{% endblock %}           
         </title>
-        <script
-\t\t\t  src=\"https://code.jquery.com/jquery-1.12.4.js\"
+        <script src=\"https://code.jquery.com/jquery-1.12.4.js\"
 \t\t\t  integrity=\"sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=\"
 \t\t\t  crossorigin=\"anonymous\"></script>
 \t<link href=\"https://use.fontawesome.com/releases/v5.0.6/css/all.css\" rel=\"stylesheet\">\t
@@ -307,15 +302,6 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         </style>
           <link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css\">
   <link rel=\"stylesheet\" href=\"/resources/demos/style.css\">
-{#  <link href=\"{{ asset('css/jquery-ui.css') }}\" rel=\"stylesheet\">
-  <link href=\"{{ asset('css/jquery-ui.min.css') }}\" rel=\"stylesheet\">
-  <link href=\"{{ asset('css/jquery-ui.structure.css') }}\" rel=\"stylesheet\">
-  <link href=\"{{ asset('css/jquery-ui.theme.css') }}\" rel=\"stylesheet\">
-  <link href=\"{{ asset('css/jquery-ui.theme.min.css') }}\" rel=\"stylesheet\">
-  
-    <script src=\"{{ asset('css/jquery-ui.js') }}\"></script>
-     <script src=\"{{ asset('css/jquery-ui.min.js') }}\"></script>#}
-  <script src=\"https://code.jquery.com/jquery-1.12.4.js\"></script>
   <script src=\"https://code.jquery.com/ui/1.12.1/jquery-ui.js\"></script>
   <script>
    \$(function() {
@@ -392,6 +378,6 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
     </body>
     
 </html>
-", "AppBundle::layout.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/layout.html.twig");
+", "AppBundle::layout.html.twig", "/var/www/html/gitSIE/src/AppBundle/Resources/views/layout.html.twig");
     }
 }

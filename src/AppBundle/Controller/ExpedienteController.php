@@ -52,6 +52,58 @@ class ExpedienteController extends Controller
             'form'=> $form->createView() 
         ]);
     }
+    
+    
+    /**
+     * @Route("/listaExpediente", name="listaExpediente")
+     */
+    public function listaExpedientesAction(Request $request)
+    {
+        
+        $em = $this->getDoctrine()->getEntityManager(); 
+        $expediente = $em->getRepository("AppBundle:Expediente")->findAll();
+        
+        // replace this example code with whatever you need
+        return $this->render('AppBundle:Expediente:listadoExpediente.html.twig', [
+            'expediente'=> $expediente 
+        ]);
+    }
+    
+    
+    /**
+     * @Route("expediente/{id}", name="expediente")
+     */
+    public function expedienteAction(Request $request,$id)
+    {
+        
+        $em = $this->getDoctrine()->getEntityManager(); 
+        $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
+        
+        // replace this example code with whatever you need
+        return $this->render('AppBundle:Expediente:detalleExpediente.html.twig', [
+            'expediente'=> $expediente 
+        ]);
+    }
+    
+    /**
+     * @Route("delete/{id}", name="delete")
+     */
+    public function deleteAction(Request $request,$id)
+    {
+        
+        $em = $this->getDoctrine()->getEntityManager(); 
+        $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
+        
+        // replace this example code with whatever you need
+        if (!$expediente) {
+            throw $this->createNotFoundException('No element found for id '.$id);
+        }
+
+        $em->remove($expediente);
+        $em->flush();
+
+        return $this->redirectToRoute('listaExpediente');
+    }
 
     
 }

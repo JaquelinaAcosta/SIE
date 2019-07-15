@@ -22,21 +22,31 @@ class UsuarioType extends AbstractType
                "placeholder"=>"Nombre"
                 )
             ))
+                ->add('email', TextType::class, array(
+                 "label"=>"E-mail: ", "attr"=>array(
+                  "class"=>"form-exp form-control",
+                    
+                 )
+            ))
+                
                 ->add('roles', TextType::class,array(
                 "label"=>"Rol: ", "attr"=>array(
                 "class"=>"form-exp form-control",
                 "placeholder"=>"Rol"
                 )
             ))
-                ->add('persona', TextType::class, array(
-                 "label"=>"Ubicación del Expediente: ", "attr"=>array(
-                  "class"=>"form-exp form-control" 
+                
+                ->add('contrasenia', TextType::class, array(
+                 "label"=>"Contraseña: ", "attr"=>array(
+                  "class"=>"form-exp form-control",
+                     "placeholder"=>"Contraseña"
                  )
             ))
-                 ->add('Aceptar', SubmitType::class,array("attr"=> array(
-               "class"=>"form-submit btn btn-primary" 
-            )
-        ));
+                ->add('persona', PersonaType::class)
+                
+                ->add('Aceptar', SubmitType::class,array("attr"=> array(
+            "class"=>"form-submit btn btn-primary" 
+        )));
     }/**
      * {@inheritdoc}
      */

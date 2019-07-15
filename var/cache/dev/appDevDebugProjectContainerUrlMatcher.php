@@ -112,9 +112,17 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return array (  '_controller' => 'AppBundle\\Controller\\CaratulaAgregadaController::indexAction',  '_route' => 'caratulaAgregada',);
         }
 
-        // expedienteAsociado
-        if ('/expedienteAsociado' === $pathinfo) {
-            return array (  '_controller' => 'AppBundle\\Controller\\ExpedienteAsociadoController::indexAction',  '_route' => 'expedienteAsociado',);
+        if (0 === strpos($pathinfo, '/expediente')) {
+            // expedienteAsociado
+            if ('/expedienteAsociado' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\ExpedienteAsociadoController::indexAction',  '_route' => 'expedienteAsociado',);
+            }
+
+            // expediente
+            if (preg_match('#^/expediente/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'expediente']), array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::expedienteAction',));
+            }
+
         }
 
         // nuevoExpediente
@@ -127,9 +135,27 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::ajaxFormAction',  '_route' => 'add_evento',);
         }
 
-        // lugarFisico
-        if ('/lugarFisico' === $pathinfo) {
-            return array (  '_controller' => 'AppBundle\\Controller\\LugarFisicoController::indexAction',  '_route' => 'lugarFisico',);
+        if (0 === strpos($pathinfo, '/l')) {
+            // listaExpediente
+            if ('/listaExpediente' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::listaExpedientesAction',  '_route' => 'listaExpediente',);
+            }
+
+            // lugarFisico
+            if ('/lugarFisico' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\LugarFisicoController::indexAction',  '_route' => 'lugarFisico',);
+            }
+
+            // loginUsuario
+            if ('/loginUsuario' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::loginAction',  '_route' => 'loginUsuario',);
+            }
+
+        }
+
+        // delete
+        if (0 === strpos($pathinfo, '/delete') && preg_match('#^/delete/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, ['_route' => 'delete']), array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::deleteAction',));
         }
 
         // mesaEntrada
