@@ -64,10 +64,10 @@ class Tema extends \AppBundle\Entity\Tema implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'AppBundle\\Entity\\Tema' . "\0" . 'id', '' . "\0" . 'AppBundle\\Entity\\Tema' . "\0" . 'codigo', '' . "\0" . 'AppBundle\\Entity\\Tema' . "\0" . 'descripcion'];
+            return ['__isInitialized__', '' . "\0" . 'AppBundle\\Entity\\Tema' . "\0" . 'id', '' . "\0" . 'AppBundle\\Entity\\Tema' . "\0" . 'codigo', '' . "\0" . 'AppBundle\\Entity\\Tema' . "\0" . 'descripcion', '' . "\0" . 'AppBundle\\Entity\\Tema' . "\0" . 'expedientes'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'AppBundle\\Entity\\Tema' . "\0" . 'id', '' . "\0" . 'AppBundle\\Entity\\Tema' . "\0" . 'codigo', '' . "\0" . 'AppBundle\\Entity\\Tema' . "\0" . 'descripcion'];
+        return ['__isInitialized__', '' . "\0" . 'AppBundle\\Entity\\Tema' . "\0" . 'id', '' . "\0" . 'AppBundle\\Entity\\Tema' . "\0" . 'codigo', '' . "\0" . 'AppBundle\\Entity\\Tema' . "\0" . 'descripcion', '' . "\0" . 'AppBundle\\Entity\\Tema' . "\0" . 'expedientes'];
     }
 
     /**
@@ -241,6 +241,39 @@ class Tema extends \AppBundle\Entity\Tema implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCodigo', []);
 
         return parent::getCodigo();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addExpediente(\AppBundle\Entity\Expediente $expediente)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addExpediente', [$expediente]);
+
+        return parent::addExpediente($expediente);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeExpediente(\AppBundle\Entity\Expediente $expediente)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeExpediente', [$expediente]);
+
+        return parent::removeExpediente($expediente);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getExpedientes()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getExpedientes', []);
+
+        return parent::getExpedientes();
     }
 
 }

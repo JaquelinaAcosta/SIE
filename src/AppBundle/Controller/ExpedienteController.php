@@ -34,7 +34,7 @@ class ExpedienteController extends Controller
 
 
         // replace this example code with whatever you need
-        return $this->render('AppBundle:Expediente:index.html.twig', [
+        return $this->render('AppBundle:Expediente:add.html.twig', [
             'form'=> $form->createView() 
         ]);
     }

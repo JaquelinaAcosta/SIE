@@ -87,8 +87,8 @@ class __TwigTemplate_829aa766f6c19aa9d341046c393195850e0ed42ff7f25e11b9b8ae55a82
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_start', ["action" => "", "method" => "POST"]);
         echo "        
                 <div class=\"col-lg-14\">
-                   
-                    <div class=\"col-lg-6\">
+
+                    <div class=\"col-lg-5\">
                         <label class=\"exp text-default\">NRO. DE EXPEDIENTE</label>
                         ";
         // line 34
@@ -99,138 +99,176 @@ class __TwigTemplate_829aa766f6c19aa9d341046c393195850e0ed42ff7f25e11b9b8ae55a82
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "nroExpediente", []), 'widget');
         echo "
                     </div>
-                    <div class=\"col-lg-3 \">
+                     <div class=\"col-lg-3 \">
+                    <label class=\"text-default\">TIPO</label>
+                    ";
+        // line 39
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "tipo", []), 'errors');
+        echo "
+                    ";
+        // line 40
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "tipo", []), 'widget');
+        echo "
+                  </div>
+                    <div class=\"col-lg-2 \">
                         <label class=\"text-default\">CODIGO TEMA</label>
                         ";
-        // line 39
+        // line 44
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "tema", []), 'errors');
         echo "
                         ";
-        // line 40
+        // line 45
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "tema", []), 'widget');
         echo "
                     </div>
-                     <div class=\"col-lg-2\">
-                        <label class=\"text-default\">NRO. FOJAS</label>
+                    <div class=\"col-lg-2\">
+                        <label class=\"text-default\">FOJAS</label>
                         ";
-        // line 44
+        // line 49
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fojas", []), 'errors');
         echo "
                         ";
-        // line 45
+        // line 50
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fojas", []), 'widget');
         echo "
                     </div>                   
                     <div class=\"col-lg-6\">
                         <label class=\"text-default\">DEPENDENCIA</label>
                         ";
-        // line 49
+        // line 54
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "iniciadorDependencia", []), 'errors');
         echo "
                         ";
-        // line 50
+        // line 55
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "iniciadorDependencia", []), 'widget');
         echo "
                     </div>                                           
                     <div class=\"col-lg-2\">
                         <label class=\"text-default\">FECHA DE INICIO</label>
                         ";
-        // line 54
+        // line 59
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fechaInicio", []), 'row', ["id" => "date1"]);
         echo " 
                         ";
-        // line 55
+        // line 60
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fechaInicio", []), 'errors');
         echo "
                         ";
-        // line 56
+        // line 61
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fechaInicio", []), 'widget');
         echo "
                     </div>  
-                      <div class=\"col-lg-2\">
+                    <div class=\"col-lg-2\">
                         <label class=\"text-default\">FECHA DE FIN.</label>
                         ";
-        // line 60
+        // line 65
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fechaFin", []), 'row', ["id" => "date2"]);
         echo " 
                         ";
-        // line 61
+        // line 66
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fechaFin", []), 'errors');
         echo "
                         ";
-        // line 62
+        // line 67
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fechaFin", []), 'widget');
         echo "
                     </div>                      
                 </div>
-                    <hr/>
-                     <div class=\"col-lg-3\">
-                        <label class=\"text-default\">UBICACION ACTUAL</label>
-                        ";
-        // line 68
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "ubicacionActual", []), 'row', ["id" => "ubicacion"]);
-        echo " 
-                        ";
-        // line 69
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "ubicacionActual", []), 'errors');
-        echo "
-                        ";
-        // line 70
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "ubicacionActual", []), 'widget');
-        echo "
-                    </div>  
-                    <div class=\"col-lg-3\">
-                         <label class=\"text-default\">NOMBRE</label>
-                        ";
-        // line 74
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "persona", []), "nombre", []), 'row');
-        echo "
-                    </div>
                 <hr/>
-                 <div class=\"col-lg-12 \">
-                        <label class=\"text-default\">TIPO</label>
-                        ";
-        // line 79
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "tipo", []), 'errors');
-        echo "
-                        ";
-        // line 80
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "tipo", []), 'widget');
-        echo "
-                </div>
+                ";
+        // line 114
+        echo "               
                 <div class=\"col-lg-12\">
-                        <label class=\"text-default\">CONCEPTO</label>
-                        ";
-        // line 84
+                    <label class=\"text-default\">CONCEPTO</label>
+                    ";
+        // line 117
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "concepto", []), 'errors');
         echo "
-                        ";
-        // line 85
+                    ";
+        // line 118
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "concepto", []), 'widget');
         echo "
-                        <hr/>
+                    <hr/>
                 </div>
                 <div class=\"col-lg-3 float left\">
-                        ";
-        // line 89
+                    ";
+        // line 122
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "Guardar", []), 'widget');
         echo "
                 </div>
-               ";
-        // line 91
+                ";
+        // line 124
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_end');
         echo "
             </div>
         </div>
-    </div>
-               
-               
-    <script>       
-       \$(\"#ubicacion\").on(\"change\", function() { 
-           alert('DEBUG');
-       });
+    </div>           
+    <script>
+        var \$ubicacion = \$('#expediente_ubicacionActual');     
+        var \$form = \$ubicacion.closest('form');
+
+        \$ubicacion.on('change', function () {
+            var data = \$ubicacion.serialize();
+            var index = \$ubicacion.val();
+            \$.ajax({
+                url :\"";
+        // line 136
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("add_evento");
+        echo "\",
+                type: \"POST\",
+                data: data,
+                success : function(html) {
+                    // la variable html representa toda la página junto con el select de estados.
+                    // el cual tomamos y colocamos para reemplazar el select actual.
+                   
+                   
+                   if(index == 0 ){
+                        \$('#persona').hide();
+                        \$('#mesaentrada').hide();
+                        \$('#lugarfisico').hide();
+                   }
+                   if(index == 1){
+                        \$('#persona').hide();
+                        \$('#lugarfisico').hide();
+                        \$('#mesaentrada').show();
+                        
+                        
+                        if(\$('.codigo > input').size() <=0){
+                               \$('#contenido').html(\$(html).find('#expediente_mesaentrada'));
+                               \$('#expediente_mesaentrada_codigoExpediente').appendTo(\".codigo\");
+                        }
+                     
+                   }
+                   if(index == 2){
+                            \$('#mesaentrada').hide();
+                            \$('#lugarfisico').hide();
+                            \$('#persona').show();
+                            
+                             if(\$('.nombre > input').size() <= 0){
+                               \$('#contenido').html(\$(html).find('#expediente_persona'));
+                               \$('#expediente_persona_nombre').appendTo(\".nombre\");
+                               \$('#expediente_persona_apellido').appendTo(\".apellido\");
+                               \$('#expediente_persona_dni').appendTo(\".dni\");
+                               \$('#expediente_persona_cargo').appendTo(\".cargo\");
+                            }
+                           
+                   }     
+                   if(index == 3){
+                              \$('#mesaentrada').hide();         
+                              \$('#persona').hide();
+                              \$('#lugarfisico').show();
+                             if(\$('.tipo > input').size() <= 0){
+                               \$('#contenido').html(\$(html).find('#expediente_lugarfisico'));
+                               \$('#expediente_lugarfisico_tipo').appendTo(\".tipo\");
+                               \$('#expediente_lugarfisico_descripcion').appendTo(\".descripcion\");
+                               \$('#expediente_lugarfisico_acceso').appendTo(\".acceso\");
+                            }
+                   }
+                }
+            });
+        });
     </script>
-    
+
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -252,7 +290,7 @@ class __TwigTemplate_829aa766f6c19aa9d341046c393195850e0ed42ff7f25e11b9b8ae55a82
 
     public function getDebugInfo()
     {
-        return array (  221 => 91,  216 => 89,  209 => 85,  205 => 84,  198 => 80,  194 => 79,  186 => 74,  179 => 70,  175 => 69,  171 => 68,  162 => 62,  158 => 61,  154 => 60,  147 => 56,  143 => 55,  139 => 54,  132 => 50,  128 => 49,  121 => 45,  117 => 44,  110 => 40,  106 => 39,  99 => 35,  95 => 34,  87 => 29,  51 => 3,  29 => 1,);
+        return array (  216 => 136,  201 => 124,  196 => 122,  189 => 118,  185 => 117,  180 => 114,  173 => 67,  169 => 66,  165 => 65,  158 => 61,  154 => 60,  150 => 59,  143 => 55,  139 => 54,  132 => 50,  128 => 49,  121 => 45,  117 => 44,  110 => 40,  106 => 39,  99 => 35,  95 => 34,  87 => 29,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -295,19 +333,24 @@ class __TwigTemplate_829aa766f6c19aa9d341046c393195850e0ed42ff7f25e11b9b8ae55a82
                 <br/>
                 {{form_start(form,{'action':'','method':'POST'})}}        
                 <div class=\"col-lg-14\">
-                   
-                    <div class=\"col-lg-6\">
+
+                    <div class=\"col-lg-5\">
                         <label class=\"exp text-default\">NRO. DE EXPEDIENTE</label>
                         {{ form_errors(form.nroExpediente) }}
                         {{ form_widget(form.nroExpediente) }}
                     </div>
-                    <div class=\"col-lg-3 \">
+                     <div class=\"col-lg-3 \">
+                    <label class=\"text-default\">TIPO</label>
+                    {{ form_errors(form.tipo) }}
+                    {{ form_widget(form.tipo) }}
+                  </div>
+                    <div class=\"col-lg-2 \">
                         <label class=\"text-default\">CODIGO TEMA</label>
                         {{ form_errors(form.tema) }}
                         {{ form_widget(form.tema) }}
                     </div>
-                     <div class=\"col-lg-2\">
-                        <label class=\"text-default\">NRO. FOJAS</label>
+                    <div class=\"col-lg-2\">
+                        <label class=\"text-default\">FOJAS</label>
                         {{ form_errors(form.fojas) }}
                         {{ form_widget(form.fojas) }}
                     </div>                   
@@ -322,51 +365,134 @@ class __TwigTemplate_829aa766f6c19aa9d341046c393195850e0ed42ff7f25e11b9b8ae55a82
                         {{ form_errors(form.fechaInicio) }}
                         {{ form_widget(form.fechaInicio) }}
                     </div>  
-                      <div class=\"col-lg-2\">
+                    <div class=\"col-lg-2\">
                         <label class=\"text-default\">FECHA DE FIN.</label>
                         {{ form_row(form.fechaFin, { 'id': 'date2' })}} 
                         {{ form_errors(form.fechaFin) }}
                         {{ form_widget(form.fechaFin) }}
                     </div>                      
                 </div>
-                    <hr/>
-                     <div class=\"col-lg-3\">
-                        <label class=\"text-default\">UBICACION ACTUAL</label>
-                        {{ form_row(form.ubicacionActual, { 'id': 'ubicacion' })}} 
-                        {{ form_errors(form.ubicacionActual) }}
-                        {{ form_widget(form.ubicacionActual) }}
-                    </div>  
-                    <div class=\"col-lg-3\">
-                         <label class=\"text-default\">NOMBRE</label>
-                        {{ form_row(form.persona.nombre) }}
-                    </div>
                 <hr/>
-                 <div class=\"col-lg-12 \">
-                        <label class=\"text-default\">TIPO</label>
-                        {{ form_errors(form.tipo) }}
-                        {{ form_widget(form.tipo) }}
+                {#<div class=\"col-lg-3\">
+                    <label class=\"text-default\">UBICACION ACTUAL</label>
+                    {{ form_row(form.ubicacionActual)}} 
+                    {{ form_errors(form.ubicacionActual) }}
+                    {{ form_widget(form.ubicacionActual) }}
+                </div>  
+
+                <div id=\"contenido\" hidden>
+
                 </div>
+
+                <div id=\"mesaentrada\" class=\"col-xs-14\" hidden>
+                    <div class=\"codigo col-lg-6\">
+                        <label class=\"text-default\">CODIGO DE EXPEDIENTE</label>                    
+                    </div>                 
+                </div>
+
+                <div id=\"lugarfisico\" class=\"col-xs-14\" hidden>
+                    <div class=\"tipo col-lg-3\">
+                        <label class=\"text-default\">TIPO</label>                    
+                    </div>                        
+                     <div class=\"acceso col-lg-3\">
+                        <label class=\"text-default\">ACCESO</label>                    
+                    </div>  
+                    <div class=\"descripcion col-lg-12\">
+                        <label class=\"text-default\">DESCRIPCION</label>                    
+                    </div>    
+                </div>
+
+                <div id=\"persona\" class=\"col-xs-14\" hidden>
+                    <div class=\"nombre col-lg-3\">
+                        <label class=\"text-default\">NOMBRE/S</label>                    
+                    </div>
+                    <div class=\"apellido col-lg-2\">
+                        <label class=\"text-default\">APELLIDO</label>                    
+                    </div>
+                    <div class=\"dni col-lg-2\">
+                        <label class=\"text-default\">DNI</label>                    
+                    </div>
+                    <div class=\"cargo col-lg-2\">
+                        <label class=\"text-default\">CARGO</label>                    
+                    </div>
+                </div>#}
+               
                 <div class=\"col-lg-12\">
-                        <label class=\"text-default\">CONCEPTO</label>
-                        {{ form_errors(form.concepto) }}
-                        {{ form_widget(form.concepto) }}
-                        <hr/>
+                    <label class=\"text-default\">CONCEPTO</label>
+                    {{ form_errors(form.concepto) }}
+                    {{ form_widget(form.concepto) }}
+                    <hr/>
                 </div>
                 <div class=\"col-lg-3 float left\">
-                        {{ form_widget(form.Guardar) }}
+                    {{ form_widget(form.Guardar) }}
                 </div>
-               {{form_end(form)}}
+                {{form_end(form)}}
             </div>
         </div>
-    </div>
-               
-               
-    <script>       
-       \$(\"#ubicacion\").on(\"change\", function() { 
-           alert('DEBUG');
-       });
+    </div>           
+    <script>
+        var \$ubicacion = \$('#expediente_ubicacionActual');     
+        var \$form = \$ubicacion.closest('form');
+
+        \$ubicacion.on('change', function () {
+            var data = \$ubicacion.serialize();
+            var index = \$ubicacion.val();
+            \$.ajax({
+                url :\"{{ path('add_evento') }}\",
+                type: \"POST\",
+                data: data,
+                success : function(html) {
+                    // la variable html representa toda la página junto con el select de estados.
+                    // el cual tomamos y colocamos para reemplazar el select actual.
+                   
+                   
+                   if(index == 0 ){
+                        \$('#persona').hide();
+                        \$('#mesaentrada').hide();
+                        \$('#lugarfisico').hide();
+                   }
+                   if(index == 1){
+                        \$('#persona').hide();
+                        \$('#lugarfisico').hide();
+                        \$('#mesaentrada').show();
+                        
+                        
+                        if(\$('.codigo > input').size() <=0){
+                               \$('#contenido').html(\$(html).find('#expediente_mesaentrada'));
+                               \$('#expediente_mesaentrada_codigoExpediente').appendTo(\".codigo\");
+                        }
+                     
+                   }
+                   if(index == 2){
+                            \$('#mesaentrada').hide();
+                            \$('#lugarfisico').hide();
+                            \$('#persona').show();
+                            
+                             if(\$('.nombre > input').size() <= 0){
+                               \$('#contenido').html(\$(html).find('#expediente_persona'));
+                               \$('#expediente_persona_nombre').appendTo(\".nombre\");
+                               \$('#expediente_persona_apellido').appendTo(\".apellido\");
+                               \$('#expediente_persona_dni').appendTo(\".dni\");
+                               \$('#expediente_persona_cargo').appendTo(\".cargo\");
+                            }
+                           
+                   }     
+                   if(index == 3){
+                              \$('#mesaentrada').hide();         
+                              \$('#persona').hide();
+                              \$('#lugarfisico').show();
+                             if(\$('.tipo > input').size() <= 0){
+                               \$('#contenido').html(\$(html).find('#expediente_lugarfisico'));
+                               \$('#expediente_lugarfisico_tipo').appendTo(\".tipo\");
+                               \$('#expediente_lugarfisico_descripcion').appendTo(\".descripcion\");
+                               \$('#expediente_lugarfisico_acceso').appendTo(\".acceso\");
+                            }
+                   }
+                }
+            });
+        });
     </script>
-    
+
 {% endblock %}", "AppBundle:Expediente:index.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/Expediente/index.html.twig");
     }
 }

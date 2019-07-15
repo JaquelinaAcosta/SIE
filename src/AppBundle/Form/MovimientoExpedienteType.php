@@ -17,43 +17,49 @@ class MovimientoExpedienteType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('expediente', TextType::class,array(
-            "label"=>"Nro. de Expediente: ","attr"=> array(
-               "class"=>"form-name form-control" ,
-               "placeholder"=>"00000-000000000-0"
-            )
-        ))
+        $builder
+//                ->add('expediente', TextType::class,array(
+//            "label"=>"Nro. de Expediente: ","attr"=> array(
+//               "class"=>"form-name form-control" ,
+//               "placeholder"=>"00000-000000000-0"
+//            )
+//        ))
 //                ->add('ubicacion', TextType::class, array(
 //            "label"=>"Ubicación: ","attr"=> array(
 //               "class"=>"form-name form-control" 
 //            )
 //        ))
-                ->add('fojas', TextType::class,array(
-            "label"=>"Nro. de fojas:","attr"=> array(
+//                ->add('fojas', TextType::class,array(
+//            "label"=>"Nro. de fojas:","attr"=> array(
+//               "class"=>"form-name form-control" ,
+//               "placeholder"=>"1...2..."
+//            )
+//        ))
+//                ->add('usuario', TextType::class,array(
+//            "label"=>"Usuario: ","attr"=> array(
+//               "class"=>"form-name form-control" 
+//            )
+//        ))
+                ->add('fecha', TextType::class, array(
+                    "label" => false, "attr" => array(
+                        "class" => 'datepicker form-control',
+                        "placeholder" => 'MM-DD-AAAA'
+                    )
+                ))
+                ->add('observacion', TextareaType::class, array(
+                "label"=>"Observación: ","attr"=> array(
                "class"=>"form-name form-control" ,
-               "placeholder"=>"1...2..."
+               "placeholder"=>"Observación...",
+               "readonly"=>true
             )
-        ))
-                ->add('usuario', TextType::class,array(
-            "label"=>"Usuario: ","attr"=> array(
-               "class"=>"form-name form-control" 
-            )
-        ))
-                ->add('fecha', DateType::class,array(
-            "label"=>"Fecha:"
         ))
                 ->add('comentario', TextareaType::class, array(
-            "label"=>"Comentario: ","attr"=> array(
+               "label"=>"Comentario: ","attr"=> array(
                "class"=>"form-name form-control" ,
                "placeholder"=>"Comentario..."
             )
         ))
-                ->add('observacion', TextareaType::class, array(
-            "label"=>"Observación: ","attr"=> array(
-               "class"=>"form-name form-control" ,
-               "placeholder"=>"Observación..."
-            )
-        ))
+           
                 ->add('tipoSalida', TextType::class, array(
             "label"=>"Tipo de Salida: ","attr"=> array(
                "class"=>"form-name form-control" 
