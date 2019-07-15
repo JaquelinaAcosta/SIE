@@ -87,7 +87,7 @@ class Expediente
     /**
      * @var string
      *
-     * @ORM\Column(name="ubicacion_actual", type="string", length=255)
+     * @ORM\Column(name="ubicacion_actual", type="string", length=255,nullable=true)
      */
     private $ubicacionActual;
 

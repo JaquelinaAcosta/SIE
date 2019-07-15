@@ -84,6 +84,16 @@ class __TwigTemplate_8107ca37eb8caf829fa9253b3f99b383552ee94053ec04390d65638b6af
         echo "
         </div>
     </div>
+            
+    ";
+        // line 27
+        echo "
+    <div class=\"persona\">
+        ";
+        // line 29
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "persona", []), 'row');
+        echo "
+    </div>
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -105,7 +115,7 @@ class __TwigTemplate_8107ca37eb8caf829fa9253b3f99b383552ee94053ec04390d65638b6af
 
     public function getDebugInfo()
     {
-        return array (  83 => 22,  79 => 21,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  94 => 29,  90 => 27,  83 => 22,  79 => 21,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -141,6 +151,12 @@ class __TwigTemplate_8107ca37eb8caf829fa9253b3f99b383552ee94053ec04390d65638b6af
             {{form_start(form,{'action':'','method':'POST'})}}
             {{form_end(form)}}
         </div>
+    </div>
+            
+    {# Formulario embebido #}
+
+    <div class=\"persona\">
+        {{ form_row(form.persona) }}
     </div>
 {% endblock %}", "AppBundle:Usuario:index.html.twig", "/var/www/html/gitSIE/src/AppBundle/Resources/views/Usuario/index.html.twig");
     }

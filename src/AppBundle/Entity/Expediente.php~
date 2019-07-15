@@ -72,22 +72,22 @@ class Expediente
     private $iniciadorDependencia;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="fecha_inicio", type="datetime")
+     * @ORM\Column(name="fecha_inicio", type="string",length=255)
      */
     private $fechaInicio;
 
     /**
-     * @var \DateTime
-     * @ORM\Column(name="fecha_fin", type="datetime")
+     * @var string
+     * @ORM\Column(name="fecha_fin", type="string",length=255)
      */
     private $fechaFin;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="ubicacion_actual", type="string", length=255)
+     * @ORM\Column(name="ubicacion_actual", type="string", length=255,nullable=true)
      */
     private $ubicacionActual;
 

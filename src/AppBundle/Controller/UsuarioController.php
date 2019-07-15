@@ -19,11 +19,9 @@ class UsuarioController extends Controller
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getEntityManager(); 
-        $dependencia = $em->getRepository("AppBundle:Dependencia")->find(3);
         $usuario = new Usuario();
-       // $usuario->setDependencia($dependencia);
+       
         $form = $this->createForm(UsuarioType::class,$usuario);
-        
         $form->handleRequest($request);
         
         if ($form->isValid()) {

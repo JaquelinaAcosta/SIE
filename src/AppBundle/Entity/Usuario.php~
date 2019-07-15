@@ -27,6 +27,20 @@ class Usuario
      * @ORM\Column(name="iup", type="string", length=255)
      */
     private $iup;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contrasenia", type="string", length=20)
+     */
+    private $contrasenia;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=50)
+     */
+    private $email;
 
     /**
      * @var string
@@ -89,6 +103,56 @@ class Usuario
     {
         return $this->iup;
     }
+    
+    
+    /**
+     * Get contrasenia
+     *
+     * @return string
+     */
+    public function getContrasenia()
+    {
+        return $this->contrasenia;
+    }
+    
+    /**
+     * Set contrasenia
+     *
+     * @param string $contrasenia
+     *
+     * @return Usuario
+     */
+    public function setContrasenia($contrasenia)
+    {
+        $this->contrasenia = $contrasenia;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
+    }
+    
+    /**
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return Usuario
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
 
     /**
      * Set roles

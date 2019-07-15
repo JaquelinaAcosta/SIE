@@ -491,6 +491,6 @@ class __TwigTemplate_8c5f74ff5f6306d6a4d151cf13253aafc5a75cfa38807be853dbb51144d
         });
     </script>
 
-{% endblock %}", "AppBundle:Expediente:add.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/Expediente/add.html.twig");
+{% endblock %}", "AppBundle:Expediente:add.html.twig", "/var/www/html/gitSIE/src/AppBundle/Resources/views/Expediente/add.html.twig");
     }
 }
