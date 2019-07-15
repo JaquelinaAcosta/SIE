@@ -172,10 +172,7 @@ class __TwigTemplate_f00a9fe82af130be4151094a955578bdb99db76fa1545477496e9c6c74b
                         <p>Al seleccionar esta opción, podrá buscar expedientes con filtros específicos y eventualmente, podrá realizar acciones en ellos.</p>   
                     </div>
                 </a>
-                <a href=\"";
-        // line 110
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listaExpediente");
-        echo "\" class=\"list\"> 
+                <a href=\"#\" class=\"list\"> 
                     <div class=\"content\">
                         <img src=\"";
         // line 112
@@ -211,7 +208,7 @@ class __TwigTemplate_f00a9fe82af130be4151094a955578bdb99db76fa1545477496e9c6c74b
 
     public function getDebugInfo()
     {
-        return array (  182 => 112,  177 => 110,  169 => 105,  159 => 98,  154 => 96,  51 => 3,  29 => 1,);
+        return array (  179 => 112,  169 => 105,  159 => 98,  154 => 96,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -333,7 +330,7 @@ class __TwigTemplate_f00a9fe82af130be4151094a955578bdb99db76fa1545477496e9c6c74b
                         <p>Al seleccionar esta opción, podrá buscar expedientes con filtros específicos y eventualmente, podrá realizar acciones en ellos.</p>   
                     </div>
                 </a>
-                <a href=\"{{ path(\"listaExpediente\") }}\" class=\"list\"> 
+                <a href=\"#\" class=\"list\"> 
                     <div class=\"content\">
                         <img src=\"{{ asset(\"Icons/list.png\") }}\" width=\"170\"/>
                         <h4><strong>HISTORIAL DE EXPEDIENTES</strong></h4>
@@ -345,6 +342,6 @@ class __TwigTemplate_f00a9fe82af130be4151094a955578bdb99db76fa1545477496e9c6c74b
         <hr/>
     </div>
     
-{% endblock %}", "AppBundle:PaginaPrincipal:index.html.twig", "/var/www/html/gitSIE/src/AppBundle/Resources/views/PaginaPrincipal/index.html.twig");
+{% endblock %}", "AppBundle:PaginaPrincipal:index.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/PaginaPrincipal/index.html.twig");
     }
 }

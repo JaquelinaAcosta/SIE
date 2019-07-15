@@ -54,10 +54,10 @@ class ExpedienteType extends AbstractType {
                         "placeholder" => "1...2..."
                     )
                 ))
-                ->add('tipo', TextareaType::class, array(
+                ->add('tipo', TextType::class, array(
                     "label" => "Tipo:", "attr" => array(
                         "class" => "form-name form-control",
-                        "placeholder" => "¿Que es?"
+                        "placeholder" => "Jurídico,Varios.."
                     )
                 ))
 //                ->add('ubicacionActual', ChoiceType::class, array(

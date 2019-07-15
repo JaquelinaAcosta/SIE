@@ -4,11 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/var/www/html/SIE/src/AppBundle/Form/ExpedienteType.php</file>
-            <file>file:/var/www/html/SIE/src/AppBundle/Form/LugarFisicoType.php</file>
-            <file>file:/var/www/html/SIE/src/AppBundle/Form/Event/Listener/AddStateFieldSubscriber.php</file>
             <file>file:/var/www/html/SIE/src/AppBundle/Controller/ExpedienteController.php</file>
-            <file>file:/var/www/html/SIE/src/AppBundle/Entity/Expediente.php</file>
-            <file>file:/var/www/html/SIE/src/AppBundle/Resources/views/Expediente/index.html.twig</file>
+            <file>file:/var/www/html/SIE/src/AppBundle/Resources/views/Expediente/add.html.twig</file>
+            <file>file:/var/www/html/SIE/src/AppBundle/Resources/views/Expediente/movimiento.html.twig</file>
+            <file>file:/var/www/html/SIE/src/AppBundle/Controller/MovimientoExpedienteController.php</file>
+            <file>file:/var/www/html/SIE/src/AppBundle/Form/MovimientoExpedienteType.php</file>
         </group>
     </open-files>
 </project-private>
