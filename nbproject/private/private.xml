@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/html/SIE/src/AppBundle/Form/ExpedienteType.php</file>
-            <file>file:/var/www/html/SIE/src/AppBundle/Controller/ExpedienteController.php</file>
-            <file>file:/var/www/html/SIE/src/AppBundle/Resources/views/Expediente/add.html.twig</file>
-            <file>file:/var/www/html/SIE/src/AppBundle/Resources/views/Expediente/movimiento.html.twig</file>
-            <file>file:/var/www/html/SIE/src/AppBundle/Controller/MovimientoExpedienteController.php</file>
-            <file>file:/var/www/html/SIE/src/AppBundle/Form/MovimientoExpedienteType.php</file>
+            <file>file:/var/www/html/gitSIE/src/AppBundle/Resources/views/PaginaPrincipal/login.html.twig</file>
+            <file>file:/var/www/html/gitSIE/src/AppBundle/Entity/Usuario.php</file>
+            <file>file:/var/www/html/gitSIE/app/config/security.yml</file>
+            <file>file:/var/www/html/gitSIE/src/AppBundle/Controller/PaginaPrincipalController.php</file>
         </group>
     </open-files>
 </project-private>

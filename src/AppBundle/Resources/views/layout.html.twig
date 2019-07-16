@@ -82,18 +82,31 @@
                                    
                                 </a>
                             </li>
+                            
+                            <li>
+                                {% if app.user != null %}
+                                  Bienvenido, {{app.user.userName}}
+ 
+                                {%endif%}
+                            </li>
 
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Opciones  <span class="glyphicon glyphicon-cog"></span><span class="caret"></span></a>
                                 <ul class="dropdown-menu">
+                                    
+                                        {% if app.user == null %}
  
-                                        <li><a href="#">Entrar</a></li>
+                                            <li><a href="{{ path("loginUsuario") }}">Entrar</a></li>
+                                        
+                                        {%else%}
+                                            <li><a href="{{ path("logout") }}">Salir</a></li>
+                                        {%endif%}
                        
                                         <li><a href="#">Ayuda</a></li>
 
                                         <li role="separator" class="divider"></li>
 
-                                        <li><a href="#">Salir</a></li>
+                                        
 
                                 </ul>
                             </li>

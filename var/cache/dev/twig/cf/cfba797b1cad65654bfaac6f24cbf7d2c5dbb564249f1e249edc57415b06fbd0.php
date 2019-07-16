@@ -127,18 +127,50 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                                    
                                 </a>
                             </li>
+                            
+                            <li>
+                                ";
+        // line 87
+        if (($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []) != null)) {
+            // line 88
+            echo "                                  Bienvenido, ";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "userName", []), "html", null, true);
+            echo "
+ 
+                                ";
+        }
+        // line 91
+        echo "                            </li>
 
                             <li class=\"dropdown\">
                                 <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Opciones  <span class=\"glyphicon glyphicon-cog\"></span><span class=\"caret\"></span></a>
                                 <ul class=\"dropdown-menu\">
- 
-                                        <li><a href=\"#\">Entrar</a></li>
-                       
+                                    
+                                        ";
+        // line 97
+        if (($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []) == null)) {
+            // line 98
+            echo " 
+                                            <li><a href=\"";
+            // line 99
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("loginUsuario");
+            echo "\">Entrar</a></li>
+                                        
+                                        ";
+        } else {
+            // line 102
+            echo "                                            <li><a href=\"";
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("logout");
+            echo "\">Salir</a></li>
+                                        ";
+        }
+        // line 104
+        echo "                       
                                         <li><a href=\"#\">Ayuda</a></li>
 
                                         <li role=\"separator\" class=\"divider\"></li>
 
-                                        <li><a href=\"#\">Salir</a></li>
+                                        
 
                                 </ul>
                             </li>
@@ -150,7 +182,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
            
         <section id=\"content\">             
             ";
-        // line 107
+        // line 120
         $this->displayBlock('content', $context, $blocks);
         echo "   
         </section>
@@ -214,7 +246,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     }
 
-    // line 107
+    // line 120
     public function block_content($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -244,7 +276,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     public function getDebugInfo()
     {
-        return array (  218 => 107,  198 => 75,  180 => 7,  154 => 107,  123 => 78,  121 => 75,  112 => 69,  47 => 7,  39 => 1,);
+        return array (  250 => 120,  230 => 75,  212 => 7,  186 => 120,  168 => 104,  162 => 102,  156 => 99,  153 => 98,  151 => 97,  143 => 91,  136 => 88,  134 => 87,  123 => 78,  121 => 75,  112 => 69,  47 => 7,  39 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -341,18 +373,31 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                                    
                                 </a>
                             </li>
+                            
+                            <li>
+                                {% if app.user != null %}
+                                  Bienvenido, {{app.user.userName}}
+ 
+                                {%endif%}
+                            </li>
 
                             <li class=\"dropdown\">
                                 <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Opciones  <span class=\"glyphicon glyphicon-cog\"></span><span class=\"caret\"></span></a>
                                 <ul class=\"dropdown-menu\">
+                                    
+                                        {% if app.user == null %}
  
-                                        <li><a href=\"#\">Entrar</a></li>
+                                            <li><a href=\"{{ path(\"loginUsuario\") }}\">Entrar</a></li>
+                                        
+                                        {%else%}
+                                            <li><a href=\"{{ path(\"logout\") }}\">Salir</a></li>
+                                        {%endif%}
                        
                                         <li><a href=\"#\">Ayuda</a></li>
 
                                         <li role=\"separator\" class=\"divider\"></li>
 
-                                        <li><a href=\"#\">Salir</a></li>
+                                        
 
                                 </ul>
                             </li>

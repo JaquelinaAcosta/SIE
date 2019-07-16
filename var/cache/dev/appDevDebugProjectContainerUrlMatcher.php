@@ -146,9 +146,22 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                 return array (  '_controller' => 'AppBundle\\Controller\\LugarFisicoController::indexAction',  '_route' => 'lugarFisico',);
             }
 
-            // loginUsuario
-            if ('/loginUsuario' === $pathinfo) {
-                return array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::loginAction',  '_route' => 'loginUsuario',);
+            if (0 === strpos($pathinfo, '/log')) {
+                // loginUsuario
+                if ('/loginUsuario' === $pathinfo) {
+                    return array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::loginAction',  '_route' => 'loginUsuario',);
+                }
+
+                // login_check
+                if ('/login_check' === $pathinfo) {
+                    return array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::loginCheckAction',  '_route' => 'login_check',);
+                }
+
+                // logout
+                if ('/logout' === $pathinfo) {
+                    return array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::logoutAction',  '_route' => 'logout',);
+                }
+
             }
 
         }
@@ -168,20 +181,25 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return $this->mergeDefaults(array_replace($matches, ['_route' => 'moverExpediente']), array (  '_controller' => 'AppBundle\\Controller\\MovimientoExpedienteController::indexAction',));
         }
 
-        // homepage
+        // inicio
         if ('' === $trimmedPathinfo) {
-            $ret = array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::indexAction',  '_route' => 'homepage',);
+            $ret = array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::indexAction',  '_route' => 'inicio',);
             if ('/' === substr($pathinfo, -1)) {
                 // no-op
             } elseif ('GET' !== $canonicalMethod) {
-                goto not_homepage;
+                goto not_inicio;
             } else {
-                return array_replace($ret, $this->redirect($rawPathinfo.'/', 'homepage'));
+                return array_replace($ret, $this->redirect($rawPathinfo.'/', 'inicio'));
             }
 
             return $ret;
         }
-        not_homepage:
+        not_inicio:
+
+        // homepage
+        if ('/home' === $pathinfo) {
+            return array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::homeAction',  '_route' => 'homepage',);
+        }
 
         // persona
         if ('/persona' === $pathinfo) {
