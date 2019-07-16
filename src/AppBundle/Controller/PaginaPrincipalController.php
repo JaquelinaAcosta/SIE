@@ -11,28 +11,68 @@ use AppBundle\Form\ExpedienteType;
 class PaginaPrincipalController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/", name="inicio")
      */
     public function indexAction()
     {
        
         // replace this example code with whatever you need
-        return $this->render('AppBundle:PaginaPrincipal:index.html.twig', [
+        return $this->render('AppBundle:PaginaPrincipal:inicio.html.twig', [
         ]);
     }
-  
     
+     /**
+     * @Route("/home", name="homepage")
+     */
+    public function homeAction(Request $request)
+    {
+        
+        // replace this example code with whatever you need
+        return $this->render('AppBundle:PaginaPrincipal:index.html.twig', [
+            
+        ]);
+    }
+    
+ 
     /**
      * @Route("/loginUsuario", name="loginUsuario")
      */
     public function loginAction(Request $request)
     {
-        $em = $this->getDoctrine()->getEntityManager(); 
-        $usuario = $em->getRepository("AppBundle:Usuario")->findAll();
+        // Recupera el servicio de autenticación
+        $authenticationUtils = $this->get('security.authentication_utils');
+
+        // Recupera, si existe, el último error al intentar hacer login
+        $error = $authenticationUtils->getLastAuthenticationError();
+
+        // Recupera el último nombre de usuario introducido
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        // Renderiza la plantilla, enviándole, si existen, el último error y nombre de usuario
+        return $this->render('AppBundle:PaginaPrincipal:login.html.twig', array(
+            'last_username' => $lastUsername,
+            'error'         => $error,
+        ));
+
         
-        // replace this example code with whatever you need
-        return $this->render('AppBundle:PaginaPrincipal:login.html.twig', [
-            'usuario'=> $usuario 
-        ]);
+        
     }
+    
+    /**
+     * @Route("login_check", name="login_check")
+     */
+    public function loginCheckAction()
+    {
+
+    }
+
+    /**
+     * @Route("logout", name="logout")
+     */
+    public function logoutAction()
+    {
+
+    }
+    
+    
 }

@@ -77,35 +77,35 @@ class __TwigTemplate_dfc6036fa56eda70cb2bd40ece1b7ce08051cf6683f937e1daddf0423f6
         </div>
     </div>
     
-    ";
-        // line 25
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\DumpExtension')->dump($this->env, $context, ($context["usuario"] ?? $this->getContext($context, "usuario")));
-        echo "
+   
+    <div class=\"col-lg-8\">
     
-        <!--login modal-->
-    <div id=\"loginModal\"  aria-hidden=\"true\">
-      
-      
+     <form action=\"";
+        // line 28
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("login_check");
+        echo "\" method=\"post\">
+ 
+        ";
+        // line 31
+        echo "        <label>Usuario:</label>
+        <input type=\"text\" id=\"username\" name=\"_username\" value=\"";
+        // line 32
+        echo twig_escape_filter($this->env, ($context["last_username"] ?? $this->getContext($context, "last_username")), "html", null, true);
+        echo "\" class=\"form-control\"/>
+ 
+       
+        <label for=\"password\">Contraseña:</label>
+        <input type=\"password\" id=\"password\" name=\"_password\" class=\"form-control\"/>
+        <br/>
+ 
+        <button type=\"submit\" class=\"form-submit btn btn-primary\">Entrar</button>
         
-          <div class=\"modal-body\">
-              <form class=\"form col-md-6 center-block\">
-                <div class=\"form-group\">
-                  <input type=\"text\" class=\"form-control input-lg\" placeholder=\"Email\">
-                </div>
-                <div class=\"form-group\">
-                  <input type=\"password\" class=\"form-control input-lg\" placeholder=\"Password\">
-                </div>
-                <div class=\"form-group\">
-                  <button class=\"btn btn-primary btn-lg btn-block\">Sign In</button>
-                  <span class=\"pull-right\"><a href=\"#\">Register</a></span><span><a href=\"#\">Need help?</a></span>
-                </div>
-              </form>
-          </div>
-         
-      
+         <input type=\"hidden\" name=\"_target_path\" value=\"/home\" />
+    </form>
     </div>
-            
-    ";
+        
+ 
+";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
@@ -126,7 +126,7 @@ class __TwigTemplate_dfc6036fa56eda70cb2bd40ece1b7ce08051cf6683f937e1daddf0423f6
 
     public function getDebugInfo()
     {
-        return array (  82 => 25,  60 => 5,  51 => 4,  29 => 2,);
+        return array (  93 => 32,  90 => 31,  85 => 28,  60 => 5,  51 => 4,  29 => 2,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -163,38 +163,27 @@ class __TwigTemplate_dfc6036fa56eda70cb2bd40ece1b7ce08051cf6683f937e1daddf0423f6
         </div>
     </div>
     
-    {{dump(usuario)}}
+   
+    <div class=\"col-lg-8\">
     
-        <!--login modal-->
-    <div id=\"loginModal\"  aria-hidden=\"true\">
-      
-      
+     <form action=\"{{ path('login_check') }}\" method=\"post\">
+ 
+        {# Input para el campo iup #}
+        <label>Usuario:</label>
+        <input type=\"text\" id=\"username\" name=\"_username\" value=\"{{ last_username }}\" class=\"form-control\"/>
+ 
+       
+        <label for=\"password\">Contraseña:</label>
+        <input type=\"password\" id=\"password\" name=\"_password\" class=\"form-control\"/>
+        <br/>
+ 
+        <button type=\"submit\" class=\"form-submit btn btn-primary\">Entrar</button>
         
-          <div class=\"modal-body\">
-              <form class=\"form col-md-6 center-block\">
-                <div class=\"form-group\">
-                  <input type=\"text\" class=\"form-control input-lg\" placeholder=\"Email\">
-                </div>
-                <div class=\"form-group\">
-                  <input type=\"password\" class=\"form-control input-lg\" placeholder=\"Password\">
-                </div>
-                <div class=\"form-group\">
-                  <button class=\"btn btn-primary btn-lg btn-block\">Sign In</button>
-                  <span class=\"pull-right\"><a href=\"#\">Register</a></span><span><a href=\"#\">Need help?</a></span>
-                </div>
-              </form>
-          </div>
-         
-      
+         <input type=\"hidden\" name=\"_target_path\" value=\"/home\" />
+    </form>
     </div>
-            
-    {#{% for usuario in usuario %}
-                <a class=\"list-group-item \">
-                    
-                <a class=\"btn btn-default\" href=\"loginUsuario/{{usuario.id}}\"  role=\"button\">Ingresar</a>
-                </a>
-    {% endfor %}
-    #}
+        
+ 
 {% endblock %}", "AppBundle:PaginaPrincipal:login.html.twig", "/var/www/html/gitSIE/src/AppBundle/Resources/views/PaginaPrincipal/login.html.twig");
     }
 }
