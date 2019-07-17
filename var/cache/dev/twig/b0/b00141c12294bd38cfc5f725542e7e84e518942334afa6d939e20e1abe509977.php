@@ -65,6 +65,18 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
         input[type=submit]{
             margin-bottom: 10px;           
         }
+        .expediente{
+            margin-right: 12px;
+        }
+        .expediente p{
+            margin-top:10px;
+        }
+        .titulo{
+            height: 30px;
+            padding:7px;
+            background-color:black;
+            color: #fff;
+        }
         .panel{
             font-size: 11px;        
         }
@@ -77,58 +89,60 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
         }
     </style>
     
-    <div class=\"formu col-lg-4 col-md-offset-1\">
+    <div class=\"formu col-lg-12\">
         <div class=\"border border-primary\">
-            <h2 class=\"text-center\">Lista de Formularios</h2>
-            <hr/>
-            
-            <div class=\"list-group\">
-                
+            <h2 class=\"text-center\">Lista de Expedientes</h2>
+            <hr/>              
             ";
-        // line 31
+        // line 40
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable($context["expediente"]);
         foreach ($context['_seq'] as $context["_key"] => $context["expediente"]) {
-            // line 32
-            echo "                <a class=\"list-group-item \">
-                    
-                    <h4 class=\"list-group-item-heading\">Nro. Expediente: ";
-            // line 34
+            // line 41
+            echo "                   <div class=\"expediente col-lg-3\">
+                       <div class=\"titulo\">
+                            <h4 class=\"list-group-item-heading\">Nro. Expediente: ";
+            // line 43
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "nroExpediente", []));
             echo "</h4>
-                    <p class=\"list-group-item-text\">Tema: ";
-            // line 35
+                       </div>
+                       
+                        <p class=\"list-group-item-text\">Tema: ";
+            // line 46
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "tema", []));
             echo "</p>
-                    <p class=\"list-group-item-text\">Concepto: ";
-            // line 36
+                        <hr/>
+                        <p class=\"list-group-item-text\">Concepto: ";
+            // line 48
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "concepto", []));
             echo "</p>
-                    <a class=\"btn btn-default\" href=\"expediente/";
-            // line 37
+                        <hr/>
+                        <a class=\"btn btn-default\" href=\"expediente/";
+            // line 50
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "id", []), "html", null, true);
-            echo "\"  role=\"button\">Ver</a>
-                    <a class=\"btn btn-default\" href=\"#\"  role=\"button\">Editar</a>
-                    <a class=\"btn btn-default\" href=\"delete/";
-            // line 39
+            echo "\"  role=\"button\">Ver detalle</a>
+                        <a class=\"btn btn-default\" href=\"edit/";
+            // line 51
+            echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "id", []), "html", null, true);
+            echo "\"  role=\"button\">Modificar</a>
+                        <a class=\"btn btn-default\" href=\"delete/";
+            // line 52
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "id", []), "html", null, true);
             echo "\"  role=\"button\">Eliminar</a>
-                    
-                </a>
+                   </div>
             ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['expediente'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 43
+        // line 55
         echo "                
-            </div>
       
         </div>
     </div>
     
     ";
-        // line 50
+        // line 61
         echo "    
     
   
@@ -153,7 +167,7 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
 
     public function getDebugInfo()
     {
-        return array (  132 => 50,  124 => 43,  114 => 39,  109 => 37,  105 => 36,  101 => 35,  97 => 34,  93 => 32,  89 => 31,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  146 => 61,  139 => 55,  130 => 52,  126 => 51,  122 => 50,  117 => 48,  112 => 46,  106 => 43,  102 => 41,  98 => 40,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -177,6 +191,18 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
         input[type=submit]{
             margin-bottom: 10px;           
         }
+        .expediente{
+            margin-right: 12px;
+        }
+        .expediente p{
+            margin-top:10px;
+        }
+        .titulo{
+            height: 30px;
+            padding:7px;
+            background-color:black;
+            color: #fff;
+        }
         .panel{
             font-size: 11px;        
         }
@@ -189,27 +215,26 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
         }
     </style>
     
-    <div class=\"formu col-lg-4 col-md-offset-1\">
+    <div class=\"formu col-lg-12\">
         <div class=\"border border-primary\">
-            <h2 class=\"text-center\">Lista de Formularios</h2>
-            <hr/>
-            
-            <div class=\"list-group\">
-                
+            <h2 class=\"text-center\">Lista de Expedientes</h2>
+            <hr/>              
             {% for expediente in expediente %}
-                <a class=\"list-group-item \">
-                    
-                    <h4 class=\"list-group-item-heading\">Nro. Expediente: {{ expediente.nroExpediente|e }}</h4>
-                    <p class=\"list-group-item-text\">Tema: {{ expediente.tema|e }}</p>
-                    <p class=\"list-group-item-text\">Concepto: {{ expediente.concepto|e }}</p>
-                    <a class=\"btn btn-default\" href=\"expediente/{{expediente.id}}\"  role=\"button\">Ver</a>
-                    <a class=\"btn btn-default\" href=\"#\"  role=\"button\">Editar</a>
-                    <a class=\"btn btn-default\" href=\"delete/{{expediente.id}}\"  role=\"button\">Eliminar</a>
-                    
-                </a>
+                   <div class=\"expediente col-lg-3\">
+                       <div class=\"titulo\">
+                            <h4 class=\"list-group-item-heading\">Nro. Expediente: {{ expediente.nroExpediente|e }}</h4>
+                       </div>
+                       
+                        <p class=\"list-group-item-text\">Tema: {{ expediente.tema|e }}</p>
+                        <hr/>
+                        <p class=\"list-group-item-text\">Concepto: {{ expediente.concepto|e }}</p>
+                        <hr/>
+                        <a class=\"btn btn-default\" href=\"expediente/{{expediente.id}}\"  role=\"button\">Ver detalle</a>
+                        <a class=\"btn btn-default\" href=\"edit/{{expediente.id}}\"  role=\"button\">Modificar</a>
+                        <a class=\"btn btn-default\" href=\"delete/{{expediente.id}}\"  role=\"button\">Eliminar</a>
+                   </div>
             {% endfor %}
                 
-            </div>
       
         </div>
     </div>
