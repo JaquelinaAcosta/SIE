@@ -125,6 +125,11 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
+        // edit
+        if (0 === strpos($pathinfo, '/edit') && preg_match('#^/edit/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, ['_route' => 'edit']), array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::editAction',));
+        }
+
         // nuevoExpediente
         if ('/add/expediente' === $pathinfo) {
             return array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::indexAction',  '_route' => 'nuevoExpediente',);

@@ -104,6 +104,40 @@ class ExpedienteController extends Controller
 
         return $this->redirectToRoute('listaExpediente');
     }
+    
+    /**
+     * @Route("edit/{id}", name="edit")
+     */
+    public function editAction(Request $request,$id)
+    {
+        
+        $em = $this->getDoctrine()->getEntityManager(); 
+        $expediente = $em->getRepository("AppBundle:Expediente")->find($id);    
+        
+        $form = $this->createForm(ExpedienteType::class,$expediente);
+        
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted()) {
+                if ($form->isValid()) {
+                                 
+                    $em->persist($expediente);
+                    $flush=$em->flush();
+                   
+            }
+        
+            return $this->redirectToRoute('listaExpediente');
+        }
+
+        // replace this example code with whatever you need
+        return $this->render('AppBundle:Expediente:edit.html.twig', array(
+            'form'=> $form->createView(),
+            'expediente'=>$expediente
+        ));
+    
+
+        
+    }
 
     
 }
