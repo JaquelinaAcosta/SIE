@@ -11,6 +11,7 @@
         }
         .expediente{
             margin-right: 12px;
+            padding:15px;
         }
         .expediente p{
             margin-top:10px;
@@ -22,7 +23,9 @@
             color: #fff;
         }
         .panel{
-            font-size: 11px;        
+            font-size: 15px; 
+            margin-bottom: 20px;
+            margin-right: 20px;
         }
         .form-exp{
             font-size:15px;
@@ -31,29 +34,40 @@
         .title{
             font-size:16px;
         }
+        
+        .p{
+            border-top: blue 5px solid;;
+            border-right: blue 5px solid;
+            border-bottom: blue 5px solid;
+            border-left:  blue 5px solid;
+            border-radius: 30px;
+        }
+        
     </style>
     
-    <div class="formu col-lg-12">
-        <div class="border border-primary">
+    <div class="formu col-lg-12 ">
+        <div class="border border-primary" >
             <h2 class="text-center">Lista de Expedientes</h2>
-            <hr/>              
-            {% for expediente in expediente %}
-                   <div class="expediente col-lg-3">
-                       <div class="titulo">
-                            <h4 class="list-group-item-heading">Nro. Expediente: {{ expediente.nroExpediente|e }}</h4>
+            <hr/>
+            <div class="p col-lg-10  col-md-offset-1" style="padding-left:  90px;padding-top:20px">
+                {% for expediente in expediente %}
+                       <div class="expediente col-lg-5 panel panel-default">
+                           <div class="titulo">
+                                <h4 class="list-group-item-heading">Nro. Expediente: {{ expediente.nroExpediente|e }}</h4>
+                           </div>
+
+                            <p class="list-group-item-text">Tema: {{ expediente.tema|e }}</p>
+                            <hr/>
+                            <p class="list-group-item-text">Concepto: {{ expediente.concepto|e }}</p>
+                            <hr/>
+                            <a class="btn btn-info" href="expediente/{{expediente.id}}"  role="button">Ver detalle</a>
+                            <a class="btn btn-warning" href="edit/{{expediente.id}}"  role="button">Modificar</a>
+                            <a class="btn btn-danger" href="delete/{{expediente.id}}"  role="button">Eliminar</a>
+                            <br>
                        </div>
-                       
-                        <p class="list-group-item-text">Tema: {{ expediente.tema|e }}</p>
-                        <hr/>
-                        <p class="list-group-item-text">Concepto: {{ expediente.concepto|e }}</p>
-                        <hr/>
-                        <a class="btn btn-default" href="expediente/{{expediente.id}}"  role="button">Ver detalle</a>
-                        <a class="btn btn-default" href="edit/{{expediente.id}}"  role="button">Modificar</a>
-                        <a class="btn btn-default" href="delete/{{expediente.id}}"  role="button">Eliminar</a>
-                   </div>
-            {% endfor %}
+                {% endfor %}
                 
-      
+            </div>
         </div>
     </div>
     

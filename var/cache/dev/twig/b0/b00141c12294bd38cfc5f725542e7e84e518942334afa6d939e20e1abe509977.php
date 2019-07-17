@@ -67,6 +67,7 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
         }
         .expediente{
             margin-right: 12px;
+            padding:15px;
         }
         .expediente p{
             margin-top:10px;
@@ -78,7 +79,9 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
             color: #fff;
         }
         .panel{
-            font-size: 11px;        
+            font-size: 15px; 
+            margin-bottom: 20px;
+            margin-right: 20px;
         }
         .form-exp{
             font-size:15px;
@@ -87,62 +90,73 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
         .title{
             font-size:16px;
         }
+        
+        .p{
+            border-top: blue 5px solid;;
+            border-right: blue 5px solid;
+            border-bottom: blue 5px solid;
+            border-left:  blue 5px solid;
+            border-radius: 30px;
+        }
+        
     </style>
     
-    <div class=\"formu col-lg-12\">
-        <div class=\"border border-primary\">
+    <div class=\"formu col-lg-12 \">
+        <div class=\"border border-primary\" >
             <h2 class=\"text-center\">Lista de Expedientes</h2>
-            <hr/>              
-            ";
-        // line 40
+            <hr/>
+            <div class=\"p col-lg-10  col-md-offset-1\" style=\"padding-left:  90px;padding-top:20px\">
+                ";
+        // line 53
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable($context["expediente"]);
         foreach ($context['_seq'] as $context["_key"] => $context["expediente"]) {
-            // line 41
-            echo "                   <div class=\"expediente col-lg-3\">
-                       <div class=\"titulo\">
-                            <h4 class=\"list-group-item-heading\">Nro. Expediente: ";
-            // line 43
+            // line 54
+            echo "                       <div class=\"expediente col-lg-5 panel panel-default\">
+                           <div class=\"titulo\">
+                                <h4 class=\"list-group-item-heading\">Nro. Expediente: ";
+            // line 56
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "nroExpediente", []));
             echo "</h4>
-                       </div>
-                       
-                        <p class=\"list-group-item-text\">Tema: ";
-            // line 46
+                           </div>
+
+                            <p class=\"list-group-item-text\">Tema: ";
+            // line 59
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "tema", []));
             echo "</p>
-                        <hr/>
-                        <p class=\"list-group-item-text\">Concepto: ";
-            // line 48
+                            <hr/>
+                            <p class=\"list-group-item-text\">Concepto: ";
+            // line 61
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "concepto", []));
             echo "</p>
-                        <hr/>
-                        <a class=\"btn btn-default\" href=\"expediente/";
-            // line 50
+                            <hr/>
+                            <a class=\"btn btn-info\" href=\"expediente/";
+            // line 63
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "id", []), "html", null, true);
             echo "\"  role=\"button\">Ver detalle</a>
-                        <a class=\"btn btn-default\" href=\"edit/";
-            // line 51
+                            <a class=\"btn btn-warning\" href=\"edit/";
+            // line 64
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "id", []), "html", null, true);
             echo "\"  role=\"button\">Modificar</a>
-                        <a class=\"btn btn-default\" href=\"delete/";
-            // line 52
+                            <a class=\"btn btn-danger\" href=\"delete/";
+            // line 65
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "id", []), "html", null, true);
             echo "\"  role=\"button\">Eliminar</a>
-                   </div>
-            ";
+                            <br>
+                       </div>
+                ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['expediente'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 55
+        // line 69
         echo "                
-      
+            </div>
         </div>
     </div>
     
     ";
-        // line 61
+        // line 75
         echo "    
     
   
@@ -167,7 +181,7 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
 
     public function getDebugInfo()
     {
-        return array (  146 => 61,  139 => 55,  130 => 52,  126 => 51,  122 => 50,  117 => 48,  112 => 46,  106 => 43,  102 => 41,  98 => 40,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  160 => 75,  153 => 69,  143 => 65,  139 => 64,  135 => 63,  130 => 61,  125 => 59,  119 => 56,  115 => 54,  111 => 53,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -193,6 +207,7 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
         }
         .expediente{
             margin-right: 12px;
+            padding:15px;
         }
         .expediente p{
             margin-top:10px;
@@ -204,7 +219,9 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
             color: #fff;
         }
         .panel{
-            font-size: 11px;        
+            font-size: 15px; 
+            margin-bottom: 20px;
+            margin-right: 20px;
         }
         .form-exp{
             font-size:15px;
@@ -213,29 +230,40 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
         .title{
             font-size:16px;
         }
+        
+        .p{
+            border-top: blue 5px solid;;
+            border-right: blue 5px solid;
+            border-bottom: blue 5px solid;
+            border-left:  blue 5px solid;
+            border-radius: 30px;
+        }
+        
     </style>
     
-    <div class=\"formu col-lg-12\">
-        <div class=\"border border-primary\">
+    <div class=\"formu col-lg-12 \">
+        <div class=\"border border-primary\" >
             <h2 class=\"text-center\">Lista de Expedientes</h2>
-            <hr/>              
-            {% for expediente in expediente %}
-                   <div class=\"expediente col-lg-3\">
-                       <div class=\"titulo\">
-                            <h4 class=\"list-group-item-heading\">Nro. Expediente: {{ expediente.nroExpediente|e }}</h4>
+            <hr/>
+            <div class=\"p col-lg-10  col-md-offset-1\" style=\"padding-left:  90px;padding-top:20px\">
+                {% for expediente in expediente %}
+                       <div class=\"expediente col-lg-5 panel panel-default\">
+                           <div class=\"titulo\">
+                                <h4 class=\"list-group-item-heading\">Nro. Expediente: {{ expediente.nroExpediente|e }}</h4>
+                           </div>
+
+                            <p class=\"list-group-item-text\">Tema: {{ expediente.tema|e }}</p>
+                            <hr/>
+                            <p class=\"list-group-item-text\">Concepto: {{ expediente.concepto|e }}</p>
+                            <hr/>
+                            <a class=\"btn btn-info\" href=\"expediente/{{expediente.id}}\"  role=\"button\">Ver detalle</a>
+                            <a class=\"btn btn-warning\" href=\"edit/{{expediente.id}}\"  role=\"button\">Modificar</a>
+                            <a class=\"btn btn-danger\" href=\"delete/{{expediente.id}}\"  role=\"button\">Eliminar</a>
+                            <br>
                        </div>
-                       
-                        <p class=\"list-group-item-text\">Tema: {{ expediente.tema|e }}</p>
-                        <hr/>
-                        <p class=\"list-group-item-text\">Concepto: {{ expediente.concepto|e }}</p>
-                        <hr/>
-                        <a class=\"btn btn-default\" href=\"expediente/{{expediente.id}}\"  role=\"button\">Ver detalle</a>
-                        <a class=\"btn btn-default\" href=\"edit/{{expediente.id}}\"  role=\"button\">Modificar</a>
-                        <a class=\"btn btn-default\" href=\"delete/{{expediente.id}}\"  role=\"button\">Eliminar</a>
-                   </div>
-            {% endfor %}
+                {% endfor %}
                 
-      
+            </div>
         </div>
     </div>
     
