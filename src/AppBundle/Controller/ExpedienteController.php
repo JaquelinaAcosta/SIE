@@ -30,6 +30,8 @@ class ExpedienteController extends Controller
                 $em->persist($expediente);
                 $em->flush();
             }
+                            
+                return $this->redirectToRoute('listaExpediente');
         }
 
 

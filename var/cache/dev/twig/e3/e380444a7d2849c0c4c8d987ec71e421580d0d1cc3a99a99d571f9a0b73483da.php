@@ -77,127 +77,126 @@ class __TwigTemplate_6dfe2c07090f6dfb7d728f9bbd8ff70d35de73dc2f63cd95b85efbe890d
         }
     </style>
 
-    <div class=\"col-ls-12 col-md-offset-1\">
+    <div class=\"col-ls-12 col-md-offset\" style=\"padding-left:  30px; padding-right:  30px\">
+        
         <div class=\"panel panel-primary \">
             <div class=\"title panel-heading\">Editar Expediente</div>
             <div class=\"panel panel-body\">
                 <br/>
                 ";
-        // line 29
+        // line 30
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_start', ["action" => "", "method" => "POST"]);
         echo "        
                 <div class=\"col-lg-14\">
                     <div class=\"col-lg-5\">
                         <label class=\"exp text-default\">NRO. DE EXPEDIENTE</label>
                         ";
-        // line 33
+        // line 34
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "nroExpediente", []), 'errors');
         echo "
                         ";
-        // line 34
+        // line 35
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "nroExpediente", []), 'widget');
         echo "
                     </div>
                      <div class=\"col-lg-3 \">
                     <label class=\"text-default\">TIPO</label>
                     ";
-        // line 38
+        // line 39
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "tipo", []), 'errors');
         echo "
                     ";
-        // line 39
+        // line 40
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "tipo", []), 'widget');
         echo "
                   </div>
                     <div class=\"col-lg-2 \">
                         <label class=\"text-default\">CODIGO TEMA</label>
                         ";
-        // line 43
+        // line 44
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "tema", []), 'errors');
         echo "
                         ";
-        // line 44
+        // line 45
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "tema", []), 'widget');
         echo "
                     </div>
                     <div class=\"col-lg-2\">
                         <label class=\"text-default\">FOJAS</label>
                         ";
-        // line 48
+        // line 49
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fojas", []), 'errors');
         echo "
                         ";
-        // line 49
+        // line 50
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fojas", []), 'widget');
         echo "
                     </div>                   
                     <div class=\"col-lg-6\">
                         <label class=\"text-default\">DEPENDENCIA</label>
                         ";
-        // line 53
+        // line 54
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "iniciadorDependencia", []), 'errors');
         echo "
                         ";
-        // line 54
+        // line 55
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "iniciadorDependencia", []), 'widget');
         echo "
                     </div>                                           
                     <div class=\"col-lg-2\">
                         <label class=\"text-default\">FECHA DE INICIO</label>
                         ";
-        // line 58
+        // line 59
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fechaInicio", []), 'row', ["id" => "date1"]);
         echo " 
                         ";
-        // line 59
+        // line 60
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fechaInicio", []), 'errors');
         echo "
                         ";
-        // line 60
+        // line 61
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fechaInicio", []), 'widget');
         echo "
                     </div>  
                     <div class=\"col-lg-2\">
                         <label class=\"text-default\">FECHA DE FIN.</label>
                         ";
-        // line 64
+        // line 65
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fechaFin", []), 'row', ["id" => "date2"]);
         echo " 
                         ";
-        // line 65
+        // line 66
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fechaFin", []), 'errors');
         echo "
                         ";
-        // line 66
+        // line 67
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fechaFin", []), 'widget');
         echo "
                     </div>                      
                 </div>
                 <hr/>
-                ";
-        // line 113
-        echo "               
+               
                 <div class=\"col-lg-12\">
                     <label class=\"text-default\">CONCEPTO</label>
                     ";
-        // line 116
+        // line 74
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "concepto", []), 'errors');
         echo "
                     ";
-        // line 117
+        // line 75
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "concepto", []), 'widget');
         echo "
                     <hr/>
                 </div>
                 <div class=\"col-lg-3 float left\">
                     ";
-        // line 121
+        // line 79
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "Guardar", []), 'widget');
         echo "
                     <a class=\"btn btn-default\" onclick=\"history.back()\"  role=\"button\">Volver</a>
                 </div>
                 ";
-        // line 124
+        // line 82
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_end');
         echo "
             </div>
@@ -212,7 +211,7 @@ class __TwigTemplate_6dfe2c07090f6dfb7d728f9bbd8ff70d35de73dc2f63cd95b85efbe890d
             var index = \$ubicacion.val();
             \$.ajax({
                 url :\"";
-        // line 136
+        // line 94
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("add_evento");
         echo "\",
                 type: \"POST\",
@@ -290,7 +289,7 @@ class __TwigTemplate_6dfe2c07090f6dfb7d728f9bbd8ff70d35de73dc2f63cd95b85efbe890d
 
     public function getDebugInfo()
     {
-        return array (  216 => 136,  201 => 124,  195 => 121,  188 => 117,  184 => 116,  179 => 113,  172 => 66,  168 => 65,  164 => 64,  157 => 60,  153 => 59,  149 => 58,  142 => 54,  138 => 53,  131 => 49,  127 => 48,  120 => 44,  116 => 43,  109 => 39,  105 => 38,  98 => 34,  94 => 33,  87 => 29,  51 => 3,  29 => 1,);
+        return array (  215 => 94,  200 => 82,  194 => 79,  187 => 75,  183 => 74,  173 => 67,  169 => 66,  165 => 65,  158 => 61,  154 => 60,  150 => 59,  143 => 55,  139 => 54,  132 => 50,  128 => 49,  121 => 45,  117 => 44,  110 => 40,  106 => 39,  99 => 35,  95 => 34,  88 => 30,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -326,7 +325,8 @@ class __TwigTemplate_6dfe2c07090f6dfb7d728f9bbd8ff70d35de73dc2f63cd95b85efbe890d
         }
     </style>
 
-    <div class=\"col-ls-12 col-md-offset-1\">
+    <div class=\"col-ls-12 col-md-offset\" style=\"padding-left:  30px; padding-right:  30px\">
+        
         <div class=\"panel panel-primary \">
             <div class=\"title panel-heading\">Editar Expediente</div>
             <div class=\"panel panel-body\">
@@ -372,49 +372,6 @@ class __TwigTemplate_6dfe2c07090f6dfb7d728f9bbd8ff70d35de73dc2f63cd95b85efbe890d
                     </div>                      
                 </div>
                 <hr/>
-                {#<div class=\"col-lg-3\">
-                    <label class=\"text-default\">UBICACION ACTUAL</label>
-                    {{ form_row(form.ubicacionActual)}} 
-                    {{ form_errors(form.ubicacionActual) }}
-                    {{ form_widget(form.ubicacionActual) }}
-                </div>  
-
-                <div id=\"contenido\" hidden>
-
-                </div>
-
-                <div id=\"mesaentrada\" class=\"col-xs-14\" hidden>
-                    <div class=\"codigo col-lg-6\">
-                        <label class=\"text-default\">CODIGO DE EXPEDIENTE</label>                    
-                    </div>                 
-                </div>
-
-                <div id=\"lugarfisico\" class=\"col-xs-14\" hidden>
-                    <div class=\"tipo col-lg-3\">
-                        <label class=\"text-default\">TIPO</label>                    
-                    </div>                        
-                     <div class=\"acceso col-lg-3\">
-                        <label class=\"text-default\">ACCESO</label>                    
-                    </div>  
-                    <div class=\"descripcion col-lg-12\">
-                        <label class=\"text-default\">DESCRIPCION</label>                    
-                    </div>    
-                </div>
-
-                <div id=\"persona\" class=\"col-xs-14\" hidden>
-                    <div class=\"nombre col-lg-3\">
-                        <label class=\"text-default\">NOMBRE/S</label>                    
-                    </div>
-                    <div class=\"apellido col-lg-2\">
-                        <label class=\"text-default\">APELLIDO</label>                    
-                    </div>
-                    <div class=\"dni col-lg-2\">
-                        <label class=\"text-default\">DNI</label>                    
-                    </div>
-                    <div class=\"cargo col-lg-2\">
-                        <label class=\"text-default\">CARGO</label>                    
-                    </div>
-                </div>#}
                
                 <div class=\"col-lg-12\">
                     <label class=\"text-default\">CONCEPTO</label>

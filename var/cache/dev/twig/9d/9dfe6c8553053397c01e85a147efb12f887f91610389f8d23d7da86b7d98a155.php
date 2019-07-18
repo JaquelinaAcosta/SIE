@@ -87,15 +87,15 @@ class __TwigTemplate_dfc6036fa56eda70cb2bd40ece1b7ce08051cf6683f937e1daddf0423f6
  
         ";
         // line 31
-        echo "        <label>Usuario:</label>
-        <input type=\"text\" id=\"username\" name=\"_username\" value=\"";
+        echo "        <label >Usuario:</label>
+        <input placeholder=\"Email o Usuario(iup)\" type=\"text\" id=\"username\" name=\"_username\" value=\"";
         // line 32
         echo twig_escape_filter($this->env, ($context["last_username"] ?? $this->getContext($context, "last_username")), "html", null, true);
         echo "\" class=\"form-control\"/>
  
        
         <label for=\"password\">Contraseña:</label>
-        <input type=\"password\" id=\"password\" name=\"_password\" class=\"form-control\"/>
+        <input placeholder=\"********\" type=\"password\" id=\"password\" name=\"_password\" class=\"form-control\"/>
         <br/>
  
         <button type=\"submit\" class=\"form-submit btn btn-primary\">Entrar</button>
@@ -169,12 +169,12 @@ class __TwigTemplate_dfc6036fa56eda70cb2bd40ece1b7ce08051cf6683f937e1daddf0423f6
      <form action=\"{{ path('login_check') }}\" method=\"post\">
  
         {# Input para el campo iup #}
-        <label>Usuario:</label>
-        <input type=\"text\" id=\"username\" name=\"_username\" value=\"{{ last_username }}\" class=\"form-control\"/>
+        <label >Usuario:</label>
+        <input placeholder=\"Email o Usuario(iup)\" type=\"text\" id=\"username\" name=\"_username\" value=\"{{ last_username }}\" class=\"form-control\"/>
  
        
         <label for=\"password\">Contraseña:</label>
-        <input type=\"password\" id=\"password\" name=\"_password\" class=\"form-control\"/>
+        <input placeholder=\"********\" type=\"password\" id=\"password\" name=\"_password\" class=\"form-control\"/>
         <br/>
  
         <button type=\"submit\" class=\"form-submit btn btn-primary\">Entrar</button>
