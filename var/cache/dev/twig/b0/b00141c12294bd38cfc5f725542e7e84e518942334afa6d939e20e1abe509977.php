@@ -105,16 +105,16 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
         <div class=\"border border-primary\" >
             <h2 class=\"text-center\">Lista de Expedientes</h2>
             <hr/>
-            <div class=\"p col-lg-10  col-md-offset-1\" style=\"padding-left:  90px;padding-top:20px\">
+            <div class=\"panel panel-primary col-lg-10  col-md-offset-1\" style=\"padding-left:  100px;padding-top:20px\">
                 ";
         // line 53
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable($context["expediente"]);
+        $context['_seq'] = twig_ensure_traversable(twig_reverse_filter($this->env, $context["expediente"]));
         foreach ($context['_seq'] as $context["_key"] => $context["expediente"]) {
             // line 54
             echo "                       <div class=\"expediente col-lg-5 panel panel-default\">
                            <div class=\"titulo\">
-                                <h4 class=\"list-group-item-heading\">Nro. Expediente: ";
+                                <h4 class=\"list-group-item-heading\">Expediente Nro.: ";
             // line 56
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "nroExpediente", []));
             echo "</h4>
@@ -142,6 +142,7 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
             // line 65
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "id", []), "html", null, true);
             echo "\"  role=\"button\">Eliminar</a>
+        
                             <br>
                        </div>
                 ";
@@ -149,14 +150,21 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['expediente'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 69
+        // line 70
         echo "                
             </div>
+                
+                <div class=\"col-lg-3 float left\">
+                <br/>
+                <br/>
+               
+                
+                <div/>
         </div>
     </div>
     
     ";
-        // line 75
+        // line 83
         echo "    
     
   
@@ -181,7 +189,7 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
 
     public function getDebugInfo()
     {
-        return array (  160 => 75,  153 => 69,  143 => 65,  139 => 64,  135 => 63,  130 => 61,  125 => 59,  119 => 56,  115 => 54,  111 => 53,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  168 => 83,  154 => 70,  143 => 65,  139 => 64,  135 => 63,  130 => 61,  125 => 59,  119 => 56,  115 => 54,  111 => 53,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -245,11 +253,11 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
         <div class=\"border border-primary\" >
             <h2 class=\"text-center\">Lista de Expedientes</h2>
             <hr/>
-            <div class=\"p col-lg-10  col-md-offset-1\" style=\"padding-left:  90px;padding-top:20px\">
-                {% for expediente in expediente %}
+            <div class=\"panel panel-primary col-lg-10  col-md-offset-1\" style=\"padding-left:  100px;padding-top:20px\">
+                {% for expediente in expediente|reverse %}
                        <div class=\"expediente col-lg-5 panel panel-default\">
                            <div class=\"titulo\">
-                                <h4 class=\"list-group-item-heading\">Nro. Expediente: {{ expediente.nroExpediente|e }}</h4>
+                                <h4 class=\"list-group-item-heading\">Expediente Nro.: {{ expediente.nroExpediente|e }}</h4>
                            </div>
 
                             <p class=\"list-group-item-text\">Tema: {{ expediente.tema|e }}</p>
@@ -259,11 +267,19 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
                             <a class=\"btn btn-info\" href=\"expediente/{{expediente.id}}\"  role=\"button\">Ver detalle</a>
                             <a class=\"btn btn-warning\" href=\"edit/{{expediente.id}}\"  role=\"button\">Modificar</a>
                             <a class=\"btn btn-danger\" href=\"delete/{{expediente.id}}\"  role=\"button\">Eliminar</a>
+        
                             <br>
                        </div>
                 {% endfor %}
                 
             </div>
+                
+                <div class=\"col-lg-3 float left\">
+                <br/>
+                <br/>
+               
+                
+                <div/>
         </div>
     </div>
     

@@ -49,11 +49,11 @@
         <div class="border border-primary" >
             <h2 class="text-center">Lista de Expedientes</h2>
             <hr/>
-            <div class="p col-lg-10  col-md-offset-1" style="padding-left:  90px;padding-top:20px">
-                {% for expediente in expediente %}
+            <div class="panel panel-primary col-lg-10  col-md-offset-1" style="padding-left:  100px;padding-top:20px">
+                {% for expediente in expediente|reverse %}
                        <div class="expediente col-lg-5 panel panel-default">
                            <div class="titulo">
-                                <h4 class="list-group-item-heading">Nro. Expediente: {{ expediente.nroExpediente|e }}</h4>
+                                <h4 class="list-group-item-heading">Expediente Nro.: {{ expediente.nroExpediente|e }}</h4>
                            </div>
 
                             <p class="list-group-item-text">Tema: {{ expediente.tema|e }}</p>
@@ -63,11 +63,19 @@
                             <a class="btn btn-info" href="expediente/{{expediente.id}}"  role="button">Ver detalle</a>
                             <a class="btn btn-warning" href="edit/{{expediente.id}}"  role="button">Modificar</a>
                             <a class="btn btn-danger" href="delete/{{expediente.id}}"  role="button">Eliminar</a>
+        
                             <br>
                        </div>
                 {% endfor %}
                 
             </div>
+                
+                <div class="col-lg-3 float left">
+                <br/>
+                <br/>
+               
+                
+                <div/>
         </div>
     </div>
     

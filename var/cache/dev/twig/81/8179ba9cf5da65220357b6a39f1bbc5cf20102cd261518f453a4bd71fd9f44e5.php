@@ -77,7 +77,7 @@ class __TwigTemplate_8c5f74ff5f6306d6a4d151cf13253aafc5a75cfa38807be853dbb51144d
         }
     </style>
 
-    <div class=\"col-ls-12 col-md-offset-1\">
+    <div class=\"col-ls-12\" style=\"padding-left:  30px; padding-right:  30px\">
         <div class=\"panel panel-primary \">
             <div class=\"title panel-heading\">Carga de datos -> Expediente</div>
             <div class=\"panel panel-body\">
@@ -194,9 +194,10 @@ class __TwigTemplate_8c5f74ff5f6306d6a4d151cf13253aafc5a75cfa38807be853dbb51144d
         // line 121
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "Guardar", []), 'widget');
         echo "
+                    <a class=\"btn btn-default\" onclick=\"history.back()\"  role=\"button\">Volver</a>
                 </div>
                 ";
-        // line 123
+        // line 124
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_end');
         echo "
             </div>
@@ -211,7 +212,7 @@ class __TwigTemplate_8c5f74ff5f6306d6a4d151cf13253aafc5a75cfa38807be853dbb51144d
             var index = \$ubicacion.val();
             \$.ajax({
                 url :\"";
-        // line 135
+        // line 136
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("add_evento");
         echo "\",
                 type: \"POST\",
@@ -289,7 +290,7 @@ class __TwigTemplate_8c5f74ff5f6306d6a4d151cf13253aafc5a75cfa38807be853dbb51144d
 
     public function getDebugInfo()
     {
-        return array (  215 => 135,  200 => 123,  195 => 121,  188 => 117,  184 => 116,  179 => 113,  172 => 66,  168 => 65,  164 => 64,  157 => 60,  153 => 59,  149 => 58,  142 => 54,  138 => 53,  131 => 49,  127 => 48,  120 => 44,  116 => 43,  109 => 39,  105 => 38,  98 => 34,  94 => 33,  87 => 29,  51 => 3,  29 => 1,);
+        return array (  216 => 136,  201 => 124,  195 => 121,  188 => 117,  184 => 116,  179 => 113,  172 => 66,  168 => 65,  164 => 64,  157 => 60,  153 => 59,  149 => 58,  142 => 54,  138 => 53,  131 => 49,  127 => 48,  120 => 44,  116 => 43,  109 => 39,  105 => 38,  98 => 34,  94 => 33,  87 => 29,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -325,7 +326,7 @@ class __TwigTemplate_8c5f74ff5f6306d6a4d151cf13253aafc5a75cfa38807be853dbb51144d
         }
     </style>
 
-    <div class=\"col-ls-12 col-md-offset-1\">
+    <div class=\"col-ls-12\" style=\"padding-left:  30px; padding-right:  30px\">
         <div class=\"panel panel-primary \">
             <div class=\"title panel-heading\">Carga de datos -> Expediente</div>
             <div class=\"panel panel-body\">
@@ -423,6 +424,7 @@ class __TwigTemplate_8c5f74ff5f6306d6a4d151cf13253aafc5a75cfa38807be853dbb51144d
                 </div>
                 <div class=\"col-lg-3 float left\">
                     {{ form_widget(form.Guardar) }}
+                    <a class=\"btn btn-default\" onclick=\"history.back()\"  role=\"button\">Volver</a>
                 </div>
                 {{form_end(form)}}
             </div>

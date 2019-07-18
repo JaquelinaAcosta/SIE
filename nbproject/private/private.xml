@@ -3,8 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/var/www/html/gitSIE/src/AppBundle/Controller/ExpedienteController.php</file>
-            <file>file:/var/www/html/gitSIE/src/AppBundle/Resources/views/Expediente/add.html.twig</file>
+            <file>file:/var/www/html/gitSIE/src/AppBundle/Resources/views/Expediente/edit.html.twig</file>
+            <file>file:/var/www/html/gitSIE/src/AppBundle/Resources/views/Expediente/detalleExpediente.html.twig</file>
             <file>file:/var/www/html/gitSIE/src/AppBundle/Resources/views/Expediente/listadoExpediente.html.twig</file>
         </group>
     </open-files>

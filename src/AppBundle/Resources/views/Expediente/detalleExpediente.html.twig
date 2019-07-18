@@ -11,44 +11,167 @@
             margin-bottom: 10px;
             padding:10px;            
          }
+         .expediente{
+            margin-right: 12px;
+            padding:5px;
+            font-size:15px;
+        }
 
     </style>
     
-    <div class="formu col-lg-4 col-md-offset-1">
+    <div class="formu col-lg-12">
         <div class="border border-primary">
-            <h2 class="text-center ">Expediente Nro: {{ expediente.nroExpediente}}</h2>
+            <h2 class="text-center ">Expediente Nro.: {{ expediente.nroExpediente}}</h2>
             <hr/>
             
-            <div class="list-group">
-               
-                    <p class="list-group-item-text">Tema: {{ expediente.tema}}</p>
-                    <p class="list-group-item-text">Concepto: {{ expediente.concepto}}</p>
-                    <p class="list-group-item-text">Cantidad de fojas: {{ expediente.fojas}}</p>
-                    <p class="list-group-item-text">Tipo: {{ expediente.tipo}}</p>
-                    <p class="list-group-item-text">Dependencia: {{ expediente.iniciadorDependencia}}</p>
-                    <p class="list-group-item-text">Fecha de Inicio: {{ expediente.fechaInicio|date("d/m/Y")}}</p>
-                    <p class="list-group-item-text">Fecha de Fin: {{ expediente.fechaFin|date("d/m/Y")}}</p>
-                    <p class="list-group-item-text">Ubicación Actual: {{ expediente.ubicacionActual}}</p>
-                    
-                    <hr>
-                    <p class="list-group-item-text">Resolución: {{ expediente.resolucion}}</p>
-                    
-                    <hr>
-                    {#  <p class="list-group-item-text">Carátulas: {{ expediente.caratulas}}</p>#}
-                    
-                    <hr>
-                    {#<p class="list-group-item-text">Expedientes asociados: {{ expediente.expedientesAsociados}}</p>#}
-                  
-                    <hr>
-                    {#<p class="list-group-item-text">Movimientos: {{ expediente.movimientos}}</p>#}
-                    
-                    <hr>
-                    {# no se si hace falta lo de persona.......
-                    <p class="list-group-item-text">Usuario: {{ expediente.persona}}</p>#}
-                    
-                    <hr>
-                    <a class="btn btn-default" onclick="history.back()"  role="button">Volver</a>
-                   
+            <div class="list-group col-lg-11 col-md-offset-1">
+                <div class="expediente col-lg-10 panel panel-primary">
+                    <div class="panel-heading" style="font-size:18px;">
+                        Detalle del Expediente
+                    </div>
+                    <table class="table table-striped table-hover"> 
+                        <thead>
+                            <br/>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th class="info list-group col-lg-3">Tema: </th>
+                                <td>{{ expediente.tema}}</td>
+                            </tr>
+                            <tr>
+                                <th class="info list-group">Concepto: </th>
+                                <td>{{ expediente.concepto}}</td>
+                            </tr>
+                            <tr>
+                                <th class="info list-group">Cantidad de fojas:  </th>
+                                <td>{{ expediente.fojas}}</td>
+                            </tr>
+                            <tr>
+                                <th class="info list-group">Tipo: </th>
+                                <td>{{ expediente.tipo}}</td>
+                            </tr>
+                            <tr>
+                                <th class="info list-group">Dependencia:  </th>
+                                <td>{{ expediente.iniciadorDependencia}}</td>
+                            </tr>
+                            <tr>
+                                <th class="info ">Fecha de Inicio:  </th>
+                                <td>{{ expediente.fechaInicio|date("d/m/Y")}}</td>
+                            </tr>
+                            <tr>
+                                <th class="info list-group">Fecha de Finalización:  </th>
+                                <td>{{ expediente.fechaFin|date("d/m/Y")}}</td>
+                            </tr>
+                            <tr>
+                                <th class="info list-group">Ubicación Actual:  </th>
+                                <td>{{ expediente.ubicacionActual}}</td>
+                            </tr>
+                        </tbody>
+                        
+                    </table>
+                </div>  
+                
+                <div class="expediente col-lg-10 panel panel-primary">
+                    <div class="panel-heading" style="font-size:18px;">
+                        Resolución
+                    </div>
+                    <table class="table table-striped table-hover"> 
+                        <thead>
+                            <br/>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th class="info list-group col-lg-3">Resolución:  </th>
+                                <td>{{ expediente.resolucion}}</td>
+                            </tr>
+                        </tbody>
+                        
+                    </table>
+                </div> 
+                
+                <div class="expediente col-lg-10 panel panel-primary">
+                    <div class="panel-heading" style="font-size:18px;">
+                        Carátulas
+                    </div>
+                    <table class="table table-striped table-hover"> 
+                        <thead>
+                            <br/>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th class="info list-group col-lg-3">Carátulas:  </th>
+                                <td> {#{{ expediente.caratulas}}#}</td>
+                            </tr>
+                        </tbody>
+                        
+                    </table>
+                </div>
+                
+                <div class="expediente col-lg-10 panel panel-primary">
+                    <div class="panel-heading" style="font-size:18px;">
+                        Expedientes asociados
+                    </div>
+                    <table class="table table-striped table-hover"> 
+                        <thead>
+                            <br/>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th class="info list-group col-lg-3">Expedientes asociados:  </th>
+                                <td> {#{{ expediente.expedientesAsociados}}#}</td>
+                            </tr>
+                        </tbody>
+                        
+                    </table>
+                </div>
+                 
+                <div class="expediente col-lg-10 panel panel-primary">
+                    <div class="panel-heading" style="font-size:18px;">
+                        Movimientos
+                    </div>
+                    <table class="table table-striped table-hover"> 
+                        <thead>
+                            <br/>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th class="info list-group col-lg-3">Movimientos:   </th>
+                                <td> {#{{ expediente.movimientos}}#}</td>
+                            </tr>
+                        </tbody>
+                        
+                    </table>
+                </div>
+                
+                {# no se si hace falta lo de persona.......#}
+                <div class="expediente col-lg-10 panel panel-primary">
+                    <div class="panel-heading" style="font-size:18px;">
+                        Usuario
+                    </div>
+                    <table class="table table-striped table-hover"> 
+                        <thead>
+                            <br/>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th class="info list-group col-lg-3">Usuario:   </th>
+                                <td> {#{{ expediente.persona}}#}</td>
+                            </tr>
+                        </tbody>
+                        
+                    </table>
+                </div>
+                
+                <div class="col-lg-3 float left">
+                    <a class="btn btn-primary" onclick="history.back()"  role="button">Volver</a>
+                </div>
+                
+                <div class="col-lg-3 float left">
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <div/>
             </div>
             
            
