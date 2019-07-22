@@ -62,7 +62,7 @@ class Usuario implements UserInterface
     /**
     * @ORM\OneToMany(targetEntity="Responsable",mappedBy="usuario")
     */
-    private $responsable;
+    private $responsables;
     
     
     /**
@@ -72,7 +72,7 @@ class Usuario implements UserInterface
     
     
     public function __toString() {
-       
+       return $this->iup;
     }
     
     //AUTENTICACION PARA LOGIN

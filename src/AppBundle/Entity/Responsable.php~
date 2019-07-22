@@ -24,7 +24,7 @@ class Responsable
     /**
      * @var int
      *
-     * @ORM\ManyToOne(targetEntity="Ubicacion",inversedBy="responsable")
+     * @ORM\ManyToOne(targetEntity="Ubicacion",inversedBy="responsables")
      * @ORM\JoinColumn(name="ubicacion", referencedColumnName="id", nullable=false)
      */
     private $ubicacion;
@@ -32,7 +32,7 @@ class Responsable
     /**
      * @var int
      *
-     * @ORM\ManyToOne(targetEntity="Usuario",inversedBy="responsable")
+     * @ORM\ManyToOne(targetEntity="Usuario",inversedBy="responsables")
      * @ORM\JoinColumn(name="usuario", referencedColumnName="id", nullable=false)
      */
     private $usuario;

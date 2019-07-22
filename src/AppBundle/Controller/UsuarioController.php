@@ -21,7 +21,7 @@ class UsuarioController extends Controller
         $form = $this->createForm(UsuarioType::class,$usuario);
         $form->handleRequest($request);
         
-        if ($form->isValid()) {
+        if ($form->isSubmitted() and  $form->isValid()) {
             
             $factory = $this->get("security.encoder_factory");
             $encoder = $factory->getEncoder($usuario);

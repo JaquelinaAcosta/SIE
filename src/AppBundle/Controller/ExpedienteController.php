@@ -102,7 +102,13 @@ class ExpedienteController extends Controller
         }
 
         $em->remove($expediente);
-        $em->flush();
+        $flush=$em->flush();
+        
+//        if ($flush == null) {
+//            echo "Post se ha borrado correctamente";
+//        } else {
+//            echo "El post no se ha borrado";
+//        }
 
         return $this->redirectToRoute('listaExpediente');
     }

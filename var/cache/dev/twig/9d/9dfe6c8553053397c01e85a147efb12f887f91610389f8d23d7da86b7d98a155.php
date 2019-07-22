@@ -70,38 +70,38 @@ class __TwigTemplate_dfc6036fa56eda70cb2bd40ece1b7ce08051cf6683f937e1daddf0423f6
 
     </style>
     
-    <div class=\"formu col-lg-4 col-md-offset-1\">
-        <div class=\"border border-primary\">
-            <h2 class=\"text-center\">Usuario</h2>
-          
-        </div>
-    </div>
-    
    
-    <div class=\"col-lg-8\">
+    <div class=\"col-lg-10\" style=\"padding-left:  300px; padding-top:  50px\">
+        <div class=\"list-group col-lg-11 col-md-offset-1\">
+                <div class=\"expediente col-lg-10 panel panel-primary\"  style=\"padding: 10px\">
+                    <div class=\"panel-heading\" style=\"font-size:18px;\">
+                        INGRESO DE USUARIO
+                    </div>
     
-     <form action=\"";
-        // line 28
+            <form action=\"";
+        // line 26
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("login_check");
         echo "\" method=\"post\">
- 
-        ";
-        // line 31
-        echo "        <label >Usuario:</label>
-        <input placeholder=\"Email o Usuario(iup)\" type=\"text\" id=\"username\" name=\"_username\" value=\"";
-        // line 32
+                
+               ";
+        // line 29
+        echo "               <label >Usuario:</label>
+               <input placeholder=\"Email o Usuario(iup)\" type=\"text\" id=\"username\" name=\"_username\" value=\"";
+        // line 30
         echo twig_escape_filter($this->env, ($context["last_username"] ?? $this->getContext($context, "last_username")), "html", null, true);
         echo "\" class=\"form-control\"/>
- 
-       
-        <label for=\"password\">Contraseña:</label>
-        <input placeholder=\"********\" type=\"password\" id=\"password\" name=\"_password\" class=\"form-control\"/>
-        <br/>
- 
-        <button type=\"submit\" class=\"form-submit btn btn-primary\">Entrar</button>
-        
-         <input type=\"hidden\" name=\"_target_path\" value=\"/home\" />
-    </form>
+
+
+               <label for=\"password\">Contraseña:</label>
+               <input placeholder=\"********\" type=\"password\" id=\"password\" name=\"_password\" class=\"form-control\"/>
+               <br/>
+
+               <button type=\"submit\" class=\"form-submit btn btn-primary\">Entrar</button>
+
+                <input type=\"hidden\" name=\"_target_path\" value=\"/home\" />
+            </form>
+               </div>
+        </div>
     </div>
         
  
@@ -126,7 +126,7 @@ class __TwigTemplate_dfc6036fa56eda70cb2bd40ece1b7ce08051cf6683f937e1daddf0423f6
 
     public function getDebugInfo()
     {
-        return array (  93 => 32,  90 => 31,  85 => 28,  60 => 5,  51 => 4,  29 => 2,);
+        return array (  91 => 30,  88 => 29,  83 => 26,  60 => 5,  51 => 4,  29 => 2,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -156,31 +156,31 @@ class __TwigTemplate_dfc6036fa56eda70cb2bd40ece1b7ce08051cf6683f937e1daddf0423f6
 
     </style>
     
-    <div class=\"formu col-lg-4 col-md-offset-1\">
-        <div class=\"border border-primary\">
-            <h2 class=\"text-center\">Usuario</h2>
-          
-        </div>
-    </div>
-    
    
-    <div class=\"col-lg-8\">
+    <div class=\"col-lg-10\" style=\"padding-left:  300px; padding-top:  50px\">
+        <div class=\"list-group col-lg-11 col-md-offset-1\">
+                <div class=\"expediente col-lg-10 panel panel-primary\"  style=\"padding: 10px\">
+                    <div class=\"panel-heading\" style=\"font-size:18px;\">
+                        INGRESO DE USUARIO
+                    </div>
     
-     <form action=\"{{ path('login_check') }}\" method=\"post\">
- 
-        {# Input para el campo iup #}
-        <label >Usuario:</label>
-        <input placeholder=\"Email o Usuario(iup)\" type=\"text\" id=\"username\" name=\"_username\" value=\"{{ last_username }}\" class=\"form-control\"/>
- 
-       
-        <label for=\"password\">Contraseña:</label>
-        <input placeholder=\"********\" type=\"password\" id=\"password\" name=\"_password\" class=\"form-control\"/>
-        <br/>
- 
-        <button type=\"submit\" class=\"form-submit btn btn-primary\">Entrar</button>
-        
-         <input type=\"hidden\" name=\"_target_path\" value=\"/home\" />
-    </form>
+            <form action=\"{{ path('login_check') }}\" method=\"post\">
+                
+               {# Input para el campo iup #}
+               <label >Usuario:</label>
+               <input placeholder=\"Email o Usuario(iup)\" type=\"text\" id=\"username\" name=\"_username\" value=\"{{ last_username }}\" class=\"form-control\"/>
+
+
+               <label for=\"password\">Contraseña:</label>
+               <input placeholder=\"********\" type=\"password\" id=\"password\" name=\"_password\" class=\"form-control\"/>
+               <br/>
+
+               <button type=\"submit\" class=\"form-submit btn btn-primary\">Entrar</button>
+
+                <input type=\"hidden\" name=\"_target_path\" value=\"/home\" />
+            </form>
+               </div>
+        </div>
     </div>
         
  

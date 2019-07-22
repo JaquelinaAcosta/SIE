@@ -51,11 +51,11 @@
             <hr/>
             <div class="panel panel-primary col-lg-10  col-md-offset-1" style="padding-left:  100px;padding-top:20px">
                 {% for expediente in expediente|reverse %}
-                       <div class="expediente col-lg-5 panel panel-default">
-                           <div class="titulo">
+                       <div class="expediente col-lg-5 panel panel-primary">
+                           <div class="panel-heading " style="font-size:18px;">
                                 <h4 class="list-group-item-heading">Expediente Nro.: {{ expediente.nroExpediente|e }}</h4>
                            </div>
-
+ 
                             <p class="list-group-item-text">Tema: {{ expediente.tema|e }}</p>
                             <hr/>
                             <p class="list-group-item-text">Concepto: {{ expediente.concepto|e }}</p>

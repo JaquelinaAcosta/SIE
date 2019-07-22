@@ -18,25 +18,25 @@ class PersonaType extends AbstractType
     {
         $builder
         ->add('nombre', TextType::class,array(
-            "label"=>false,"attr"=> array(
+            "label"=>"Nombre:","attr"=> array(
                "class"=>"form-name form-control" ,
                "placeholder"=>"Escriba parte del nombre y seleccione"
             )
         ))
         ->add('apellido', TextType::class,array(
-            "label"=>false,"attr"=> array(
+            "label"=>"Apellido:","attr"=> array(
                "class"=>"form-name form-control",
                "placeholder"=>"Apellido"
             )
         ))       
         ->add('dni', TextType::class,array(
-            "label"=>false,"attr"=> array(
+            "label"=>"DNI:","attr"=> array(
                "class"=>"form-name form-control",
                "placeholder"=>"Ej:40323795" 
             )
         ))
         ->add('cargo', TextType::class,array(
-            "label"=>false,"attr"=> array(
+            "label"=>"Cargo:","attr"=> array(
                "class"=>"form-name form-control",
                "placeholder"=>"Cargo" 
             )
