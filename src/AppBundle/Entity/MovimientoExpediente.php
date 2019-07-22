@@ -1,7 +1,7 @@
 <?php
 
 namespace AppBundle\Entity;
-
+USE Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -79,6 +79,57 @@ class MovimientoExpediente
      */
     private $tipoSalida;
 
+     
+    /**
+     *@Assert\Type(type="AppBundle\Entity\Persona")
+     *@Assert\Valid
+     */
+    private $persona;
+    
+    
+    /**
+     *@Assert\Type(type="AppBundle\Entity\MesaEntrada")
+     *@Assert\Valid
+     */
+    private $mesaentrada;
+    
+    
+    /**
+     *@Assert\Type(type="AppBundle\Entity\LugarFisico")
+     *@Assert\Valid
+     */
+    private $lugarfisico;
+    
+    
+    
+        public function getLugarfisico()
+    {
+        return $this->lugarfisico;
+    }
+    public function setLugarfisico(Lugarfisico $lugarfisico = null)
+    {
+        $this->lugarfisico = $lugarfisico;
+    }
+    
+    public function getPersona()
+    {
+        return $this->persona;
+    }
+    public function setPersona(Persona $persona = null)
+    {
+        $this->persona = $persona;
+    }
+    public function setMesaentrada(MesaEntrada $mesaentrada = null)
+    {
+        $this->mesaentrada = $mesaentrada;
+    }
+    
+     public function getMesaentrada()
+    {
+        return $this->mesaentrada;
+    }
+
+    
 
     /**
      * Get id

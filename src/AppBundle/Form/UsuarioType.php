@@ -7,6 +7,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class UsuarioType extends AbstractType
 {
@@ -17,32 +20,39 @@ class UsuarioType extends AbstractType
     {
         $builder
                 ->add('iup', TextType::class,array(
-            "label"=>"Nombre de Usuario:","attr"=> array(
+            "label"=>"Ej: usuario1:","attr"=> array(
                "class"=>"form-exp form-control" ,
-               "placeholder"=>"Nombre"
+               "placeholder"=>"usuario1"
                 )
             ))
-                ->add('email', TextType::class, array(
-                 "label"=>"E-mail: ", "attr"=>array(
+                ->add('email', EmailType::class, array(
+                 "label"=>"", "attr"=>array(
                   "class"=>"form-exp form-control",
-                    
+                  "placeholder"=>"ejemplo@ejemplo.com"
                  )
-            ))
-                
-                ->add('roles', TextType::class,array(
+            ))          
+                ->add('role', TextType::class,array(
                 "label"=>"Rol: ", "attr"=>array(
                 "class"=>"form-exp form-control",
                 "placeholder"=>"Rol"
                 )
             ))
                 
-                ->add('contrasenia', TextType::class, array(
+                ->add('contrasenia', PasswordType::class, array(
                  "label"=>"Contraseña: ", "attr"=>array(
                   "class"=>"form-exp form-control",
                      "placeholder"=>"Contraseña"
                  )
             ))
-                ->add('persona', PersonaType::class)
+                ->add('persona', EntityType::class,[
+                    "class"=>'AppBundle:Persona',
+                    "placeholder" => "--Seleccione--",
+                    "label"=>"Persona gestionante",
+                    "attr"=>[
+                        "class"=>"form-control",
+                        "placeholder"=>"Chamorro, Lucas"
+                    ]
+                ])
                 
                 ->add('Aceptar', SubmitType::class,array("attr"=> array(
             "class"=>"form-submit btn btn-primary" 

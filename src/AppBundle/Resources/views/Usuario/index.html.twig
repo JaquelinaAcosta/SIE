@@ -11,17 +11,61 @@
             margin-bottom: 10px;
             padding:10px;            
          }
-
-    </style>
+         body{
+             background-color:#fff;
+             
+         }
+         .title{
+             font-size:24px;
+         }
+         .formu{
+             width: 600px;
+              float: none;
+            margin: 0 auto;
+         }
+         .float{
+             margin-top:15px;
+         }
+         body label{
+             font-size: 12px;
+             font-style:normal;
+         }
+         .panel-body{
+             padding:30px;
+         }
+    </style>  
     
-    <div class="formu col-lg-4 col-md-offset-1">
-        <div class="border border-primary">
-            <h2 class="text-center">Usuario</h2>
-            <hr/>
-            {{form_start(form,{'action':'','method':'POST'})}}
-            {{form_end(form)}}
+    {{ dump(usuario) }}
+    
+     <div class="formu col-ls-4">
+        <div class="panel panel-primary ">
+            <div class="title panel-heading text-center">Alta de Usuario</div>
+            <div class="panel panel-body">
+                <br/>
+                {{form_start(form,{'action':'','method':'POST'})}}        
+                        <label class="float exp">NOMBRE DE USUARIO</label>
+                        {{ form_errors(form.iup) }}
+                        {{ form_widget(form.iup) }}
+                        <label class="float left">EMAIL</label>
+                        {{ form_errors(form.email) }}
+                        {{ form_widget(form.email) }}
+                        <label class="float left">CONTRASEÑA</label>
+                        {{ form_errors(form.contrasenia) }}
+                        {{ form_widget(form.contrasenia) }}
+                        <label class="float left">PERSONA GESTIONANTE</label>
+                        {{ form_errors(form.persona) }}
+                        {{ form_widget(form.persona) }}                  
+                        <label class="float left">ROLES</label>
+                        {{ form_errors(form.role) }}
+                        {{ form_widget(form.role) }}                                        
+                        <hr/>
+                    {{ form_widget(form.Aceptar) }}
+            
+                <hr/>               
+                {{form_end(form)}}
+            </div>
         </div>
-    </div>
+    </div>           
             
     {# Formulario embebido #}
 

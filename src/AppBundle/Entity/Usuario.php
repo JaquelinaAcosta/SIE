@@ -62,15 +62,18 @@ class Usuario implements UserInterface
     /**
     * @ORM\OneToMany(targetEntity="Responsable",mappedBy="usuario")
     */
-    private $responsable;
+    private $responsables;
     
     
     /**
-    * @ORM\OneToMany(targetEntity="Resolucion",mappedBy="responsable")
+    * @ORM\OneToMany(targetEntity="Resolucion",mappedBy="usuario")
     */
     private $resolucion;
     
     
+    public function __toString() {
+       return $this->iup;
+    }
     
     //AUTENTICACION PARA LOGIN
   

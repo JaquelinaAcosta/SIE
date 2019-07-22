@@ -5,8 +5,6 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use AppBundle\Entity\Persona;
-use AppBundle\Entity\Dependencia;
 use AppBundle\Entity\Usuario;
 
 use AppBundle\Form\UsuarioType;
@@ -14,17 +12,22 @@ use AppBundle\Form\UsuarioType;
 class UsuarioController extends Controller
 {
     /**
-     * @Route("/usuario", name="usuario")
+     * @Route("/registro", name="nuevo_registro")
      */
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getEntityManager(); 
-        $usuario = new Usuario();
-       
+        $usuario = new Usuario();                
         $form = $this->createForm(UsuarioType::class,$usuario);
         $form->handleRequest($request);
         
         if ($form->isValid()) {
+            
+            $factory = $this->get("security.encoder_factory");
+            $encoder = $factory->getEncoder($usuario);
+            $password = $encoder->encodePassword($usuario->getContrasenia(),$usuario->getSalt());
+            
+            $usuario->setContrasenia($password);    
             
             $em->persist($usuario);
             $em->flush();
@@ -32,7 +35,8 @@ class UsuarioController extends Controller
         
         // replace this example code with whatever you need
         return $this->render('AppBundle:Usuario:index.html.twig', [
-            'form'=> $form->createView() 
+            'form'=> $form->createView(),
+             'usuario'=>$usuario
         ]);
     }
 }

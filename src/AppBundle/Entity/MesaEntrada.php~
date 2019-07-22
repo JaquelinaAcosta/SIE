@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="mesa_entrada")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\MesaEntradaRepository")
  */
-class MesaEntrada extends Ubicacion
-{
+class MesaEntrada extends Ubicacion {
+
     /**
      * @var int
      *
@@ -19,15 +19,20 @@ class MesaEntrada extends Ubicacion
      */
     private $codigoExpediente;
 
-
+    /**
+     * @var int
+     *
+     * @ORM\OneToOne(targetEntity="Dependencia",inversedBy="mesaentrada",cascade={"persist"})
+     * @ORM\JoinColumn(name="dependencia", referencedColumnName="id", nullable=false)
+     */
+    private $dependencia;
 
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -38,8 +43,7 @@ class MesaEntrada extends Ubicacion
      *
      * @return MesaEntrada
      */
-    public function setCodigoExpediente($codigoExpediente)
-    {
+    public function setCodigoExpediente($codigoExpediente) {
         $this->codigoExpediente = $codigoExpediente;
 
         return $this;
@@ -50,8 +54,7 @@ class MesaEntrada extends Ubicacion
      *
      * @return int
      */
-    public function getCodigoExpediente()
-    {
+    public function getCodigoExpediente() {
         return $this->codigoExpediente;
     }
 
@@ -62,8 +65,7 @@ class MesaEntrada extends Ubicacion
      *
      * @return MesaEntrada
      */
-    public function setIdUbicacion($idUbicacion)
-    {
+    public function setIdUbicacion($idUbicacion) {
         $this->idUbicacion = $idUbicacion;
 
         return $this;
@@ -74,8 +76,8 @@ class MesaEntrada extends Ubicacion
      *
      * @return integer
      */
-    public function getIdUbicacion()
-    {
+    public function getIdUbicacion() {
         return $this->idUbicacion;
     }
+
 }

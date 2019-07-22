@@ -29,7 +29,7 @@ class AddStateFieldSubscriber implements EventSubscriberInterface
         //data es un arreglo con los valores establecidos por el usuario en el form.
         //como $data contiene el pais seleccionado por el usuario al enviar el formulario,
         // usamos el valor de la posicion $data['country'] para filtrar el sql de los estados
-        $this->addField($event->getForm(),$data['ubicacionActual']);
+        $this->addField($event->getForm(),$data['ubicacion']);
     }
 
     protected function addField(Form $form, $ubicacion)

@@ -3,11 +3,13 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Entity\Persona;
 use AppBundle\Entity\MesaEntrada;
 use AppBundle\Entity\LugarFisico;
 use AppBundle\Entity\MovimientoExpediente;
 use Doctrine\Common\Collections\ArrayCollection;
+
 
 /**
  * Ubicacion
@@ -32,7 +34,7 @@ class Ubicacion
     /**
      * @var int
      *
-     * @ORM\ManyToOne(targetEntity="Dependencia",inversedBy="ubicaciones")
+     * @ORM\ManyToOne(targetEntity="Dependencia",inversedBy="ubicaciones",cascade={"persist"})
      * @ORM\JoinColumn(name="dependencia", referencedColumnName="id", nullable=false)
      */
     private $dependencia;
@@ -44,16 +46,36 @@ class Ubicacion
     
     
     /**
-    * @ORM\OneToMany(targetEntity="Responsable",mappedBy="ubicacion")
+    * @ORM\OneToMany(targetEntity="Responsable",mappedBy="ubicacion",cascade={"persist"})
     */
-    private $responsable;
+    private $responsables;
     
+    
+     /**
+     * @Assert\Type(type="App\Entity\Usuario")
+     * @Assert\Valid
+     */
+    protected $usuario;
 
-    public function __construct(){
-        $this->movimientosExpedientes = new ArrayCollection();
+
+    public function getUsuario()
+    {
+        return $this->usuario;
     }
 
+    public function setUsuario(Usuario $usuario = null)
+    {
+        $this->usuario = $usuario;
+    }
+    
+    public function __construct(){
+        $this->movimientosExpedientes = new ArrayCollection();
+        $this->responsables = new ArrayCollection();
+    }
 
+    
+    
+    
     public function getUbicacionId(){
         return $this->id;
     }
@@ -135,7 +157,7 @@ class Ubicacion
      */
     public function addResponsable(\AppBundle\Entity\Responsable $responsable)
     {
-        $this->responsable[] = $responsable;
+        $this->responsables[] = $responsable;
 
         return $this;
     }
@@ -147,7 +169,7 @@ class Ubicacion
      */
     public function removeResponsable(\AppBundle\Entity\Responsable $responsable)
     {
-        $this->responsable->removeElement($responsable);
+        $this->responsables->removeElement($responsable);
     }
 
     /**
@@ -159,4 +181,16 @@ class Ubicacion
     {
         return $this->responsable;
     }
+
+    /**
+     * Get responsables
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getResponsables()
+    {
+        return $this->responsables;
+    }
+    
+    
 }

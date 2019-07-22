@@ -112,7 +112,38 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return array (  '_controller' => 'AppBundle\\Controller\\CaratulaAgregadaController::indexAction',  '_route' => 'caratulaAgregada',);
         }
 
-        if (0 === strpos($pathinfo, '/expediente')) {
+        if (0 === strpos($pathinfo, '/a')) {
+            if (0 === strpos($pathinfo, '/add')) {
+                // nueva_dependencia
+                if ('/add/dependencia' === $pathinfo) {
+                    return array (  '_controller' => 'AppBundle\\Controller\\DependenciaController::indexAction',  '_route' => 'nueva_dependencia',);
+                }
+
+                // nuevoExpediente
+                if ('/add/expediente' === $pathinfo) {
+                    return array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::indexAction',  '_route' => 'nuevoExpediente',);
+                }
+
+                // nueva_resolucion
+                if (0 === strpos($pathinfo, '/add/resolucion') && preg_match('#^/add/resolucion/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'nueva_resolucion']), array (  '_controller' => 'AppBundle\\Controller\\ResolucionController::indexAction',));
+                }
+
+            }
+
+            // add_evento
+            if ('/ajax-form' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::ajaxFormAction',  '_route' => 'add_evento',);
+            }
+
+            // add_movimiento
+            if ('/ajax_movimiento' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\MovimientoExpedienteController::ajaxFormAction',  '_route' => 'add_movimiento',);
+            }
+
+        }
+
+        elseif (0 === strpos($pathinfo, '/expediente')) {
             // expedienteAsociado
             if ('/expedienteAsociado' === $pathinfo) {
                 return array (  '_controller' => 'AppBundle\\Controller\\ExpedienteAsociadoController::indexAction',  '_route' => 'expedienteAsociado',);
@@ -128,16 +159,6 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         // edit
         if (0 === strpos($pathinfo, '/edit') && preg_match('#^/edit/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
             return $this->mergeDefaults(array_replace($matches, ['_route' => 'edit']), array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::editAction',));
-        }
-
-        // nuevoExpediente
-        if ('/add/expediente' === $pathinfo) {
-            return array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::indexAction',  '_route' => 'nuevoExpediente',);
-        }
-
-        // add_evento
-        if ('/ajax-form' === $pathinfo) {
-            return array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::ajaxFormAction',  '_route' => 'add_evento',);
         }
 
         if (0 === strpos($pathinfo, '/l')) {
@@ -211,14 +232,9 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return array (  '_controller' => 'AppBundle\\Controller\\PersonaController::indexAction',  '_route' => 'persona',);
         }
 
-        // resolucion
-        if ('/resolucion' === $pathinfo) {
-            return array (  '_controller' => 'AppBundle\\Controller\\ResolucionController::indexAction',  '_route' => 'resolucion',);
-        }
-
-        // usuario
-        if ('/usuario' === $pathinfo) {
-            return array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::indexAction',  '_route' => 'usuario',);
+        // nuevo_registro
+        if ('/registro' === $pathinfo) {
+            return array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::indexAction',  '_route' => 'nuevo_registro',);
         }
 
         if ('/' === $pathinfo && !$allow) {

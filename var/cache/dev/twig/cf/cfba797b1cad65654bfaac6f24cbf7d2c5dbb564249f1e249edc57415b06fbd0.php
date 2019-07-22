@@ -186,15 +186,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         $this->displayBlock('content', $context, $blocks);
         echo "   
         </section>
-        <footer class=\"footer\">
-
-            <div class=\"container\">
-
-                <p>&copy;DPV - DIRECCIÓN PROVINCIAL DE VIALIDAD - SANTA FE</p>
-
-            </div>
-
-        </footer>
+       
         
     </body>
     
@@ -276,7 +268,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     public function getDebugInfo()
     {
-        return array (  250 => 120,  230 => 75,  212 => 7,  186 => 120,  168 => 104,  162 => 102,  156 => 99,  153 => 98,  151 => 97,  143 => 91,  136 => 88,  134 => 87,  123 => 78,  121 => 75,  112 => 69,  47 => 7,  39 => 1,);
+        return array (  242 => 120,  222 => 75,  204 => 7,  186 => 120,  168 => 104,  162 => 102,  156 => 99,  153 => 98,  151 => 97,  143 => 91,  136 => 88,  134 => 87,  123 => 78,  121 => 75,  112 => 69,  47 => 7,  39 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -410,19 +402,11 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         <section id=\"content\">             
             {% block content %}Content default{% endblock %}   
         </section>
-        <footer class=\"footer\">
-
-            <div class=\"container\">
-
-                <p>&copy;DPV - DIRECCIÓN PROVINCIAL DE VIALIDAD - SANTA FE</p>
-
-            </div>
-
-        </footer>
+       
         
     </body>
     
 </html>
-", "AppBundle::layout.html.twig", "/var/www/html/gitSIE/src/AppBundle/Resources/views/layout.html.twig");
+", "AppBundle::layout.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/layout.html.twig");
     }
 }

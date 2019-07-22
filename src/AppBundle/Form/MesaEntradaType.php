@@ -7,6 +7,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use AppBundle\Form\MesaEntradaType;
 
 class MesaEntradaType extends AbstractType
 {
@@ -16,16 +19,23 @@ class MesaEntradaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+               ->add('responsables', CollectionType::class,[
+                   'entry_type'=> ResponsableType::class,
+                   'entry_options'=>[
+                       'label'=>false,
+                       ],
+                   'prototype' => true,
+                   'allow_add'=>true,
+                   'allow_delete' => true,
+                   'by_reference'=>false,
+               ])
                ->add('codigoExpediente', TextType::class,array(
                "label"=>"Nro. de Expediente:","attr"=> array(
                "class"=>"form-exp form-control" ,
-               "placeholder"=>"00000-000000000-0"
-            )
-        ))
-                 ->add('Aceptar', SubmitType::class,array("attr"=> array(
-               "class"=>"form-submit btn btn-primary" 
+               "placeholder"=>"Escriba parte del codigo para seleccionar"
             )
         ));
+                
     }/**
      * {@inheritdoc}
      */

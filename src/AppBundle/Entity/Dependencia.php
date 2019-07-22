@@ -3,7 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Entity\Expediente;
 use AppBundle\Entity\Ubicacion;
 
@@ -36,21 +36,21 @@ class Dependencia
     /**
      * @var int
      *
-     * @ORM\Column(name="dependenciaPadre_id", type="integer")
+     * @ORM\Column(name="dependenciaPadre", type="string")
      */
     private $dependenciaPadre;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="personaResponsable_id", type="integer")
+     * @ORM\Column(name="responsable", type="string")
      */
     private $responsable;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="categoriaProgramatica", type="integer")
+     * @ORM\Column(name="nivel", type="string")
      */
     private $nivel;
 
@@ -63,7 +63,42 @@ class Dependencia
     * @ORM\OneToMany(targetEntity="Ubicacion",mappedBy="dependencia")
     */
     private $ubicaciones;
+    
+    
+    /**
+     * @Assert\Type(type="App\Entity\MesaEntrada")
+     * @Assert\Valid
+     */
+    protected $mesaentrada;
+    
+     /**
+     * @Assert\Type(type="App\Entity\Persona")
+     * @Assert\Valid
+     */
+    protected $persona;
+    
 
+    // ...
+
+    public function getMesaentrada()
+    {
+        return $this->mesaentrada;
+    }
+
+    public function setMesaentrada(MesaEntrada $mesaentrada = null)
+    {
+        $this->mesaentrada = $mesaentrada;
+    }
+    
+    public function getPersona()
+    {
+        return $this->persona;
+    }
+
+    public function setPersona(MesaEntrada $persona = null)
+    {
+        $this->persona = $persona;
+    }
 
     public function __construct(){
         $this->expedientes = new ArrayCollection();
