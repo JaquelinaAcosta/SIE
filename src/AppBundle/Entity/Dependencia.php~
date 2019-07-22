@@ -70,6 +70,13 @@ class Dependencia
      * @Assert\Valid
      */
     protected $mesaentrada;
+    
+     /**
+     * @Assert\Type(type="App\Entity\Persona")
+     * @Assert\Valid
+     */
+    protected $persona;
+    
 
     // ...
 
@@ -83,7 +90,15 @@ class Dependencia
         $this->mesaentrada = $mesaentrada;
     }
     
+    public function getPersona()
+    {
+        return $this->persona;
+    }
 
+    public function setPersona(MesaEntrada $persona = null)
+    {
+        $this->persona = $persona;
+    }
 
     public function __construct(){
         $this->expedientes = new ArrayCollection();

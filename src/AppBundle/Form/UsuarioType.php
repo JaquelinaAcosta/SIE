@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class UsuarioType extends AbstractType
 {
@@ -31,12 +32,17 @@ class UsuarioType extends AbstractType
                   "placeholder"=>"ejemplo@ejemplo.com"
                  )
             ))          
-                ->add('role', TextType::class,array(
-                "label"=>"Rol: ", "attr"=>array(
-                "class"=>"form-exp form-control",
-                "placeholder"=>"Rol"
-                )
-            ))
+
+                ->add('role', ChoiceType::class,  array(
+                       
+                        "placeholder" => "--Seleccione--",
+                        "attr"=>[
+                            "class"=>"form-control"],
+                        'choices'  => array(
+                            'Usuario' => 'ROLE_USER',
+                            'Administrador' => 'ROLE_ADMIN'
+                      )
+                    ))
                 
                 ->add('contrasenia', PasswordType::class, array(
                  "label"=>"Contraseña: ", "attr"=>array(

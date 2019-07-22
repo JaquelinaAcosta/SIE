@@ -79,5 +79,9 @@ class MesaEntrada extends Ubicacion {
     public function getIdUbicacion() {
         return $this->idUbicacion;
     }
-
+    
+    public function setDependencia($dependencia) {
+        $this->dependencia = $dependencia;
+        $dependencia->setMesaentrada($this);
+    }
 }

@@ -334,4 +334,14 @@ class Usuario implements UserInterface
     {
         return $this->resolucion;
     }
+
+    /**
+     * Get responsables
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getResponsables()
+    {
+        return $this->responsables;
+    }
 }

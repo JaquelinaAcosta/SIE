@@ -14,12 +14,19 @@
 
     </style>
     
-    <div class="formu col-lg-4 col-md-offset-1">
-        <div class="border border-primary">
-            <h2 class="text-center">Alta de Persona</h2>
-            <hr/>
+    
+   
+    
+    <div class="col-lg-10" style="padding-left:  300px; padding-top:  50px">
+        <div class="list-group col-lg-11 col-md-offset-1">
+            <div class="expediente col-lg-10 panel panel-primary"  style="padding: 10px">
+                    <div class="panel-heading" style="font-size:18px;">
+                        Alta de Persona
+                    </div>
+                <br/>
             {{form_start(form,{'action':'','method':'POST'})}}
             {{form_end(form)}}
+            </div>
         </div>
     </div>
 {% endblock %}

@@ -112,14 +112,14 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
         $context['_seq'] = twig_ensure_traversable(twig_reverse_filter($this->env, $context["expediente"]));
         foreach ($context['_seq'] as $context["_key"] => $context["expediente"]) {
             // line 54
-            echo "                       <div class=\"expediente col-lg-5 panel panel-default\">
-                           <div class=\"titulo\">
+            echo "                       <div class=\"expediente col-lg-5 panel panel-primary\">
+                           <div class=\"panel-heading \" style=\"font-size:18px;\">
                                 <h4 class=\"list-group-item-heading\">Expediente Nro.: ";
             // line 56
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "nroExpediente", []));
             echo "</h4>
                            </div>
-
+ 
                             <p class=\"list-group-item-text\">Tema: ";
             // line 59
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "tema", []));
@@ -255,11 +255,11 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
             <hr/>
             <div class=\"panel panel-primary col-lg-10  col-md-offset-1\" style=\"padding-left:  100px;padding-top:20px\">
                 {% for expediente in expediente|reverse %}
-                       <div class=\"expediente col-lg-5 panel panel-default\">
-                           <div class=\"titulo\">
+                       <div class=\"expediente col-lg-5 panel panel-primary\">
+                           <div class=\"panel-heading \" style=\"font-size:18px;\">
                                 <h4 class=\"list-group-item-heading\">Expediente Nro.: {{ expediente.nroExpediente|e }}</h4>
                            </div>
-
+ 
                             <p class=\"list-group-item-text\">Tema: {{ expediente.tema|e }}</p>
                             <hr/>
                             <p class=\"list-group-item-text\">Concepto: {{ expediente.concepto|e }}</p>
