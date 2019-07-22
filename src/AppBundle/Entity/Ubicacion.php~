@@ -32,7 +32,7 @@ class Ubicacion
     /**
      * @var int
      *
-     * @ORM\ManyToOne(targetEntity="Dependencia",inversedBy="ubicaciones")
+     * @ORM\ManyToOne(targetEntity="Dependencia",inversedBy="ubicaciones",cascade={"persist"})
      * @ORM\JoinColumn(name="dependencia", referencedColumnName="id", nullable=false)
      */
     private $dependencia;
@@ -46,11 +46,12 @@ class Ubicacion
     /**
     * @ORM\OneToMany(targetEntity="Responsable",mappedBy="ubicacion")
     */
-    private $responsable;
+    private $responsables;
     
 
     public function __construct(){
         $this->movimientosExpedientes = new ArrayCollection();
+        $this->responsables = new ArrayCollection();
     }
 
 

@@ -176,6 +176,17 @@ class Persona extends \AppBundle\Entity\Persona implements \Doctrine\ORM\Proxy\P
     /**
      * {@inheritDoc}
      */
+    public function __toString()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, '__toString', []);
+
+        return parent::__toString();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getId()
     {
         if ($this->__isInitialized__ === false) {
@@ -417,6 +428,17 @@ class Persona extends \AppBundle\Entity\Persona implements \Doctrine\ORM\Proxy\P
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getResponsable', []);
 
         return parent::getResponsable();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getResponsables()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getResponsables', []);
+
+        return parent::getResponsables();
     }
 
 }

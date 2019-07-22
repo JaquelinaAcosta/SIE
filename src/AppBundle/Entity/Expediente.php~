@@ -85,9 +85,9 @@ class Expediente
     private $fechaFin;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="ubicacion_actual", type="string", length=255,nullable=true)
+     * @ORM\Column(name="ubicacion_actual", type="integer",nullable=true)
      */
     private $ubicacionActual;
 
@@ -130,7 +130,6 @@ class Expediente
      *@Assert\Valid
      */
     private $lugarfisico;
-    
     
     public function __toString() {
         return $this->nroExpediente;

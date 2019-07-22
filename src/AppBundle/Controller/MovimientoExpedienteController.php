@@ -24,6 +24,7 @@ class MovimientoExpedienteController extends Controller
         $expediente= $em->getRepository("AppBundle:Expediente")->find($id);
         //no se is la ubicacion hay que traerla o llevarla a la base de datos;                   
         $movimientoExpediente->setUsuario("admin");
+        $movimientoExpediente->setExpediente($expediente);
         
         //$movimientoExpediente->setDependencia($dependencia);
         
@@ -32,7 +33,7 @@ class MovimientoExpedienteController extends Controller
         
         $form->handleRequest($request);
         
-        if ($form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             
             $em->persist($movimientoExpediente);
             $em->flush();
@@ -44,4 +45,24 @@ class MovimientoExpedienteController extends Controller
             'expediente'=>$expediente
         ]);
     }
+    
+     /**
+     * @Route("/ajax_movimiento", name="add_movimiento")
+     */
+    public function ajaxFormAction(Request $request)
+    {     
+        $expediente = new Expediente();
+      
+        
+        $form = $this->createForm(MovimientoExpedienteType::class);
+        $form->handleRequest($request);
+        
+        
+        return $this->render('AppBundle:Expediente:movimiento.html.twig', [
+            'form'=> $form->createView(),
+            'expediente'=>$expediente
+        ]);
+    }
+    
+    
 }

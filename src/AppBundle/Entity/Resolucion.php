@@ -44,19 +44,19 @@ class Resolucion
     private $tipo;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="fecha_resolucion", type="datetime")
+     * @ORM\Column(name="fecha_resolucion", type="string",length=255)
      */
     private $fechaResolucion;
 
     /**
      * @var string
      *
-     * @ORM\ManyToOne(targetEntity="Usuario",inversedBy="resolucion")
-     * @ORM\JoinColumn(name="responsable", referencedColumnName="id", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Usuario",inversedBy="resolucion",cascade={"persist"})
+     * @ORM\JoinColumn(name="usuario", referencedColumnName="id", nullable=false)
      */
-    private $responsable;
+    private $usuario;
 
     /**
      * Get id
@@ -258,5 +258,29 @@ class Resolucion
     public function getFechaResolucion()
     {
         return $this->fechaResolucion;
+    }
+
+    /**
+     * Set usuario
+     *
+     * @param \AppBundle\Entity\Usuario $usuario
+     *
+     * @return Resolucion
+     */
+    public function setUsuario(\AppBundle\Entity\Usuario $usuario)
+    {
+        $this->usuario = $usuario;
+
+        return $this;
+    }
+
+    /**
+     * Get usuario
+     *
+     * @return \AppBundle\Entity\Usuario
+     */
+    public function getUsuario()
+    {
+        return $this->usuario;
     }
 }

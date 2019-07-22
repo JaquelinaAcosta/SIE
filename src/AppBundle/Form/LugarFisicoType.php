@@ -18,8 +18,9 @@ class LugarFisicoType extends AbstractType
     {
         $builder
                 ->add('tipo', TextType::class,array(
-            "label"=>"Tipo:","attr"=> array(
-               "class"=>"form-name form-control" 
+            "label"=>"","attr"=> array(
+               "class"=>"form-name form-control",
+                "placeholder"=>'Escriba parte del tipo y seleccione'
             )
         ))
                 ->add('descripcion', TextareaType::class,array(

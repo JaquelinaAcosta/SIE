@@ -20,7 +20,7 @@ class PersonaType extends AbstractType
         ->add('nombre', TextType::class,array(
             "label"=>false,"attr"=> array(
                "class"=>"form-name form-control" ,
-               "placeholder"=>"Nombre"
+               "placeholder"=>"Escriba parte del nombre y seleccione"
             )
         ))
         ->add('apellido', TextType::class,array(
