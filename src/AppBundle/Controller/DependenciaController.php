@@ -19,33 +19,31 @@ class DependenciaController extends Controller {
         $em = $this->getDoctrine()->getEntityManager();
         $dependencia = new Dependencia();
         $mesaentrada = new MesaEntrada();
-        $responsables = new Responsable();
-        
-        
-        $mesaentrada->setDependencia($dependencia);
-        
+    
         $form = $this->createForm(DependenciaType::class, $dependencia);
         
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {
-            
+        if ($form->isSubmitted()) {                     
+            $mesaentrada->setDependencia($dependencia);
+            $dependencia->setMesaentrada($mesaentrada);
+            $mesaentrada->setCodigoExpediente($form['mesaentrada']['codigoExpediente']->getData());
+            foreach($form['mesaentrada']['responsables']->getData() as $responsable){
+                $responsable->setUbicacion($mesaentrada);
+                $mesaentrada->addResponsable($responsable);
+            }  
             
             dump($dependencia);
             die();
             
-//            $mesaentrada = $form->get('mesaentrada')->getData();
-//           $responsables = $form['mesaentrada']['responsables']->getData();
-            $em->persist($mesaentrada);
-            $em->flush();
+//            $em->persist($mesaentrada);
+//            $em->flush();
         }
 
         // replace this example code with whatever you need
         return $this->render('AppBundle:Dependencia:add.html.twig', [
-                    'form' => $form->createView(),
-                    'dependencia' => $dependencia,
-                    'responsables' => $responsables
+                    'form' => $form->createView()
         ]);
     }
 

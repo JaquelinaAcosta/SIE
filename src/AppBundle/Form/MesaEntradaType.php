@@ -21,6 +21,7 @@ class MesaEntradaType extends AbstractType
         $builder
                ->add('responsables', CollectionType::class,[
                    'entry_type'=> ResponsableType::class,
+                   'label'=>false,
                    'entry_options'=>[
                        'label'=>false,
                        ],
@@ -32,7 +33,7 @@ class MesaEntradaType extends AbstractType
                ->add('codigoExpediente', TextType::class,array(
                "label"=>"Nro. de Expediente:","attr"=> array(
                "class"=>"form-exp form-control" ,
-               "placeholder"=>"Escriba parte del codigo para seleccionar"
+               "placeholder"=>"Código de expediente..."
             )
         ));
                 

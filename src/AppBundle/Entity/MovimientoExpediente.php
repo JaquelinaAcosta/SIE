@@ -32,7 +32,7 @@ class MovimientoExpediente
     /**
      * @var int
      *
-     * @ORM\ManyToOne(targetEntity="Ubicacion")
+     * @ORM\ManyToOne(targetEntity="Ubicacion",inversedBy="movimientosExpedientes")
      * @ORM\JoinColumn(name="ubicacion", referencedColumnName="id", nullable=false)
      */
     private $ubicacion;

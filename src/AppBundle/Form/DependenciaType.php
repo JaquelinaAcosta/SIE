@@ -33,7 +33,7 @@ class DependenciaType extends AbstractType
                     ]
                 ])
                 ->add('responsable', EntityType::class,[
-                    "class"=>'AppBundle:Persona',
+                    "class"=>'AppBundle:Usuario',
                     "placeholder"=>'--Seleccione--',
                     "label"=>false,
                     "attr"=>[
@@ -48,7 +48,10 @@ class DependenciaType extends AbstractType
                         "placeholder"=>"Ingrese el nivel"
                     ]
                 ])
-                ->add('mesaentrada', MesaEntradaType::class)
+                ->add('mesaentrada', MesaEntradaType::class,array(
+                            "label"=>false
+                    
+                        ))
                 ->add('Aceptar', SubmitType::class, array("attr" => array(
                         "class" => "aceptar form-submit btn btn-success"
                  )));

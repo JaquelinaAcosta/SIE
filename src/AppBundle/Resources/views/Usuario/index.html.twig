@@ -35,8 +35,6 @@
          }
     </style>  
     
-    {{ dump(usuario) }}
-    
      <div class="formu col-ls-4">
         <div class="panel panel-primary ">
             <div class="title panel-heading text-center">Alta de Usuario</div>
@@ -59,8 +57,7 @@
                         {{ form_errors(form.role) }}
                         {{ form_widget(form.role) }}                                        
                         <hr/>
-                    {{ form_widget(form.Aceptar) }}
-            
+                    {{ form_widget(form.Aceptar) }}          
                 <hr/>               
                 {{form_end(form)}}
             </div>

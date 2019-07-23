@@ -87,21 +87,25 @@ class __TwigTemplate_1f39ff6449f84471f76e144ab8b227252e8290b3e8d1b3b46e3672d0430
             float: none;
             margin: 0 auto;
         }
+
+        .user{
+            margin-top: 10px;
+            width:250px;
+            margin-left:0;
+        }
     </style>
 
 
 
     ";
-        // line 38
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\DumpExtension')->dump($this->env, $context, ($context["responsables"] ?? $this->getContext($context, "responsables")));
-        echo "
-    <div class=\"title\">Dependencia -> Alta de dependencia</div>
+        // line 45
+        echo "    <div class=\"title\">Dependencia -> Alta de dependencia</div>
     <hr/>
     <div class=\"col-lg-4 col-center\">
 
         <div class=\"form-group\">  
             ";
-        // line 44
+        // line 50
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_start', ["action" => "", "method" => "POST"]);
         echo "
             <h3>Información de la Dependencia</h3>
@@ -109,11 +113,11 @@ class __TwigTemplate_1f39ff6449f84471f76e144ab8b227252e8290b3e8d1b3b46e3672d0430
             <div class=\"\">
                 <label class=\"text-default\">DESCRIPCION(<span class=\"text-danger\">*</span>)</label>                 
                 ";
-        // line 49
+        // line 55
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "descripcion", []), 'errors');
         echo "
                 ";
-        // line 50
+        // line 56
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "descripcion", []), 'widget');
         echo "
             </div>
@@ -121,11 +125,11 @@ class __TwigTemplate_1f39ff6449f84471f76e144ab8b227252e8290b3e8d1b3b46e3672d0430
             <div class=\"\">
                 <label class=\"text-default\">DEPENDENCIA PADRE(<span class=\"text-danger\">*</span>)</label>                 
                 ";
-        // line 55
+        // line 61
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "dependenciaPadre", []), 'errors');
         echo "
                 ";
-        // line 56
+        // line 62
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "dependenciaPadre", []), 'widget');
         echo "
             </div>
@@ -133,22 +137,22 @@ class __TwigTemplate_1f39ff6449f84471f76e144ab8b227252e8290b3e8d1b3b46e3672d0430
             <div class=\"\">
                 <label class=\"text-default\">RESPONSABLE(<span class=\"text-danger\">*</span>)</label>                 
                 ";
-        // line 61
+        // line 67
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "responsable", []), 'errors');
         echo "
                 ";
-        // line 62
+        // line 68
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "responsable", []), 'widget');
         echo "
             </div>
             <div class=\"\">
                 <label class=\"text-default\">NIVEL(<span class=\"text-danger\">*</span>)</label>                 
                 ";
-        // line 66
+        // line 72
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "nivel", []), 'errors');
         echo "
                 ";
-        // line 67
+        // line 73
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "nivel", []), 'widget');
         echo "
             </div>
@@ -156,43 +160,42 @@ class __TwigTemplate_1f39ff6449f84471f76e144ab8b227252e8290b3e8d1b3b46e3672d0430
                 <hr/>
                 <h3>Información de la Mesa de Entrada</h3>
                 <hr/>
-                
+
                 <label class=\"text-default\">RESPONSABLE/S(<span class=\"text-danger\">*</span>)</label>                 
                 <div class=\"responsable_items\">
 
-                    <div class=\"add float right\">
-                    </div>
+
                 </div>
+                <div class=\"add float right\"></div>
                 <div class=\"responsables\" data-prototype=\"";
-        // line 80
+        // line 86
         echo twig_escape_filter($this->env, $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute($this->getAttribute($this->getAttribute($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "mesaentrada", []), "responsables", []), "vars", []), "prototype", []), 'widget'), "html_attr");
         echo "\">
 
-
-
                 </div>
+                <hr/>
                 ";
-        // line 88
-        echo "                <hr/>
+        // line 93
+        echo "
                 <label class=\"text-default\">CODIGO DE EXPEDIENTE(<span class=\"text-danger\">*</span>)</label>                 
                 ";
-        // line 90
+        // line 95
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "mesaentrada", []), "codigoExpediente", []), 'errors');
         echo "
                 ";
-        // line 91
+        // line 96
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "mesaentrada", []), "codigoExpediente", []), 'widget');
         echo "
             </div>
             <div class=\"aceptar\">
                 ";
-        // line 94
+        // line 99
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "Aceptar", []), 'widget');
         echo "
             </div>
 
             ";
-        // line 97
+        // line 102
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_end');
         echo "
         </div>
@@ -202,32 +205,45 @@ class __TwigTemplate_1f39ff6449f84471f76e144ab8b227252e8290b3e8d1b3b46e3672d0430
         var \$collectionHolder;
 
         // setup an \"add a tag\" link
-        var \$addResponsableButton = \$('<button type=\"button\" class=\"add_responsable form-control btn btn-danger\">Añadir Responsable</button>');
+        var \$addResponsableButton = \$('<button type=\"button\" class=\"add_responsable form-control btn btn-danger\">Agregar</button>');
         var \$newLinkLi = \$('.add').append(\$addResponsableButton);
 
         jQuery(document).ready(function () {
             // Get the ul that holds the collection of tags
             \$collectionHolder = \$('.responsables');
 
+            // add a delete link to all of the existing tag form li elements
+         
             // add the \"add a tag\" anchor and li to the tags ul
             \$collectionHolder.append(\$newLinkLi);
 
             // count the current form inputs we have (e.g. 2), use that as the new
             // index when inserting a new item (e.g. 2)
             \$collectionHolder.data('index', \$collectionHolder.find(':input').length);
-            
-            // addResponsableForm(\$collectionHolder, \$newLinkLi);
-            
-            \$addResponsableButton.on('click', function (e) {                
+
+            addResponsableForm(\$collectionHolder, \$newLinkLi);
+             
+            \$addResponsableButton.on('click', function (e) {
                 // add a new tag form (see next code block)
                 addResponsableForm(\$collectionHolder, \$newLinkLi);
             });
         });
 
+        function addTagFormDeleteLink(\$tagFormLi,\$collectionHolder) {
+            var \$removeFormButton = \$('<button type=\"button\">Delete this tag</button>');
+            \$tagFormLi.append(\$removeFormButton);
+
+            \$removeFormButton.on('click', function (e) {
+                // remove the li for the tag form
+                \$tagFormLi.remove();
+                var index = \$collectionHolder.data('index');
+                \$collectionHolder.data('index', index - 1);
+            });
+        }
+
         function addResponsableForm(\$collectionHolder, \$newLinkLi) {
             // Get the data-prototype explained earlier
             var prototype = \$collectionHolder.data('prototype');
-            
             // get the new index
             var index = \$collectionHolder.data('index');
 
@@ -240,13 +256,19 @@ class __TwigTemplate_1f39ff6449f84471f76e144ab8b227252e8290b3e8d1b3b46e3672d0430
             // Replace '__name__' in the prototype's HTML to
             // instead be a number based on how many items we have
             newForm = newForm.replace(/__name__/g, index);
-
+           
             // increase the index with one for the next item
             \$collectionHolder.data('index', index + 1);
-
+            
             // Display the form in the page in an li, before the \"Add a tag\" link li
-            var \$newFormLi = \$('.responsable_items').prepend(newForm);
+            var \$newFormLi = \$('.responsable_items').append(newForm);
+            if(index > 1 ){
+                 addTagFormDeleteLink(\$(\$newFormLi).children().eq(index-1),\$collectionHolder);
+            }
+           
+            //console.log(\$(\$newFormLi).children().eq(index-1));
             \$newLinkLi.before(\$newFormLi);
+
         }
 
 
@@ -272,7 +294,7 @@ class __TwigTemplate_1f39ff6449f84471f76e144ab8b227252e8290b3e8d1b3b46e3672d0430
 
     public function getDebugInfo()
     {
-        return array (  196 => 97,  190 => 94,  184 => 91,  180 => 90,  176 => 88,  168 => 80,  152 => 67,  148 => 66,  141 => 62,  137 => 61,  129 => 56,  125 => 55,  117 => 50,  113 => 49,  105 => 44,  96 => 38,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  199 => 102,  193 => 99,  187 => 96,  183 => 95,  179 => 93,  172 => 86,  156 => 73,  152 => 72,  145 => 68,  141 => 67,  133 => 62,  129 => 61,  121 => 56,  117 => 55,  109 => 50,  102 => 45,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -318,11 +340,17 @@ class __TwigTemplate_1f39ff6449f84471f76e144ab8b227252e8290b3e8d1b3b46e3672d0430
             float: none;
             margin: 0 auto;
         }
+
+        .user{
+            margin-top: 10px;
+            width:250px;
+            margin-left:0;
+        }
     </style>
 
 
 
-    {{ dump(responsables) }}
+    {# {{ dump(responsables) }}#}
     <div class=\"title\">Dependencia -> Alta de dependencia</div>
     <hr/>
     <div class=\"col-lg-4 col-center\">
@@ -357,22 +385,21 @@ class __TwigTemplate_1f39ff6449f84471f76e144ab8b227252e8290b3e8d1b3b46e3672d0430
                 <hr/>
                 <h3>Información de la Mesa de Entrada</h3>
                 <hr/>
-                
+
                 <label class=\"text-default\">RESPONSABLE/S(<span class=\"text-danger\">*</span>)</label>                 
                 <div class=\"responsable_items\">
 
-                    <div class=\"add float right\">
-                    </div>
+
                 </div>
+                <div class=\"add float right\"></div>
                 <div class=\"responsables\" data-prototype=\"{{ form_widget(form.mesaentrada.responsables.vars.prototype)|e('html_attr') }}\">
 
-
-
                 </div>
+                <hr/>
                 {#<label class=\"text-default\">RESPONSABLES(<span class=\"text-danger\">*</span>)</label>                 
                 {{ form_errors(form.mesaentrada.responsables.usuario) }}
                 {{ form_widget(form.mesaentrada.responsables.usuario) }}#}
-                <hr/>
+
                 <label class=\"text-default\">CODIGO DE EXPEDIENTE(<span class=\"text-danger\">*</span>)</label>                 
                 {{ form_errors(form.mesaentrada.codigoExpediente) }}
                 {{ form_widget(form.mesaentrada.codigoExpediente) }}
@@ -389,32 +416,45 @@ class __TwigTemplate_1f39ff6449f84471f76e144ab8b227252e8290b3e8d1b3b46e3672d0430
         var \$collectionHolder;
 
         // setup an \"add a tag\" link
-        var \$addResponsableButton = \$('<button type=\"button\" class=\"add_responsable form-control btn btn-danger\">Añadir Responsable</button>');
+        var \$addResponsableButton = \$('<button type=\"button\" class=\"add_responsable form-control btn btn-danger\">Agregar</button>');
         var \$newLinkLi = \$('.add').append(\$addResponsableButton);
 
         jQuery(document).ready(function () {
             // Get the ul that holds the collection of tags
             \$collectionHolder = \$('.responsables');
 
+            // add a delete link to all of the existing tag form li elements
+         
             // add the \"add a tag\" anchor and li to the tags ul
             \$collectionHolder.append(\$newLinkLi);
 
             // count the current form inputs we have (e.g. 2), use that as the new
             // index when inserting a new item (e.g. 2)
             \$collectionHolder.data('index', \$collectionHolder.find(':input').length);
-            
-            // addResponsableForm(\$collectionHolder, \$newLinkLi);
-            
-            \$addResponsableButton.on('click', function (e) {                
+
+            addResponsableForm(\$collectionHolder, \$newLinkLi);
+             
+            \$addResponsableButton.on('click', function (e) {
                 // add a new tag form (see next code block)
                 addResponsableForm(\$collectionHolder, \$newLinkLi);
             });
         });
 
+        function addTagFormDeleteLink(\$tagFormLi,\$collectionHolder) {
+            var \$removeFormButton = \$('<button type=\"button\">Delete this tag</button>');
+            \$tagFormLi.append(\$removeFormButton);
+
+            \$removeFormButton.on('click', function (e) {
+                // remove the li for the tag form
+                \$tagFormLi.remove();
+                var index = \$collectionHolder.data('index');
+                \$collectionHolder.data('index', index - 1);
+            });
+        }
+
         function addResponsableForm(\$collectionHolder, \$newLinkLi) {
             // Get the data-prototype explained earlier
             var prototype = \$collectionHolder.data('prototype');
-            
             // get the new index
             var index = \$collectionHolder.data('index');
 
@@ -427,13 +467,19 @@ class __TwigTemplate_1f39ff6449f84471f76e144ab8b227252e8290b3e8d1b3b46e3672d0430
             // Replace '__name__' in the prototype's HTML to
             // instead be a number based on how many items we have
             newForm = newForm.replace(/__name__/g, index);
-
+           
             // increase the index with one for the next item
             \$collectionHolder.data('index', index + 1);
-
+            
             // Display the form in the page in an li, before the \"Add a tag\" link li
-            var \$newFormLi = \$('.responsable_items').prepend(newForm);
+            var \$newFormLi = \$('.responsable_items').append(newForm);
+            if(index > 1 ){
+                 addTagFormDeleteLink(\$(\$newFormLi).children().eq(index-1),\$collectionHolder);
+            }
+           
+            //console.log(\$(\$newFormLi).children().eq(index-1));
             \$newLinkLi.before(\$newFormLi);
+
         }
 
 
