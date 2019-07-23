@@ -66,7 +66,7 @@ class Expediente
 
     /**
      * @var int 
-     * @ORM\ManyToOne(targetEntity="Dependencia")
+     * @ORM\ManyToOne(targetEntity="Dependencia",inversedBy="expedientes")
      * @ORM\JoinColumn(name="iniciadorDependencia", referencedColumnName="id", nullable=false)
      */
     private $iniciadorDependencia;
@@ -100,9 +100,9 @@ class Expediente
     *@ORM\OneToMany(targetEntity="CaratulaAgregada", mappedBy="expediente")
     */
     private $caratulas;
-
+    
      /**
-    *@ORM\OneToMany(targetEntity="ExpedienteAsociado", mappedBy="expdientePadre")
+    *@ORM\OneToMany(targetEntity="ExpedienteAsociado", mappedBy="expedientePadre")
     */
     private $expedientesAsociados;
 

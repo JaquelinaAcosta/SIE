@@ -91,74 +91,68 @@ class __TwigTemplate_8107ca37eb8caf829fa9253b3f99b383552ee94053ec04390d65638b6af
          }
     </style>  
     
-    ";
-        // line 38
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\DumpExtension')->dump($this->env, $context, ($context["usuario"] ?? $this->getContext($context, "usuario")));
-        echo "
-    
      <div class=\"formu col-ls-4\">
         <div class=\"panel panel-primary \">
             <div class=\"title panel-heading text-center\">Alta de Usuario</div>
             <div class=\"panel panel-body\">
                 <br/>
                 ";
-        // line 45
+        // line 43
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_start', ["action" => "", "method" => "POST"]);
         echo "        
                         <label class=\"float exp\">NOMBRE DE USUARIO</label>
                         ";
-        // line 47
+        // line 45
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "iup", []), 'errors');
         echo "
                         ";
-        // line 48
+        // line 46
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "iup", []), 'widget');
         echo "
                         <label class=\"float left\">EMAIL</label>
                         ";
-        // line 50
+        // line 48
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "email", []), 'errors');
         echo "
                         ";
-        // line 51
+        // line 49
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "email", []), 'widget');
         echo "
                         <label class=\"float left\">CONTRASEÑA</label>
                         ";
-        // line 53
+        // line 51
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "contrasenia", []), 'errors');
         echo "
                         ";
-        // line 54
+        // line 52
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "contrasenia", []), 'widget');
         echo "
                         <label class=\"float left\">PERSONA GESTIONANTE</label>
                         ";
-        // line 56
+        // line 54
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "persona", []), 'errors');
         echo "
                         ";
-        // line 57
+        // line 55
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "persona", []), 'widget');
         echo "                  
                         <label class=\"float left\">ROLES</label>
                         ";
-        // line 59
+        // line 57
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "role", []), 'errors');
         echo "
                         ";
-        // line 60
+        // line 58
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "role", []), 'widget');
         echo "                                        
                         <hr/>
                     ";
-        // line 62
+        // line 60
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "Aceptar", []), 'widget');
-        echo "
-            
+        echo "          
                 <hr/>               
                 ";
-        // line 65
+        // line 62
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_end');
         echo "
             </div>
@@ -166,11 +160,11 @@ class __TwigTemplate_8107ca37eb8caf829fa9253b3f99b383552ee94053ec04390d65638b6af
     </div>           
             
     ";
-        // line 71
+        // line 68
         echo "
     <div class=\"persona\">
         ";
-        // line 73
+        // line 70
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "persona", []), 'row');
         echo "
     </div>
@@ -195,7 +189,7 @@ class __TwigTemplate_8107ca37eb8caf829fa9253b3f99b383552ee94053ec04390d65638b6af
 
     public function getDebugInfo()
     {
-        return array (  174 => 73,  170 => 71,  162 => 65,  156 => 62,  151 => 60,  147 => 59,  142 => 57,  138 => 56,  133 => 54,  129 => 53,  124 => 51,  120 => 50,  115 => 48,  111 => 47,  106 => 45,  96 => 38,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  168 => 70,  164 => 68,  156 => 62,  151 => 60,  146 => 58,  142 => 57,  137 => 55,  133 => 54,  128 => 52,  124 => 51,  119 => 49,  115 => 48,  110 => 46,  106 => 45,  101 => 43,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -245,8 +239,6 @@ class __TwigTemplate_8107ca37eb8caf829fa9253b3f99b383552ee94053ec04390d65638b6af
          }
     </style>  
     
-    {{ dump(usuario) }}
-    
      <div class=\"formu col-ls-4\">
         <div class=\"panel panel-primary \">
             <div class=\"title panel-heading text-center\">Alta de Usuario</div>
@@ -269,8 +261,7 @@ class __TwigTemplate_8107ca37eb8caf829fa9253b3f99b383552ee94053ec04390d65638b6af
                         {{ form_errors(form.role) }}
                         {{ form_widget(form.role) }}                                        
                         <hr/>
-                    {{ form_widget(form.Aceptar) }}
-            
+                    {{ form_widget(form.Aceptar) }}          
                 <hr/>               
                 {{form_end(form)}}
             </div>

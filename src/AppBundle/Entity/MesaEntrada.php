@@ -13,19 +13,12 @@ use Doctrine\ORM\Mapping as ORM;
 class MesaEntrada extends Ubicacion {
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="codigo_expediente", type="integer")
+     * @ORM\Column(name="codigoExpediente", type="string",length=255)
      */
     private $codigoExpediente;
 
-    /**
-     * @var int
-     *
-     * @ORM\OneToOne(targetEntity="Dependencia",inversedBy="mesaentrada",cascade={"persist"})
-     * @ORM\JoinColumn(name="dependencia", referencedColumnName="id", nullable=false)
-     */
-    private $dependencia;
 
     /**
      * Get id
@@ -80,8 +73,4 @@ class MesaEntrada extends Ubicacion {
         return $this->idUbicacion;
     }
     
-    public function setDependencia($dependencia) {
-        $this->dependencia = $dependencia;
-        $dependencia->setMesaentrada($this);
-    }
 }

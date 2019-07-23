@@ -24,8 +24,8 @@ class ExpedienteAsociado
     /**
      * @var int
      *
-     * @ORM\OneToOne(targetEntity="Expediente",inversedBy="expedientesAsociados")
-     * @ORM\JoinColumn(name="expedientePadre", referencedColumnName="id", nullable=false)
+     * @ORM\ManyToOne(targetEntity="Expediente",inversedBy="expedientesAsociados")
+     * @ORM\JoinColumn(name="expediente_padre", referencedColumnName="id", nullable=false)
      */
     private $expedientePadre;
 

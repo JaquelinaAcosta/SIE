@@ -69,7 +69,7 @@ class Dependencia
      * @Assert\Type(type="App\Entity\MesaEntrada")
      * @Assert\Valid
      */
-    protected $mesaentrada;
+    private $mesaentrada;
     
      /**
      * @Assert\Type(type="App\Entity\Persona")

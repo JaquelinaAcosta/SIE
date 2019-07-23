@@ -18,9 +18,9 @@ class ResponsableType extends AbstractType
                         ->add('usuario',EntityType::class,[
                     'class'=>'AppBundle:Usuario',
                     'label'=>false,
-                    'attr'=>[
-                        'placeholder'=>'--Seleccione--',
-                        'class'=>'form-control'
+                    'placeholder'=>'--Seleccione--',
+                    'attr'=>[                       
+                        'class'=>'user form-control'
                     ]
                 ]);
     }/**
