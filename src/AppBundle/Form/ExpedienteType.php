@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 use AppBundle\Form\Event\Listener\AddStateFieldSubscriber;
 
@@ -83,6 +84,17 @@ class ExpedienteType extends AbstractType {
                         "placeholder" => 'MM-DD-AAAA'
                     )
                 ))
+                ->add('expedientes_asociados', CollectionType::class,[
+                   'entry_type'=> ExpedienteAsociadoType::class,
+                   'label'=>false,
+                   'entry_options'=>[
+                       'label'=>false,
+                       ],
+                   'prototype' => true,
+                   'allow_add'=>true,
+                   'allow_delete' => true,
+                   'by_reference'=>false,
+               ])
                 ->add('Guardar', SubmitType::class, array("attr" => array(
                         "class" => "form-submit btn btn-primary"
                     )

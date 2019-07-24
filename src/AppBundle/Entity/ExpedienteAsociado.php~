@@ -10,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="expediente_asociado")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ExpedienteAsociadoRepository")
  */
-class ExpedienteAsociado
-{
+class ExpedienteAsociado {
+
     /**
      * @var int
      *
@@ -22,24 +22,22 @@ class ExpedienteAsociado
     private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\ManyToOne(targetEntity="Expediente",inversedBy="expedientesAsociados")
-     * @ORM\JoinColumn(name="expediente_padre", referencedColumnName="id", nullable=false)
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     * 
+     * @ORM\ManyToOne(targetEntity="Expediente",inversedBy="expedientes_asociados",cascade={"persist"}))
+     * @ORM\JoinColumn(name="expediente_padre_id", referencedColumnName="id", nullable=false)
      */
     private $expedientePadre;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="expediente_asociado", type="integer")
+     * @ORM\OneToOne(targetEntity="Expediente")
      */
     private $expedienteAsociado;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="fecha", type="datetime")
+     * @ORM\Column(name="fecha", type="string",length=255)
      */
     private $fecha;
 
@@ -50,14 +48,12 @@ class ExpedienteAsociado
      */
     private $ordenAsociacion;
 
-
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -68,8 +64,7 @@ class ExpedienteAsociado
      *
      * @return ExpedienteAsociado
      */
-    public function setExpedientePadre($expedientePadre)
-    {
+    public function setExpedientePadre($expedientePadre) {
         $this->expedientePadre = $expedientePadre;
 
         return $this;
@@ -80,8 +75,7 @@ class ExpedienteAsociado
      *
      * @return int
      */
-    public function getExpedientePadre()
-    {
+    public function getExpedientePadre() {
         return $this->expedientePadre;
     }
 
@@ -92,8 +86,7 @@ class ExpedienteAsociado
      *
      * @return ExpedienteAsociado
      */
-    public function setExpedienteAsociado($expedienteAsociado)
-    {
+    public function setExpedienteAsociado($expedienteAsociado) {
         $this->expedienteAsociado = $expedienteAsociado;
 
         return $this;
@@ -104,8 +97,7 @@ class ExpedienteAsociado
      *
      * @return int
      */
-    public function getExpedienteAsociado()
-    {
+    public function getExpedienteAsociado() {
         return $this->expedienteAsociado;
     }
 
@@ -116,8 +108,7 @@ class ExpedienteAsociado
      *
      * @return ExpedienteAsociado
      */
-    public function setFecha($fecha)
-    {
+    public function setFecha($fecha) {
         $this->fecha = $fecha;
 
         return $this;
@@ -128,8 +119,7 @@ class ExpedienteAsociado
      *
      * @return \DateTime
      */
-    public function getFecha()
-    {
+    public function getFecha() {
         return $this->fecha;
     }
 
@@ -140,8 +130,7 @@ class ExpedienteAsociado
      *
      * @return ExpedienteAsociado
      */
-    public function setOrdenAsociacion($ordenAsociacion)
-    {
+    public function setOrdenAsociacion($ordenAsociacion) {
         $this->ordenAsociacion = $ordenAsociacion;
 
         return $this;
@@ -152,8 +141,8 @@ class ExpedienteAsociado
      *
      * @return int
      */
-    public function getOrdenAsociacion()
-    {
+    public function getOrdenAsociacion() {
         return $this->ordenAsociacion;
     }
+
 }

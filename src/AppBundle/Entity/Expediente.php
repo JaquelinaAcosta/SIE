@@ -9,7 +9,6 @@ use AppBundle\Entity\Resolucion;
 use AppBundle\Entity\Dependencia;
 
 use Doctrine\Common\Collections\ArrayCollection;
-
 /**
  * Expediente
  *
@@ -38,7 +37,7 @@ class Expediente
     /**
      * @var int
      *
-     * @ORM\ManyToOne(targetEntity="Tema")
+     * @ORM\ManyToOne(targetEntity="Tema",inversedBy="expedientes") 
      * @ORM\JoinColumn(name="tema", referencedColumnName="id", nullable=false)
      */
     private $tema;
@@ -101,11 +100,12 @@ class Expediente
     */
     private $caratulas;
     
-     /**
-    *@ORM\OneToMany(targetEntity="ExpedienteAsociado", mappedBy="expedientePadre")
-    */
-    private $expedientesAsociados;
-
+    /**
+    *@ORM\OneToMany(targetEntity="ExpedienteAsociado", mappedBy="expedientePadre",cascade={"persist"})
+     */
+    protected $expedientes_asociados;
+    
+    
     /**
     *@ORM\OneToMany(targetEntity="MovimientoExpediente", mappedBy="expediente")
     */
@@ -136,13 +136,12 @@ class Expediente
     }
 
     public function __construct(){
-        $this->caratulas = new ArrayCollection();
-        $this->expedientesAsociados = new ArrayCollection();
-        $this->movimientos = new ArrayCollection();
+        $this->expedientes_asociados = new ArrayCollection();
+//        $this->caratulas = new ArrayCollection();
+//        $this->movimientos = new ArrayCollection();
     }
     
-    
-     public function getLugarfisico()
+    public function getLugarfisico()
     {
         return $this->lugarfisico;
     }
@@ -452,6 +451,42 @@ class Expediente
         return $this->resolucion;
     }
 
+    
+
+    /**
+     * Add expediente
+     *
+     * @param \AppBundle\Entity\ExpedienteAsociado $expediente
+     *
+     * @return Expediente
+     */
+    public function addExpediente(\AppBundle\Entity\ExpedienteAsociado $expediente)
+    {
+        $this->expediente[] = $expediente;
+
+        return $this;
+    }
+
+    /**
+     * Remove expediente
+     *
+     * @param \AppBundle\Entity\ExpedienteAsociado $expediente
+     */
+    public function removeExpediente(\AppBundle\Entity\ExpedienteAsociado $expediente)
+    {
+        $this->expediente->removeElement($expediente);
+    }
+
+    /**
+     * Get expediente
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getExpediente()
+    {
+        return $this->expediente;
+    }
+
     /**
      * Add expedientesAsociado
      *
@@ -461,7 +496,7 @@ class Expediente
      */
     public function addExpedientesAsociado(\AppBundle\Entity\ExpedienteAsociado $expedientesAsociado)
     {
-        $this->expedientesAsociados[] = $expedientesAsociado;
+        $this->expedientes_asociados[] = $expedientesAsociado;
 
         return $this;
     }
@@ -473,7 +508,7 @@ class Expediente
      */
     public function removeExpedientesAsociado(\AppBundle\Entity\ExpedienteAsociado $expedientesAsociado)
     {
-        $this->expedientesAsociados->removeElement($expedientesAsociado);
+        $this->expedientes_asociados->removeElement($expedientesAsociado);
     }
 
     /**
@@ -483,7 +518,7 @@ class Expediente
      */
     public function getExpedientesAsociados()
     {
-        return $this->expedientesAsociados;
+        return  $this->expedientes_asociados;
     }
 
     /**
