@@ -60,9 +60,9 @@
                             <hr/>
                             <p class="list-group-item-text">Concepto: {{ expediente.concepto|e }}</p>
                             <hr/>
-                            <a class="btn btn-info" href="expediente/{{expediente.id}}"  role="button">Ver detalle</a>
-                            <a class="btn btn-warning" href="edit/{{expediente.id}}"  role="button">Modificar</a>
-                            <a class="btn btn-danger" href="delete/{{expediente.id}}"  role="button">Eliminar</a>
+                            <a class="btn btn-info" href="{{ path("ver_expediente",{'id':expediente.id}) }}"  role="button">Ver detalle</a>
+                            <a class="btn btn-warning" href="{{ path("editar_expediente",{'id':expediente.id}) }}"  role="button">Modificar</a>
+                            <a class="btn btn-danger" href="{{ path("eliminar_expediente",{'id':expediente.id}) }}"  role="button">Eliminar</a>
         
                             <br>
                        </div>

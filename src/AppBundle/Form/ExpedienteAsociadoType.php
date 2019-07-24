@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class ExpedienteAsociadoType extends AbstractType
 {
@@ -17,20 +18,24 @@ class ExpedienteAsociadoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-                ->add('expedienteAsociado', TextType::class,array(
-            "label"=>"Nro. de Expediente Asociado:","attr"=> array(
-               "class"=>"form-exp form-control" ,
-               "placeholder"=>"00000-000000000-0"
+                ->add('expedienteAsociado', EntityType::class,array(
+                    "class"=>'AppBundle:Expediente',
+                    "placeholder"=>"--Seleccione--",
+               "label"=>"Nro. de Expediente Asociado:","attr"=> array(
+               "class"=>"form-exp form-control" 
             )
         ))
-                ->add('expedientePadre', TextType::class,array(
-            "label"=>"Nro. de Expediente Padre:","attr"=> array(
-               "class"=>"form-exp form-control" ,
-               "placeholder"=>"00000-000000000-0"
-            )
-        ))
-                ->add('fecha', DateType::class,array(
-            "label"=>"Fecha:"
+//                ->add('expedientePadre', TextType::class,array(
+//            "label"=>"Nro. de Expediente Padre:","attr"=> array(
+//               "class"=>"form-exp form-control" ,
+//               "placeholder"=>"00000-000000000-0"
+//            )
+//        ))
+                ->add('fecha', TextType::class,array(
+            "label"=>"Fecha:","attr" => array(
+                        "class" => 'datepicker form-control',
+                        "placeholder" => 'MM-DD-AAAA'
+                )
         ))
                 ->add('ordenAsociacion', TextType::class,array(
             "label"=>"Orden Asociación","attr"=> array(
@@ -38,10 +43,10 @@ class ExpedienteAsociadoType extends AbstractType
                 "placeholder"=>"1, 2, ..."
             )
         ))
-                ->add('Aceptar', SubmitType::class,array("attr"=> array(
-            "class"=>"form-submit btn btn-primary" 
-            )
-        ))
+//                ->add('Aceptar', SubmitType::class,array("attr"=> array(
+//            "class"=>"form-submit btn btn-primary" 
+//            )
+//        ))
                 ;
     }/**
      * {@inheritdoc}

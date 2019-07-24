@@ -49,8 +49,7 @@ class Ubicacion
     * @ORM\OneToMany(targetEntity="Responsable",mappedBy="ubicacion",cascade={"persist"})
     */
     private $responsables;
-    
-    
+       
      /**
      * @Assert\Type(type="App\Entity\Usuario")
      * @Assert\Valid
@@ -73,9 +72,6 @@ class Ubicacion
         $this->responsables = new ArrayCollection();
     }
 
-    
-    
-    
     public function getUbicacionId(){
         return $this->id;
     }

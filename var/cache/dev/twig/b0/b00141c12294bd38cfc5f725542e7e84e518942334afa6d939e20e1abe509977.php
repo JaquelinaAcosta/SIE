@@ -130,17 +130,17 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "concepto", []));
             echo "</p>
                             <hr/>
-                            <a class=\"btn btn-info\" href=\"expediente/";
+                            <a class=\"btn btn-info\" href=\"";
             // line 63
-            echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "id", []), "html", null, true);
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("ver_expediente", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
             echo "\"  role=\"button\">Ver detalle</a>
-                            <a class=\"btn btn-warning\" href=\"edit/";
+                            <a class=\"btn btn-warning\" href=\"";
             // line 64
-            echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "id", []), "html", null, true);
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_expediente", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
             echo "\"  role=\"button\">Modificar</a>
-                            <a class=\"btn btn-danger\" href=\"delete/";
+                            <a class=\"btn btn-danger\" href=\"";
             // line 65
-            echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "id", []), "html", null, true);
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("eliminar_expediente", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
             echo "\"  role=\"button\">Eliminar</a>
         
                             <br>
@@ -264,9 +264,9 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
                             <hr/>
                             <p class=\"list-group-item-text\">Concepto: {{ expediente.concepto|e }}</p>
                             <hr/>
-                            <a class=\"btn btn-info\" href=\"expediente/{{expediente.id}}\"  role=\"button\">Ver detalle</a>
-                            <a class=\"btn btn-warning\" href=\"edit/{{expediente.id}}\"  role=\"button\">Modificar</a>
-                            <a class=\"btn btn-danger\" href=\"delete/{{expediente.id}}\"  role=\"button\">Eliminar</a>
+                            <a class=\"btn btn-info\" href=\"{{ path(\"ver_expediente\",{'id':expediente.id}) }}\"  role=\"button\">Ver detalle</a>
+                            <a class=\"btn btn-warning\" href=\"{{ path(\"editar_expediente\",{'id':expediente.id}) }}\"  role=\"button\">Modificar</a>
+                            <a class=\"btn btn-danger\" href=\"{{ path(\"eliminar_expediente\",{'id':expediente.id}) }}\"  role=\"button\">Eliminar</a>
         
                             <br>
                        </div>
@@ -287,6 +287,6 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
     
     
   
-{% endblock %}", "AppBundle:Expediente:listadoExpediente.html.twig", "/var/www/html/gitSIE/src/AppBundle/Resources/views/Expediente/listadoExpediente.html.twig");
+{% endblock %}", "AppBundle:Expediente:listadoExpediente.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/Expediente/listadoExpediente.html.twig");
     }
 }

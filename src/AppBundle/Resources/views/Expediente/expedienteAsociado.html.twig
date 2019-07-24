@@ -14,12 +14,75 @@
 
     </style>
     
-    <div class="formu col-lg-4 col-md-offset-1">
+    <div class="formu col-lg-12">
         <div class="border border-primary">
-            <h2 class="text-center">Expediente Asociado</h2>
+            <h2 class="text-center ">Agregar expediente asociado</h2>
             <hr/>
-            {{form_start(form,{'action':'','method':'POST'})}}
-            {{form_end(form)}}
+            
+            <div class="list-group col-lg-11 col-md-offset-1">
+                <div class="expediente col-lg-10 panel panel-primary">
+                    <div class="panel-heading" style="font-size:18px;">
+                        Detalle del Expediente
+                    </div>
+                    <table class="table table-striped table-hover"> 
+                        <thead>
+                            <br/>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th class="info list-group col-lg-3">Tema: </th>
+                                <td>{{ expediente.tema}}</td>
+                            </tr>
+                            <tr>
+                                <th class="info list-group">Concepto: </th>
+                                <td>{{ expediente.concepto}}</td>
+                            </tr>
+                            <tr>
+                                <th class="info list-group">Cantidad de fojas:  </th>
+                                <td>{{ expediente.fojas}}</td>
+                            </tr>
+                            <tr>
+                                <th class="info list-group">Tipo: </th>
+                                <td>{{ expediente.tipo}}</td>
+                            </tr>
+                            <tr>
+                                <th class="info list-group">Dependencia:  </th>
+                                <td>{{ expediente.iniciadorDependencia}}</td>
+                            </tr>
+                            <tr>
+                                <th class="info ">Fecha de Inicio:  </th>
+                                <td>{{ expediente.fechaInicio|date("d/m/Y")}}</td>
+                            </tr>
+                            <tr>
+                                <th class="info list-group">Fecha de Finalización:  </th>
+                                <td>{{ expediente.fechaFin|date("d/m/Y")}}</td>
+                            </tr>
+                            <tr>
+                                <th class="info list-group">Ubicación Actual:  </th>
+                                <td>{{ expediente.ubicacionActual}}</td>
+                            </tr>
+                        </tbody>
+                        
+                    </table>
+                </div>  
+                
+                <div class="expediente col-lg-10 panel panel-primary">
+                    <div class="panel-heading" style="font-size:18px;">
+                        Resolución
+                    </div>
+                    <table class="table table-striped table-hover"> 
+                        <thead>
+                            <br/>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th class="info list-group col-lg-3">Resolución:  </th>
+                                <td>{{ expediente.resolucion}}</td>
+                            </tr>
+                        </tbody>
+                        
+                    </table>
+                </div>                   
         </div>
     </div>
 {% endblock %}

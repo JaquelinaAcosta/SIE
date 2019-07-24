@@ -119,9 +119,17 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                     return array (  '_controller' => 'AppBundle\\Controller\\DependenciaController::indexAction',  '_route' => 'nueva_dependencia',);
                 }
 
-                // nuevoExpediente
-                if ('/add/expediente' === $pathinfo) {
-                    return array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::indexAction',  '_route' => 'nuevoExpediente',);
+                if (0 === strpos($pathinfo, '/add/expediente')) {
+                    // expedienteAsociado
+                    if (0 === strpos($pathinfo, '/add/expediente_asociado') && preg_match('#^/add/expediente_asociado/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                        return $this->mergeDefaults(array_replace($matches, ['_route' => 'expedienteAsociado']), array (  '_controller' => 'AppBundle\\Controller\\ExpedienteAsociadoController::indexAction',));
+                    }
+
+                    // nuevo_expediente
+                    if ('/add/expediente' === $pathinfo) {
+                        return array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::indexAction',  '_route' => 'nuevo_expediente',);
+                    }
+
                 }
 
                 // nueva_resolucion
@@ -144,57 +152,49 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         }
 
         elseif (0 === strpos($pathinfo, '/expediente')) {
-            // expedienteAsociado
-            if ('/expedienteAsociado' === $pathinfo) {
-                return array (  '_controller' => 'AppBundle\\Controller\\ExpedienteAsociadoController::indexAction',  '_route' => 'expedienteAsociado',);
+            // listado_expediente
+            if ('/expediente/listado' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::listaExpedientesAction',  '_route' => 'listado_expediente',);
             }
 
-            // expediente
-            if (preg_match('#^/expediente/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, ['_route' => 'expediente']), array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::expedienteAction',));
+            // ver_expediente
+            if (0 === strpos($pathinfo, '/expediente/view') && preg_match('#^/expediente/view/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'ver_expediente']), array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::expedienteAction',));
             }
 
-        }
-
-        // edit
-        if (0 === strpos($pathinfo, '/edit') && preg_match('#^/edit/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, ['_route' => 'edit']), array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::editAction',));
-        }
-
-        if (0 === strpos($pathinfo, '/l')) {
-            // listaExpediente
-            if ('/listaExpediente' === $pathinfo) {
-                return array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::listaExpedientesAction',  '_route' => 'listaExpediente',);
+            // eliminar_expediente
+            if (0 === strpos($pathinfo, '/expediente/delete') && preg_match('#^/expediente/delete/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'eliminar_expediente']), array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::deleteAction',));
             }
 
-            // lugarFisico
-            if ('/lugarFisico' === $pathinfo) {
-                return array (  '_controller' => 'AppBundle\\Controller\\LugarFisicoController::indexAction',  '_route' => 'lugarFisico',);
-            }
-
-            if (0 === strpos($pathinfo, '/log')) {
-                // loginUsuario
-                if ('/loginUsuario' === $pathinfo) {
-                    return array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::loginAction',  '_route' => 'loginUsuario',);
-                }
-
-                // login_check
-                if ('/login_check' === $pathinfo) {
-                    return array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::loginCheckAction',  '_route' => 'login_check',);
-                }
-
-                // logout
-                if ('/logout' === $pathinfo) {
-                    return array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::logoutAction',  '_route' => 'logout',);
-                }
-
+            // editar_expediente
+            if (0 === strpos($pathinfo, '/expediente/edit') && preg_match('#^/expediente/edit/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'editar_expediente']), array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::editAction',));
             }
 
         }
 
-        // delete
-        if (0 === strpos($pathinfo, '/delete') && preg_match('#^/delete/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, ['_route' => 'delete']), array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::deleteAction',));
+        // lugarFisico
+        if ('/lugarFisico' === $pathinfo) {
+            return array (  '_controller' => 'AppBundle\\Controller\\LugarFisicoController::indexAction',  '_route' => 'lugarFisico',);
+        }
+
+        if (0 === strpos($pathinfo, '/log')) {
+            // loginUsuario
+            if ('/loginUsuario' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::loginAction',  '_route' => 'loginUsuario',);
+            }
+
+            // login_check
+            if ('/login_check' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::loginCheckAction',  '_route' => 'login_check',);
+            }
+
+            // logout
+            if ('/logout' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::logoutAction',  '_route' => 'logout',);
+            }
+
         }
 
         // mesaEntrada
