@@ -246,6 +246,17 @@ class Dependencia extends \AppBundle\Entity\Dependencia implements \Doctrine\ORM
     /**
      * {@inheritDoc}
      */
+    public function setId($id)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setId', [$id]);
+
+        return parent::setId($id);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function setDescripcion($descripcion)
     {
 
