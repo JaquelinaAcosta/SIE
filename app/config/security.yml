@@ -43,7 +43,7 @@ security:
                 
     #Control de acceso para Usuarios            
     access_control:
-        - {path : ^/home, roles: ROLE_USER }
+#        - {path : ^/home, roles: ROLE_USER }
         - {path : ^/listaExpediente, roles: ROLE_USER }
         - {path : ^/add/expediente, roles: ROLE_USER }
         - {path : ^/expediente, roles: ROLE_USER }

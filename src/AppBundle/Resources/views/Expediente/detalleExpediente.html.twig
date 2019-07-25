@@ -75,7 +75,37 @@
 
                     </table>
                 </div>  
+                            
+                                            <div class="expediente col-lg-10 panel panel-primary">
+                    <div class="panel-heading" style="font-size:18px;">
+                        Expedientes asociados
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Nro. Expediente</th>
+                                <th scope="col">Descripción</th>
+                                <th scope="col">Código</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
+                            {% for expediente_asoc in expediente.ExpedientesAsociados.getValues %}
+                                <tr>
+                                    <td>{{expediente_asoc.expedienteAsociado}}</td>
+                                    <td>{{expediente_asoc.expedienteAsociado.tema.descripcion}}</td>
+                                    <td>{{expediente_asoc.expedienteAsociado.tema.codigo}}</td>
+                                    <td><a class="btn btn-info" href="{{ path("ver_expediente", {'id':expediente_asoc.id}) }}"  role="button">V</a>
+                                        <a class="btn btn-warning" href="{{ path("editar_expediente", {'id':expediente_asoc.id}) }}"  role="button">M</a>
+                                        <a class="btn btn-danger" href="{{ path("eliminar_expediente", {'id':expediente_asoc.id}) }}"  role="button">E</a></td>
+                                </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+                            
                 <div class="expediente col-lg-10 panel panel-primary">
                     <div class="panel-heading" style="font-size:18px;">
                         Resolución
@@ -112,35 +142,7 @@
                     </table>
                 </div>
 
-                <div class="expediente col-lg-10 panel panel-primary">
-                    <div class="panel-heading" style="font-size:18px;">
-                        Expedientes asociados
-                    </div>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">Nro. Expediente</th>
-                                <th scope="col">Descripción</th>
-                                <th scope="col">Código</th>
-                                <th scope="col">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
 
-                            {% for expediente_asoc in expediente.ExpedientesAsociados.getValues %}
-                                <tr>
-                                    <td>{{expediente_asoc.expedienteAsociado}}</td>
-                                    <td>{{expediente_asoc.expedienteAsociado.tema.descripcion}}</td>
-                                    <td>{{expediente_asoc.expedienteAsociado.tema.codigo}}</td>
-                                    <td><a class="btn btn-info" href="{{ path("ver_expediente", {'id':expediente_asoc.id}) }}"  role="button">V</a>
-                                        <a class="btn btn-warning" href="{{ path("editar_expediente", {'id':expediente_asoc.id}) }}"  role="button">M</a>
-                                        <a class="btn btn-danger" href="{{ path("eliminar_expediente", {'id':expediente_asoc.id}) }}"  role="button">E</a></td>
-                                </tr>
-                            {% endfor %}
-
-                        </tbody>
-                    </table>
-                </div>
 
                 <div class="expediente col-lg-10 panel panel-primary">
                     <div class="panel-heading" style="font-size:18px;">

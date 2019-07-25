@@ -22,7 +22,6 @@ class ExpedienteAsociado {
     private $id;
 
     /**
-     * @var \Doctrine\Common\Collections\ArrayCollection
      * 
      * @ORM\ManyToOne(targetEntity="Expediente",inversedBy="expedientes_asociados",cascade={"persist"}))
      * @ORM\JoinColumn(name="expediente_padre_id", referencedColumnName="id", nullable=false)
@@ -47,7 +46,11 @@ class ExpedienteAsociado {
      * @ORM\Column(name="orden_asociacion", type="integer")
      */
     private $ordenAsociacion;
-
+    
+    public function __toString() {
+        return $this->expedientePadre->getNroExpediente();
+    }
+    
     /**
      * Get id
      *

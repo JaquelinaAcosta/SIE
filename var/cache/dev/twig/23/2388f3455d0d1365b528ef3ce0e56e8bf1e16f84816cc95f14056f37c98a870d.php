@@ -151,7 +151,7 @@ class __TwigTemplate_f00a9fe82af130be4151094a955578bdb99db76fa1545477496e9c6c74b
             <div class=\"opciones\">
                 <a href=\"";
         // line 96
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nuevoExpediente");
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nuevo_expediente");
         echo "\" class=\"add\"> 
                     <div class=\"content\">
                         <img src=\"";
@@ -174,7 +174,7 @@ class __TwigTemplate_f00a9fe82af130be4151094a955578bdb99db76fa1545477496e9c6c74b
                 </a>
                 <a href=\"";
         // line 110
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listaExpediente");
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_expediente");
         echo "\" class=\"list\"> 
                     <div class=\"content\">
                         <img src=\"";
@@ -319,7 +319,7 @@ class __TwigTemplate_f00a9fe82af130be4151094a955578bdb99db76fa1545477496e9c6c74b
             <p>A continuación, eliga la operación que desea realizar.</p>
             <hr/>
             <div class=\"opciones\">
-                <a href=\"{{ path(\"nuevoExpediente\") }}\" class=\"add\"> 
+                <a href=\"{{ path(\"nuevo_expediente\") }}\" class=\"add\"> 
                     <div class=\"content\">
                         <img src=\"{{ asset(\"Icons/add.png\") }}\" width=\"170\"/>
                         <h4><strong>CARGAR UN EXPEDIENTE</strong></h4>
@@ -333,7 +333,7 @@ class __TwigTemplate_f00a9fe82af130be4151094a955578bdb99db76fa1545477496e9c6c74b
                         <p>Al seleccionar esta opción, podrá buscar expedientes con filtros específicos y eventualmente, podrá realizar acciones en ellos.</p>   
                     </div>
                 </a>
-                <a href=\"{{ path(\"listaExpediente\") }}\" class=\"list\"> 
+                <a href=\"{{ path(\"listado_expediente\") }}\" class=\"list\"> 
                     <div class=\"content\">
                         <img src=\"{{ asset(\"Icons/list.png\") }}\" width=\"170\"/>
                         <h4><strong>HISTORIAL DE EXPEDIENTES</strong></h4>

@@ -158,7 +158,65 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
 
                     </table>
                 </div>  
+                            
+                                            <div class=\"expediente col-lg-10 panel panel-primary\">
+                    <div class=\"panel-heading\" style=\"font-size:18px;\">
+                        Expedientes asociados
+                    </div>
+                    <table class=\"table table-striped\">
+                        <thead>
+                            <tr>
+                                <th scope=\"col\">Nro. Expediente</th>
+                                <th scope=\"col\">Descripción</th>
+                                <th scope=\"col\">Código</th>
+                                <th scope=\"col\">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
+                            ";
+        // line 94
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "ExpedientesAsociados", []), "getValues", []));
+        foreach ($context['_seq'] as $context["_key"] => $context["expediente_asoc"]) {
+            // line 95
+            echo "                                <tr>
+                                    <td>";
+            // line 96
+            echo twig_escape_filter($this->env, $this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "html", null, true);
+            echo "</td>
+                                    <td>";
+            // line 97
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "tema", []), "descripcion", []), "html", null, true);
+            echo "</td>
+                                    <td>";
+            // line 98
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "tema", []), "codigo", []), "html", null, true);
+            echo "</td>
+                                    <td><a class=\"btn btn-info\" href=\"";
+            // line 99
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("ver_expediente", ["id" => $this->getAttribute($context["expediente_asoc"], "id", [])]), "html", null, true);
+            echo "\"  role=\"button\">V</a>
+                                        <a class=\"btn btn-warning\" href=\"";
+            // line 100
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_expediente", ["id" => $this->getAttribute($context["expediente_asoc"], "id", [])]), "html", null, true);
+            echo "\"  role=\"button\">M</a>
+                                        <a class=\"btn btn-danger\" href=\"";
+            // line 101
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("eliminar_expediente", ["id" => $this->getAttribute($context["expediente_asoc"], "id", [])]), "html", null, true);
+            echo "\"  role=\"button\">E</a></td>
+                                </tr>
+                            ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['expediente_asoc'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 104
+        echo "
+                        </tbody>
+                    </table>
+                </div>
+                            
                 <div class=\"expediente col-lg-10 panel panel-primary\">
                     <div class=\"panel-heading\" style=\"font-size:18px;\">
                         Resolución
@@ -171,7 +229,7 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
                             <tr>
                                 <th class=\"info list-group col-lg-3\">Resolución:  </th>
                                 <td>";
-        // line 90
+        // line 120
         echo twig_escape_filter($this->env, $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "resolucion", []), "html", null, true);
         echo "</td>
                             </tr>
@@ -192,7 +250,7 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
                             <tr>
                                 <th class=\"info list-group col-lg-3\">Carátulas:  </th>
                                 <td> ";
-        // line 108
+        // line 138
         echo "</td>
                             </tr>
                         </tbody>
@@ -200,63 +258,7 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
                     </table>
                 </div>
 
-                <div class=\"expediente col-lg-10 panel panel-primary\">
-                    <div class=\"panel-heading\" style=\"font-size:18px;\">
-                        Expedientes asociados
-                    </div>
-                    <table class=\"table table-striped\">
-                        <thead>
-                            <tr>
-                                <th scope=\"col\">Nro. Expediente</th>
-                                <th scope=\"col\">Descripción</th>
-                                <th scope=\"col\">Código</th>
-                                <th scope=\"col\">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
 
-                            ";
-        // line 130
-        $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "ExpedientesAsociados", []), "getValues", []));
-        foreach ($context['_seq'] as $context["_key"] => $context["expediente_asoc"]) {
-            // line 131
-            echo "                                <tr>
-                                    <td>";
-            // line 132
-            echo twig_escape_filter($this->env, $this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "html", null, true);
-            echo "</td>
-                                    <td>";
-            // line 133
-            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "tema", []), "descripcion", []), "html", null, true);
-            echo "</td>
-                                    <td>";
-            // line 134
-            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "tema", []), "codigo", []), "html", null, true);
-            echo "</td>
-                                    <td><a class=\"btn btn-info\" href=\"";
-            // line 135
-            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("ver_expediente", ["id" => $this->getAttribute($context["expediente_asoc"], "id", [])]), "html", null, true);
-            echo "\"  role=\"button\">V</a>
-                                        <a class=\"btn btn-warning\" href=\"";
-            // line 136
-            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_expediente", ["id" => $this->getAttribute($context["expediente_asoc"], "id", [])]), "html", null, true);
-            echo "\"  role=\"button\">M</a>
-                                        <a class=\"btn btn-danger\" href=\"";
-            // line 137
-            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("eliminar_expediente", ["id" => $this->getAttribute($context["expediente_asoc"], "id", [])]), "html", null, true);
-            echo "\"  role=\"button\">E</a></td>
-                                </tr>
-                            ";
-        }
-        $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['expediente_asoc'], $context['_parent'], $context['loop']);
-        $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 140
-        echo "
-                        </tbody>
-                    </table>
-                </div>
 
                 <div class=\"expediente col-lg-10 panel panel-primary\">
                     <div class=\"panel-heading\" style=\"font-size:18px;\">
@@ -270,7 +272,7 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
                             <tr>
                                 <th class=\"info list-group col-lg-3\">Movimientos:   </th>
                                 <td> ";
-        // line 156
+        // line 158
         echo "</td>
                             </tr>
                         </tbody>
@@ -317,7 +319,7 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
 
     public function getDebugInfo()
     {
-        return array (  274 => 156,  256 => 140,  247 => 137,  243 => 136,  239 => 135,  235 => 134,  231 => 133,  227 => 132,  224 => 131,  220 => 130,  196 => 108,  175 => 90,  154 => 72,  147 => 68,  140 => 64,  133 => 60,  126 => 56,  119 => 52,  112 => 48,  105 => 44,  87 => 29,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  276 => 158,  254 => 138,  233 => 120,  215 => 104,  206 => 101,  202 => 100,  198 => 99,  194 => 98,  190 => 97,  186 => 96,  183 => 95,  179 => 94,  154 => 72,  147 => 68,  140 => 64,  133 => 60,  126 => 56,  119 => 52,  112 => 48,  105 => 44,  87 => 29,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -407,7 +409,37 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
 
                     </table>
                 </div>  
+                            
+                                            <div class=\"expediente col-lg-10 panel panel-primary\">
+                    <div class=\"panel-heading\" style=\"font-size:18px;\">
+                        Expedientes asociados
+                    </div>
+                    <table class=\"table table-striped\">
+                        <thead>
+                            <tr>
+                                <th scope=\"col\">Nro. Expediente</th>
+                                <th scope=\"col\">Descripción</th>
+                                <th scope=\"col\">Código</th>
+                                <th scope=\"col\">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
+                            {% for expediente_asoc in expediente.ExpedientesAsociados.getValues %}
+                                <tr>
+                                    <td>{{expediente_asoc.expedienteAsociado}}</td>
+                                    <td>{{expediente_asoc.expedienteAsociado.tema.descripcion}}</td>
+                                    <td>{{expediente_asoc.expedienteAsociado.tema.codigo}}</td>
+                                    <td><a class=\"btn btn-info\" href=\"{{ path(\"ver_expediente\", {'id':expediente_asoc.id}) }}\"  role=\"button\">V</a>
+                                        <a class=\"btn btn-warning\" href=\"{{ path(\"editar_expediente\", {'id':expediente_asoc.id}) }}\"  role=\"button\">M</a>
+                                        <a class=\"btn btn-danger\" href=\"{{ path(\"eliminar_expediente\", {'id':expediente_asoc.id}) }}\"  role=\"button\">E</a></td>
+                                </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+                            
                 <div class=\"expediente col-lg-10 panel panel-primary\">
                     <div class=\"panel-heading\" style=\"font-size:18px;\">
                         Resolución
@@ -444,35 +476,7 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
                     </table>
                 </div>
 
-                <div class=\"expediente col-lg-10 panel panel-primary\">
-                    <div class=\"panel-heading\" style=\"font-size:18px;\">
-                        Expedientes asociados
-                    </div>
-                    <table class=\"table table-striped\">
-                        <thead>
-                            <tr>
-                                <th scope=\"col\">Nro. Expediente</th>
-                                <th scope=\"col\">Descripción</th>
-                                <th scope=\"col\">Código</th>
-                                <th scope=\"col\">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
 
-                            {% for expediente_asoc in expediente.ExpedientesAsociados.getValues %}
-                                <tr>
-                                    <td>{{expediente_asoc.expedienteAsociado}}</td>
-                                    <td>{{expediente_asoc.expedienteAsociado.tema.descripcion}}</td>
-                                    <td>{{expediente_asoc.expedienteAsociado.tema.codigo}}</td>
-                                    <td><a class=\"btn btn-info\" href=\"{{ path(\"ver_expediente\", {'id':expediente_asoc.id}) }}\"  role=\"button\">V</a>
-                                        <a class=\"btn btn-warning\" href=\"{{ path(\"editar_expediente\", {'id':expediente_asoc.id}) }}\"  role=\"button\">M</a>
-                                        <a class=\"btn btn-danger\" href=\"{{ path(\"eliminar_expediente\", {'id':expediente_asoc.id}) }}\"  role=\"button\">E</a></td>
-                                </tr>
-                            {% endfor %}
-
-                        </tbody>
-                    </table>
-                </div>
 
                 <div class=\"expediente col-lg-10 panel panel-primary\">
                     <div class=\"panel-heading\" style=\"font-size:18px;\">

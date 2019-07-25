@@ -17,16 +17,17 @@ class PersonaController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $em = $this->getDoctrine()->getEntityManager(); 
-        
-        $dependencia = $em->getRepository("AppBundle:Dependencia")->find(3);
+        $em = $this->getDoctrine()->getEntityManager();       
         $persona = new Persona();
-        $persona->setDependencia($dependencia);
+     
         $form = $this->createForm(PersonaType::class,$persona);
         
         $form->handleRequest($request);
         
-        if ($form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+            $dependencia = $form['dependencia']->getData();
+            $persona->setDependencia($dependencia);
             
             $em->persist($persona);
             $em->flush();
