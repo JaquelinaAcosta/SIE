@@ -29,16 +29,16 @@ class DependenciaController extends Controller {
             $mesaentrada->setDependencia($dependencia);
             $dependencia->setMesaentrada($mesaentrada);
             $mesaentrada->setCodigoExpediente($form['mesaentrada']['codigoExpediente']->getData());
-            foreach($form['mesaentrada']['responsables']->getData() as $responsable){
-                $responsable->setUbicacion($mesaentrada);
-                $mesaentrada->addResponsable($responsable);
-            }  
+//            foreach($form['mesaentrada']['responsables']->getData() as $responsable){
+//                $responsable->setUbicacion($mesaentrada);
+//                $mesaentrada->addResponsable($responsable);
+//            }  
             
-            dump($dependencia);
-            die();
+//            dump($dependencia);
+//            die();
             
-//            $em->persist($mesaentrada);
-//            $em->flush();
+            $em->persist($mesaentrada);
+            $em->flush();
         }
 
         // replace this example code with whatever you need

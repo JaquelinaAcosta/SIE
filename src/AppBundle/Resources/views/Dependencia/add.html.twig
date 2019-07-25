@@ -77,7 +77,7 @@
                 <h3>Información de la Mesa de Entrada</h3>
                 <hr/>
 
-                <label class="text-default">RESPONSABLE/S(<span class="text-danger">*</span>)</label>                 
+               {# <label class="text-default">RESPONSABLE/S(<span class="text-danger">*</span>)</label>                 
                 <div class="responsable_items">
 
 
@@ -86,7 +86,7 @@
                 <div class="responsables" data-prototype="{{ form_widget(form.mesaentrada.responsables.vars.prototype)|e('html_attr') }}">
 
                 </div>
-                <hr/>
+                <hr/>#}
                 {#<label class="text-default">RESPONSABLES(<span class="text-danger">*</span>)</label>                 
                 {{ form_errors(form.mesaentrada.responsables.usuario) }}
                 {{ form_widget(form.mesaentrada.responsables.usuario) }}#}

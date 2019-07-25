@@ -63,30 +63,6 @@ class Persona extends Ubicacion
     }
    
     /**
-     * Set idUbicacion
-     *
-     * @param integer $idUbicacion
-     *
-     * @return Persona
-     */
-    public function setIdUbicacion($idUbicacion)
-    {
-        $this->idUbicacion = $idUbicacion;
-
-        return $this;
-    }
-    
-    
-     /**
-     * Get idUbicacion
-     *
-     * @return integer
-     */
-    public function getIdUbicacion()
-    {
-        return $this->idUbicacion;
-    }
-    /**
      * Set apellido
      *
      * @param string $apellido

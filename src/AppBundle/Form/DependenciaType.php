@@ -33,8 +33,9 @@ class DependenciaType extends AbstractType
                     ]
                 ])
                 ->add('responsable', EntityType::class,[
-                    "class"=>'AppBundle:Usuario',
+                    "class"=>'AppBundle:Persona',
                     "placeholder"=>'--Seleccione--',
+                    "required"=>false,
                     "label"=>false,
                     "attr"=>[
                         "class"=>'form-control',

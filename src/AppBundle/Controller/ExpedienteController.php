@@ -27,17 +27,13 @@ class ExpedienteController extends Controller {
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
-            if ($form->isValid()) {
-
-               
+            if ($form->isValid()) {              
                 foreach ($form['expedientes_asociados']->getData() as $expediente_asoc) {
                     $expediente_asoc->setExpedientePadre($expediente);
                 }
 
 //                dump($expediente);
 //                die();
-
-
                 $em->persist($expediente);
                 $em->flush();
             }

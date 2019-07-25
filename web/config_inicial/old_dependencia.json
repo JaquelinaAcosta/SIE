@@ -1,0 +1,250 @@
+{
+	"dependencias":[
+		{
+			"id":1,
+			"descripcion":"Gobernador",
+			"nivel":1,		
+			"responsable_id":6,
+			"dependencia_padre_id":1
+		},
+		{
+			"id":2,
+			"descripcion":"Ministerio de Infraestructura y Transporte",
+			"nivel":1,		
+			"responsable_id":5,
+			"dependencia_padre_id":1
+		}
+		,
+		{
+			"id":3,
+			"descripcion":"Dirección Provincial de Vialidad",
+			"nivel":1,		
+			"responsable_id":3,
+			"dependencia_padre_id":2
+		}
+		,
+		{
+			"id":4,
+			"descripcion":"Dirección General de Conservación",
+			"nivel":4,		
+			"responsable_id":933,
+			"dependencia_padre_id":23
+		}
+		,
+		{
+			"id":5,
+			"descripcion":"Dirección de Staff",
+			"nivel":5,		
+			"responsable_id":933,
+			"dependencia_padre_id":23
+		}
+		,
+		{
+			"id":6,
+			"descripcion":"Sub Dirección de Informática",
+			"nivel":6,		
+			"responsable_id":4,
+			"dependencia_padre_id":5
+		}
+		,
+		{
+			"id":7,
+			"descripcion":"Dirección de Obras",
+			"nivel":5,		
+			"responsable_id":945,
+			"dependencia_padre_id":21
+		}
+		,
+		{
+			"id":8,
+			"descripcion":"Dirección General de Coordinación y Despacho",
+			"nivel":4,		
+			"responsable_id":349,
+			"dependencia_padre_id":23
+		}
+		,
+		{
+			"id":9,
+			"descripcion":"Dirección General de Finanzas y Presupuesto",
+			"nivel":4,		
+			"responsable_id":129,
+			"dependencia_padre_id":23
+		}
+		,
+		{
+			"id":10,
+			"descripcion":"Dirección de Suministros",
+			"nivel":5,		
+			"responsable_id":319,
+			"dependencia_padre_id":9
+		}
+		,
+		{
+			"id":11,
+			"descripcion":"Dirección General de Programación",
+			"nivel":4,		
+			"responsable_id":197,
+			"dependencia_padre_id":23
+		}
+		,
+		{
+			"id":12,
+			"descripcion":"Dirección de Planeamiento",
+			"nivel":5,		
+			"responsable_id":138,
+			"dependencia_padre_id":11
+		}
+		,
+		{
+			"id":13,
+			"descripcion":"Dirección de Programación Económica y Costos",
+			"nivel":5,		
+			"responsable_id":173,
+			"dependencia_padre_id":11
+		}
+		,
+		{
+			"id":14,
+			"descripcion":"Dirección General de Proyectos",
+			"nivel":4,		
+			"responsable_id":52,
+			"dependencia_padre_id":23
+		}
+		,
+		{
+			"id":15,
+			"descripcion":"Dirección de Tierras y Contribuciones",
+			"nivel":5,		
+			"responsable_id":963,
+			"dependencia_padre_id":14
+		}
+		,
+		{
+			"id":16,
+			"descripcion":"Dirección de Investigaciones y Ensayos Tecnológicos",
+			"nivel":5,		
+			"responsable_id":151,
+			"dependencia_padre_id":14
+		}
+		,
+		{
+			"id":17,
+			"descripcion":"Dirección de Auditoría Interna",
+			"nivel":5,		
+			"responsable_id":193,
+			"dependencia_padre_id":23
+		}
+		,
+		{
+			"id":18,
+			"descripcion":"Dirección General de Asuntos Jurídicos",
+			"nivel":4,		
+			"responsable_id":50,
+			"dependencia_padre_id":23
+		}
+		,
+		{
+			"id":19,
+			"descripcion":"Dirección General de Concesiones",
+			"nivel":4,		
+			"responsable_id":244,
+			"dependencia_padre_id":23
+		}
+		,
+		{
+			"id":20,
+			"descripcion":"Dirección Concesiones Privadas",
+			"nivel":5,		
+			"responsable_id":234,
+			"dependencia_padre_id":23
+		}
+		,
+		{
+			"id":21,
+			"descripcion":"Dirección General de Obras",
+			"nivel":4,		
+			"responsable_id":946,
+			"dependencia_padre_id":23
+		}
+		,
+		{
+			"id":22,
+			"descripcion":"Sub Administración Dirección Provincial de Vialidad",
+			"nivel":2,		
+			"responsable_id":1033,
+			"dependencia_padre_id":3
+		}
+		,
+		{
+			"id":23,
+			"descripcion":"Ingeniero Jefe",
+			"nivel":3,		
+			"responsable_id":946,
+			"dependencia_padre_id":22
+		}
+		,
+		{
+			"id":24,
+			"descripcion":"Dirección Estudios Y Proyectos",
+			"nivel":5,		
+			"responsable_id":247,
+			"dependencia_padre_id":14
+		}
+		,
+		{
+			"id":25,
+			"descripcion":"Dirección de Conservación",
+			"nivel":5,		
+			"responsable_id":932,
+			"dependencia_padre_id":4
+		}
+		,
+		{
+			"id":26,
+			"descripcion":"Dirección de Recursos Humanos",
+			"nivel":5,		
+			"responsable_id":63,
+			"dependencia_padre_id":23
+		}
+		,
+		{
+			"id":27,
+			"descripcion":"Sub Dirección de Recursos Humanos",
+			"nivel":6,		
+			"responsable_id":305,
+			"dependencia_padre_id":26
+		}
+		,
+		{
+			"id":28,
+			"descripcion":"Dirección de Consorcios Camineros",
+			"nivel":5,		
+			"responsable_id":263,
+			"dependencia_padre_id":23
+		}
+		,
+		{
+			"id":29,
+			"descripcion":"Chofer Administración",
+			"nivel":6,		
+			"responsable_id":1003,
+			"dependencia_padre_id":22
+		}
+		,
+		{
+			"id":30,
+			"descripcion":"Concesiones Privadas",
+			"nivel":6,		
+			"responsable_id":234,
+			"dependencia_padre_id":23
+		}
+		,
+		{
+			"id":31,
+			"descripcion":"Secretaría Privada",
+			"nivel":6,		
+			"responsable_id":392,
+			"dependencia_padre_id":23
+		}
+	]
+}

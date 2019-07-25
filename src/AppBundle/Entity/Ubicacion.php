@@ -35,7 +35,7 @@ class Ubicacion
      * @var int
      *
      * @ORM\ManyToOne(targetEntity="Dependencia",inversedBy="ubicaciones",cascade={"persist"})
-     * @ORM\JoinColumn(name="dependencia", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="dependencia_id", referencedColumnName="id", nullable=true)
      */
     private $dependencia;
 
@@ -86,6 +86,21 @@ class Ubicacion
         return $this->id;
     }
 
+        /**
+     * Set id
+     *
+     * @param integer $id
+     *
+     * @return Ubicacion
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+    
+    
     /**
      * Set dependencia
      *

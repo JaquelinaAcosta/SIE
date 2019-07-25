@@ -2267,13 +2267,6 @@
     </service>
     <service id="security.access_map" class="Symfony\Component\Security\Http\AccessMap" public="false">
       <call method="add">
-        <argument type="service" id="security.request_matcher.uioujsp"/>
-        <argument type="collection">
-          <argument>ROLE_USER</argument>
-        </argument>
-        <argument>null</argument>
-      </call>
-      <call method="add">
         <argument type="service" id="security.request_matcher.03y8fzb"/>
         <argument type="collection">
           <argument>ROLE_USER</argument>
@@ -2799,9 +2792,6 @@
         <argument key="security.firewall.map.context.dev" type="service" id="security.firewall.map.context.dev"/>
         <argument key="security.firewall.map.context.main" type="service" id="security.firewall.map.context.main"/>
       </argument>
-    </service>
-    <service id="security.request_matcher.uioujsp" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-      <argument>^/home</argument>
     </service>
     <service id="security.request_matcher.03y8fzb" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
       <argument>^/listaExpediente</argument>

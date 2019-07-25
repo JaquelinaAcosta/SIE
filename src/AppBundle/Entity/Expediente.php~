@@ -37,7 +37,7 @@ class Expediente
     /**
      * @var int
      *
-     * @ORM\ManyToOne(targetEntity="Tema")
+     * @ORM\ManyToOne(targetEntity="Tema",inversedBy="expedientes") 
      * @ORM\JoinColumn(name="tema", referencedColumnName="id", nullable=false)
      */
     private $tema;
@@ -101,8 +101,6 @@ class Expediente
     private $caratulas;
     
     /**
-    *@var \Doctrine\Common\Collections\ArrayCollection
-    * 
     *@ORM\OneToMany(targetEntity="ExpedienteAsociado", mappedBy="expedientePadre",cascade={"persist"})
      */
     protected $expedientes_asociados;
@@ -139,8 +137,8 @@ class Expediente
 
     public function __construct(){
         $this->expedientes_asociados = new ArrayCollection();
-        $this->caratulas = new ArrayCollection();
-        $this->movimientos = new ArrayCollection();
+//        $this->caratulas = new ArrayCollection();
+//        $this->movimientos = new ArrayCollection();
     }
     
     public function getLugarfisico()

@@ -43,7 +43,7 @@ class Dependencia
     /**
      * @var int
      *
-     * @ORM\Column(name="responsable", type="string")
+     * @ORM\Column(name="responsable", type="integer")
      */
     private $responsable;
 
@@ -120,6 +120,21 @@ class Dependencia
         return $this->id;
     }
 
+    
+    /**
+     * Set id
+     *
+     * @param integer $id
+     *
+     * @return Dependencia
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+    
     /**
      * Set descripcion
      *
