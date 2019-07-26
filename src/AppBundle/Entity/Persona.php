@@ -62,6 +62,7 @@ class Persona extends Ubicacion
         return $this->id;
     }
    
+    
     /**
      * Set apellido
      *

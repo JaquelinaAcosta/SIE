@@ -161,9 +161,20 @@ class __TwigTemplate_1f39ff6449f84471f76e144ab8b227252e8290b3e8d1b3b46e3672d0430
                 <h3>Información de la Mesa de Entrada</h3>
                 <hr/>
 
-               ";
-        // line 90
-        echo "                ";
+                <label class=\"text-default\">RESPONSABLE/S(<span class=\"text-danger\">*</span>)</label>                 
+                <div class=\"responsable_items\">
+
+
+                </div>
+                <div class=\"add float right\"></div>
+                <div class=\"responsables\" data-prototype=\"";
+        // line 86
+        echo twig_escape_filter($this->env, $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute($this->getAttribute($this->getAttribute($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "mesaentrada", []), "responsables", []), "vars", []), "prototype", []), 'widget'), "html_attr");
+        echo "\">
+
+                </div>
+                <hr/>
+                ";
         // line 93
         echo "
                 <label class=\"text-default\">CODIGO DE EXPEDIENTE(<span class=\"text-danger\">*</span>)</label>                 
@@ -283,7 +294,7 @@ class __TwigTemplate_1f39ff6449f84471f76e144ab8b227252e8290b3e8d1b3b46e3672d0430
 
     public function getDebugInfo()
     {
-        return array (  188 => 102,  182 => 99,  176 => 96,  172 => 95,  168 => 93,  166 => 90,  156 => 73,  152 => 72,  145 => 68,  141 => 67,  133 => 62,  129 => 61,  121 => 56,  117 => 55,  109 => 50,  102 => 45,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  199 => 102,  193 => 99,  187 => 96,  183 => 95,  179 => 93,  172 => 86,  156 => 73,  152 => 72,  145 => 68,  141 => 67,  133 => 62,  129 => 61,  121 => 56,  117 => 55,  109 => 50,  102 => 45,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -375,7 +386,7 @@ class __TwigTemplate_1f39ff6449f84471f76e144ab8b227252e8290b3e8d1b3b46e3672d0430
                 <h3>Información de la Mesa de Entrada</h3>
                 <hr/>
 
-               {# <label class=\"text-default\">RESPONSABLE/S(<span class=\"text-danger\">*</span>)</label>                 
+                <label class=\"text-default\">RESPONSABLE/S(<span class=\"text-danger\">*</span>)</label>                 
                 <div class=\"responsable_items\">
 
 
@@ -384,7 +395,7 @@ class __TwigTemplate_1f39ff6449f84471f76e144ab8b227252e8290b3e8d1b3b46e3672d0430
                 <div class=\"responsables\" data-prototype=\"{{ form_widget(form.mesaentrada.responsables.vars.prototype)|e('html_attr') }}\">
 
                 </div>
-                <hr/>#}
+                <hr/>
                 {#<label class=\"text-default\">RESPONSABLES(<span class=\"text-danger\">*</span>)</label>                 
                 {{ form_errors(form.mesaentrada.responsables.usuario) }}
                 {{ form_widget(form.mesaentrada.responsables.usuario) }}#}
