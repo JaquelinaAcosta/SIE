@@ -66,113 +66,115 @@
                 <label class="text-default">RESPONSABLE(<span class="text-danger">*</span>)</label>                 
                 {{ form_errors(form.responsable) }}
                 {{ form_widget(form.responsable) }}
-            </div>
-            <div class="">
-                <label class="text-default">NIVEL(<span class="text-danger">*</span>)</label>                 
-                {{ form_errors(form.nivel) }}
-                {{ form_widget(form.nivel) }}
-            </div>
-            <div class="">
-                <hr/>
-                <h3>Información de la Mesa de Entrada</h3>
-                <hr/>
 
-                <label class="text-default">RESPONSABLE/S(<span class="text-danger">*</span>)</label>                 
-                <div class="responsable_items">
-
-
-                </div>
-                <div class="add float right"></div>
-                <div class="responsables" data-prototype="{{ form_widget(form.mesaentrada.responsables.vars.prototype)|e('html_attr') }}">
-
-                </div>
-                <hr/>
-                {#<label class="text-default">RESPONSABLES(<span class="text-danger">*</span>)</label>                 
-                {{ form_errors(form.mesaentrada.responsables.usuario) }}
-                {{ form_widget(form.mesaentrada.responsables.usuario) }}#}
-
-                <label class="text-default">CODIGO DE EXPEDIENTE(<span class="text-danger">*</span>)</label>                 
-                {{ form_errors(form.mesaentrada.codigoExpediente) }}
-                {{ form_widget(form.mesaentrada.codigoExpediente) }}
-            </div>
-            <div class="aceptar">
-                {{ form_widget(form.Aceptar) }}
-            </div>
-
-            {{form_end(form)}}
-        </div>
-    </div>  
-
-    <script>
-        var $collectionHolder;
-
-        // setup an "add a tag" link
-        var $addResponsableButton = $('<button type="button" class="add_responsable form-control btn btn-danger">Agregar</button>');
-        var $newLinkLi = $('.add').append($addResponsableButton);
-
-        jQuery(document).ready(function () {
-            // Get the ul that holds the collection of tags
-            $collectionHolder = $('.responsables');
-
-            // add a delete link to all of the existing tag form li elements
-         
-            // add the "add a tag" anchor and li to the tags ul
-            $collectionHolder.append($newLinkLi);
-
-            // count the current form inputs we have (e.g. 2), use that as the new
-            // index when inserting a new item (e.g. 2)
-            $collectionHolder.data('index', $collectionHolder.find(':input').length);
-
-            addResponsableForm($collectionHolder, $newLinkLi);
              
-            $addResponsableButton.on('click', function (e) {
-                // add a new tag form (see next code block)
+                </div>
+                <div class="">
+                    <label class="text-default">NIVEL(<span class="text-danger">*</span>)</label>                 
+                    {{ form_errors(form.nivel) }}
+                    {{ form_widget(form.nivel) }}
+                </div>
+                <div class="">
+                    <hr/>
+                    <h3>Información de la Mesa de Entrada</h3>
+                    <hr/>
+
+                    <label class="text-default">RESPONSABLE/S(<span class="text-danger">*</span>)</label>                 
+                    <div class="responsable_items">
+
+
+                    </div>
+                    <div class="add float right"></div>
+                    <div class="responsables" data-prototype="{{ form_widget(form.mesaentrada.responsables.vars.prototype)|e('html_attr') }}">
+
+                    </div>
+                    <hr/>
+                    {#<label class="text-default">RESPONSABLES(<span class="text-danger">*</span>)</label>                 
+                    {{ form_errors(form.mesaentrada.responsables.usuario) }}
+                    {{ form_widget(form.mesaentrada.responsables.usuario) }}#}
+
+                    <label class="text-default">CODIGO DE EXPEDIENTE(<span class="text-danger">*</span>)</label>                 
+                    {{ form_errors(form.mesaentrada.codigoExpediente) }}
+                    {{ form_widget(form.mesaentrada.codigoExpediente) }}
+                </div>
+                <div class="aceptar">
+                    {{ form_widget(form.Aceptar) }}
+                </div>
+
+                {{form_end(form)}}
+            </div>
+        </div>  
+
+        <script>
+            var $collectionHolder;
+
+            // setup an "add a tag" link
+            var $addResponsableButton = $('<button type="button" class="add_responsable form-control btn btn-danger">Agregar</button>');
+            var $newLinkLi = $('.add').append($addResponsableButton);
+
+            jQuery(document).ready(function () {
+                // Get the ul that holds the collection of tags
+                $collectionHolder = $('.responsables');
+
+                // add a delete link to all of the existing tag form li elements
+
+                // add the "add a tag" anchor and li to the tags ul
+                $collectionHolder.append($newLinkLi);
+
+                // count the current form inputs we have (e.g. 2), use that as the new
+                // index when inserting a new item (e.g. 2)
+                $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
                 addResponsableForm($collectionHolder, $newLinkLi);
+
+                $addResponsableButton.on('click', function (e) {
+                    // add a new tag form (see next code block)
+                    addResponsableForm($collectionHolder, $newLinkLi);
+                });
             });
-        });
 
-        function addTagFormDeleteLink($tagFormLi,$collectionHolder) {
-            var $removeFormButton = $('<button type="button">Delete this tag</button>');
-            $tagFormLi.append($removeFormButton);
+            function addTagFormDeleteLink($tagFormLi, $collectionHolder) {
+                var $removeFormButton = $('<button type="button">Delete this tag</button>');
+                $tagFormLi.append($removeFormButton);
 
-            $removeFormButton.on('click', function (e) {
-                // remove the li for the tag form
-                $tagFormLi.remove();
-                var index = $collectionHolder.data('index');
-                $collectionHolder.data('index', index - 1);
-            });
-        }
-
-        function addResponsableForm($collectionHolder, $newLinkLi) {
-            // Get the data-prototype explained earlier
-            var prototype = $collectionHolder.data('prototype');
-            // get the new index
-            var index = $collectionHolder.data('index');
-
-            var newForm = prototype;
-            // You need this only if you didn't set 'label' => false in your tags field in TaskType
-            // Replace '__name__label__' in the prototype's HTML to
-            // instead be a number based on how many items we have
-            // newForm = newForm.replace(/__name__label__/g, index);
-
-            // Replace '__name__' in the prototype's HTML to
-            // instead be a number based on how many items we have
-            newForm = newForm.replace(/__name__/g, index);
-           
-            // increase the index with one for the next item
-            $collectionHolder.data('index', index + 1);
-            
-            // Display the form in the page in an li, before the "Add a tag" link li
-            var $newFormLi = $('.responsable_items').append(newForm);
-            if(index > 1 ){
-                 addTagFormDeleteLink($($newFormLi).children().eq(index-1),$collectionHolder);
+                $removeFormButton.on('click', function (e) {
+                    // remove the li for the tag form
+                    $tagFormLi.remove();
+                    var index = $collectionHolder.data('index');
+                    $collectionHolder.data('index', index - 1);
+                });
             }
-           
-            //console.log($($newFormLi).children().eq(index-1));
-            $newLinkLi.before($newFormLi);
 
-        }
+            function addResponsableForm($collectionHolder, $newLinkLi) {
+                // Get the data-prototype explained earlier
+                var prototype = $collectionHolder.data('prototype');
+                // get the new index
+                var index = $collectionHolder.data('index');
+
+                var newForm = prototype;
+                // You need this only if you didn't set 'label' => false in your tags field in TaskType
+                // Replace '__name__label__' in the prototype's HTML to
+                // instead be a number based on how many items we have
+                // newForm = newForm.replace(/__name__label__/g, index);
+
+                // Replace '__name__' in the prototype's HTML to
+                // instead be a number based on how many items we have
+                newForm = newForm.replace(/__name__/g, index);
+
+                // increase the index with one for the next item
+                $collectionHolder.data('index', index + 1);
+
+                // Display the form in the page in an li, before the "Add a tag" link li
+                var $newFormLi = $('.responsable_items').append(newForm);
+                if (index > 1) {
+                    addTagFormDeleteLink($($newFormLi).children().eq(index - 1), $collectionHolder);
+                }
+
+                //console.log($($newFormLi).children().eq(index-1));
+                $newLinkLi.before($newFormLi);
+
+            }
 
 
-    </script>
-{% endblock %}
+        </script>
+        {% endblock %}

@@ -8,6 +8,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use PUGX\AutocompleterBundle\Form\Type\AutocompleteType;
+use AppBundle\Entity\Persona;
 
 
 class DependenciaType extends AbstractType
@@ -33,16 +35,17 @@ class DependenciaType extends AbstractType
                         "placeholder"=>"Ingrese la dependecia padre"
                     ]
                 ])
-                ->add('responsable', EntityType::class,[
-                    "class"=>'AppBundle:Persona',
-                    "placeholder"=>'--Seleccione--',
-                    "required"=>false,
-                    "label"=>false,
-                    "attr"=>[
-                        "class"=>'form-control',
-                        "placeholder"=>"Ingrese su responsable"
-                    ]
-                ])
+                ->add('responsable', AutocompleteType::class, ['class' => Persona::class])
+//                ->add('responsable', EntityType::class,[
+//                    "class"=>'AppBundle:Persona',
+//                    "placeholder"=>'--Seleccione--',
+//                    "required"=>false,
+//                    "label"=>false,
+//                    "attr"=>[
+//                        "class"=>'form-control',
+//                        "placeholder"=>"Ingrese su responsable"
+//                    ]
+//                ])
                 ->add('nivel', TextType::class,[
                     "label"=>false,
                     "attr"=>[
@@ -72,7 +75,7 @@ class DependenciaType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_dependencia';
+        return 'dependencia';
     }
 
 
