@@ -9,6 +9,7 @@
     <parameter key="kernel.cache_dir">/var/www/html/SIE/var/cache/dev</parameter>
     <parameter key="kernel.logs_dir">/var/www/html/SIE/var/logs</parameter>
     <parameter key="kernel.bundles" type="collection">
+      <parameter key="PUGXAutocompleterBundle">PUGX\AutocompleterBundle\PUGXAutocompleterBundle</parameter>
       <parameter key="FrameworkBundle">Symfony\Bundle\FrameworkBundle\FrameworkBundle</parameter>
       <parameter key="SecurityBundle">Symfony\Bundle\SecurityBundle\SecurityBundle</parameter>
       <parameter key="TwigBundle">Symfony\Bundle\TwigBundle\TwigBundle</parameter>
@@ -24,6 +25,11 @@
       <parameter key="WebServerBundle">Symfony\Bundle\WebServerBundle\WebServerBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
+      <parameter key="PUGXAutocompleterBundle" type="collection">
+        <parameter key="parent">null</parameter>
+        <parameter key="path">/var/www/html/SIE/vendor/pugx/autocompleter-bundle</parameter>
+        <parameter key="namespace">PUGX\AutocompleterBundle</parameter>
+      </parameter>
       <parameter key="FrameworkBundle" type="collection">
         <parameter key="parent">null</parameter>
         <parameter key="path">/var/www/html/SIE/vendor/symfony/symfony/src/Symfony/Bundle/FrameworkBundle</parameter>
@@ -105,6 +111,8 @@
     <parameter key="mailer_password">null</parameter>
     <parameter key="secret">ThisTokenIsNotSoSecretChangeIt</parameter>
     <parameter key="locale">en</parameter>
+    <parameter key="pugx_autocompleter.autocomplete.class">PUGX\AutocompleterBundle\Form\Type\AutocompleteType</parameter>
+    <parameter key="pugx_autocompleter.filter_autocomplete.class">PUGX\AutocompleterBundle\Form\Type\AutocompleteFilterType</parameter>
     <parameter key="fragment.renderer.hinclude.global_template">null</parameter>
     <parameter key="fragment.path">/_fragment</parameter>
     <parameter key="kernel.secret">ThisTokenIsNotSoSecretChangeIt</parameter>
@@ -584,6 +592,17 @@
     <service id="AppBundle\Form\UsuarioType" class="AppBundle\Form\UsuarioType" public="false" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
+    <service id="pugx_autocompleter.autocomplete" class="PUGX\AutocompleterBundle\Form\Type\AutocompleteType">
+      <tag name="form.type" alias="autocomplete"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="pugx_autocompleter.filter_autocomplete" class="PUGX\AutocompleterBundle\Form\Type\AutocompleteFilterType">
+      <tag name="form.type" alias="filter_autocomplete"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="pugx_autocompleter.filter.doctrine_subscriber" class="PUGX\AutocompleterBundle\Listener\FilterSubscriber">
+      <tag name="kernel.event_subscriber"/>
+    </service>
     <service id="controller_name_converter" class="Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser" public="false">
       <tag name="monolog.logger" channel="request"/>
       <argument type="service" id="kernel"/>
@@ -830,6 +849,7 @@
       <argument type="collection">
         <argument>Symfony\Component\Form\Extension\Core\Type</argument>
         <argument>AppBundle\Form</argument>
+        <argument></argument>
         <argument>Symfony\Bridge\Doctrine\Form\Type</argument>
       </argument>
       <argument type="collection">
@@ -844,6 +864,8 @@
         <argument>AppBundle\Form\ResolucionType</argument>
         <argument>AppBundle\Form\ResponsableType</argument>
         <argument>AppBundle\Form\UsuarioType</argument>
+        <argument>PUGX\AutocompleterBundle\Form\Type\AutocompleteType</argument>
+        <argument>PUGX\AutocompleterBundle\Form\Type\AutocompleteFilterType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FormType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
         <argument>Symfony\Bridge\Doctrine\Form\Type\EntityType</argument>
@@ -1057,7 +1079,7 @@
       <argument type="service" id="form.resolved_type_factory"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id="service_locator.ja7vlan"/>
+      <argument type="service" id="service_locator.clwflnj"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -4025,9 +4047,11 @@
         <argument key="inline" type="service" id="fragment.renderer.inline"/>
       </argument>
     </service>
-    <service id="service_locator.ja7vlan" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id="service_locator.clwflnj" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="PUGX\AutocompleterBundle\Form\Type\AutocompleteType" type="service" id="pugx_autocompleter.autocomplete"/>
+        <argument key="PUGX\AutocompleterBundle\Form\Type\AutocompleteFilterType" type="service" id="pugx_autocompleter.filter_autocomplete"/>
         <argument key="AppBundle\Form\CaratulaAgregadaType" type="service" id="AppBundle\Form\CaratulaAgregadaType"/>
         <argument key="AppBundle\Form\DependenciaType" type="service" id="AppBundle\Form\DependenciaType"/>
         <argument key="AppBundle\Form\ExpedienteAsociadoType" type="service" id="AppBundle\Form\ExpedienteAsociadoType"/>

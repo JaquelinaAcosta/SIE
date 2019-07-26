@@ -18,24 +18,24 @@ class DependenciaController extends Controller {
         $em = $this->getDoctrine()->getEntityManager();
         $dependencia = new Dependencia();
         $mesaentrada = new MesaEntrada();
-    
+
         $form = $this->createForm(DependenciaType::class, $dependencia);
-        
+
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted()) {                     
+        if ($form->isSubmitted()) {
             $mesaentrada->setDependencia($dependencia);
             $dependencia->setMesaentrada($mesaentrada);
             $mesaentrada->setCodigoExpediente($form['mesaentrada']['codigoExpediente']->getData());
-            foreach($form['mesaentrada']['responsables']->getData() as $responsable){
+            foreach ($form['mesaentrada']['responsables']->getData() as $responsable) {
                 $responsable->setUbicacion($mesaentrada);
                 $mesaentrada->addResponsable($responsable);
-            }  
-            
+            }
+
 //            dump($dependencia);
 //            die();
-            
+
             $em->persist($mesaentrada);
             $em->flush();
         }
@@ -44,6 +44,18 @@ class DependenciaController extends Controller {
         return $this->render('AppBundle:Dependencia:add.html.twig', [
                     'form' => $form->createView()
         ]);
+    }
+
+    public function searchResponsable(Request $request) {
+        $q = $request->query->get('q'); // use "term" instead of "q" for jquery-ui
+        $results = $this->getDoctrine()->getRepository('AppBundle:Responsable')->findLikeName($q);
+
+        return $this->render('AppBundle:Dependencia:dependencia.json.twig', ['results' => $results]);
+    }
+
+    public function getResponsable($id = null) {
+        $responsable = $this->getDoctrine()->getRepository('AppBundle:Persona')->find($id);
+        return $this->json($responsable->getNombre());
     }
 
 }

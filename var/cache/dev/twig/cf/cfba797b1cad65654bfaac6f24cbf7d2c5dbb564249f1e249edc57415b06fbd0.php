@@ -39,7 +39,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         echo "<!DOCTYPE HTML>
 <html lang=\"es\">
     <head>
-        
+
         <meta charset=\"utf-8\" />
         <title>            
             ";
@@ -48,12 +48,21 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         echo "           
         </title>
         <script src=\"https://code.jquery.com/jquery-1.12.4.js\"
-\t\t\t  integrity=\"sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=\"
-\t\t\t  crossorigin=\"anonymous\"></script>
-\t<link href=\"https://use.fontawesome.com/releases/v5.0.6/css/all.css\" rel=\"stylesheet\">\t
+                integrity=\"sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=\"
+        crossorigin=\"anonymous\"></script>
+        <link href=\"https://use.fontawesome.com/releases/v5.0.6/css/all.css\" rel=\"stylesheet\">\t
         <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js\"></script>
         <link href=\"https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css\" rel=\"stylesheet\">
-           
+        <script src=\"//code.jquery.com/jquery-3.3.1.min.js\"></script>
+        <script src=\"//code.jquery.com/ui/1.12.1/jquery-ui.min.js\"></script>
+        <script src=\"";
+        // line 17
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("bundles/pugxautocompleter/js/autocompleter-jqueryui.js"), "html", null, true);
+        echo "\"></script>
+        <script src=\"";
+        // line 18
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/app.js"), "html", null, true);
+        echo "\"></script>  
         <style>
             .active{
                 color:grey;
@@ -79,21 +88,21 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
             }
             .footer p{
                 text-align: center;
-               color:#fff;
+                color:#fff;
             }
         </style>
-          <link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css\">
-  <link rel=\"stylesheet\" href=\"/resources/demos/style.css\">
-  <script src=\"https://code.jquery.com/ui/1.12.1/jquery-ui.js\"></script>
-  <script>
-   \$(function() {
-    \$( \".datepicker\" ).datepicker({
-      inline: true,
-      showOtherMonths: true,
-      dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
-    });    
-  });
-  </script>
+        <link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css\">
+        <link rel=\"stylesheet\" href=\"/resources/demos/style.css\">
+        <script src=\"https://code.jquery.com/ui/1.12.1/jquery-ui.js\"></script>
+        <script>
+            \$(function () {
+                \$(\".datepicker\").datepicker({
+                    inline: true,
+                    showOtherMonths: true,
+                    dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                });
+            });
+        </script>
     </head>
     <body>       
         <header>  
@@ -108,7 +117,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                             <span class=\"icon-bar\"></span>
                         </button>
                         <a class=\"navbar-brand\" href=\"";
-        // line 69
+        // line 72
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("homepage");
         echo "\">Sistema de Pases Internos de Expedientes</a>
                     </div>
@@ -117,60 +126,60 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                     <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">
                         <ul class=\"nav navbar-nav\">                        
                             ";
-        // line 75
-        $this->displayBlock('menu', $context, $blocks);
         // line 78
+        $this->displayBlock('menu', $context, $blocks);
+        // line 81
         echo "                        </ul>
                         <ul class=\"nav navbar-nav navbar-right\">
 
                             <li><a href=\"#\">
-                                   
+
                                 </a>
                             </li>
-                            
+
                             <li>
                                 ";
-        // line 87
+        // line 90
         if (($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []) != null)) {
-            // line 88
-            echo "                                  Bienvenido, ";
+            // line 91
+            echo "                                    Bienvenido, ";
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "userName", []), "html", null, true);
             echo "
- 
+
                                 ";
         }
-        // line 91
+        // line 94
         echo "                            </li>
 
                             <li class=\"dropdown\">
                                 <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Opciones  <span class=\"glyphicon glyphicon-cog\"></span><span class=\"caret\"></span></a>
                                 <ul class=\"dropdown-menu\">
-                                    
-                                        ";
-        // line 97
+
+                                    ";
+        // line 100
         if (($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []) == null)) {
-            // line 98
-            echo " 
-                                            <li><a href=\"";
-            // line 99
+            // line 101
+            echo "
+                                        <li><a href=\"";
+            // line 102
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("loginUsuario");
             echo "\">Entrar</a></li>
-                                        
-                                        ";
+
+                                    ";
         } else {
-            // line 102
-            echo "                                            <li><a href=\"";
+            // line 105
+            echo "                                        <li><a href=\"";
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("logout");
             echo "\">Salir</a></li>
                                         ";
         }
-        // line 104
-        echo "                       
-                                        <li><a href=\"#\">Ayuda</a></li>
+        // line 107
+        echo "
+                                    <li><a href=\"#\">Ayuda</a></li>
 
-                                        <li role=\"separator\" class=\"divider\"></li>
+                                    <li role=\"separator\" class=\"divider\"></li>
 
-                                        
+
 
                                 </ul>
                             </li>
@@ -179,17 +188,17 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                 </div><!-- /.container-fluid -->
             </nav>
         </header>
-           
+
         <section id=\"content\">             
             ";
-        // line 120
+        // line 123
         $this->displayBlock('content', $context, $blocks);
         echo "   
         </section>
-       
-        
+
+
     </body>
-    
+
 </html>
 ";
         
@@ -218,7 +227,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     }
 
-    // line 75
+    // line 78
     public function block_menu($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -228,7 +237,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "menu"));
 
         echo "  
-                          
+
                             ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -238,7 +247,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     }
 
-    // line 120
+    // line 123
     public function block_content($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -268,7 +277,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     public function getDebugInfo()
     {
-        return array (  242 => 120,  222 => 75,  204 => 7,  186 => 120,  168 => 104,  162 => 102,  156 => 99,  153 => 98,  151 => 97,  143 => 91,  136 => 88,  134 => 87,  123 => 78,  121 => 75,  112 => 69,  47 => 7,  39 => 1,);
+        return array (  251 => 123,  231 => 78,  213 => 7,  195 => 123,  177 => 107,  171 => 105,  165 => 102,  162 => 101,  160 => 100,  152 => 94,  145 => 91,  143 => 90,  132 => 81,  130 => 78,  121 => 72,  64 => 18,  60 => 17,  47 => 7,  39 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -284,18 +293,21 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         return new Source("<!DOCTYPE HTML>
 <html lang=\"es\">
     <head>
-        
+
         <meta charset=\"utf-8\" />
         <title>            
             {% block title %}SIE{% endblock %}           
         </title>
         <script src=\"https://code.jquery.com/jquery-1.12.4.js\"
-\t\t\t  integrity=\"sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=\"
-\t\t\t  crossorigin=\"anonymous\"></script>
-\t<link href=\"https://use.fontawesome.com/releases/v5.0.6/css/all.css\" rel=\"stylesheet\">\t
+                integrity=\"sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=\"
+        crossorigin=\"anonymous\"></script>
+        <link href=\"https://use.fontawesome.com/releases/v5.0.6/css/all.css\" rel=\"stylesheet\">\t
         <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js\"></script>
         <link href=\"https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css\" rel=\"stylesheet\">
-           
+        <script src=\"//code.jquery.com/jquery-3.3.1.min.js\"></script>
+        <script src=\"//code.jquery.com/ui/1.12.1/jquery-ui.min.js\"></script>
+        <script src=\"{{ asset('bundles/pugxautocompleter/js/autocompleter-jqueryui.js') }}\"></script>
+        <script src=\"{{ asset('js/app.js') }}\"></script>  
         <style>
             .active{
                 color:grey;
@@ -321,21 +333,21 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
             }
             .footer p{
                 text-align: center;
-               color:#fff;
+                color:#fff;
             }
         </style>
-          <link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css\">
-  <link rel=\"stylesheet\" href=\"/resources/demos/style.css\">
-  <script src=\"https://code.jquery.com/ui/1.12.1/jquery-ui.js\"></script>
-  <script>
-   \$(function() {
-    \$( \".datepicker\" ).datepicker({
-      inline: true,
-      showOtherMonths: true,
-      dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
-    });    
-  });
-  </script>
+        <link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css\">
+        <link rel=\"stylesheet\" href=\"/resources/demos/style.css\">
+        <script src=\"https://code.jquery.com/ui/1.12.1/jquery-ui.js\"></script>
+        <script>
+            \$(function () {
+                \$(\".datepicker\").datepicker({
+                    inline: true,
+                    showOtherMonths: true,
+                    dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                });
+            });
+        </script>
     </head>
     <body>       
         <header>  
@@ -356,40 +368,40 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                     <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">
                         <ul class=\"nav navbar-nav\">                        
                             {% block menu %}  
-                          
+
                             {% endblock %}
                         </ul>
                         <ul class=\"nav navbar-nav navbar-right\">
 
                             <li><a href=\"#\">
-                                   
+
                                 </a>
                             </li>
-                            
+
                             <li>
                                 {% if app.user != null %}
-                                  Bienvenido, {{app.user.userName}}
- 
+                                    Bienvenido, {{app.user.userName}}
+
                                 {%endif%}
                             </li>
 
                             <li class=\"dropdown\">
                                 <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Opciones  <span class=\"glyphicon glyphicon-cog\"></span><span class=\"caret\"></span></a>
                                 <ul class=\"dropdown-menu\">
-                                    
-                                        {% if app.user == null %}
- 
-                                            <li><a href=\"{{ path(\"loginUsuario\") }}\">Entrar</a></li>
-                                        
-                                        {%else%}
-                                            <li><a href=\"{{ path(\"logout\") }}\">Salir</a></li>
+
+                                    {% if app.user == null %}
+
+                                        <li><a href=\"{{ path(\"loginUsuario\") }}\">Entrar</a></li>
+
+                                    {%else%}
+                                        <li><a href=\"{{ path(\"logout\") }}\">Salir</a></li>
                                         {%endif%}
-                       
-                                        <li><a href=\"#\">Ayuda</a></li>
 
-                                        <li role=\"separator\" class=\"divider\"></li>
+                                    <li><a href=\"#\">Ayuda</a></li>
 
-                                        
+                                    <li role=\"separator\" class=\"divider\"></li>
+
+
 
                                 </ul>
                             </li>
@@ -398,14 +410,14 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                 </div><!-- /.container-fluid -->
             </nav>
         </header>
-           
+
         <section id=\"content\">             
             {% block content %}Content default{% endblock %}   
         </section>
-       
-        
+
+
     </body>
-    
+
 </html>
 ", "AppBundle::layout.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/layout.html.twig");
     }

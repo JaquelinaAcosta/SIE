@@ -54,6 +54,7 @@ class ComposerStaticInit51360961fb0f72da29492c4b88b57df0
             'Psr\\Link\\' => 9,
             'Psr\\Container\\' => 14,
             'Psr\\Cache\\' => 10,
+            'PUGX\\AutocompleterBundle\\' => 25,
         ),
         'M' => 
         array (
@@ -191,6 +192,10 @@ class ComposerStaticInit51360961fb0f72da29492c4b88b57df0
         'Psr\\Cache\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/cache/src',
+        ),
+        'PUGX\\AutocompleterBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/pugx/autocompleter-bundle',
         ),
         'Monolog\\' => 
         array (
