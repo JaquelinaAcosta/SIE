@@ -107,12 +107,38 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
-        // caratulaAgregada
-        if ('/caratulaAgregada' === $pathinfo) {
-            return array (  '_controller' => 'AppBundle\\Controller\\CaratulaAgregadaController::indexAction',  '_route' => 'caratulaAgregada',);
+        elseif (0 === strpos($pathinfo, '/c')) {
+            // caratulaAgregada
+            if ('/caratulaAgregada' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\CaratulaAgregadaController::indexAction',  '_route' => 'caratulaAgregada',);
+            }
+
+            // generar_dependencia
+            if ('/config_inicial' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\ConfigController::generarDependenciaAction',  '_route' => 'generar_dependencia',);
+            }
+
+            if (0 === strpos($pathinfo, '/config_inicial_')) {
+                // generar_persona
+                if ('/config_inicial_persona' === $pathinfo) {
+                    return array (  '_controller' => 'AppBundle\\Controller\\ConfigController::cargarPersonaAction',  '_route' => 'generar_persona',);
+                }
+
+                // set_dependencia
+                if ('/config_inicial_dependencia_set' === $pathinfo) {
+                    return array (  '_controller' => 'AppBundle\\Controller\\ConfigController::setearDependenciaAction',  '_route' => 'set_dependencia',);
+                }
+
+                // generar_mesaentrada
+                if ('/config_inicial_dependencia_mesaentrada' === $pathinfo) {
+                    return array (  '_controller' => 'AppBundle\\Controller\\ConfigController::generarMesaEntradaAction',  '_route' => 'generar_mesaentrada',);
+                }
+
+            }
+
         }
 
-        if (0 === strpos($pathinfo, '/a')) {
+        elseif (0 === strpos($pathinfo, '/a')) {
             if (0 === strpos($pathinfo, '/add')) {
                 // nueva_dependencia
                 if ('/add/dependencia' === $pathinfo) {

@@ -8,6 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Doctrine\ORM\EntityRepository;
 
 class PersonaType extends AbstractType {
 
@@ -19,6 +20,10 @@ class PersonaType extends AbstractType {
                 ->add('dependencia', EntityType::class, array(
                     "label" => false,
                     "placeholder" => "--Seleccione--",
+                    'query_builder' => function (EntityRepository $er) {
+                                return $er->createQueryBuilder('u')
+                                    ->orderBy('u.descripcion', 'ASC');
+                            },
                     "class" => 'AppBundle:Dependencia', "attr" => array(
                         "class" => "form-control"
                     ))

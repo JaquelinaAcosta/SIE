@@ -34,16 +34,12 @@ class Dependencia
     private $descripcion;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="dependenciaPadre", type="string")
+     * @ORM\ManyToOne(targetEntity="Dependencia")
      */
     private $dependenciaPadre;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="responsable", type="integer")
+     * @ORM\ManyToOne(targetEntity="Persona")
      */
     private $responsable;
 
@@ -66,13 +62,14 @@ class Dependencia
     
     
     /**
-     * @Assert\Type(type="App\Entity\MesaEntrada")
+     * @ORM\OneToOne(targetEntity="MesaEntrada")
+     * @Assert\Type(type="AppBundle\Entity\MesaEntrada")
      * @Assert\Valid
      */
     private $mesaentrada;
     
      /**
-     * @Assert\Type(type="App\Entity\Persona")
+     * @Assert\Type(type="AppBundle\Entity\Persona")
      * @Assert\Valid
      */
     protected $persona;

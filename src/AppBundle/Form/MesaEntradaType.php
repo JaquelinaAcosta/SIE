@@ -19,17 +19,17 @@ class MesaEntradaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-//               ->add('responsables', CollectionType::class,[
-//                   'entry_type'=> ResponsableType::class,
-//                   'label'=>false,
-//                   'entry_options'=>[
-//                       'label'=>false,
-//                       ],
-//                   'prototype' => true,
-//                   'allow_add'=>true,
-//                   'allow_delete' => true,
-//                   'by_reference'=>false,
-//               ])
+               ->add('responsables', CollectionType::class,[
+                   'entry_type'=> ResponsableType::class,
+                   'label'=>false,
+                   'entry_options'=>[
+                       'label'=>false,
+                       ],
+                   'prototype' => true,
+                   'allow_add'=>true,
+                   'allow_delete' => true,
+                   'by_reference'=>false,
+               ])
                ->add('codigoExpediente', TextType::class,array(
                "label"=>"Nro. de Expediente:","attr"=> array(
                "class"=>"form-exp form-control" ,

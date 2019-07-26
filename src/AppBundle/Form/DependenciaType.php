@@ -25,7 +25,8 @@ class DependenciaType extends AbstractType
                         "placeholder"=>"Ingrese descripción"
                     ]
                 ])
-                ->add('dependenciaPadre', TextType::class,[                  
+                ->add('dependenciaPadre', EntityType::class,[      
+                    "class"=>'AppBundle:Dependencia',
                     "attr"=>[
                         "label"=>false,
                         "class"=>"form-control",

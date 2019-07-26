@@ -28,67 +28,6 @@ class PaginaPrincipalController extends Controller {
      * @Route("/home", name="homepage")
      */
     public function homeAction(Request $request) {
-//        $em = $this->getDoctrine()->getEntityManager();
-//        $assetPath = $this->get('kernel')->getProjectDir() . "/web/config_inicial/";
-//
-//        $personasFile = file_get_contents($assetPath . "persona.json");
-//        $personaArray = json_decode($personasFile, true);
-//
-//        $dependenciasFile = file_get_contents($assetPath . "dependencia.json");
-//        $dependenciasArray = json_decode($dependenciasFile, true);
-//
-//        //GENERACION DE LAS DEPENDENCIAS
-//        for ($i = 0; $i < count($dependenciasArray); $i++) {
-//            $dependencia = new Dependencia();
-//            $dependencia->setId($dependenciasArray[$i]['descripcion']);
-//            $dependencia->setDescripcion($dependenciasArray[$i]['descripcion']);
-//            $dependencia->setNivel($dependenciasArray[$i]['categoriaProgramatica']);
-//            $dependencia->setDependenciaPadre($dependenciasArray[$i]['dependenciaPadre_id']);
-//            $dependencia->setResponsable($dependenciasArray[$i]['personaResponsable_id']);
-//            $dependencia->setId($dependenciasArray[$i]['id']);
-//            $metadata = $em->getClassMetadata(get_class($dependencia));
-//            $metadata->setIdGenerator(new \Doctrine\ORM\Id\AssignedGenerator());
-//            $metadata->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
-//            $em->persist($dependencia);
-//            $em->flush();
-//        }
-//        
-//        //GENERACION DE CADA PERSONA
-//        for ($i = 0; $i < count($personaArray); $i++) {
-//            $persona = new Persona();
-//            $dependencia = $em->getRepository("AppBundle:Dependencia")->find($personaArray[$i]['dependencia_id']);
-//
-//            $persona->setNombre($personaArray[$i]['nombre']);
-//            $persona->setApellido($personaArray[$i]['apellido']);
-//            $persona->setDni($personaArray[$i]['numeroDocumento']);
-//            $persona->setCargo('Sin cargo asignado');
-//            if ($dependencia != null) {
-//                $persona->setDependencia($dependencia);
-//            } else {
-//                $persona->setDependencia(NULL);
-//            }
-//
-//            $persona->setId($personaArray[$i]['id']);
-//            $metadata = $em->getClassMetadata(get_parent_class($persona));
-//            $metadata->setIdGenerator(new \Doctrine\ORM\Id\AssignedGenerator());
-//            $metadata->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
-//            $em->persist($persona);
-//            $em->flush();
-//        }
-//        
-//        //GENERACION DE LAS MESAS DE ENTRADA DE LAS DEPENDENCIAS PERSISTIDAS ARRIBA
-//        for ($i = 0; $i < count($dependenciasArray); $i++) {
-//
-//            $dependencia = $em->getRepository("AppBundle:Dependencia")->find($dependenciasArray[$i]['id']);
-//            $mesaentrada = new MesaEntrada();
-//            $mesaentrada->setCodigoExpediente('Sin codigo asignado');
-//            $mesaentrada->setDependencia($dependencia);
-//            $lastUbicacion = $em->getRepository('AppBundle:Ubicacion')->findOneBy(array(),array('id'=>'DESC'),0,1);
-//            $mesaentrada->setId($lastUbicacion->getId()+1);
-//            $em->persist($mesaentrada);
-//            $em->flush();
-//        }
-
         // replace this example code with whatever you need
         return $this->render('AppBundle:PaginaPrincipal:index.html.twig', [
         ]);

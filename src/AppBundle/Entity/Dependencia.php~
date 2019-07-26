@@ -41,9 +41,7 @@ class Dependencia
     private $dependenciaPadre;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="responsable", type="integer")
+     * @ORM\OneToOne(targetEntity="Persona")
      */
     private $responsable;
 
