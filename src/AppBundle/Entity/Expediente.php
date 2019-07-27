@@ -84,9 +84,7 @@ class Expediente
     private $fechaFin;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="ubicacion_actual", type="integer",nullable=true)
+     *@ORM\ManyToOne(targetEntity="Ubicacion")
      */
     private $ubicacionActual;
 

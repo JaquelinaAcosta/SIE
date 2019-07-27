@@ -72,7 +72,7 @@ class Usuario implements UserInterface
     
     
     public function __toString() {
-       return $this->iup;
+       return $this->persona->getApellido().", ".$this->persona->getNombre();
     }
     
     //AUTENTICACION PARA LOGIN

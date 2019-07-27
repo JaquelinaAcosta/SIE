@@ -176,11 +176,13 @@ class Ubicacion
     /**
      * Remove responsable
      *
-     * @param \AppBundle\Entity\Responsable $responsable
+     * @param \AppBundle\Entity\Responsable $responsable    
+     * @return Ubicacion
      */
     public function removeResponsable(\AppBundle\Entity\Responsable $responsable)
     {
         $this->responsables->removeElement($responsable);
+
     }
 
     /**

@@ -48,10 +48,6 @@ class Persona extends Ubicacion
     protected $usuario;
     
 
-    public function __toString() {
-        return $this->apellido.", ".$this->nombre;
-    }
-    
     /**
      * Get id
      *

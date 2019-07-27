@@ -29,13 +29,13 @@ class ExpedienteType extends AbstractType {
                         "placeholder" => "00000-000000000-0"
                     )
                 ))
-                ->add('iniciadorDependencia', EntityType::class, array(
-                    "label" => "Dependencia:",
-                    "placeholder" => "--Seleccione--",
-                    "class" => 'AppBundle:Dependencia', "attr" => array(
-                        "class" => "form-control"
-                    ))
-                )
+//                ->add('iniciadorDependencia', EntityType::class, array(
+//                    "label" => "Dependencia:",
+//                    "placeholder" => "--Seleccione--",
+//                    "class" => 'AppBundle:Dependencia', "attr" => array(
+//                        "class" => "form-control"
+//                    ))
+//                )
                 ->add('concepto', TextareaType::class, array(
                     "label" => "Concepto: ", "attr" => array(
                         "class" => "form-name form-control",

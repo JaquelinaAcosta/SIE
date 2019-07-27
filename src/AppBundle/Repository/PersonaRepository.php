@@ -10,4 +10,12 @@ namespace AppBundle\Repository;
  */
 class PersonaRepository extends \Doctrine\ORM\EntityRepository
 {
+    
+     public function findLikeName($term) {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $result = $qb->select('n')->from('AppBundle:Persona', 'n')->where($qb->expr()->like('n.apellido', $qb->expr()->literal('%' . $term . '%')))->getQuery()->getResult();
+        return $result;
+    }
+
+    
 }

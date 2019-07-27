@@ -106,7 +106,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
     </head>
     <body>       
         <header>  
-            <nav class=\"navbar navbar-sticky-top navbar-default\">
+            <nav class=\"navbar navbar-sticky-top navbar-default \">
                 <div class=\"container-fluid\">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class=\"navbar-header\">
@@ -119,7 +119,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                         <a class=\"navbar-brand\" href=\"";
         // line 72
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("homepage");
-        echo "\">Sistema de Pases Internos de Expedientes</a>
+        echo "\">Sistema de Pases de Expediente</a>
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -132,27 +132,24 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         echo "                        </ul>
                         <ul class=\"nav navbar-nav navbar-right\">
 
-                            <li><a href=\"#\">
-
-                                </a>
+                            ";
+        // line 91
+        echo "
+                            <li>
+                               
                             </li>
 
-                            <li>
-                                ";
-        // line 90
-        if (($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []) != null)) {
-            // line 91
-            echo "                                    Bienvenido, ";
-            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "userName", []), "html", null, true);
-            echo "
-
-                                ";
-        }
-        // line 94
-        echo "                            </li>
-
                             <li class=\"dropdown\">
-                                <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Opciones  <span class=\"glyphicon glyphicon-cog\"></span><span class=\"caret\"></span></a>
+                                <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">";
+        // line 97
+        if (($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []) != null)) {
+            echo " ";
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "userName", []), "html", null, true);
+            echo " ";
+        } else {
+            echo " Iniciar Sesion ";
+        }
+        echo " <span class=\"glyphicon glyphicon-cog\"></span><span class=\"caret\"></span></a>
                                 <ul class=\"dropdown-menu\">
 
                                     ";
@@ -168,20 +165,16 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                                     ";
         } else {
             // line 105
-            echo "                                        <li><a href=\"";
+            echo "                                        <li><a href=\"#\">Opciones</a></li>
+                                         <li role=\"separator\" class=\"divider\"></li>
+                                        <li><a href=\"";
+            // line 107
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("logout");
             echo "\">Salir</a></li>
                                         ";
         }
-        // line 107
-        echo "
-                                    <li><a href=\"#\">Ayuda</a></li>
-
-                                    <li role=\"separator\" class=\"divider\"></li>
-
-
-
-                                </ul>
+        // line 109
+        echo "                                </ul>
                             </li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
@@ -191,7 +184,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
         <section id=\"content\">             
             ";
-        // line 123
+        // line 118
         $this->displayBlock('content', $context, $blocks);
         echo "   
         </section>
@@ -247,7 +240,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     }
 
-    // line 123
+    // line 118
     public function block_content($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -277,7 +270,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     public function getDebugInfo()
     {
-        return array (  251 => 123,  231 => 78,  213 => 7,  195 => 123,  177 => 107,  171 => 105,  165 => 102,  162 => 101,  160 => 100,  152 => 94,  145 => 91,  143 => 90,  132 => 81,  130 => 78,  121 => 72,  64 => 18,  60 => 17,  47 => 7,  39 => 1,);
+        return array (  244 => 118,  224 => 78,  206 => 7,  188 => 118,  177 => 109,  172 => 107,  168 => 105,  162 => 102,  159 => 101,  157 => 100,  145 => 97,  137 => 91,  132 => 81,  130 => 78,  121 => 72,  64 => 18,  60 => 17,  47 => 7,  39 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -351,7 +344,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
     </head>
     <body>       
         <header>  
-            <nav class=\"navbar navbar-sticky-top navbar-default\">
+            <nav class=\"navbar navbar-sticky-top navbar-default \">
                 <div class=\"container-fluid\">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class=\"navbar-header\">
@@ -361,7 +354,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                             <span class=\"icon-bar\"></span>
                             <span class=\"icon-bar\"></span>
                         </button>
-                        <a class=\"navbar-brand\" href=\"{{ path(\"homepage\") }}\">Sistema de Pases Internos de Expedientes</a>
+                        <a class=\"navbar-brand\" href=\"{{ path(\"homepage\") }}\">Sistema de Pases de Expediente</a>
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -373,20 +366,20 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                         </ul>
                         <ul class=\"nav navbar-nav navbar-right\">
 
-                            <li><a href=\"#\">
-
-                                </a>
-                            </li>
-
-                            <li>
-                                {% if app.user != null %}
-                                    Bienvenido, {{app.user.userName}}
+                            {#<li><a href=\"#\">
+                                     {% if app.user != null %}
+                                    Bienvenido, {{}}
 
                                 {%endif%}
+                                </a>
+                            </li>#}
+
+                            <li>
+                               
                             </li>
 
                             <li class=\"dropdown\">
-                                <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Opciones  <span class=\"glyphicon glyphicon-cog\"></span><span class=\"caret\"></span></a>
+                                <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">{% if app.user != null %} {{ app.user.userName }} {% else %} Iniciar Sesion {% endif %} <span class=\"glyphicon glyphicon-cog\"></span><span class=\"caret\"></span></a>
                                 <ul class=\"dropdown-menu\">
 
                                     {% if app.user == null %}
@@ -394,15 +387,10 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                                         <li><a href=\"{{ path(\"loginUsuario\") }}\">Entrar</a></li>
 
                                     {%else%}
+                                        <li><a href=\"#\">Opciones</a></li>
+                                         <li role=\"separator\" class=\"divider\"></li>
                                         <li><a href=\"{{ path(\"logout\") }}\">Salir</a></li>
                                         {%endif%}
-
-                                    <li><a href=\"#\">Ayuda</a></li>
-
-                                    <li role=\"separator\" class=\"divider\"></li>
-
-
-
                                 </ul>
                             </li>
                         </ul>

@@ -45,42 +45,38 @@
         
     </style>
     
-    <div class="formu col-lg-12 ">
-        <div class="border border-primary" >
-            <h2 class="text-center">Lista de Expedientes</h2>
-            <hr/>
-            <div class="panel panel-primary col-lg-10  col-md-offset-1" style="padding-left:  100px;padding-top:20px">
-                {% for expediente in expediente|reverse %}
-                       <div class="expediente col-lg-5 panel panel-primary">
-                           <div class="panel-heading " style="font-size:18px;">
-                                <h4 class="list-group-item-heading">Expediente Nro.: {{ expediente.nroExpediente|e }}</h4>
-                           </div>
- 
-                            <p class="list-group-item-text">Tema: {{ expediente.tema|e }}</p>
+
+
+                     <h4 class="text-center">    <i class="fas fa-bars"></i> Lista de Expedientes -  {{ app.user.persona.dependencia.descripcion }}</h4>
+                         <hr/>
+
+                    <table class="table table-striped">
+                        <thead class="">
+                            <tr>
+                                <th scope="col">Nro. Expediente</th>
+                                <th scope="col">Concepto</th>
+                                <th scope="col">Código</th>
+                                <th scope="col">Fecha Inicio</th>
+                                <th scope="col">Ubicacion</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {% for expediente in expediente|reverse %}
+                                <tr>
+                                    <td>{{expediente.nroExpediente|e }}</td>
+                                    <td>{{expediente.concepto|e }}</td>
+                                    <td>{{expediente.tema|e }}</td>
+                                    <td>{{expediente.fechaInicio|e }}</td>
+                                    <td>{{expediente.ubicacionActual|e }}</td>
+                                    <td><a class="btn btn-info" href="{{ path("ver_expediente", {'id':expediente.id}) }}"  role="button"><i class="fas fa-search"></i></a>
+                                        <a class="btn btn-warning" href="{{ path("editar_expediente", {'id':expediente.id}) }}"  role="button"><i class="fas fa-edit"></i></a>
+                                        <a class="btn btn-danger" href="{{ path("eliminar_expediente", {'id':expediente.id}) }}"  role="button"><i class="fas fa-trash-alt"></i></a></td>
+                                </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
                             <hr/>
-                            <p class="list-group-item-text">Concepto: {{ expediente.concepto|e }}</p>
-                            <hr/>
-                            <a class="btn btn-info" href="{{ path("ver_expediente",{'id':expediente.id}) }}"  role="button">Ver detalle</a>
-                            <a class="btn btn-warning" href="{{ path("editar_expediente",{'id':expediente.id}) }}"  role="button">Modificar</a>
-                            <a class="btn btn-danger" href="{{ path("eliminar_expediente",{'id':expediente.id}) }}"  role="button">Eliminar</a>
-        
-                            <br>
-                       </div>
-                {% endfor %}
-                
-            </div>
-                
-                <div class="col-lg-3 float left">
-                <br/>
-                <br/>
-               
-                
-                <div/>
-        </div>
-    </div>
-    
-    {#{{dump(expediente)}}#}
-    
-    
-  
 {% endblock %}

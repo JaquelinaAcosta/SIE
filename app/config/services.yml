@@ -33,3 +33,7 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+    my_form:
+        class: AppBundle\Form\ResponsableType
+        public: true
+        arguments:  ['@security.token_storage']

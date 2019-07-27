@@ -16,6 +16,10 @@
 
 
         [{% for responsable in results -%}
+        <input type="button" value="kk"/>
+          <input type="button" value="kk"/>
+            <input type="button" value="kk"/>
+              <input type="button" value="kk"/>
         {{ {id: responsable.id, label: responsable.nombre, value: responsable.nombre}|json_encode|raw }}
         {# use "value" instead of "id" key, if you use jquery-ui #}
         {%- if not loop.last %},{% endif -%}

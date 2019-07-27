@@ -35,7 +35,13 @@ class DependenciaType extends AbstractType
                         "placeholder"=>"Ingrese la dependecia padre"
                     ]
                 ])
-                ->add('responsable', AutocompleteType::class, ['class' => Persona::class])
+                ->add('responsable', AutocompleteType::class, [
+                    'class' => Persona::class,                 
+                    'attr'=>[
+                        'class'=>'form form-control',
+                          "placeholder"=>'Escriba parte del Nombre y seleccione'
+                    ]
+                        ])
 //                ->add('responsable', EntityType::class,[
 //                    "class"=>'AppBundle:Persona',
 //                    "placeholder"=>'--Seleccione--',

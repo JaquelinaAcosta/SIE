@@ -26,8 +26,12 @@ class ExpedienteController extends Controller {
 
         $form->handleRequest($request);
 
+        $user = $this->getUser();
+        $expediente->setIniciadorDependencia($user->getPersona()->getDependencia());
+        $expediente->setUbicacionActual($expediente->getIniciadorDependencia()->getMesaentrada());
+
         if ($form->isSubmitted()) {
-            if ($form->isValid()) {              
+            if ($form->isValid()) {
                 foreach ($form['expedientes_asociados']->getData() as $expediente_asoc) {
                     $expediente_asoc->setExpedientePadre($expediente);
                 }
@@ -67,7 +71,17 @@ class ExpedienteController extends Controller {
     public function listaExpedientesAction(Request $request) {
 
         $em = $this->getDoctrine()->getEntityManager();
-        $expediente = $em->getRepository("AppBundle:Expediente")->findAll();
+        $user = $this->getUser();
+        $expediente = new Expediente();
+
+        if ($user->getRole() == "ROLE_ADMIN") {
+            $expediente = $em->getRepository("AppBundle:Expediente")->findAll();
+        } else {
+            $expediente = $em->getRepository("AppBundle:Expediente")->findBy([
+                'iniciadorDependencia' => $user->getPersona()->getDependencia()
+            ]);
+        }
+
 
         // replace this example code with whatever you need
         return $this->render('AppBundle:Expediente:listadoExpediente.html.twig', [
@@ -83,7 +97,7 @@ class ExpedienteController extends Controller {
         $em = $this->getDoctrine()->getEntityManager();
         $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
         $tema = $em->getRepository("AppBundle:Tema")->find(1);
-        
+
 //        dump($tema->getExpedientes()->getValues());
 //        die();
 //        
@@ -130,13 +144,21 @@ class ExpedienteController extends Controller {
 
         $form->handleRequest($request);
 
+        $user = $this->getUser();
+        $expediente->setIniciadorDependencia($user->getPersona()->getDependencia());
+         $expediente->setUbicacionActual($expediente->getIniciadorDependencia()->getMesaentrada());
+
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
+                foreach ($form['expedientes_asociados']->getData() as $expediente_asoc) {
+                    $expediente_asoc->setExpedientePadre($expediente);
+                }
 
+//                dump($expediente);
+//                die();
                 $em->persist($expediente);
-                $flush = $em->flush();
+                $em->flush();
             }
-
             return $this->redirectToRoute('listado_expediente');
         }
 

@@ -18,6 +18,8 @@ class MesaEntradaType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $gestion = $options['gestion'];
+        
         $builder
                ->add('responsables', CollectionType::class,[
                    'entry_type'=> ResponsableType::class,
@@ -36,6 +38,13 @@ class MesaEntradaType extends AbstractType
                "placeholder"=>"Código de expediente..."
             )
         ));
+        if($gestion != null){
+             $builder->add('Guardar', SubmitType::class,
+                     ['attr'=>array(
+                         "class"=>"form-control btn btn-success"
+                     )]);
+        }
+       
                 
     }/**
      * {@inheritdoc}
@@ -43,7 +52,8 @@ class MesaEntradaType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\MesaEntrada'
+            'data_class' => 'AppBundle\Entity\MesaEntrada',
+            'gestion'=>null
         ));
     }
 
