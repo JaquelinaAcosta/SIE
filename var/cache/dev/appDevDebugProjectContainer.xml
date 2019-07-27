@@ -592,6 +592,10 @@
     <service id="AppBundle\Form\UsuarioType" class="AppBundle\Form\UsuarioType" public="false" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
+    <service id="my_form" class="AppBundle\Form\ResponsableType" public="true" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+      <argument type="service" id="security.token_storage"/>
+    </service>
     <service id="pugx_autocompleter.autocomplete" class="PUGX\AutocompleterBundle\Form\Type\AutocompleteType">
       <tag name="form.type" alias="autocomplete"/>
       <argument type="service" id="doctrine"/>
@@ -1079,7 +1083,7 @@
       <argument type="service" id="form.resolved_type_factory"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id="service_locator.clwflnj"/>
+      <argument type="service" id="service_locator.cqpe9ic"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -4024,6 +4028,8 @@
     <service id="abstract.instanceof.AppBundle\Form\ResponsableType" class="AppBundle\Form\ResponsableType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\UsuarioType" class="AppBundle\Form\UsuarioType" public="false" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Form\UsuarioType" class="AppBundle\Form\UsuarioType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.my_form" class="AppBundle\Form\ResponsableType" public="true" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.my_form" class="AppBundle\Form\ResponsableType" public="true" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="service_locator.sr6ctxe" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection"/>
@@ -4047,7 +4053,7 @@
         <argument key="inline" type="service" id="fragment.renderer.inline"/>
       </argument>
     </service>
-    <service id="service_locator.clwflnj" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id="service_locator.cqpe9ic" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="PUGX\AutocompleterBundle\Form\Type\AutocompleteType" type="service" id="pugx_autocompleter.autocomplete"/>
@@ -4061,7 +4067,7 @@
         <argument key="AppBundle\Form\MovimientoExpedienteType" type="service" id="AppBundle\Form\MovimientoExpedienteType"/>
         <argument key="AppBundle\Form\PersonaType" type="service" id="AppBundle\Form\PersonaType"/>
         <argument key="AppBundle\Form\ResolucionType" type="service" id="AppBundle\Form\ResolucionType"/>
-        <argument key="AppBundle\Form\ResponsableType" type="service" id="AppBundle\Form\ResponsableType"/>
+        <argument key="AppBundle\Form\ResponsableType" type="service" id="my_form"/>
         <argument key="AppBundle\Form\UsuarioType" type="service" id="AppBundle\Form\UsuarioType"/>
         <argument key="Symfony\Bridge\Doctrine\Form\Type\EntityType" type="service" id="form.type.entity"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service" id="form.type.choice"/>

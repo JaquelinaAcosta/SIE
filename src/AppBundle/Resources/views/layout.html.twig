@@ -59,7 +59,7 @@
     </head>
     <body>       
         <header>  
-            <nav class="navbar navbar-sticky-top navbar-default">
+            <nav class="navbar navbar-sticky-top navbar-default ">
                 <div class="container-fluid">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
@@ -69,7 +69,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="{{ path("homepage") }}">Sistema de Pases Internos de Expedientes</a>
+                        <a class="navbar-brand" href="{{ path("homepage") }}">Sistema de Pases de Expediente</a>
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -81,20 +81,20 @@
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
 
-                            <li><a href="#">
-
-                                </a>
-                            </li>
-
-                            <li>
-                                {% if app.user != null %}
-                                    Bienvenido, {{app.user.userName}}
+                            {#<li><a href="#">
+                                     {% if app.user != null %}
+                                    Bienvenido, {{}}
 
                                 {%endif%}
+                                </a>
+                            </li>#}
+
+                            <li>
+                               
                             </li>
 
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Opciones  <span class="glyphicon glyphicon-cog"></span><span class="caret"></span></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% if app.user != null %} {{ app.user.userName }} {% else %} Iniciar Sesion {% endif %} <span class="glyphicon glyphicon-cog"></span><span class="caret"></span></a>
                                 <ul class="dropdown-menu">
 
                                     {% if app.user == null %}
@@ -102,15 +102,10 @@
                                         <li><a href="{{ path("loginUsuario") }}">Entrar</a></li>
 
                                     {%else%}
+                                        <li><a href="#">Opciones</a></li>
+                                         <li role="separator" class="divider"></li>
                                         <li><a href="{{ path("logout") }}">Salir</a></li>
                                         {%endif%}
-
-                                    <li><a href="#">Ayuda</a></li>
-
-                                    <li role="separator" class="divider"></li>
-
-
-
                                 </ul>
                             </li>
                         </ul>

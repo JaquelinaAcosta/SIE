@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Entity;
+
 USE Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -10,8 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="movimiento_expediente")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\MovimientoExpedienteRepository")
  */
-class MovimientoExpediente
-{
+class MovimientoExpediente {
+
     /**
      * @var int
      *
@@ -79,65 +80,54 @@ class MovimientoExpediente
      */
     private $tipoSalida;
 
-     
     /**
-     *@Assert\Type(type="AppBundle\Entity\Persona")
-     *@Assert\Valid
+     * @Assert\Type(type="AppBundle\Entity\Persona")
+     * @Assert\Valid
      */
     private $persona;
-    
-    
+
     /**
-     *@Assert\Type(type="AppBundle\Entity\MesaEntrada")
-     *@Assert\Valid
+     * @Assert\Type(type="AppBundle\Entity\MesaEntrada")
+     * @Assert\Valid
      */
     private $mesaentrada;
-    
-    
+
     /**
-     *@Assert\Type(type="AppBundle\Entity\LugarFisico")
-     *@Assert\Valid
+     * @Assert\Type(type="AppBundle\Entity\LugarFisico")
+     * @Assert\Valid
      */
     private $lugarfisico;
-    
-    
-    
-        public function getLugarfisico()
-    {
+
+    public function getLugarfisico() {
         return $this->lugarfisico;
     }
-    public function setLugarfisico(Lugarfisico $lugarfisico = null)
-    {
+
+    public function setLugarfisico(Lugarfisico $lugarfisico = null) {
         $this->lugarfisico = $lugarfisico;
     }
-    
-    public function getPersona()
-    {
+
+    public function getPersona() {
         return $this->persona;
     }
-    public function setPersona(Persona $persona = null)
-    {
+
+    public function setPersona(Persona $persona = null) {
         $this->persona = $persona;
     }
-    public function setMesaentrada(MesaEntrada $mesaentrada = null)
-    {
+
+    public function setMesaentrada(MesaEntrada $mesaentrada = null) {
         $this->mesaentrada = $mesaentrada;
     }
-    
-     public function getMesaentrada()
-    {
+
+    public function getMesaentrada() {
         return $this->mesaentrada;
     }
-
-    
 
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -148,8 +138,7 @@ class MovimientoExpediente
      *
      * @return MovimientoExpediente
      */
-    public function setExpediente($expediente)
-    {
+    public function setExpediente($expediente) {
         $this->expediente = $expediente;
 
         return $this;
@@ -160,8 +149,7 @@ class MovimientoExpediente
      *
      * @return int
      */
-    public function getExpediente()
-    {
+    public function getExpediente() {
         return $this->expediente;
     }
 
@@ -172,8 +160,7 @@ class MovimientoExpediente
      *
      * @return MovimientoExpediente
      */
-    public function setUbicacion($ubicacion)
-    {
+    public function setUbicacion($ubicacion) {
         $this->ubicacion = $ubicacion;
 
         return $this;
@@ -184,8 +171,7 @@ class MovimientoExpediente
      *
      * @return int
      */
-    public function getUbicacion()
-    {
+    public function getUbicacion() {
         return $this->ubicacion;
     }
 
@@ -196,8 +182,7 @@ class MovimientoExpediente
      *
      * @return MovimientoExpediente
      */
-    public function setFojas($fojas)
-    {
+    public function setFojas($fojas) {
         $this->fojas = $fojas;
 
         return $this;
@@ -208,8 +193,7 @@ class MovimientoExpediente
      *
      * @return int
      */
-    public function getFojas()
-    {
+    public function getFojas() {
         return $this->fojas;
     }
 
@@ -220,8 +204,7 @@ class MovimientoExpediente
      *
      * @return MovimientoExpediente
      */
-    public function setUsuario($usuario)
-    {
+    public function setUsuario($usuario) {
         $this->usuario = $usuario;
 
         return $this;
@@ -232,8 +215,7 @@ class MovimientoExpediente
      *
      * @return int
      */
-    public function getUsuario()
-    {
+    public function getUsuario() {
         return $this->usuario;
     }
 
@@ -244,8 +226,7 @@ class MovimientoExpediente
      *
      * @return MovimientoExpediente
      */
-    public function setFecha($fecha)
-    {
+    public function setFecha($fecha) {
         $this->fecha = $fecha;
 
         return $this;
@@ -256,8 +237,7 @@ class MovimientoExpediente
      *
      * @return \DateTime
      */
-    public function getFecha()
-    {
+    public function getFecha() {
         return $this->fecha;
     }
 
@@ -268,8 +248,7 @@ class MovimientoExpediente
      *
      * @return MovimientoExpediente
      */
-    public function setComentario($comentario)
-    {
+    public function setComentario($comentario) {
         $this->comentario = $comentario;
 
         return $this;
@@ -280,8 +259,7 @@ class MovimientoExpediente
      *
      * @return string
      */
-    public function getComentario()
-    {
+    public function getComentario() {
         return $this->comentario;
     }
 
@@ -292,8 +270,7 @@ class MovimientoExpediente
      *
      * @return MovimientoExpediente
      */
-    public function setObservacion($observacion)
-    {
+    public function setObservacion($observacion) {
         $this->observacion = $observacion;
 
         return $this;
@@ -304,8 +281,7 @@ class MovimientoExpediente
      *
      * @return string
      */
-    public function getObservacion()
-    {
+    public function getObservacion() {
         return $this->observacion;
     }
 
@@ -316,8 +292,7 @@ class MovimientoExpediente
      *
      * @return MovimientoExpediente
      */
-    public function setTipoSalida($tipoSalida)
-    {
+    public function setTipoSalida($tipoSalida) {
         $this->tipoSalida = $tipoSalida;
 
         return $this;
@@ -328,8 +303,8 @@ class MovimientoExpediente
      *
      * @return string
      */
-    public function getTipoSalida()
-    {
+    public function getTipoSalida() {
         return $this->tipoSalida;
     }
+
 }

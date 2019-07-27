@@ -89,9 +89,6 @@
 
                     </div>
                     <hr/>
-                    {#<label class="text-default">RESPONSABLES(<span class="text-danger">*</span>)</label>                 
-                    {{ form_errors(form.mesaentrada.responsables.usuario) }}
-                    {{ form_widget(form.mesaentrada.responsables.usuario) }}#}
 
                     <label class="text-default">CODIGO DE EXPEDIENTE(<span class="text-danger">*</span>)</label>                 
                     {{ form_errors(form.mesaentrada.codigoExpediente) }}
@@ -104,7 +101,12 @@
                 {{form_end(form)}}
             </div>
         </div>  
-
+    <script>
+            $('#dependencia_responsable').autocompleter({
+               url_list:  '{{path('search_r')}}',
+               url_get: '{{path('get_r')}}'
+            });
+        </script>
         <script>
             var $collectionHolder;
 
@@ -174,7 +176,6 @@
                 $newLinkLi.before($newFormLi);
 
             }
-
 
         </script>
         {% endblock %}

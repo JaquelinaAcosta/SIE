@@ -177,6 +177,24 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
+        elseif (0 === strpos($pathinfo, '/re')) {
+            // search_r
+            if ('/responsable_search' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\DependenciaController::searchResponsable',  '_route' => 'search_r',);
+            }
+
+            // get_r
+            if (0 === strpos($pathinfo, '/responsable_get') && preg_match('#^/responsable_get(?:/(?P<id>[^/]++))?$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'get_r']), array (  'id' => NULL,  '_controller' => 'AppBundle\\Controller\\DependenciaController::getResponsable',));
+            }
+
+            // nuevo_registro
+            if ('/registro' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::indexAction',  '_route' => 'nuevo_registro',);
+            }
+
+        }
+
         elseif (0 === strpos($pathinfo, '/expediente')) {
             // listado_expediente
             if ('/expediente/listado' === $pathinfo) {
@@ -223,9 +241,9 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
-        // mesaEntrada
-        if ('/mesaEntrada' === $pathinfo) {
-            return array (  '_controller' => 'AppBundle\\Controller\\MesaEntradaController::indexAction',  '_route' => 'mesaEntrada',);
+        // gestionar_mesaentrada
+        if ('/gestionar/mesa_entrada' === $pathinfo) {
+            return array (  '_controller' => 'AppBundle\\Controller\\MesaEntradaController::indexAction',  '_route' => 'gestionar_mesaentrada',);
         }
 
         // moverExpediente
@@ -256,11 +274,6 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         // persona
         if ('/persona' === $pathinfo) {
             return array (  '_controller' => 'AppBundle\\Controller\\PersonaController::indexAction',  '_route' => 'persona',);
-        }
-
-        // nuevo_registro
-        if ('/registro' === $pathinfo) {
-            return array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::indexAction',  '_route' => 'nuevo_registro',);
         }
 
         if ('/' === $pathinfo && !$allow) {

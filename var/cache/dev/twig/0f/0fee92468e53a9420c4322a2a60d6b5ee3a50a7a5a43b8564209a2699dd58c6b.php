@@ -176,33 +176,42 @@ class __TwigTemplate_1f39ff6449f84471f76e144ab8b227252e8290b3e8d1b3b46e3672d0430
 
                     </div>
                     <hr/>
-                    ";
-        // line 95
-        echo "
+
                     <label class=\"text-default\">CODIGO DE EXPEDIENTE(<span class=\"text-danger\">*</span>)</label>                 
                     ";
-        // line 97
+        // line 94
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "mesaentrada", []), "codigoExpediente", []), 'errors');
         echo "
                     ";
-        // line 98
+        // line 95
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "mesaentrada", []), "codigoExpediente", []), 'widget');
         echo "
                 </div>
                 <div class=\"aceptar\">
                     ";
-        // line 101
+        // line 98
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "Aceptar", []), 'widget');
         echo "
                 </div>
 
                 ";
-        // line 104
+        // line 101
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_end');
         echo "
             </div>
         </div>  
-
+    <script>
+            \$('#dependencia_responsable').autocompleter({
+               url_list:  '";
+        // line 106
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("search_r");
+        echo "',
+               url_get: '";
+        // line 107
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("get_r");
+        echo "'
+            });
+        </script>
         <script>
             var \$collectionHolder;
 
@@ -273,7 +282,6 @@ class __TwigTemplate_1f39ff6449f84471f76e144ab8b227252e8290b3e8d1b3b46e3672d0430
 
             }
 
-
         </script>
         ";
         
@@ -296,7 +304,7 @@ class __TwigTemplate_1f39ff6449f84471f76e144ab8b227252e8290b3e8d1b3b46e3672d0430
 
     public function getDebugInfo()
     {
-        return array (  201 => 104,  195 => 101,  189 => 98,  185 => 97,  181 => 95,  174 => 88,  158 => 75,  154 => 74,  145 => 68,  141 => 67,  133 => 62,  129 => 61,  121 => 56,  117 => 55,  109 => 50,  102 => 45,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  211 => 107,  207 => 106,  199 => 101,  193 => 98,  187 => 95,  183 => 94,  174 => 88,  158 => 75,  154 => 74,  145 => 68,  141 => 67,  133 => 62,  129 => 61,  121 => 56,  117 => 55,  109 => 50,  102 => 45,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -400,9 +408,6 @@ class __TwigTemplate_1f39ff6449f84471f76e144ab8b227252e8290b3e8d1b3b46e3672d0430
 
                     </div>
                     <hr/>
-                    {#<label class=\"text-default\">RESPONSABLES(<span class=\"text-danger\">*</span>)</label>                 
-                    {{ form_errors(form.mesaentrada.responsables.usuario) }}
-                    {{ form_widget(form.mesaentrada.responsables.usuario) }}#}
 
                     <label class=\"text-default\">CODIGO DE EXPEDIENTE(<span class=\"text-danger\">*</span>)</label>                 
                     {{ form_errors(form.mesaentrada.codigoExpediente) }}
@@ -415,7 +420,12 @@ class __TwigTemplate_1f39ff6449f84471f76e144ab8b227252e8290b3e8d1b3b46e3672d0430
                 {{form_end(form)}}
             </div>
         </div>  
-
+    <script>
+            \$('#dependencia_responsable').autocompleter({
+               url_list:  '{{path('search_r')}}',
+               url_get: '{{path('get_r')}}'
+            });
+        </script>
         <script>
             var \$collectionHolder;
 
@@ -485,7 +495,6 @@ class __TwigTemplate_1f39ff6449f84471f76e144ab8b227252e8290b3e8d1b3b46e3672d0430
                 \$newLinkLi.before(\$newFormLi);
 
             }
-
 
         </script>
         {% endblock %}
