@@ -18,13 +18,15 @@ class CaratulaAgregadaType extends AbstractType
     {
         $builder
                 
-                ->add('tema', EntityType::class, array(
-                    "label" => "Tema:",
-                    "class"=>'AppBundle:Tema', "attr" => array(
-                    "class" => "form-name form-control",
-                    "placeholder" => "Ej:01983"
-            )
-        ))
+                 ->add('tema', 'PUGX\AutocompleterBundle\Form\Type\AutocompleteType', array(
+                    'class' => 'AppBundle:Tema',
+                    'label' => 'Responsable',
+                    'required' => false,
+                    'attr' => array(
+                        'class'=>'form form-control',
+                        'placeholder' => 'Escriba parte del código y seleccione un tema'
+                    )
+                ))
                 ->add('concepto', TextType::class,array(
             "label"=>"Concepto:","attr"=> array(
                "class"=>"form-name form-control" ,
@@ -58,7 +60,7 @@ class CaratulaAgregadaType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_caratulaagregada';
+        return 'caratulaagregada';
     }
 
 
