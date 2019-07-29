@@ -107,33 +107,66 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
-        elseif (0 === strpos($pathinfo, '/c')) {
-            // caratulaAgregada
-            if ('/caratulaAgregada' === $pathinfo) {
-                return array (  '_controller' => 'AppBundle\\Controller\\CaratulaAgregadaController::indexAction',  '_route' => 'caratulaAgregada',);
+        elseif (0 === strpos($pathinfo, '/expediente')) {
+            if (0 === strpos($pathinfo, '/expediente/view')) {
+                // caratulaAgregada
+                if (0 === strpos($pathinfo, '/expediente/view/caratulaAgregada') && preg_match('#^/expediente/view/caratulaAgregada/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'caratulaAgregada']), array (  '_controller' => 'AppBundle\\Controller\\CaratulaAgregadaController::indexAction',));
+                }
+
+                // eliminar_caratula
+                if (0 === strpos($pathinfo, '/expediente/view/deleteCaratula') && preg_match('#^/expediente/view/deleteCaratula/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'eliminar_caratula']), array (  '_controller' => 'AppBundle\\Controller\\CaratulaAgregadaController::deleteAction',));
+                }
+
+                // editar_caratula
+                if (0 === strpos($pathinfo, '/expediente/view/editCaratula') && preg_match('#^/expediente/view/editCaratula/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'editar_caratula']), array (  '_controller' => 'AppBundle\\Controller\\CaratulaAgregadaController::editCaratulaAction',));
+                }
+
+                // ver_expediente
+                if (preg_match('#^/expediente/view/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'ver_expediente']), array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::expedienteAction',));
+                }
+
             }
 
-            // generar_dependencia
-            if ('/config_inicial' === $pathinfo) {
-                return array (  '_controller' => 'AppBundle\\Controller\\ConfigController::generarDependenciaAction',  '_route' => 'generar_dependencia',);
+            // listado_expediente
+            if ('/expediente/listado' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::listaExpedientesAction',  '_route' => 'listado_expediente',);
             }
 
-            if (0 === strpos($pathinfo, '/config_inicial_')) {
-                // generar_persona
-                if ('/config_inicial_persona' === $pathinfo) {
-                    return array (  '_controller' => 'AppBundle\\Controller\\ConfigController::cargarPersonaAction',  '_route' => 'generar_persona',);
-                }
+            // eliminar_expediente
+            if (0 === strpos($pathinfo, '/expediente/delete') && preg_match('#^/expediente/delete/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'eliminar_expediente']), array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::deleteAction',));
+            }
 
-                // set_dependencia
-                if ('/config_inicial_dependencia_set' === $pathinfo) {
-                    return array (  '_controller' => 'AppBundle\\Controller\\ConfigController::setearDependenciaAction',  '_route' => 'set_dependencia',);
-                }
+            // editar_expediente
+            if (0 === strpos($pathinfo, '/expediente/edit') && preg_match('#^/expediente/edit/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'editar_expediente']), array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::editAction',));
+            }
 
-                // generar_mesaentrada
-                if ('/config_inicial_dependencia_mesaentrada' === $pathinfo) {
-                    return array (  '_controller' => 'AppBundle\\Controller\\ConfigController::generarMesaEntradaAction',  '_route' => 'generar_mesaentrada',);
-                }
+        }
 
+        // generar_dependencia
+        if ('/config_inicial' === $pathinfo) {
+            return array (  '_controller' => 'AppBundle\\Controller\\ConfigController::generarDependenciaAction',  '_route' => 'generar_dependencia',);
+        }
+
+        if (0 === strpos($pathinfo, '/config_inicial_')) {
+            // generar_persona
+            if ('/config_inicial_persona' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\ConfigController::cargarPersonaAction',  '_route' => 'generar_persona',);
+            }
+
+            // set_dependencia
+            if ('/config_inicial_dependencia_set' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\ConfigController::setearDependenciaAction',  '_route' => 'set_dependencia',);
+            }
+
+            // generar_mesaentrada
+            if ('/config_inicial_dependencia_mesaentrada' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\ConfigController::generarMesaEntradaAction',  '_route' => 'generar_mesaentrada',);
             }
 
         }
@@ -191,29 +224,6 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             // nuevo_registro
             if ('/registro' === $pathinfo) {
                 return array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::indexAction',  '_route' => 'nuevo_registro',);
-            }
-
-        }
-
-        elseif (0 === strpos($pathinfo, '/expediente')) {
-            // listado_expediente
-            if ('/expediente/listado' === $pathinfo) {
-                return array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::listaExpedientesAction',  '_route' => 'listado_expediente',);
-            }
-
-            // ver_expediente
-            if (0 === strpos($pathinfo, '/expediente/view') && preg_match('#^/expediente/view/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, ['_route' => 'ver_expediente']), array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::expedienteAction',));
-            }
-
-            // eliminar_expediente
-            if (0 === strpos($pathinfo, '/expediente/delete') && preg_match('#^/expediente/delete/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, ['_route' => 'eliminar_expediente']), array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::deleteAction',));
-            }
-
-            // editar_expediente
-            if (0 === strpos($pathinfo, '/expediente/edit') && preg_match('#^/expediente/edit/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, ['_route' => 'editar_expediente']), array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::editAction',));
             }
 
         }

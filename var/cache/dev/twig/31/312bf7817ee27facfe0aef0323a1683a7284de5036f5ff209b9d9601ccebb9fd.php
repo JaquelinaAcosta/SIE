@@ -245,18 +245,64 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
                     </div>
                     <table class=\"table table-striped table-hover\"> 
                         <thead>
-                        <br/>
-                        </thead>
-                        <tbody>
                             <tr>
-                                <th class=\"info list-group col-lg-3\">Carátulas:  </th>
-                                <td> ";
-        // line 139
-        echo "</td>
+                                <th scope=\"col\">Tema</th>
+                                <th scope=\"col\">Concepto</th>
+                                <th scope=\"col\">Cantidad de Fojas</th>
+                                
                             </tr>
-                        </tbody>
+                        </thead>
+                        
+                        <tbody>
 
+                            ";
+        // line 144
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "caratulas", []), "getValues", []));
+        foreach ($context['_seq'] as $context["_key"] => $context["caratulaAgregada"]) {
+            // line 145
+            echo "                                
+                                <tr>
+                                    <td>";
+            // line 147
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["caratulaAgregada"], "tema", []), "descripcion", []), "html", null, true);
+            echo "</td>
+                                    <td>";
+            // line 148
+            echo twig_escape_filter($this->env, $this->getAttribute($context["caratulaAgregada"], "concepto", []), "html", null, true);
+            echo "</td>
+                                    <td>";
+            // line 149
+            echo twig_escape_filter($this->env, $this->getAttribute($context["caratulaAgregada"], "fojas", []), "html", null, true);
+            echo "</td>
+                                    <td>
+                                    <a class=\"btn btn-warning\" href=\"";
+            // line 151
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_caratula", ["id" => $this->getAttribute($context["caratulaAgregada"], "id", [])]), "html", null, true);
+            echo "\"  role=\"button\"><i class=\"fas fa-edit\"></i></a>
+                                    <a class=\"btn btn-danger\" href=\"";
+            // line 152
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("eliminar_caratula", ["id" => $this->getAttribute($context["caratulaAgregada"], "id", [])]), "html", null, true);
+            echo "\"  role=\"button\"><i class=\"fas fa-trash-alt\"></i></a></td>
+                                </tr>
+                                
+                            ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['caratulaAgregada'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 156
+        echo "
+                        </tbody>
+                        
                     </table>
+                            <hr/>
+                            
+                    <a class=\"btn btn-warning\" href=\"caratulaAgregada/";
+        // line 162
+        echo twig_escape_filter($this->env, $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", []), "html", null, true);
+        echo "\"  role=\"button\"><i class=\"fas fa-file\"></i></a>
+
                 </div>
 
 
@@ -273,7 +319,7 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
                             <tr>
                                 <th class=\"info list-group col-lg-3\">Movimientos:   </th>
                                 <td> ";
-        // line 159
+        // line 179
         echo "</td>
                             </tr>
                         </tbody>
@@ -320,7 +366,7 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
 
     public function getDebugInfo()
     {
-        return array (  277 => 159,  255 => 139,  234 => 121,  216 => 105,  207 => 102,  203 => 101,  199 => 100,  195 => 99,  191 => 98,  187 => 97,  184 => 96,  180 => 95,  152 => 70,  145 => 66,  138 => 62,  131 => 58,  124 => 54,  117 => 50,  110 => 46,  103 => 42,  91 => 33,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  323 => 179,  303 => 162,  295 => 156,  285 => 152,  281 => 151,  276 => 149,  272 => 148,  268 => 147,  264 => 145,  260 => 144,  234 => 121,  216 => 105,  207 => 102,  203 => 101,  199 => 100,  195 => 99,  191 => 98,  187 => 97,  184 => 96,  180 => 95,  152 => 70,  145 => 66,  138 => 62,  131 => 58,  124 => 54,  117 => 50,  110 => 46,  103 => 42,  91 => 33,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -466,16 +512,36 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
                     </div>
                     <table class=\"table table-striped table-hover\"> 
                         <thead>
-                        <br/>
-                        </thead>
-                        <tbody>
                             <tr>
-                                <th class=\"info list-group col-lg-3\">Carátulas:  </th>
-                                <td> {#{{ expediente.caratulas}}#}</td>
+                                <th scope=\"col\">Tema</th>
+                                <th scope=\"col\">Concepto</th>
+                                <th scope=\"col\">Cantidad de Fojas</th>
+                                
                             </tr>
-                        </tbody>
+                        </thead>
+                        
+                        <tbody>
 
+                            {% for caratulaAgregada in expediente.caratulas.getValues %}
+                                
+                                <tr>
+                                    <td>{{caratulaAgregada.tema.descripcion}}</td>
+                                    <td>{{caratulaAgregada.concepto}}</td>
+                                    <td>{{caratulaAgregada.fojas}}</td>
+                                    <td>
+                                    <a class=\"btn btn-warning\" href=\"{{ path(\"editar_caratula\", {'id':caratulaAgregada.id}) }}\"  role=\"button\"><i class=\"fas fa-edit\"></i></a>
+                                    <a class=\"btn btn-danger\" href=\"{{ path(\"eliminar_caratula\", {'id':caratulaAgregada.id}) }}\"  role=\"button\"><i class=\"fas fa-trash-alt\"></i></a></td>
+                                </tr>
+                                
+                            {% endfor %}
+
+                        </tbody>
+                        
                     </table>
+                            <hr/>
+                            
+                    <a class=\"btn btn-warning\" href=\"caratulaAgregada/{{expediente.id}}\"  role=\"button\"><i class=\"fas fa-file\"></i></a>
+
                 </div>
 
 
@@ -516,6 +582,6 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
             </div>
         </div>
 
-    {% endblock %}", "AppBundle:Expediente:detalleExpediente.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/Expediente/detalleExpediente.html.twig");
+    {% endblock %}", "AppBundle:Expediente:detalleExpediente.html.twig", "/var/www/html/gitSIE/src/AppBundle/Resources/views/Expediente/detalleExpediente.html.twig");
     }
 }
