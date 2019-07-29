@@ -18,18 +18,16 @@
             $fakeInput.autocomplete({
                 source: settings.url_list,
                 select: function (event, ui) {
-                    event.preventDefault();
-                    $this.val(ui.item.value);
-                    $(this).val(ui.item.label);
+                    $this.val(ui.item.id);
                     if (settings.on_select_callback) {
-                        settings.on_select_callback($this, event, ui);
+                        settings.on_select_callback($this);
                     }
                 },
                 minLength: settings.min_length
             });
             if ($this.val() !== '') {
                 $.ajax({
-                    url: (settings.url_get.substring(-1) === '/' ? settings.url_get : settings.url_get + '/') + $this.attr('value'),
+                    url:     settings.url_get + $this.val(),
                     success: function (name) {
                         $fakeInput.val(name);
                     }

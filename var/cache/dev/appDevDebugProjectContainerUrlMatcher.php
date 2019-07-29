@@ -171,7 +171,35 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
-        elseif (0 === strpos($pathinfo, '/a')) {
+        elseif (0 === strpos($pathinfo, '/persona')) {
+            // persona_search
+            if ('/persona_search' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::searchPersonaAction',  '_route' => 'persona_search',);
+            }
+
+            // persona_get
+            if (0 === strpos($pathinfo, '/persona_get') && preg_match('#^/persona_get(?:(?P<id>[^/]++))?$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'persona_get']), array (  'id' => NULL,  '_controller' => 'AppBundle\\Controller\\DefaultController::getPersonaAction',));
+            }
+
+            // persona
+            if ('/persona' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\PersonaController::indexAction',  '_route' => 'persona',);
+            }
+
+        }
+
+        // tema_search
+        if ('/tema_search' === $pathinfo) {
+            return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::searchTemaAction',  '_route' => 'tema_search',);
+        }
+
+        // tema_get
+        if (0 === strpos($pathinfo, '/tema_get') && preg_match('#^/tema_get(?:(?P<id>[^/]++))?$#sD', $pathinfo, $matches)) {
+            return $this->mergeDefaults(array_replace($matches, ['_route' => 'tema_get']), array (  'id' => NULL,  '_controller' => 'AppBundle\\Controller\\DefaultController::getTemaAction',));
+        }
+
+        if (0 === strpos($pathinfo, '/a')) {
             if (0 === strpos($pathinfo, '/add')) {
                 // nueva_dependencia
                 if ('/add/dependencia' === $pathinfo) {
@@ -206,24 +234,6 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             // add_movimiento
             if ('/ajax_movimiento' === $pathinfo) {
                 return array (  '_controller' => 'AppBundle\\Controller\\MovimientoExpedienteController::ajaxFormAction',  '_route' => 'add_movimiento',);
-            }
-
-        }
-
-        elseif (0 === strpos($pathinfo, '/re')) {
-            // search_r
-            if ('/responsable_search' === $pathinfo) {
-                return array (  '_controller' => 'AppBundle\\Controller\\DependenciaController::searchResponsable',  '_route' => 'search_r',);
-            }
-
-            // get_r
-            if (0 === strpos($pathinfo, '/responsable_get') && preg_match('#^/responsable_get(?:/(?P<id>[^/]++))?$#sD', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, ['_route' => 'get_r']), array (  'id' => NULL,  '_controller' => 'AppBundle\\Controller\\DependenciaController::getResponsable',));
-            }
-
-            // nuevo_registro
-            if ('/registro' === $pathinfo) {
-                return array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::indexAction',  '_route' => 'nuevo_registro',);
             }
 
         }
@@ -281,9 +291,9 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::homeAction',  '_route' => 'homepage',);
         }
 
-        // persona
-        if ('/persona' === $pathinfo) {
-            return array (  '_controller' => 'AppBundle\\Controller\\PersonaController::indexAction',  '_route' => 'persona',);
+        // nuevo_registro
+        if ('/registro' === $pathinfo) {
+            return array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::indexAction',  '_route' => 'nuevo_registro',);
         }
 
         if ('/' === $pathinfo && !$allow) {

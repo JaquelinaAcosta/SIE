@@ -8,7 +8,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use PUGX\AutocompleterBundle\Form\Type\AutocompleteType;
 use AppBundle\Entity\Persona;
 
 
@@ -35,13 +34,15 @@ class DependenciaType extends AbstractType
                         "placeholder"=>"Ingrese la dependecia padre"
                     ]
                 ])
-                ->add('responsable', AutocompleteType::class, [
-                    'class' => Persona::class,                 
-                    'attr'=>[
+                ->add('responsable', 'PUGX\AutocompleterBundle\Form\Type\AutocompleteType', array(
+                    'class' => 'AppBundle:Persona',
+                    'label' => 'Responsable',
+                    'required' => false,
+                    'attr' => array(
                         'class'=>'form form-control',
-                          "placeholder"=>'Escriba parte del Nombre y seleccione'
-                    ]
-                        ])
+                        'placeholder' => 'Escriba parte del nombre y seleccione una opción'
+                    )
+                ))
 //                ->add('responsable', EntityType::class,[
 //                    "class"=>'AppBundle:Persona',
 //                    "placeholder"=>'--Seleccione--',
