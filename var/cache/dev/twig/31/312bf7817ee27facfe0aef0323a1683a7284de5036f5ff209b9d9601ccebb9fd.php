@@ -196,15 +196,15 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
             echo "</td>
                                     <td><a class=\"btn btn-info\" href=\"";
             // line 100
-            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("ver_expediente", ["id" => $this->getAttribute($context["expediente_asoc"], "id", [])]), "html", null, true);
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("ver_expediente", ["id" => $this->getAttribute($this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "id", [])]), "html", null, true);
             echo "\"  role=\"button\"><i class=\"fas fa-search\"></i></a>
                                         <a class=\"btn btn-warning\" href=\"";
             // line 101
-            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_expediente", ["id" => $this->getAttribute($context["expediente_asoc"], "id", [])]), "html", null, true);
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_expediente", ["id" => $this->getAttribute($this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "id", [])]), "html", null, true);
             echo "\"  role=\"button\"><i class=\"fas fa-edit\"></i></a>
                                         <a class=\"btn btn-danger\" href=\"";
             // line 102
-            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("eliminar_expediente", ["id" => $this->getAttribute($context["expediente_asoc"], "id", [])]), "html", null, true);
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("eliminar_expediente", ["id" => $this->getAttribute($this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "id", [])]), "html", null, true);
             echo "\"  role=\"button\"><i class=\"fas fa-trash-alt\"></i></a></td>
                                 </tr>
                             ";
@@ -432,9 +432,9 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
                                     <td>{{expediente_asoc.expedienteAsociado}}</td>
                                     <td>{{expediente_asoc.expedienteAsociado.tema.descripcion}}</td>
                                     <td>{{expediente_asoc.expedienteAsociado.tema.codigo}}</td>
-                                    <td><a class=\"btn btn-info\" href=\"{{ path(\"ver_expediente\", {'id':expediente_asoc.id}) }}\"  role=\"button\"><i class=\"fas fa-search\"></i></a>
-                                        <a class=\"btn btn-warning\" href=\"{{ path(\"editar_expediente\", {'id':expediente_asoc.id}) }}\"  role=\"button\"><i class=\"fas fa-edit\"></i></a>
-                                        <a class=\"btn btn-danger\" href=\"{{ path(\"eliminar_expediente\", {'id':expediente_asoc.id}) }}\"  role=\"button\"><i class=\"fas fa-trash-alt\"></i></a></td>
+                                    <td><a class=\"btn btn-info\" href=\"{{ path(\"ver_expediente\", {'id':expediente_asoc.expedienteAsociado.id}) }}\"  role=\"button\"><i class=\"fas fa-search\"></i></a>
+                                        <a class=\"btn btn-warning\" href=\"{{ path(\"editar_expediente\", {'id':expediente_asoc.expedienteAsociado.id}) }}\"  role=\"button\"><i class=\"fas fa-edit\"></i></a>
+                                        <a class=\"btn btn-danger\" href=\"{{ path(\"eliminar_expediente\", {'id':expediente_asoc.expedienteAsociado.id}) }}\"  role=\"button\"><i class=\"fas fa-trash-alt\"></i></a></td>
                                 </tr>
                             {% endfor %}
 

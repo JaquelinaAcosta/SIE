@@ -136,7 +136,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         // line 91
         echo "
                             <li>
-                               
+
                             </li>
 
                             <li class=\"dropdown\">
@@ -166,7 +166,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         } else {
             // line 105
             echo "                                        <li><a href=\"#\">Opciones</a></li>
-                                         <li role=\"separator\" class=\"divider\"></li>
+                                        <li role=\"separator\" class=\"divider\"></li>
                                         <li><a href=\"";
             // line 107
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("logout");
@@ -180,11 +180,60 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
             </nav>
+
+            <nav class=\"navbar navbar-default\">
+                <div class=\"container-fluid\">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class=\"navbar-header\">
+
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">
+                        <ul class=\"nav navbar-nav\">
+                           
+                            <li class=\"dropdown\">
+                                <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Expedientes <span class=\"caret\"></span></a>
+                                <ul class=\"dropdown-menu\">
+                                    <li><a href=\"";
+        // line 130
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_expediente");
+        echo "\">Listado</a></li>
+                                    <li><a href=\"";
+        // line 131
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nuevo_expediente");
+        echo "\">Nuevo Expediente</a></li>
+                                    <li><a href=\"#\">Buscar Expediente</a></li>
+                                  ";
+        // line 137
+        echo "                                </ul>
+                            </li>
+                             <li class=\"dropdown\">
+                                <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Movimientos <span class=\"caret\"></span></a>
+                                <ul class=\"dropdown-menu\">
+                                    <li><a href=\"";
+        // line 142
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_expediente");
+        echo "\">Listado</a></li>
+                                    <li><a href=\"";
+        // line 143
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nuevo_expediente");
+        echo "\">Nuevo Expediente</a></li>
+                                    <li><a href=\"#\">Buscar Expediente</a></li>
+                                  ";
+        // line 149
+        echo "                                </ul>
+                            </li>
+                        </ul>        
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+
         </header>
 
         <section id=\"content\">             
             ";
-        // line 118
+        // line 159
         $this->displayBlock('content', $context, $blocks);
         echo "   
         </section>
@@ -240,7 +289,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     }
 
-    // line 118
+    // line 159
     public function block_content($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -270,7 +319,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     public function getDebugInfo()
     {
-        return array (  244 => 118,  224 => 78,  206 => 7,  188 => 118,  177 => 109,  172 => 107,  168 => 105,  162 => 102,  159 => 101,  157 => 100,  145 => 97,  137 => 91,  132 => 81,  130 => 78,  121 => 72,  64 => 18,  60 => 17,  47 => 7,  39 => 1,);
+        return array (  293 => 159,  273 => 78,  255 => 7,  237 => 159,  225 => 149,  220 => 143,  216 => 142,  209 => 137,  204 => 131,  200 => 130,  177 => 109,  172 => 107,  168 => 105,  162 => 102,  159 => 101,  157 => 100,  145 => 97,  137 => 91,  132 => 81,  130 => 78,  121 => 72,  64 => 18,  60 => 17,  47 => 7,  39 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -375,7 +424,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                             </li>#}
 
                             <li>
-                               
+
                             </li>
 
                             <li class=\"dropdown\">
@@ -388,7 +437,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
                                     {%else%}
                                         <li><a href=\"#\">Opciones</a></li>
-                                         <li role=\"separator\" class=\"divider\"></li>
+                                        <li role=\"separator\" class=\"divider\"></li>
                                         <li><a href=\"{{ path(\"logout\") }}\">Salir</a></li>
                                         {%endif%}
                                 </ul>
@@ -397,6 +446,47 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
             </nav>
+
+            <nav class=\"navbar navbar-default\">
+                <div class=\"container-fluid\">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class=\"navbar-header\">
+
+                    </div>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">
+                        <ul class=\"nav navbar-nav\">
+                           
+                            <li class=\"dropdown\">
+                                <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Expedientes <span class=\"caret\"></span></a>
+                                <ul class=\"dropdown-menu\">
+                                    <li><a href=\"{{ path(\"listado_expediente\") }}\">Listado</a></li>
+                                    <li><a href=\"{{ path(\"nuevo_expediente\") }}\">Nuevo Expediente</a></li>
+                                    <li><a href=\"#\">Buscar Expediente</a></li>
+                                  {#  <li role=\"separator\" class=\"divider\"></li>
+                                    <li><a href=\"#\">Separated link</a></li>
+                                    <li role=\"separator\" class=\"divider\"></li>
+                                    <li><a href=\"#\">One more separated link</a></li>#}
+                                </ul>
+                            </li>
+                             <li class=\"dropdown\">
+                                <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Movimientos <span class=\"caret\"></span></a>
+                                <ul class=\"dropdown-menu\">
+                                    <li><a href=\"{{ path(\"listado_expediente\") }}\">Listado</a></li>
+                                    <li><a href=\"{{ path(\"nuevo_expediente\") }}\">Nuevo Expediente</a></li>
+                                    <li><a href=\"#\">Buscar Expediente</a></li>
+                                  {#  <li role=\"separator\" class=\"divider\"></li>
+                                    <li><a href=\"#\">Separated link</a></li>
+                                    <li role=\"separator\" class=\"divider\"></li>
+                                    <li><a href=\"#\">One more separated link</a></li>#}
+                                </ul>
+                            </li>
+                        </ul>        
+                    </div><!-- /.navbar-collapse -->
+                </div><!-- /.container-fluid -->
+            </nav>
+
         </header>
 
         <section id=\"content\">             

@@ -97,9 +97,9 @@
                                     <td>{{expediente_asoc.expedienteAsociado}}</td>
                                     <td>{{expediente_asoc.expedienteAsociado.tema.descripcion}}</td>
                                     <td>{{expediente_asoc.expedienteAsociado.tema.codigo}}</td>
-                                    <td><a class="btn btn-info" href="{{ path("ver_expediente", {'id':expediente_asoc.id}) }}"  role="button"><i class="fas fa-search"></i></a>
-                                        <a class="btn btn-warning" href="{{ path("editar_expediente", {'id':expediente_asoc.id}) }}"  role="button"><i class="fas fa-edit"></i></a>
-                                        <a class="btn btn-danger" href="{{ path("eliminar_expediente", {'id':expediente_asoc.id}) }}"  role="button"><i class="fas fa-trash-alt"></i></a></td>
+                                    <td><a class="btn btn-info" href="{{ path("ver_expediente", {'id':expediente_asoc.expedienteAsociado.id}) }}"  role="button"><i class="fas fa-search"></i></a>
+                                        <a class="btn btn-warning" href="{{ path("editar_expediente", {'id':expediente_asoc.expedienteAsociado.id}) }}"  role="button"><i class="fas fa-edit"></i></a>
+                                        <a class="btn btn-danger" href="{{ path("eliminar_expediente", {'id':expediente_asoc.expedienteAsociado.id}) }}"  role="button"><i class="fas fa-trash-alt"></i></a></td>
                                 </tr>
                             {% endfor %}
 
