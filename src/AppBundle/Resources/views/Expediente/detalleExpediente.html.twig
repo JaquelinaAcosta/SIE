@@ -131,16 +131,36 @@
                     </div>
                     <table class="table table-striped table-hover"> 
                         <thead>
-                        <br/>
-                        </thead>
-                        <tbody>
                             <tr>
-                                <th class="info list-group col-lg-3">Carátulas:  </th>
-                                <td> {#{{ expediente.caratulas}}#}</td>
+                                <th scope="col">Tema</th>
+                                <th scope="col">Concepto</th>
+                                <th scope="col">Cantidad de Fojas</th>
+                                
                             </tr>
-                        </tbody>
+                        </thead>
+                        
+                        <tbody>
 
+                            {% for caratulaAgregada in expediente.caratulas.getValues %}
+                                
+                                <tr>
+                                    <td>{{caratulaAgregada.tema.descripcion}}</td>
+                                    <td>{{caratulaAgregada.concepto}}</td>
+                                    <td>{{caratulaAgregada.fojas}}</td>
+                                    <td>
+                                    <a class="btn btn-warning" href="{{ path("editar_caratula", {'id':caratulaAgregada.id}) }}"  role="button"><i class="fas fa-edit"></i></a>
+                                    <a class="btn btn-danger" href="{{ path("eliminar_caratula", {'id':caratulaAgregada.id}) }}"  role="button"><i class="fas fa-trash-alt"></i></a></td>
+                                </tr>
+                                
+                            {% endfor %}
+
+                        </tbody>
+                        
                     </table>
+                            <hr/>
+                            
+                    <a class="btn btn-warning" href="caratulaAgregada/{{expediente.id}}"  role="button"><i class="fas fa-file"></i></a>
+
                 </div>
 
 

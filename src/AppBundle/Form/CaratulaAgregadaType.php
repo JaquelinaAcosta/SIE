@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class CaratulaAgregadaType extends AbstractType
 {
@@ -16,16 +17,12 @@ class CaratulaAgregadaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-                ->add('expediente', TextType::class,array(
-            "label"=>"Nro. de Expediente:","attr"=> array(
-               "class"=>"form-exp form-control" ,
-               "placeholder"=>"00000-000000000-0"
-            )
-        ))
-                ->add('tema', TextType::class,array(
-            "label"=>"Tema:","attr"=> array(
-               "class"=>"form-name form-control" ,
-               "placeholder"=>"Tema..."
+                
+                ->add('tema', EntityType::class, array(
+                    "label" => "Tema:",
+                    "class"=>'AppBundle:Tema', "attr" => array(
+                    "class" => "form-name form-control",
+                    "placeholder" => "Ej:01983"
             )
         ))
                 ->add('concepto', TextType::class,array(

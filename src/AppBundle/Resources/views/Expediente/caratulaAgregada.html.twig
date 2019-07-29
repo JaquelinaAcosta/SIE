@@ -14,12 +14,30 @@
 
     </style>
     
-    <div class="formu col-lg-4 col-md-offset-1">
-        <div class="border border-primary">
-            <h2 class="text-center">Caratula Agregada</h2>
-            <hr/>
+    <div class="col-lg-10" style="padding-left:  300px; padding-top:  50px">
+        <div class="list-group col-lg-11 col-md-offset-1">
+            <div class="expediente col-lg-10 panel panel-primary"  style="padding: 10px">
+                    <div class="panel-heading" style="font-size:18px;">
+                        Agregar Carátula para Expediente Nro.: {{ expediente.nroExpediente}}
+                    </div>
+                <br/>
             {{form_start(form,{'action':'','method':'POST'})}}
+            <div class="col-lg-14">
+                    <label class="text-default">Tema:</label>
+                    {{ form_errors(form.tema) }}
+                    {{ form_widget(form.tema) }}
+                    <label class="text-default">Concepto:</label>
+                    {{ form_errors(form.concepto) }}
+                    {{ form_widget(form.concepto) }}
+                    <label class="text-default">Cantidad de Fojas:</label>
+                    {{ form_errors(form.fojas) }}
+                    {{ form_widget(form.fojas) }}
+                    
+                    {{ form_widget(form.Aceptar) }}
+                    <a class="btn btn-default" onclick="history.back()"  role="button">Volver</a>
+         
             {{form_end(form)}}
+            </div>
         </div>
     </div>
 {% endblock %}
