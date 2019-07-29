@@ -1409,3 +1409,6 @@ e8c27e,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/expediente/view/5,1
 a163c6,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/expediente/view/5,1564413210,,200
 218bf8,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/expediente/view/editCaratula/30,1564413215,,200
 b51e1a,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/expediente/view/5,1564413253,,200
+cd8566,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/expediente/listado,1564415407,,302
+2e5676,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/loginUsuario,1564415408,,200
+398488,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/registro,1564415443,,200

@@ -9,45 +9,67 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends Controller
 {
+
     /**
-     * @Route("/home", name="homepage")
+     * @Route("/persona_search", name="persona_search")
      */
-    public function indexAction(Request $request)
-    {
-        // replace this example code with whatever you need
-        return $this->render('AppBundle:Default:index.html.twig', [
-            'texto'=> 'Hola Mundo' 
-        ]);
+     public function searchPersonaAction(Request $request) {
+        $q = $request->query->get('term'); // use "term" instead of "q" for jquery-ui
+        $personas = $this->getDoctrine()->getRepository('AppBundle:Persona')->findLikeName($q);
+        
+        $results = array();
+        foreach($personas as $persona)
+        {
+            $results[] = array('id'=>$persona->getId(),
+                'label' => trim($persona->__toString()),
+                'value' => trim($persona->__toString()));
+        }
+        return new JsonResponse($results);
     }
     
     
+     /**
+     * @Route("/persona_get{id}", name="persona_get")
+     */
+    public function getPersonaAction($id =null) {
+//        $id = $request->get('id');
+        $persona = $this->getDoctrine()->getRepository('AppBundle:Persona')->find($id);
+        if (null == $persona) {
+            $this->addFlash('info', 'La persona no existe.');
+            return $this->redirectToRoute('homepage');
+        }
+        return new JsonResponse(trim($persona->__toString()));
+    }
 
-// /**
-//     * @Route("/responsable_search", name="search_r")
-//     */
-//     public function searchResponsable(Request $request) {
-//        $q = $request->query->get('term'); // use "term" instead of "q" for jquery-ui
-//        $personas = $this->getDoctrine()->getRepository('AppBundle:Persona')->findLikeName($q);
-//        
-//        $results = array();
-//        foreach($personas as $persona)
-//        {
-//            $results[] = array('id'=>$persona->getId(),'name'=>$persona->getApellido(),'label'=>$persona->getApellido().", ".$persona->getNombre());
-//        }
-//        return new JsonResponse($results);
-//    }
-//    
-//     /**
-//     * @Route("/responsable_get", name="get_r")
-//     */
-//    public function getResponsable($id = null) {
-//        $persona = $this->getDoctrine()->getRepository('AppBundle:Persona')->find($id);
-//        dump($persona);
-//        die();
-//        return $this->json($persona->getNombre());
-////         return $this->json($persona->getNombre());
-//
-//    }
+      /**
+     * @Route("/tema_search", name="tema_search")
+     */
+     public function searchTemaAction(Request $request) {
+        $q = $request->query->get('term'); // use "term" instead of "q" for jquery-ui
+        $temas = $this->getDoctrine()->getRepository('AppBundle:Tema')->findLikeName($q);
+        
+        $results = array();
+        foreach($temas as $tema)
+        {
+            $results[] = array('id'=>$tema->getId(),
+                'label' => trim($tema->__toString()),
+                'value' => trim($tema->__toString()));
+        }
+        return new JsonResponse($results);
+    }
+    
+    
+     /**
+     * @Route("/tema_get{id}", name="tema_get")
+     */
+    public function getTemaAction($id =null) {
+        $tema = $this->getDoctrine()->getRepository('AppBundle:Tema')->find($id);
+        if (null == $tema) {
+            $this->addFlash('info', 'El tema no existe.');
+            return $this->redirectToRoute('homepage');
+        }
+        return new JsonResponse(trim($tema->__toString()));
+    }
     
     
 }

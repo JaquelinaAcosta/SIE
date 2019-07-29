@@ -10,4 +10,15 @@ namespace AppBundle\Repository;
  */
 class TemaRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findLikeName($term) {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $result = $qb->select('n')
+                ->from('AppBundle:Tema', 'n')
+                ->where($qb->expr()
+                        ->like('n.codigo', $qb->expr()
+                                ->literal('%' . $term . '%')))
+                ->setMaxResults(10)->getQuery()->getResult();
+        return $result;
+    }
+
 }

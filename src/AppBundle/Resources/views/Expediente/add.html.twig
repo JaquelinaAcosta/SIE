@@ -33,21 +33,22 @@
                         {{ form_errors(form.nroExpediente) }}
                         {{ form_widget(form.nroExpediente) }}
                     </div>
-                    <div class="col-lg-3 ">
+                    <div class="col-lg-2 ">
                         <label class="text-default">TIPO</label>
                         {{ form_errors(form.tipo) }}
                         {{ form_widget(form.tipo) }}
                     </div>
-                    <div class="col-lg-2 ">
+                      <div class="col-lg-2">
+                        <label class="text-default">FOJAS</label>
+                        {{ form_errors(form.fojas) }}
+                        {{ form_widget(form.fojas) }}
+                    </div>    
+                    <div class="col-lg-6 ">
                         <label class="text-default">CODIGO TEMA</label>
                         {{ form_errors(form.tema) }}
                         {{ form_widget(form.tema) }}
                     </div>
-                    <div class="col-lg-2">
-                        <label class="text-default">FOJAS</label>
-                        {{ form_errors(form.fojas) }}
-                        {{ form_widget(form.fojas) }}
-                    </div>                   
+                                 
                     {#<div class="col-lg-6">
                         <label class="text-default">DEPENDENCIA</label>
                         {{ form_errors(form.iniciadorDependencia) }}
@@ -94,7 +95,14 @@
             </div>
         </div>
     </div>   
-            
+
+    <script>
+        $('#expediente_tema').autocompleter({
+        url_list: "{{ path('tema_search') }}",
+        url_get: "{{ path('tema_get') }}"
+        });
+    </script>     
+
     <script>
         var $collectionHolder;
 
@@ -103,128 +111,128 @@
         var $newLinkLi = $('.add').append($addResponsableButton);
 
         jQuery(document).ready(function () {
-            // Get the ul that holds the collection of tags
-            $collectionHolder = $('.expedientes');
+        // Get the ul that holds the collection of tags
+        $collectionHolder = $('.expedientes');
 
-            // add a delete link to all of the existing tag form li elements
-         
-            // add the "add a tag" anchor and li to the tags ul
-            $collectionHolder.append($newLinkLi);
+        // add a delete link to all of the existing tag form li elements
 
-            // count the current form inputs we have (e.g. 2), use that as the new
-            // index when inserting a new item (e.g. 2)
-            $collectionHolder.data('index', $collectionHolder.find(':input').length);
+        // add the "add a tag" anchor and li to the tags ul
+        $collectionHolder.append($newLinkLi);
 
-             
-            $addResponsableButton.on('click', function (e) {
-                // add a new tag form (see next code block)
-                addResponsableForm($collectionHolder, $newLinkLi);
-            });
+        // count the current form inputs we have (e.g. 2), use that as the new
+        // index when inserting a new item (e.g. 2)
+        $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+
+        $addResponsableButton.on('click', function (e) {
+        // add a new tag form (see next code block)
+        addResponsableForm($collectionHolder, $newLinkLi);
+        });
         });
 
         function addTagFormDeleteLink($tagFormLi,$collectionHolder) {
-            var $removeFormButton = $('<button type="button">Delete this tag</button>');
-            $tagFormLi.append($removeFormButton);
+        var $removeFormButton = $('<button type="button">Delete this tag</button>');
+        $tagFormLi.append($removeFormButton);
 
-            $removeFormButton.on('click', function (e) {
-                // remove the li for the tag form
-                $tagFormLi.remove();
-                var index = $collectionHolder.data('index');
-                $collectionHolder.data('index', index - 1);
-            });
+        $removeFormButton.on('click', function (e) {
+        // remove the li for the tag form
+        $tagFormLi.remove();
+        var index = $collectionHolder.data('index');
+        $collectionHolder.data('index', index - 1);
+        });
         }
 
         function addResponsableForm($collectionHolder, $newLinkLi) {
-            // Get the data-prototype explained earlier
-            var prototype = $collectionHolder.data('prototype');
-            // get the new index
-            var index = $collectionHolder.data('index');
+        // Get the data-prototype explained earlier
+        var prototype = $collectionHolder.data('prototype');
+        // get the new index
+        var index = $collectionHolder.data('index');
 
-            var newForm = prototype;
-            // You need this only if you didn't set 'label' => false in your tags field in TaskType
-            // Replace '__name__label__' in the prototype's HTML to
-            // instead be a number based on how many items we have
-            // newForm = newForm.replace(/__name__label__/g, index);
+        var newForm = prototype;
+        // You need this only if you didn't set 'label' => false in your tags field in TaskType
+        // Replace '__name__label__' in the prototype's HTML to
+        // instead be a number based on how many items we have
+        // newForm = newForm.replace(/__name__label__/g, index);
 
-            // Replace '__name__' in the prototype's HTML to
-            // instead be a number based on how many items we have
-            newForm = newForm.replace(/__name__/g, index);
-           
-            // increase the index with one for the next item
-            $collectionHolder.data('index', index + 1);
-            
-            // Display the form in the page in an li, before the "Add a tag" link li
-            var $newFormLi = $('.expediente_items').append(newForm);
-            addTagFormDeleteLink($($newFormLi).children().eq(index-1),$collectionHolder);
-           
-            //console.log($($newFormLi).children().eq(index-1));
-            $newLinkLi.before($newFormLi);
+        // Replace '__name__' in the prototype's HTML to
+        // instead be a number based on how many items we have
+        newForm = newForm.replace(/__name__/g, index);
+
+        // increase the index with one for the next item
+        $collectionHolder.data('index', index + 1);
+
+        // Display the form in the page in an li, before the "Add a tag" link li
+        var $newFormLi = $('.expediente_items').append(newForm);
+        addTagFormDeleteLink($($newFormLi).children().eq(index-1),$collectionHolder);
+
+        //console.log($($newFormLi).children().eq(index-1));
+        $newLinkLi.before($newFormLi);
 
         }
     </script>         
-            
-{#            
-    <script>
-        var $ubicacion = $('#expediente_ubicacionActual');
-        var $form = $ubicacion.closest('form');
 
-        $ubicacion.on('change', function () {
-            var data = $ubicacion.serialize();
-            var index = $ubicacion.val();
-            $.ajax({
-                url: "{{ path('add_evento') }}",
-                type: "POST",
-                data: data,
-                success: function (html) {
-                    // la variable html representa toda la página junto con el select de estados.
-                    // el cual tomamos y colocamos para reemplazar el select actual.
-
-
-                    if (index == 0) {
-                        $('#persona').hide();
-                        $('#mesaentrada').hide();
-                        $('#lugarfisico').hide();
-                    }
-                    if (index == 1) {
-                        $('#persona').hide();
-                        $('#lugarfisico').hide();
-                        $('#mesaentrada').show();
-
-
-                        if ($('.codigo > input').size() <= 0) {
-                            $('#contenido').html($(html).find('#expediente_mesaentrada'));
-                            $('#expediente_mesaentrada_codigoExpediente').appendTo(".codigo");
+    {#            
+        <script>
+            var $ubicacion = $('#expediente_ubicacionActual');
+            var $form = $ubicacion.closest('form');
+    
+            $ubicacion.on('change', function () {
+                var data = $ubicacion.serialize();
+                var index = $ubicacion.val();
+                $.ajax({
+                    url: "{{ path('add_evento') }}",
+                    type: "POST",
+                    data: data,
+                    success: function (html) {
+                        // la variable html representa toda la página junto con el select de estados.
+                        // el cual tomamos y colocamos para reemplazar el select actual.
+    
+    
+                        if (index == 0) {
+                            $('#persona').hide();
+                            $('#mesaentrada').hide();
+                            $('#lugarfisico').hide();
                         }
-
-                    }
-                    if (index == 2) {
-                        $('#mesaentrada').hide();
-                        $('#lugarfisico').hide();
-                        $('#persona').show();
-
-                        if ($('.nombre > input').size() <= 0) {
-                            $('#contenido').html($(html).find('#expediente_persona'));
-                            $('#expediente_persona_nombre').appendTo(".nombre");
-                            $('#expediente_persona_apellido').appendTo(".apellido");
-                            $('#expediente_persona_dni').appendTo(".dni");
-                            $('#expediente_persona_cargo').appendTo(".cargo");
+                        if (index == 1) {
+                            $('#persona').hide();
+                            $('#lugarfisico').hide();
+                            $('#mesaentrada').show();
+    
+    
+                            if ($('.codigo > input').size() <= 0) {
+                                $('#contenido').html($(html).find('#expediente_mesaentrada'));
+                                $('#expediente_mesaentrada_codigoExpediente').appendTo(".codigo");
+                            }
+    
                         }
-
-                    }
-                    if (index == 3) {
-                        $('#mesaentrada').hide();
-                        $('#persona').hide();
-                        $('#lugarfisico').show();
-                        if ($('.tipo > input').size() <= 0) {
-                            $('#contenido').html($(html).find('#expediente_lugarfisico'));
-                            $('#expediente_lugarfisico_tipo').appendTo(".tipo");
-                            $('#expediente_lugarfisico_descripcion').appendTo(".descripcion");
-                            $('#expediente_lugarfisico_acceso').appendTo(".acceso");
+                        if (index == 2) {
+                            $('#mesaentrada').hide();
+                            $('#lugarfisico').hide();
+                            $('#persona').show();
+    
+                            if ($('.nombre > input').size() <= 0) {
+                                $('#contenido').html($(html).find('#expediente_persona'));
+                                $('#expediente_persona_nombre').appendTo(".nombre");
+                                $('#expediente_persona_apellido').appendTo(".apellido");
+                                $('#expediente_persona_dni').appendTo(".dni");
+                                $('#expediente_persona_cargo').appendTo(".cargo");
+                            }
+    
+                        }
+                        if (index == 3) {
+                            $('#mesaentrada').hide();
+                            $('#persona').hide();
+                            $('#lugarfisico').show();
+                            if ($('.tipo > input').size() <= 0) {
+                                $('#contenido').html($(html).find('#expediente_lugarfisico'));
+                                $('#expediente_lugarfisico_tipo').appendTo(".tipo");
+                                $('#expediente_lugarfisico_descripcion').appendTo(".descripcion");
+                                $('#expediente_lugarfisico_acceso').appendTo(".acceso");
+                            }
                         }
                     }
-                }
+                });
             });
-        });
-    </script>#}
+        </script>#}
 
 {% endblock %}
