@@ -1,28 +1,28 @@
 {% extends "AppBundle::layout.html.twig" %}
 
 {% block content %}
-    
+
     <style>
         input[type=text]{
             margin-bottom: 10px;
             padding:10px;            
-         }
-         input[type=submit]{
+        }
+        input[type=submit]{
             margin-bottom: 10px;
             padding:10px;            
-         }
+        }
 
     </style>
-    
+
     <div class="col-lg-10" style="padding-left:  300px; padding-top:  50px">
         <div class="list-group col-lg-11 col-md-offset-1">
             <div class="expediente col-lg-10 panel panel-primary"  style="padding: 10px">
-                    <div class="panel-heading" style="font-size:18px;">
-                        Agregar Carátula para Expediente Nro.: {{ expediente.nroExpediente}}
-                    </div>
+                <div class="panel-heading" style="font-size:18px;">
+                    Agregar Carátula para Expediente Nro.: {{ expediente.nroExpediente}}
+                </div>
                 <br/>
-            {{form_start(form,{'action':'','method':'POST'})}}
-            <div class="col-lg-14">
+                {{form_start(form,{'action':'','method':'POST'})}}
+                <div class="col-lg-14">
                     <label class="text-default">Tema:</label>
                     {{ form_errors(form.tema) }}
                     {{ form_widget(form.tema) }}
@@ -32,12 +32,20 @@
                     <label class="text-default">Cantidad de Fojas:</label>
                     {{ form_errors(form.fojas) }}
                     {{ form_widget(form.fojas) }}
-                    
+
                     {{ form_widget(form.Aceptar) }}
                     <a class="btn btn-default" onclick="history.back()"  role="button">Volver</a>
-         
-            {{form_end(form)}}
+
+                    {{form_end(form)}}
+                </div>
             </div>
         </div>
-    </div>
-{% endblock %}
+
+        <script>
+            $('#caratulaagregada_tema').autocompleter({
+            url_list: "{{ path('tema_search') }}",
+            url_get: "{{ path('tema_get') }}"
+            });
+        </script>
+
+    {% endblock %}
