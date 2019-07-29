@@ -34,49 +34,47 @@
         .title{
             font-size:16px;
         }
-        
-        .p{
-            border-top: blue 5px solid;;
-            border-right: blue 5px solid;
-            border-bottom: blue 5px solid;
-            border-left:  blue 5px solid;
-            border-radius: 30px;
+
+        p {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px;
         }
-        
+
     </style>
-    
 
 
-                     <h4 class="text-center">    <i class="fas fa-bars"></i> Lista de Expedientes -  {{ app.user.persona.dependencia.descripcion }}</h4>
-                         <hr/>
 
-                    <table class="table table-striped">
-                        <thead class="">
-                            <tr>
-                                <th scope="col">Nro. Expediente</th>
-                                <th scope="col">Concepto</th>
-                                <th scope="col">Código</th>
-                                <th scope="col">Fecha Inicio</th>
-                                <th scope="col">Ubicacion</th>
-                                <th scope="col">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+    <h4 class="text-center">    <i class="fas fa-bars"></i> Lista de Expedientes -  {{ app.user.persona.dependencia.descripcion }}</h4>
+    <hr/>
+    <table class="table table-striped">
+        <thead class="">
+            <tr>
+                <th scope="col">Nro. Expediente</th>
+                <th scope="col">Concepto</th>
+                <th scope="col">Tema</th>
+                <th scope="col">Fecha Inicio</th>
+                <th scope="col">Ubicacion</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
 
-                            {% for expediente in expediente|reverse %}
-                                <tr>
-                                    <td>{{expediente.nroExpediente|e }}</td>
-                                    <td>{{expediente.concepto|e }}</td>
-                                    <td>{{expediente.tema|e }}</td>
-                                    <td>{{expediente.fechaInicio|e }}</td>
-                                    <td>{{expediente.ubicacionActual|e }}</td>
-                                    <td><a class="btn btn-info" href="{{ path("ver_expediente", {'id':expediente.id}) }}"  role="button"><i class="fas fa-search"></i></a>
-                                        <a class="btn btn-warning" href="{{ path("editar_expediente", {'id':expediente.id}) }}"  role="button"><i class="fas fa-edit"></i></a>
-                                        <a class="btn btn-danger" href="{{ path("eliminar_expediente", {'id':expediente.id}) }}"  role="button"><i class="fas fa-trash-alt"></i></a></td>
-                                </tr>
-                            {% endfor %}
+            {% for expediente in expediente|reverse %}
+                <tr>
+                    <td class="text-default">{{expediente.nroExpediente|e }}</td>
+                    <td class="text-default"><p>{{expediente.concepto|e }}</p></td>
+                    <td class="text-default">{{expediente.tema|e }}</td>
+                    <td class="text-default">{{expediente.fechaInicio|e }}</td>
+                    <td class="text-default">{{expediente.ubicacionActual|e }}</td>
+                    <td><a class="btn btn-info" href="{{ path("ver_expediente", {'id':expediente.id}) }}"  role="button"><i class="fas fa-search"></i></a>
+                        <a class="btn btn-warning" href="{{ path("editar_expediente", {'id':expediente.id}) }}"  role="button"><i class="fas fa-edit"></i></a>
+                        <a class="btn btn-danger" href="{{ path("eliminar_expediente", {'id':expediente.id}) }}"  role="button"><i class="fas fa-trash-alt"></i></a></td>
+                </tr>
+            {% endfor %}
 
-                        </tbody>
-                    </table>
-                            <hr/>
+        </tbody>
+    </table>
+    <hr/>
 {% endblock %}

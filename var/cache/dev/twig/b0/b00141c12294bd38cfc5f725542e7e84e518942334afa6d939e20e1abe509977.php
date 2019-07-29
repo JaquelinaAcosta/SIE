@@ -90,88 +90,86 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
         .title{
             font-size:16px;
         }
-        
-        .p{
-            border-top: blue 5px solid;;
-            border-right: blue 5px solid;
-            border-bottom: blue 5px solid;
-            border-left:  blue 5px solid;
-            border-radius: 30px;
+
+        p {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px;
         }
-        
+
     </style>
-    
 
 
-                     <h4 class=\"text-center\">    <i class=\"fas fa-bars\"></i> Lista de Expedientes -  ";
-        // line 50
+
+    <h4 class=\"text-center\">    <i class=\"fas fa-bars\"></i> Lista de Expedientes -  ";
+        // line 49
         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "persona", []), "dependencia", []), "descripcion", []), "html", null, true);
         echo "</h4>
-                         <hr/>
+    <hr/>
+    <table class=\"table table-striped\">
+        <thead class=\"\">
+            <tr>
+                <th scope=\"col\">Nro. Expediente</th>
+                <th scope=\"col\">Concepto</th>
+                <th scope=\"col\">Tema</th>
+                <th scope=\"col\">Fecha Inicio</th>
+                <th scope=\"col\">Ubicacion</th>
+                <th scope=\"col\">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
 
-                    <table class=\"table table-striped\">
-                        <thead class=\"\">
-                            <tr>
-                                <th scope=\"col\">Nro. Expediente</th>
-                                <th scope=\"col\">Concepto</th>
-                                <th scope=\"col\">Código</th>
-                                <th scope=\"col\">Fecha Inicio</th>
-                                <th scope=\"col\">Ubicacion</th>
-                                <th scope=\"col\">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            ";
-        // line 66
+            ";
+        // line 64
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(twig_reverse_filter($this->env, $context["expediente"]));
         foreach ($context['_seq'] as $context["_key"] => $context["expediente"]) {
-            // line 67
-            echo "                                <tr>
-                                    <td>";
-            // line 68
+            // line 65
+            echo "                <tr>
+                    <td class=\"text-default\">";
+            // line 66
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "nroExpediente", []));
             echo "</td>
-                                    <td>";
-            // line 69
+                    <td class=\"text-default\"><p>";
+            // line 67
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "concepto", []));
-            echo "</td>
-                                    <td>";
-            // line 70
+            echo "</p></td>
+                    <td class=\"text-default\">";
+            // line 68
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "tema", []));
             echo "</td>
-                                    <td>";
-            // line 71
+                    <td class=\"text-default\">";
+            // line 69
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "fechaInicio", []));
             echo "</td>
-                                    <td>";
-            // line 72
+                    <td class=\"text-default\">";
+            // line 70
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "ubicacionActual", []));
             echo "</td>
-                                    <td><a class=\"btn btn-info\" href=\"";
-            // line 73
+                    <td><a class=\"btn btn-info\" href=\"";
+            // line 71
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("ver_expediente", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
             echo "\"  role=\"button\"><i class=\"fas fa-search\"></i></a>
-                                        <a class=\"btn btn-warning\" href=\"";
-            // line 74
+                        <a class=\"btn btn-warning\" href=\"";
+            // line 72
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_expediente", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
             echo "\"  role=\"button\"><i class=\"fas fa-edit\"></i></a>
-                                        <a class=\"btn btn-danger\" href=\"";
-            // line 75
+                        <a class=\"btn btn-danger\" href=\"";
+            // line 73
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("eliminar_expediente", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
             echo "\"  role=\"button\"><i class=\"fas fa-trash-alt\"></i></a></td>
-                                </tr>
-                            ";
+                </tr>
+            ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['expediente'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 78
+        // line 76
         echo "
-                        </tbody>
-                    </table>
-                            <hr/>
+        </tbody>
+    </table>
+    <hr/>
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -193,7 +191,7 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
 
     public function getDebugInfo()
     {
-        return array (  171 => 78,  162 => 75,  158 => 74,  154 => 73,  150 => 72,  146 => 71,  142 => 70,  138 => 69,  134 => 68,  131 => 67,  127 => 66,  108 => 50,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  169 => 76,  160 => 73,  156 => 72,  152 => 71,  148 => 70,  144 => 69,  140 => 68,  136 => 67,  132 => 66,  129 => 65,  125 => 64,  107 => 49,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -242,51 +240,49 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
         .title{
             font-size:16px;
         }
-        
-        .p{
-            border-top: blue 5px solid;;
-            border-right: blue 5px solid;
-            border-bottom: blue 5px solid;
-            border-left:  blue 5px solid;
-            border-radius: 30px;
+
+        p {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px;
         }
-        
+
     </style>
-    
 
 
-                     <h4 class=\"text-center\">    <i class=\"fas fa-bars\"></i> Lista de Expedientes -  {{ app.user.persona.dependencia.descripcion }}</h4>
-                         <hr/>
 
-                    <table class=\"table table-striped\">
-                        <thead class=\"\">
-                            <tr>
-                                <th scope=\"col\">Nro. Expediente</th>
-                                <th scope=\"col\">Concepto</th>
-                                <th scope=\"col\">Código</th>
-                                <th scope=\"col\">Fecha Inicio</th>
-                                <th scope=\"col\">Ubicacion</th>
-                                <th scope=\"col\">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+    <h4 class=\"text-center\">    <i class=\"fas fa-bars\"></i> Lista de Expedientes -  {{ app.user.persona.dependencia.descripcion }}</h4>
+    <hr/>
+    <table class=\"table table-striped\">
+        <thead class=\"\">
+            <tr>
+                <th scope=\"col\">Nro. Expediente</th>
+                <th scope=\"col\">Concepto</th>
+                <th scope=\"col\">Tema</th>
+                <th scope=\"col\">Fecha Inicio</th>
+                <th scope=\"col\">Ubicacion</th>
+                <th scope=\"col\">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
 
-                            {% for expediente in expediente|reverse %}
-                                <tr>
-                                    <td>{{expediente.nroExpediente|e }}</td>
-                                    <td>{{expediente.concepto|e }}</td>
-                                    <td>{{expediente.tema|e }}</td>
-                                    <td>{{expediente.fechaInicio|e }}</td>
-                                    <td>{{expediente.ubicacionActual|e }}</td>
-                                    <td><a class=\"btn btn-info\" href=\"{{ path(\"ver_expediente\", {'id':expediente.id}) }}\"  role=\"button\"><i class=\"fas fa-search\"></i></a>
-                                        <a class=\"btn btn-warning\" href=\"{{ path(\"editar_expediente\", {'id':expediente.id}) }}\"  role=\"button\"><i class=\"fas fa-edit\"></i></a>
-                                        <a class=\"btn btn-danger\" href=\"{{ path(\"eliminar_expediente\", {'id':expediente.id}) }}\"  role=\"button\"><i class=\"fas fa-trash-alt\"></i></a></td>
-                                </tr>
-                            {% endfor %}
+            {% for expediente in expediente|reverse %}
+                <tr>
+                    <td class=\"text-default\">{{expediente.nroExpediente|e }}</td>
+                    <td class=\"text-default\"><p>{{expediente.concepto|e }}</p></td>
+                    <td class=\"text-default\">{{expediente.tema|e }}</td>
+                    <td class=\"text-default\">{{expediente.fechaInicio|e }}</td>
+                    <td class=\"text-default\">{{expediente.ubicacionActual|e }}</td>
+                    <td><a class=\"btn btn-info\" href=\"{{ path(\"ver_expediente\", {'id':expediente.id}) }}\"  role=\"button\"><i class=\"fas fa-search\"></i></a>
+                        <a class=\"btn btn-warning\" href=\"{{ path(\"editar_expediente\", {'id':expediente.id}) }}\"  role=\"button\"><i class=\"fas fa-edit\"></i></a>
+                        <a class=\"btn btn-danger\" href=\"{{ path(\"eliminar_expediente\", {'id':expediente.id}) }}\"  role=\"button\"><i class=\"fas fa-trash-alt\"></i></a></td>
+                </tr>
+            {% endfor %}
 
-                        </tbody>
-                    </table>
-                            <hr/>
+        </tbody>
+    </table>
+    <hr/>
 {% endblock %}", "AppBundle:Expediente:listadoExpediente.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/Expediente/listadoExpediente.html.twig");
     }
 }
