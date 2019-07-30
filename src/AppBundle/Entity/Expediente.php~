@@ -84,7 +84,7 @@ class Expediente
     private $fechaFin;
 
     /**
-     *@ORM\OneToOne(targetEntity="Ubicacion")
+     *@ORM\ManyToOne(targetEntity="Ubicacion")
      */
     private $ubicacionActual;
 

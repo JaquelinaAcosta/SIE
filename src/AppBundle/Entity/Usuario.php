@@ -36,6 +36,13 @@ class Usuario implements UserInterface
      */
     private $contrasenia;
     
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="saved_password", type="string", length=255)
+     */
+    private $saved_password;
+    
     /**
      * @var string
      *
@@ -343,5 +350,29 @@ class Usuario implements UserInterface
     public function getResponsables()
     {
         return $this->responsables;
+    }
+
+    /**
+     * Set savedPassword
+     *
+     * @param string $savedPassword
+     *
+     * @return Usuario
+     */
+    public function setSavedPassword($savedPassword)
+    {
+        $this->saved_password = $savedPassword;
+
+        return $this;
+    }
+
+    /**
+     * Get savedPassword
+     *
+     * @return string
+     */
+    public function getSavedPassword()
+    {
+        return $this->saved_password;
     }
 }

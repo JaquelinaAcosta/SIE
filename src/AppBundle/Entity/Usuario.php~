@@ -36,6 +36,13 @@ class Usuario implements UserInterface
      */
     private $contrasenia;
     
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="saved_password", type="string", length=255)
+     */
+    private $saved_password;
+    
     /**
      * @var string
      *

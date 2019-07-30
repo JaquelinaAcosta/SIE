@@ -50,7 +50,7 @@ class Tema
     }
     
     public function __toString() {
-        return $this->descripcion;
+        return $this->codigo." - ".$this->descripcion;
     }
 
     /**

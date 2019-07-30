@@ -20,6 +20,11 @@ class MesaEntrada extends Ubicacion {
     private $codigoExpediente;
 
 
+    public function __toString() {
+//        return "Mesa de Entrada - ".parent::getDependencia()->getDescripcion();
+        return "Mesa de Entrada";
+    }
+    
     /**
      * Get id
      *

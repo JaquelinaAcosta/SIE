@@ -22,8 +22,6 @@ class MesaEntradaController extends Controller {
 
         $original_responsables = new ArrayCollection();
 
-
-
         $form = $this->createForm(MesaEntradaType::class, $mesaentrada, ['gestion' => true]);
 
         foreach ($mesaentrada->getResponsables() as $responsable) {
