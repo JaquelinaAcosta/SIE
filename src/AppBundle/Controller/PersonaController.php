@@ -38,4 +38,34 @@ class PersonaController extends Controller
             'form'=> $form->createView() 
         ]);
     }
+    /**
+     * @Route("registro/editPersona/{id}", name="editar_persona")
+     */
+    public function editPersonaAction(Request $request, $id) {
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $persona = $em->getRepository("AppBundle:Persona")->find($id);
+
+        $form = $this->createForm(PersonaType::class, $persona);
+        $form->handleRequest($request);
+        
+       
+        
+        $user = $this->getUser();
+
+        if ($form->isSubmitted()) {
+         
+                $em->persist($persona);
+                $em->flush();
+            
+            return $this->redirectToRoute('homepage');
+
+        }
+
+        // replace this example code with whatever you need
+        return $this->render('AppBundle:Ubicacion:editarPersona.html.twig', array(
+                    'form' => $form->createView(),
+                    'persona' => $persona,
+        ));
+    }
 }

@@ -39,4 +39,45 @@ class UsuarioController extends Controller
              'usuario'=>$usuario
         ]);
     }
+    /**
+     * @Route("registro/editUsuario/{id}", name="editar_usuario")
+     */
+    public function editUsuarioAction(Request $request, $id) {
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $usuario = $em->getRepository("AppBundle:Usuario")->find($id);
+
+        $form = $this->createForm(UsuarioType::class, $usuario);
+        $form->handleRequest($request);     
+        
+        $user = $this->getUser();
+        
+        
+         echo $usuario->getContrasenia();
+//           
+//            dump($usuario);
+//         die();
+         
+         
+        if ($form->isSubmitted() and $form->isValid() ) {
+
+            $factory = $this->get("security.encoder_factory");
+            $encoder = $factory->getEncoder($usuario);
+            $password = $encoder->encodePassword($usuario->getContrasenia(),$usuario->getSalt());
+            
+                dump($usuario);
+                die();
+                
+            $usuario->setContrasenia($password);    
+
+            $em->persist($usuario);
+            $em->flush();
+        }
+
+        // replace this example code with whatever you need
+        return $this->render('AppBundle:Usuario:editarUsuario.html.twig', array(
+                    'form' => $form->createView(),
+                    'usuario' => $usuario,
+        ));
+    }
 }

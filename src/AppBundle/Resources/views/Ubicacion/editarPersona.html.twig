@@ -1,0 +1,53 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block content %}
+    
+    <style>
+        input[type=text]{
+            margin-bottom: 10px;
+            padding:10px;            
+         }
+         input[type=submit]{
+            margin-bottom: 10px;
+            padding:10px;            
+         }
+
+    </style>
+    
+    
+   
+    
+     <div class="col-lg-10" style="padding-left:  300px; padding-top:  50px">
+        <div class="list-group col-lg-11 col-md-offset-1">
+            <div class="expediente col-lg-10 panel panel-primary"  style="padding: 10px">
+                    <div class="panel-heading" style="font-size:18px;">
+                        Modificar datos
+                    </div>
+                <br/>
+            {{form_start(form,{'action':'','method':'POST'})}}
+            <div class="col-lg-14">
+                    <label class="text-default">Dependencia:</label>
+                    {{ form_errors(form.dependencia) }}
+                    {{ form_widget(form.dependencia) }}
+                    <label class="text-default">Nombre:</label>
+                    {{ form_errors(form.nombre) }}
+                    {{ form_widget(form.nombre) }}
+                    <label class="text-default">Apellido:</label>
+                    {{ form_errors(form.apellido) }}
+                    {{ form_widget(form.apellido) }}
+                    <label class="text-default">DNI:</label>
+                    {{ form_errors(form.dni) }}
+                    {{ form_widget(form.dni) }}
+                    <label class="text-default">Cargo:</label>
+                    {{ form_errors(form.cargo) }}
+                    {{ form_widget(form.cargo) }}
+                    
+                    {{ form_widget(form.Aceptar) }}
+                    <a class="btn btn-default" onclick="history.back()"  role="button">Volver</a>
+         
+            {{form_end(form)}}
+            </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
