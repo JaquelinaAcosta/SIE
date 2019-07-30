@@ -224,6 +224,6 @@ class __TwigTemplate_4604e30dd5d53019d7d6727eadb46743fca19a48092d189d2fec30b7c99
             });
         </script>
 
-    {% endblock %}", "AppBundle:Expediente:caratulaAgregada.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/Expediente/caratulaAgregada.html.twig");
+    {% endblock %}", "AppBundle:Expediente:caratulaAgregada.html.twig", "/var/www/html/gitSIE/src/AppBundle/Resources/views/Expediente/caratulaAgregada.html.twig");
     }
 }

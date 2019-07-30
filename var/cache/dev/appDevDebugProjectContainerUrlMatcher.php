@@ -291,9 +291,22 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::homeAction',  '_route' => 'homepage',);
         }
 
-        // nuevo_registro
-        if ('/registro' === $pathinfo) {
-            return array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::indexAction',  '_route' => 'nuevo_registro',);
+        if (0 === strpos($pathinfo, '/registro')) {
+            // editar_persona
+            if (0 === strpos($pathinfo, '/registro/editPersona') && preg_match('#^/registro/editPersona/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'editar_persona']), array (  '_controller' => 'AppBundle\\Controller\\PersonaController::editPersonaAction',));
+            }
+
+            // nuevo_registro
+            if ('/registro' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::indexAction',  '_route' => 'nuevo_registro',);
+            }
+
+            // editar_usuario
+            if (0 === strpos($pathinfo, '/registro/editUsuario') && preg_match('#^/registro/editUsuario/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'editar_usuario']), array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::editUsuarioAction',));
+            }
+
         }
 
         if ('/' === $pathinfo && !$allow) {

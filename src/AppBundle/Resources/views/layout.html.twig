@@ -96,13 +96,15 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% if app.user != null %} {{ app.user.userName }} {% else %} Iniciar Sesion {% endif %} <span class="glyphicon glyphicon-cog"></span><span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-
+                                    {{dump(app.user)}}
                                     {% if app.user == null %}
-
+                                          
                                         <li><a href="{{ path("loginUsuario") }}">Entrar</a></li>
 
                                     {%else%}
                                         <li><a href="#">Opciones</a></li>
+                                        <li><a href="{{ path("editar_usuario", {'id':app.user.id}) }}">Configuración de Cuenta</a></li>
+                                        <li><a href="{{ path("editar_persona", {'id':app.user.persona.id}) }}">Configuración Personal</a></li>
                                         <li role="separator" class="divider"></li>
                                         <li><a href="{{ path("logout") }}">Salir</a></li>
                                         {%endif%}
