@@ -11,6 +11,7 @@ use AppBundle\Entity\Tema;
 use AppBundle\Form\ExpedienteType;
 use \AppBundle\Entity\MesaEntrada;
 use AppBundle\Entity\ExpedienteAsociado;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class ExpedienteController extends Controller {
 
@@ -30,6 +31,7 @@ class ExpedienteController extends Controller {
         $expediente->setIniciadorDependencia($user->getPersona()->getDependencia());
         $expediente->setUbicacionActual($expediente->getIniciadorDependencia()->getMesaentrada());
 
+
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
                 foreach ($form['expedientes_asociados']->getData() as $expediente_asoc) {
@@ -48,20 +50,8 @@ class ExpedienteController extends Controller {
 
         // replace this example code with whatever you need
         return $this->render('AppBundle:Expediente:add.html.twig', [
-                    'form' => $form->createView()
-        ]);
-    }
-
-    /**
-     * @Route("/ajax-form", name="add_evento")
-     */
-    public function ajaxFormAction(Request $request) {
-        $form = $this->createForm(ExpedienteType::class);
-        $form->handleRequest($request);
-
-
-        return $this->render('AppBundle:Expediente:index.html.twig', [
-                    'form' => $form->createView()
+                    'form' => $form->createView(),
+                    'accion' => 'Nuevo'
         ]);
     }
 
@@ -141,19 +131,39 @@ class ExpedienteController extends Controller {
         $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
 
         $form = $this->createForm(ExpedienteType::class, $expediente);
-
-        $form->handleRequest($request);
-
-        $user = $this->getUser();
+        
+          $user = $this->getUser();
         $expediente->setIniciadorDependencia($user->getPersona()->getDependencia());
-         $expediente->setUbicacionActual($expediente->getIniciadorDependencia()->getMesaentrada());
+        $expediente->setUbicacionActual($expediente->getIniciadorDependencia()->getMesaentrada());
+        
+        $original_expedientes_asociados = new ArrayCollection();
+
+        foreach ($expediente->getExpedientesAsociados() as $expediente_asoc) {
+            $original_expedientes_asociados->add($expediente_asoc);
+        }
+        
+               
+        $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
+
+                foreach ($original_expedientes_asociados as $expediente_asoc) {
+                    if (false === $expediente->getExpedientesAsociados()->contains($expediente_asoc)) {
+                        // remove the Task from the Tag
+                         $expediente->getExpedientesAsociados()->removeElement($expediente_asoc);
+                        // if it was a many-to-one relationship, remove the relationship like this
+                        // $tag->setTask(null);
+                        // if you wanted to delete the Tag entirely, you can also do that
+                        // $entityManager->remove($tag);
+
+                        $em->remove($expediente_asoc);
+                    }
+                }
+
                 foreach ($form['expedientes_asociados']->getData() as $expediente_asoc) {
                     $expediente_asoc->setExpedientePadre($expediente);
                 }
-
 //                dump($expediente);
 //                die();
                 $em->persist($expediente);
@@ -163,9 +173,10 @@ class ExpedienteController extends Controller {
         }
 
         // replace this example code with whatever you need
-        return $this->render('AppBundle:Expediente:edit.html.twig', array(
+        return $this->render('AppBundle:Expediente:add.html.twig', array(
                     'form' => $form->createView(),
-                    'expediente' => $expediente
+                    'expediente' => $expediente,
+                    'accion' => 'Editar'
         ));
     }
 

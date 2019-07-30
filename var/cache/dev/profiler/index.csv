@@ -1579,3 +1579,17 @@ a9d32e,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/registro/editUsuari
 240f0b,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/registro/editUsuario/3,1564498913,32873a,200
 32873a,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/registro/editUsuario/3,1564498913,,500
 b6e7fc,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/registro/editUsuario/3,1564499904,,200
+51299b,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/registro,1564500502,,200
+86799f,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/editUsuario/1,1564500536,762418,200
+762418,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/editUsuario/1,1564500536,,404
+3d90f1,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/registro/editUsuario/1,1564500547,,200
+81553c,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/registro/editUsuario/1,1564500615,263b7e,200
+263b7e,127.0.0.1,POST,http://localhost/SIE/web/app_dev.php/registro/editUsuario/1,1564500615,,500
+756230,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/registro/editUsuario/1,1564500669,fa1a91,200
+fa1a91,127.0.0.1,POST,http://localhost/SIE/web/app_dev.php/registro/editUsuario/1,1564500669,,500
+d28a77,127.0.0.1,POST,http://localhost/SIE/web/app_dev.php/registro/editUsuario/1,1564500754,,200
+d63e43,127.0.0.1,POST,http://localhost/SIE/web/app_dev.php/registro/editUsuario/1,1564500826,,200
+cc517a,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/home,1564500839,,200
+463640,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/loginUsuario,1564500842,,200
+6e6e13,127.0.0.1,POST,http://localhost/SIE/web/app_dev.php/login_check,1564500846,,302
+e8910e,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/home,1564500846,,200

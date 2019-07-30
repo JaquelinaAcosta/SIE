@@ -51,25 +51,17 @@ class UsuarioController extends Controller
         $form->handleRequest($request);     
         
         $user = $this->getUser();
-        
-        
-         echo $usuario->getContrasenia();
-//           
-//            dump($usuario);
-//         die();
+
          
          
         if ($form->isSubmitted() and $form->isValid() ) {
 
             $factory = $this->get("security.encoder_factory");
             $encoder = $factory->getEncoder($usuario);
-            $password = $encoder->encodePassword($usuario->getContrasenia(),$usuario->getSalt());
-            
-                dump($usuario);
-                die();
-                
+            $password = $encoder->encodePassword($form['contrasenia']->getData(),$usuario->getSalt());
+            $usuario->setSavedPassword($form['contrasenia']->getData());
             $usuario->setContrasenia($password);    
-
+                      
             $em->persist($usuario);
             $em->flush();
         }
