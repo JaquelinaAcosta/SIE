@@ -151,10 +151,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         }
         echo " <span class=\"glyphicon glyphicon-cog\"></span><span class=\"caret\"></span></a>
                                 <ul class=\"dropdown-menu\">
-                                    ";
-        // line 99
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\DumpExtension')->dump($this->env, $context, $this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []));
-        echo "
+                                    
                                     ";
         // line 100
         if (($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []) == null)) {
@@ -330,7 +327,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     public function getDebugInfo()
     {
-        return array (  304 => 161,  284 => 78,  266 => 7,  248 => 161,  236 => 151,  231 => 145,  227 => 144,  220 => 139,  215 => 133,  211 => 132,  188 => 111,  183 => 109,  178 => 107,  174 => 106,  171 => 105,  165 => 102,  162 => 101,  160 => 100,  156 => 99,  145 => 97,  137 => 91,  132 => 81,  130 => 78,  121 => 72,  64 => 18,  60 => 17,  47 => 7,  39 => 1,);
+        return array (  301 => 161,  281 => 78,  263 => 7,  245 => 161,  233 => 151,  228 => 145,  224 => 144,  217 => 139,  212 => 133,  208 => 132,  185 => 111,  180 => 109,  175 => 107,  171 => 106,  168 => 105,  162 => 102,  159 => 101,  157 => 100,  145 => 97,  137 => 91,  132 => 81,  130 => 78,  121 => 72,  64 => 18,  60 => 17,  47 => 7,  39 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -441,7 +438,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                             <li class=\"dropdown\">
                                 <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">{% if app.user != null %} {{ app.user.userName }} {% else %} Iniciar Sesion {% endif %} <span class=\"glyphicon glyphicon-cog\"></span><span class=\"caret\"></span></a>
                                 <ul class=\"dropdown-menu\">
-                                    {{dump(app.user)}}
+                                    
                                     {% if app.user == null %}
                                           
                                         <li><a href=\"{{ path(\"loginUsuario\") }}\">Entrar</a></li>

@@ -145,12 +145,12 @@ class __TwigTemplate_8107ca37eb8caf829fa9253b3f99b383552ee94053ec04390d65638b6af
         // line 58
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "role", []), 'widget');
         echo "                                        
-                        <hr/>
+                      <br/>
                     ";
         // line 60
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "Aceptar", []), 'widget');
         echo "          
-                <hr/>               
+              
                 ";
         // line 62
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_end');
@@ -260,9 +260,9 @@ class __TwigTemplate_8107ca37eb8caf829fa9253b3f99b383552ee94053ec04390d65638b6af
                         <label class=\"float left\">ROLES</label>
                         {{ form_errors(form.role) }}
                         {{ form_widget(form.role) }}                                        
-                        <hr/>
+                      <br/>
                     {{ form_widget(form.Aceptar) }}          
-                <hr/>               
+              
                 {{form_end(form)}}
             </div>
         </div>
@@ -273,6 +273,6 @@ class __TwigTemplate_8107ca37eb8caf829fa9253b3f99b383552ee94053ec04390d65638b6af
     <div class=\"persona\">
         {{ form_row(form.persona) }}
     </div>
-{% endblock %}", "AppBundle:Usuario:index.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/Usuario/index.html.twig");
+{% endblock %}", "AppBundle:Usuario:index.html.twig", "/var/www/html/gitSIE/src/AppBundle/Resources/views/Usuario/index.html.twig");
     }
 }
