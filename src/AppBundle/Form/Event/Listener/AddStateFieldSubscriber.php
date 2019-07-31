@@ -41,12 +41,12 @@ class AddStateFieldSubscriber implements EventSubscriberInterface
         
         if($ubicacion == 1){
             if(!$form->has('mesaentrada')){
-                 $form->add('mesaentrada', MesaEntradaType::class); 
+                 $form->add('mesaentrada', MesaEntradaType::class,['gestion'=>null,'movimiento'=>true]); 
             }          
-            if(!$form->has('persona')){
+            if($form->has('persona')){
                 $form->remove('persona');
             }
-            if(!$form->has('lugarfisico')){
+            if($form->has('lugarfisico')){
                 $form->remove('lugarfisico');
             }
         }

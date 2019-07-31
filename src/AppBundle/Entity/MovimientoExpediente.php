@@ -53,9 +53,9 @@ class MovimientoExpediente {
     private $usuario;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="fecha", type="datetime")
+     * @ORM\Column(name="fecha", type="string",length=255)
      */
     private $fecha;
 
