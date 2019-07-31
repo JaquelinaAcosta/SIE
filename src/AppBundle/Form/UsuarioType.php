@@ -20,6 +20,7 @@ class UsuarioType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $password = $options['contrasenia'];
+        $role= $options['role'];
         
         $builder
                 ->add('iup', TextType::class,array(
@@ -35,17 +36,6 @@ class UsuarioType extends AbstractType
                  )
             ))          
 
-                ->add('role', ChoiceType::class,  array(
-                       
-                        "placeholder" => "--Seleccione--",
-                        "attr"=>[
-                            "class"=>"form-control"],
-                        'choices'  => array(
-                            'Usuario' => 'ROLE_USER',
-                            'Administrador' => 'ROLE_ADMIN'
-                      )
-                    ))
-                
                 ->add('contrasenia', PasswordType::class, array(
                  "label"=>"Contraseña: ", "attr"=>array(
                   "class"=>"form-exp form-control",
@@ -62,9 +52,9 @@ class UsuarioType extends AbstractType
                     ]
                 ])
                 
-//                ->add('Aceptar', SubmitType::class,array("attr"=> array(
-//            "class"=>"form-submit btn btn-primary" 
-//        )))
+                ->add('Aceptar', SubmitType::class,array("attr"=> array(
+            "class"=>"form-submit btn btn-primary" 
+        )))
             ;
         
         if($password != null){
@@ -75,10 +65,20 @@ class UsuarioType extends AbstractType
                      "placeholder"=>"Contraseña"
                  )
             ))                   
-                     ->add('Aceptar', SubmitType::class,
-                     ['attr'=>array(
-                         "class"=>"form-control btn btn-success"
-                     )]);
+                     ;
+        }
+        if($role != null){
+             $builder
+                     ->add('role', ChoiceType::class,  array(
+                       
+                        "placeholder" => "--Seleccione--",
+                        "attr"=>[
+                            "class"=>"form-control"],
+                        'choices'  => array(
+                            'Usuario' => 'ROLE_USER',
+                            'Administrador' => 'ROLE_ADMIN'
+                      )
+                    ));                                    
         }
         
         
@@ -89,7 +89,8 @@ class UsuarioType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\Usuario',
-            'contrasenia'=>null
+            'contrasenia'=>null,
+            'role'=>null
         ));
     }
 

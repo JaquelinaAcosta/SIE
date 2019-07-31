@@ -18,7 +18,7 @@ class UsuarioController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager(); 
         $usuario = new Usuario();                
-        $form = $this->createForm(UsuarioType::class,$usuario, ['contrasenia' => true]);
+        $form = $this->createForm(UsuarioType::class,$usuario, ['contrasenia' => true, 'role'=>'su']);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() and  $form->isValid()) {
@@ -48,7 +48,15 @@ class UsuarioController extends Controller
         $usuario = $em->getRepository("AppBundle:Usuario")->find($id);       
         $usuario->setContrasenia($usuario->getSavedPassword()); 
          
-        $form = $this->createForm(UsuarioType::class, $usuario, ['contrasenia' => true]);
+        $usuarioActual = $this->getUser();
+        
+        if($usuarioActual->getRole() == 'ROLE_ADMIN'){
+             $form = $this->createForm(UsuarioType::class, $usuario, ['contrasenia' => true,'role'=>'su']);
+        }else{
+              $form = $this->createForm(UsuarioType::class, $usuario, ['contrasenia' => true,'role'=>false]);
+        }
+        
+       
         $form->handleRequest($request);     
         
         $user = $this->getUser();
@@ -73,4 +81,56 @@ class UsuarioController extends Controller
                     'usuario' => $usuario,
         ));
     }
+  
+    /**
+     * @Route("listaUsuario", name="lista_usuario")
+     */
+    public function listaUsuarioAction(Request $request) {
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $user = $this->getUser();
+        $usuario = new Usuario();
+
+        if ($user->getRole() == "ROLE_ADMIN") {
+            $usuario = $em->getRepository("AppBundle:Usuario")->findAll();
+        } 
+//        else {
+//            $usuario = $em->getRepository("AppBundle:Usuario")->findBy([
+//                'iniciadorDependencia' => $user->getPersona()->getDependencia()
+//            ]);
+//        }
+
+
+        // replace this example code with whatever you need
+        return $this->render('AppBundle:Usuario:listadoUsuarios.html.twig', [
+                    'usuario' => $usuario
+        ]);
+    }
+    
+    /**
+     * @Route("listaUsuario/delete/{id}", name="eliminar_usuario")
+     */
+    public function deleteAction(Request $request, $id) {
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $usuario = $em->getRepository("AppBundle:Usuario")->find($id);
+
+        // replace this example code with whatever you need
+        if (!$usuario) {
+            throw $this->createNotFoundException('No element found for id ' . $id);
+        }
+
+        $em->remove($usuario);
+        $flush = $em->flush();
+
+//        if ($flush == null) {
+//            echo "Post se ha borrado correctamente";
+//        } else {
+//            echo "El post no se ha borrado";
+//        }
+
+        return $this->redirectToRoute('lista_usuario');
+    }
+    
+    
 }
