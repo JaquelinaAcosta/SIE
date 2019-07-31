@@ -19,6 +19,8 @@ class UsuarioType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $password = $options['contrasenia'];
+        
         $builder
                 ->add('iup', TextType::class,array(
             "label"=>"Ej: usuario1:","attr"=> array(
@@ -60,16 +62,34 @@ class UsuarioType extends AbstractType
                     ]
                 ])
                 
-                ->add('Aceptar', SubmitType::class,array("attr"=> array(
-            "class"=>"form-submit btn btn-primary" 
-        )));
+//                ->add('Aceptar', SubmitType::class,array("attr"=> array(
+//            "class"=>"form-submit btn btn-primary" 
+//        )))
+            ;
+        
+        if($password != null){
+             $builder
+                     ->add('contrasenia', TextType::class, array(
+                 "label"=>"Contraseña: ", "attr"=>array(
+                  "class"=>"form-exp form-control",
+                     "placeholder"=>"Contraseña"
+                 )
+            ))                   
+                     ->add('Aceptar', SubmitType::class,
+                     ['attr'=>array(
+                         "class"=>"form-control btn btn-success"
+                     )]);
+        }
+        
+        
     }/**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Usuario'
+            'data_class' => 'AppBundle\Entity\Usuario',
+            'contrasenia'=>null
         ));
     }
 

@@ -18,7 +18,7 @@ class UsuarioController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager(); 
         $usuario = new Usuario();                
-        $form = $this->createForm(UsuarioType::class,$usuario);
+        $form = $this->createForm(UsuarioType::class,$usuario, ['contrasenia' => true]);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() and  $form->isValid()) {
@@ -26,7 +26,7 @@ class UsuarioController extends Controller
             $factory = $this->get("security.encoder_factory");
             $encoder = $factory->getEncoder($usuario);
             $password = $encoder->encodePassword($usuario->getContrasenia(),$usuario->getSalt());
-            
+            $usuario->setSavedPassword($form['contrasenia']->getData());
             $usuario->setContrasenia($password);    
             
             $em->persist($usuario);
@@ -45,17 +45,16 @@ class UsuarioController extends Controller
     public function editUsuarioAction(Request $request, $id) {
 
         $em = $this->getDoctrine()->getEntityManager();
-        $usuario = $em->getRepository("AppBundle:Usuario")->find($id);
-
-        $form = $this->createForm(UsuarioType::class, $usuario);
+        $usuario = $em->getRepository("AppBundle:Usuario")->find($id);       
+        $usuario->setContrasenia($usuario->getSavedPassword()); 
+         
+        $form = $this->createForm(UsuarioType::class, $usuario, ['contrasenia' => true]);
         $form->handleRequest($request);     
         
         $user = $this->getUser();
-
-         
-         
+               
         if ($form->isSubmitted() and $form->isValid() ) {
-
+            
             $factory = $this->get("security.encoder_factory");
             $encoder = $factory->getEncoder($usuario);
             $password = $encoder->encodePassword($form['contrasenia']->getData(),$usuario->getSalt());
@@ -64,6 +63,8 @@ class UsuarioController extends Controller
                       
             $em->persist($usuario);
             $em->flush();
+            
+            return $this->redirectToRoute('homepage');
         }
 
         // replace this example code with whatever you need
