@@ -1848,3 +1848,9 @@ b1c725,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/expediente/3/add/movim
 c773e2,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/expediente/3/add/movimiento,1564587955,,200
 1c55af,127.0.0.1,POST,http://localhost/SIE/web/app_dev.php/ajax_movimiento,1564587956,,200
 8c8746,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/expediente/3/add/movimiento,1564587986,,200
+db75e8,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/loginUsuario,1564588832,,200
+a96be3,127.0.0.1,POST,http://localhost/gitSIE/web/app_dev.php/login_check,1564588843,,302
+dbaa8d,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/home,1564588843,,200
+9b8801,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/expediente/listado,1564588850,,200
+d80515,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/logout,1564588864,,302
+e98044,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/loginUsuario,1564588864,,200

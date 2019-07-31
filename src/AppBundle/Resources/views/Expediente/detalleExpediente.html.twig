@@ -148,8 +148,8 @@
                                     <td>{{caratulaAgregada.concepto}}</td>
                                     <td>{{caratulaAgregada.fojas}}</td>
                                     <td>
-                                    <a class="btn btn-warning" href="{{ path("editar_caratula", {'id':caratulaAgregada.id}) }}"  role="button"><i class="fas fa-edit"></i></a>
-                                    <a class="btn btn-danger" href="{{ path("eliminar_caratula", {'id':caratulaAgregada.id}) }}"  role="button"><i class="fas fa-trash-alt"></i></a></td>
+                                    <a class="btn btn-warning" href="{{ path("editar_caratula", {'id':caratulaAgregada.id}) }}"  role="button"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Editar"></i></a>
+                                    <a class="btn btn-danger" href="{{ path("eliminar_caratula", {'id':caratulaAgregada.id}) }}"  role="button"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></a></td>
                                 </tr>
                                 
                             {% endfor %}
@@ -159,7 +159,7 @@
                     </table>
                             <hr/>
                             
-                    Agregar nueva Carátula<a class="btn btn-warning" href="{{ path('nueva_caratula',{'id':expediente.id}) }}"  role="button"><i class="fas fa-file"></i></a>
+                    Agregar nueva Carátula <a class="btn btn-warning" href="{{ path('nueva_caratula',{'id':expediente.id}) }}"  role="button"><i class="fas fa-file" data-toggle="tooltip" data-placement="top" title="Agregar Carátula"></i></a>
 
                 </div>
 
@@ -200,5 +200,11 @@
 
             </div>
         </div>
+                            
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
 
     {% endblock %}

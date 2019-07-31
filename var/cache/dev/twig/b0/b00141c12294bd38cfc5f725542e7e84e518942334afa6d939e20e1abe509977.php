@@ -150,15 +150,15 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
                     <td><a class=\"btn btn-info\" href=\"";
             // line 71
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("ver_expediente", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
-            echo "\"  role=\"button\"><i class=\"fas fa-search\"></i></a>
+            echo "\"  role=\"button\"><i class=\"fas fa-search\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Ver Detalle\"></i></a>
                         <a class=\"btn btn-warning\" href=\"";
             // line 72
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_expediente", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
-            echo "\"  role=\"button\"><i class=\"fas fa-edit\"></i></a>
+            echo "\"  role=\"button\"><i class=\"fas fa-edit\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"></i></a>
                         <a class=\"btn btn-danger\" href=\"";
             // line 73
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("eliminar_expediente", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
-            echo "\"  role=\"button\"><i class=\"fas fa-trash-alt\"></i></a></td>
+            echo "\"  role=\"button\"><i class=\"fas fa-trash-alt\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Eliminar\"></i></a></td>
                 </tr>
             ";
         }
@@ -169,6 +169,12 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
         echo "
         </tbody>
     </table>
+    
+    <script>
+        \$(function () {
+            \$('[data-toggle=\"tooltip\"]').tooltip()
+        })
+    </script>
     <hr/>
 ";
         
@@ -274,14 +280,20 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
                     <td class=\"text-default\">{{expediente.tema|e }}</td>
                     <td class=\"text-default\">{{expediente.fechaInicio|e }}</td>
                     <td class=\"text-default\">{{expediente.ubicacionActual|e }}</td>
-                    <td><a class=\"btn btn-info\" href=\"{{ path(\"ver_expediente\", {'id':expediente.id}) }}\"  role=\"button\"><i class=\"fas fa-search\"></i></a>
-                        <a class=\"btn btn-warning\" href=\"{{ path(\"editar_expediente\", {'id':expediente.id}) }}\"  role=\"button\"><i class=\"fas fa-edit\"></i></a>
-                        <a class=\"btn btn-danger\" href=\"{{ path(\"eliminar_expediente\", {'id':expediente.id}) }}\"  role=\"button\"><i class=\"fas fa-trash-alt\"></i></a></td>
+                    <td><a class=\"btn btn-info\" href=\"{{ path(\"ver_expediente\", {'id':expediente.id}) }}\"  role=\"button\"><i class=\"fas fa-search\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Ver Detalle\"></i></a>
+                        <a class=\"btn btn-warning\" href=\"{{ path(\"editar_expediente\", {'id':expediente.id}) }}\"  role=\"button\"><i class=\"fas fa-edit\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"></i></a>
+                        <a class=\"btn btn-danger\" href=\"{{ path(\"eliminar_expediente\", {'id':expediente.id}) }}\"  role=\"button\"><i class=\"fas fa-trash-alt\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Eliminar\"></i></a></td>
                 </tr>
             {% endfor %}
 
         </tbody>
     </table>
+    
+    <script>
+        \$(function () {
+            \$('[data-toggle=\"tooltip\"]').tooltip()
+        })
+    </script>
     <hr/>
 {% endblock %}", "AppBundle:Expediente:listadoExpediente.html.twig", "/var/www/html/gitSIE/src/AppBundle/Resources/views/Expediente/listadoExpediente.html.twig");
     }
