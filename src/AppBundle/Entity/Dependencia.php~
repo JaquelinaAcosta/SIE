@@ -61,6 +61,14 @@ class Dependencia
     private $ubicaciones;
     
     
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="archivado", type="string")
+     */
+    private $archivado;
+    
+    
     /**
      * @ORM\OneToOne(targetEntity="MesaEntrada")
      * @Assert\Type(type="AppBundle\Entity\MesaEntrada")

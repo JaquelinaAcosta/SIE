@@ -61,6 +61,14 @@ class Dependencia
     private $ubicaciones;
     
     
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="archivado", type="string")
+     */
+    private $archivado;
+    
+    
     /**
      * @ORM\OneToOne(targetEntity="MesaEntrada")
      * @Assert\Type(type="AppBundle\Entity\MesaEntrada")
@@ -294,5 +302,29 @@ class Dependencia
     public function getUbicaciones()
     {
         return $this->ubicaciones;
+    }
+
+    /**
+     * Set archivado
+     *
+     * @param string $archivado
+     *
+     * @return Dependencia
+     */
+    public function setArchivado($archivado)
+    {
+        $this->archivado = $archivado;
+
+        return $this;
+    }
+
+    /**
+     * Get archivado
+     *
+     * @return string
+     */
+    public function getArchivado()
+    {
+        return $this->archivado;
     }
 }

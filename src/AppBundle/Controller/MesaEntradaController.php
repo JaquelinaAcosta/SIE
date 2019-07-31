@@ -14,7 +14,7 @@ use AppBundle\Form\MesaEntradaType;
 class MesaEntradaController extends Controller {
 
     /**
-     * @Route("/gestionar/mesa_entrada", name="gestionar_mesaentrada")
+     * @Route("/gestionar/mesa_entrada/", name="gestionar_mesaentrada")
      */
     public function indexAction(Request $request) {
         $em = $this->getDoctrine()->getEntityManager();
@@ -52,11 +52,8 @@ class MesaEntradaController extends Controller {
                 //$mesaentrada->addResponsable($responsable);
             }
 
-
             $em->persist($mesaentrada);
-            $flush = $em->flush();
-
-//            
+            $flush = $em->flush();       
         }
 
         // replace this example code with whatever you need
@@ -65,5 +62,55 @@ class MesaEntradaController extends Controller {
                     'dependencia' => $mesaentrada->getDependencia()
         ]);
     }
+    
+    /**
+     * @Route("/adm/gestionar/mesa_entrada/{id}", name="adm_gestionar_mesaentrada")
+     */
+    public function admGestionarAction(Request $request,$id) {
+        $em = $this->getDoctrine()->getEntityManager();
+        $mesaentrada = $em->getRepository("AppBundle:Dependencia")->find($id)->getMesaentrada();
 
+        $original_responsables = new ArrayCollection();
+
+        $form = $this->createForm(MesaEntradaType::class, $mesaentrada, ['gestion' => true]);
+
+        foreach ($mesaentrada->getResponsables() as $responsable) {
+            $original_responsables->add($responsable);
+        }
+
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            foreach ($original_responsables as $responsable) {
+                if (false === $mesaentrada->getResponsables()->contains($responsable)) {
+                    // remove the Task from the Tag
+                  //  $responsable->getUbicacion()->removeElement($mesaentrada);
+                    
+                    // if it was a many-to-one relationship, remove the relationship like this
+                    // $tag->setTask(null);
+                    
+                   // if you wanted to delete the Tag entirely, you can also do that
+                    // $entityManager->remove($tag);
+                   $em->remove($responsable);
+                }
+            }
+
+            foreach ($form['responsables']->getData() as $responsable) {
+                $responsable->setUbicacion($mesaentrada);
+                //$mesaentrada->addResponsable($responsable);
+            }
+
+            $em->persist($mesaentrada);
+            $flush = $em->flush();       
+        }
+
+        // replace this example code with whatever you need
+        return $this->render('AppBundle:Ubicacion:mesaEntrada.html.twig', [
+                    'form' => $form->createView(),
+                    'dependencia' => $mesaentrada->getDependencia()
+        ]);
+    }
+    
 }

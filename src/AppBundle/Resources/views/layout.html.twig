@@ -96,7 +96,7 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% if app.user != null %} {{ app.user.userName }} {% else %} Iniciar Sesion {% endif %} <span class="glyphicon glyphicon-cog"></span><span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    
+                                    {{dump(app.user)}}
                                     {% if app.user == null %}
                                           
                                         <li><a href="{{ path("loginUsuario") }}">Entrar</a></li>
@@ -130,8 +130,22 @@
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Expedientes <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="{{ path("listado_expediente") }}">Listado</a></li>
+                                    <li role="separator" class="divider"></li>
                                     <li><a href="{{ path("nuevo_expediente") }}">Nuevo Expediente</a></li>
-                                    <li><a href="#">Buscar Expediente</a></li>
+                                  {#  <li role="separator" class="divider"></li>
+                                    <li><a href="#">Separated link</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#">One more separated link</a></li>#}
+                                </ul>
+                            </li>
+                            
+                            {% if app.user.role == 'ROLE_ADMIN' %}
+                                <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dependencia <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{ path("listado_dependencia") }}">Listado</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="{{ path("nueva_dependencia") }}">Nueva Dependencia</a></li>
                                   {#  <li role="separator" class="divider"></li>
                                     <li><a href="#">Separated link</a></li>
                                     <li role="separator" class="divider"></li>
@@ -139,17 +153,20 @@
                                 </ul>
                             </li>
                              <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Movimientos <span class="caret"></span></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Persona(en proceso,falta listado con paginacion) <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="{{ path("listado_expediente") }}">Listado</a></li>
-                                    <li><a href="{{ path("nuevo_expediente") }}">Nuevo Expediente</a></li>
-                                    <li><a href="#">Buscar Expediente</a></li>
+                                    <li><a href="{{ path("listado_persona") }}">Listado</a></li>
+                                     <li role="separator" class="divider"></li>
+                                    <li><a href="{{ path("nueva_persona") }}">Nueva Persona</a></li>
                                   {#  <li role="separator" class="divider"></li>
                                     <li><a href="#">Separated link</a></li>
                                     <li role="separator" class="divider"></li>
                                     <li><a href="#">One more separated link</a></li>#}
                                 </ul>
                             </li>
+                            
+                            {% endif %}
+                            
                         </ul>        
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->

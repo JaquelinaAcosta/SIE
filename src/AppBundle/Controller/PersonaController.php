@@ -13,7 +13,7 @@ use AppBundle\Form\PersonaType;
 class PersonaController extends Controller
 {
     /**
-     * @Route("/persona", name="persona")
+     * @Route("/persona/add", name="nueva_persona")
      */
     public function indexAction(Request $request)
     {
@@ -39,7 +39,7 @@ class PersonaController extends Controller
         ]);
     }
     /**
-     * @Route("registro/editPersona/{id}", name="editar_persona")
+     * @Route("/persona/edit/{id}", name="editar_persona")
      */
     public function editPersonaAction(Request $request, $id) {
 
@@ -48,9 +48,7 @@ class PersonaController extends Controller
 
         $form = $this->createForm(PersonaType::class, $persona);
         $form->handleRequest($request);
-        
-       
-        
+
         $user = $this->getUser();
 
         if ($form->isSubmitted()) {
@@ -68,4 +66,28 @@ class PersonaController extends Controller
                     'persona' => $persona,
         ));
     }
+    
+    
+      /**
+     * @Route("/persona/listado", name="listado_persona")
+     */
+    public function listaDependenciasAction(Request $request) {
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $user = $this->getUser();
+        $dependencias = new Dependencia();
+
+        if ($user->getRole() == "ROLE_ADMIN") {
+            $dependencias = $em->getRepository("AppBundle:Persona")->findAll();
+        } else {
+            $this->redirectToRoute('homepage');
+        }
+
+
+        // replace this example code with whatever you need
+        return $this->render('AppBundle:Ubicacion:listadoPersona.html.twig', [
+                    'dependencias' => $dependencias
+        ]);
+    }
+    
 }

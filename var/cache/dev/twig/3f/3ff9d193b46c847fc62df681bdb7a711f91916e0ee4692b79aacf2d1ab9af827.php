@@ -123,6 +123,6 @@ class __TwigTemplate_937e2d57c9f0461ce866fd73ed1cc4b0092b24789d325722770234a4432
     </style>
     
    
-{% endblock %}", "AppBundle:PaginaPrincipal:inicio.html.twig", "/var/www/html/gitSIE/src/AppBundle/Resources/views/PaginaPrincipal/inicio.html.twig");
+{% endblock %}", "AppBundle:PaginaPrincipal:inicio.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/PaginaPrincipal/inicio.html.twig");
     }
 }

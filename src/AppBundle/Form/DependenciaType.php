@@ -18,6 +18,9 @@ class DependenciaType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        
+        $gestion = $options['gestion'];
+        
         $builder
                 ->add('descripcion', TextType::class,[
                     "label"=>false,
@@ -43,16 +46,6 @@ class DependenciaType extends AbstractType
                         'placeholder' => 'Escriba parte del nombre y seleccione una opción'
                     )
                 ))
-//                ->add('responsable', EntityType::class,[
-//                    "class"=>'AppBundle:Persona',
-//                    "placeholder"=>'--Seleccione--',
-//                    "required"=>false,
-//                    "label"=>false,
-//                    "attr"=>[
-//                        "class"=>'form-control',
-//                        "placeholder"=>"Ingrese su responsable"
-//                    ]
-//                ])
                 ->add('nivel', TextType::class,[
                     "label"=>false,
                     "attr"=>[
@@ -60,20 +53,27 @@ class DependenciaType extends AbstractType
                         "placeholder"=>"Ingrese el nivel"
                     ]
                 ])
-                ->add('mesaentrada', MesaEntradaType::class,array(
-                            "label"=>false
-                    
-                        ))
+               
+                
                 ->add('Aceptar', SubmitType::class, array("attr" => array(
                         "class" => "aceptar form-submit btn btn-success"
                  )));
+        
+                  if($gestion == null){
+                    $builder->add('mesaentrada', MesaEntradaType::class,array(
+                            "label"=>false                    
+                        ));
+                    }
+
+        
     }/**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Dependencia'
+            'data_class' => 'AppBundle\Entity\Dependencia',
+            'gestion'=>null
         ));
     }
 
