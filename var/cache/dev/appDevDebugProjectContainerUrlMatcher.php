@@ -241,25 +241,41 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return $this->mergeDefaults(array_replace($matches, ['_route' => 'tema_get']), array (  'id' => NULL,  '_controller' => 'AppBundle\\Controller\\DefaultController::getTemaAction',));
         }
 
-        // lugarFisico
-        if ('/lugarFisico' === $pathinfo) {
-            return array (  '_controller' => 'AppBundle\\Controller\\LugarFisicoController::indexAction',  '_route' => 'lugarFisico',);
-        }
-
-        if (0 === strpos($pathinfo, '/log')) {
-            // loginUsuario
-            if ('/loginUsuario' === $pathinfo) {
-                return array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::loginAction',  '_route' => 'loginUsuario',);
+        if (0 === strpos($pathinfo, '/l')) {
+            // lugarFisico
+            if ('/lugarFisico' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\LugarFisicoController::indexAction',  '_route' => 'lugarFisico',);
             }
 
-            // login_check
-            if ('/login_check' === $pathinfo) {
-                return array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::loginCheckAction',  '_route' => 'login_check',);
+            if (0 === strpos($pathinfo, '/log')) {
+                // loginUsuario
+                if ('/loginUsuario' === $pathinfo) {
+                    return array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::loginAction',  '_route' => 'loginUsuario',);
+                }
+
+                // login_check
+                if ('/login_check' === $pathinfo) {
+                    return array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::loginCheckAction',  '_route' => 'login_check',);
+                }
+
+                // logout
+                if ('/logout' === $pathinfo) {
+                    return array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::logoutAction',  '_route' => 'logout',);
+                }
+
             }
 
-            // logout
-            if ('/logout' === $pathinfo) {
-                return array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::logoutAction',  '_route' => 'logout',);
+            elseif (0 === strpos($pathinfo, '/listaUsuario')) {
+                // lista_usuario
+                if ('/listaUsuario' === $pathinfo) {
+                    return array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::listaUsuarioAction',  '_route' => 'lista_usuario',);
+                }
+
+                // eliminar_usuario
+                if (0 === strpos($pathinfo, '/listaUsuario/delete') && preg_match('#^/listaUsuario/delete/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'eliminar_usuario']), array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::deleteAction',));
+                }
+
             }
 
         }

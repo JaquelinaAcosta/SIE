@@ -1,0 +1,78 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block content %}
+    <style>
+        input[type=text]{
+            margin-bottom: 10px;
+            padding:10px;            
+        }
+        input[type=submit]{
+            margin-bottom: 10px;           
+        }
+        .expediente{
+            margin-right: 12px;
+            padding:15px;
+        }
+        .expediente p{
+            margin-top:10px;
+        }
+        .titulo{
+            height: 30px;
+            padding:7px;
+            background-color:black;
+            color: #fff;
+        }
+        .panel{
+            font-size: 15px; 
+            margin-bottom: 20px;
+            margin-right: 20px;
+        }
+        .form-exp{
+            font-size:15px;
+            padding:10px;
+        }
+        .title{
+            font-size:16px;
+        }
+
+        p {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px;
+        }
+
+    </style>
+
+
+
+    <h4 class="text-center">    <i class="fas fa-bars"></i> Lista de Usuarios </h4>
+    <hr/>
+    <table class="table table-striped">
+        <thead class="">
+            <tr>
+                <th scope="col">Usuario</th>
+                <th scope="col">Rol</th>
+                <th scope="col">Persona Responsable</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for usuario in usuario|reverse %}
+                <tr>
+                    <td class="text-default">{{usuario.iup|e }}</td>
+                    <td class="text-default"><p>{{usuario.role|e }}</p></td>
+                    <td class="text-default">{{usuario.persona|e }}</td>
+                    
+                 {#   <td><a class="btn btn-info" href="{{ path("ver_expediente", {'id':expediente.id}) }}"  role="button"><i class="fas fa-search"></i></a>#}
+{#                        <td><a class="btn btn-info" href="{{ path("editar_usuario", {'id':usuario.id}) }}"  role="button"><i class="fas fa-search"></i></a>#}
+                       <td> <a class="btn btn-warning" href="{{ path("editar_usuario", {'id':usuario.id}) }}"  role="button"><i class="fas fa-edit"></i></a>
+                        <a class="btn btn-danger" href="{{ path("eliminar_usuario", {'id':usuario.id}) }}"  role="button"><i class="fas fa-trash-alt"></i></a></td>
+                </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+    <hr/>
+{% endblock %}
