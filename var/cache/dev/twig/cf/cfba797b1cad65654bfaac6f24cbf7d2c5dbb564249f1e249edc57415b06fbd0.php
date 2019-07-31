@@ -105,7 +105,11 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         </script>
     </head>
     <body>       
-        <header>  
+          ";
+        // line 61
+        if (($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []) != null)) {
+            // line 62
+            echo "        <header>  
             <nav class=\"navbar navbar-sticky-top navbar-default \">
                 <div class=\"container-fluid\">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -117,75 +121,73 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                             <span class=\"icon-bar\"></span>
                         </button>
                         <a class=\"navbar-brand\" href=\"";
-        // line 72
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("homepage");
-        echo "\">Sistema de Pases de Expediente</a>
+            // line 73
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("homepage");
+            echo "\">Sistema de Pases de Expediente</a>
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">
                         <ul class=\"nav navbar-nav\">                        
                             ";
-        // line 78
-        $this->displayBlock('menu', $context, $blocks);
-        // line 81
-        echo "                        </ul>
+            // line 79
+            $this->displayBlock('menu', $context, $blocks);
+            // line 82
+            echo "                        </ul>
                         <ul class=\"nav navbar-nav navbar-right\">
 
                             ";
-        // line 91
-        echo "
+            // line 92
+            echo "
                             <li>
 
                             </li>
 
                             <li class=\"dropdown\">
                                 <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">";
-        // line 97
-        if (($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []) != null)) {
-            echo " ";
-            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "userName", []), "html", null, true);
-            echo " ";
-        } else {
-            echo " Iniciar Sesion ";
-        }
-        echo " <span class=\"glyphicon glyphicon-cog\"></span><span class=\"caret\"></span></a>
+            // line 98
+            if (($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []) != null)) {
+                echo " ";
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "userName", []), "html", null, true);
+                echo " ";
+            } else {
+                echo " Iniciar Sesion ";
+            }
+            echo " <span class=\"glyphicon glyphicon-cog\"></span><span class=\"caret\"></span></a>
                                 <ul class=\"dropdown-menu\">
+                                    
                                     ";
-        // line 99
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\DumpExtension')->dump($this->env, $context, $this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []));
-        echo "
-                                    ";
-        // line 100
-        if (($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []) == null)) {
             // line 101
-            echo "                                          
+            if (($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []) == null)) {
+                // line 102
+                echo "                                          
                                         <li><a href=\"";
-            // line 102
-            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("loginUsuario");
-            echo "\">Entrar</a></li>
+                // line 103
+                echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("loginUsuario");
+                echo "\">Entrar</a></li>
 
                                     ";
-        } else {
-            // line 105
-            echo "                                        <li><a href=\"#\">Opciones</a></li>
+            } else {
+                // line 106
+                echo "                                        <li><a href=\"#\">Opciones</a></li>
                                         <li><a href=\"";
-            // line 106
-            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_usuario", ["id" => $this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "id", [])]), "html", null, true);
-            echo "\">Configuración de Cuenta</a></li>
+                // line 107
+                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_usuario", ["id" => $this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "id", [])]), "html", null, true);
+                echo "\">Configuración de Cuenta</a></li>
                                         <li><a href=\"";
-            // line 107
-            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_persona", ["id" => $this->getAttribute($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "persona", []), "id", [])]), "html", null, true);
-            echo "\">Configuración Personal</a></li>
+                // line 108
+                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_persona", ["id" => $this->getAttribute($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "persona", []), "id", [])]), "html", null, true);
+                echo "\">Configuración Personal</a></li>
                                         <li role=\"separator\" class=\"divider\"></li>
                                         <li><a href=\"";
-            // line 109
-            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("logout");
-            echo "\">Salir</a></li>
+                // line 110
+                echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("logout");
+                echo "\">Salir</a></li>
                                         ";
-        }
-        // line 111
-        echo "                                </ul>
+            }
+            // line 112
+            echo "                                    
+                                </ul>
                             </li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
@@ -207,70 +209,76 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                                 <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Expedientes <span class=\"caret\"></span></a>
                                 <ul class=\"dropdown-menu\">
                                     <li><a href=\"";
-        // line 132
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_expediente");
-        echo "\">Listado</a></li>
-                                    <li role=\"separator\" class=\"divider\"></li>
-                                    <li><a href=\"";
-        // line 134
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nuevo_expediente");
-        echo "\">Nuevo Expediente</a></li>
-                                  ";
-        // line 139
-        echo "                                </ul>
-                            </li>
-                            
-                            ";
-        // line 142
-        if (($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "role", []) == "ROLE_ADMIN")) {
-            // line 143
-            echo "                                <li class=\"dropdown\">
-                                <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Dependencia <span class=\"caret\"></span></a>
-                                <ul class=\"dropdown-menu\">
-                                    <li><a href=\"";
-            // line 146
-            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_dependencia");
+            // line 134
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_expediente");
             echo "\">Listado</a></li>
                                     <li role=\"separator\" class=\"divider\"></li>
                                     <li><a href=\"";
-            // line 148
-            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nueva_dependencia");
-            echo "\">Nueva Dependencia</a></li>
+            // line 136
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nuevo_expediente");
+            echo "\">Nuevo Expediente</a></li>
                                   ";
-            // line 153
+            // line 141
             echo "                                </ul>
+                            </li>
+                            
+                           
+                            
+                            ";
+            // line 146
+            if (($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "role", []) == "ROLE_ADMIN")) {
+                // line 147
+                echo "                                <li class=\"dropdown\">
+                                <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Dependencia <span class=\"caret\"></span></a>
+                                <ul class=\"dropdown-menu\">
+                                    <li><a href=\"";
+                // line 150
+                echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_dependencia");
+                echo "\">Listado</a></li>
+                                    <li role=\"separator\" class=\"divider\"></li>
+                                    <li><a href=\"";
+                // line 152
+                echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nueva_dependencia");
+                echo "\">Nueva Dependencia</a></li>
+                                  ";
+                // line 157
+                echo "                                </ul>
                             </li>
                              <li class=\"dropdown\">
                                 <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Persona(en proceso,falta listado con paginacion) <span class=\"caret\"></span></a>
                                 <ul class=\"dropdown-menu\">
                                     <li><a href=\"";
-            // line 158
-            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_persona");
-            echo "\">Listado</a></li>
+                // line 162
+                echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_persona");
+                echo "\">Listado</a></li>
                                      <li role=\"separator\" class=\"divider\"></li>
                                     <li><a href=\"";
-            // line 160
-            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nueva_persona");
-            echo "\">Nueva Persona</a></li>
+                // line 164
+                echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nueva_persona");
+                echo "\">Nueva Persona</a></li>
                                   ";
-            // line 165
-            echo "                                </ul>
+                // line 169
+                echo "                                </ul>
                             </li>
                             
                             ";
-        }
-        // line 169
-        echo "                            
+            }
+            // line 173
+            echo "                            
+                            
+                            
                         </ul>        
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
             </nav>
 
         </header>
-
-        <section id=\"content\">             
+";
+        }
+        // line 183
+        echo "        <section id=\"content\">             
             ";
-        // line 178
+        // line 184
         $this->displayBlock('content', $context, $blocks);
         echo "   
         </section>
@@ -306,7 +314,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     }
 
-    // line 78
+    // line 79
     public function block_menu($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -326,7 +334,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     }
 
-    // line 178
+    // line 184
     public function block_content($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -356,7 +364,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     public function getDebugInfo()
     {
-        return array (  330 => 178,  310 => 78,  292 => 7,  274 => 178,  263 => 169,  257 => 165,  253 => 160,  248 => 158,  241 => 153,  237 => 148,  232 => 146,  227 => 143,  225 => 142,  220 => 139,  216 => 134,  211 => 132,  188 => 111,  183 => 109,  178 => 107,  174 => 106,  171 => 105,  165 => 102,  162 => 101,  160 => 100,  156 => 99,  145 => 97,  137 => 91,  132 => 81,  130 => 78,  121 => 72,  64 => 18,  60 => 17,  47 => 7,  39 => 1,);
+        return array (  338 => 184,  318 => 79,  300 => 7,  282 => 184,  279 => 183,  267 => 173,  261 => 169,  257 => 164,  252 => 162,  245 => 157,  241 => 152,  236 => 150,  231 => 147,  229 => 146,  222 => 141,  218 => 136,  213 => 134,  189 => 112,  184 => 110,  179 => 108,  175 => 107,  172 => 106,  166 => 103,  163 => 102,  161 => 101,  149 => 98,  141 => 92,  136 => 82,  134 => 79,  125 => 73,  112 => 62,  110 => 61,  64 => 18,  60 => 17,  47 => 7,  39 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -429,6 +437,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         </script>
     </head>
     <body>       
+          {% if app.user != null %}
         <header>  
             <nav class=\"navbar navbar-sticky-top navbar-default \">
                 <div class=\"container-fluid\">
@@ -467,7 +476,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                             <li class=\"dropdown\">
                                 <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">{% if app.user != null %} {{ app.user.userName }} {% else %} Iniciar Sesion {% endif %} <span class=\"glyphicon glyphicon-cog\"></span><span class=\"caret\"></span></a>
                                 <ul class=\"dropdown-menu\">
-                                    {{dump(app.user)}}
+                                    
                                     {% if app.user == null %}
                                           
                                         <li><a href=\"{{ path(\"loginUsuario\") }}\">Entrar</a></li>
@@ -479,6 +488,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                                         <li role=\"separator\" class=\"divider\"></li>
                                         <li><a href=\"{{ path(\"logout\") }}\">Salir</a></li>
                                         {%endif%}
+                                    
                                 </ul>
                             </li>
                         </ul>
@@ -510,6 +520,8 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                                 </ul>
                             </li>
                             
+                           
+                            
                             {% if app.user.role == 'ROLE_ADMIN' %}
                                 <li class=\"dropdown\">
                                 <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Dependencia <span class=\"caret\"></span></a>
@@ -538,13 +550,15 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                             
                             {% endif %}
                             
+                            
+                            
                         </ul>        
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
             </nav>
 
         </header>
-
+{% endif %}
         <section id=\"content\">             
             {% block content %}Content default{% endblock %}   
         </section>
@@ -553,6 +567,6 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
     </body>
 
 </html>
-", "AppBundle::layout.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/layout.html.twig");
+", "AppBundle::layout.html.twig", "/var/www/html/gitSIE/src/AppBundle/Resources/views/layout.html.twig");
     }
 }
