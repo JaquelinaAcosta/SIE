@@ -21,6 +21,14 @@ class MesaEntradaType extends AbstractType
         $gestion = $options['gestion'];
         
         $builder
+                ->add('dependencia', EntityType::class, array(
+                    "label" => false,
+                    "placeholder" => "--Seleccione--",
+                    
+                    "class" => 'AppBundle:Dependencia', "attr" => array(
+                        "class" => "form-control"
+                    ))
+                )
                ->add('responsables', CollectionType::class,[
                    'entry_type'=> ResponsableType::class,
                    'label'=>false,

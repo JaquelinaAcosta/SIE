@@ -79,7 +79,10 @@ class __TwigTemplate_8c5f74ff5f6306d6a4d151cf13253aafc5a75cfa38807be853dbb51144d
 
     <div class=\"col-ls-12\" style=\"padding-left:  30px; padding-right:  30px\">
         <div class=\"panel panel-primary \">
-            <div class=\"title panel-heading\">Carga de datos -> Expediente</div>
+            <div class=\"title panel-heading\">";
+        // line 26
+        echo twig_escape_filter($this->env, ($context["accion"] ?? $this->getContext($context, "accion")), "html", null, true);
+        echo " -> Expediente</div>
             <div class=\"panel panel-body\">
                 <br/>
                 ";
@@ -109,7 +112,7 @@ class __TwigTemplate_8c5f74ff5f6306d6a4d151cf13253aafc5a75cfa38807be853dbb51144d
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "tipo", []), 'widget');
         echo "
                     </div>
-                      <div class=\"col-lg-2\">
+                    <div class=\"col-lg-2\">
                         <label class=\"text-default\">FOJAS</label>
                         ";
         // line 43
@@ -131,7 +134,7 @@ class __TwigTemplate_8c5f74ff5f6306d6a4d151cf13253aafc5a75cfa38807be853dbb51144d
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "tema", []), 'widget');
         echo "
                     </div>
-                                 
+
                     ";
         // line 56
         echo "                                      
@@ -225,82 +228,82 @@ class __TwigTemplate_8c5f74ff5f6306d6a4d151cf13253aafc5a75cfa38807be853dbb51144d
 
     <script>
         \$('#expediente_tema').autocompleter({
-        url_list: \"";
+            url_list: \"";
         // line 101
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("tema_search");
         echo "\",
-        url_get: \"";
+            url_get: \"";
         // line 102
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("tema_get");
         echo "\"
         });
+
     </script>     
 
     <script>
         var \$collectionHolder;
-
         // setup an \"add a tag\" link
         var \$addResponsableButton = \$('<button type=\"button\" class=\"add_responsable form-control btn btn-success\">Agregar nuevo Expediente Asociado</button>');
         var \$newLinkLi = \$('.add').append(\$addResponsableButton);
-
+        var totalCount = 0;
         jQuery(document).ready(function () {
-        // Get the ul that holds the collection of tags
-        \$collectionHolder = \$('.expedientes');
+            // Get the ul that holds the collection of tags
+            \$collectionHolder = \$('.expedientes');
+            \$collectionHolder2 = \$('.expediente_items');
+            // add a delete link to all of the existing tag form li elements
 
-        // add a delete link to all of the existing tag form li elements
+            // add the \"add a tag\" anchor and li to the tags ul
+            \$collectionHolder.append(\$newLinkLi);
 
-        // add the \"add a tag\" anchor and li to the tags ul
-        \$collectionHolder.append(\$newLinkLi);
+            // count the current form inputs we have (e.g. 2), use that as the new
+            // index when inserting a new item (e.g. 2)
+            \$collectionHolder.data('index', \$collectionHolder.find(':input').length + \$collectionHolder2.find(':input').length);
+            totalCount = \$collectionHolder.data('index');
 
-        // count the current form inputs we have (e.g. 2), use that as the new
-        // index when inserting a new item (e.g. 2)
-        \$collectionHolder.data('index', \$collectionHolder.find(':input').length);
+            for (var i = 0; i < totalCount; i++) {
+                addTagFormDeleteLink(\$('.expediente_items').children().eq(i), \$collectionHolder);
+            }
 
-
-        \$addResponsableButton.on('click', function (e) {
-        // add a new tag form (see next code block)
-        addResponsableForm(\$collectionHolder, \$newLinkLi);
+            \$addResponsableButton.on('click', function (e) {
+                // add a new tag form (see next code block)
+                addResponsableForm(\$collectionHolder, \$newLinkLi);
+            });
         });
-        });
-
-        function addTagFormDeleteLink(\$tagFormLi,\$collectionHolder) {
-        var \$removeFormButton = \$('<button type=\"button\">Delete this tag</button>');
-        \$tagFormLi.append(\$removeFormButton);
-
-        \$removeFormButton.on('click', function (e) {
-        // remove the li for the tag form
-        \$tagFormLi.remove();
-        var index = \$collectionHolder.data('index');
-        \$collectionHolder.data('index', index - 1);
-        });
+        function addTagFormDeleteLink(\$tagFormLi, \$collectionHolder) {
+            var \$removeFormButton = \$('<button type=\"button\">Delete this tag</button>');
+            \$tagFormLi.append(\$removeFormButton);
+            \$removeFormButton.on('click', function (e) {
+                // remove the li for the tag form
+                \$tagFormLi.remove();
+                var index = \$collectionHolder.data('index');
+                \$collectionHolder.data('index', index - 1);
+            });
         }
-
         function addResponsableForm(\$collectionHolder, \$newLinkLi) {
-        // Get the data-prototype explained earlier
-        var prototype = \$collectionHolder.data('prototype');
-        // get the new index
-        var index = \$collectionHolder.data('index');
+            // Get the data-prototype explained earlier
+            var prototype = \$collectionHolder.data('prototype');
+            // get the new index
+            var index = \$collectionHolder.data('index');
+            var newForm = prototype;
+            // You need this only if you didn't set 'label' => false in your tags field in TaskType
+            // Replace '__name__label__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            // newForm = newForm.replace(/__name__label__/g, index);
+            // Replace '__name__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            newForm = newForm.replace(/__name__/g, index);
 
-        var newForm = prototype;
-        // You need this only if you didn't set 'label' => false in your tags field in TaskType
-        // Replace '__name__label__' in the prototype's HTML to
-        // instead be a number based on how many items we have
-        // newForm = newForm.replace(/__name__label__/g, index);
+            // increase the index with one for the next item
+            \$collectionHolder.data('index', index + 1);
 
-        // Replace '__name__' in the prototype's HTML to
-        // instead be a number based on how many items we have
-        newForm = newForm.replace(/__name__/g, index);
-
-        // increase the index with one for the next item
-        \$collectionHolder.data('index', index + 1);
-
-        // Display the form in the page in an li, before the \"Add a tag\" link li
-        var \$newFormLi = \$('.expediente_items').append(newForm);
-        addTagFormDeleteLink(\$(\$newFormLi).children().eq(index-1),\$collectionHolder);
-
-        //console.log(\$(\$newFormLi).children().eq(index-1));
-        \$newLinkLi.before(\$newFormLi);
-
+            // Display the form in the page in an li, before the \"Add a tag\" link li
+            var \$newFormLi = \$('.expediente_items').append(newForm);
+            if (index > 0) {
+                //console.log(totalCount);
+                addTagFormDeleteLink(\$(\$newFormLi).children().eq(index - 1), \$collectionHolder);
+            }
+            //console.log(\$(\$newFormLi).children().eq(index-1));
+            \$newLinkLi.before(\$newFormLi);
         }
     </script>         
 
@@ -328,7 +331,7 @@ class __TwigTemplate_8c5f74ff5f6306d6a4d151cf13253aafc5a75cfa38807be853dbb51144d
 
     public function getDebugInfo()
     {
-        return array (  309 => 237,  234 => 102,  230 => 101,  220 => 94,  214 => 91,  205 => 85,  200 => 82,  191 => 81,  187 => 80,  178 => 74,  174 => 73,  165 => 67,  161 => 66,  157 => 65,  150 => 61,  146 => 60,  142 => 59,  137 => 56,  131 => 49,  127 => 48,  120 => 44,  116 => 43,  109 => 39,  105 => 38,  98 => 34,  94 => 33,  87 => 29,  51 => 3,  29 => 1,);
+        return array (  312 => 237,  237 => 102,  233 => 101,  223 => 94,  217 => 91,  208 => 85,  203 => 82,  194 => 81,  190 => 80,  181 => 74,  177 => 73,  168 => 67,  164 => 66,  160 => 65,  153 => 61,  149 => 60,  145 => 59,  140 => 56,  134 => 49,  130 => 48,  123 => 44,  119 => 43,  112 => 39,  108 => 38,  101 => 34,  97 => 33,  90 => 29,  84 => 26,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -366,7 +369,7 @@ class __TwigTemplate_8c5f74ff5f6306d6a4d151cf13253aafc5a75cfa38807be853dbb51144d
 
     <div class=\"col-ls-12\" style=\"padding-left:  30px; padding-right:  30px\">
         <div class=\"panel panel-primary \">
-            <div class=\"title panel-heading\">Carga de datos -> Expediente</div>
+            <div class=\"title panel-heading\">{{ accion }} -> Expediente</div>
             <div class=\"panel panel-body\">
                 <br/>
                 {{form_start(form,{'action':'','method':'POST'})}}        
@@ -381,7 +384,7 @@ class __TwigTemplate_8c5f74ff5f6306d6a4d151cf13253aafc5a75cfa38807be853dbb51144d
                         {{ form_errors(form.tipo) }}
                         {{ form_widget(form.tipo) }}
                     </div>
-                      <div class=\"col-lg-2\">
+                    <div class=\"col-lg-2\">
                         <label class=\"text-default\">FOJAS</label>
                         {{ form_errors(form.fojas) }}
                         {{ form_widget(form.fojas) }}
@@ -391,7 +394,7 @@ class __TwigTemplate_8c5f74ff5f6306d6a4d151cf13253aafc5a75cfa38807be853dbb51144d
                         {{ form_errors(form.tema) }}
                         {{ form_widget(form.tema) }}
                     </div>
-                                 
+
                     {#<div class=\"col-lg-6\">
                         <label class=\"text-default\">DEPENDENCIA</label>
                         {{ form_errors(form.iniciadorDependencia) }}
@@ -441,76 +444,76 @@ class __TwigTemplate_8c5f74ff5f6306d6a4d151cf13253aafc5a75cfa38807be853dbb51144d
 
     <script>
         \$('#expediente_tema').autocompleter({
-        url_list: \"{{ path('tema_search') }}\",
-        url_get: \"{{ path('tema_get') }}\"
+            url_list: \"{{ path('tema_search') }}\",
+            url_get: \"{{ path('tema_get') }}\"
         });
+
     </script>     
 
     <script>
         var \$collectionHolder;
-
         // setup an \"add a tag\" link
         var \$addResponsableButton = \$('<button type=\"button\" class=\"add_responsable form-control btn btn-success\">Agregar nuevo Expediente Asociado</button>');
         var \$newLinkLi = \$('.add').append(\$addResponsableButton);
-
+        var totalCount = 0;
         jQuery(document).ready(function () {
-        // Get the ul that holds the collection of tags
-        \$collectionHolder = \$('.expedientes');
+            // Get the ul that holds the collection of tags
+            \$collectionHolder = \$('.expedientes');
+            \$collectionHolder2 = \$('.expediente_items');
+            // add a delete link to all of the existing tag form li elements
 
-        // add a delete link to all of the existing tag form li elements
+            // add the \"add a tag\" anchor and li to the tags ul
+            \$collectionHolder.append(\$newLinkLi);
 
-        // add the \"add a tag\" anchor and li to the tags ul
-        \$collectionHolder.append(\$newLinkLi);
+            // count the current form inputs we have (e.g. 2), use that as the new
+            // index when inserting a new item (e.g. 2)
+            \$collectionHolder.data('index', \$collectionHolder.find(':input').length + \$collectionHolder2.find(':input').length);
+            totalCount = \$collectionHolder.data('index');
 
-        // count the current form inputs we have (e.g. 2), use that as the new
-        // index when inserting a new item (e.g. 2)
-        \$collectionHolder.data('index', \$collectionHolder.find(':input').length);
+            for (var i = 0; i < totalCount; i++) {
+                addTagFormDeleteLink(\$('.expediente_items').children().eq(i), \$collectionHolder);
+            }
 
-
-        \$addResponsableButton.on('click', function (e) {
-        // add a new tag form (see next code block)
-        addResponsableForm(\$collectionHolder, \$newLinkLi);
+            \$addResponsableButton.on('click', function (e) {
+                // add a new tag form (see next code block)
+                addResponsableForm(\$collectionHolder, \$newLinkLi);
+            });
         });
-        });
-
-        function addTagFormDeleteLink(\$tagFormLi,\$collectionHolder) {
-        var \$removeFormButton = \$('<button type=\"button\">Delete this tag</button>');
-        \$tagFormLi.append(\$removeFormButton);
-
-        \$removeFormButton.on('click', function (e) {
-        // remove the li for the tag form
-        \$tagFormLi.remove();
-        var index = \$collectionHolder.data('index');
-        \$collectionHolder.data('index', index - 1);
-        });
+        function addTagFormDeleteLink(\$tagFormLi, \$collectionHolder) {
+            var \$removeFormButton = \$('<button type=\"button\">Delete this tag</button>');
+            \$tagFormLi.append(\$removeFormButton);
+            \$removeFormButton.on('click', function (e) {
+                // remove the li for the tag form
+                \$tagFormLi.remove();
+                var index = \$collectionHolder.data('index');
+                \$collectionHolder.data('index', index - 1);
+            });
         }
-
         function addResponsableForm(\$collectionHolder, \$newLinkLi) {
-        // Get the data-prototype explained earlier
-        var prototype = \$collectionHolder.data('prototype');
-        // get the new index
-        var index = \$collectionHolder.data('index');
+            // Get the data-prototype explained earlier
+            var prototype = \$collectionHolder.data('prototype');
+            // get the new index
+            var index = \$collectionHolder.data('index');
+            var newForm = prototype;
+            // You need this only if you didn't set 'label' => false in your tags field in TaskType
+            // Replace '__name__label__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            // newForm = newForm.replace(/__name__label__/g, index);
+            // Replace '__name__' in the prototype's HTML to
+            // instead be a number based on how many items we have
+            newForm = newForm.replace(/__name__/g, index);
 
-        var newForm = prototype;
-        // You need this only if you didn't set 'label' => false in your tags field in TaskType
-        // Replace '__name__label__' in the prototype's HTML to
-        // instead be a number based on how many items we have
-        // newForm = newForm.replace(/__name__label__/g, index);
+            // increase the index with one for the next item
+            \$collectionHolder.data('index', index + 1);
 
-        // Replace '__name__' in the prototype's HTML to
-        // instead be a number based on how many items we have
-        newForm = newForm.replace(/__name__/g, index);
-
-        // increase the index with one for the next item
-        \$collectionHolder.data('index', index + 1);
-
-        // Display the form in the page in an li, before the \"Add a tag\" link li
-        var \$newFormLi = \$('.expediente_items').append(newForm);
-        addTagFormDeleteLink(\$(\$newFormLi).children().eq(index-1),\$collectionHolder);
-
-        //console.log(\$(\$newFormLi).children().eq(index-1));
-        \$newLinkLi.before(\$newFormLi);
-
+            // Display the form in the page in an li, before the \"Add a tag\" link li
+            var \$newFormLi = \$('.expediente_items').append(newForm);
+            if (index > 0) {
+                //console.log(totalCount);
+                addTagFormDeleteLink(\$(\$newFormLi).children().eq(index - 1), \$collectionHolder);
+            }
+            //console.log(\$(\$newFormLi).children().eq(index-1));
+            \$newLinkLi.before(\$newFormLi);
         }
     </script>         
 
@@ -578,6 +581,6 @@ class __TwigTemplate_8c5f74ff5f6306d6a4d151cf13253aafc5a75cfa38807be853dbb51144d
             });
         </script>#}
 
-{% endblock %}", "AppBundle:Expediente:add.html.twig", "/var/www/html/gitSIE/src/AppBundle/Resources/views/Expediente/add.html.twig");
+{% endblock %}", "AppBundle:Expediente:add.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/Expediente/add.html.twig");
     }
 }

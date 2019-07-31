@@ -24,6 +24,7 @@
     
     <div class="col-ls-12">
             <div class="title ">Expediente -> Movimiento</div>
+            <hr/>
                 {% if expediente != null %}
                       <h4 class="text-default">Expediente Número: {{ expediente.nroExpediente }}</h4>        
                       <hr/>
@@ -105,7 +106,9 @@
                         $('#lugarfisico').hide();
                         $('#mesaentrada').show();                        
                         
-                        if($('.dependencia > select').size() <=0){
+                        var count = $('.dependencia').find(':input').length;
+                        
+                        if(count == 0){
                             $('#contenido').html($(html).find('#movimientoexpediente_mesaentrada'));
                             $('#movimientoexpediente_mesaentrada_dependencia').appendTo(".dependencia");
                         }                   

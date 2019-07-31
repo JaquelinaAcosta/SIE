@@ -149,6 +149,11 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                 return $this->mergeDefaults(array_replace($matches, ['_route' => 'ver_expediente']), array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::expedienteAction',));
             }
 
+            // nuevo_movimiento
+            if (preg_match('#^/expediente/(?P<id>[^/]++)/add/movimiento$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'nuevo_movimiento']), array (  '_controller' => 'AppBundle\\Controller\\MovimientoExpedienteController::indexAction',));
+            }
+
         }
 
         // generar_dependencia
@@ -185,12 +190,7 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                 return array (  '_controller' => 'AppBundle\\Controller\\MovimientoExpedienteController::ajaxFormAction',  '_route' => 'add_movimiento',);
             }
 
-            if (0 === strpos($pathinfo, '/add')) {
-                // nueva_dependencia
-                if ('/add/dependencia' === $pathinfo) {
-                    return array (  '_controller' => 'AppBundle\\Controller\\DependenciaController::indexAction',  '_route' => 'nueva_dependencia',);
-                }
-
+            if (0 === strpos($pathinfo, '/ad')) {
                 if (0 === strpos($pathinfo, '/add/expediente')) {
                     // expedienteAsociado
                     if (0 === strpos($pathinfo, '/add/expediente_asociado') && preg_match('#^/add/expediente_asociado/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
@@ -209,6 +209,11 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                     return $this->mergeDefaults(array_replace($matches, ['_route' => 'nueva_resolucion']), array (  '_controller' => 'AppBundle\\Controller\\ResolucionController::indexAction',));
                 }
 
+                // adm_gestionar_mesaentrada
+                if (0 === strpos($pathinfo, '/adm/gestionar/mesa_entrada') && preg_match('#^/adm/gestionar/mesa_entrada/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'adm_gestionar_mesaentrada']), array (  '_controller' => 'AppBundle\\Controller\\MesaEntradaController::admGestionarAction',));
+                }
+
             }
 
         }
@@ -224,9 +229,19 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                 return $this->mergeDefaults(array_replace($matches, ['_route' => 'persona_get']), array (  'id' => NULL,  '_controller' => 'AppBundle\\Controller\\DefaultController::getPersonaAction',));
             }
 
-            // persona
-            if ('/persona' === $pathinfo) {
-                return array (  '_controller' => 'AppBundle\\Controller\\PersonaController::indexAction',  '_route' => 'persona',);
+            // nueva_persona
+            if ('/persona/add' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\PersonaController::indexAction',  '_route' => 'nueva_persona',);
+            }
+
+            // editar_persona
+            if (0 === strpos($pathinfo, '/persona/edit') && preg_match('#^/persona/edit/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'editar_persona']), array (  '_controller' => 'AppBundle\\Controller\\PersonaController::editPersonaAction',));
+            }
+
+            // listado_persona
+            if ('/persona/listado' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\PersonaController::listaDependenciasAction',  '_route' => 'listado_persona',);
             }
 
         }
@@ -241,7 +256,38 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return $this->mergeDefaults(array_replace($matches, ['_route' => 'tema_get']), array (  'id' => NULL,  '_controller' => 'AppBundle\\Controller\\DefaultController::getTemaAction',));
         }
 
-        if (0 === strpos($pathinfo, '/l')) {
+        if (0 === strpos($pathinfo, '/dependencia')) {
+            if (0 === strpos($pathinfo, '/dependencia/a')) {
+                // nueva_dependencia
+                if ('/dependencia/add' === $pathinfo) {
+                    return array (  '_controller' => 'AppBundle\\Controller\\DependenciaController::indexAction',  '_route' => 'nueva_dependencia',);
+                }
+
+                // archivar_dependencia
+                if (0 === strpos($pathinfo, '/dependencia/archivar') && preg_match('#^/dependencia/archivar/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'archivar_dependencia']), array (  '_controller' => 'AppBundle\\Controller\\DependenciaController::archivarAction',));
+                }
+
+                // alta_dependencia
+                if (0 === strpos($pathinfo, '/dependencia/alta') && preg_match('#^/dependencia/alta/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'alta_dependencia']), array (  '_controller' => 'AppBundle\\Controller\\DependenciaController::altaAction',));
+                }
+
+            }
+
+            // listado_dependencia
+            if ('/dependencia/listado' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\DependenciaController::listaDependenciasAction',  '_route' => 'listado_dependencia',);
+            }
+
+            // editar_dependencia
+            if (0 === strpos($pathinfo, '/dependencia/edit') && preg_match('#^/dependencia/edit/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'editar_dependencia']), array (  '_controller' => 'AppBundle\\Controller\\DependenciaController::editPersonaAction',));
+            }
+
+        }
+
+        elseif (0 === strpos($pathinfo, '/l')) {
             // lugarFisico
             if ('/lugarFisico' === $pathinfo) {
                 return array (  '_controller' => 'AppBundle\\Controller\\LugarFisicoController::indexAction',  '_route' => 'lugarFisico',);
@@ -281,14 +327,19 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         }
 
         // gestionar_mesaentrada
-        if ('/gestionar/mesa_entrada' === $pathinfo) {
-            return array (  '_controller' => 'AppBundle\\Controller\\MesaEntradaController::indexAction',  '_route' => 'gestionar_mesaentrada',);
-        }
+        if ('/gestionar/mesa_entrada' === $trimmedPathinfo) {
+            $ret = array (  '_controller' => 'AppBundle\\Controller\\MesaEntradaController::indexAction',  '_route' => 'gestionar_mesaentrada',);
+            if ('/' === substr($pathinfo, -1)) {
+                // no-op
+            } elseif ('GET' !== $canonicalMethod) {
+                goto not_gestionar_mesaentrada;
+            } else {
+                return array_replace($ret, $this->redirect($rawPathinfo.'/', 'gestionar_mesaentrada'));
+            }
 
-        // moverExpediente
-        if (0 === strpos($pathinfo, '/movimiento/expediente') && preg_match('#^/movimiento/expediente/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
-            return $this->mergeDefaults(array_replace($matches, ['_route' => 'moverExpediente']), array (  '_controller' => 'AppBundle\\Controller\\MovimientoExpedienteController::indexAction',));
+            return $ret;
         }
+        not_gestionar_mesaentrada:
 
         // inicio
         if ('' === $trimmedPathinfo) {
@@ -311,11 +362,6 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         }
 
         if (0 === strpos($pathinfo, '/registro')) {
-            // editar_persona
-            if (0 === strpos($pathinfo, '/registro/editPersona') && preg_match('#^/registro/editPersona/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, ['_route' => 'editar_persona']), array (  '_controller' => 'AppBundle\\Controller\\PersonaController::editPersonaAction',));
-            }
-
             // nuevo_registro
             if ('/registro' === $pathinfo) {
                 return array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::indexAction',  '_route' => 'nuevo_registro',);

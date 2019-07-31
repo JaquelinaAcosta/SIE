@@ -14,7 +14,7 @@ use AppBundle\Form\MovimientoExpedienteType;
 class MovimientoExpedienteController extends Controller
 {
     /**
-     * @Route("/movimiento/expediente/{id}", name="moverExpediente")
+     * @Route("expediente/{id}/add/movimiento", name="nuevo_movimiento")
      */
     public function indexAction(Request $request,$id)
     {

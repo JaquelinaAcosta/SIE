@@ -1779,3 +1779,16 @@ f72634,127.0.0.1,POST,http://localhost/gitSIE/web/app_dev.php/login_check,156458
 6d2e9d,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/home,1564585562,,200
 a42fd1,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/registro/editPersona/2,1564585583,,200
 4fdd63,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/listaUsuario,1564585595,,200
+2586a4,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/expediente/1/add/movimiento,1564586044,,302
+7f1502,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/loginUsuario,1564586044,,200
+c4da19,127.0.0.1,POST,http://localhost/SIE/web/app_dev.php/login_check,1564586055,,302
+93cff5,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/home,1564586055,,200
+8182dd,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/expediente/1/add/movimiento,1564586063,,200
+53e479,127.0.0.1,POST,http://localhost/SIE/web/app_dev.php/ajax_movimiento,1564586065,,200
+b208c1,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/expediente/1/add/movimiento,1564586132,,200
+26bacc,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/,1564586137,,200
+f54aa1,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/,1564586198,,200
+28fa05,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/add/expediente,1564586204,,200
+9b6562,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/,1564586222,,200
+6ed760,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/,1564586227,,200
+9e1a45,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/,1564586250,,200
