@@ -28,6 +28,7 @@ class DependenciaController extends Controller {
         if ($form->isSubmitted()) {
             $mesaentrada->setDependencia($dependencia);
             $dependencia->setMesaentrada($mesaentrada);
+            $dependencia->setArchivado('NO');
           //  $dependencia->setResponsable($form['responsable']);
             $mesaentrada->setCodigoExpediente($form['mesaentrada']['codigoExpediente']->getData());
             foreach ($form['mesaentrada']['responsables']->getData() as $responsable) {

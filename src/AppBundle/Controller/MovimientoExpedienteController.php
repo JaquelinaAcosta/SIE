@@ -20,21 +20,32 @@ class MovimientoExpedienteController extends Controller
     {
         $em = $this->getDoctrine()->getEntityManager(); 
         $movimientoExpediente = new MovimientoExpediente();
-        $expediente = new Expediente();
-        $expediente= $em->getRepository("AppBundle:Expediente")->find($id);
-        //no se is la ubicacion hay que traerla o llevarla a la base de datos;                   
-        $movimientoExpediente->setUsuario("admin");
+      //  $expediente = new Expediente();
+        $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
+        
+
+        
+        $movimientoExpediente->setUsuario($this->getUser());
         $movimientoExpediente->setExpediente($expediente);
+        $movimientoExpediente->setFecha('hoy');
+        $movimientoExpediente->setFojas('55');
+        $movimientoExpediente->setObservacion('asd');
+        $movimientoExpediente->setTipoSalida('asd');
+        $movimientoExpediente->setUbicacion($expediente->getIniciadorDependencia()->getMesaentrada());
+        
         
         //$movimientoExpediente->setDependencia($dependencia);
         
         $form = $this->createForm(MovimientoExpedienteType::class,$movimientoExpediente);
                
+
         
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
             
+                    dump($form);
+        die();
             $em->persist($movimientoExpediente);
             $em->flush();
         }

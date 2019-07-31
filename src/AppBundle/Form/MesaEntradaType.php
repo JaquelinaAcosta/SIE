@@ -19,16 +19,10 @@ class MesaEntradaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $gestion = $options['gestion'];
+        $movimiento = $options['movimiento'];
         
         $builder
-                ->add('dependencia', EntityType::class, array(
-                    "label" => false,
-                    "placeholder" => "--Seleccione--",
-                    
-                    "class" => 'AppBundle:Dependencia', "attr" => array(
-                        "class" => "form-control"
-                    ))
-                )
+               
                ->add('responsables', CollectionType::class,[
                    'entry_type'=> ResponsableType::class,
                    'label'=>false,
@@ -52,6 +46,16 @@ class MesaEntradaType extends AbstractType
                          "class"=>"form-control btn btn-success"
                      )]);
         }
+        if($movimiento != null){
+            $builder->add('dependencia', EntityType::class, array(
+                    "label" => false,
+                    "placeholder" => "--Seleccione--",
+                    
+                    "class" => 'AppBundle:Dependencia', "attr" => array(
+                        "class" => "form-control"
+                    ))
+                );
+        }
        
                 
     }/**
@@ -61,7 +65,8 @@ class MesaEntradaType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\MesaEntrada',
-            'gestion'=>null
+            'gestion'=>null,
+            'movimiento'=>null
         ));
     }
 
