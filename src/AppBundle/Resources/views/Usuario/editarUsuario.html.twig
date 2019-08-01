@@ -40,6 +40,17 @@
             <div class="title panel-heading text-center">Configurar Cuenta de Usuario</div>
             <div class="panel panel-body">
                 <br/>
+                  {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+                
+                {% for message in app.flashes('danger') %}
+                    <div class="alert alert-danger">
+                        {{ message }}
+                    </div>
+                {% endfor %}
                 {{form_start(form,{'action':'','method':'POST'})}}        
                         <label class="float exp">NOMBRE DE USUARIO</label>
                         {{ form_errors(form.iup) }}
@@ -50,17 +61,22 @@
                         <label class="float left">CONTRASEÑA</label>
                         {{ form_errors(form.contrasenia) }}
                         {{ form_widget(form.contrasenia) }}
+                        
+                        {% if form.persona is defined %}
+                        
                         <label class="float left">PERSONA GESTIONANTE</label>
                         {{ form_errors(form.persona) }}
                         {{ form_widget(form.persona) }} 
                         
+                          {% endif %}
+                        
                         {% if form.role is defined %}
                             
-                             <label class="float left">ROLES</label>
-                        {{ form_errors(form.role) }}
-                        {{ form_widget(form.role) }}        
+                                    <label class="float left">ROLES</label>
+                               {{ form_errors(form.role) }}
+                               {{ form_widget(form.role) }}        
                             
-                            {% endif %}
+                       {% endif %}
                         
                                                        
                         <br/>
@@ -74,9 +90,11 @@
         </div>
     </div>           
             
-    {# Formulario embebido #}
-
-    <div class="persona">
-        {{ form_row(form.persona) }}
-    </div>
+<script>        
+        $('#usuario_persona').autocompleter({
+            url_list: "{{ path('persona_search') }}",
+            url_get: "{{ path('persona_get') }}"
+        });
+    </script>
+    
 {% endblock %}

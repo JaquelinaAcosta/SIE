@@ -260,10 +260,25 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                 // line 169
                 echo "                                </ul>
                             </li>
-                            
+                            <li class=\"dropdown\">
+                                <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Usuarios <span class=\"caret\"></span></a>
+                                <ul class=\"dropdown-menu\">
+                                    <li><a href=\"";
+                // line 174
+                echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_usuario");
+                echo "\">Listado</a></li>
+                                     <li role=\"separator\" class=\"divider\"></li>
+                                    <li><a href=\"";
+                // line 176
+                echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nuevo_usuario");
+                echo "\">Nueva Usuario</a></li>
+                                  ";
+                // line 181
+                echo "                                </ul>
+                            </li>
                             ";
             }
-            // line 173
+            // line 184
             echo "                            
                             
                             
@@ -275,10 +290,10 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         </header>
 ";
         }
-        // line 183
+        // line 194
         echo "        <section id=\"content\">             
             ";
-        // line 184
+        // line 195
         $this->displayBlock('content', $context, $blocks);
         echo "   
         </section>
@@ -334,7 +349,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     }
 
-    // line 184
+    // line 195
     public function block_content($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -364,7 +379,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     public function getDebugInfo()
     {
-        return array (  338 => 184,  318 => 79,  300 => 7,  282 => 184,  279 => 183,  267 => 173,  261 => 169,  257 => 164,  252 => 162,  245 => 157,  241 => 152,  236 => 150,  231 => 147,  229 => 146,  222 => 141,  218 => 136,  213 => 134,  189 => 112,  184 => 110,  179 => 108,  175 => 107,  172 => 106,  166 => 103,  163 => 102,  161 => 101,  149 => 98,  141 => 92,  136 => 82,  134 => 79,  125 => 73,  112 => 62,  110 => 61,  64 => 18,  60 => 17,  47 => 7,  39 => 1,);
+        return array (  353 => 195,  333 => 79,  315 => 7,  297 => 195,  294 => 194,  282 => 184,  277 => 181,  273 => 176,  268 => 174,  261 => 169,  257 => 164,  252 => 162,  245 => 157,  241 => 152,  236 => 150,  231 => 147,  229 => 146,  222 => 141,  218 => 136,  213 => 134,  189 => 112,  184 => 110,  179 => 108,  175 => 107,  172 => 106,  166 => 103,  163 => 102,  161 => 101,  149 => 98,  141 => 92,  136 => 82,  134 => 79,  125 => 73,  112 => 62,  110 => 61,  64 => 18,  60 => 17,  47 => 7,  39 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -547,7 +562,18 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                                     <li><a href=\"#\">One more separated link</a></li>#}
                                 </ul>
                             </li>
-                            
+                            <li class=\"dropdown\">
+                                <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Usuarios <span class=\"caret\"></span></a>
+                                <ul class=\"dropdown-menu\">
+                                    <li><a href=\"{{ path(\"listado_usuario\") }}\">Listado</a></li>
+                                     <li role=\"separator\" class=\"divider\"></li>
+                                    <li><a href=\"{{ path(\"nuevo_usuario\") }}\">Nueva Usuario</a></li>
+                                  {#  <li role=\"separator\" class=\"divider\"></li>
+                                    <li><a href=\"#\">Separated link</a></li>
+                                    <li role=\"separator\" class=\"divider\"></li>
+                                    <li><a href=\"#\">One more separated link</a></li>#}
+                                </ul>
+                            </li>
                             {% endif %}
                             
                             
@@ -567,6 +593,6 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
     </body>
 
 </html>
-", "AppBundle::layout.html.twig", "/var/www/html/gitSIE/src/AppBundle/Resources/views/layout.html.twig");
+", "AppBundle::layout.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/layout.html.twig");
     }
 }

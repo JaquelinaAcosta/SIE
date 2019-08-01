@@ -6,72 +6,84 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Entity\Usuario;
-
 use AppBundle\Form\UsuarioType;
 
-class UsuarioController extends Controller
-{
+class UsuarioController extends Controller {
+
     /**
-     * @Route("/registro", name="nuevo_registro")
+     * @Route("/usuario/add", name="nuevo_usuario")
      */
-    public function indexAction(Request $request)
-    {
-        $em = $this->getDoctrine()->getEntityManager(); 
-        $usuario = new Usuario();                
-        $form = $this->createForm(UsuarioType::class,$usuario, ['contrasenia' => true, 'role'=>'su']);
+    public function indexAction(Request $request) {
+        $em = $this->getDoctrine()->getEntityManager();
+        $usuario = new Usuario();
+        $form = $this->createForm(UsuarioType::class, $usuario, ['contrasenia' => null, 'role' => 'su']);
         $form->handleRequest($request);
         
-        if ($form->isSubmitted() and  $form->isValid()) {
-            
-            $factory = $this->get("security.encoder_factory");
-            $encoder = $factory->getEncoder($usuario);
-            $password = $encoder->encodePassword($usuario->getContrasenia(),$usuario->getSalt());
-            $usuario->setSavedPassword($form['contrasenia']->getData());
-            $usuario->setContrasenia($password);    
-            
-            $em->persist($usuario);
-            $em->flush();
+        if ($form->isSubmitted() and $form->isValid()) {
+
+
+            if (count($em->getRepository("AppBundle:Usuario")->findBy(['iup' => $form['iup']->getData()])) == 0) {
+                if ($usuario->getPersona()->getUsuario() == null) {
+                    $factory = $this->get("security.encoder_factory");
+                    $encoder = $factory->getEncoder($usuario);
+                    $password = $encoder->encodePassword($usuario->getContrasenia(), $usuario->getSalt());
+                    $usuario->setSavedPassword($form['contrasenia']->getData());
+                    $usuario->setContrasenia($password);
+
+                    $em->persist($usuario);
+                    $flush = $em->flush();
+                    
+                    if($flush == false){
+                        $this->addFlash('success', "Usuario añadido correctamente.");
+                        return $this->redirectToRoute('listado_usuario');
+                    }else{
+                        $this->addFlash('danger', "Ocurrió un error en la creacion del usuario.");
+                    }
+                    
+                }else{
+                   $this->addFlash('danger', "La Persona ".$usuario->getPersona()." ya tiene un usuario asignado.");
+                }
+            } else {
+                $this->addFlash('danger', "El nombre de usuario ya existe.");
+            }
         }
-        
+
         // replace this example code with whatever you need
         return $this->render('AppBundle:Usuario:index.html.twig', [
-            'form'=> $form->createView(),
-             'usuario'=>$usuario
+                    'form' => $form->createView(),
+                    'usuario' => $usuario
         ]);
     }
+
     /**
-     * @Route("registro/editUsuario/{id}", name="editar_usuario")
+     * @Route("/usuario/edit/{id}", name="editar_usuario")
      */
     public function editUsuarioAction(Request $request, $id) {
-
-        $em = $this->getDoctrine()->getEntityManager();
-        $usuario = $em->getRepository("AppBundle:Usuario")->find($id);       
-        $usuario->setContrasenia($usuario->getSavedPassword()); 
-         
         $usuarioActual = $this->getUser();
-        
-        if($usuarioActual->getRole() == 'ROLE_ADMIN'){
-             $form = $this->createForm(UsuarioType::class, $usuario, ['contrasenia' => true,'role'=>'su']);
-        }else{
-              $form = $this->createForm(UsuarioType::class, $usuario, ['contrasenia' => true,'role'=>false]);
+        $em = $this->getDoctrine()->getEntityManager();
+        $usuario = $em->getRepository("AppBundle:Usuario")->find($id);
+        $usuario->setContrasenia($usuario->getSavedPassword());
+        if ($usuarioActual->getRole() == 'ROLE_ADMIN') {
+            $form = $this->createForm(UsuarioType::class, $usuario, ['contrasenia' => true, 'role' => 'su']);
+        } else {
+            $form = $this->createForm(UsuarioType::class, $usuario, ['contrasenia' => true]);
         }
-        
-       
-        $form->handleRequest($request);     
-        
-        $user = $this->getUser();
-               
-        if ($form->isSubmitted() and $form->isValid() ) {
-            
+
+
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted() and $form->isValid()) {
+
             $factory = $this->get("security.encoder_factory");
             $encoder = $factory->getEncoder($usuario);
-            $password = $encoder->encodePassword($form['contrasenia']->getData(),$usuario->getSalt());
+            $password = $encoder->encodePassword($form['contrasenia']->getData(), $usuario->getSalt());
             $usuario->setSavedPassword($form['contrasenia']->getData());
-            $usuario->setContrasenia($password);    
-                      
+            $usuario->setContrasenia($password);
+
             $em->persist($usuario);
             $em->flush();
-            
+
             return $this->redirectToRoute('homepage');
         }
 
@@ -81,9 +93,9 @@ class UsuarioController extends Controller
                     'usuario' => $usuario,
         ));
     }
-  
+
     /**
-     * @Route("listaUsuario", name="lista_usuario")
+     * @Route("usuario/listado", name="listado_usuario")
      */
     public function listaUsuarioAction(Request $request) {
 
@@ -93,22 +105,20 @@ class UsuarioController extends Controller
 
         if ($user->getRole() == "ROLE_ADMIN") {
             $usuario = $em->getRepository("AppBundle:Usuario")->findAll();
-        } 
+        }
 //        else {
 //            $usuario = $em->getRepository("AppBundle:Usuario")->findBy([
 //                'iniciadorDependencia' => $user->getPersona()->getDependencia()
 //            ]);
 //        }
-
-
         // replace this example code with whatever you need
         return $this->render('AppBundle:Usuario:listadoUsuarios.html.twig', [
                     'usuario' => $usuario
         ]);
     }
-    
+
     /**
-     * @Route("listaUsuario/delete/{id}", name="eliminar_usuario")
+     * @Route("usuario/delete/{id}", name="eliminar_usuario")
      */
     public function deleteAction(Request $request, $id) {
 
@@ -131,6 +141,5 @@ class UsuarioController extends Controller
 
         return $this->redirectToRoute('lista_usuario');
     }
-    
-    
+
 }

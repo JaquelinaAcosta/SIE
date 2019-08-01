@@ -46,7 +46,7 @@ class PersonaController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
         $persona = $em->getRepository("AppBundle:Persona")->find($id);
 
-        $form = $this->createForm(PersonaType::class, $persona);
+        $form = $this->createForm(PersonaType::class, $persona,['role'=>'su']);
         $form->handleRequest($request);
 
         $user = $this->getUser();

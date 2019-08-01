@@ -25,6 +25,31 @@
                     </div>
                 <br/>
             {{form_start(form,{'action':'','method':'POST'})}}
+             <div class="col-lg-14">
+                    {% if form.dependencia is defined %}
+                        <label class="text-default">Dependencia:</label>
+                        {{ form_errors(form.dependencia) }}
+                        {{ form_widget(form.dependencia) }}
+                    {% endif %}
+
+                    <label class="text-default">Nombre:</label>
+                    {{ form_errors(form.nombre) }}
+                    {{ form_widget(form.nombre) }}
+                    <label class="text-default">Apellido:</label>
+                    {{ form_errors(form.apellido) }}
+                    {{ form_widget(form.apellido) }}
+                    <label class="text-default">DNI:</label>
+                    {{ form_errors(form.dni) }}
+                    {{ form_widget(form.dni) }}
+                    <label class="text-default">Cargo:</label>
+                    {{ form_errors(form.cargo) }}
+                    {{ form_widget(form.cargo) }}
+
+                    {{ form_widget(form.Aceptar) }}
+                    <a class="btn btn-default" onclick="history.back()"  role="button">Volver</a>
+
+                    {{form_end(form)}}
+                </div>
             {{form_end(form)}}
             </div>
         </div>
