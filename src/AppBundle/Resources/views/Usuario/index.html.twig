@@ -57,13 +57,15 @@
                 <label class="float exp">NOMBRE DE USUARIO</label>
                 {{ form_errors(form.iup) }}
                 {{ form_widget(form.iup) }}
-                <label class="float left">EMAIL</label>
+                 <label class="float left">EMAIL</label>
                 {{ form_errors(form.email) }}
-                {{ form_widget(form.email) }}
+                {{ form_row(form.email.first) }}
+                <label class="float left">CONFIRMAR EMAIL</label>
+                {{ form_row(form.email.second) }}
                 <label class="float left">CONTRASEÑA</label>
                 {{ form_errors(form.contrasenia) }}
                 {{ form_row(form.contrasenia.first) }}
-                <label class="float left">REPETIR CONTRASEÑA</label>
+                <label class="float left">CONFIRMAR CONTRASEÑA</label>
                 {{ form_row(form.contrasenia.second) }}
                 <label class="float left">PERSONA GESTIONANTE</label>
                 {{ form_errors(form.persona) }}

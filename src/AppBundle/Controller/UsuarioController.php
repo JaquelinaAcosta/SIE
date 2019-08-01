@@ -20,8 +20,6 @@ class UsuarioController extends Controller {
         $form->handleRequest($request);
         
         if ($form->isSubmitted() and $form->isValid()) {
-
-
             if (count($em->getRepository("AppBundle:Usuario")->findBy(['iup' => $form['iup']->getData()])) == 0) {
                 if ($usuario->getPersona()->getUsuario() == null) {
                     $factory = $this->get("security.encoder_factory");
@@ -73,18 +71,31 @@ class UsuarioController extends Controller {
         $form->handleRequest($request);
 
 
-        if ($form->isSubmitted() and $form->isValid()) {
+       if ($form->isSubmitted() and $form->isValid()) {
+            if (count($em->getRepository("AppBundle:Usuario")->findBy(['iup' => $form['iup']->getData()])) == 0) {
+                if ($usuario->getPersona()->getUsuario() == null) {
+                    $factory = $this->get("security.encoder_factory");
+                    $encoder = $factory->getEncoder($usuario);
+                    $password = $encoder->encodePassword($usuario->getContrasenia(), $usuario->getSalt());
+                    $usuario->setSavedPassword($form['contrasenia']->getData());
+                    $usuario->setContrasenia($password);
 
-            $factory = $this->get("security.encoder_factory");
-            $encoder = $factory->getEncoder($usuario);
-            $password = $encoder->encodePassword($form['contrasenia']->getData(), $usuario->getSalt());
-            $usuario->setSavedPassword($form['contrasenia']->getData());
-            $usuario->setContrasenia($password);
-
-            $em->persist($usuario);
-            $em->flush();
-
-            return $this->redirectToRoute('homepage');
+                    $em->persist($usuario);
+                    $flush = $em->flush();
+                    
+                    if($flush == false){
+                        $this->addFlash('success', "Usuario añadido correctamente.");
+                        return $this->redirectToRoute('listado_usuario');
+                    }else{
+                        $this->addFlash('danger', "Ocurrió un error en la creacion del usuario.");
+                    }
+                    
+                }else{
+                   $this->addFlash('danger', "La Persona ".$usuario->getPersona()." ya tiene un usuario asignado.");
+                }
+            } else {
+                $this->addFlash('danger', "El nombre de usuario ya existe.");
+            }
         }
 
         // replace this example code with whatever you need

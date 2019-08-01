@@ -105,7 +105,7 @@ class Expediente
     
     
     /**
-    *@ORM\OneToMany(targetEntity="MovimientoExpediente", mappedBy="expediente")
+    *@ORM\OneToMany(targetEntity="MovimientoExpediente", mappedBy="expediente",cascade={"persist"})
     */
     private $movimientos;
     
@@ -136,7 +136,7 @@ class Expediente
     public function __construct(){
         $this->expedientes_asociados = new ArrayCollection();
 //        $this->caratulas = new ArrayCollection();
-//        $this->movimientos = new ArrayCollection();
+        $this->movimientos = new ArrayCollection();
     }
     
     public function getLugarfisico()

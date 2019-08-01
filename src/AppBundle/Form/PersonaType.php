@@ -18,8 +18,20 @@ class PersonaType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         
         $role = $options['role'];
-        
-        $builder 
+        $movimento_persona = $options['movimiento_persona'];
+               
+        if($movimento_persona != null){
+            $builder->add('nombre', 'PUGX\AutocompleterBundle\Form\Type\AutocompleteType', array(
+                    'class' => 'AppBundle:Persona',
+                    'label' => 'Responsable',
+                    'required' => false,
+                    'attr' => array(
+                        'class'=>'form form-control',
+                        'placeholder' => 'Escriba parte del nombre y seleccione una opción'
+                    )
+                ));
+        }else{
+            $builder 
                 ->add('nombre', TextType::class, array(
                     "label" => "Nombre:", "attr" => array(
                         "class" => "form-name form-control",
@@ -48,8 +60,8 @@ class PersonaType extends AbstractType {
                         "class" => "form-submit btn btn-primary"
                     )
                 ));
-        
-        if($role == null){
+            
+            if($role == null){
              $builder->add('dependencia', EntityType::class, array(
                     "label" => false,
                     "placeholder" => "--Seleccione--",
@@ -61,7 +73,10 @@ class PersonaType extends AbstractType {
                         "class" => "form-control"
                     ))
                 );
+         }
         }
+        
+        
     }
 
 /**
@@ -71,7 +86,8 @@ class PersonaType extends AbstractType {
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\Persona',
-            'role'=>null
+            'role'=>null,
+            'movimiento_persona'=>null
         ));
     }
 
@@ -79,7 +95,7 @@ class PersonaType extends AbstractType {
      * {@inheritdoc}
      */
     public function getBlockPrefix() {
-        return 'appbundle_persona';
+        return 'persona';
     }
 
 }
