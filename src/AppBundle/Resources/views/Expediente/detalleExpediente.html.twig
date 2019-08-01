@@ -76,7 +76,46 @@
                             </th>
                     </table>
                 </div>  
+                
+                <div class="expediente col-lg-10 panel panel-primary">
+                    <div class="panel-heading" style="font-size:18px;">
+                        Movimientos
+                    </div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col">UBICACION</th>
+                                <th scope="col">TIPO DE SALIDA</th>
+                                <th scope="col">USUARIO</th>
+                                <th scope="col">FECHA</th>
+                                <th scope="col">ACCIONES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% set count = 0 %}
+                            
+                            {% for movimiento in expediente.movimientos.getValues %}
+                                <tr>
+                                    {% set count= count+1 %}
+                                    <td>{{ count }}</td>
+                                    <td>{{movimiento.ubicacion}}</td>
+                                    <td>{{movimiento.tipoSalida}}</td>
+                                    <td>{{movimiento.usuario}}</td>
+                                    <td>{{movimiento.fecha}}</td>
+                                    <td><a class="btn btn-info" href=""  role="button" title="Ver Detalle"><i class="fas fa-search"></i></a>
+                                        <a class="btn btn-warning" href=""  role="button" title="Modificar"><i class="fas fa-edit"></i></a>
+                                        <a class="btn btn-danger" href=""  role="button" title="Archivar"><i class="fas fa-trash-alt"></i></a></td>
+                                </tr>
+                            {% endfor %}
 
+                        </tbody>
+                    </table>
+                              <hr/>
+                            
+                    Agregar nuevo Movimiento <a class="btn btn-warning" href="{{ path('nuevo_movimiento',{'id':expediente.id}) }}"  role="button"><i class="fas fa-file" data-toggle="tooltip" data-placement="top" title="Agregar Carátula"></i></a>
+                </div>            
+                            
                 <div class="expediente col-lg-10 panel panel-primary">
                     <div class="panel-heading" style="font-size:18px;">
                         Expedientes asociados
@@ -102,7 +141,7 @@
                                         <a class="btn btn-danger" href="{{ path("eliminar_expediente", {'id':expediente_asoc.expedienteAsociado.id}) }}"  role="button" title="Archivar"><i class="fas fa-trash-alt"></i></a></td>
                                 </tr>
                             {% endfor %}
-
+                            
                         </tbody>
                     </table>
                 </div>
@@ -162,27 +201,6 @@
                     Agregar nueva Carátula <a class="btn btn-warning" href="{{ path('nueva_caratula',{'id':expediente.id}) }}"  role="button"><i class="fas fa-file" data-toggle="tooltip" data-placement="top" title="Agregar Carátula"></i></a>
 
                 </div>
-
-
-
-                <div class="expediente col-lg-10 panel panel-primary">
-                    <div class="panel-heading" style="font-size:18px;">
-                        Movimientos
-                    </div>
-                    <table class="table table-striped table-hover"> 
-                        <thead>
-                        <br/>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th class="info list-group col-lg-3">Movimientos:   </th>
-                                <td> {#{{ expediente.movimientos}}#}</td>
-                            </tr>
-                        </tbody>
-
-                    </table>
-                </div>
-
 
                 <div class="col-lg-3 float left">
                     <a class="btn btn-primary" onclick="history.back()"  role="button">Volver</a>

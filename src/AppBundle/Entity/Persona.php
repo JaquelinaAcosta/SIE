@@ -48,7 +48,7 @@ class Persona extends Ubicacion
     
     
     public function __toString() {
-        return $this->apellido.", ".$this->nombre;
+        return "Persona - ".$this->apellido.", ".$this->nombre;
     }
     
     /**

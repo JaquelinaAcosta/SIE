@@ -105,7 +105,9 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
     <h4 class=\"text-center\">    <i class=\"fas fa-bars\"></i> Lista de Expedientes -  ";
         // line 49
         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "persona", []), "dependencia", []), "descripcion", []), "html", null, true);
-        echo "</h4>
+        echo " <a href=\"";
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nuevo_expediente");
+        echo "\" class=\"btn btn-success\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Nuevo Expediente\"><i class=\"fas fa-plus\"></i></a></h4>
     <hr/>
     <table class=\"table table-striped\">
         <thead class=\"\">
@@ -150,15 +152,15 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
                     <td><a class=\"btn btn-info\" href=\"";
             // line 71
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("ver_expediente", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
-            echo "\"  role=\"button\"><i class=\"fas fa-search\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Ver Detalle\"></i></a>
+            echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Ver Detalle\"><i class=\"fas fa-search\"></i></a>
                         <a class=\"btn btn-warning\" href=\"";
             // line 72
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_expediente", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
-            echo "\"  role=\"button\"><i class=\"fas fa-edit\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"></i></a>
+            echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"><i class=\"fas fa-edit\"></i></a>
                         <a class=\"btn btn-danger\" href=\"";
             // line 73
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("eliminar_expediente", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
-            echo "\"  role=\"button\"><i class=\"fas fa-trash-alt\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Eliminar\"></i></a></td>
+            echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Eliminar\"><i class=\"fas fa-trash-alt\"></i></a></td>
                 </tr>
             ";
         }
@@ -197,7 +199,7 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
 
     public function getDebugInfo()
     {
-        return array (  169 => 76,  160 => 73,  156 => 72,  152 => 71,  148 => 70,  144 => 69,  140 => 68,  136 => 67,  132 => 66,  129 => 65,  125 => 64,  107 => 49,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  171 => 76,  162 => 73,  158 => 72,  154 => 71,  150 => 70,  146 => 69,  142 => 68,  138 => 67,  134 => 66,  131 => 65,  127 => 64,  107 => 49,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -258,7 +260,7 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
 
 
 
-    <h4 class=\"text-center\">    <i class=\"fas fa-bars\"></i> Lista de Expedientes -  {{ app.user.persona.dependencia.descripcion }}</h4>
+    <h4 class=\"text-center\">    <i class=\"fas fa-bars\"></i> Lista de Expedientes -  {{ app.user.persona.dependencia.descripcion }} <a href=\"{{ path('nuevo_expediente') }}\" class=\"btn btn-success\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Nuevo Expediente\"><i class=\"fas fa-plus\"></i></a></h4>
     <hr/>
     <table class=\"table table-striped\">
         <thead class=\"\">
@@ -280,9 +282,9 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
                     <td class=\"text-default\">{{expediente.tema|e }}</td>
                     <td class=\"text-default\">{{expediente.fechaInicio|e }}</td>
                     <td class=\"text-default\">{{expediente.ubicacionActual|e }}</td>
-                    <td><a class=\"btn btn-info\" href=\"{{ path(\"ver_expediente\", {'id':expediente.id}) }}\"  role=\"button\"><i class=\"fas fa-search\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Ver Detalle\"></i></a>
-                        <a class=\"btn btn-warning\" href=\"{{ path(\"editar_expediente\", {'id':expediente.id}) }}\"  role=\"button\"><i class=\"fas fa-edit\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"></i></a>
-                        <a class=\"btn btn-danger\" href=\"{{ path(\"eliminar_expediente\", {'id':expediente.id}) }}\"  role=\"button\"><i class=\"fas fa-trash-alt\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Eliminar\"></i></a></td>
+                    <td><a class=\"btn btn-info\" href=\"{{ path(\"ver_expediente\", {'id':expediente.id}) }}\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Ver Detalle\"><i class=\"fas fa-search\"></i></a>
+                        <a class=\"btn btn-warning\" href=\"{{ path(\"editar_expediente\", {'id':expediente.id}) }}\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"><i class=\"fas fa-edit\"></i></a>
+                        <a class=\"btn btn-danger\" href=\"{{ path(\"eliminar_expediente\", {'id':expediente.id}) }}\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Eliminar\"><i class=\"fas fa-trash-alt\"></i></a></td>
                 </tr>
             {% endfor %}
 

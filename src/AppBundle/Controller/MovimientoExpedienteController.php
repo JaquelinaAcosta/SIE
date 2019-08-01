@@ -27,7 +27,7 @@ class MovimientoExpedienteController extends Controller {
         
         if ($form->isSubmitted()) {
             $ubicacion_index = $form['ubicacion']->getData();
-            $movimientoExpediente->setUsuario($this->getUser()->getId());
+            $movimientoExpediente->setUsuario($this->getUser()->getIup());
              
             if($ubicacion_index == 1){
                  $mesaentrada = $em->getRepository("AppBundle:Dependencia")->find($form['mesaentrada']->getData()->getDependencia()->getId())->getMesaentrada();
@@ -39,11 +39,14 @@ class MovimientoExpedienteController extends Controller {
                 $ubicacionActual = $persona;
                 $movimientoExpediente->setTipoSalida('Interno');
             }   
-                        
+            if($ubicacion_index == 3){
+                $lugarfisico = $em->getRepository("AppBundle:LugarFisico")->find($form['lugarfisico']['tipo']->getData()->getId());
+                $ubicacionActual = $lugarfisico;
+                $movimientoExpediente->setTipoSalida('Archivado');
+            }               
             
             $movimientoExpediente->setExpediente($expediente);
-            $movimientoExpediente->setFecha('asd');
-            $movimientoExpediente->setFojas($expediente->getFojas());           
+            $movimientoExpediente->setFecha(date("d-m-Y H:i:s"));       
             $movimientoExpediente->setUbicacion($ubicacionActual);
 
             
@@ -53,7 +56,7 @@ class MovimientoExpedienteController extends Controller {
             $em->persist($expediente);
             $em->flush();
             
-           return $this->redirectToRoute('listado_expediente');
+           return $this->redirectToRoute('ver_expediente',['id'=>$id]);
         }
 
         // replace this example code with whatever you need

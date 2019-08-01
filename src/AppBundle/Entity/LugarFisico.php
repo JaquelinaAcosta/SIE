@@ -13,9 +13,9 @@ use Doctrine\ORM\Mapping as ORM;
 class LugarFisico extends Ubicacion
 {
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="tipo", type="integer")
+     * @ORM\Column(name="tipo", type="string",length=255)
      */
     private $tipo;
 
@@ -33,7 +33,11 @@ class LugarFisico extends Ubicacion
      */
     private $acceso;
 
-
+    
+    public function __toString() {
+        return "Lugar Fisico - ".$this->descripcion." - ".parent::getDependencia()->getDescripcion();
+    }
+    
 
     /**
      * Get id

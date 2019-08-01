@@ -60,7 +60,20 @@
                 </div>
             </div>                 
         </div>
+        <div id="lugarfisico" class="col-xs-14" hidden>
+            <div class="lugar col-lg-4">
+                <label class="text-default">LUGAR FISICO(<span class="text-danger">*</span>)</label>   
+                <div class="lugar-val">
 
+                </div>
+            </div>                 
+        </div>
+        
+        <div class="col-lg-4">
+            <label class="text-default">FOJAS</label>
+            {{ form_errors(form.fojas) }}
+            {{ form_widget(form.fojas) }}
+        </div>   
         <div class="col-lg-12">
             <hr/>
             <label class="text-default">OBSERVACIONES</label>
@@ -103,6 +116,7 @@
                 if (index == 0) {
                     $('.nombre-val').empty();
                     $('.dependencia-val').empty();
+                    $('.lugar-val').empty();
                     $('#persona').hide();
                     $('#mesaentrada').hide();
                     $('#lugarfisico').hide();
@@ -110,7 +124,7 @@
                 if (index == 1) {
                     $('.nombre-val').empty();
                     $('.dependencia-val').empty();
-
+                    $('.lugarfisico-val').empty();
                     $('#persona').hide();
                     $('#lugarfisico').hide();
                     $('#mesaentrada').show();
@@ -122,7 +136,7 @@
                 if (index == 2) {
                     $('.nombre-val').empty();
                     $('.dependencia-val').empty();
-
+                    $('.lugar-val').empty();
                     $('#mesaentrada').hide();
                     $('#lugarfisico').hide();
                     $('#persona').show();
@@ -138,14 +152,16 @@
                     });
                 }
                 if (index == 3) {
+                     $('.nombre-val').empty();
+                    $('.dependencia-val').empty();
+                    $('.lugar-val').empty();
                     $('#mesaentrada').hide();
                     $('#persona').hide();
                     $('#lugarfisico').show();
-                    if ($('.tipo > input').size() <= 0) {
+                    
                         $('#contenido').html($(html).find('#movimientoexpediente_lugarfisico'));
-                        $('#movimientoexpediente_lugarfisico_tipo').appendTo(".tipo");
+                        $('#movimientoexpediente_lugarfisico_tipo').appendTo(".lugar-val");
 
-                    }
                 }
             }
         });

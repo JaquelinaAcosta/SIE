@@ -287,12 +287,30 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
-        // lugarFisico
-        if ('/lugarFisico' === $pathinfo) {
-            return array (  '_controller' => 'AppBundle\\Controller\\LugarFisicoController::indexAction',  '_route' => 'lugarFisico',);
+        elseif (0 === strpos($pathinfo, '/lugar_fisico')) {
+            // nuevo_lugarfisico
+            if ('/lugar_fisico/add' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\LugarFisicoController::nuevoLugarFisicoAction',  '_route' => 'nuevo_lugarfisico',);
+            }
+
+            // editar_lugarfisico
+            if (0 === strpos($pathinfo, '/lugar_fisico/edit') && preg_match('#^/lugar_fisico/edit/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'editar_lugarfisico']), array (  '_controller' => 'AppBundle\\Controller\\LugarFisicoController::editLugarFisicoAction',));
+            }
+
+            // borrar_lugarfisico
+            if (0 === strpos($pathinfo, '/lugar_fisico/delete') && preg_match('#^/lugar_fisico/delete/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'borrar_lugarfisico']), array (  '_controller' => 'AppBundle\\Controller\\LugarFisicoController::borrarLugarFisicoAction',));
+            }
+
+            // listado_lugarfisico
+            if ('/lugar_fisico/listado' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\LugarFisicoController::listaLugarFisicoAction',  '_route' => 'listado_lugarfisico',);
+            }
+
         }
 
-        if (0 === strpos($pathinfo, '/log')) {
+        elseif (0 === strpos($pathinfo, '/log')) {
             // loginUsuario
             if ('/loginUsuario' === $pathinfo) {
                 return array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::loginAction',  '_route' => 'loginUsuario',);
