@@ -21,7 +21,17 @@ class MesaEntradaType extends AbstractType
         $gestion = $options['gestion'];
         $movimiento = $options['movimiento'];
         
-        $builder
+        if($movimiento != null){
+            $builder->add('dependencia', EntityType::class, array(
+                    "label" => false,
+                    "placeholder" => "--Seleccione--",
+                    
+                    "class" => 'AppBundle:Dependencia', "attr" => array(
+                        "class" => "form-control"
+                    ))
+                );
+        }else{
+             $builder
                
                ->add('responsables', CollectionType::class,[
                    'entry_type'=> ResponsableType::class,
@@ -40,22 +50,15 @@ class MesaEntradaType extends AbstractType
                "placeholder"=>"Código de expediente..."
             )
         ));
+        }
+             
         if($gestion != null){
              $builder->add('Guardar', SubmitType::class,
                      ['attr'=>array(
                          "class"=>"form-control btn btn-success"
                      )]);
         }
-        if($movimiento != null){
-            $builder->add('dependencia', EntityType::class, array(
-                    "label" => false,
-                    "placeholder" => "--Seleccione--",
-                    
-                    "class" => 'AppBundle:Dependencia', "attr" => array(
-                        "class" => "form-control"
-                    ))
-                );
-        }
+        
        
                 
     }/**

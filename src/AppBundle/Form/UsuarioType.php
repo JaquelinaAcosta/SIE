@@ -28,19 +28,34 @@ class UsuarioType extends AbstractType {
                         "placeholder" => "usuario1"
                     )
                 ))
-                ->add('email', EmailType::class, array(
-                    "label" => "", "attr" => array(
-                        "class" => "form-exp form-control",
-                        "placeholder" => "ejemplo@ejemplo.com"
-                    )
-                ))
+               
+                ->add('email', RepeatedType::class, [
+                    'type' => EmailType::class,
+                    'invalid_message' => 'El email no coincide.',
+                    'options' => ['attr' => ['class' => 'email-field form-control']],
+                    'required' => true,
+                    'first_options' => ['label' => false,'attr'=>[
+                        'class'=>'form-control',
+                        'placeholder'=>'Ingrese email'
+                    ]],
+                    'second_options' => ['label' => false,'attr'=>[
+                        'class'=>'form-control',
+                        'placeholder'=>'Repita su email'
+                    ]],
+                ])
                 ->add('contrasenia', RepeatedType::class, [
                     'type' => PasswordType::class,
                     'invalid_message' => 'Las contraseñas deben coincidir.',
                     'options' => ['attr' => ['class' => 'password-field form-control']],
                     'required' => true,
-                    'first_options' => ['label' => false],
-                    'second_options' => ['label' => false],
+                    'first_options' => ['label' => false,'attr'=>[
+                        'class'=>'form-control',
+                        'placeholder'=>'Ingrese contraseña'
+                    ]],
+                    'second_options' => ['label' => false,'attr'=>[
+                        'class'=>'form-control',
+                        'placeholder'=>'Repita la contraseña'
+                    ]],
                 ])
                 ->add('Aceptar', SubmitType::class, array("attr" => array(
                         "class" => "form-submit btn btn-primary"
@@ -49,6 +64,12 @@ class UsuarioType extends AbstractType {
 
         if ($password != null) {
             $builder
+                     ->add('email', EmailType::class, array(
+                    "label" => "", "attr" => array(
+                        "class" => "form-exp form-control",
+                        "placeholder" => "ejemplo@ejemplo.com"
+                    )
+                ))
                     ->add('contrasenia', TextType::class, array(
                         "label" => "Contraseña: ", "attr" => array(
                             "class" => "form-exp form-control",

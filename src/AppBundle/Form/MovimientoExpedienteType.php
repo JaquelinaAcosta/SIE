@@ -57,7 +57,7 @@ class MovimientoExpedienteType extends AbstractType
                 ->add('observacion', TextareaType::class, array(
                 "label"=>"Observaciones: ","attr"=> array(
                "class"=>"form-name form-control" ,
-               "readonly"=>true
+                'rows'=> 4
             )
         ))
                 ->add('comentario', TextareaType::class, array(

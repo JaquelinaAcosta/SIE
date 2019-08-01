@@ -13,7 +13,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Persona extends Ubicacion
 {
-
      /**
      * @var string
      *
@@ -61,8 +60,7 @@ class Persona extends Ubicacion
     {
         return $this->id;
     }
-   
-    
+     
     /**
      * Set apellido
      *

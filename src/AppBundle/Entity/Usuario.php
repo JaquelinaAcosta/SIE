@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Usuario
@@ -78,8 +79,17 @@ class Usuario implements UserInterface
     private $resolucion;
     
     
+    
     public function __toString() {
        return $this->persona->getApellido().", ".$this->persona->getNombre();
+    }
+    
+        /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->responsable = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     //AUTENTICACION PARA LOGIN
@@ -266,13 +276,7 @@ class Usuario implements UserInterface
     {
         return $this->persona;
     }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->responsable = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+
 
     /**
      * Add responsable

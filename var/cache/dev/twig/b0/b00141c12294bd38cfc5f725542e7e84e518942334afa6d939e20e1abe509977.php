@@ -114,7 +114,7 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
                 <th scope=\"col\">Concepto</th>
                 <th scope=\"col\">Tema</th>
                 <th scope=\"col\">Fecha Inicio</th>
-                <th scope=\"col\">Ubicacion</th>
+                <th scope=\"col\">Ubicacion Actual</th>
                 <th scope=\"col\">Acciones</th>
             </tr>
         </thead>
@@ -267,7 +267,7 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
                 <th scope=\"col\">Concepto</th>
                 <th scope=\"col\">Tema</th>
                 <th scope=\"col\">Fecha Inicio</th>
-                <th scope=\"col\">Ubicacion</th>
+                <th scope=\"col\">Ubicacion Actual</th>
                 <th scope=\"col\">Acciones</th>
             </tr>
         </thead>
@@ -295,6 +295,6 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
         })
     </script>
     <hr/>
-{% endblock %}", "AppBundle:Expediente:listadoExpediente.html.twig", "/var/www/html/gitSIE/src/AppBundle/Resources/views/Expediente/listadoExpediente.html.twig");
+{% endblock %}", "AppBundle:Expediente:listadoExpediente.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/Expediente/listadoExpediente.html.twig");
     }
 }
