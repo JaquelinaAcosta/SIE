@@ -159,7 +159,79 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
                             </th>
                     </table>
                 </div>  
-
+                
+                <div class=\"expediente col-lg-10 panel panel-primary\">
+                    <div class=\"panel-heading\" style=\"font-size:18px;\">
+                        Movimientos
+                    </div>
+                    <table class=\"table table-striped\">
+                        <thead>
+                            <tr>
+                                <th scope=\"col\"></th>
+                                <th scope=\"col\">UBICACION</th>
+                                <th scope=\"col\">TIPO DE SALIDA</th>
+                                <th scope=\"col\">USUARIO</th>
+                                <th scope=\"col\">FECHA</th>
+                                <th scope=\"col\">ACCIONES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ";
+        // line 96
+        $context["count"] = 0;
+        // line 97
+        echo "                            
+                            ";
+        // line 98
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "movimientos", []), "getValues", []));
+        foreach ($context['_seq'] as $context["_key"] => $context["movimiento"]) {
+            // line 99
+            echo "                                <tr>
+                                    ";
+            // line 100
+            $context["count"] = (($context["count"] ?? $this->getContext($context, "count")) + 1);
+            // line 101
+            echo "                                    <td>";
+            echo twig_escape_filter($this->env, ($context["count"] ?? $this->getContext($context, "count")), "html", null, true);
+            echo "</td>
+                                    <td>";
+            // line 102
+            echo twig_escape_filter($this->env, $this->getAttribute($context["movimiento"], "ubicacion", []), "html", null, true);
+            echo "</td>
+                                    <td>";
+            // line 103
+            echo twig_escape_filter($this->env, $this->getAttribute($context["movimiento"], "tipoSalida", []), "html", null, true);
+            echo "</td>
+                                    <td>";
+            // line 104
+            echo twig_escape_filter($this->env, $this->getAttribute($context["movimiento"], "usuario", []), "html", null, true);
+            echo "</td>
+                                    <td>";
+            // line 105
+            echo twig_escape_filter($this->env, $this->getAttribute($context["movimiento"], "fecha", []), "html", null, true);
+            echo "</td>
+                                    <td><a class=\"btn btn-info\" href=\"\"  role=\"button\" title=\"Ver Detalle\"><i class=\"fas fa-search\"></i></a>
+                                        <a class=\"btn btn-warning\" href=\"\"  role=\"button\" title=\"Modificar\"><i class=\"fas fa-edit\"></i></a>
+                                        <a class=\"btn btn-danger\" href=\"\"  role=\"button\" title=\"Archivar\"><i class=\"fas fa-trash-alt\"></i></a></td>
+                                </tr>
+                            ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['movimiento'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 111
+        echo "
+                        </tbody>
+                    </table>
+                              <hr/>
+                            
+                    Agregar nuevo Movimiento <a class=\"btn btn-warning\" href=\"";
+        // line 116
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nuevo_movimiento", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", [])]), "html", null, true);
+        echo "\"  role=\"button\"><i class=\"fas fa-file\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Agregar Carátula\"></i></a>
+                </div>            
+                            
                 <div class=\"expediente col-lg-10 panel panel-primary\">
                     <div class=\"panel-heading\" style=\"font-size:18px;\">
                         Expedientes asociados
@@ -176,34 +248,34 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
                         <tbody>
 
                             ";
-        // line 95
+        // line 134
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "ExpedientesAsociados", []), "getValues", []));
         foreach ($context['_seq'] as $context["_key"] => $context["expediente_asoc"]) {
-            // line 96
+            // line 135
             echo "                                <tr>
                                     <td>";
-            // line 97
+            // line 136
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "html", null, true);
             echo "</td>
                                     <td>";
-            // line 98
+            // line 137
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "tema", []), "descripcion", []), "html", null, true);
             echo "</td>
                                     <td>";
-            // line 99
+            // line 138
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "tema", []), "codigo", []), "html", null, true);
             echo "</td>
                                     <td><a class=\"btn btn-info\" href=\"";
-            // line 100
+            // line 139
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("ver_expediente", ["id" => $this->getAttribute($this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "id", [])]), "html", null, true);
             echo "\"  role=\"button\" title=\"Ver Detalle\"><i class=\"fas fa-search\"></i></a>
                                         <a class=\"btn btn-warning\" href=\"";
-            // line 101
+            // line 140
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_expediente", ["id" => $this->getAttribute($this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "id", [])]), "html", null, true);
             echo "\"  role=\"button\" title=\"Modificar\"><i class=\"fas fa-edit\"></i></a>
                                         <a class=\"btn btn-danger\" href=\"";
-            // line 102
+            // line 141
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("eliminar_expediente", ["id" => $this->getAttribute($this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "id", [])]), "html", null, true);
             echo "\"  role=\"button\" title=\"Archivar\"><i class=\"fas fa-trash-alt\"></i></a></td>
                                 </tr>
@@ -212,8 +284,8 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['expediente_asoc'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 105
-        echo "
+        // line 144
+        echo "                            
                         </tbody>
                     </table>
                 </div>
@@ -230,7 +302,7 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
                             <tr>
                                 <th class=\"info list-group col-lg-3\">Resolución:  </th>
                                 <td>";
-        // line 121
+        // line 160
         echo twig_escape_filter($this->env, $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "resolucion", []), "html", null, true);
         echo "</td>
                             </tr>
@@ -256,32 +328,32 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
                         <tbody>
 
                             ";
-        // line 144
+        // line 183
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "caratulas", []), "getValues", []));
         foreach ($context['_seq'] as $context["_key"] => $context["caratulaAgregada"]) {
-            // line 145
+            // line 184
             echo "                                
                                 <tr>
                                     <td>";
-            // line 147
+            // line 186
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["caratulaAgregada"], "tema", []), "descripcion", []), "html", null, true);
             echo "</td>
                                     <td>";
-            // line 148
+            // line 187
             echo twig_escape_filter($this->env, $this->getAttribute($context["caratulaAgregada"], "concepto", []), "html", null, true);
             echo "</td>
                                     <td>";
-            // line 149
+            // line 188
             echo twig_escape_filter($this->env, $this->getAttribute($context["caratulaAgregada"], "fojas", []), "html", null, true);
             echo "</td>
                                     <td>
                                     <a class=\"btn btn-warning\" href=\"";
-            // line 151
+            // line 190
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_caratula", ["id" => $this->getAttribute($context["caratulaAgregada"], "id", [])]), "html", null, true);
             echo "\"  role=\"button\"><i class=\"fas fa-edit\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"></i></a>
                                     <a class=\"btn btn-danger\" href=\"";
-            // line 152
+            // line 191
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("eliminar_caratula", ["id" => $this->getAttribute($context["caratulaAgregada"], "id", [])]), "html", null, true);
             echo "\"  role=\"button\"><i class=\"fas fa-trash-alt\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Eliminar\"></i></a></td>
                                 </tr>
@@ -291,7 +363,7 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['caratulaAgregada'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 156
+        // line 195
         echo "
                         </tbody>
                         
@@ -299,34 +371,11 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
                             <hr/>
                             
                     Agregar nueva Carátula <a class=\"btn btn-warning\" href=\"";
-        // line 162
+        // line 201
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nueva_caratula", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", [])]), "html", null, true);
         echo "\"  role=\"button\"><i class=\"fas fa-file\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Agregar Carátula\"></i></a>
 
                 </div>
-
-
-
-                <div class=\"expediente col-lg-10 panel panel-primary\">
-                    <div class=\"panel-heading\" style=\"font-size:18px;\">
-                        Movimientos
-                    </div>
-                    <table class=\"table table-striped table-hover\"> 
-                        <thead>
-                        <br/>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th class=\"info list-group col-lg-3\">Movimientos:   </th>
-                                <td> ";
-        // line 179
-        echo "</td>
-                            </tr>
-                        </tbody>
-
-                    </table>
-                </div>
-
 
                 <div class=\"col-lg-3 float left\">
                     <a class=\"btn btn-primary\" onclick=\"history.back()\"  role=\"button\">Volver</a>
@@ -372,7 +421,7 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
 
     public function getDebugInfo()
     {
-        return array (  323 => 179,  303 => 162,  295 => 156,  285 => 152,  281 => 151,  276 => 149,  272 => 148,  268 => 147,  264 => 145,  260 => 144,  234 => 121,  216 => 105,  207 => 102,  203 => 101,  199 => 100,  195 => 99,  191 => 98,  187 => 97,  184 => 96,  180 => 95,  152 => 70,  145 => 66,  138 => 62,  131 => 58,  124 => 54,  117 => 50,  110 => 46,  103 => 42,  91 => 33,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  375 => 201,  367 => 195,  357 => 191,  353 => 190,  348 => 188,  344 => 187,  340 => 186,  336 => 184,  332 => 183,  306 => 160,  288 => 144,  279 => 141,  275 => 140,  271 => 139,  267 => 138,  263 => 137,  259 => 136,  256 => 135,  252 => 134,  231 => 116,  224 => 111,  212 => 105,  208 => 104,  204 => 103,  200 => 102,  195 => 101,  193 => 100,  190 => 99,  186 => 98,  183 => 97,  181 => 96,  152 => 70,  145 => 66,  138 => 62,  131 => 58,  124 => 54,  117 => 50,  110 => 46,  103 => 42,  91 => 33,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -463,7 +512,46 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
                             </th>
                     </table>
                 </div>  
+                
+                <div class=\"expediente col-lg-10 panel panel-primary\">
+                    <div class=\"panel-heading\" style=\"font-size:18px;\">
+                        Movimientos
+                    </div>
+                    <table class=\"table table-striped\">
+                        <thead>
+                            <tr>
+                                <th scope=\"col\"></th>
+                                <th scope=\"col\">UBICACION</th>
+                                <th scope=\"col\">TIPO DE SALIDA</th>
+                                <th scope=\"col\">USUARIO</th>
+                                <th scope=\"col\">FECHA</th>
+                                <th scope=\"col\">ACCIONES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% set count = 0 %}
+                            
+                            {% for movimiento in expediente.movimientos.getValues %}
+                                <tr>
+                                    {% set count= count+1 %}
+                                    <td>{{ count }}</td>
+                                    <td>{{movimiento.ubicacion}}</td>
+                                    <td>{{movimiento.tipoSalida}}</td>
+                                    <td>{{movimiento.usuario}}</td>
+                                    <td>{{movimiento.fecha}}</td>
+                                    <td><a class=\"btn btn-info\" href=\"\"  role=\"button\" title=\"Ver Detalle\"><i class=\"fas fa-search\"></i></a>
+                                        <a class=\"btn btn-warning\" href=\"\"  role=\"button\" title=\"Modificar\"><i class=\"fas fa-edit\"></i></a>
+                                        <a class=\"btn btn-danger\" href=\"\"  role=\"button\" title=\"Archivar\"><i class=\"fas fa-trash-alt\"></i></a></td>
+                                </tr>
+                            {% endfor %}
 
+                        </tbody>
+                    </table>
+                              <hr/>
+                            
+                    Agregar nuevo Movimiento <a class=\"btn btn-warning\" href=\"{{ path('nuevo_movimiento',{'id':expediente.id}) }}\"  role=\"button\"><i class=\"fas fa-file\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Agregar Carátula\"></i></a>
+                </div>            
+                            
                 <div class=\"expediente col-lg-10 panel panel-primary\">
                     <div class=\"panel-heading\" style=\"font-size:18px;\">
                         Expedientes asociados
@@ -489,7 +577,7 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
                                         <a class=\"btn btn-danger\" href=\"{{ path(\"eliminar_expediente\", {'id':expediente_asoc.expedienteAsociado.id}) }}\"  role=\"button\" title=\"Archivar\"><i class=\"fas fa-trash-alt\"></i></a></td>
                                 </tr>
                             {% endfor %}
-
+                            
                         </tbody>
                     </table>
                 </div>
@@ -549,27 +637,6 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
                     Agregar nueva Carátula <a class=\"btn btn-warning\" href=\"{{ path('nueva_caratula',{'id':expediente.id}) }}\"  role=\"button\"><i class=\"fas fa-file\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Agregar Carátula\"></i></a>
 
                 </div>
-
-
-
-                <div class=\"expediente col-lg-10 panel panel-primary\">
-                    <div class=\"panel-heading\" style=\"font-size:18px;\">
-                        Movimientos
-                    </div>
-                    <table class=\"table table-striped table-hover\"> 
-                        <thead>
-                        <br/>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th class=\"info list-group col-lg-3\">Movimientos:   </th>
-                                <td> {#{{ expediente.movimientos}}#}</td>
-                            </tr>
-                        </tbody>
-
-                    </table>
-                </div>
-
 
                 <div class=\"col-lg-3 float left\">
                     <a class=\"btn btn-primary\" onclick=\"history.back()\"  role=\"button\">Volver</a>

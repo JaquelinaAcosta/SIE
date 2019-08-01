@@ -37,12 +37,12 @@ class MovimientoExpedienteType extends AbstractType
                         "class" => "form-name form-control"
                     )
         ))
-//                ->add('fojas', TextType::class,array(
-//            "label"=>"Nro. de fojas:","attr"=> array(
-//               "class"=>"form-name form-control" ,
-//               "placeholder"=>"1...2..."
-//            )
-//        ))
+                ->add('fojas', TextType::class,array(
+            "label"=>"Nro. de fojas:","attr"=> array(
+               "class"=>"form-name form-control" ,
+               "placeholder"=>"1...2..."
+            )
+        ))
 //                ->add('usuario', TextType::class,array(
 //            "label"=>"Usuario: ","attr"=> array(
 //               "class"=>"form-name form-control" 

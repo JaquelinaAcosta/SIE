@@ -73,7 +73,7 @@ class UsuarioController extends Controller {
 
        if ($form->isSubmitted() and $form->isValid()) {
             if (count($em->getRepository("AppBundle:Usuario")->findBy(['iup' => $form['iup']->getData()])) == 0) {
-                if ($usuario->getPersona()->getUsuario() == null) {
+
                     $factory = $this->get("security.encoder_factory");
                     $encoder = $factory->getEncoder($usuario);
                     $password = $encoder->encodePassword($usuario->getContrasenia(), $usuario->getSalt());
@@ -84,17 +84,13 @@ class UsuarioController extends Controller {
                     $flush = $em->flush();
                     
                     if($flush == false){
-                        $this->addFlash('success', "Usuario añadido correctamente.");
+                        $this->addFlash('success', "Usuario editado correctamente.");
                         return $this->redirectToRoute('listado_usuario');
                     }else{
-                        $this->addFlash('danger', "Ocurrió un error en la creacion del usuario.");
-                    }
-                    
-                }else{
-                   $this->addFlash('danger', "La Persona ".$usuario->getPersona()." ya tiene un usuario asignado.");
-                }
+                        $this->addFlash('danger', "Ocurrió un error en la edicion del usuario.");
+                    }                    
             } else {
-                $this->addFlash('danger', "El nombre de usuario ya existe.");
+                $this->addFlash('danger', "Error, el nombre de usuario ya existe.");
             }
         }
 

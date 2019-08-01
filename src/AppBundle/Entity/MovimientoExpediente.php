@@ -46,9 +46,9 @@ class MovimientoExpediente {
     private $fojas;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="usuario", type="integer")
+     * @ORM\Column(name="usuario", type="string",length=255)
      */
     private $usuario;
 

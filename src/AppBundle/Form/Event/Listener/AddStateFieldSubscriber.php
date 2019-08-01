@@ -35,12 +35,12 @@ class AddStateFieldSubscriber implements EventSubscriberInterface {
         // actualizamos el campo state, pasandole el country a la opción
         // query_builder, para que el dql tome en cuenta el pais
         // y filtre la consulta por su valor.
-        
-        if($ubicacion == 0){
+
+        if ($ubicacion == 0) {
             $form->remove('mesaentrada');
             $form->remove('persona');
         }
-        
+
         if ($ubicacion == 1) {
             if ($form->has('mesaentrada') == false) {
                 $form->add('mesaentrada', MesaEntradaType::class, ['gestion' => null, 'movimiento' => true]);
@@ -48,12 +48,14 @@ class AddStateFieldSubscriber implements EventSubscriberInterface {
         }
         if ($ubicacion == 2) {
             if ($form->has('persona') == false) {
-                $form->add('persona', PersonaType::class, ['role' => null, 'movimiento_persona' => 'SI']);
+                $form->add('persona', PersonaType::class, ['role' => null, 'movimiento_persona' => true]);
             }
         }
         if ($ubicacion == 3) {
 
-            $form->add('lugarfisico', LugarFisicoType::class);
+            if ($form->has('lugarfisico') == false) {
+                $form->add('lugarfisico', LugarFisicoType::class, ['edit_mode' => null, 'movimiento_lugar' => true]);
+            }
         }
     }
 

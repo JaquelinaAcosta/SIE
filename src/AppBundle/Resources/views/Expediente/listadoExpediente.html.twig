@@ -46,7 +46,7 @@
 
 
 
-    <h4 class="text-center">    <i class="fas fa-bars"></i> Lista de Expedientes -  {{ app.user.persona.dependencia.descripcion }}</h4>
+    <h4 class="text-center">    <i class="fas fa-bars"></i> Lista de Expedientes -  {{ app.user.persona.dependencia.descripcion }} <a href="{{ path('nuevo_expediente') }}" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Nuevo Expediente"><i class="fas fa-plus"></i></a></h4>
     <hr/>
     <table class="table table-striped">
         <thead class="">
@@ -68,9 +68,9 @@
                     <td class="text-default">{{expediente.tema|e }}</td>
                     <td class="text-default">{{expediente.fechaInicio|e }}</td>
                     <td class="text-default">{{expediente.ubicacionActual|e }}</td>
-                    <td><a class="btn btn-info" href="{{ path("ver_expediente", {'id':expediente.id}) }}"  role="button"><i class="fas fa-search" data-toggle="tooltip" data-placement="top" title="Ver Detalle"></i></a>
-                        <a class="btn btn-warning" href="{{ path("editar_expediente", {'id':expediente.id}) }}"  role="button"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Editar"></i></a>
-                        <a class="btn btn-danger" href="{{ path("eliminar_expediente", {'id':expediente.id}) }}"  role="button"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></a></td>
+                    <td><a class="btn btn-info" href="{{ path("ver_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Ver Detalle"><i class="fas fa-search"></i></a>
+                        <a class="btn btn-warning" href="{{ path("editar_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit"></i></a>
+                        <a class="btn btn-danger" href="{{ path("eliminar_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt"></i></a></td>
                 </tr>
             {% endfor %}
 

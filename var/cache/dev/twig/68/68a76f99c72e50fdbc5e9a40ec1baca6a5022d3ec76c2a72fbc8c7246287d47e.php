@@ -102,7 +102,10 @@ class __TwigTemplate_87c2826c6d0cb3bdadd35148416e38ae7805b501ee1947099923a23d47c
 
 
 
-    <h4 class=\"text-center\">    <i class=\"fas fa-bars\"></i> Lista de Usuarios </h4>
+    <h4 class=\"text-center\">    <i class=\"fas fa-bars\"></i> Lista de Usuarios <a href=\"";
+        // line 49
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nuevo_usuario");
+        echo "\" class=\"btn btn-success\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Nuevo Usuario\"><i class=\"fas fa-plus\"></i></a></h4>
     <hr/>
       ";
         // line 51
@@ -142,7 +145,7 @@ class __TwigTemplate_87c2826c6d0cb3bdadd35148416e38ae7805b501ee1947099923a23d47c
         $context = array_intersect_key($context, $_parent) + $_parent;
         // line 62
         echo "    <table class=\"table table-striped\">
-        <thead class=\"\">
+        <thead class=\"thead-dark\">
             <tr>
                 <th scope=\"col\">Usuario</th>
                 <th scope=\"col\">Rol</th>
@@ -219,7 +222,7 @@ class __TwigTemplate_87c2826c6d0cb3bdadd35148416e38ae7805b501ee1947099923a23d47c
 
     public function getDebugInfo()
     {
-        return array (  191 => 85,  182 => 82,  177 => 81,  172 => 77,  168 => 76,  164 => 75,  161 => 74,  157 => 73,  144 => 62,  135 => 59,  132 => 58,  128 => 57,  125 => 56,  116 => 53,  113 => 52,  109 => 51,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  194 => 85,  185 => 82,  180 => 81,  175 => 77,  171 => 76,  167 => 75,  164 => 74,  160 => 73,  147 => 62,  138 => 59,  135 => 58,  131 => 57,  128 => 56,  119 => 53,  116 => 52,  112 => 51,  107 => 49,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -280,7 +283,7 @@ class __TwigTemplate_87c2826c6d0cb3bdadd35148416e38ae7805b501ee1947099923a23d47c
 
 
 
-    <h4 class=\"text-center\">    <i class=\"fas fa-bars\"></i> Lista de Usuarios </h4>
+    <h4 class=\"text-center\">    <i class=\"fas fa-bars\"></i> Lista de Usuarios <a href=\"{{ path('nuevo_usuario') }}\" class=\"btn btn-success\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Nuevo Usuario\"><i class=\"fas fa-plus\"></i></a></h4>
     <hr/>
       {% for message in app.flashes('success') %}
                     <div class=\"alert alert-success\">
@@ -294,7 +297,7 @@ class __TwigTemplate_87c2826c6d0cb3bdadd35148416e38ae7805b501ee1947099923a23d47c
                     </div>
                 {% endfor %}
     <table class=\"table table-striped\">
-        <thead class=\"\">
+        <thead class=\"thead-dark\">
             <tr>
                 <th scope=\"col\">Usuario</th>
                 <th scope=\"col\">Rol</th>

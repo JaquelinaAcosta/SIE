@@ -132,40 +132,59 @@ class __TwigTemplate_dbd1e36e108055d41a4b993b492641f5aea9a6aa23ef362324a0bad85e0
                 </div>
             </div>                 
         </div>
+        <div id=\"lugarfisico\" class=\"col-xs-14\" hidden>
+            <div class=\"lugar col-lg-4\">
+                <label class=\"text-default\">LUGAR FISICO(<span class=\"text-danger\">*</span>)</label>   
+                <div class=\"lugar-val\">
 
+                </div>
+            </div>                 
+        </div>
+        
+        <div class=\"col-lg-4\">
+            <label class=\"text-default\">FOJAS</label>
+            ";
+        // line 74
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fojas", []), 'errors');
+        echo "
+            ";
+        // line 75
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fojas", []), 'widget');
+        echo "
+        </div>   
         <div class=\"col-lg-12\">
             <hr/>
             <label class=\"text-default\">OBSERVACIONES</label>
             ";
-        // line 67
+        // line 80
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "observacion", []), 'errors');
         echo "
             ";
-        // line 68
+        // line 81
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "observacion", []), 'widget');
         echo "
         </div>   
         <div class=\"col-lg-12\">
             <label class=\"text-default\">COMENTARIO</label>
             ";
-        // line 72
+        // line 85
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "comentario", []), 'errors');
         echo "
             ";
-        // line 73
+        // line 86
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "comentario", []), 'widget');
         echo "
             <hr/>
         </div>  
         <div class=\"col-lg-3 float left\">
             ";
-        // line 77
+        // line 90
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "Aceptar", []), 'widget');
         echo "
         </div>
     </div>
     ";
-        // line 80
+        // line 93
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_end');
         echo "
 
@@ -184,7 +203,7 @@ class __TwigTemplate_dbd1e36e108055d41a4b993b492641f5aea9a6aa23ef362324a0bad85e0
         var index = \$ubicacion.val();
         \$.ajax({
             url: \"";
-        // line 96
+        // line 109
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("add_movimiento");
         echo "\",
             type: \"POST\",
@@ -196,6 +215,7 @@ class __TwigTemplate_dbd1e36e108055d41a4b993b492641f5aea9a6aa23ef362324a0bad85e0
                 if (index == 0) {
                     \$('.nombre-val').empty();
                     \$('.dependencia-val').empty();
+                    \$('.lugar-val').empty();
                     \$('#persona').hide();
                     \$('#mesaentrada').hide();
                     \$('#lugarfisico').hide();
@@ -203,7 +223,7 @@ class __TwigTemplate_dbd1e36e108055d41a4b993b492641f5aea9a6aa23ef362324a0bad85e0
                 if (index == 1) {
                     \$('.nombre-val').empty();
                     \$('.dependencia-val').empty();
-
+                    \$('.lugarfisico-val').empty();
                     \$('#persona').hide();
                     \$('#lugarfisico').hide();
                     \$('#mesaentrada').show();
@@ -215,7 +235,7 @@ class __TwigTemplate_dbd1e36e108055d41a4b993b492641f5aea9a6aa23ef362324a0bad85e0
                 if (index == 2) {
                     \$('.nombre-val').empty();
                     \$('.dependencia-val').empty();
-
+                    \$('.lugar-val').empty();
                     \$('#mesaentrada').hide();
                     \$('#lugarfisico').hide();
                     \$('#persona').show();
@@ -227,24 +247,26 @@ class __TwigTemplate_dbd1e36e108055d41a4b993b492641f5aea9a6aa23ef362324a0bad85e0
 
                     \$('#movimientoexpediente_persona_nombre').autocompleter({
                         url_list: \"";
-        // line 136
+        // line 150
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("persona_search");
         echo "\",
                         url_get: \"";
-        // line 137
+        // line 151
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("persona_get");
         echo "\"
                     });
                 }
                 if (index == 3) {
+                     \$('.nombre-val').empty();
+                    \$('.dependencia-val').empty();
+                    \$('.lugar-val').empty();
                     \$('#mesaentrada').hide();
                     \$('#persona').hide();
                     \$('#lugarfisico').show();
-                    if (\$('.tipo > input').size() <= 0) {
+                    
                         \$('#contenido').html(\$(html).find('#movimientoexpediente_lugarfisico'));
-                        \$('#movimientoexpediente_lugarfisico_tipo').appendTo(\".tipo\");
+                        \$('#movimientoexpediente_lugarfisico_tipo').appendTo(\".lugar-val\");
 
-                    }
                 }
             }
         });
@@ -271,7 +293,7 @@ class __TwigTemplate_dbd1e36e108055d41a4b993b492641f5aea9a6aa23ef362324a0bad85e0
 
     public function getDebugInfo()
     {
-        return array (  235 => 137,  231 => 136,  188 => 96,  169 => 80,  163 => 77,  156 => 73,  152 => 72,  145 => 68,  141 => 67,  111 => 40,  107 => 39,  99 => 34,  95 => 32,  88 => 29,  86 => 28,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  255 => 151,  251 => 150,  207 => 109,  188 => 93,  182 => 90,  175 => 86,  171 => 85,  164 => 81,  160 => 80,  152 => 75,  148 => 74,  111 => 40,  107 => 39,  99 => 34,  95 => 32,  88 => 29,  86 => 28,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -346,7 +368,20 @@ class __TwigTemplate_dbd1e36e108055d41a4b993b492641f5aea9a6aa23ef362324a0bad85e0
                 </div>
             </div>                 
         </div>
+        <div id=\"lugarfisico\" class=\"col-xs-14\" hidden>
+            <div class=\"lugar col-lg-4\">
+                <label class=\"text-default\">LUGAR FISICO(<span class=\"text-danger\">*</span>)</label>   
+                <div class=\"lugar-val\">
 
+                </div>
+            </div>                 
+        </div>
+        
+        <div class=\"col-lg-4\">
+            <label class=\"text-default\">FOJAS</label>
+            {{ form_errors(form.fojas) }}
+            {{ form_widget(form.fojas) }}
+        </div>   
         <div class=\"col-lg-12\">
             <hr/>
             <label class=\"text-default\">OBSERVACIONES</label>
@@ -389,6 +424,7 @@ class __TwigTemplate_dbd1e36e108055d41a4b993b492641f5aea9a6aa23ef362324a0bad85e0
                 if (index == 0) {
                     \$('.nombre-val').empty();
                     \$('.dependencia-val').empty();
+                    \$('.lugar-val').empty();
                     \$('#persona').hide();
                     \$('#mesaentrada').hide();
                     \$('#lugarfisico').hide();
@@ -396,7 +432,7 @@ class __TwigTemplate_dbd1e36e108055d41a4b993b492641f5aea9a6aa23ef362324a0bad85e0
                 if (index == 1) {
                     \$('.nombre-val').empty();
                     \$('.dependencia-val').empty();
-
+                    \$('.lugarfisico-val').empty();
                     \$('#persona').hide();
                     \$('#lugarfisico').hide();
                     \$('#mesaentrada').show();
@@ -408,7 +444,7 @@ class __TwigTemplate_dbd1e36e108055d41a4b993b492641f5aea9a6aa23ef362324a0bad85e0
                 if (index == 2) {
                     \$('.nombre-val').empty();
                     \$('.dependencia-val').empty();
-
+                    \$('.lugar-val').empty();
                     \$('#mesaentrada').hide();
                     \$('#lugarfisico').hide();
                     \$('#persona').show();
@@ -424,14 +460,16 @@ class __TwigTemplate_dbd1e36e108055d41a4b993b492641f5aea9a6aa23ef362324a0bad85e0
                     });
                 }
                 if (index == 3) {
+                     \$('.nombre-val').empty();
+                    \$('.dependencia-val').empty();
+                    \$('.lugar-val').empty();
                     \$('#mesaentrada').hide();
                     \$('#persona').hide();
                     \$('#lugarfisico').show();
-                    if (\$('.tipo > input').size() <= 0) {
+                    
                         \$('#contenido').html(\$(html).find('#movimientoexpediente_lugarfisico'));
-                        \$('#movimientoexpediente_lugarfisico_tipo').appendTo(\".tipo\");
+                        \$('#movimientoexpediente_lugarfisico_tipo').appendTo(\".lugar-val\");
 
-                    }
                 }
             }
         });

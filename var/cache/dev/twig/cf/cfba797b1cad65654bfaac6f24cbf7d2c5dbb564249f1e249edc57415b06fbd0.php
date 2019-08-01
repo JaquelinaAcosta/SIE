@@ -222,65 +222,78 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
             echo "                                </ul>
                             </li>
                             
-                           
-                            
                             ";
-            // line 146
+            // line 144
             if (($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "role", []) == "ROLE_ADMIN")) {
-                // line 147
+                // line 145
                 echo "                                <li class=\"dropdown\">
                                 <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Dependencia <span class=\"caret\"></span></a>
                                 <ul class=\"dropdown-menu\">
                                     <li><a href=\"";
-                // line 150
+                // line 148
                 echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_dependencia");
                 echo "\">Listado</a></li>
                                     <li role=\"separator\" class=\"divider\"></li>
                                     <li><a href=\"";
-                // line 152
+                // line 150
                 echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nueva_dependencia");
                 echo "\">Nueva Dependencia</a></li>
                                   ";
-                // line 157
+                // line 155
                 echo "                                </ul>
                             </li>
                              <li class=\"dropdown\">
                                 <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Persona(en proceso,falta listado con paginacion) <span class=\"caret\"></span></a>
                                 <ul class=\"dropdown-menu\">
                                     <li><a href=\"";
-                // line 162
+                // line 160
                 echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_persona");
                 echo "\">Listado</a></li>
                                      <li role=\"separator\" class=\"divider\"></li>
                                     <li><a href=\"";
-                // line 164
+                // line 162
                 echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nueva_persona");
                 echo "\">Nueva Persona</a></li>
                                   ";
-                // line 169
+                // line 167
                 echo "                                </ul>
                             </li>
                             <li class=\"dropdown\">
                                 <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Usuarios <span class=\"caret\"></span></a>
                                 <ul class=\"dropdown-menu\">
                                     <li><a href=\"";
-                // line 174
+                // line 172
                 echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_usuario");
                 echo "\">Listado</a></li>
                                      <li role=\"separator\" class=\"divider\"></li>
                                     <li><a href=\"";
-                // line 176
+                // line 174
                 echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nuevo_usuario");
                 echo "\">Nueva Usuario</a></li>
                                   ";
-                // line 181
+                // line 179
                 echo "                                </ul>
                             </li>
                             ";
             }
-            // line 184
+            // line 182
             echo "                            
-                            
+                             <li class=\"dropdown\">
+                                <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Lugar Físico <span class=\"caret\"></span></a>
+                                <ul class=\"dropdown-menu\">
+                                    <li><a href=\"";
+            // line 186
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_lugarfisico");
+            echo "\">Listado</a></li>
+                                    <li role=\"separator\" class=\"divider\"></li>
+                                    <li><a href=\"";
+            // line 188
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nuevo_lugarfisico");
+            echo "\">Nuevo Lugar Físico</a></li>
+                                  ";
+            // line 193
+            echo "                                </ul>
+                            </li>
                             
                         </ul>        
                     </div><!-- /.navbar-collapse -->
@@ -290,10 +303,10 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         </header>
 ";
         }
-        // line 194
+        // line 203
         echo "        <section id=\"content\">             
             ";
-        // line 195
+        // line 204
         $this->displayBlock('content', $context, $blocks);
         echo "   
         </section>
@@ -349,7 +362,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     }
 
-    // line 195
+    // line 204
     public function block_content($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -379,7 +392,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     public function getDebugInfo()
     {
-        return array (  353 => 195,  333 => 79,  315 => 7,  297 => 195,  294 => 194,  282 => 184,  277 => 181,  273 => 176,  268 => 174,  261 => 169,  257 => 164,  252 => 162,  245 => 157,  241 => 152,  236 => 150,  231 => 147,  229 => 146,  222 => 141,  218 => 136,  213 => 134,  189 => 112,  184 => 110,  179 => 108,  175 => 107,  172 => 106,  166 => 103,  163 => 102,  161 => 101,  149 => 98,  141 => 92,  136 => 82,  134 => 79,  125 => 73,  112 => 62,  110 => 61,  64 => 18,  60 => 17,  47 => 7,  39 => 1,);
+        return array (  366 => 204,  346 => 79,  328 => 7,  310 => 204,  307 => 203,  295 => 193,  291 => 188,  286 => 186,  280 => 182,  275 => 179,  271 => 174,  266 => 172,  259 => 167,  255 => 162,  250 => 160,  243 => 155,  239 => 150,  234 => 148,  229 => 145,  227 => 144,  222 => 141,  218 => 136,  213 => 134,  189 => 112,  184 => 110,  179 => 108,  175 => 107,  172 => 106,  166 => 103,  163 => 102,  161 => 101,  149 => 98,  141 => 92,  136 => 82,  134 => 79,  125 => 73,  112 => 62,  110 => 61,  64 => 18,  60 => 17,  47 => 7,  39 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -535,8 +548,6 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                                 </ul>
                             </li>
                             
-                           
-                            
                             {% if app.user.role == 'ROLE_ADMIN' %}
                                 <li class=\"dropdown\">
                                 <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Dependencia <span class=\"caret\"></span></a>
@@ -576,7 +587,18 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                             </li>
                             {% endif %}
                             
-                            
+                             <li class=\"dropdown\">
+                                <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Lugar Físico <span class=\"caret\"></span></a>
+                                <ul class=\"dropdown-menu\">
+                                    <li><a href=\"{{ path(\"listado_lugarfisico\") }}\">Listado</a></li>
+                                    <li role=\"separator\" class=\"divider\"></li>
+                                    <li><a href=\"{{ path(\"nuevo_lugarfisico\") }}\">Nuevo Lugar Físico</a></li>
+                                  {#  <li role=\"separator\" class=\"divider\"></li>
+                                    <li><a href=\"#\">Separated link</a></li>
+                                    <li role=\"separator\" class=\"divider\"></li>
+                                    <li><a href=\"#\">One more separated link</a></li>#}
+                                </ul>
+                            </li>
                             
                         </ul>        
                     </div><!-- /.navbar-collapse -->

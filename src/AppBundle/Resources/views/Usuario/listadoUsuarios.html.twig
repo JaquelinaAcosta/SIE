@@ -46,7 +46,7 @@
 
 
 
-    <h4 class="text-center">    <i class="fas fa-bars"></i> Lista de Usuarios </h4>
+    <h4 class="text-center">    <i class="fas fa-bars"></i> Lista de Usuarios <a href="{{ path('nuevo_usuario') }}" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Nuevo Usuario"><i class="fas fa-plus"></i></a></h4>
     <hr/>
       {% for message in app.flashes('success') %}
                     <div class="alert alert-success">
@@ -60,7 +60,7 @@
                     </div>
                 {% endfor %}
     <table class="table table-striped">
-        <thead class="">
+        <thead class="thead-dark">
             <tr>
                 <th scope="col">Usuario</th>
                 <th scope="col">Rol</th>
