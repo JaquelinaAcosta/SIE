@@ -48,6 +48,17 @@
 
     <h4 class="text-center">    <i class="fas fa-bars"></i> Lista de Usuarios </h4>
     <hr/>
+      {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+                
+                {% for message in app.flashes('danger') %}
+                    <div class="alert alert-danger">
+                        {{ message }}
+                    </div>
+                {% endfor %}
     <table class="table table-striped">
         <thead class="">
             <tr>

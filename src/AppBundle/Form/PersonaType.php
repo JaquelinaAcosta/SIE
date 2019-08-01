@@ -16,18 +16,10 @@ class PersonaType extends AbstractType {
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder
-                ->add('dependencia', EntityType::class, array(
-                    "label" => false,
-                    "placeholder" => "--Seleccione--",
-                    'query_builder' => function (EntityRepository $er) {
-                                return $er->createQueryBuilder('u')
-                                    ->orderBy('u.descripcion', 'ASC');
-                            },
-                    "class" => 'AppBundle:Dependencia', "attr" => array(
-                        "class" => "form-control"
-                    ))
-                )
+        
+        $role = $options['role'];
+        
+        $builder 
                 ->add('nombre', TextType::class, array(
                     "label" => "Nombre:", "attr" => array(
                         "class" => "form-name form-control",
@@ -55,8 +47,21 @@ class PersonaType extends AbstractType {
                 ->add('Aceptar', SubmitType::class, array("attr" => array(
                         "class" => "form-submit btn btn-primary"
                     )
-                ))
-        ;
+                ));
+        
+        if($role == null){
+             $builder->add('dependencia', EntityType::class, array(
+                    "label" => false,
+                    "placeholder" => "--Seleccione--",
+                    'query_builder' => function (EntityRepository $er) {
+                                return $er->createQueryBuilder('u')
+                                    ->orderBy('u.descripcion', 'ASC');
+                            },
+                    "class" => 'AppBundle:Dependencia', "attr" => array(
+                        "class" => "form-control"
+                    ))
+                );
+        }
     }
 
 /**
@@ -65,7 +70,8 @@ class PersonaType extends AbstractType {
 
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Persona'
+            'data_class' => 'AppBundle\Entity\Persona',
+            'role'=>null
         ));
     }
 

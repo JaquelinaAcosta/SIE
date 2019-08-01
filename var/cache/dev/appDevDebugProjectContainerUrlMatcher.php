@@ -287,41 +287,25 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
 
         }
 
-        elseif (0 === strpos($pathinfo, '/l')) {
-            // lugarFisico
-            if ('/lugarFisico' === $pathinfo) {
-                return array (  '_controller' => 'AppBundle\\Controller\\LugarFisicoController::indexAction',  '_route' => 'lugarFisico',);
+        // lugarFisico
+        if ('/lugarFisico' === $pathinfo) {
+            return array (  '_controller' => 'AppBundle\\Controller\\LugarFisicoController::indexAction',  '_route' => 'lugarFisico',);
+        }
+
+        if (0 === strpos($pathinfo, '/log')) {
+            // loginUsuario
+            if ('/loginUsuario' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::loginAction',  '_route' => 'loginUsuario',);
             }
 
-            if (0 === strpos($pathinfo, '/log')) {
-                // loginUsuario
-                if ('/loginUsuario' === $pathinfo) {
-                    return array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::loginAction',  '_route' => 'loginUsuario',);
-                }
-
-                // login_check
-                if ('/login_check' === $pathinfo) {
-                    return array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::loginCheckAction',  '_route' => 'login_check',);
-                }
-
-                // logout
-                if ('/logout' === $pathinfo) {
-                    return array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::logoutAction',  '_route' => 'logout',);
-                }
-
+            // login_check
+            if ('/login_check' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::loginCheckAction',  '_route' => 'login_check',);
             }
 
-            elseif (0 === strpos($pathinfo, '/listaUsuario')) {
-                // lista_usuario
-                if ('/listaUsuario' === $pathinfo) {
-                    return array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::listaUsuarioAction',  '_route' => 'lista_usuario',);
-                }
-
-                // eliminar_usuario
-                if (0 === strpos($pathinfo, '/listaUsuario/delete') && preg_match('#^/listaUsuario/delete/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'eliminar_usuario']), array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::deleteAction',));
-                }
-
+            // logout
+            if ('/logout' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::logoutAction',  '_route' => 'logout',);
             }
 
         }
@@ -361,15 +345,25 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::homeAction',  '_route' => 'homepage',);
         }
 
-        if (0 === strpos($pathinfo, '/registro')) {
-            // nuevo_registro
-            if ('/registro' === $pathinfo) {
-                return array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::indexAction',  '_route' => 'nuevo_registro',);
+        if (0 === strpos($pathinfo, '/usuario')) {
+            // nuevo_usuario
+            if ('/usuario/add' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::indexAction',  '_route' => 'nuevo_usuario',);
             }
 
             // editar_usuario
-            if (0 === strpos($pathinfo, '/registro/editUsuario') && preg_match('#^/registro/editUsuario/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+            if (0 === strpos($pathinfo, '/usuario/edit') && preg_match('#^/usuario/edit/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, ['_route' => 'editar_usuario']), array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::editUsuarioAction',));
+            }
+
+            // listado_usuario
+            if ('/usuario/listado' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::listaUsuarioAction',  '_route' => 'listado_usuario',);
+            }
+
+            // eliminar_usuario
+            if (0 === strpos($pathinfo, '/usuario/delete') && preg_match('#^/usuario/delete/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'eliminar_usuario']), array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::deleteAction',));
             }
 
         }
