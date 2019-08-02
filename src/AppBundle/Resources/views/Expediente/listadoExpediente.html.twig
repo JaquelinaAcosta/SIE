@@ -46,13 +46,12 @@
 
 
 
-    <h4 class="text-center">    <i class="fas fa-bars"></i> Lista de Expedientes -  {{ app.user.persona.dependencia.descripcion }} <a href="{{ path('nuevo_expediente') }}" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Nuevo Expediente"><i class="fas fa-plus"></i></a></h4>
+    <h4 class="text-center"><i class="fas fa-bars"></i> Lista de Expedientes -  {{ app.user.persona.dependencia.descripcion }} <a href="{{ path('nuevo_expediente') }}" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Nuevo Expediente"><i class="fas fa-plus"></i></a></h4>
     <hr/>
     <table class="table table-striped">
         <thead class="">
             <tr>
                 <th scope="col">Nro. Expediente</th>
-                <th scope="col">Concepto</th>
                 <th scope="col">Tema</th>
                 <th scope="col">Fecha Inicio</th>
                 <th scope="col">Ubicacion Actual</th>
@@ -63,8 +62,7 @@
 
             {% for expediente in expediente|reverse %}
                 <tr>
-                    <td class="text-default">{{expediente.nroExpediente|e }}</td>
-                    <td class="text-default"><p>{{expediente.concepto|e }}</p></td>
+                    <td class="text-default">{{expediente.nroExpediente|e }}</td>            
                     <td class="text-default">{{expediente.tema|e }}</td>
                     <td class="text-default">{{expediente.fechaInicio|e }}</td>
                     <td class="text-default">{{expediente.ubicacionActual|e }}</td>

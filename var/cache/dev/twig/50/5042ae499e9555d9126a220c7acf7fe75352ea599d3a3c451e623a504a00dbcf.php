@@ -102,7 +102,10 @@ class __TwigTemplate_12f817bb0e2e7275511ada3393220b050f1d08dac0e78d56f7196cf6a9b
 
 
 
-    <h4 class=\"text-center\"><i class=\"fas fa-bars\"></i> Lista de Dependencias</h4>
+    <h4 class=\"text-center\"><i class=\"fas fa-building\"></i> Lista de Dependencias <a href=\"";
+        // line 49
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nueva_dependencia");
+        echo "\" class=\"btn btn-success\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Nueva Dependencia\"><i class=\"fas fa-plus\"></i></a></h4>
     <hr/>
     <table class=\"table table-striped\">
         <thead class=\"\">
@@ -221,7 +224,7 @@ class __TwigTemplate_12f817bb0e2e7275511ada3393220b050f1d08dac0e78d56f7196cf6a9b
 
     public function getDebugInfo()
     {
-        return array (  192 => 86,  184 => 83,  179 => 81,  175 => 80,  171 => 79,  167 => 78,  164 => 77,  159 => 75,  155 => 74,  151 => 73,  147 => 72,  144 => 71,  142 => 70,  137 => 68,  133 => 67,  129 => 66,  126 => 65,  122 => 64,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  195 => 86,  187 => 83,  182 => 81,  178 => 80,  174 => 79,  170 => 78,  167 => 77,  162 => 75,  158 => 74,  154 => 73,  150 => 72,  147 => 71,  145 => 70,  140 => 68,  136 => 67,  132 => 66,  129 => 65,  125 => 64,  107 => 49,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -282,7 +285,7 @@ class __TwigTemplate_12f817bb0e2e7275511ada3393220b050f1d08dac0e78d56f7196cf6a9b
 
 
 
-    <h4 class=\"text-center\"><i class=\"fas fa-bars\"></i> Lista de Dependencias</h4>
+    <h4 class=\"text-center\"><i class=\"fas fa-building\"></i> Lista de Dependencias <a href=\"{{ path('nueva_dependencia') }}\" class=\"btn btn-success\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Nueva Dependencia\"><i class=\"fas fa-plus\"></i></a></h4>
     <hr/>
     <table class=\"table table-striped\">
         <thead class=\"\">

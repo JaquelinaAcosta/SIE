@@ -33,8 +33,8 @@ class DefaultController extends Controller {
         $results = array();
         foreach ($personas as $persona) {
             $results[] = array('id' => $persona->getId(),
-                'label' => trim($persona->__toString()),
-                'value' => trim($persona->__toString()));
+                'label' => trim($persona->getApellido().", ".$persona->getNombre()),
+                'value' => trim($persona->getApellido().", ".$persona->getNombre()));
         }
         return new JsonResponse($results);
     }
@@ -49,7 +49,7 @@ class DefaultController extends Controller {
             $this->addFlash('info', 'La persona no existe.');
             return $this->redirectToRoute('homepage');
         }
-        return new JsonResponse(trim($persona->__toString()));
+        return new JsonResponse(trim($persona->getApellido().", ".$persona->getNombre()));
     }
 
     /**

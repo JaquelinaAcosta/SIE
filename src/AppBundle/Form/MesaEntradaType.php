@@ -10,76 +10,88 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use AppBundle\Form\MesaEntradaType;
+use Doctrine\ORM\EntityRepository;
 
-class MesaEntradaType extends AbstractType
-{
+class MesaEntradaType extends AbstractType {
+
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    public function buildForm(FormBuilderInterface $builder, array $options) {
         $gestion = $options['gestion'];
         $movimiento = $options['movimiento'];
-        
-        if($movimiento != null){
-            $builder->add('dependencia', EntityType::class, array(
+        $dependenciaId = $options['dependencia_id'];
+
+        if ($movimiento != null) {
+            if ($dependenciaId == null) {
+                $builder->add('dependencia', EntityType::class, array(
                     "label" => false,
                     "placeholder" => "--Seleccione--",
-                    
                     "class" => 'AppBundle:Dependencia', "attr" => array(
                         "class" => "form-control"
                     ))
                 );
-        }else{
-             $builder
-               
-               ->add('responsables', CollectionType::class,[
-                   'entry_type'=> ResponsableType::class,
-                   'label'=>false,
-                   'entry_options'=>[
-                       'label'=>false,
-                       ],
-                   'prototype' => true,
-                   'allow_add'=>true,
-                   'allow_delete' => true,
-                   'by_reference'=>false,
-               ])
-               ->add('codigoExpediente', TextType::class,array(
-               "label"=>"Nro. de Expediente:","attr"=> array(
-               "class"=>"form-exp form-control" ,
-               "placeholder"=>"Código de expediente..."
-            )
-        ));
+            } else {
+                $builder->add('dependencia', EntityType::class, array(
+                    'query_builder' => function(EntityRepository $er ) use ($dependenciaId) {
+                        return $er->createQueryBuilder('w')
+                                        ->where('w.id = ?1')
+                                        ->setParameter(1, $dependenciaId);
+                    },
+                    "label" => false,
+                    "placeholder" => "--Seleccione--",
+                    "class" => 'AppBundle:Dependencia', "attr" => array(
+                        "class" => "form-control"
+                    ))
+                );
+            }
+        } else {
+            $builder
+                    ->add('responsables', CollectionType::class, [
+                        'entry_type' => ResponsableType::class,
+                        'label' => false,
+                        'entry_options' => [
+                            'label' => false,
+                        ],
+                        'prototype' => true,
+                        'allow_add' => true,
+                        'allow_delete' => true,
+                        'by_reference' => false,
+                    ])
+                    ->add('codigoExpediente', TextType::class, array(
+                        "label" => "Nro. de Expediente:", "attr" => array(
+                            "class" => "form-exp form-control",
+                            "placeholder" => "Código de expediente..."
+                        )
+            ));
         }
-             
-        if($gestion != null){
-             $builder->add('Guardar', SubmitType::class,
-                     ['attr'=>array(
-                         "class"=>"form-control btn btn-success"
-                     )]);
+
+        if ($gestion != null) {
+            $builder->add('Guardar', SubmitType::class,
+                    ['attr' => array(
+                            "class" => "form-control btn btn-success"
+            )]);
         }
-        
-       
-                
-    }/**
+    }
+
+/**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver)
-    {
+
+    public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\MesaEntrada',
-            'gestion'=>null,
-            'movimiento'=>null
+            'gestion' => null,
+            'movimiento' => null,
+            'dependencia_id' => null
         ));
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix()
-    {
+    public function getBlockPrefix() {
         return 'appbundle_mesaentrada';
     }
-
 
 }

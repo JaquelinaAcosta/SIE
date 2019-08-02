@@ -102,7 +102,7 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
 
 
 
-    <h4 class=\"text-center\">    <i class=\"fas fa-bars\"></i> Lista de Expedientes -  ";
+    <h4 class=\"text-center\"><i class=\"fas fa-bars\"></i> Lista de Expedientes -  ";
         // line 49
         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "persona", []), "dependencia", []), "descripcion", []), "html", null, true);
         echo " <a href=\"";
@@ -113,7 +113,6 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
         <thead class=\"\">
             <tr>
                 <th scope=\"col\">Nro. Expediente</th>
-                <th scope=\"col\">Concepto</th>
                 <th scope=\"col\">Tema</th>
                 <th scope=\"col\">Fecha Inicio</th>
                 <th scope=\"col\">Ubicacion Actual</th>
@@ -123,42 +122,38 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
         <tbody>
 
             ";
-        // line 64
+        // line 63
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(twig_reverse_filter($this->env, $context["expediente"]));
         foreach ($context['_seq'] as $context["_key"] => $context["expediente"]) {
-            // line 65
+            // line 64
             echo "                <tr>
                     <td class=\"text-default\">";
-            // line 66
+            // line 65
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "nroExpediente", []));
-            echo "</td>
-                    <td class=\"text-default\"><p>";
-            // line 67
-            echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "concepto", []));
-            echo "</p></td>
+            echo "</td>            
                     <td class=\"text-default\">";
-            // line 68
+            // line 66
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "tema", []));
             echo "</td>
                     <td class=\"text-default\">";
-            // line 69
+            // line 67
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "fechaInicio", []));
             echo "</td>
                     <td class=\"text-default\">";
-            // line 70
+            // line 68
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "ubicacionActual", []));
             echo "</td>
                     <td><a class=\"btn btn-info\" href=\"";
-            // line 71
+            // line 69
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("ver_expediente", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
             echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Ver Detalle\"><i class=\"fas fa-search\"></i></a>
                         <a class=\"btn btn-warning\" href=\"";
-            // line 72
+            // line 70
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_expediente", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
             echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"><i class=\"fas fa-edit\"></i></a>
                         <a class=\"btn btn-danger\" href=\"";
-            // line 73
+            // line 71
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("eliminar_expediente", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
             echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Eliminar\"><i class=\"fas fa-trash-alt\"></i></a></td>
                 </tr>
@@ -167,7 +162,7 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['expediente'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 76
+        // line 74
         echo "
         </tbody>
     </table>
@@ -199,7 +194,7 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
 
     public function getDebugInfo()
     {
-        return array (  171 => 76,  162 => 73,  158 => 72,  154 => 71,  150 => 70,  146 => 69,  142 => 68,  138 => 67,  134 => 66,  131 => 65,  127 => 64,  107 => 49,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  166 => 74,  157 => 71,  153 => 70,  149 => 69,  145 => 68,  141 => 67,  137 => 66,  133 => 65,  130 => 64,  126 => 63,  107 => 49,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -260,13 +255,12 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
 
 
 
-    <h4 class=\"text-center\">    <i class=\"fas fa-bars\"></i> Lista de Expedientes -  {{ app.user.persona.dependencia.descripcion }} <a href=\"{{ path('nuevo_expediente') }}\" class=\"btn btn-success\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Nuevo Expediente\"><i class=\"fas fa-plus\"></i></a></h4>
+    <h4 class=\"text-center\"><i class=\"fas fa-bars\"></i> Lista de Expedientes -  {{ app.user.persona.dependencia.descripcion }} <a href=\"{{ path('nuevo_expediente') }}\" class=\"btn btn-success\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Nuevo Expediente\"><i class=\"fas fa-plus\"></i></a></h4>
     <hr/>
     <table class=\"table table-striped\">
         <thead class=\"\">
             <tr>
                 <th scope=\"col\">Nro. Expediente</th>
-                <th scope=\"col\">Concepto</th>
                 <th scope=\"col\">Tema</th>
                 <th scope=\"col\">Fecha Inicio</th>
                 <th scope=\"col\">Ubicacion Actual</th>
@@ -277,8 +271,7 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
 
             {% for expediente in expediente|reverse %}
                 <tr>
-                    <td class=\"text-default\">{{expediente.nroExpediente|e }}</td>
-                    <td class=\"text-default\"><p>{{expediente.concepto|e }}</p></td>
+                    <td class=\"text-default\">{{expediente.nroExpediente|e }}</td>            
                     <td class=\"text-default\">{{expediente.tema|e }}</td>
                     <td class=\"text-default\">{{expediente.fechaInicio|e }}</td>
                     <td class=\"text-default\">{{expediente.ubicacionActual|e }}</td>
