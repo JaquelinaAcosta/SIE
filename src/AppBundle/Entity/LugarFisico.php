@@ -35,7 +35,7 @@ class LugarFisico extends Ubicacion
 
     
     public function __toString() {
-        return "Lugar Fisico - ".$this->descripcion." - ".parent::getDependencia()->getDescripcion();
+        return "Lugar Fisico - ".$this->tipo." - ".parent::getDependencia()->getDescripcion();
     }
     
 

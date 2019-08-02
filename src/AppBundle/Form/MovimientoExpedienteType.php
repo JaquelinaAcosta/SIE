@@ -20,13 +20,8 @@ class MovimientoExpedienteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-//                ->add('expediente', TextType::class,array(
-//            "label"=>"Nro. de Expediente: ","attr"=> array(
-//               "class"=>"form-name form-control" ,
-//               "placeholder"=>"00000-000000000-0"
-//            )
-//        ))
                 ->add('ubicacion', ChoiceType::class, array(
+                    'required'=>true,
                     "choices" => array(
                         "--Seleccione--" => 0,
                         "Mesa de Entrada" => 1,
@@ -34,7 +29,7 @@ class MovimientoExpedienteType extends AbstractType
                         "Lugar Físico" => 3
                     ),
                     "label" => false, "attr" => array(
-                        "class" => "form-name form-control"
+                        "class" => "form-name form-control"                      
                     )
         ))
                 ->add('fojas', TextType::class,array(
@@ -43,17 +38,6 @@ class MovimientoExpedienteType extends AbstractType
                "placeholder"=>"1...2..."
             )
         ))
-//                ->add('usuario', TextType::class,array(
-//            "label"=>"Usuario: ","attr"=> array(
-//               "class"=>"form-name form-control" 
-//            )
-//        ))
-//                ->add('fecha', TextType::class, array(
-//                    "label" => false, "attr" => array(
-//                        "class" => 'datepicker form-control',
-//                        "placeholder" => 'MM-DD-AAAA'
-//                    )
-//                ))
                 ->add('observacion', TextareaType::class, array(
                 "label"=>"Observaciones: ","attr"=> array(
                "class"=>"form-name form-control" ,
@@ -65,25 +49,22 @@ class MovimientoExpedienteType extends AbstractType
                "class"=>"form-name form-control" ,
                "placeholder"=>"Comentario..."
             )
-        ))
-           
-//                ->add('tipoSalida', TextType::class, array(
-//            "label"=>"Tipo de Salida: ","attr"=> array(
-//               "class"=>"form-name form-control" 
-//            )
-//        ))
+        ))          
                 ->add('Aceptar', SubmitType::class,array("attr"=> array(
             "class"=>"form-submit btn btn-primary" 
             )
         ));
-                $builder->addEventSubscriber(new AddStateFieldSubscriber());
+        $eventSuscriber = new AddStateFieldSubscriber();
+        $eventSuscriber->setDependenciaId(6);
+                $builder->addEventSubscriber($eventSuscriber);
     }/**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\MovimientoExpediente'
+            'data_class' => 'AppBundle\Entity\MovimientoExpediente',
+            'dependencia_id'=>null
         ));
     }
 

@@ -98,16 +98,18 @@ class __TwigTemplate_dbd1e36e108055d41a4b993b492641f5aea9a6aa23ef362324a0bad85e0
         // line 34
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_start', ["action" => "", "method" => "POST"]);
         echo "
+
+
         <div class=\"col-lg-14\">
 
             <div class=\"col-lg-4\">
                 <label class=\"text-default\">DESTINO(<span class=\"text-danger\">*</span>)</label>                 
                 ";
-        // line 39
+        // line 41
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "ubicacion", []), 'errors');
         echo "
                 ";
-        // line 40
+        // line 42
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "ubicacion", []), 'widget');
         echo "
             </div>  
@@ -140,15 +142,15 @@ class __TwigTemplate_dbd1e36e108055d41a4b993b492641f5aea9a6aa23ef362324a0bad85e0
                 </div>
             </div>                 
         </div>
-        
+
         <div class=\"col-lg-4\">
             <label class=\"text-default\">FOJAS</label>
             ";
-        // line 74
+        // line 76
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fojas", []), 'errors');
         echo "
             ";
-        // line 75
+        // line 77
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fojas", []), 'widget');
         echo "
         </div>   
@@ -156,35 +158,35 @@ class __TwigTemplate_dbd1e36e108055d41a4b993b492641f5aea9a6aa23ef362324a0bad85e0
             <hr/>
             <label class=\"text-default\">OBSERVACIONES</label>
             ";
-        // line 80
+        // line 82
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "observacion", []), 'errors');
         echo "
             ";
-        // line 81
+        // line 83
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "observacion", []), 'widget');
         echo "
         </div>   
         <div class=\"col-lg-12\">
             <label class=\"text-default\">COMENTARIO</label>
             ";
-        // line 85
+        // line 87
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "comentario", []), 'errors');
         echo "
             ";
-        // line 86
+        // line 88
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "comentario", []), 'widget');
         echo "
             <hr/>
         </div>  
         <div class=\"col-lg-3 float left\">
             ";
-        // line 90
+        // line 92
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "Aceptar", []), 'widget');
         echo "
         </div>
     </div>
     ";
-        // line 93
+        // line 95
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_end');
         echo "
 
@@ -195,15 +197,15 @@ class __TwigTemplate_dbd1e36e108055d41a4b993b492641f5aea9a6aa23ef362324a0bad85e0
     var \$ubicacion = \$('#movimientoexpediente_ubicacion');
     var \$form = \$ubicacion.closest('form');
 
-
-
     \$ubicacion.on('change', function () {
+
+
 
         var data = \$ubicacion.serialize();
         var index = \$ubicacion.val();
         \$.ajax({
             url: \"";
-        // line 109
+        // line 111
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("add_movimiento");
         echo "\",
             type: \"POST\",
@@ -247,25 +249,25 @@ class __TwigTemplate_dbd1e36e108055d41a4b993b492641f5aea9a6aa23ef362324a0bad85e0
 
                     \$('#movimientoexpediente_persona_nombre').autocompleter({
                         url_list: \"";
-        // line 150
+        // line 152
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("persona_search");
         echo "\",
                         url_get: \"";
-        // line 151
+        // line 153
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("persona_get");
         echo "\"
                     });
                 }
                 if (index == 3) {
-                     \$('.nombre-val').empty();
+                    \$('.nombre-val').empty();
                     \$('.dependencia-val').empty();
                     \$('.lugar-val').empty();
                     \$('#mesaentrada').hide();
                     \$('#persona').hide();
                     \$('#lugarfisico').show();
-                    
-                        \$('#contenido').html(\$(html).find('#movimientoexpediente_lugarfisico'));
-                        \$('#movimientoexpediente_lugarfisico_tipo').appendTo(\".lugar-val\");
+
+                    \$('#contenido').html(\$(html).find('#movimientoexpediente_lugarfisico'));
+                    \$('#movimientoexpediente_lugarfisico_tipo').appendTo(\".lugar-val\");
 
                 }
             }
@@ -293,7 +295,7 @@ class __TwigTemplate_dbd1e36e108055d41a4b993b492641f5aea9a6aa23ef362324a0bad85e0
 
     public function getDebugInfo()
     {
-        return array (  255 => 151,  251 => 150,  207 => 109,  188 => 93,  182 => 90,  175 => 86,  171 => 85,  164 => 81,  160 => 80,  152 => 75,  148 => 74,  111 => 40,  107 => 39,  99 => 34,  95 => 32,  88 => 29,  86 => 28,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  257 => 153,  253 => 152,  209 => 111,  190 => 95,  184 => 92,  177 => 88,  173 => 87,  166 => 83,  162 => 82,  154 => 77,  150 => 76,  113 => 42,  109 => 41,  99 => 34,  95 => 32,  88 => 29,  86 => 28,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -340,6 +342,8 @@ class __TwigTemplate_dbd1e36e108055d41a4b993b492641f5aea9a6aa23ef362324a0bad85e0
 
 
         {{form_start(form,{'action':'' ,'method':'POST'})}}
+
+
         <div class=\"col-lg-14\">
 
             <div class=\"col-lg-4\">
@@ -376,7 +380,7 @@ class __TwigTemplate_dbd1e36e108055d41a4b993b492641f5aea9a6aa23ef362324a0bad85e0
                 </div>
             </div>                 
         </div>
-        
+
         <div class=\"col-lg-4\">
             <label class=\"text-default\">FOJAS</label>
             {{ form_errors(form.fojas) }}
@@ -407,9 +411,9 @@ class __TwigTemplate_dbd1e36e108055d41a4b993b492641f5aea9a6aa23ef362324a0bad85e0
     var \$ubicacion = \$('#movimientoexpediente_ubicacion');
     var \$form = \$ubicacion.closest('form');
 
-
-
     \$ubicacion.on('change', function () {
+
+
 
         var data = \$ubicacion.serialize();
         var index = \$ubicacion.val();
@@ -460,15 +464,15 @@ class __TwigTemplate_dbd1e36e108055d41a4b993b492641f5aea9a6aa23ef362324a0bad85e0
                     });
                 }
                 if (index == 3) {
-                     \$('.nombre-val').empty();
+                    \$('.nombre-val').empty();
                     \$('.dependencia-val').empty();
                     \$('.lugar-val').empty();
                     \$('#mesaentrada').hide();
                     \$('#persona').hide();
                     \$('#lugarfisico').show();
-                    
-                        \$('#contenido').html(\$(html).find('#movimientoexpediente_lugarfisico'));
-                        \$('#movimientoexpediente_lugarfisico_tipo').appendTo(\".lugar-val\");
+
+                    \$('#contenido').html(\$(html).find('#movimientoexpediente_lugarfisico'));
+                    \$('#movimientoexpediente_lugarfisico_tipo').appendTo(\".lugar-val\");
 
                 }
             }

@@ -23,7 +23,6 @@ class MovimientoExpedienteController extends Controller {
         
         $form = $this->createForm(MovimientoExpedienteType::class, $movimientoExpediente);
         $form->handleRequest($request);
-       
         
         if ($form->isSubmitted()) {
             $ubicacion_index = $form['ubicacion']->getData();
@@ -32,17 +31,17 @@ class MovimientoExpedienteController extends Controller {
             if($ubicacion_index == 1){
                  $mesaentrada = $em->getRepository("AppBundle:Dependencia")->find($form['mesaentrada']->getData()->getDependencia()->getId())->getMesaentrada();
                  $ubicacionActual = $mesaentrada;
-                 $movimientoExpediente->setTipoSalida('Externo');
+                 $movimientoExpediente->setTipoSalida('Externa');
             }
             if($ubicacion_index == 2){
                 $persona = $em->getRepository("AppBundle:Persona")->find($form['persona']['nombre']->getData()->getId());
                 $ubicacionActual = $persona;
-                $movimientoExpediente->setTipoSalida('Interno');
+                $movimientoExpediente->setTipoSalida('Interna');
             }   
             if($ubicacion_index == 3){
                 $lugarfisico = $em->getRepository("AppBundle:LugarFisico")->find($form['lugarfisico']['tipo']->getData()->getId());
                 $ubicacionActual = $lugarfisico;
-                $movimientoExpediente->setTipoSalida('Archivado');
+                $movimientoExpediente->setTipoSalida('Archivador');
             }               
             
             $movimientoExpediente->setExpediente($expediente);

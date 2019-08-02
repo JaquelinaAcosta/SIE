@@ -32,6 +32,8 @@
 
 
         {{form_start(form,{'action':'' ,'method':'POST'})}}
+
+
         <div class="col-lg-14">
 
             <div class="col-lg-4">
@@ -68,7 +70,7 @@
                 </div>
             </div>                 
         </div>
-        
+
         <div class="col-lg-4">
             <label class="text-default">FOJAS</label>
             {{ form_errors(form.fojas) }}
@@ -99,9 +101,9 @@
     var $ubicacion = $('#movimientoexpediente_ubicacion');
     var $form = $ubicacion.closest('form');
 
-
-
     $ubicacion.on('change', function () {
+
+
 
         var data = $ubicacion.serialize();
         var index = $ubicacion.val();
@@ -152,15 +154,15 @@
                     });
                 }
                 if (index == 3) {
-                     $('.nombre-val').empty();
+                    $('.nombre-val').empty();
                     $('.dependencia-val').empty();
                     $('.lugar-val').empty();
                     $('#mesaentrada').hide();
                     $('#persona').hide();
                     $('#lugarfisico').show();
-                    
-                        $('#contenido').html($(html).find('#movimientoexpediente_lugarfisico'));
-                        $('#movimientoexpediente_lugarfisico_tipo').appendTo(".lugar-val");
+
+                    $('#contenido').html($(html).find('#movimientoexpediente_lugarfisico'));
+                    $('#movimientoexpediente_lugarfisico_tipo').appendTo(".lugar-val");
 
                 }
             }

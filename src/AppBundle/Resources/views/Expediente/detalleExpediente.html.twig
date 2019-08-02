@@ -22,15 +22,21 @@
             padding:5px;
             height:30px;
         }
-
+        .movimiento{
+            width:auto;
+            height: auto;
+            float:right;
+            padding:15px;
+        }
+        .right{
+            float:right;
+        }
     </style>
-    <div class="formu col-lg-12">
         <div class="border border-primary">
-
-            <div class="list-group col-lg-11 col-md-offset-1">
+            <div class="list-group col-lg-30 col-md-offset-1">
                 <div class="expediente col-lg-10 panel panel-primary">
                     <div class="panel-heading" style="font-size:18px;">
-                        <i class="far fa-file"></i> Detalle del Expediente - Nro. {{ expediente.nroExpediente}}
+                        <i class="fas fa-info-circle"></i> <strong>DETALLE DEL EXPEDIENTE</strong> - {{ expediente.nroExpediente}}<a href="{{ path('editar_expediente',{'id':expediente.id}) }}" class="right btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Expediente"><i class="fas fa-edit"></i></a>
                     </div>
                     <table class="table table-striped table-hover"> 
                         <thead>
@@ -38,48 +44,48 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th class="info list-group col-lg-3">Tema: </th>
+                                <th class="info list-group col-lg-2">Tema</th>
                                 <td>{{ expediente.tema}}</td>
                             </tr>
                             <tr>
-                                <th class="info list-group">Concepto: </th>
+                                <th class="info list-group">Concepto</th>
                                 <td>{{ expediente.concepto}}</td>
                             </tr>
                             <tr>
-                                <th class="info list-group">Cantidad de fojas:  </th>
+                                <th class="info list-group">Total de Fojas</th>
                                 <td>{{ expediente.fojas}}</td>
                             </tr>
                             <tr>
-                                <th class="info list-group">Tipo: </th>
+                                <th class="info list-group">Tipo</th>
                                 <td>{{ expediente.tipo}}</td>
                             </tr>
                             <tr>
-                                <th class="info list-group">Iniciador Dependencia:  </th>
+                                <th class="info list-group">Iniciador Dependencia</th>
                                 <td>{{ expediente.iniciadorDependencia}}</td>
                             </tr>
                             <tr>
-                                <th class="info ">Fecha de Inicio:  </th>
+                                <th class="info ">Fecha de inicio</th>
                                 <td>{{ expediente.fechaInicio|date("d/m/Y")}}</td>
                             </tr>
                             <tr>
-                                <th class="info list-group">Fecha de Finalización:  </th>
+                                <th class="info list-group">Fecha de Fin</th>
                                 <td>{{ expediente.fechaFin|date("d/m/Y")}}</td>
                             </tr>
                             <tr>
-                                <th class="info list-group">Ubicación Actual:  </th>
+                                <th class="info list-group">Ubicacion   </th>
                                 <td>{{ expediente.ubicacionActual}}</td>
                             </tr>
                         </tbody>
                         <tfoot>
-                            <th>
-                                <td><a href="#"><input type="button" class="btn btn-info" value="Editar Expediente"/></a></td>
-                            </th>
+                        <th>
+
+                        </th>
                     </table>
                 </div>  
-                
+
                 <div class="expediente col-lg-10 panel panel-primary">
                     <div class="panel-heading" style="font-size:18px;">
-                        Movimientos
+                        <i class="fas fa-history"></i>  <strong>HISTORIAL DE LOS ÚLTIMOS MOVIMENTOS</strong> <a href="{{ path('nuevo_movimiento',{'id':expediente.id}) }}" class="right btn btn-success" data-toggle="tooltip" data-placement="top" title="Agregar Movimiento"><i class="fas fa-plus"></i></a>
                     </div>
                     <table class="table table-striped">
                         <thead>
@@ -93,40 +99,44 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% set count = 0 %}
-                            
-                            {% for movimiento in expediente.movimientos.getValues %}
+                            {% set count = expediente.movimientos.getValues|length+1 %}
+
+                            {% for movimiento in expediente.movimientos.getValues|reverse%}
                                 <tr>
-                                    {% set count= count+1 %}
-                                    <td>{{ count }}</td>
+                                    {% set count= count-1 %}
+                                    {% if count != expediente.movimientos.getValues|length %}
+                                        <td><i class="fas fa-arrow-up"></i> {{count}} </td>
+                                    {% else %}
+                                        <td><i class="fas fa-arrows-alt-h"></i> {{ count }} </td>
+                                    {% endif %}
                                     <td>{{movimiento.ubicacion}}</td>
                                     <td>{{movimiento.tipoSalida}}</td>
                                     <td>{{movimiento.usuario}}</td>
                                     <td>{{movimiento.fecha}}</td>
-                                    <td><a class="btn btn-info" href=""  role="button" title="Ver Detalle"><i class="fas fa-search"></i></a>
-                                        <a class="btn btn-warning" href=""  role="button" title="Modificar"><i class="fas fa-edit"></i></a>
-                                        <a class="btn btn-danger" href=""  role="button" title="Archivar"><i class="fas fa-trash-alt"></i></a></td>
+                                    {% if (expediente.ubicacionActual == movimiento.ubicacion) and (count == expediente.movimientos.getValues|length) %}
+                                        <td><a class="btn btn-info" href=""  role="button" title="Ver Detalle"><i class="fas fa-search"></i></a>
+                                            <a class="btn btn-warning" href=""  role="button" title="Modificar"><i class="fas fa-edit"></i></a>
+                                            <a class="btn btn-danger" href=""  role="button" title="Archivar"><i class="fas fa-trash-alt"></i></a></td>
+                                        {% endif %}
                                 </tr>
                             {% endfor %}
 
                         </tbody>
                     </table>
-                              <hr/>
-                            
-                    Agregar nuevo Movimiento <a class="btn btn-warning" href="{{ path('nuevo_movimiento',{'id':expediente.id}) }}"  role="button"><i class="fas fa-file" data-toggle="tooltip" data-placement="top" title="Agregar Carátula"></i></a>
+
                 </div>            
-                            
+
                 <div class="expediente col-lg-10 panel panel-primary">
                     <div class="panel-heading" style="font-size:18px;">
-                        Expedientes asociados
+                        <i class="far fa-copy"></i> <strong>EXPEDIENTES ASOCIADOS</strong>
                     </div>
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th scope="col">Nro. Expediente</th>
-                                <th scope="col">Descripción</th>
-                                <th scope="col">Código</th>
-                                <th scope="col">Acciones</th>
+                                <th scope="col">EXPEDIENTE</th>
+                                <th scope="col">DESCRIPCION</th>
+                                <th scope="col">CODIGO</th>
+                                <th scope="col">ACCIONES</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -141,14 +151,50 @@
                                         <a class="btn btn-danger" href="{{ path("eliminar_expediente", {'id':expediente_asoc.expedienteAsociado.id}) }}"  role="button" title="Archivar"><i class="fas fa-trash-alt"></i></a></td>
                                 </tr>
                             {% endfor %}
-                            
+
                         </tbody>
                     </table>
                 </div>
 
                 <div class="expediente col-lg-10 panel panel-primary">
                     <div class="panel-heading" style="font-size:18px;">
-                        Resolución
+                        <i class="far fa-clone"></i> <strong>CARÁTULAS AGREGADAS</strong>  <a href="{{ path('nueva_caratula',{'id':expediente.id}) }}" class="right btn btn-success" data-toggle="tooltip" data-placement="top" title="Agregar Carátula"><i class="fas fa-plus"></i></a>
+                    </div>
+                    <table class="table table-striped table-hover"> 
+                        <thead>
+                            <tr>
+                                <th scope="col">TEMA</th>
+                                <th scope="col">CONCEPTO</th>
+                                <th scope="col">FOJAS</th>
+                                <th scope="col">ACCIONES</th>
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            {% for caratulaAgregada in expediente.caratulas.getValues %}
+
+                                <tr>
+                                    <td>{{caratulaAgregada.tema.descripcion}}</td>
+                                    <td>{{caratulaAgregada.concepto}}</td>
+                                    <td>{{caratulaAgregada.fojas}}</td>
+                                    <td>
+                                        <a class="btn btn-warning" href="{{ path("editar_caratula", {'id':caratulaAgregada.id}) }}"  role="button"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Editar"></i></a>
+                                        <a class="btn btn-danger" href="{{ path("eliminar_caratula", {'id':caratulaAgregada.id}) }}"  role="button"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></a></td>
+                                </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+
+                </div>
+                <div class="expediente col-lg-10 panel panel-primary">
+                    <div class="panel-heading" style="font-size:18px;">
+                       <i class="far fa-folder-open"></i> <strong>RESOLUCIÓN</strong>
                     </div>
                     <table class="table table-striped table-hover"> 
                         <thead>
@@ -164,65 +210,14 @@
                     </table>
                 </div> 
 
-                <div class="expediente col-lg-10 panel panel-primary">
-                    <div class="panel-heading" style="font-size:18px;">
-                        Carátulas
-                    </div>
-                    <table class="table table-striped table-hover"> 
-                        <thead>
-                            <tr>
-                                <th scope="col">Tema</th>
-                                <th scope="col">Concepto</th>
-                                <th scope="col">Cantidad de Fojas</th>
-                                
-                            </tr>
-                        </thead>
-                        
-                        <tbody>
-
-                            {% for caratulaAgregada in expediente.caratulas.getValues %}
-                                
-                                <tr>
-                                    <td>{{caratulaAgregada.tema.descripcion}}</td>
-                                    <td>{{caratulaAgregada.concepto}}</td>
-                                    <td>{{caratulaAgregada.fojas}}</td>
-                                    <td>
-                                    <a class="btn btn-warning" href="{{ path("editar_caratula", {'id':caratulaAgregada.id}) }}"  role="button"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Editar"></i></a>
-                                    <a class="btn btn-danger" href="{{ path("eliminar_caratula", {'id':caratulaAgregada.id}) }}"  role="button"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></a></td>
-                                </tr>
-                                
-                            {% endfor %}
-
-                        </tbody>
-                        
-                    </table>
-                            <hr/>
-                            
-                    Agregar nueva Carátula <a class="btn btn-warning" href="{{ path('nueva_caratula',{'id':expediente.id}) }}"  role="button"><i class="fas fa-file" data-toggle="tooltip" data-placement="top" title="Agregar Carátula"></i></a>
-
-                </div>
-
                 <div class="col-lg-3 float left">
                     <a class="btn btn-primary" onclick="history.back()"  role="button">Volver</a>
                 </div>
-
-                <div class="col-lg-3 float left">
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <div/>
-                </div>
-
-
-
             </div>
-        </div>
-                            
-    <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
-    </script>
+        <script>
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+        </script>
 
     {% endblock %}
