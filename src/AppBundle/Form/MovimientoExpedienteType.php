@@ -19,6 +19,7 @@ class MovimientoExpedienteType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        
         $builder
                 ->add('ubicacion', ChoiceType::class, array(
                     'required'=>true,
@@ -54,9 +55,20 @@ class MovimientoExpedienteType extends AbstractType
             "class"=>"form-submit btn btn-primary" 
             )
         ));
-        $eventSuscriber = new AddStateFieldSubscriber();
-        $eventSuscriber->setDependenciaId(6);
-                $builder->addEventSubscriber($eventSuscriber);
+//        $eventSuscriber = new AddStateFieldSubscriber();
+//        $eventSuscriber->setDependenciaId(6);
+//                $builder->addEventSubscriber($eventSuscriber);
+        
+        if($options['pase'] == 'interno'){
+            $builder->add('persona', PersonaType::class, ['role' => null, 'movimiento_persona' => true]);
+        }
+        if($options['pase'] == 'externo'){
+            $form->add('mesaentrada', MesaEntradaType::class, ['gestion' => null, 'movimiento' => true,'dependencia_id'=> $this->dependencia_id]);
+        }
+        if($options['pase'] == 'archivar'){
+            $form->add('lugarfisico', LugarFisicoType::class, ['edit_mode' => null, 'movimiento_lugar' => true]);
+        }
+        
     }/**
      * {@inheritdoc}
      */
@@ -64,7 +76,7 @@ class MovimientoExpedienteType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\MovimientoExpediente',
-            'dependencia_id'=>null
+            'pase'=>null
         ));
     }
 

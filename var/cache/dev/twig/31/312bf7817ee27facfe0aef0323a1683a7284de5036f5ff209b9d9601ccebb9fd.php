@@ -172,7 +172,7 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
                     <div class=\"panel-heading\" style=\"font-size:18px;\">
                         <i class=\"fas fa-history\"></i>  <strong>HISTORIAL DE LOS ÚLTIMOS MOVIMENTOS</strong> <a href=\"";
         // line 88
-        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nuevo_movimiento", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", [])]), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("elegir_movimiento", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", [])]), "html", null, true);
         echo "\" class=\"right btn btn-success\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Agregar Movimiento\"><i class=\"fas fa-plus\"></i></a>
                     </div>
                     <table class=\"table table-striped\">
@@ -530,7 +530,7 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
 
                 <div class=\"expediente col-lg-10 panel panel-primary\">
                     <div class=\"panel-heading\" style=\"font-size:18px;\">
-                        <i class=\"fas fa-history\"></i>  <strong>HISTORIAL DE LOS ÚLTIMOS MOVIMENTOS</strong> <a href=\"{{ path('nuevo_movimiento',{'id':expediente.id}) }}\" class=\"right btn btn-success\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Agregar Movimiento\"><i class=\"fas fa-plus\"></i></a>
+                        <i class=\"fas fa-history\"></i>  <strong>HISTORIAL DE LOS ÚLTIMOS MOVIMENTOS</strong> <a href=\"{{ path('elegir_movimiento',{'id':expediente.id}) }}\" class=\"right btn btn-success\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Agregar Movimiento\"><i class=\"fas fa-plus\"></i></a>
                     </div>
                     <table class=\"table table-striped\">
                         <thead>
