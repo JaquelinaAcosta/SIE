@@ -1,0 +1,42 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block content %}
+    <style>
+        .panel{
+            width: 50%;
+            margin: 0 auto;
+        }
+        .panel a{
+            padding:20px;
+            font-size: 16px;
+        }
+    </style>
+
+
+
+    <h4 class="text-center">ELIGA EL TIPO DE PASE A REALIZAR</h4>
+    <hr/>
+    <div class="panel">
+
+        <a class="btn btn-default" href="{{ path("ver_expediente", {'id':expediente.id}) }}"  
+           role="button" data-toggle="tooltip" data-placement="top" 
+           title="Movimiento Externo">EXTERNO<i class="fas fa-search"></i></a>
+
+        <a class="btn btn-default" href="{{ path("ver_expediente", {'id':expediente.id}) }}"  
+           role="button" data-toggle="tooltip" data-placement="top" 
+           title="Movimiento Interno">INTERNO<i class="fas fa-search"></i></a>
+
+        <a class="btn btn-default" href="{{ path("ver_expediente", {'id':expediente.id}) }}"  
+           role="button" data-toggle="tooltip" data-placement="top" 
+           title="Movimiento Archivador ">ARCHIVADOR<i class="fas fa-search"></i></a>
+    </div>
+
+
+
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <hr/>
+{% endblock %}
