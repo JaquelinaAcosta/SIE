@@ -1,0 +1,7 @@
+e1e8bf,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/loginUsuario,1565004080,,200
+8ab730,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/expediente/listado,1565004087,,200
+aef2f7,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/expediente/view/6,1565004089,,200
+24da85,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/expediente/view/6,1565004091,,200
+bb111b,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/expediente/view/6,1565004094,,200
+ab15bd,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/expediente/6/add/movimiento,1565004096,,200
+e608f3,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/expediente/6/add/movimiento/archivado,1565004097,,200
