@@ -15,9 +15,9 @@ use AppBundle\Form\ExpedienteType;
 class ExpedienteAsociadoController extends Controller
 {
     /**
-     * @Route("/add/expediente_asociado/{id}", name="expedienteAsociado")
+     * @Route("/expediente/{id}/expediente_asociado/", name="nuevo_expediente_asociado")
      */
-    public function indexAction(Request $request,$id)
+    public function nuevoAction(Request $request,$id)
     {
         $em = $this->getDoctrine()->getEntityManager(); 
         $dependencia = $em->getRepository("AppBundle:Dependencia")->find(3);
@@ -32,9 +32,7 @@ class ExpedienteAsociadoController extends Controller
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-            
-            
-            
+                                   
 //            $em->persist($expediente);
 //            $em->flush();
         }

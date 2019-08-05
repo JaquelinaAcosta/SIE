@@ -32,6 +32,7 @@
             float:right;
         }
     </style>
+    
         <div class="border border-primary">
             <div class="list-group col-lg-30 col-md-offset-1">
                 <div class="expediente col-lg-10 panel panel-primary">
@@ -85,7 +86,7 @@
 
                 <div class="expediente col-lg-10 panel panel-primary">
                     <div class="panel-heading" style="font-size:18px;">
-                        <i class="fas fa-history"></i>  <strong>HISTORIAL DE LOS ÚLTIMOS MOVIMENTOS</strong> <a href="{{ path('nuevo_movimiento',{'id':expediente.id}) }}" class="right btn btn-success" data-toggle="tooltip" data-placement="top" title="Agregar Movimiento"><i class="fas fa-plus"></i></a>
+                        <i class="fas fa-history"></i>  <strong>HISTORIAL DE LOS ÚLTIMOS MOVIMENTOS</strong> <a href="{{ path('elegir_movimiento',{'id':expediente.id}) }}" class="right btn btn-success" data-toggle="tooltip" data-placement="top" title="Agregar Movimiento"><i class="fas fa-plus"></i></a>
                     </div>
                     <table class="table table-striped">
                         <thead>
@@ -117,6 +118,8 @@
                                         <td><a class="btn btn-info" href=""  role="button" title="Ver Detalle"><i class="fas fa-search"></i></a>
                                             <a class="btn btn-warning" href=""  role="button" title="Modificar"><i class="fas fa-edit"></i></a>
                                             <a class="btn btn-danger" href=""  role="button" title="Archivar"><i class="fas fa-trash-alt"></i></a></td>
+                                        {% else %}
+                                        <td></td>
                                         {% endif %}
                                 </tr>
                             {% endfor %}

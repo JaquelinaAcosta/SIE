@@ -199,13 +199,11 @@ class __TwigTemplate_dbd1e36e108055d41a4b993b492641f5aea9a6aa23ef362324a0bad85e0
 
     \$ubicacion.on('change', function () {
 
-
-
         var data = \$ubicacion.serialize();
         var index = \$ubicacion.val();
         \$.ajax({
             url: \"";
-        // line 111
+        // line 109
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("add_movimiento");
         echo "\",
             type: \"POST\",
@@ -249,11 +247,11 @@ class __TwigTemplate_dbd1e36e108055d41a4b993b492641f5aea9a6aa23ef362324a0bad85e0
 
                     \$('#movimientoexpediente_persona_nombre').autocompleter({
                         url_list: \"";
-        // line 152
+        // line 150
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("persona_search");
         echo "\",
                         url_get: \"";
-        // line 153
+        // line 151
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("persona_get");
         echo "\"
                     });
@@ -295,7 +293,7 @@ class __TwigTemplate_dbd1e36e108055d41a4b993b492641f5aea9a6aa23ef362324a0bad85e0
 
     public function getDebugInfo()
     {
-        return array (  257 => 153,  253 => 152,  209 => 111,  190 => 95,  184 => 92,  177 => 88,  173 => 87,  166 => 83,  162 => 82,  154 => 77,  150 => 76,  113 => 42,  109 => 41,  99 => 34,  95 => 32,  88 => 29,  86 => 28,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  255 => 151,  251 => 150,  207 => 109,  190 => 95,  184 => 92,  177 => 88,  173 => 87,  166 => 83,  162 => 82,  154 => 77,  150 => 76,  113 => 42,  109 => 41,  99 => 34,  95 => 32,  88 => 29,  86 => 28,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -412,8 +410,6 @@ class __TwigTemplate_dbd1e36e108055d41a4b993b492641f5aea9a6aa23ef362324a0bad85e0
     var \$form = \$ubicacion.closest('form');
 
     \$ubicacion.on('change', function () {
-
-
 
         var data = \$ubicacion.serialize();
         var index = \$ubicacion.val();

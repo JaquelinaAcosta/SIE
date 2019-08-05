@@ -23,7 +23,7 @@ class PersonaType extends AbstractType {
         if($movimento_persona != null){
             $builder->add('nombre', 'PUGX\AutocompleterBundle\Form\Type\AutocompleteType', array(
                     'class' => 'AppBundle:Persona',
-                    'label' => 'Responsable',
+                    'label' => false,
                     'required' => false,
                     'attr' => array(
                         'class'=>'form form-control',

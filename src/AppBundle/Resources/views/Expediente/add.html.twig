@@ -47,13 +47,7 @@
                         <label class="text-default">CODIGO TEMA</label>
                         {{ form_errors(form.tema) }}
                         {{ form_widget(form.tema) }}
-                    </div>
-
-                    {#<div class="col-lg-6">
-                        <label class="text-default">DEPENDENCIA</label>
-                        {{ form_errors(form.iniciadorDependencia) }}
-                        {{ form_widget(form.iniciadorDependencia) }}
-                    </div>     #}                                      
+                    </div>                                   
                     <div class="col-lg-2">
                         <label class="text-default">FECHA DE INICIO</label>
                         {{ form_row(form.fechaInicio, { 'id': 'date1' })}} 
@@ -74,7 +68,7 @@
                     {{ form_widget(form.concepto) }}
                     <hr/>
                 </div>
-                <div class="col-lg-12">
+              {#  <div class="col-lg-12">
                     <label class="text-default">EXPEDIENTE/S ASOCIADOS</label>                 
                     <div class="expediente_items">
                         {% for expediente_asociado in form.expedientes_asociados %}
@@ -86,7 +80,7 @@
 
                     </div>
                     <hr/>     
-                </div>
+                </div>#}
                 <div class="col-lg-3 float left">
                     {{ form_widget(form.Guardar) }}
                     <a class="btn btn-default" onclick="history.back()"  role="button">Volver</a>
@@ -104,7 +98,7 @@
 
     </script>     
 
-    <script>
+   {# <script>
         var $collectionHolder;
         // setup an "add a tag" link
         var $addResponsableButton = $('<button type="button" class="add_responsable form-control btn btn-success">Agregar nuevo Expediente Asociado</button>');
@@ -169,70 +163,6 @@
             //console.log($($newFormLi).children().eq(index-1));
             $newLinkLi.before($newFormLi);
         }
-    </script>         
-
-    {#            
-        <script>
-            var $ubicacion = $('#expediente_ubicacionActual');
-            var $form = $ubicacion.closest('form');
-    
-            $ubicacion.on('change', function () {
-                var data = $ubicacion.serialize();
-                var index = $ubicacion.val();
-                $.ajax({
-                    url: "{{ path('add_evento') }}",
-                    type: "POST",
-                    data: data,
-                    success: function (html) {
-                        // la variable html representa toda la página junto con el select de estados.
-                        // el cual tomamos y colocamos para reemplazar el select actual.
-    
-    
-                        if (index == 0) {
-                            $('#persona').hide();
-                            $('#mesaentrada').hide();
-                            $('#lugarfisico').hide();
-                        }
-                        if (index == 1) {
-                            $('#persona').hide();
-                            $('#lugarfisico').hide();
-                            $('#mesaentrada').show();
-    
-    
-                            if ($('.codigo > input').size() <= 0) {
-                                $('#contenido').html($(html).find('#expediente_mesaentrada'));
-                                $('#expediente_mesaentrada_codigoExpediente').appendTo(".codigo");
-                            }
-    
-                        }
-                        if (index == 2) {
-                            $('#mesaentrada').hide();
-                            $('#lugarfisico').hide();
-                            $('#persona').show();
-    
-                            if ($('.nombre > input').size() <= 0) {
-                                $('#contenido').html($(html).find('#expediente_persona'));
-                                $('#expediente_persona_nombre').appendTo(".nombre");
-                                $('#expediente_persona_apellido').appendTo(".apellido");
-                                $('#expediente_persona_dni').appendTo(".dni");
-                                $('#expediente_persona_cargo').appendTo(".cargo");
-                            }
-    
-                        }
-                        if (index == 3) {
-                            $('#mesaentrada').hide();
-                            $('#persona').hide();
-                            $('#lugarfisico').show();
-                            if ($('.tipo > input').size() <= 0) {
-                                $('#contenido').html($(html).find('#expediente_lugarfisico'));
-                                $('#expediente_lugarfisico_tipo').appendTo(".tipo");
-                                $('#expediente_lugarfisico_descripcion').appendTo(".descripcion");
-                                $('#expediente_lugarfisico_acceso').appendTo(".acceso");
-                            }
-                        }
-                    }
-                });
-            });
-        </script>#}
+    </script>         #}
 
 {% endblock %}
