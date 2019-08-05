@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Repository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * PersonaRepository
@@ -20,6 +21,23 @@ class PersonaRepository extends \Doctrine\ORM\EntityRepository
                                 ->literal('%' . $term . '%')))
                 ->setMaxResults(10)->getQuery()->getResult();
         return $result;
+    }
+    
+      public function getAllPers($currentPage = 1, $limit = 15)
+    {
+          
+        $em = $this->getEntityManager();
+        
+        $dql= "SELECT e FROM AppBundle\Entity\Persona e ORDER BY e.id";
+
+        $query = $em->createQuery($dql)
+                ->setFirstResult($limit*($currentPage-1))
+                ->setMaxResults($limit);
+
+
+        $paginator = new Paginator($query, $fetchJoinCollection=true);
+
+        return $paginator;
     }
 
     

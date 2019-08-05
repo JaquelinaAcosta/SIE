@@ -250,11 +250,11 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                 echo "                                        </ul>
                                     </li>
                                     <li class=\"dropdown\">
-                                        <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">PERSONA(en proceso,falta listado con paginacion) <span class=\"caret\"></span></a>
+                                        <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">PERSONA <span class=\"caret\"></span></a>
                                         <ul class=\"dropdown-menu\">
                                             <li><a href=\"";
                 // line 167
-                echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_persona");
+                echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_persona", ["currentPage" => 1]);
                 echo "\">LISTADO</a></li>
                                             <li role=\"separator\" class=\"divider\"></li>
                                             <li><a href=\"";
@@ -576,9 +576,9 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                                         </ul>
                                     </li>
                                     <li class=\"dropdown\">
-                                        <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">PERSONA(en proceso,falta listado con paginacion) <span class=\"caret\"></span></a>
+                                        <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">PERSONA <span class=\"caret\"></span></a>
                                         <ul class=\"dropdown-menu\">
-                                            <li><a href=\"{{ path(\"listado_persona\") }}\">LISTADO</a></li>
+                                            <li><a href=\"{{ path(\"listado_persona\", {\"currentPage\": 1}) }}\">LISTADO</a></li>
                                             <li role=\"separator\" class=\"divider\"></li>
                                             <li><a href=\"{{ path(\"nueva_persona\") }}\">NUEVA PERSONA</a></li>
                                                 {#  <li role=\"separator\" class=\"divider\"></li>
@@ -629,6 +629,6 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
     </body>
 
 </html>
-", "AppBundle::layout.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/layout.html.twig");
+", "AppBundle::layout.html.twig", "/var/www/html/gitSIE/src/AppBundle/Resources/views/layout.html.twig");
     }
 }

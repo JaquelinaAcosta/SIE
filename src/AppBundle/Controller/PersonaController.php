@@ -30,8 +30,16 @@ class PersonaController extends Controller
             $persona->setDependencia($dependencia);
             
             $em->persist($persona);
-            $em->flush();
-        }
+            $flush = $em->flush();
+            
+            
+            if($flush == false){
+                $this->addFlash('success',"La persona ". $persona->getnombre(). " ".$persona->getapellido()." se agregó correctamente.");
+                return $this->redirectToRoute('listado_persona', ["currentPage"=>1]);
+            }else{
+                $this->addFlash('danger', "Ocurrió un error en la creacion de persona.");
+                }
+            }           
         
         // replace this example code with whatever you need
         return $this->render('AppBundle:Ubicacion:persona.html.twig', [
@@ -51,14 +59,24 @@ class PersonaController extends Controller
 
         $user = $this->getUser();
 
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
          
                 $em->persist($persona);
-                $em->flush();
+                $flush = $em->flush();
+            
+            
+            if($flush == false){
+                $this->addFlash('success',"La persona ". $persona->getnombre(). " ".$persona->getapellido()." se modificó correctamente.");
+                return $this->redirectToRoute('listado_persona', ["currentPage"=>1]);
+            }else{
+                $this->addFlash('danger', "Ocurrió un error en la modificación de persona.");
+                }
+             
             
             return $this->redirectToRoute('homepage');
-
         }
+
+        
 
         // replace this example code with whatever you need
         return $this->render('AppBundle:Ubicacion:editarPersona.html.twig', array(
@@ -67,27 +85,64 @@ class PersonaController extends Controller
         ));
     }
     
-    
+ 
       /**
-     * @Route("/persona/listado", name="listado_persona")
+     * @Route("/persona/listado/{currentPage}", name="listado_persona")
      */
-    public function listaDependenciasAction(Request $request) {
+    public function listaPersonaAction(Request $request, $currentPage ) {
 
         $em = $this->getDoctrine()->getEntityManager();
+        
+        $limit = 15;
         $user = $this->getUser();
-        $dependencias = new Dependencia();
+        $persona = new Persona();
 
         if ($user->getRole() == "ROLE_ADMIN") {
-            $dependencias = $em->getRepository("AppBundle:Persona")->findAll();
+            $persona = $em->getRepository("AppBundle:Persona")->getAllPers($currentPage, $limit);
+            $totalItems=count($persona);
+            $maxPages = ceil($totalItems/$limit);
         } else {
             $this->redirectToRoute('homepage');
         }
 
-
         // replace this example code with whatever you need
         return $this->render('AppBundle:Ubicacion:listadoPersona.html.twig', [
-                    'dependencias' => $dependencias
-        ]);
+                    'persona' => $persona,
+                    'maxPages'=>$maxPages,
+                    'totalItems'=>$totalItems,
+                    'thisPage' => $currentPage,
+                    'page' => $currentPage,
+        ]);      
     }
     
+
+    
+    /**
+     * @Route("persona/delete/{id}", name="eliminar_persona")
+     */
+    public function deleteAction(Request $request, $id) {
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $persona = $em->getRepository("AppBundle:Persona")->find($id);
+
+        // replace this example code with whatever you need
+        if (!$persona) {
+            throw $this->createNotFoundException('No element found for id ' . $id);
+        }
+
+        $em->remove($persona);
+        $flush = $em->flush();
+        
+        if($flush == false){
+            $this->addFlash('success', "La persona ".$persona->getnombre(). " ".$persona->getapellido()." se eliminó correctamente.");
+            return $this->redirectToRoute('listado_persona', ["currentPage"=>1]);
+        }else{
+            $this->addFlash('danger', "Ocurrió un error ");
+            }
+              
+        
+
+        return $this->redirectToRoute('listado_persona', ["currentPage"=>1]);
+    }
+
 }

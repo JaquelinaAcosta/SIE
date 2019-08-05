@@ -248,8 +248,13 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             }
 
             // listado_persona
-            if ('/persona/listado' === $pathinfo) {
-                return array (  '_controller' => 'AppBundle\\Controller\\PersonaController::listaDependenciasAction',  '_route' => 'listado_persona',);
+            if (0 === strpos($pathinfo, '/persona/listado') && preg_match('#^/persona/listado/(?P<currentPage>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'listado_persona']), array (  '_controller' => 'AppBundle\\Controller\\PersonaController::listaPersonaAction',));
+            }
+
+            // eliminar_persona
+            if (0 === strpos($pathinfo, '/persona/delete') && preg_match('#^/persona/delete/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'eliminar_persona']), array (  '_controller' => 'AppBundle\\Controller\\PersonaController::deleteAction',));
             }
 
         }
