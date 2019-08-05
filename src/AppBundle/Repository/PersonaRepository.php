@@ -16,9 +16,9 @@ class PersonaRepository extends \Doctrine\ORM\EntityRepository
         $result = $qb->select('n')
                 ->from('AppBundle:Persona', 'n')
                 ->where($qb->expr()
-                        ->like('n.apellido', $qb->expr()
+                        ->like('n.nombre', $qb->expr()
                                 ->literal('%' . $term . '%')))
-                ->setMaxResults(15)->getQuery()->getResult();
+                ->setMaxResults(10)->getQuery()->getResult();
         return $result;
     }
 

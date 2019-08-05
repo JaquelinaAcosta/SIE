@@ -19,19 +19,8 @@ class MovimientoExpedienteType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-                ->add('ubicacion', ChoiceType::class, array(
-                    'required'=>true,
-                    "choices" => array(
-                        "--Seleccione--" => 0,
-                        "Mesa de Entrada" => 1,
-                        "Persona" => 2,
-                        "Lugar Físico" => 3
-                    ),
-                    "label" => false, "attr" => array(
-                        "class" => "form-name form-control"                      
-                    )
-        ))
+        
+        $builder             
                 ->add('fojas', TextType::class,array(
             "label"=>"Nro. de fojas:","attr"=> array(
                "class"=>"form-name form-control" ,
@@ -54,9 +43,27 @@ class MovimientoExpedienteType extends AbstractType
             "class"=>"form-submit btn btn-primary" 
             )
         ));
-        $eventSuscriber = new AddStateFieldSubscriber();
-        $eventSuscriber->setDependenciaId(6);
-                $builder->addEventSubscriber($eventSuscriber);
+//        $eventSuscriber = new AddStateFieldSubscriber();
+//        $eventSuscriber->setDependenciaId(6);
+//                $builder->addEventSubscriber($eventSuscriber);
+        
+        if($options['pase'] == 'interno'){
+            $builder->add('persona', PersonaType::class, ['role' => null, 'movimiento_persona' => true]);
+        }
+        if($options['pase'] == 'externo'){
+            if($options['dependencia_id'] != null){
+                  $builder->add('mesaentrada', MesaEntradaType::class, [
+                      'gestion' => null, 'movimiento' => true,
+                      'dependencia_id'=>$options['dependencia_id']]);
+            }else{
+                  $builder->add('mesaentrada', MesaEntradaType::class, ['gestion' => null, 'movimiento' => true]);
+            }
+          
+        }
+        if($options['pase'] == 'archivar'){
+            $builder->add('lugarfisico', LugarFisicoType::class, ['edit_mode' => null, 'movimiento_lugar' => true]);
+        }
+        
     }/**
      * {@inheritdoc}
      */
@@ -64,6 +71,7 @@ class MovimientoExpedienteType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\MovimientoExpediente',
+            'pase'=>null,
             'dependencia_id'=>null
         ));
     }
