@@ -20,23 +20,7 @@ class MovimientoExpedienteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         
-<<<<<<< HEAD
         $builder             
-=======
-        $builder
-                ->add('ubicacion', ChoiceType::class, array(
-                    'required'=>true,
-                    "choices" => array(
-                        "--Seleccione--" => 0,
-                        "Mesa de Entrada" => 1,
-                        "Persona" => 2,
-                        "Lugar Físico" => 3
-                    ),
-                    "label" => false, "attr" => array(
-                        "class" => "form-name form-control"                      
-                    )
-        ))
->>>>>>> abf331d7d4d966baf9877772d22a31de37a9380b
                 ->add('fojas', TextType::class,array(
             "label"=>"Nro. de fojas:","attr"=> array(
                "class"=>"form-name form-control" ,
@@ -67,7 +51,6 @@ class MovimientoExpedienteType extends AbstractType
             $builder->add('persona', PersonaType::class, ['role' => null, 'movimiento_persona' => true]);
         }
         if($options['pase'] == 'externo'){
-<<<<<<< HEAD
             if($options['dependencia_id'] != null){
                   $builder->add('mesaentrada', MesaEntradaType::class, [
                       'gestion' => null, 'movimiento' => true,
@@ -79,12 +62,6 @@ class MovimientoExpedienteType extends AbstractType
         }
         if($options['pase'] == 'archivar'){
             $builder->add('lugarfisico', LugarFisicoType::class, ['edit_mode' => null, 'movimiento_lugar' => true]);
-=======
-            $form->add('mesaentrada', MesaEntradaType::class, ['gestion' => null, 'movimiento' => true,'dependencia_id'=> $this->dependencia_id]);
-        }
-        if($options['pase'] == 'archivar'){
-            $form->add('lugarfisico', LugarFisicoType::class, ['edit_mode' => null, 'movimiento_lugar' => true]);
->>>>>>> abf331d7d4d966baf9877772d22a31de37a9380b
         }
         
     }/**
@@ -94,12 +71,8 @@ class MovimientoExpedienteType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\MovimientoExpediente',
-<<<<<<< HEAD
             'pase'=>null,
             'dependencia_id'=>null
-=======
-            'pase'=>null
->>>>>>> abf331d7d4d966baf9877772d22a31de37a9380b
         ));
     }
 
