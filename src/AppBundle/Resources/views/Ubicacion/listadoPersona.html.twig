@@ -58,7 +58,67 @@
         </div>
     {% endfor %}
 
+    <hr/>
 
+    <div id="accordion_filtros">
+
+        <div class="row form col-lg-6" style="background:none;margin:0;">
+            <h4>FILTROS</h4>
+            <form method="post" novalidate="true" id="form_buscar">
+                {{ form_errors(formPersonaFilter) }}
+                <div class="row">
+                    <div class="threecol col-lg-4">
+                        {{ form_label(formPersonaFilter.apellido, 'APELLIDO') }}
+                        {{ form_widget(formPersonaFilter.apellido) }}
+                        <div class="help-block with-errors">
+                            {{ form_errors(formPersonaFilter.apellido) }}
+                        </div>
+                    </div>
+                    <div class="threecol col-lg-4">
+                        {{ form_label(formPersonaFilter.nombre, 'NOMBRE') }}
+                        {{ form_widget(formPersonaFilter.nombre) }}
+                        <div class="help-block with-errors">
+                            {{ form_errors(formPersonaFilter.nombre) }}
+                        </div>
+                    </div>                  
+                    <div class="twocol col-lg-4">
+                        {{ form_label(formPersonaFilter.dni, 'NRO. DOCUMENTO') }}
+                        {{ form_widget(formPersonaFilter.dni) }}
+                        <div class="help-block with-errors">
+                            {{ form_errors(formPersonaFilter.dni) }}
+                        </div>
+                    </div>   
+                    <div class="twocol col-lg-4">
+                        {{ form_label(formPersonaFilter.cargo, 'CARGO') }}
+                        {{ form_widget(formPersonaFilter.cargo) }}
+                        <div class="help-block with-errors">
+                            {{ form_errors(formPersonaFilter.cargo) }}
+                        </div>
+                    </div>      
+                    <div class="twocol col-lg-4">
+                        {{ form_label(formPersonaFilter.usuario, 'USUARIO') }}
+                        {{ form_widget(formPersonaFilter.usuario) }}
+                        <div class="help-block with-errors">
+                            {{ form_errors(formPersonaFilter.usuario) }}
+                        </div>
+                    </div>      
+                </div>
+                <hr/>
+                <div class="col-lg-12">
+                    <div class="col-lg-2">
+                        {{ form_row(formPersonaFilter.filter) }}
+                    </div>
+                    <div class="col-lg-2">
+                        {{ form_row(formPersonaFilter.reset) }}
+                    </div>
+                </div>
+                {{ form_end(formPersonaFilter) }}
+
+            </form>
+        </div>
+    </div>
+
+    <hr/>
     <table class="table table-striped">
         <thead class="">
             <tr>
@@ -85,27 +145,31 @@
 
         </tbody>
     </table>
+    {% if persona|length < totalItems %}
 
-    <ul class="pagination">
-        {%if (thisPage==1)%}           
-        {%else%}
-            {%set thisPage= thisPage-1%}
-        {%endif%}
+        <ul class="pagination">
+            {%if (thisPage==1)%}           
+            {%else%}
+                {%set thisPage= thisPage-1%}
+            {%endif%}
 
 
-        <li ><a class="page-link" href="{{ path('listado_persona', {"currentPage": thisPage}) }}">&laquo</a></li>
-            {% for i in 1..maxPages %}
-            <li><a class="page-link"  href="{{ path('listado_persona', {"currentPage": i}) }}">{{ i }}</a></li>
-            {% endfor %}
-        
-        {%if (page==maxPages)%}
+            <li ><a class="page-link" href="{{ path('listado_persona', {"currentPage": thisPage}) }}">&laquo</a></li>
+                {% for i in 1..maxPages %}
+                <li><a class="page-link"  href="{{ path('listado_persona', {"currentPage": i}) }}">{{ i }}</a></li>
+                {% endfor %}
 
-        {%else%}
-            {%set page= page+1%}
-        {%endif%}
-        <li><a class="page-link" href="{{ path('listado_persona', {"currentPage": page}) }}">&raquo</a></li>
+            {%if (page==maxPages)%}
 
-    </ul>
+            {%else%}
+                {%set page= page+1%}
+            {%endif%}
+            <li><a class="page-link" href="{{ path('listado_persona', {"currentPage": page}) }}">&raquo</a></li>
+
+        </ul>
+
+
+    {% endif %}
 
     <script>
         $(function () {
