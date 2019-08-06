@@ -2,33 +2,40 @@
 {% extends "AppBundle::layout.html.twig" %}
 
 {% block content %}
-    
+
     <style>
         input[type=text]{
             margin-bottom: 10px;
             padding:10px;            
-         }
-         input[type=submit]{
+        }
+        input[type=submit]{
             margin-bottom: 10px;
             padding:10px;            
-         }
+        }
 
     </style>
-    
-    {{ dump(usuario) }}
-    
+
+
     <div class="formu col-lg-4 col-md-offset-1">
         <div class="border border-primary">
             <h4 class="text-center">Expediente->Resolución</h4>
             <hr/>
             {{form_start(form,{'action':'','method':'POST'})}}
-            
-             <label class="text-default">FECHA DE RESOLUCION</label>
-                        {{ form_row(form.fechaResolucion, { 'id': 'date1' })}} 
-                        {{ form_errors(form.fechaResolucion) }}
-                        {{ form_widget(form.fechaResolucion) }}
-            
-            
+
+            <label class="text-default">FECHA DE RESOLUCIÓN</label>
+            {{ form_row(form.fechaResolucion, { 'id': 'date1' })}} 
+            {{ form_errors(form.fechaResolucion) }}
+            {{ form_widget(form.fechaResolucion) }}
+
+            <label class="text-default">NÚMERO DE RESOLUCIÓN</label>
+            {{ form_row(form.numeroResolucion, { 'id': 'date1' })}} 
+            {{ form_errors(form.numeroResolucion) }}
+            {{ form_widget(form.numeroResolucion) }}
+
+            <label class="text-default">TIPO</label>
+            {{ form_row(form.tipo, { 'id': 'date1' })}} 
+            {{ form_errors(form.tipo) }}
+            {{ form_widget(form.tipo) }}
             {{form_end(form)}}
         </div>
     </div>

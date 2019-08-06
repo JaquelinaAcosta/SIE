@@ -60,6 +60,7 @@
                     inline: true,
                     showOtherMonths: true,
                     dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
+                    dateFormat: 'dd/mm/yy'
                 });
             });
         </script>
@@ -136,7 +137,7 @@
                             <ul class="nav navbar-nav">
 
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Expedientes <span class="caret"></span></a>
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">EXPEDIENTE <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="{{ path("listado_expediente") }}">LISTADO</a></li>
                                         <li role="separator" class="divider"></li>
@@ -164,7 +165,7 @@
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">PERSONA <span class="caret"></span></a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="{{ path("listado_persona", {"currentPage": 1}) }}">LISTADO</a></li>
+                                            <li><a href="{{ path("listado_persona",{'currentPage':1}) }}">LISTADO</a></li>
                                             <li role="separator" class="divider"></li>
                                             <li><a href="{{ path("nueva_persona") }}">NUEVA PERSONA</a></li>
                                                 {#  <li role="separator" class="divider"></li>

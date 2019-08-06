@@ -76,7 +76,6 @@ class MovimientoExpedienteController extends Controller {
                 $movimientoExpediente, ['pase' => 'externo',
                                         'dependencia_id'=>$user->getPersona()->getDependencia()->getId()]);
         }
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
@@ -134,4 +133,20 @@ class MovimientoExpedienteController extends Controller {
         ]);
     }
     
+    
+    /**
+     * @Route("expediente/{id}/movimiento/listado", name="listado_movimiento")
+     */
+    public function listaMovimientoAction(Request $request,$id) {
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $user = $this->getUser();
+        $expediente = $em->getRepository('AppBundle:Expediente')->find($id);
+
+        // replace this example code with whatever you need
+        return $this->render('AppBundle:Expediente:listadoMovimientos.html.twig', [
+                    'expediente' => $expediente
+        ]);
+    }
+
 }

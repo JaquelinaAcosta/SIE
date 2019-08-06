@@ -21,32 +21,32 @@ class ResolucionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-                ->add('expediente', EntityType::class,array(
-            "class"=>'AppBundle:Expediente',
-            "label"=>false,"attr"=> array(
-            "class"=>"form-name form-control" ,
-            "placeholder"=>"00000-000000000-0",
-             "style"=>'display:none;'               
-            )
-        ))
+//                ->add('expediente', EntityType::class,array(
+//            "class"=>'AppBundle:Expediente',
+//            "label"=>false,"attr"=> array(
+//            "class"=>"form-name form-control" ,
+//            "placeholder"=>"00000-000000000-0",
+//             "style"=>'display:none;'               
+//            )
+//        ))
                 ->add('numeroResolucion', TextType::class,array(
-            "label"=>"Nro. de Resolución: ","attr"=> array(
+            "label"=>false,"attr"=> array(
                "class"=>"form-name form-control" ,
             )
         ))
                 ->add('tipo', TextType::class,array(
-            "label"=>"Tipo de Resolución:","attr"=> array(
+            "label"=>false,"attr"=> array(
                "class"=>"form-name form-control" 
             )
         ))
-                ->add('usuario', EntityType::class,array(
-                    'class'=>'AppBundle:Usuario',
-            "label"=>"Usuario Responsable: ","attr"=> array(
-               "class"=>"form-name form-control" 
-            )
-        ) )
+//                ->add('usuario', EntityType::class,array(
+//                    'class'=>'AppBundle:Usuario',
+//            "label"=>"Usuario Responsable: ","attr"=> array(
+//               "class"=>"form-name form-control" 
+//            )
+//        ) )
                 ->add('fechaResolucion', TextType::class,array(
-            "label"=>"Fecha:","attr"=> array(
+            "label"=>false,"attr"=> array(
                 "class"=>'datepicker form-control',
                 "placeholder"=>'MM-DD-AAAA')
         ))

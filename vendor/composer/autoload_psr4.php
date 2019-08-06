@@ -34,6 +34,7 @@ return array(
     'Psr\\Cache\\' => array($vendorDir . '/psr/cache/src'),
     'PUGX\\AutocompleterBundle\\' => array($vendorDir . '/pugx/autocompleter-bundle'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
+    'Lexik\\Bundle\\FormFilterBundle\\' => array($vendorDir . '/lexik/form-filter-bundle'),
     'Incenteev\\ParameterHandler\\' => array($vendorDir . '/incenteev/composer-parameter-handler'),
     'Fig\\Link\\' => array($vendorDir . '/fig/link-util/src'),
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
