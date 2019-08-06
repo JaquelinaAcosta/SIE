@@ -90,9 +90,7 @@ class PersonaController extends Controller
      * @Route("/persona/listado/{currentPage}", name="listado_persona")
      */
     public function listaPersonaAction(Request $request, $currentPage ) {
-
-        $em = $this->getDoctrine()->getEntityManager();
-        
+        $em = $this->getDoctrine()->getEntityManager();        
         $limit = 15;
         $user = $this->getUser();
         $persona = new Persona();
