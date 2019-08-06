@@ -10,6 +10,7 @@ class AppKernel extends Kernel
     {
         $bundles = [
             new PUGX\AutocompleterBundle\PUGXAutocompleterBundle(),
+            new Lexik\Bundle\FormFilterBundle\LexikFormFilterBundle(),
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),

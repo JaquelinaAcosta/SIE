@@ -89,5 +89,20 @@ class CaratulaAgregadaController extends Controller {
                     'accion' => 'Editar'
         ));
     }
+    
+     /**
+     * @Route("expediente/{id}/caratula/listado", name="listado_caratula")
+     */
+    public function listaMovimientoAction(Request $request,$id) {
 
+        $em = $this->getDoctrine()->getEntityManager();
+        $user = $this->getUser();
+        $expediente = $em->getRepository('AppBundle:Expediente')->find($id);
+
+        // replace this example code with whatever you need
+        return $this->render('AppBundle:Expediente:listadoCaratulas.html.twig', [
+                    'expediente' => $expediente
+        ]);
+    }
+    
 }

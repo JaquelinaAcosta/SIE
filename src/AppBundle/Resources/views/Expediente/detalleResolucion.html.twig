@@ -1,0 +1,77 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block content %}
+
+    <style>
+        input[type=text]{
+            margin-bottom: 10px;
+            padding:10px;            
+        }
+        input[type=submit]{
+            margin-bottom: 10px;
+            padding:10px;            
+        }
+        .expediente{
+            margin-right: 12px;
+            padding:5px;
+            font-size:15px;
+        }
+
+        .btn{
+            width:30px;
+            padding:5px;
+            height:30px;
+        }
+        .btnopt{
+            width:300px;
+            padding:10px;
+            height:30px;
+        }
+        .movimiento{
+            width:auto;
+            height: auto;
+            float:right;
+            padding:15px;
+        }
+        .right{
+            float:right;
+        }
+    </style>
+    
+    <h4>RESOLUCIÓN EXPEDIENTE {{ expediente.nroExpediente }}</h4>
+    <hr/>
+                <table class="table table-striped table-hover"> 
+                    <thead>
+                    <br/>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th class="info list-group col-lg-2">USUARIO</th>
+                            <td>{{ expediente.resolucion.usuario}}</td>
+                        </tr>
+                        <tr>
+                            <th class="info list-group">NUMERO DE RESOLUCION</th>
+                            <td>{{ expediente.resolucion.numeroResolucion}}</td>
+                        </tr>
+                        <tr>
+                            <th class="info list-group">TIPO</th>
+                            <td>{{ expediente.resolucion.tipo}}</td>
+                        </tr>
+                        <tr>
+                            <th class="info list-group">FECHA</th>
+                            <td>{{ expediente.resolucion.fechaResolucion}}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                    <th>
+
+                    </th>
+                </table>
+
+            <script>
+                $(function () {
+                    $('[data-toggle="tooltip"]').tooltip()
+                })
+            </script>
+
+        {% endblock %}

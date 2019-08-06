@@ -8,39 +8,50 @@ use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Entity\ExpedienteAsociado;
 use AppBundle\Entity\Dependencia;
 use AppBundle\Entity\Expediente;
-
 use AppBundle\Form\ExpedienteAsociadoType;
 use AppBundle\Form\ExpedienteType;
 
-class ExpedienteAsociadoController extends Controller
-{
+class ExpedienteAsociadoController extends Controller {
+
     /**
-     * @Route("/expediente/{id}/expediente_asociado/", name="nuevo_expediente_asociado")
+     * @Route("/expediente/{id}/add/expediente_asociado/", name="nuevo_expediente_asociado")
      */
-    public function nuevoAction(Request $request,$id)
-    {
-        $em = $this->getDoctrine()->getEntityManager(); 
-        $dependencia = $em->getRepository("AppBundle:Dependencia")->find(3);
+    public function nuevoAction(Request $request, $id) {
+        $em = $this->getDoctrine()->getEntityManager();
         $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
-              
-        
         $expedienteAsociado = new ExpedienteAsociado();
-      
-        //$expedienteAsociado->setDependencia($dependencia);
-        $form = $this->createForm(ExpedienteType::class,$expediente);
-        
+        $form = $this->createForm(ExpedienteAsociadoType::class, $expedienteAsociado,['expediente_id'=>$expediente->getId()]);
+
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
-                                   
-//            $em->persist($expediente);
-//            $em->flush();
+            $expedienteAsociado->setExpedientePadre($expediente);
+            $expedienteAsociado->setFecha(date("d-m-Y H:i:s"));
+            $expediente->getExpedientesAsociados()->add($expedienteAsociado);
+            $em->persist($expediente);
+            $em->flush();
         }
-        
+
         // replace this example code with whatever you need
         return $this->render('AppBundle:Expediente:expedienteAsociado.html.twig', [
-            'form'=> $form->createView(),
-            'expediente'=>$expediente
+                    'form' => $form->createView(),
+                    'expediente' => $expediente
         ]);
     }
+    
+     /**
+     * @Route("expediente/{id}/asociado/listado", name="listado_asociado")
+     */
+    public function listaAsociadoAction(Request $request,$id) {
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $user = $this->getUser();
+        $expediente = $em->getRepository('AppBundle:Expediente')->find($id);
+
+        // replace this example code with whatever you need
+        return $this->render('AppBundle:Expediente:listadoExpedienteAsociado.html.twig', [
+                    'expediente' => $expediente
+        ]);
+    }
+    
 }

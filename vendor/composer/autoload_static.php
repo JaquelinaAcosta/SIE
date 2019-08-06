@@ -60,6 +60,10 @@ class ComposerStaticInit51360961fb0f72da29492c4b88b57df0
         array (
             'Monolog\\' => 8,
         ),
+        'L' => 
+        array (
+            'Lexik\\Bundle\\FormFilterBundle\\' => 30,
+        ),
         'I' => 
         array (
             'Incenteev\\ParameterHandler\\' => 27,
@@ -200,6 +204,10 @@ class ComposerStaticInit51360961fb0f72da29492c4b88b57df0
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
+        ),
+        'Lexik\\Bundle\\FormFilterBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/lexik/form-filter-bundle',
         ),
         'Incenteev\\ParameterHandler\\' => 
         array (

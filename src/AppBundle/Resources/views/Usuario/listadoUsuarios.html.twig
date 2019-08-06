@@ -76,7 +76,9 @@
                     <td class="text-default"><p>{{usuario.role|e }}</p></td>
                     <td class="text-default">{{usuario.persona|e }}</td>
                     
-                    <td> <a class="btn btn-warning" href="{{ path("editar_usuario", {'id':usuario.id}) }}"  role="button"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Editar"></i></a>
+                 {#   <td><a class="btn btn-info" href="{{ path("ver_expediente", {'id':expediente.id}) }}"  role="button"><i class="fas fa-search"></i></a>#}
+{#                        <td><a class="btn btn-info" href="{{ path("editar_usuario", {'id':usuario.id}) }}"  role="button"><i class="fas fa-search"></i></a>#}
+                       <td> <a class="btn btn-warning" href="{{ path("editar_usuario", {'id':usuario.id}) }}"  role="button"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Editar"></i></a>
                         <a class="btn btn-danger" href="{{ path("eliminar_usuario", {'id':usuario.id}) }}"  role="button"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></a></td>
                 </tr>
             {% endfor %}

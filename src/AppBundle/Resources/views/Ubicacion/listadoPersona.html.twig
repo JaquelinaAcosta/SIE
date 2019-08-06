@@ -34,14 +34,12 @@
         .title{
             font-size:16px;
         }
-
         p {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
             max-width: 200px;
         }
-
     </style>
 
 
@@ -53,14 +51,14 @@
             {{ message }}
         </div>
     {% endfor %}
-                
+
     {% for message in app.flashes('danger') %}
         <div class="alert alert-danger">
             {{ message }}
         </div>
     {% endfor %}
-                
-    
+
+
     <table class="table table-striped">
         <thead class="">
             <tr>
@@ -78,32 +76,30 @@
                     <td class="text-default"><p>{{persona.apellido|e }}</p></td>
                     <td class="text-default">{{persona.dni|e }}</td>
                     <td class="text-default">{{persona.cargo|e }}</td>
-                    
-                       <td> <a class="btn btn-warning" href="{{ path("editar_persona", {'id':persona.id}) }}"  role="button"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Editar"></i></a>
+
+                    <td> <a class="btn btn-warning" href="{{ path("editar_persona", {'id':persona.id}) }}"  role="button"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Editar"></i></a>
                         <a class="btn btn-danger" href="{{ path("eliminar_persona", {'id':persona.id}) }}"  role="button"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></a></td>
                 </tr>             
             {% endfor %}
-            
+
 
         </tbody>
     </table>
-    
+
     <ul class="pagination">
-        {%if (thisPage==1)%}
-            
+        {%if (thisPage==1)%}           
         {%else%}
             {%set thisPage= thisPage-1%}
         {%endif%}
-        
-            
+
+
         <li ><a class="page-link" href="{{ path('listado_persona', {"currentPage": thisPage}) }}">&laquo</a></li>
-        {% for i in 1..maxPages %}
+            {% for i in 1..maxPages %}
             <li><a class="page-link"  href="{{ path('listado_persona', {"currentPage": i}) }}">{{ i }}</a></li>
-        {% endfor %}
-        
+            {% endfor %}
         
         {%if (page==maxPages)%}
-            
+
         {%else%}
             {%set page= page+1%}
         {%endif%}
