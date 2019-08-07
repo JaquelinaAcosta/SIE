@@ -19,8 +19,15 @@ class PersonaController extends Controller {
     public function indexAction(Request $request) {
         $em = $this->getDoctrine()->getEntityManager();
         $persona = new Persona();
+         $user = $this->getUser();
 
-        $form = $this->createForm(PersonaType::class, $persona);
+        if ($user->getRole() == 'ROLE_ADMIN') {
+            $form = $this->createForm(PersonaType::class, $persona, [
+                'movimiento_persona' => null,
+                'role' => 'su']);
+        } else {
+            $form = $this->createForm(PersonaType::class, $persona);
+        }
 
         $form->handleRequest($request);
 
@@ -54,29 +61,30 @@ class PersonaController extends Controller {
 
         $em = $this->getDoctrine()->getEntityManager();
         $persona = $em->getRepository("AppBundle:Persona")->find($id);
-
-        $form = $this->createForm(PersonaType::class, $persona, ['role' => 'su']);
-        $form->handleRequest($request);
-
         $user = $this->getUser();
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $em->persist($persona);
-            $flush = $em->flush();
-
-
-            if ($flush == false) {
-                $this->addFlash('success', "La persona " . $persona->getnombre() . " " . $persona->getapellido() . " se modificó correctamente.");
-                return $this->redirectToRoute('listado_persona', ["currentPage" => 1]);
-            } else {
-                $this->addFlash('danger', "Ocurrió un error en la modificación de persona.");
-            }
-
-
-            return $this->redirectToRoute('homepage');
+        $persona->setUsuario($user);
+        if ($user->getRole() == 'ROLE_ADMIN') {
+            $form = $this->createForm(PersonaType::class, $persona, [
+                'movimiento_persona' => null,
+                'role' => 'su']);
+        } else {
+            $form = $this->createForm(PersonaType::class, $persona);
         }
 
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $em->persist($persona);
+                $flush = $em->flush();
+                if ($flush == false) {
+                    $this->addFlash('success', "La persona " . $persona->getnombre() . " " . $persona->getapellido() . " se modificó correctamente.");
+                    return $this->redirectToRoute('listado_persona', ["currentPage" => 1]);
+                } else {
+                    $this->addFlash('danger', "Ocurrió un error en la modificación de persona.");
+                }
+            }
+        }
 
 
         // replace this example code with whatever you need
@@ -121,11 +129,12 @@ class PersonaController extends Controller {
      */
     public function listaPersonaAction(Request $request, $currentPage) {
         $em = $this->getDoctrine()->getEntityManager();
+
         $limit = 15;
         $totalItems = 0;
         $maxPages = 0;
         $personas = array();
-        
+
         $formPersonaFilter = $this->createForm(PersonaFilterType::class);
         $formPersonaFilter->handleRequest($request);
         if ($formPersonaFilter->isSubmitted() == false && $this->get('session')->get('persona_listar_request')) {
@@ -136,43 +145,42 @@ class PersonaController extends Controller {
             $filterBuilder = $em->getRepository('AppBundle:Persona')->createQueryBuilder('p');
             $filterBuilder->addOrderBy('p.apellido', 'ASC');
             $filterBuilder->addOrderBy('p.nombre', 'ASC');
-            
+
             $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($formPersonaFilter, $filterBuilder);
             $totalItems = count($filterBuilder->getQuery()->getResult());
-            
+
             $filterBuilder->setFirstResult($limit * ($currentPage - 1));
             $filterBuilder->setMaxResults($limit);
-            
+
             $paginator = new Paginator($filterBuilder, $fetchJoinCollection = true);
             $personas = $paginator->getQuery()->getResult();
             $maxPages = ceil($totalItems / $limit);
         }
-        
-         if ($formPersonaFilter->get('reset')->isClicked()) {
+
+        if ($formPersonaFilter->get('reset')->isClicked()) {
             $this->get('session')->remove('persona_listar_request');
-            return $this->redirectToRoute('listado_persona',['currentPage'=>1]);
-         }
-        
-         if ($formPersonaFilter->get('filter')->isClicked()) {           
+            return $this->redirectToRoute('listado_persona', ['currentPage' => 1]);
+        }
+
+        if ($formPersonaFilter->get('filter')->isClicked()) {
             $personaListarFilterRequest = $request->request->get('persona_filter');
             unset($personaListarFilterRequest['filter']);
 
             $request->request->set('persona_filter', $personaListarFilterRequest);
-            $request->request->set('currentPage',1);
+            $request->request->set('currentPage', 1);
             $this->get('session')->set('persona_listar_request', $request);
-            if($request->get('currentPage')>$maxPages)
-            {
-                 return $this->redirectToRoute('listado_persona',['currentPage'=>1]);
+            if ($request->get('currentPage') > $maxPages) {
+                return $this->redirectToRoute('listado_persona', ['currentPage' => 1]);
             }
         }
-        
+
         return $this->render('AppBundle:Ubicacion:listadoPersona.html.twig', array(
                     'persona' => $personas,
                     'maxPages' => $maxPages,
                     'totalItems' => $totalItems,
                     'thisPage' => $currentPage,
                     'page' => $currentPage,
-                    'formPersonaFilter' => $formPersonaFilter->createView()                  
+                    'formPersonaFilter' => $formPersonaFilter->createView()
         ));
     }
 

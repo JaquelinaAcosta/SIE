@@ -86,17 +86,17 @@ class ExpedienteType extends AbstractType {
                         "placeholder" => 'MM-DD-AAAA'
                     )
                 ))
-                ->add('expedientes_asociados', CollectionType::class,[
-                   'entry_type'=> ExpedienteAsociadoType::class,
-                   'label'=>false,
-                   'entry_options'=>[
-                       'label'=>false,
-                       ],
-                   'prototype' => true,
-                   'allow_add'=>true,
-                   'allow_delete' => true,
-                   'by_reference'=>false,
-               ])
+//                ->add('expedientes_asociados', CollectionType::class,[
+//                   'entry_type'=> ExpedienteAsociadoType::class,
+//                   'label'=>false,
+//                   'entry_options'=>[
+//                       'label'=>false,
+//                       ],
+//                   'prototype' => true,
+//                   'allow_add'=>true,
+//                   'allow_delete' => true,
+//                   'by_reference'=>false,
+//               ])
                 ->add('Guardar', SubmitType::class, array("attr" => array(
                         "class" => "form-submit btn btn-primary"
                     )

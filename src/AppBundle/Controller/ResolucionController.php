@@ -27,7 +27,7 @@ class ResolucionController extends Controller {
             if ($form->isValid()) {
                 $resolucion->setUsuario($usuario);
                 $resolucion->setExpediente($expediente);
-
+                $resolucion->setFechaResolucion(date($form['fechaResolucion']->getData()." H:i:s"));
                 $em->persist($resolucion);
                 $em->flush();
                                

@@ -64,10 +64,10 @@ class MesaEntrada extends \AppBundle\Entity\MesaEntrada implements \Doctrine\ORM
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'AppBundle\\Entity\\MesaEntrada' . "\0" . 'codigoExpediente', 'id', 'usuario'];
+            return ['__isInitialized__', '' . "\0" . 'AppBundle\\Entity\\MesaEntrada' . "\0" . 'codigoExpediente', 'id'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'AppBundle\\Entity\\MesaEntrada' . "\0" . 'codigoExpediente', 'id', 'usuario'];
+        return ['__isInitialized__', '' . "\0" . 'AppBundle\\Entity\\MesaEntrada' . "\0" . 'codigoExpediente', 'id'];
     }
 
     /**

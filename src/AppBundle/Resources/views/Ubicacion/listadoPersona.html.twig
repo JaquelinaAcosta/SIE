@@ -58,16 +58,15 @@
         </div>
     {% endfor %}
 
-    <hr/>
 
     <div id="accordion_filtros">
 
-        <div class="row form col-lg-6" style="background:none;margin:0;">
+        <div class="row form col-lg-10" style="background:none;margin:0;">
             <h4>FILTROS</h4>
             <form method="post" novalidate="true" id="form_buscar">
                 {{ form_errors(formPersonaFilter) }}
                 <div class="row">
-                    <div class="threecol col-lg-4">
+                    <div class="threecol col-lg-2">
                         {{ form_label(formPersonaFilter.apellido, 'APELLIDO') }}
                         {{ form_widget(formPersonaFilter.apellido) }}
                         <div class="help-block with-errors">
@@ -94,48 +93,43 @@
                         <div class="help-block with-errors">
                             {{ form_errors(formPersonaFilter.cargo) }}
                         </div>
-                    </div>      
-                    <div class="twocol col-lg-4">
-                        {{ form_label(formPersonaFilter.usuario, 'USUARIO') }}
-                        {{ form_widget(formPersonaFilter.usuario) }}
-                        <div class="help-block with-errors">
-                            {{ form_errors(formPersonaFilter.usuario) }}
-                        </div>
-                    </div>      
+                    </div>                          
                 </div>
-                <hr/>
                 <div class="col-lg-12">
-                    <div class="col-lg-2">
+                    <div class="col-lg-1">
                         {{ form_row(formPersonaFilter.filter) }}
                     </div>
-                    <div class="col-lg-2">
+                    <div class="col-lg-1">
                         {{ form_row(formPersonaFilter.reset) }}
                     </div>
                 </div>
                 {{ form_end(formPersonaFilter) }}
-
             </form>
         </div>
     </div>
 
     <hr/>
+    
+    {% if persona|length >0 %}
     <table class="table table-striped">
         <thead class="">
             <tr>
-                <th scope="col">Nombre</th>
-                <th scope="col">Apellido</th>
+                <th scope="col">APELLIDO</th>
+                <th scope="col">NOMBRE</th>
                 <th scope="col">DNI</th>
-                <th scope="col">Cargo</th>
-                <th scope="col">Acciones</th>
+                <th scope="col">CARGO</th>
+                      <th scope="col">DEPENDENCIA</th>
+                <th scope="col">ACCIONES</th>
             </tr>
         </thead>
         <tbody>
             {% for persona in persona %}
                 <tr>
-                    <td class="text-default">{{persona.nombre|e }}</td>
-                    <td class="text-default"><p>{{persona.apellido|e }}</p></td>
+                    <td class="text-default">{{persona.apellido|e }}</td>
+                    <td class="text-default"><p>{{persona.nombre|e }}</p></td>
                     <td class="text-default">{{persona.dni|e }}</td>
                     <td class="text-default">{{persona.cargo|e }}</td>
+                    <td class="text-default">{{persona.dependencia.descripcion|e }}</td>
 
                     <td> <a class="btn btn-warning" href="{{ path("editar_persona", {'id':persona.id}) }}"  role="button"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Editar"></i></a>
                         <a class="btn btn-danger" href="{{ path("eliminar_persona", {'id':persona.id}) }}"  role="button"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></a></td>
@@ -145,6 +139,7 @@
 
         </tbody>
     </table>
+     {% endif %}       
     {% if persona|length < totalItems %}
 
         <ul class="pagination">

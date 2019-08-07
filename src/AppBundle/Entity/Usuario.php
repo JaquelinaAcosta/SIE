@@ -62,7 +62,7 @@ class Usuario implements UserInterface
      * @var int
      *
      * @ORM\OneToOne(targetEntity="Persona",inversedBy="usuario")
-     * @ORM\JoinColumn(name="persona", referencedColumnName="id", nullable=false)
+     * @ORM\JoinColumn(name="persona", referencedColumnName="id")
      */
     private $persona;
 

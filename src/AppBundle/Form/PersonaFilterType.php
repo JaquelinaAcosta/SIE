@@ -53,17 +53,7 @@ class PersonaFilterType extends AbstractType implements EmbeddedFilterTypeInterf
                 }
             },
             'attr' => ['class' => 'form-control']
-        ));
-        $builder->add('usuario', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType', array(
-            'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
-                if (!empty($values['value'])) {
-                    $qb = $filterQuery->getQueryBuilder();
-                    $qb->andWhere($filterQuery->getExpr()->like($field, ':usuario'));
-                    $qb->setParameter('usuario', '%' . $values['value'] . '%');
-                }
-            },
-            'attr' => ['class' => 'form-control']
-        ));
+        ));       
         $builder->add('filter', 'Symfony\Component\Form\Extension\Core\Type\SubmitType', array(
             'label' => 'Filtrar',
             'attr' => ['class' => 'btn btn-primary']

@@ -45,8 +45,8 @@
     </style>
 
 
-
-    <h4 class="text-center"><i class="fas fa-bars"></i>CARÁTULAS - EXPEDIENTE {{ expediente.nroExpediente }}</h4>
+    <h4 class="text-center"><i class="fas fa-bars"></i>EXPEDIENTES ASOCIADOS - EXPEDIENTE {{ expediente.nroExpediente }}
+    <a href="{{ path('nuevo_expediente_asociado',{'id':expediente.id}) }}">Nuevo</a></h4>
     <hr/>
 
     <table class="table table-striped">
