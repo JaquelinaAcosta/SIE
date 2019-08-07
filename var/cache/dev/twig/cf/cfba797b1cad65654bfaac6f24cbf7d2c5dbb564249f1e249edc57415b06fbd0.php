@@ -218,7 +218,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                                     <ul class=\"dropdown-menu\">
                                         <li><a href=\"";
             // line 142
-            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_expediente");
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_expediente", ["currentPage" => 1]);
             echo "\">LISTADO</a></li>
                                         <li role=\"separator\" class=\"divider\"></li>
                                         <li><a href=\"";
@@ -239,7 +239,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                                         <ul class=\"dropdown-menu\">
                                             <li><a href=\"";
                 // line 156
-                echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_dependencia");
+                echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_dependencia", ["currentPage" => 1]);
                 echo "\">LISTADO</a></li>
                                             <li role=\"separator\" class=\"divider\"></li>
                                             <li><a href=\"";
@@ -271,7 +271,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                                         <ul class=\"dropdown-menu\">
                                             <li><a href=\"";
                 // line 180
-                echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_usuario");
+                echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_usuario", ["currentPage" => 1]);
                 echo "\">LISTADO</a></li>
                                             <li role=\"separator\" class=\"divider\"></li>
                                             <li><a href=\"";
@@ -291,7 +291,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                                     <ul class=\"dropdown-menu\">
                                         <li><a href=\"";
             // line 194
-            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_lugarfisico");
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_lugarfisico", ["currentPage" => 1]);
             echo "\">LISTADO</a></li>
                                         <li role=\"separator\" class=\"divider\"></li>
                                         <li><a href=\"";
@@ -554,7 +554,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                                 <li class=\"dropdown\">
                                     <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">EXPEDIENTE <span class=\"caret\"></span></a>
                                     <ul class=\"dropdown-menu\">
-                                        <li><a href=\"{{ path(\"listado_expediente\") }}\">LISTADO</a></li>
+                                        <li><a href=\"{{ path(\"listado_expediente\",{'currentPage':1}) }}\">LISTADO</a></li>
                                         <li role=\"separator\" class=\"divider\"></li>
                                         <li><a href=\"{{ path(\"nuevo_expediente\") }}\">NUEVO EXPEDIENTE</a></li>
                                             {#  <li role=\"separator\" class=\"divider\"></li>
@@ -568,7 +568,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                                     <li class=\"dropdown\">
                                         <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">DEPENDENCIA <span class=\"caret\"></span></a>
                                         <ul class=\"dropdown-menu\">
-                                            <li><a href=\"{{ path(\"listado_dependencia\") }}\">LISTADO</a></li>
+                                            <li><a href=\"{{ path(\"listado_dependencia\",{'currentPage':1}) }}\">LISTADO</a></li>
                                             <li role=\"separator\" class=\"divider\"></li>
                                             <li><a href=\"{{ path(\"nueva_dependencia\") }}\">NUEVA DEPENDENCIA</a></li>
                                                 {#  <li role=\"separator\" class=\"divider\"></li>
@@ -592,7 +592,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                                     <li class=\"dropdown\">
                                         <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">USUARIOS <span class=\"caret\"></span></a>
                                         <ul class=\"dropdown-menu\">
-                                            <li><a href=\"{{ path(\"listado_usuario\") }}\">LISTADO</a></li>
+                                            <li><a href=\"{{ path(\"listado_usuario\",{'currentPage':1}) }}\">LISTADO</a></li>
                                             <li role=\"separator\" class=\"divider\"></li>
                                             <li><a href=\"{{ path(\"nuevo_usuario\") }}\">NUEVO USUARIO</a></li>
                                                 {#  <li role=\"separator\" class=\"divider\"></li>
@@ -606,7 +606,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                                 <li class=\"dropdown\">
                                     <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">LUGAR FSICO <span class=\"caret\"></span></a>
                                     <ul class=\"dropdown-menu\">
-                                        <li><a href=\"{{ path(\"listado_lugarfisico\") }}\">LISTADO</a></li>
+                                        <li><a href=\"{{ path(\"listado_lugarfisico\",{'currentPage':1}) }}\">LISTADO</a></li>
                                         <li role=\"separator\" class=\"divider\"></li>
                                         <li><a href=\"{{ path(\"nuevo_lugarfisico\") }}\">NUEVO LUGAR FISICO</a></li>
                                             {#  <li role=\"separator\" class=\"divider\"></li>
@@ -631,6 +631,6 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
     </body>
 
 </html>
-", "AppBundle::layout.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/layout.html.twig");
+", "AppBundle::layout.html.twig", "/var/www/html/gitSIE/src/AppBundle/Resources/views/layout.html.twig");
     }
 }

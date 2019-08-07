@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Repository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * LugarFisicoRepository
@@ -10,4 +11,20 @@ namespace AppBundle\Repository;
  */
 class LugarFisicoRepository extends \Doctrine\ORM\EntityRepository
 {
+     public function getAllPers($currentPage = 1, $limit = 15)
+        {
+
+            $em = $this->getEntityManager();
+
+            $dql= "SELECT e FROM AppBundle\Entity\LugarFisico e ORDER BY e.id";
+
+            $query = $em->createQuery($dql)
+                    ->setFirstResult($limit*($currentPage-1))
+                    ->setMaxResults($limit);
+
+
+            $paginator = new Paginator($query, $fetchJoinCollection=true);
+
+            return $paginator;
+        }
 }

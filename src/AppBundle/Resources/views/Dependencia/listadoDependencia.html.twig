@@ -43,9 +43,70 @@
         }
 
     </style>
+    
+    
+    
+    <div id="accordion_filtros">
+
+        <div class="row form col-lg-12" style="background:none;margin:0;">
+            
+            <h4>FILTROS</h4>
+            <form method="post" novalidate="true" id="form_buscar">
+                {{ form_errors(formDependenciaFilter) }}
+                <div class="row">
+                    <div class="threecol col-lg-4">
+                        {{ form_label(formDependenciaFilter.descripcion, 'DESCRIPCIÓN') }}
+                        {{ form_widget(formDependenciaFilter.descripcion) }}
+                        <div class="help-block with-errors">
+                            {{ form_errors(formDependenciaFilter.descripcion) }}
+                        </div>
+                    </div>
+                    <div class="threecol col-lg-4">
+                        {{ form_label(formDependenciaFilter.dependenciaPadre, 'DEPENDENCIA PADRE') }}
+                        {{ form_widget(formDependenciaFilter.dependenciaPadre) }}
+                        <div class="help-block with-errors">
+                            {{ form_errors(formDependenciaFilter.dependenciaPadre) }}
+                        </div>
+                    </div> 
+                    <div class="threecol col-lg-4">
+                        {{ form_label(formDependenciaFilter.responsable, 'RESPONSABLE') }}
+                        {{ form_widget(formDependenciaFilter.responsable) }}
+                        <div class="help-block with-errors">
+                            {{ form_errors(formDependenciaFilter.responsable) }}
+                        </div>
+                    </div>  
+                    <div class="twocol col-lg-4">
+                        {{ form_label(formDependenciaFilter.nivel, 'NIVEL') }}
+                        {{ form_widget(formDependenciaFilter.nivel) }}
+                        <div class="help-block with-errors">
+                            {{ form_errors(formDependenciaFilter.nivel) }}
+                        </div>
+                    </div> 
+                    <div class="twocol col-lg-4">
+                        {{ form_label(formDependenciaFilter.archivado, 'ARCHIVADO: Si/No') }}
+                        {{ form_widget(formDependenciaFilter.archivado) }}
+                        <div class="help-block with-errors">
+                            {{ form_errors(formDependenciaFilter.archivado) }}
+                        </div>
+                    </div> 
+                </div>
+                <hr/>
+                <div class="col-lg-12">
+                    <div class="col-lg-2">
+                        {{ form_row(formDependenciaFilter.filter) }}
+                    </div>
+                    <div class="col-lg-2">
+                        {{ form_row(formDependenciaFilter.reset) }}
+                    </div>
+                </div>
+                {{ form_end(formDependenciaFilter) }}
+
+            </form>
+        </div>
+    </div>
 
 
-
+    <br/>
     <h4 class="text-center"><i class="fas fa-building"></i> Lista de Dependencias <a href="{{ path('nueva_dependencia') }}" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Nueva Dependencia"><i class="fas fa-plus"></i></a></h4>
     <hr/>
     <table class="table table-striped">
@@ -86,11 +147,41 @@
 
         </tbody>
     </table>
+    
+    {% if dependencias|length < totalItems %}
+    <ul class="pagination">
+        {%if (thisPage==1)%}           
+        {%else%}
+            {%set thisPage= thisPage-1%}
+        {%endif%}
+
+
+        <li ><a class="page-link" href="{{ path('listado_dependencia', {"currentPage": thisPage}) }}">&laquo</a></li>
+            {% for i in 1..maxPages %}
+            <li><a class="page-link"  href="{{ path('listado_dependencia', {"currentPage": i}) }}">{{ i }}</a></li>
+            {% endfor %}
+        
+        {%if (page==maxPages)%}
+
+        {%else%}
+            {%set page= page+1%}
+        {%endif%}
+        <li><a class="page-link" href="{{ path('listado_dependencia', {"currentPage": page}) }}">&raquo</a></li>
+
+    </ul>
+    {% endif %}
 
     <script>
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
+    </script>
+    
+    <script>
+        $('#dependencia_filter_responsable').autocompleter({
+            url_list: "{{ path('persona_search') }}",
+            url_get: "{{ path('persona_get') }}"
+        });
     </script>
 
     <hr/>

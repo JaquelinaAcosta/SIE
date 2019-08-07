@@ -41,7 +41,7 @@ class __TwigTemplate_f098aa3134842369169b97bfd7dd7a3f7bbed8e1b13d4631b2dff29cf53
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "@WebProfiler/Collector/form.html.twig"));
 
         // line 3
-        $context["__internal_28ead579cbdb851668c1ec58948b42dfd30ad1c56e030d432eb0090082ffebad"] = $this;
+        $context["__internal_602b25b77fb76a01c71c656c2301796740437e6f0036807e247dd0504eef4577"] = $this;
         // line 1
         $this->parent = $this->loadTemplate("@WebProfiler/Profiler/layout.html.twig", "@WebProfiler/Collector/form.html.twig", 1);
         $this->parent->display($context, array_merge($this->blocks, $blocks));
@@ -356,7 +356,7 @@ class __TwigTemplate_f098aa3134842369169b97bfd7dd7a3f7bbed8e1b13d4631b2dff29cf53
             foreach ($context['_seq'] as $context["formName"] => $context["formData"]) {
                 // line 196
                 echo "                ";
-                echo $context["__internal_28ead579cbdb851668c1ec58948b42dfd30ad1c56e030d432eb0090082ffebad"]->getform_tree_entry($context["formName"], $context["formData"], true);
+                echo $context["__internal_602b25b77fb76a01c71c656c2301796740437e6f0036807e247dd0504eef4577"]->getform_tree_entry($context["formName"], $context["formData"], true);
                 echo "
             ";
             }
@@ -388,7 +388,7 @@ class __TwigTemplate_f098aa3134842369169b97bfd7dd7a3f7bbed8e1b13d4631b2dff29cf53
             foreach ($context['_seq'] as $context["formName"] => $context["formData"]) {
                 // line 203
                 echo "                ";
-                echo $context["__internal_28ead579cbdb851668c1ec58948b42dfd30ad1c56e030d432eb0090082ffebad"]->getform_tree_details($context["formName"], $context["formData"], $this->getAttribute($this->getAttribute(($context["collector"] ?? $this->getContext($context, "collector")), "data", []), "forms_by_hash", []), $this->getAttribute($context["loop"], "first", []));
+                echo $context["__internal_602b25b77fb76a01c71c656c2301796740437e6f0036807e247dd0504eef4577"]->getform_tree_details($context["formName"], $context["formData"], $this->getAttribute($this->getAttribute(($context["collector"] ?? $this->getContext($context, "collector")), "data", []), "forms_by_hash", []), $this->getAttribute($context["loop"], "first", []));
                 echo "
             ";
                 ++$context['loop']['index0'];
@@ -1163,7 +1163,7 @@ class __TwigTemplate_f098aa3134842369169b97bfd7dd7a3f7bbed8e1b13d4631b2dff29cf53
                 } else {
                     // line 648
                     echo "                <div class=\"empty\">
-                    <p>No options where passed when constructing this form.</p>
+                    <p>No options were passed when constructing this form.</p>
                 </div>
             ";
                 }
@@ -1988,7 +1988,7 @@ class __TwigTemplate_f098aa3134842369169b97bfd7dd7a3f7bbed8e1b13d4631b2dff29cf53
             </table>
             {% else %}
                 <div class=\"empty\">
-                    <p>No options where passed when constructing this form.</p>
+                    <p>No options were passed when constructing this form.</p>
                 </div>
             {% endif %}
         </div>
@@ -2053,6 +2053,6 @@ class __TwigTemplate_f098aa3134842369169b97bfd7dd7a3f7bbed8e1b13d4631b2dff29cf53
         {{ tree.form_tree_details(childName, childData, forms_by_hash) }}
     {% endfor %}
 {% endmacro %}
-", "@WebProfiler/Collector/form.html.twig", "/var/www/html/SIE/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/views/Collector/form.html.twig");
+", "@WebProfiler/Collector/form.html.twig", "/var/www/html/gitSIE/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/views/Collector/form.html.twig");
     }
 }

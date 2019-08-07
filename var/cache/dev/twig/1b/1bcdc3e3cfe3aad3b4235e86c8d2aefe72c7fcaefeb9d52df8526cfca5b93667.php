@@ -89,6 +89,7 @@ class __TwigTemplate_1ea8de3d1f20f266528974bed091d2034054aae4ae376f4a521b943ee1f
     text-align: left;
     text-transform: none;
     z-index: 99999;
+    direction: ltr;
 
     /* neutralize the aliasing defined by external CSS styles */
     -webkit-font-smoothing: subpixel-antialiased;
@@ -240,40 +241,40 @@ div.sf-toolbar .sf-toolbar-block a:hover {
 
 .sf-toolbar-block .sf-toolbar-status-green {
     background-color: ";
-        // line 207
+        // line 208
         echo $this->getAttribute(($context["colors"] ?? $this->getContext($context, "colors")), "success", []);
         echo ";
 }
 .sf-toolbar-block .sf-toolbar-status-red {
     background-color: ";
-        // line 210
+        // line 211
         echo $this->getAttribute(($context["colors"] ?? $this->getContext($context, "colors")), "error", []);
         echo ";
 }
 .sf-toolbar-block .sf-toolbar-status-yellow {
     background-color: ";
-        // line 213
+        // line 214
         echo $this->getAttribute(($context["colors"] ?? $this->getContext($context, "colors")), "warning", []);
         echo ";
 }
 
 .sf-toolbar-block.sf-toolbar-status-green {
     background-color: ";
-        // line 217
+        // line 218
         echo $this->getAttribute(($context["colors"] ?? $this->getContext($context, "colors")), "success", []);
         echo ";
     color: #FFF;
 }
 .sf-toolbar-block.sf-toolbar-status-red {
     background-color: ";
-        // line 221
+        // line 222
         echo $this->getAttribute(($context["colors"] ?? $this->getContext($context, "colors")), "error", []);
         echo ";
     color: #FFF;
 }
 .sf-toolbar-block.sf-toolbar-status-yellow {
     background-color: ";
-        // line 225
+        // line 226
         echo $this->getAttribute(($context["colors"] ?? $this->getContext($context, "colors")), "warning", []);
         echo ";
     color: #FFF;
@@ -461,9 +462,9 @@ div.sf-toolbar .sf-toolbar-block a:hover {
 
 /* Override the setting when the toolbar is on the top */
 ";
-        // line 410
+        // line 411
         if ((($context["position"] ?? $this->getContext($context, "position")) == "top")) {
-            // line 411
+            // line 412
             echo "    .sf-minitoolbar {
         border-bottom-left-radius: 4px;
         border-top-left-radius: 0;
@@ -484,18 +485,18 @@ div.sf-toolbar .sf-toolbar-block a:hover {
     }
 ";
         }
-        // line 430
+        // line 431
         echo "
 ";
-        // line 431
+        // line 432
         if ( !($context["floatable"] ?? $this->getContext($context, "floatable"))) {
-            // line 432
+            // line 433
             echo "    .sf-toolbarreset {
         position: static;
     }
 ";
         }
-        // line 436
+        // line 437
         echo "
 /* Responsive Design */
 .sf-toolbar-icon .sf-toolbar-label,
@@ -651,7 +652,7 @@ div.sf-toolbar .sf-toolbar-block a:hover {
 
     public function getDebugInfo()
     {
-        return array (  499 => 436,  493 => 432,  491 => 431,  488 => 430,  467 => 411,  465 => 410,  277 => 225,  270 => 221,  263 => 217,  256 => 213,  250 => 210,  244 => 207,  38 => 3,  36 => 2,);
+        return array (  500 => 437,  494 => 433,  492 => 432,  489 => 431,  468 => 412,  466 => 411,  278 => 226,  271 => 222,  264 => 218,  257 => 214,  251 => 211,  245 => 208,  38 => 3,  36 => 2,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -720,6 +721,7 @@ div.sf-toolbar .sf-toolbar-block a:hover {
     text-align: left;
     text-transform: none;
     z-index: 99999;
+    direction: ltr;
 
     /* neutralize the aliasing defined by external CSS styles */
     -webkit-font-smoothing: subpixel-antialiased;
@@ -1233,6 +1235,6 @@ div.sf-toolbar .sf-toolbar-block a:hover {
         display: none;
     }
 }
-", "@WebProfiler/Profiler/toolbar.css.twig", "/var/www/html/SIE/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/views/Profiler/toolbar.css.twig");
+", "@WebProfiler/Profiler/toolbar.css.twig", "/var/www/html/gitSIE/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/views/Profiler/toolbar.css.twig");
     }
 }
