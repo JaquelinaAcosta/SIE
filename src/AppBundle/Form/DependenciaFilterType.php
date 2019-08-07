@@ -9,10 +9,6 @@ use Lexik\Bundle\FormFilterBundle\Filter\Form\Type\EmbeddedFilterTypeInterface;
 use Lexik\Bundle\FormFilterBundle\Filter\Query\QueryInterface;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\Expr\Join;
-//use Doctrine\ORM\Query\Expr;
-//use Doctrine\ORM\QueryBuilder;
-
-//use Lexik\Bundle\FormFilterBundle\Filter\Form\Type\EmbeddedFilterTypeInterface;
 
 
 class DependenciaFilterType extends AbstractType implements EmbeddedFilterTypeInterface
@@ -22,10 +18,7 @@ class DependenciaFilterType extends AbstractType implements EmbeddedFilterTypeIn
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        
-       // $gestion = $options['gestion'];
-        
-        
+
         $builder->add('descripcion', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType', array(
             'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
                 if (!empty($values['value'])) {
@@ -77,23 +70,7 @@ class DependenciaFilterType extends AbstractType implements EmbeddedFilterTypeIn
             },
             'attr' => ['class' => 'form-control']
         ));
-            
-        
-//        $builder->add('responsable', 'PUGX\AutocompleterBundle\Form\Type\AutocompleteFilterType', array(
-//            'class' => 'AppBundle:Dependencia',
-//            'required' => false,
-//            'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
-//                if (!empty($values['value'])) {
-//                    $qb = $filterQuery->getQueryBuilder();
-//                    $qb->leftJoin($qb->getRootAlias() . '.responsable', 'o', Join::WITH, 'o.id IS NOT NULL');
-//                    $qb->andWhere($filterQuery->getExpr()->eq('CONCAT (o.apellido, ' . $filterQuery->getExpr()->literal(', ')
-//                                    . ', o.nombre, '
-//                                    . ')', ':responsable'));
-//                    $qb->setParameter('responsable', '' . $values['value'] . '');
-//                }
-//            }
-//        ));
-        
+          
         $builder->add('responsable', 'PUGX\AutocompleterBundle\Form\Type\AutocompleteFilterType', array(
             'class' => 'AppBundle:Persona',
             'required' => false,
