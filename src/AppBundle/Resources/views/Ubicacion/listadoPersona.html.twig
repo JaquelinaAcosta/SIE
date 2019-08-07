@@ -50,18 +50,28 @@
         <div class="alert alert-success">
             {{ message }}
         </div>
+        <hr/>
     {% endfor %}
 
     {% for message in app.flashes('danger') %}
         <div class="alert alert-danger">
             {{ message }}
         </div>
+        <hr/>
     {% endfor %}
 
+<<<<<<< HEAD
 
     <div id="accordion_filtros">
 
         <div class="row form col-lg-10" style="background:none;margin:0;">
+=======
+   
+
+    <div id="accordion_filtros">
+
+        <div class="row form col-lg-12" style="background:none;margin:0;">
+>>>>>>> 89874fee56c0b45eaa8e48f62c603f4d4180f60a
             <h4>FILTROS</h4>
             <form method="post" novalidate="true" id="form_buscar">
                 {{ form_errors(formPersonaFilter) }}
@@ -73,27 +83,38 @@
                             {{ form_errors(formPersonaFilter.apellido) }}
                         </div>
                     </div>
-                    <div class="threecol col-lg-4">
+                    <div class="threecol col-lg-2">
                         {{ form_label(formPersonaFilter.nombre, 'NOMBRE') }}
                         {{ form_widget(formPersonaFilter.nombre) }}
                         <div class="help-block with-errors">
                             {{ form_errors(formPersonaFilter.nombre) }}
                         </div>
                     </div>                  
-                    <div class="twocol col-lg-4">
+                    <div class="twocol col-lg-2">
                         {{ form_label(formPersonaFilter.dni, 'NRO. DOCUMENTO') }}
                         {{ form_widget(formPersonaFilter.dni) }}
                         <div class="help-block with-errors">
                             {{ form_errors(formPersonaFilter.dni) }}
                         </div>
                     </div>   
-                    <div class="twocol col-lg-4">
+                    <div class="twocol col-lg-2">
                         {{ form_label(formPersonaFilter.cargo, 'CARGO') }}
                         {{ form_widget(formPersonaFilter.cargo) }}
                         <div class="help-block with-errors">
                             {{ form_errors(formPersonaFilter.cargo) }}
                         </div>
+<<<<<<< HEAD
                     </div>                          
+=======
+                    </div>      
+                    <div class="twocol col-lg-2">
+                        {{ form_label(formPersonaFilter.usuario, 'USUARIO') }}
+                        {{ form_widget(formPersonaFilter.usuario) }}
+                        <div class="help-block with-errors">
+                            {{ form_errors(formPersonaFilter.usuario) }}
+                        </div>
+                    </div>      
+>>>>>>> 89874fee56c0b45eaa8e48f62c603f4d4180f60a
                 </div>
                 <div class="col-lg-12">
                     <div class="col-lg-1">
@@ -103,6 +124,9 @@
                         {{ form_row(formPersonaFilter.reset) }}
                     </div>
                 </div>
+                    <br/>
+                    <br/>
+                    <hr/>
                 {{ form_end(formPersonaFilter) }}
             </form>
         </div>
