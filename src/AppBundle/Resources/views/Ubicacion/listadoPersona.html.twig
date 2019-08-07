@@ -50,52 +50,54 @@
         <div class="alert alert-success">
             {{ message }}
         </div>
+        <hr/>
     {% endfor %}
 
     {% for message in app.flashes('danger') %}
         <div class="alert alert-danger">
             {{ message }}
         </div>
+        <hr/>
     {% endfor %}
 
-    <hr/>
+   
 
     <div id="accordion_filtros">
 
-        <div class="row form col-lg-6" style="background:none;margin:0;">
+        <div class="row form col-lg-12" style="background:none;margin:0;">
             <h4>FILTROS</h4>
             <form method="post" novalidate="true" id="form_buscar">
                 {{ form_errors(formPersonaFilter) }}
                 <div class="row">
-                    <div class="threecol col-lg-4">
+                    <div class="threecol col-lg-2">
                         {{ form_label(formPersonaFilter.apellido, 'APELLIDO') }}
                         {{ form_widget(formPersonaFilter.apellido) }}
                         <div class="help-block with-errors">
                             {{ form_errors(formPersonaFilter.apellido) }}
                         </div>
                     </div>
-                    <div class="threecol col-lg-4">
+                    <div class="threecol col-lg-2">
                         {{ form_label(formPersonaFilter.nombre, 'NOMBRE') }}
                         {{ form_widget(formPersonaFilter.nombre) }}
                         <div class="help-block with-errors">
                             {{ form_errors(formPersonaFilter.nombre) }}
                         </div>
                     </div>                  
-                    <div class="twocol col-lg-4">
+                    <div class="twocol col-lg-2">
                         {{ form_label(formPersonaFilter.dni, 'NRO. DOCUMENTO') }}
                         {{ form_widget(formPersonaFilter.dni) }}
                         <div class="help-block with-errors">
                             {{ form_errors(formPersonaFilter.dni) }}
                         </div>
                     </div>   
-                    <div class="twocol col-lg-4">
+                    <div class="twocol col-lg-2">
                         {{ form_label(formPersonaFilter.cargo, 'CARGO') }}
                         {{ form_widget(formPersonaFilter.cargo) }}
                         <div class="help-block with-errors">
                             {{ form_errors(formPersonaFilter.cargo) }}
                         </div>
                     </div>      
-                    <div class="twocol col-lg-4">
+                    <div class="twocol col-lg-2">
                         {{ form_label(formPersonaFilter.usuario, 'USUARIO') }}
                         {{ form_widget(formPersonaFilter.usuario) }}
                         <div class="help-block with-errors">
@@ -103,15 +105,17 @@
                         </div>
                     </div>      
                 </div>
-                <hr/>
                 <div class="col-lg-12">
-                    <div class="col-lg-2">
+                    <div class="col-lg-1">
                         {{ form_row(formPersonaFilter.filter) }}
                     </div>
-                    <div class="col-lg-2">
+                    <div class="col-lg-1">
                         {{ form_row(formPersonaFilter.reset) }}
                     </div>
                 </div>
+                    <br/>
+                    <br/>
+                    <hr/>
                 {{ form_end(formPersonaFilter) }}
 
             </form>
