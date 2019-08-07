@@ -8,6 +8,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Entity\Dependencia;
 use AppBundle\Entity\MesaEntrada;
 use AppBundle\Form\DependenciaType;
+use AppBundle\Form\DependenciaFilterType;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 
 class DependenciaController extends Controller {
@@ -48,26 +50,64 @@ class DependenciaController extends Controller {
     }
     
     
-      /**
-     * @Route("dependencia/listado", name="listado_dependencia")
-     */
-    public function listaDependenciasAction(Request $request) {
-
+    /**
+    * @Route("dependencia/listado/{currentPage}", name="listado_dependencia")
+    */
+    public function listaDependenciasAction(Request $request, $currentPage) {
         $em = $this->getDoctrine()->getEntityManager();
-        $user = $this->getUser();
-        $dependencias = new Dependencia();
-
-        if ($user->getRole() == "ROLE_ADMIN") {
-            $dependencias = $em->getRepository("AppBundle:Dependencia")->findAll();
-        } else {
-            $this->redirectToRoute('homepage');
+        $limit = 15;
+        $totalItems = 0;
+        $maxPages = 0;
+        $dependencias = array();
+        
+        $formDependenciaFilter = $this->createForm(DependenciaFilterType::class);
+        $formDependenciaFilter->handleRequest($request);
+        if ($formDependenciaFilter->isSubmitted() == false && $this->get('session')->get('dependencia_listar_request')) {
+            $formDependenciaFilter->handleRequest($this->get('session')->get('dependencia_listar_request'));
         }
 
+        if ($formDependenciaFilter->isValid()) {
+            $filterBuilder = $em->getRepository('AppBundle:Dependencia')->createQueryBuilder('p');
+            $filterBuilder->addOrderBy('p.descripcion', 'ASC');
+            $filterBuilder->addOrderBy('p.dependenciaPadre', 'ASC');
+            
+            $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($formDependenciaFilter, $filterBuilder);
+            $totalItems = count($filterBuilder->getQuery()->getResult());
+            
+            $filterBuilder->setFirstResult($limit * ($currentPage - 1));
+            $filterBuilder->setMaxResults($limit);
+            
+            $paginator = new Paginator($filterBuilder, $fetchJoinCollection = true);
+            $dependencias = $paginator->getQuery()->getResult();
+            $maxPages = ceil($totalItems / $limit);
+        }
+        
+         if ($formDependenciaFilter->get('reset')->isClicked()) {
+            $this->get('session')->remove('dependencia_listar_request');
+            return $this->redirectToRoute('listado_dependencia',['currentPage'=>1]);
+         }
+        
+         if ($formDependenciaFilter->get('filter')->isClicked()) {           
+            $dependenciaListarFilterRequest = $request->request->get('dependencia_filter');
+            unset($dependenciaListarFilterRequest['filter']);
 
-        // replace this example code with whatever you need
-        return $this->render('AppBundle:Dependencia:listadoDependencia.html.twig', [
-                    'dependencias' => $dependencias
-        ]);
+            $request->request->set('dependencia_filter', $dependenciaListarFilterRequest);
+            $request->request->set('currentPage',1);
+            $this->get('session')->set('dependencia_listar_request', $request);
+            if($request->get('currentPage')>$maxPages)
+            {
+                 return $this->redirectToRoute('listado_dependencia',['currentPage'=>1]);
+            }
+        }
+        
+        return $this->render('AppBundle:Dependencia:listadoDependencia.html.twig', array(
+                    'dependencias' => $dependencias,
+                    'maxPages' => $maxPages,
+                    'totalItems' => $totalItems,
+                    'thisPage' => $currentPage,
+                    'page' => $currentPage,
+                    'formDependenciaFilter' => $formDependenciaFilter->createView()                  
+        ));
     }
 
     /**
@@ -91,7 +131,7 @@ class DependenciaController extends Controller {
 //            echo "El post no se ha borrado";
 //        }
 
-        return $this->redirectToRoute('listado_dependencia');
+        return $this->redirectToRoute('listado_dependencia',["currentPage"=>1]);
     }
     
     /**
@@ -115,7 +155,7 @@ class DependenciaController extends Controller {
 //            echo "El post no se ha borrado";
 //        }
 
-        return $this->redirectToRoute('listado_dependencia');
+        return $this->redirectToRoute('listado_dependencia',["currentPage"=>1]);
     }
     
      /**
@@ -134,7 +174,7 @@ class DependenciaController extends Controller {
                 $em->persist($dependencia);
                 $em->flush();
             
-            return $this->redirectToRoute('listado_dependencia');
+            return $this->redirectToRoute('listado_dependencia',["currentPage"=>1]);
 
         }
 

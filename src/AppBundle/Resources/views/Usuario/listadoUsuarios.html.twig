@@ -86,6 +86,27 @@
         </tbody>
     </table>
             
+    <ul class="pagination">
+        {%if (thisPage==1)%}           
+        {%else%}
+            {%set thisPage= thisPage-1%}
+        {%endif%}
+
+
+        <li ><a class="page-link" href="{{ path('listado_usuario', {"currentPage": thisPage}) }}">&laquo</a></li>
+            {% for i in 1..maxPages %}
+            <li><a class="page-link"  href="{{ path('listado_usuario', {"currentPage": i}) }}">{{ i }}</a></li>
+            {% endfor %}
+        
+        {%if (page==maxPages)%}
+
+        {%else%}
+            {%set page= page+1%}
+        {%endif%}
+        <li><a class="page-link" href="{{ path('listado_usuario', {"currentPage": page}) }}">&raquo</a></li>
+
+    </ul>
+            
     <script>
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()

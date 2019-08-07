@@ -33,7 +33,7 @@ class UsuarioController extends Controller {
                     
                     if($flush == false){
                         $this->addFlash('success', "Usuario añadido correctamente.");
-                        return $this->redirectToRoute('listado_usuario');
+                        return $this->redirectToRoute('listado_usuario',["currentPage"=>1]);
                     }else{
                         $this->addFlash('danger', "Ocurrió un error en la creacion del usuario.");
                     }
@@ -102,16 +102,19 @@ class UsuarioController extends Controller {
     }
 
     /**
-     * @Route("usuario/listado", name="listado_usuario")
+     * @Route("usuario/listado/{currentPage}", name="listado_usuario")
      */
-    public function listaUsuarioAction(Request $request) {
+    public function listaUsuarioAction(Request $request, $currentPage) {
 
         $em = $this->getDoctrine()->getEntityManager();
+        $limit = 15;
         $user = $this->getUser();
         $usuario = new Usuario();
 
         if ($user->getRole() == "ROLE_ADMIN") {
-            $usuario = $em->getRepository("AppBundle:Usuario")->findAll();
+            $usuario = $em->getRepository("AppBundle:Usuario")->getAllPers($currentPage, $limit);
+            $totalItems=count($usuario);
+            $maxPages = ceil($totalItems/$limit);
         }
 //        else {
 //            $usuario = $em->getRepository("AppBundle:Usuario")->findBy([
@@ -120,7 +123,11 @@ class UsuarioController extends Controller {
 //        }
         // replace this example code with whatever you need
         return $this->render('AppBundle:Usuario:listadoUsuarios.html.twig', [
-                    'usuario' => $usuario
+                    'usuario' => $usuario,
+                    'maxPages'=>$maxPages,
+                    'totalItems'=>$totalItems,
+                    'thisPage' => $currentPage,
+                    'page' => $currentPage
         ]);
     }
 
@@ -146,7 +153,7 @@ class UsuarioController extends Controller {
 //            echo "El post no se ha borrado";
 //        }
 
-        return $this->redirectToRoute('lista_usuario');
+        return $this->redirectToRoute('lista_usuario',["currentPage"=>1]);
     }
 
 }

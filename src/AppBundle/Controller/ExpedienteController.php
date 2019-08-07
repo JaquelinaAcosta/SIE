@@ -44,7 +44,7 @@ class ExpedienteController extends Controller {
                 $em->flush();
             }
 
-            return $this->redirectToRoute('listado_expediente');
+            return $this->redirectToRoute('listado_expediente', ["currentPage"=>1]);
         }
 
 
@@ -54,18 +54,21 @@ class ExpedienteController extends Controller {
                     'accion' => 'Nuevo'
         ]);
     }
-
+    
     /**
-     * @Route("expediente/listado", name="listado_expediente")
+     * @Route("expediente/listado/{currentPage}", name="listado_expediente")
      */
-    public function listaExpedientesAction(Request $request) {
+    public function listaExpedientesAction(Request $request, $currentPage ) {
 
         $em = $this->getDoctrine()->getEntityManager();
+        $limit = 15;
         $user = $this->getUser();
         $expediente = new Expediente();
 
         if ($user->getRole() == "ROLE_ADMIN") {
-            $expediente = $em->getRepository("AppBundle:Expediente")->findAll();
+            $expediente = $em->getRepository("AppBundle:Expediente")->getAllPers($currentPage, $limit);
+            $totalItems=count($expediente);
+            $maxPages = ceil($totalItems/$limit);
         } else {
             $expediente = $em->getRepository("AppBundle:Expediente")->findBy([
                 'iniciadorDependencia' => $user->getPersona()->getDependencia()
@@ -75,7 +78,11 @@ class ExpedienteController extends Controller {
 
         // replace this example code with whatever you need
         return $this->render('AppBundle:Expediente:listadoExpediente.html.twig', [
-                    'expediente' => $expediente
+                    'expediente' => $expediente,
+                    'maxPages'=>$maxPages,
+                    'totalItems'=>$totalItems,
+                    'thisPage' => $currentPage,
+                    'page' => $currentPage,
         ]);
     }
 
@@ -118,13 +125,14 @@ class ExpedienteController extends Controller {
         $em->remove($expediente);
         $flush = $em->flush();
 
-//        if ($flush == null) {
-//            echo "Post se ha borrado correctamente";
-//        } else {
-//            echo "El post no se ha borrado";
-//        }
+        if($flush == false){
+            $this->addFlash('success', "Expediente Número ".$expediente->getNroExpediente()." borrado correctamente.");
+            return $this->redirectToRoute('listado_expediente',["currentPage"=>1]);
+        }else{
+            $this->addFlash('danger', "Ocurrió un error al querer borrar lugar.");
+            }
 
-        return $this->redirectToRoute('listado_expediente');
+        return $this->redirectToRoute('listado_expediente',["currentPage"=>1]);
     }
 
     /**
@@ -174,7 +182,7 @@ class ExpedienteController extends Controller {
                 $em->persist($expediente);
                 $em->flush();
             }
-            return $this->redirectToRoute('listado_expediente');
+            return $this->redirectToRoute('listado_expediente',["currentPage"=>1]);
         }
 
         // replace this example code with whatever you need
@@ -184,5 +192,5 @@ class ExpedienteController extends Controller {
                     'accion' => 'Editar'
         ));
     }
-
+ 
 }

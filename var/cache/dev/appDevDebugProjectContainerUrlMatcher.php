@@ -149,8 +149,8 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             }
 
             // listado_expediente
-            if ('/expediente/listado' === $pathinfo) {
-                return array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::listaExpedientesAction',  '_route' => 'listado_expediente',);
+            if (0 === strpos($pathinfo, '/expediente/listado') && preg_match('#^/expediente/listado/(?P<currentPage>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'listado_expediente']), array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::listaExpedientesAction',));
             }
 
             // ver_expediente
@@ -319,8 +319,8 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             }
 
             // listado_dependencia
-            if ('/dependencia/listado' === $pathinfo) {
-                return array (  '_controller' => 'AppBundle\\Controller\\DependenciaController::listaDependenciasAction',  '_route' => 'listado_dependencia',);
+            if (0 === strpos($pathinfo, '/dependencia/listado') && preg_match('#^/dependencia/listado/(?P<currentPage>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'listado_dependencia']), array (  '_controller' => 'AppBundle\\Controller\\DependenciaController::listaDependenciasAction',));
             }
 
             // editar_dependencia
@@ -347,8 +347,8 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             }
 
             // listado_lugarfisico
-            if ('/lugar_fisico/listado' === $pathinfo) {
-                return array (  '_controller' => 'AppBundle\\Controller\\LugarFisicoController::listaLugarFisicoAction',  '_route' => 'listado_lugarfisico',);
+            if (0 === strpos($pathinfo, '/lugar_fisico/listado') && preg_match('#^/lugar_fisico/listado/(?P<currentPage>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'listado_lugarfisico']), array (  '_controller' => 'AppBundle\\Controller\\LugarFisicoController::listaLugarFisicoAction',));
             }
 
         }
@@ -418,8 +418,8 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             }
 
             // listado_usuario
-            if ('/usuario/listado' === $pathinfo) {
-                return array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::listaUsuarioAction',  '_route' => 'listado_usuario',);
+            if (0 === strpos($pathinfo, '/usuario/listado') && preg_match('#^/usuario/listado/(?P<currentPage>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'listado_usuario']), array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::listaUsuarioAction',));
             }
 
             // eliminar_usuario

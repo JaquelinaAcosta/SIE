@@ -604,6 +604,6 @@ class __TwigTemplate_1589bfab07a73fbe8e84db8dd0881de74672307661fe2cbf0f708219792
     </script>
 
     <hr/>
-{% endblock %}", "AppBundle:Ubicacion:listadoPersona.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/Ubicacion/listadoPersona.html.twig");
+{% endblock %}", "AppBundle:Ubicacion:listadoPersona.html.twig", "/var/www/html/gitSIE/src/AppBundle/Resources/views/Ubicacion/listadoPersona.html.twig");
     }
 }

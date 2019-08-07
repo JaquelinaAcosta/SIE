@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Repository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * ExpedienteRepository
@@ -10,4 +11,23 @@ namespace AppBundle\Repository;
  */
 class ExpedienteRepository extends \Doctrine\ORM\EntityRepository
 {
+    
+     public function getAllPers($currentPage = 1, $limit = 15)
+    {
+          
+        $em = $this->getEntityManager();
+        
+        $dql= "SELECT e FROM AppBundle\Entity\Expediente e ORDER BY e.id";
+
+        $query = $em->createQuery($dql)
+                ->setFirstResult($limit*($currentPage-1))
+                ->setMaxResults($limit);
+
+
+        $paginator = new Paginator($query, $fetchJoinCollection=true);
+
+        return $paginator;
+    }
+    
+    
 }

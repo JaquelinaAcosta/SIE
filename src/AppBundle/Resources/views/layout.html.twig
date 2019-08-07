@@ -139,7 +139,7 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">EXPEDIENTE <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="{{ path("listado_expediente") }}">LISTADO</a></li>
+                                        <li><a href="{{ path("listado_expediente",{'currentPage':1}) }}">LISTADO</a></li>
                                         <li role="separator" class="divider"></li>
                                         <li><a href="{{ path("nuevo_expediente") }}">NUEVO EXPEDIENTE</a></li>
                                             {#  <li role="separator" class="divider"></li>
@@ -153,7 +153,7 @@
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">DEPENDENCIA <span class="caret"></span></a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="{{ path("listado_dependencia") }}">LISTADO</a></li>
+                                            <li><a href="{{ path("listado_dependencia",{'currentPage':1}) }}">LISTADO</a></li>
                                             <li role="separator" class="divider"></li>
                                             <li><a href="{{ path("nueva_dependencia") }}">NUEVA DEPENDENCIA</a></li>
                                                 {#  <li role="separator" class="divider"></li>
@@ -177,7 +177,7 @@
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">USUARIOS <span class="caret"></span></a>
                                         <ul class="dropdown-menu">
-                                            <li><a href="{{ path("listado_usuario") }}">LISTADO</a></li>
+                                            <li><a href="{{ path("listado_usuario",{'currentPage':1}) }}">LISTADO</a></li>
                                             <li role="separator" class="divider"></li>
                                             <li><a href="{{ path("nuevo_usuario") }}">NUEVO USUARIO</a></li>
                                                 {#  <li role="separator" class="divider"></li>
@@ -191,7 +191,7 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">LUGAR FSICO <span class="caret"></span></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="{{ path("listado_lugarfisico") }}">LISTADO</a></li>
+                                        <li><a href="{{ path("listado_lugarfisico",{'currentPage':1}) }}">LISTADO</a></li>
                                         <li role="separator" class="divider"></li>
                                         <li><a href="{{ path("nuevo_lugarfisico") }}">NUEVO LUGAR FISICO</a></li>
                                             {#  <li role="separator" class="divider"></li>

@@ -89,7 +89,7 @@ class Form implements \IteratorAggregate, FormInterface
     private $submitted = false;
 
     /**
-     * @var ClickableInterface|null The button that was used to submit the form
+     * @var FormInterface|ClickableInterface|null The button that was used to submit the form
      */
     private $clickedButton;
 
@@ -140,9 +140,9 @@ class Form implements \IteratorAggregate, FormInterface
     private $lockSetData = false;
 
     /**
-     * @var string|int|null
+     * @var string
      */
-    private $name;
+    private $name = '';
 
     /**
      * @var bool Whether the form inherits its underlying data from its parent
@@ -211,7 +211,7 @@ class Form implements \IteratorAggregate, FormInterface
             return $this->propertyPath;
         }
 
-        if (null === $this->name || '' === $this->name) {
+        if ('' === $this->name) {
             return null;
         }
 
@@ -749,7 +749,7 @@ class Form implements \IteratorAggregate, FormInterface
     /**
      * Returns the button that was used to submit the form.
      *
-     * @return ClickableInterface|null
+     * @return FormInterface|ClickableInterface|null
      */
     public function getClickedButton()
     {

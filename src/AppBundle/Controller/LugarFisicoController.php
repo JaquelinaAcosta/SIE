@@ -37,7 +37,7 @@ class LugarFisicoController extends Controller {
             } else {
                 $this->addFlash('danger', "Ocurrió un error en la creacion del lugar.");
             }
-             return $this->redirectToRoute('listado_lugarfisico');
+             return $this->redirectToRoute('listado_lugarfisico',["currentPage"=>1]);
         }
 
        
@@ -74,7 +74,7 @@ class LugarFisicoController extends Controller {
             } else {
                 $this->addFlash('danger', "Ocurrió un error en la edición del lugar.");
             }
-            return $this->redirectToRoute('listado_lugarfisico');
+            return $this->redirectToRoute('listado_lugarfisico',["currentPage"=>1]);
         }
          // replace this example code with whatever you need
         return $this->render('AppBundle:Ubicacion:lugarFisico.html.twig', array(
@@ -91,36 +91,41 @@ class LugarFisicoController extends Controller {
         $em = $this->getDoctrine()->getEntityManager();
         $lugarfisico = $em->getRepository("AppBundle:LugarFisico")->find($id);
 
-
         $form = $this->createForm(LugarFisicoType::class, $lugarfisico);
-
         $form->handleRequest($request);
-
-        if ($form->isSubmitted()) {
-
-            $em->remove($lugarfisico);
-            $flush = $em->flush();
-             if ($flush == false) {
-                $this->addFlash('success', "Lugar borrado correctamente.");
-            } else {
-                $this->addFlash('danger', "Ocurrió un error al querer borrar lugar.");
-            }
+        
+        if (!$lugarfisico) {
+            throw $this->createNotFoundException('No element found for id ' . $id);
         }
-        return $this->redirectToRoute('listado_lugarfisico');
+
+        $em->remove($lugarfisico);
+        $flush = $em->flush();
+        
+        if($flush == false){
+            $this->addFlash('success', "Lugar borrado correctamente.");
+            return $this->redirectToRoute('listado_lugarfisico', ["currentPage"=>1]);
+        }else{
+            $this->addFlash('danger', "Ocurrió un error al querer borrar lugar.");
+            }
+
+        return $this->redirectToRoute('listado_lugarfisico',["currentPage"=>1]);
         // replace this example code with whatever you need    
     }
-
+    
     /**
-     * @Route("/lugar_fisico/listado", name="listado_lugarfisico")
+     * @Route("/lugar_fisico/listado/{currentPage}", name="listado_lugarfisico")
      */
-    public function listaLugarFisicoAction(Request $request) {
+    public function listaLugarFisicoAction(Request $request, $currentPage) {
 
         $em = $this->getDoctrine()->getEntityManager();
+        $limit=15;
         $user = $this->getUser();
         $lugares = new LugarFisico();
 
         if ($user->getRole() == "ROLE_ADMIN") {
-            $lugares = $em->getRepository("AppBundle:LugarFisico")->findAll();
+            $lugares = $em->getRepository("AppBundle:LugarFisico")->getAllPers($currentPage,$limit);
+            $totalItems=count($lugares);
+            $maxPages = ceil($totalItems/$limit);
         } else {
             $lugares = $em->getRepository("AppBundle:LugarFisico")->findBy(['dependencia' => $user->getPersona()->getDependencia()->getId()]);
         }
@@ -128,7 +133,11 @@ class LugarFisicoController extends Controller {
 
         // replace this example code with whatever you need
         return $this->render('AppBundle:Ubicacion:listadoLugarFisico.html.twig', [
-                    'lugaresfisicos' => $lugares
+                    'lugaresfisicos' => $lugares, 
+                    'maxPages'=>$maxPages,
+                    'totalItems'=>$totalItems,
+                    'thisPage' => $currentPage,
+                    'page' => $currentPage,
         ]);
     }
 
