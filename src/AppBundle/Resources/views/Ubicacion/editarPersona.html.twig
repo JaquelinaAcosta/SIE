@@ -14,17 +14,15 @@
 
     </style>
 
-
-
-
     <div class="col-lg-10" style="padding-left:  300px; padding-top:  50px">
         <div class="list-group col-lg-11 col-md-offset-1">
             <div class="expediente col-lg-10 panel panel-primary"  style="padding: 10px">
                 <div class="panel-heading" style="font-size:18px;">
-                    Modificar datos
+                    <i clas="fas fa-edit"></i> MODIFICAR DATOS
                 </div>
                 <br/>
                 {{form_start(form,{'action':'','method':'POST'})}}
+                {{ form_errors(form) }}
                 <div class="col-lg-14">
                     {% if form.dependencia is defined %}
                         <label class="text-default">Dependencia:</label>

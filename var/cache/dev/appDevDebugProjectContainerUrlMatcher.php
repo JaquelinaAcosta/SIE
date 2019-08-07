@@ -128,6 +128,16 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                 return $this->mergeDefaults(array_replace($matches, ['_route' => 'listado_caratula']), array (  '_controller' => 'AppBundle\\Controller\\CaratulaAgregadaController::listaMovimientoAction',));
             }
 
+            // expediente_search
+            if ('/expediente_search' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::searchExpedienteAction',  '_route' => 'expediente_search',);
+            }
+
+            // expediente_get
+            if (0 === strpos($pathinfo, '/expediente_get') && preg_match('#^/expediente_get(?:(?P<id>[^/]++))?$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'expediente_get']), array (  'id' => NULL,  '_controller' => 'AppBundle\\Controller\\DefaultController::getExpedienteAction',));
+            }
+
             // nuevo_expediente_asociado
             if (preg_match('#^/expediente/(?P<id>[^/]++)/add/expediente_asociado/?$#sD', $pathinfo, $matches)) {
                 $ret = $this->mergeDefaults(array_replace($matches, ['_route' => 'nuevo_expediente_asociado']), array (  '_controller' => 'AppBundle\\Controller\\ExpedienteAsociadoController::nuevoAction',));
@@ -418,8 +428,8 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             }
 
             // listado_usuario
-            if (0 === strpos($pathinfo, '/usuario/listado') && preg_match('#^/usuario/listado/(?P<currentPage>[^/]++)$#sD', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, ['_route' => 'listado_usuario']), array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::listaUsuarioAction',));
+            if ('/usuario/listado' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::listaUsuarioAction',  '_route' => 'listado_usuario',);
             }
 
             // eliminar_usuario

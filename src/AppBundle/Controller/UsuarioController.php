@@ -33,7 +33,7 @@ class UsuarioController extends Controller {
                     
                     if($flush == false){
                         $this->addFlash('success', "Usuario añadido correctamente.");
-                        return $this->redirectToRoute('listado_usuario',["currentPage"=>1]);
+                        return $this->redirectToRoute('listado_usuario');
                     }else{
                         $this->addFlash('danger', "Ocurrió un error en la creacion del usuario.");
                     }
@@ -60,6 +60,8 @@ class UsuarioController extends Controller {
         $usuarioActual = $this->getUser();
         $em = $this->getDoctrine()->getEntityManager();
         $usuario = $em->getRepository("AppBundle:Usuario")->find($id);
+        $last_username = $usuario->getIup();
+        
         $usuario->setContrasenia($usuario->getSavedPassword());
         if ($usuarioActual->getRole() == 'ROLE_ADMIN') {
             $form = $this->createForm(UsuarioType::class, $usuario, ['contrasenia' => true, 'role' => 'su']);
@@ -72,8 +74,9 @@ class UsuarioController extends Controller {
 
 
        if ($form->isSubmitted() and $form->isValid()) {
-            if (count($em->getRepository("AppBundle:Usuario")->findBy(['iup' => $form['iup']->getData()])) == 0) {
-
+            if (count($em->getRepository("AppBundle:Usuario")
+                    ->findBy(['iup' => $form['iup']->getData()])) == 0
+                    or $form['iup']->getData() == $last_username) {
                     $factory = $this->get("security.encoder_factory");
                     $encoder = $factory->getEncoder($usuario);
                     $password = $encoder->encodePassword($usuario->getContrasenia(), $usuario->getSalt());
@@ -102,19 +105,16 @@ class UsuarioController extends Controller {
     }
 
     /**
-     * @Route("usuario/listado/{currentPage}", name="listado_usuario")
+     * @Route("usuario/listado", name="listado_usuario")
      */
-    public function listaUsuarioAction(Request $request, $currentPage) {
+    public function listaUsuarioAction(Request $request) {
 
         $em = $this->getDoctrine()->getEntityManager();
-        $limit = 15;
         $user = $this->getUser();
         $usuario = new Usuario();
 
         if ($user->getRole() == "ROLE_ADMIN") {
-            $usuario = $em->getRepository("AppBundle:Usuario")->getAllPers($currentPage, $limit);
-            $totalItems=count($usuario);
-            $maxPages = ceil($totalItems/$limit);
+            $usuario = $em->getRepository("AppBundle:Usuario")->findAll();
         }
 //        else {
 //            $usuario = $em->getRepository("AppBundle:Usuario")->findBy([
@@ -123,11 +123,7 @@ class UsuarioController extends Controller {
 //        }
         // replace this example code with whatever you need
         return $this->render('AppBundle:Usuario:listadoUsuarios.html.twig', [
-                    'usuario' => $usuario,
-                    'maxPages'=>$maxPages,
-                    'totalItems'=>$totalItems,
-                    'thisPage' => $currentPage,
-                    'page' => $currentPage
+                    'usuario' => $usuario
         ]);
     }
 
@@ -153,7 +149,7 @@ class UsuarioController extends Controller {
 //            echo "El post no se ha borrado";
 //        }
 
-        return $this->redirectToRoute('lista_usuario',["currentPage"=>1]);
+        return $this->redirectToRoute('lista_usuario');
     }
 
 }

@@ -44,16 +44,15 @@
 
     </style>
 
-
-
-    <h4 class="text-center"><i class="fas fa-bars"></i>Movimientos - Expediente {{ expediente.nroExpediente }}</h4>
+    <h4 class="text-center"><i class="fas fa-bars"></i>Movimientos - Expediente {{ expediente.nroExpediente }}
+    <a href="{{ path('elegir_movimiento',{'id':expediente.id}) }}">Nuevo</a></h4>
     <hr/>
     <table class="table table-striped">
         <thead>
             <tr>
                 <th scope="col"></th>
                 <th scope="col">UBICACION</th>
-                <th scope="col">TIPO DE SALIDA</th>
+                <th scope="col">TIPO DE PASE</th>
                 <th scope="col">USUARIO</th>
                 <th scope="col">FECHA</th>
                 <th scope="col">ACCIONES</th>
@@ -86,8 +85,6 @@
 
         </tbody>
     </table>
-
-
 
     <script>
         $(function () {

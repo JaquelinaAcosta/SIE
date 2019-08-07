@@ -16,78 +16,74 @@ class PersonaType extends AbstractType {
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        
+
         $role = $options['role'];
         $movimento_persona = $options['movimiento_persona'];
-               
-        if($movimento_persona != null){
+
+        if ($movimento_persona != null) {
             $builder->add('nombre', 'PUGX\AutocompleterBundle\Form\Type\AutocompleteType', array(
-                    'class' => 'AppBundle:Persona',
-                    'label' => false,
-                    'required' => false,
-                    'attr' => array(
-                        'class'=>'form form-control',
-                        'placeholder' => 'Escriba parte del nombre y seleccione una opción'
-                    )
-                ));
-        }else{
-            $builder 
-                ->add('nombre', TextType::class, array(
-                    "label" => "Nombre:", "attr" => array(
-                        "class" => "form-name form-control",
-                        "placeholder" => "Escriba parte del nombre y seleccione"
-                    )
-                ))
-                ->add('apellido', TextType::class, array(
-                    "label" => "Apellido:", "attr" => array(
-                        "class" => "form-name form-control",
-                        "placeholder" => "Apellido"
-                    )
-                ))
-                ->add('dni', TextType::class, array(
-                    "label" => "DNI:", "attr" => array(
-                        "class" => "form-name form-control",
-                        "placeholder" => "Ej:40323795"
-                    )
-                ))
-                ->add('cargo', TextType::class, array(
-                    "label" => "Cargo:", "attr" => array(
-                        "class" => "form-name form-control",
-                        "placeholder" => "Cargo"
-                    )
-                ))
-                ->add('Aceptar', SubmitType::class, array("attr" => array(
-                        "class" => "form-submit btn btn-primary"
-                    )
-                ));
-            
-            if($role == null){
-             $builder->add('dependencia', EntityType::class, array(
+                'class' => 'AppBundle:Persona',
+                'label' => false,
+                'required' => false,
+                'attr' => array(
+                    'class' => 'form form-control',
+                    'placeholder' => 'Escriba parte del nombre y seleccione una opción'
+                )
+            ));
+        } else {
+            $builder
+                    ->add('nombre', TextType::class, array(
+                        "label" => "Nombre:", "attr" => array(
+                            "class" => "form-name form-control",
+                            "placeholder" => "Ingrese el nombre"
+                        )
+                    ))
+                    ->add('apellido', TextType::class, array(
+                        "label" => "Apellido:", "attr" => array(
+                            "class" => "form-name form-control",
+                            "placeholder" => "Apellido"
+                        )
+                    ))
+                    ->add('dni', TextType::class, array(
+                        "label" => "DNI:", "attr" => array(
+                            "class" => "form-name form-control",
+                            "placeholder" => "Ej:40323795"
+                        )
+                    ))
+                    ->add('cargo', TextType::class, array(
+                        "label" => "Cargo:", "attr" => array(
+                            "class" => "form-name form-control",
+                            "placeholder" => "Cargo"
+                        )
+                    ))
+                    ->add('Aceptar', SubmitType::class, array("attr" => array(
+                            "class" => "form-submit btn btn-primary"
+                        )
+            ));
+            if ($role != null) {
+                $builder->add('dependencia', EntityType::class, array(
                     "label" => false,
                     "placeholder" => "--Seleccione--",
                     'query_builder' => function (EntityRepository $er) {
-                                return $er->createQueryBuilder('u')
-                                    ->orderBy('u.descripcion', 'ASC');
-                            },
+                        return $er->createQueryBuilder('u')
+                                        ->where("u.archivado <> 'SI'");
+                    },
                     "class" => 'AppBundle:Dependencia', "attr" => array(
                         "class" => "form-control"
                     ))
                 );
-         }
+            }
         }
-        
-        
     }
 
-/**
+    /**
      * {@inheritdoc}
      */
-
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\Persona',
-            'role'=>null,
-            'movimiento_persona'=>null
+            'role' => null,
+            'movimiento_persona' => null
         ));
     }
 

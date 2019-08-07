@@ -174,7 +174,7 @@ class __TwigTemplate_f00a9fe82af130be4151094a955578bdb99db76fa1545477496e9c6c74b
                 </a>
                 <a href=\"";
         // line 110
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_expediente");
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_expediente", ["currentPage" => 1]);
         echo "\" class=\"list\"> 
                     <div class=\"content\">
                         <img src=\"";
@@ -333,7 +333,7 @@ class __TwigTemplate_f00a9fe82af130be4151094a955578bdb99db76fa1545477496e9c6c74b
                         <p>Al seleccionar esta opción, podrá buscar expedientes con filtros específicos y eventualmente, podrá realizar acciones en ellos.</p>   
                     </div>
                 </a>
-                <a href=\"{{ path(\"listado_expediente\") }}\" class=\"list\"> 
+                <a href=\"{{ path(\"listado_expediente\",{'currentPage':1}) }}\" class=\"list\"> 
                     <div class=\"content\">
                         <img src=\"{{ asset(\"Icons/list.png\") }}\" width=\"170\"/>
                         <h4><strong>HISTORIAL DE EXPEDIENTES</strong></h4>

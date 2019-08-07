@@ -49,12 +49,7 @@ class Ubicacion
     * @ORM\OneToMany(targetEntity="Responsable",mappedBy="ubicacion",cascade={"persist"})
     */
     private $responsables;
-       
-     /**
-     * @Assert\Type(type="App\Entity\Usuario")
-     * @Assert\Valid
-     */
-    protected $usuario;
+
 
 
     public function getUsuario()
