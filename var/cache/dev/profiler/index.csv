@@ -967,3 +967,14 @@ f56435,127.0.0.1,POST,http://localhost/gitSIE/web/app_dev.php/usuario/listado/1,
 0e20b8,127.0.0.1,POST,http://localhost/gitSIE/web/app_dev.php/usuario/listado/1,1565273944,,200
 83a510,127.0.0.1,POST,http://localhost/gitSIE/web/app_dev.php/usuario/listado/1,1565273990,,200
 >>>>>>> 9e124f7ff261b7917292dd988cf562bcfb0893f6
+77e80a,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/expediente/listado/1,1565279332,,200
+468978,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/add/expediente,1565279356,,200
+732fb2,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/expediente/listado/1,1565279364,,200
+a0f791,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/dependencia/add,1565279379,,200
+6acc3c,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/dependencia/listado/1,1565279384,,200
+733e03,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/add/expediente,1565279434,,200
+1df041,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/expediente/listado/1,1565279436,,200
+3d1398,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/expediente/view/6,1565279441,,200
+107563,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/expediente/listado/1,1565279471,,200
+b64a27,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/expediente/view/6,1565279474,,200
+093f5b,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/lugar_fisico/listado/1,1565279493,,200
