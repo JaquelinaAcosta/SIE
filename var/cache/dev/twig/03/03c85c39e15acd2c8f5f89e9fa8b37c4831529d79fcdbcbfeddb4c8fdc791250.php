@@ -64,6 +64,10 @@ class __TwigTemplate_a494408fa7fb31f6166bfc71045deb46d2a571ef41e6e1510a9b13699c0
     public function getSourceContext()
     {
         return new Source("<svg width=\"1792\" height=\"1792\" viewBox=\"0 0 1792 1792\" xmlns=\"http://www.w3.org/2000/svg\"><path fill=\"#FFF\" d=\"M1363 877l-742 742q-19 19-45 19t-45-19l-166-166q-19-19-19-45t19-45l531-531-531-531q-19-19-19-45t19-45L531 45q19-19 45-19t45 19l742 742q19 19 19 45t-19 45z\"/></svg>
+<<<<<<< HEAD
 ", "@Twig/images/chevron-right.svg", "/var/www/html/SIE/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/views/images/chevron-right.svg");
+=======
+", "@Twig/images/chevron-right.svg", "/var/www/html/gitSIE/vendor/symfony/symfony/src/Symfony/Bundle/TwigBundle/Resources/views/images/chevron-right.svg");
+>>>>>>> 9e124f7ff261b7917292dd988cf562bcfb0893f6
     }
 }
