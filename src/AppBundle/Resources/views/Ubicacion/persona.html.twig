@@ -1,176 +1,54 @@
 {% extends "AppBundle::layout.html.twig" %}
 
 {% block content %}
+
     <style>
         input[type=text]{
             margin-bottom: 10px;
             padding:10px;            
         }
         input[type=submit]{
-            margin-bottom: 10px;           
+            margin-bottom: 10px;
+            padding:10px;            
         }
-        .expediente{
-            margin-right: 12px;
-            padding:15px;
-        }
-        .expediente p{
-            margin-top:10px;
-        }
-        .titulo{
-            height: 30px;
-            padding:7px;
-            background-color:black;
-            color: #fff;
-        }
-        .panel{
-            font-size: 15px; 
-            margin-bottom: 20px;
-            margin-right: 20px;
-        }
-        .form-exp{
-            font-size:15px;
-            padding:10px;
-        }
-        .title{
-            font-size:16px;
-        }
-        p {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 200px;
-        }
+
     </style>
 
-
-
-    <h4 class="text-center"><i class="fas fa-bars"></i> Lista de Personas <a href="{{ path('nueva_persona') }}" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Nueva Persona"><i class="fas fa-plus"></i></a></h4>
-    <hr/>
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success">
-            {{ message }}
-        </div>
-    {% endfor %}
-
-    {% for message in app.flashes('danger') %}
-        <div class="alert alert-danger">
-            {{ message }}
-        </div>
-    {% endfor %}
-
-
-    <div id="accordion_filtros">
-
-        <div class="row form col-lg-10" style="background:none;margin:0;">
-            <h4>FILTROS</h4>
-            <form method="post" novalidate="true" id="form_buscar">
-                {{ form_errors(formPersonaFilter) }}
-                <div class="row">
-                    <div class="threecol col-lg-2">
-                        {{ form_label(formPersonaFilter.apellido, 'APELLIDO') }}
-                        {{ form_widget(formPersonaFilter.apellido) }}
-                        <div class="help-block with-errors">
-                            {{ form_errors(formPersonaFilter.apellido) }}
-                        </div>
-                    </div>
-                    <div class="threecol col-lg-4">
-                        {{ form_label(formPersonaFilter.nombre, 'NOMBRE') }}
-                        {{ form_widget(formPersonaFilter.nombre) }}
-                        <div class="help-block with-errors">
-                            {{ form_errors(formPersonaFilter.nombre) }}
-                        </div>
-                    </div>                  
-                    <div class="twocol col-lg-4">
-                        {{ form_label(formPersonaFilter.dni, 'NRO. DOCUMENTO') }}
-                        {{ form_widget(formPersonaFilter.dni) }}
-                        <div class="help-block with-errors">
-                            {{ form_errors(formPersonaFilter.dni) }}
-                        </div>
-                    </div>   
-                    <div class="twocol col-lg-4">
-                        {{ form_label(formPersonaFilter.cargo, 'CARGO') }}
-                        {{ form_widget(formPersonaFilter.cargo) }}
-                        <div class="help-block with-errors">
-                            {{ form_errors(formPersonaFilter.cargo) }}
-                        </div>
-                    </div>                          
+    <div class="col-lg-10" style="padding-left:  300px; padding-top:  50px">
+        <div class="list-group col-lg-11 col-md-offset-1">
+            <div class="expediente col-lg-10 panel panel-primary"  style="padding: 10px">
+                <div class="panel-heading" style="font-size:18px;">
+                    <i clas="fas fa-edit"></i> ALTA DE PERSONA
                 </div>
-                <div class="col-lg-12">
-                    <div class="col-lg-1">
-                        {{ form_row(formPersonaFilter.filter) }}
-                    </div>
-                    <div class="col-lg-1">
-                        {{ form_row(formPersonaFilter.reset) }}
-                    </div>
+                <br/>
+                {{form_start(form,{'action':'','method':'POST'})}}
+                {{ form_errors(form) }}
+                <div class="col-lg-14">
+                    {% if form.dependencia is defined %}
+                        <label class="text-default">Dependencia:</label>
+                        {{ form_errors(form.dependencia) }}
+                        {{ form_widget(form.dependencia) }}
+                    {% endif %}
+
+                    <label class="text-default">Nombre:</label>
+                    {{ form_errors(form.nombre) }}
+                    {{ form_widget(form.nombre) }}
+                    <label class="text-default">Apellido:</label>
+                    {{ form_errors(form.apellido) }}
+                    {{ form_widget(form.apellido) }}
+                    <label class="text-default">DNI:</label>
+                    {{ form_errors(form.dni) }}
+                    {{ form_widget(form.dni) }}
+                    <label class="text-default">Cargo:</label>
+                    {{ form_errors(form.cargo) }}
+                    {{ form_widget(form.cargo) }}
+
+                    {{ form_widget(form.Aceptar) }}
+                    <a class="btn btn-default" onclick="history.back()"  role="button">Volver</a>
+
+                    {{form_end(form)}}
                 </div>
-                {{ form_end(formPersonaFilter) }}
-            </form>
+            </div>
         </div>
     </div>
-
-    <hr/>
-    
-    {% if persona|length >0 %}
-    <table class="table table-striped">
-        <thead class="">
-            <tr>
-                <th scope="col">APELLIDO</th>
-                <th scope="col">NOMBRE</th>
-                <th scope="col">DNI</th>
-                <th scope="col">CARGO</th>
-                      <th scope="col">DEPENDENCIA</th>
-                <th scope="col">ACCIONES</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for persona in persona %}
-                <tr>
-                    <td class="text-default">{{persona.apellido|e }}</td>
-                    <td class="text-default"><p>{{persona.nombre|e }}</p></td>
-                    <td class="text-default">{{persona.dni|e }}</td>
-                    <td class="text-default">{{persona.cargo|e }}</td>
-                    <td class="text-default">{{persona.dependencia.descripcion|e }}</td>
-
-                    <td> <a class="btn btn-warning" href="{{ path("editar_persona", {'id':persona.id}) }}"  role="button"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Editar"></i></a>
-                        <a class="btn btn-danger" href="{{ path("eliminar_persona", {'id':persona.id}) }}"  role="button"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></a></td>
-                </tr>             
-            {% endfor %}
-
-
-        </tbody>
-    </table>
-     {% endif %}       
-    {% if persona|length < totalItems %}
-
-        <ul class="pagination">
-            {%if (thisPage==1)%}           
-            {%else%}
-                {%set thisPage= thisPage-1%}
-            {%endif%}
-
-
-            <li ><a class="page-link" href="{{ path('listado_persona', {"currentPage": thisPage}) }}">&laquo</a></li>
-                {% for i in 1..maxPages %}
-                <li><a class="page-link"  href="{{ path('listado_persona', {"currentPage": i}) }}">{{ i }}</a></li>
-                {% endfor %}
-
-            {%if (page==maxPages)%}
-
-            {%else%}
-                {%set page= page+1%}
-            {%endif%}
-            <li><a class="page-link" href="{{ path('listado_persona', {"currentPage": page}) }}">&raquo</a></li>
-
-        </ul>
-
-
-    {% endif %}
-
-    <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
-    </script>
-
-    <hr/>
 {% endblock %}
