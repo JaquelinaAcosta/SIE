@@ -105,29 +105,6 @@ class UsuarioController extends Controller {
                     'usuario' => $usuario,
         ));
     }
-
-//    /**
-//     * @Route("usuario/listado", name="listado_usuario")
-//     */
-//    public function listaUsuarioAction(Request $request) {
-//
-//        $em = $this->getDoctrine()->getEntityManager();
-//        $user = $this->getUser();
-//        $usuario = new Usuario();
-//
-//        if ($user->getRole() == "ROLE_ADMIN") {
-//            $usuario = $em->getRepository("AppBundle:Usuario")->findAll();
-//        }
-////        else {
-////            $usuario = $em->getRepository("AppBundle:Usuario")->findBy([
-////                'iniciadorDependencia' => $user->getPersona()->getDependencia()
-////            ]);
-////        }
-//        // replace this example code with whatever you need
-//        return $this->render('AppBundle:Usuario:listadoUsuarios.html.twig', [
-//                    'usuario' => $usuario
-//        ]);
-//    }
     
     /**
     * @Route("usuario/listado/{currentPage}", name="listado_usuario")

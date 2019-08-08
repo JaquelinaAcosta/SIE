@@ -607,6 +607,9 @@
     <service id="AppBundle\Form\ExpedienteType" class="AppBundle\Form\ExpedienteType" public="false" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
+    <service id="AppBundle\Form\LugarFisicoFilterType" class="AppBundle\Form\LugarFisicoFilterType" public="false" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
     <service id="AppBundle\Form\LugarFisicoType" class="AppBundle\Form\LugarFisicoType" public="false" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
@@ -1001,6 +1004,7 @@
         <argument>AppBundle\Form\ExpedienteAsociadoType</argument>
         <argument>AppBundle\Form\ExpedienteFilterType</argument>
         <argument>AppBundle\Form\ExpedienteType</argument>
+        <argument>AppBundle\Form\LugarFisicoFilterType</argument>
         <argument>AppBundle\Form\LugarFisicoType</argument>
         <argument>AppBundle\Form\MesaEntradaType</argument>
         <argument>AppBundle\Form\MovimientoExpedienteType</argument>
@@ -1245,7 +1249,7 @@
       <argument type="service" id="form.resolved_type_factory"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id="service_locator.tmzh7uq"/>
+      <argument type="service" id="service_locator.gffmzdp"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="lexik_form_filter.type_extension.filter_extension"/>
@@ -4476,6 +4480,8 @@
     <service id="abstract.instanceof.AppBundle\Form\ExpedienteFilterType" class="AppBundle\Form\ExpedienteFilterType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\ExpedienteType" class="AppBundle\Form\ExpedienteType" public="false" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Form\ExpedienteType" class="AppBundle\Form\ExpedienteType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\LugarFisicoFilterType" class="AppBundle\Form\LugarFisicoFilterType" public="false" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.AppBundle\Form\LugarFisicoFilterType" class="AppBundle\Form\LugarFisicoFilterType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\LugarFisicoType" class="AppBundle\Form\LugarFisicoType" public="false" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Form\LugarFisicoType" class="AppBundle\Form\LugarFisicoType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\MesaEntradaType" class="AppBundle\Form\MesaEntradaType" public="false" autowire="true" abstract="true"/>
@@ -4519,7 +4525,7 @@
         <argument key="inline" type="service" id="fragment.renderer.inline"/>
       </argument>
     </service>
-    <service id="service_locator.tmzh7uq" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id="service_locator.gffmzdp" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="Lexik\Bundle\FormFilterBundle\Filter\Form\Type\BooleanFilterType" type="service" id="lexik_form_filter.type.filter_boolean"/>
@@ -4543,6 +4549,7 @@
         <argument key="AppBundle\Form\ExpedienteAsociadoType" type="service" id="AppBundle\Form\ExpedienteAsociadoType"/>
         <argument key="AppBundle\Form\ExpedienteFilterType" type="service" id="AppBundle\Form\ExpedienteFilterType"/>
         <argument key="AppBundle\Form\ExpedienteType" type="service" id="AppBundle\Form\ExpedienteType"/>
+        <argument key="AppBundle\Form\LugarFisicoFilterType" type="service" id="AppBundle\Form\LugarFisicoFilterType"/>
         <argument key="AppBundle\Form\LugarFisicoType" type="service" id="AppBundle\Form\LugarFisicoType"/>
         <argument key="AppBundle\Form\MesaEntradaType" type="service" id="AppBundle\Form\MesaEntradaType"/>
         <argument key="AppBundle\Form\MovimientoExpedienteType" type="service" id="AppBundle\Form\MovimientoExpedienteType"/>
