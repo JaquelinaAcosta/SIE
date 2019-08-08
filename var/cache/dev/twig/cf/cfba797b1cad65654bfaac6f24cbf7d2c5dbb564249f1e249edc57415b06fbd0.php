@@ -22,7 +22,6 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
         $this->blocks = [
             'title' => [$this, 'block_title'],
-            'menu' => [$this, 'block_menu'],
             'content' => [$this, 'block_content'],
         ];
     }
@@ -47,56 +46,58 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         $this->displayBlock('title', $context, $blocks);
         echo "           
         </title>
+
+        <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\">
+        <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js\"></script>
+        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js\"></script>
+        <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js\"></script>
+
         <script src=\"https://code.jquery.com/jquery-1.12.4.js\"
                 integrity=\"sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=\"
         crossorigin=\"anonymous\"></script>
+
         <link href=\"https://use.fontawesome.com/releases/v5.0.6/css/all.css\" rel=\"stylesheet\">\t
-        <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js\"></script>
-        <link href=\"https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css\" rel=\"stylesheet\">
-        <script src=\"//code.jquery.com/jquery-3.3.1.min.js\"></script>
+        ";
+        // line 22
+        echo "        <script src=\"//code.jquery.com/jquery-3.3.1.min.js\"></script>
         <script src=\"//code.jquery.com/ui/1.12.1/jquery-ui.min.js\"></script>
-      <link href=\"https://fonts.googleapis.com/css?family=Noto+Sans&display=swap\" rel=\"stylesheet\"> 
+        <link href=\"https://fonts.googleapis.com/css?family=Noto+Sans&display=swap\" rel=\"stylesheet\"> 
         <script src=\"";
-        // line 18
+        // line 25
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("bundles/pugxautocompleter/js/autocompleter-jqueryui.js"), "html", null, true);
         echo "\"></script>
         <script src=\"";
-        // line 19
+        // line 26
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("js/app.js"), "html", null, true);
         echo "\"></script>  
         <style>
             *{
-               font-family: 'Noto Sans', sans-serif;
+                font-family: 'Noto Sans', sans-serif;
+                font-size: 12px;
             }
-            .active{
-                color:grey;
-                margin-left: 10px;
-                font-size: 20px;
+            body{
+                background-color:#e8e8e8;
             }
-            .footer {
-
-                position: fixed;
-
-                bottom: 0;
-
-                width: 100%;
-
-                height: 55px;
-
-                background-color: #3e3e3e;
-
+            .content{
+                margin-left:100px;
+                margin-right:100px;
+                background-color:#fff;
+                padding:30px;
             }
-            .container{
-                background-color: #3e3e3e;
-                padding:15px;
+            .filtro{
+                background-color: #e8e8e8;
+                margin:auto;
+                padding:10px;
             }
-            .footer p{
-                text-align: center;
-                color:#fff;
+
+            table{
+                color:#616161;
             }
-            .dropdown a{
-                font-size:15px;
-            }
+
+
+            .dropdown-menu {display: block;visibility: hidden;opacity:0;transform: translateY(50px);transition:.5s ease all;}
+            .dropdown-menu.show {display: block;visibility: visible;opacity:1;transform: translateY(0px);transition:.5s ease all;}
+
         </style>
         <link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css\">
         <link rel=\"stylesheet\" href=\"/resources/demos/style.css\">
@@ -112,209 +113,157 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
             });
         </script>
     </head>
+
     <body>       
         ";
-        // line 69
+        // line 72
         if (($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []) != null)) {
-            // line 70
+            // line 73
             echo "            <header>  
-                <nav class=\"navbar navbar-sticky-top navbar-default \">
-                    <div class=\"container-fluid\">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class=\"navbar-header\">
-                            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\" aria-expanded=\"false\">
-                                <span class=\"sr-only\">Toggle navigation</span>
-                                <span class=\"icon-bar\"></span>
-                                <span class=\"icon-bar\"></span>
-                                <span class=\"icon-bar\"></span>
-                            </button>
-                            <a class=\"navbar-brand\" href=\"";
-            // line 81
-            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("homepage");
-            echo "\">Sistema de Pases de Expediente</a>
-                        </div>
+                <nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">
+                    <a class=\"navbar-brand\" href=\"#\">SIE</a>
+                    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+                        <span class=\"navbar-toggler-icon\"></span>
+                    </button>
 
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">
-                            <ul class=\"nav navbar-nav\">                        
-                                ";
-            // line 87
-            $this->displayBlock('menu', $context, $blocks);
-            // line 90
-            echo "                            </ul>
-                            <ul class=\"nav navbar-nav navbar-right\">
+                    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
+                        <ul class=\"navbar-nav mr-auto\">
+
+                            <div class=\"dropdown dropdown-menu-right\">
 
                                 ";
+            // line 85
+            if (($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []) == null)) {
+                // line 86
+                echo "                                    <li class=\"nav-item\">
+                                        <a class=\"btn btn-success nav-link\" href=\"";
+                // line 87
+                echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("loginUsuario");
+                echo "\">Iniciar Sesión<i class=\"fa fa-sign-in\"></i></a>
+                                    </li>
+                                ";
+            } else {
+                // line 90
+                echo "
+                                    <button class=\"btn btn-dark dropdown-toggle\" type=\"button\" id=\"dropdownMenuMenu\" data-toggle=\"dropdown\"
+                                            aria-haspopup=\"true\" aria-expanded=\"false\">
+                                        Bienvenido, ";
+                // line 93
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "persona", []), "nombre", []), "html", null, true);
+                echo "
+                                    </button>
+                                    <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuMenu\">
+                                        <a class=\"dropdown-item\" type=\"button\">Configuración</a>
+                                        <a class=\"dropdown-item\" href=\"";
+                // line 97
+                echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("logout");
+                echo "\" type=\"button\">Cerrar Sesión</a>
+                                    </div>
+                                ";
+            }
             // line 100
             echo "
-                                <li>
+                            </div>
+                        </ul>
 
-                                </li>
-
-                                <li class=\"dropdown\">
-                                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">";
-            // line 106
-            if (($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []) != null)) {
-                echo " <strong>Bienvenido/a</strong>, ";
-                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "persona", []), "nombre", []), "html", null, true);
-                echo " ";
-            } else {
-                echo " Iniciar Sesion ";
-            }
-            echo " <span class=\"glyphicon glyphicon-cog\"></span><span class=\"caret\"></span></a>
-                                    <ul class=\"dropdown-menu\">
-
-                                        ";
-            // line 109
-            if (($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []) == null)) {
-                // line 110
-                echo "
-                                            <li><a href=\"";
-                // line 111
-                echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("loginUsuario");
-                echo "\">Entrar</a></li>
-
-                                        ";
-            } else {
-                // line 114
-                echo "                                            <li><a href=\"#\">Opciones</a></li>
-                                            <li><a href=\"";
-                // line 115
-                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_usuario", ["id" => $this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "id", [])]), "html", null, true);
-                echo "\">Configuración de Cuenta</a></li>
-                                            <li><a href=\"";
-                // line 116
-                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_persona", ["id" => $this->getAttribute($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "persona", []), "id", [])]), "html", null, true);
-                echo "\">Configuración Personal</a></li>
-                                            <li role=\"separator\" class=\"divider\"></li>
-                                            <li><a href=\"";
-                // line 118
-                echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("logout");
-                echo "\">Salir</a></li>
-                                            ";
-            }
-            // line 120
-            echo "
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div><!-- /.navbar-collapse -->
-                    </div><!-- /.container-fluid -->
+                    </div>
                 </nav>
 
-                <nav class=\"navbar navbar-default\">
-                    <div class=\"container-fluid\">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class=\"navbar-header\">
-
-                        </div>
-
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">
-                            <ul class=\"nav navbar-nav\">
-
-                                <li class=\"dropdown\">
-                                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">EXPEDIENTE <span class=\"caret\"></span></a>
-                                    <ul class=\"dropdown-menu\">
-                                        <li><a href=\"";
-            // line 142
-            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_expediente", ["currentPage" => 1]);
-            echo "\">LISTADO</a></li>
-                                        <li role=\"separator\" class=\"divider\"></li>
-                                        <li><a href=\"";
-            // line 144
+                <nav class=\"navbar navbar-expand-lg navbar-dark bg-dark nav-bot\">
+                    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
+                        <ul class=\"navbar-nav mr-auto\">
+                            <div class=\"dropdown\">
+                                <button class=\"btn btn-dark dropdown-toggle\" type=\"button\" id=\"dropdownMenuMenu\" data-toggle=\"dropdown\"
+                                        aria-haspopup=\"true\" aria-expanded=\"false\">
+                                    EXPEDIENTES
+                                </button>
+                                <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuMenu\">
+                                    <a class=\"dropdown-item\" href=\"";
+            // line 116
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nuevo_expediente");
-            echo "\">NUEVO EXPEDIENTE</a></li>
-                                            ";
-            // line 149
-            echo "                                    </ul>
-                                </li>
-
-                                ";
-            // line 152
-            if (($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "role", []) == "ROLE_ADMIN")) {
-                // line 153
-                echo "                                    <li class=\"dropdown\">
-                                        <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">DEPENDENCIA <span class=\"caret\"></span></a>
-                                        <ul class=\"dropdown-menu\">
-                                            <li><a href=\"";
-                // line 156
-                echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_dependencia", ["currentPage" => 1]);
-                echo "\">LISTADO</a></li>
-                                            <li role=\"separator\" class=\"divider\"></li>
-                                            <li><a href=\"";
-                // line 158
-                echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nueva_dependencia");
-                echo "\">NUEVA DEPENDENCIA</a></li>
-                                                ";
-                // line 163
-                echo "                                        </ul>
-                                    </li>
-                                    <li class=\"dropdown\">
-                                        <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">PERSONA <span class=\"caret\"></span></a>
-                                        <ul class=\"dropdown-menu\">
-                                            <li><a href=\"";
-                // line 168
-                echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_persona", ["currentPage" => 1]);
-                echo "\">LISTADO</a></li>
-                                            <li role=\"separator\" class=\"divider\"></li>
-                                            <li><a href=\"";
-                // line 170
-                echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nueva_persona");
-                echo "\">NUEVA PERSONA</a></li>
-                                                ";
-                // line 175
-                echo "                                        </ul>
-                                    </li>
-                                    <li class=\"dropdown\">
-                                        <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">USUARIOS <span class=\"caret\"></span></a>
-                                        <ul class=\"dropdown-menu\">
-                                            <li><a href=\"";
-                // line 180
-                echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_usuario", ["currentPage" => 1]);
-                echo "\">LISTADO</a></li>
-                                            <li role=\"separator\" class=\"divider\"></li>
-                                            <li><a href=\"";
-                // line 182
-                echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nuevo_usuario");
-                echo "\">NUEVO USUARIO</a></li>
-                                                ";
-                // line 187
-                echo "                                        </ul>
-                                    </li>
-                                ";
-            }
-            // line 190
-            echo "
-                                <li class=\"dropdown\">
-                                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">LUGAR FÍSICO <span class=\"caret\"></span></a>
-                                    <ul class=\"dropdown-menu\">
-                                        <li><a href=\"";
-            // line 194
-            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_lugarfisico", ["currentPage" => 1]);
-            echo "\">LISTADO</a></li>
-                                        <li role=\"separator\" class=\"divider\"></li>
-                                        <li><a href=\"";
-            // line 196
+            echo "\" type=\"button\">NUEVO</a>
+                                    <a class=\"dropdown-item\" href=\"";
+            // line 117
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_expediente", ["currentPage" => 1]);
+            echo "\" type=\"button\">LISTADO</a>
+                                </div>
+                            </div>
+                            <div class=\"dropdown\">
+                                <button class=\"btn btn-dark dropdown-toggle\" type=\"button\" id=\"dropdownMenuMenu\" data-toggle=\"dropdown\"
+                                        aria-haspopup=\"true\" aria-expanded=\"false\">
+                                    DEPENDENCIAS
+                                </button>
+                                <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuMenu\">
+                                    <a class=\"dropdown-item\" href=\"";
+            // line 126
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nueva_dependencia");
+            echo "\" type=\"button\">NUEVO</a>
+                                    <a class=\"dropdown-item\" href=\"";
+            // line 127
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_dependencia", ["currentPage" => 1]);
+            echo "\" type=\"button\">LISTADO</a>
+                                </div>
+                            </div>
+                            <div class=\"dropdown\">
+                                <button class=\"btn btn-dark dropdown-toggle\" type=\"button\" id=\"dropdownMenuMenu\" data-toggle=\"dropdown\"
+                                        aria-haspopup=\"true\" aria-expanded=\"false\">
+                                    PERSONAS
+                                </button>
+                                <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuMenu\">
+                                    <a class=\"dropdown-item\" href=\"";
+            // line 136
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nueva_persona");
+            echo "\" type=\"button\">NUEVO</a>
+                                    <a class=\"dropdown-item\" href=\"";
+            // line 137
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_persona", ["currentPage" => 1]);
+            echo "\" type=\"button\">LISTADO</a>
+                                </div>
+                            </div>
+                            <div class=\"dropdown\">
+                                <button class=\"btn btn-dark dropdown-toggle\" type=\"button\" id=\"dropdownMenuMenu\" data-toggle=\"dropdown\"
+                                        aria-haspopup=\"true\" aria-expanded=\"false\">
+                                    USUARIOS
+                                </button>
+                                <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuMenu\">
+                                    <a class=\"dropdown-item\" href=\"";
+            // line 146
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nuevo_usuario");
+            echo "\" type=\"button\">NUEVO</a>
+                                    <a class=\"dropdown-item\" href=\"";
+            // line 147
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_usuario", ["currentPage" => 1]);
+            echo "\" type=\"button\">LISTADO</a>
+                                </div>
+                            </div>
+                            <div class=\"dropdown\">
+                                <button class=\"btn btn-dark dropdown-toggle\" type=\"button\" id=\"dropdownMenuMenu\" data-toggle=\"dropdown\"
+                                        aria-haspopup=\"true\" aria-expanded=\"false\">
+                                    LUGARES
+                                </button>
+                                <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuMenu\">
+                                    <a class=\"dropdown-item\" href=\"";
+            // line 156
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nuevo_lugarfisico");
-            echo "\">NUEVO LUGAR FISICO</a></li>
-                                            ";
-            // line 201
-            echo "                                    </ul>
-                                </li>
+            echo "\" type=\"button\">NUEVO</a>
+                                    <a class=\"dropdown-item\" href=\"";
+            // line 157
+            echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_lugarfisico", ["currentPage" => 1]);
+            echo "\" type=\"button\">LISTADO</a>
+                                </div>
+                            </div>
+                        </ul>
 
-                            </ul>        
-                        </div><!-- /.navbar-collapse -->
-                    </div><!-- /.container-fluid -->
+                    </div>
                 </nav>
 
             </header>
         ";
         }
-        // line 211
+        // line 167
         echo "        <section id=\"content\">             
             ";
-        // line 212
+        // line 168
         $this->displayBlock('content', $context, $blocks);
         echo "   
         </section>
@@ -350,27 +299,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     }
 
-    // line 87
-    public function block_menu($context, array $blocks = [])
-    {
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "menu"));
-
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "menu"));
-
-        echo "  
-
-                                ";
-        
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
-
-        
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->leave($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof);
-
-    }
-
-    // line 212
+    // line 168
     public function block_content($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -400,7 +329,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     public function getDebugInfo()
     {
-        return array (  374 => 212,  354 => 87,  336 => 7,  318 => 212,  315 => 211,  303 => 201,  299 => 196,  294 => 194,  288 => 190,  283 => 187,  279 => 182,  274 => 180,  267 => 175,  263 => 170,  258 => 168,  251 => 163,  247 => 158,  242 => 156,  237 => 153,  235 => 152,  230 => 149,  226 => 144,  221 => 142,  197 => 120,  192 => 118,  187 => 116,  183 => 115,  180 => 114,  174 => 111,  171 => 110,  169 => 109,  157 => 106,  149 => 100,  144 => 90,  142 => 87,  133 => 81,  120 => 70,  118 => 69,  65 => 19,  61 => 18,  47 => 7,  39 => 1,);
+        return array (  303 => 168,  285 => 7,  267 => 168,  264 => 167,  251 => 157,  247 => 156,  235 => 147,  231 => 146,  219 => 137,  215 => 136,  203 => 127,  199 => 126,  187 => 117,  183 => 116,  165 => 100,  159 => 97,  152 => 93,  147 => 90,  141 => 87,  138 => 86,  136 => 85,  122 => 73,  120 => 72,  71 => 26,  67 => 25,  62 => 22,  46 => 7,  38 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -421,50 +350,52 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         <title>            
             {% block title %}SIE{% endblock %}           
         </title>
+
+        <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\">
+        <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js\"></script>
+        <script src=\"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js\"></script>
+        <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js\"></script>
+
         <script src=\"https://code.jquery.com/jquery-1.12.4.js\"
                 integrity=\"sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=\"
         crossorigin=\"anonymous\"></script>
+
         <link href=\"https://use.fontawesome.com/releases/v5.0.6/css/all.css\" rel=\"stylesheet\">\t
-        <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js\"></script>
-        <link href=\"https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css\" rel=\"stylesheet\">
+        {#        <script src=\"https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js\"></script>
+                <link href=\"https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css\" rel=\"stylesheet\">#}
         <script src=\"//code.jquery.com/jquery-3.3.1.min.js\"></script>
         <script src=\"//code.jquery.com/ui/1.12.1/jquery-ui.min.js\"></script>
-      <link href=\"https://fonts.googleapis.com/css?family=Noto+Sans&display=swap\" rel=\"stylesheet\"> 
+        <link href=\"https://fonts.googleapis.com/css?family=Noto+Sans&display=swap\" rel=\"stylesheet\"> 
         <script src=\"{{ asset('bundles/pugxautocompleter/js/autocompleter-jqueryui.js') }}\"></script>
         <script src=\"{{ asset('js/app.js') }}\"></script>  
         <style>
             *{
-               font-family: 'Noto Sans', sans-serif;
+                font-family: 'Noto Sans', sans-serif;
+                font-size: 12px;
             }
-            .active{
-                color:grey;
-                margin-left: 10px;
-                font-size: 20px;
+            body{
+                background-color:#e8e8e8;
             }
-            .footer {
-
-                position: fixed;
-
-                bottom: 0;
-
-                width: 100%;
-
-                height: 55px;
-
-                background-color: #3e3e3e;
-
+            .content{
+                margin-left:100px;
+                margin-right:100px;
+                background-color:#fff;
+                padding:30px;
             }
-            .container{
-                background-color: #3e3e3e;
-                padding:15px;
+            .filtro{
+                background-color: #e8e8e8;
+                margin:auto;
+                padding:10px;
             }
-            .footer p{
-                text-align: center;
-                color:#fff;
+
+            table{
+                color:#616161;
             }
-            .dropdown a{
-                font-size:15px;
-            }
+
+
+            .dropdown-menu {display: block;visibility: hidden;opacity:0;transform: translateY(50px);transition:.5s ease all;}
+            .dropdown-menu.show {display: block;visibility: visible;opacity:1;transform: translateY(0px);transition:.5s ease all;}
+
         </style>
         <link rel=\"stylesheet\" href=\"//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css\">
         <link rel=\"stylesheet\" href=\"/resources/demos/style.css\">
@@ -480,145 +411,99 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
             });
         </script>
     </head>
+
     <body>       
         {% if app.user != null %}
             <header>  
-                <nav class=\"navbar navbar-sticky-top navbar-default \">
-                    <div class=\"container-fluid\">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class=\"navbar-header\">
-                            <button type=\"button\" class=\"navbar-toggle collapsed\" data-toggle=\"collapse\" data-target=\"#bs-example-navbar-collapse-1\" aria-expanded=\"false\">
-                                <span class=\"sr-only\">Toggle navigation</span>
-                                <span class=\"icon-bar\"></span>
-                                <span class=\"icon-bar\"></span>
-                                <span class=\"icon-bar\"></span>
-                            </button>
-                            <a class=\"navbar-brand\" href=\"{{ path(\"homepage\") }}\">Sistema de Pases de Expediente</a>
-                        </div>
+                <nav class=\"navbar navbar-expand-lg navbar-dark bg-dark\">
+                    <a class=\"navbar-brand\" href=\"#\">SIE</a>
+                    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
+                        <span class=\"navbar-toggler-icon\"></span>
+                    </button>
 
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">
-                            <ul class=\"nav navbar-nav\">                        
-                                {% block menu %}  
+                    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
+                        <ul class=\"navbar-nav mr-auto\">
 
-                                {% endblock %}
-                            </ul>
-                            <ul class=\"nav navbar-nav navbar-right\">
+                            <div class=\"dropdown dropdown-menu-right\">
 
-                                {#<li><a href=\"#\">
-                                         {% if app.user != null %}
-                                        Bienvenido, {{}}
-    
-                                    {%endif%}
-                                    </a>
-                                </li>#}
-
-                                <li>
-
-                                </li>
-
-                                <li class=\"dropdown\">
-                                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">{% if app.user != null %} <strong>Bienvenido/a</strong>, {{ app.user.persona.nombre }} {% else %} Iniciar Sesion {% endif %} <span class=\"glyphicon glyphicon-cog\"></span><span class=\"caret\"></span></a>
-                                    <ul class=\"dropdown-menu\">
-
-                                        {% if app.user == null %}
-
-                                            <li><a href=\"{{ path(\"loginUsuario\") }}\">Entrar</a></li>
-
-                                        {%else%}
-                                            <li><a href=\"#\">Opciones</a></li>
-                                            <li><a href=\"{{ path(\"editar_usuario\", {'id':app.user.id}) }}\">Configuración de Cuenta</a></li>
-                                            <li><a href=\"{{ path(\"editar_persona\", {'id':app.user.persona.id}) }}\">Configuración Personal</a></li>
-                                            <li role=\"separator\" class=\"divider\"></li>
-                                            <li><a href=\"{{ path(\"logout\") }}\">Salir</a></li>
-                                            {%endif%}
-
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div><!-- /.navbar-collapse -->
-                    </div><!-- /.container-fluid -->
-                </nav>
-
-                <nav class=\"navbar navbar-default\">
-                    <div class=\"container-fluid\">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class=\"navbar-header\">
-
-                        </div>
-
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class=\"collapse navbar-collapse\" id=\"bs-example-navbar-collapse-1\">
-                            <ul class=\"nav navbar-nav\">
-
-                                <li class=\"dropdown\">
-                                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">EXPEDIENTE <span class=\"caret\"></span></a>
-                                    <ul class=\"dropdown-menu\">
-                                        <li><a href=\"{{ path(\"listado_expediente\",{'currentPage':1}) }}\">LISTADO</a></li>
-                                        <li role=\"separator\" class=\"divider\"></li>
-                                        <li><a href=\"{{ path(\"nuevo_expediente\") }}\">NUEVO EXPEDIENTE</a></li>
-                                            {#  <li role=\"separator\" class=\"divider\"></li>
-                                              <li><a href=\"#\">Separated link</a></li>
-                                              <li role=\"separator\" class=\"divider\"></li>
-                                              <li><a href=\"#\">One more separated link</a></li>#}
-                                    </ul>
-                                </li>
-
-                                {% if app.user.role == 'ROLE_ADMIN' %}
-                                    <li class=\"dropdown\">
-                                        <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">DEPENDENCIA <span class=\"caret\"></span></a>
-                                        <ul class=\"dropdown-menu\">
-                                            <li><a href=\"{{ path(\"listado_dependencia\",{'currentPage':1}) }}\">LISTADO</a></li>
-                                            <li role=\"separator\" class=\"divider\"></li>
-                                            <li><a href=\"{{ path(\"nueva_dependencia\") }}\">NUEVA DEPENDENCIA</a></li>
-                                                {#  <li role=\"separator\" class=\"divider\"></li>
-                                                  <li><a href=\"#\">Separated link</a></li>
-                                                  <li role=\"separator\" class=\"divider\"></li>
-                                                  <li><a href=\"#\">One more separated link</a></li>#}
-                                        </ul>
+                                {% if(app.user == null) %}
+                                    <li class=\"nav-item\">
+                                        <a class=\"btn btn-success nav-link\" href=\"{{ path(\"loginUsuario\") }}\">Iniciar Sesión<i class=\"fa fa-sign-in\"></i></a>
                                     </li>
-                                    <li class=\"dropdown\">
-                                        <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">PERSONA <span class=\"caret\"></span></a>
-                                        <ul class=\"dropdown-menu\">
-                                            <li><a href=\"{{ path(\"listado_persona\",{'currentPage':1}) }}\">LISTADO</a></li>
-                                            <li role=\"separator\" class=\"divider\"></li>
-                                            <li><a href=\"{{ path(\"nueva_persona\") }}\">NUEVA PERSONA</a></li>
-                                                {#  <li role=\"separator\" class=\"divider\"></li>
-                                                  <li><a href=\"#\">Separated link</a></li>
-                                                  <li role=\"separator\" class=\"divider\"></li>
-                                                  <li><a href=\"#\">One more separated link</a></li>#}
-                                        </ul>
-                                    </li>
-                                    <li class=\"dropdown\">
-                                        <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">USUARIOS <span class=\"caret\"></span></a>
-                                        <ul class=\"dropdown-menu\">
-                                            <li><a href=\"{{ path(\"listado_usuario\",{'currentPage':1}) }}\">LISTADO</a></li>
-                                            <li role=\"separator\" class=\"divider\"></li>
-                                            <li><a href=\"{{ path(\"nuevo_usuario\") }}\">NUEVO USUARIO</a></li>
-                                                {#  <li role=\"separator\" class=\"divider\"></li>
-                                                  <li><a href=\"#\">Separated link</a></li>
-                                                  <li role=\"separator\" class=\"divider\"></li>
-                                                  <li><a href=\"#\">One more separated link</a></li>#}
-                                        </ul>
-                                    </li>
+                                {% else %}
+
+                                    <button class=\"btn btn-dark dropdown-toggle\" type=\"button\" id=\"dropdownMenuMenu\" data-toggle=\"dropdown\"
+                                            aria-haspopup=\"true\" aria-expanded=\"false\">
+                                        Bienvenido, {{ app.user.persona.nombre }}
+                                    </button>
+                                    <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuMenu\">
+                                        <a class=\"dropdown-item\" type=\"button\">Configuración</a>
+                                        <a class=\"dropdown-item\" href=\"{{ path(\"logout\") }}\" type=\"button\">Cerrar Sesión</a>
+                                    </div>
                                 {% endif %}
 
-                                <li class=\"dropdown\">
-                                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">LUGAR FÍSICO <span class=\"caret\"></span></a>
-                                    <ul class=\"dropdown-menu\">
-                                        <li><a href=\"{{ path(\"listado_lugarfisico\",{'currentPage':1}) }}\">LISTADO</a></li>
-                                        <li role=\"separator\" class=\"divider\"></li>
-                                        <li><a href=\"{{ path(\"nuevo_lugarfisico\") }}\">NUEVO LUGAR FISICO</a></li>
-                                            {#  <li role=\"separator\" class=\"divider\"></li>
-                                              <li><a href=\"#\">Separated link</a></li>
-                                              <li role=\"separator\" class=\"divider\"></li>
-                                              <li><a href=\"#\">One more separated link</a></li>#}
-                                    </ul>
-                                </li>
+                            </div>
+                        </ul>
 
-                            </ul>        
-                        </div><!-- /.navbar-collapse -->
-                    </div><!-- /.container-fluid -->
+                    </div>
+                </nav>
+
+                <nav class=\"navbar navbar-expand-lg navbar-dark bg-dark nav-bot\">
+                    <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
+                        <ul class=\"navbar-nav mr-auto\">
+                            <div class=\"dropdown\">
+                                <button class=\"btn btn-dark dropdown-toggle\" type=\"button\" id=\"dropdownMenuMenu\" data-toggle=\"dropdown\"
+                                        aria-haspopup=\"true\" aria-expanded=\"false\">
+                                    EXPEDIENTES
+                                </button>
+                                <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuMenu\">
+                                    <a class=\"dropdown-item\" href=\"{{ path(\"nuevo_expediente\") }}\" type=\"button\">NUEVO</a>
+                                    <a class=\"dropdown-item\" href=\"{{ path(\"listado_expediente\",{'currentPage':1}) }}\" type=\"button\">LISTADO</a>
+                                </div>
+                            </div>
+                            <div class=\"dropdown\">
+                                <button class=\"btn btn-dark dropdown-toggle\" type=\"button\" id=\"dropdownMenuMenu\" data-toggle=\"dropdown\"
+                                        aria-haspopup=\"true\" aria-expanded=\"false\">
+                                    DEPENDENCIAS
+                                </button>
+                                <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuMenu\">
+                                    <a class=\"dropdown-item\" href=\"{{ path(\"nueva_dependencia\") }}\" type=\"button\">NUEVO</a>
+                                    <a class=\"dropdown-item\" href=\"{{ path(\"listado_dependencia\",{'currentPage':1}) }}\" type=\"button\">LISTADO</a>
+                                </div>
+                            </div>
+                            <div class=\"dropdown\">
+                                <button class=\"btn btn-dark dropdown-toggle\" type=\"button\" id=\"dropdownMenuMenu\" data-toggle=\"dropdown\"
+                                        aria-haspopup=\"true\" aria-expanded=\"false\">
+                                    PERSONAS
+                                </button>
+                                <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuMenu\">
+                                    <a class=\"dropdown-item\" href=\"{{ path(\"nueva_persona\") }}\" type=\"button\">NUEVO</a>
+                                    <a class=\"dropdown-item\" href=\"{{ path(\"listado_persona\",{'currentPage':1}) }}\" type=\"button\">LISTADO</a>
+                                </div>
+                            </div>
+                            <div class=\"dropdown\">
+                                <button class=\"btn btn-dark dropdown-toggle\" type=\"button\" id=\"dropdownMenuMenu\" data-toggle=\"dropdown\"
+                                        aria-haspopup=\"true\" aria-expanded=\"false\">
+                                    USUARIOS
+                                </button>
+                                <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuMenu\">
+                                    <a class=\"dropdown-item\" href=\"{{ path(\"nuevo_usuario\") }}\" type=\"button\">NUEVO</a>
+                                    <a class=\"dropdown-item\" href=\"{{ path(\"listado_usuario\",{'currentPage':1}) }}\" type=\"button\">LISTADO</a>
+                                </div>
+                            </div>
+                            <div class=\"dropdown\">
+                                <button class=\"btn btn-dark dropdown-toggle\" type=\"button\" id=\"dropdownMenuMenu\" data-toggle=\"dropdown\"
+                                        aria-haspopup=\"true\" aria-expanded=\"false\">
+                                    LUGARES
+                                </button>
+                                <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuMenu\">
+                                    <a class=\"dropdown-item\" href=\"{{ path(\"nuevo_lugarfisico\") }}\" type=\"button\">NUEVO</a>
+                                    <a class=\"dropdown-item\" href=\"{{ path(\"listado_lugarfisico\",{'currentPage':1}) }}\" type=\"button\">LISTADO</a>
+                                </div>
+                            </div>
+                        </ul>
+
+                    </div>
                 </nav>
 
             </header>
