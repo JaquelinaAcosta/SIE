@@ -287,7 +287,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
             // line 190
             echo "
                                 <li class=\"dropdown\">
-                                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">LUGAR FSICO <span class=\"caret\"></span></a>
+                                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">LUGAR FÍSICO <span class=\"caret\"></span></a>
                                     <ul class=\"dropdown-menu\">
                                         <li><a href=\"";
             // line 194
@@ -604,7 +604,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                                 {% endif %}
 
                                 <li class=\"dropdown\">
-                                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">LUGAR FSICO <span class=\"caret\"></span></a>
+                                    <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">LUGAR FÍSICO <span class=\"caret\"></span></a>
                                     <ul class=\"dropdown-menu\">
                                         <li><a href=\"{{ path(\"listado_lugarfisico\",{'currentPage':1}) }}\">LISTADO</a></li>
                                         <li role=\"separator\" class=\"divider\"></li>
