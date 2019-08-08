@@ -428,8 +428,8 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             }
 
             // listado_usuario
-            if ('/usuario/listado' === $pathinfo) {
-                return array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::listaUsuarioAction',  '_route' => 'listado_usuario',);
+            if (0 === strpos($pathinfo, '/usuario/listado') && preg_match('#^/usuario/listado/(?P<currentPage>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'listado_usuario']), array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::listaUsuarioAction',));
             }
 
             // eliminar_usuario
