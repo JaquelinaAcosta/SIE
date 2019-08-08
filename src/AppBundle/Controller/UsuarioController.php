@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Entity\Usuario;
 use AppBundle\Form\UsuarioType;
+use AppBundle\Form\UsuarioFilterType;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 class UsuarioController extends Controller {
 
@@ -104,27 +106,88 @@ class UsuarioController extends Controller {
         ));
     }
 
-    /**
-     * @Route("usuario/listado", name="listado_usuario")
-     */
-    public function listaUsuarioAction(Request $request) {
-
-        $em = $this->getDoctrine()->getEntityManager();
-        $user = $this->getUser();
-        $usuario = new Usuario();
-
-        if ($user->getRole() == "ROLE_ADMIN") {
-            $usuario = $em->getRepository("AppBundle:Usuario")->findAll();
-        }
-//        else {
-//            $usuario = $em->getRepository("AppBundle:Usuario")->findBy([
-//                'iniciadorDependencia' => $user->getPersona()->getDependencia()
-//            ]);
+//    /**
+//     * @Route("usuario/listado", name="listado_usuario")
+//     */
+//    public function listaUsuarioAction(Request $request) {
+//
+//        $em = $this->getDoctrine()->getEntityManager();
+//        $user = $this->getUser();
+//        $usuario = new Usuario();
+//
+//        if ($user->getRole() == "ROLE_ADMIN") {
+//            $usuario = $em->getRepository("AppBundle:Usuario")->findAll();
 //        }
-        // replace this example code with whatever you need
-        return $this->render('AppBundle:Usuario:listadoUsuarios.html.twig', [
-                    'usuario' => $usuario
-        ]);
+////        else {
+////            $usuario = $em->getRepository("AppBundle:Usuario")->findBy([
+////                'iniciadorDependencia' => $user->getPersona()->getDependencia()
+////            ]);
+////        }
+//        // replace this example code with whatever you need
+//        return $this->render('AppBundle:Usuario:listadoUsuarios.html.twig', [
+//                    'usuario' => $usuario
+//        ]);
+//    }
+    
+    /**
+    * @Route("usuario/listado/{currentPage}", name="listado_usuario")
+    */
+    public function listaUsuarioAction(Request $request, $currentPage) {
+        $em = $this->getDoctrine()->getEntityManager();
+        $limit = 15;
+        $totalItems = 0;
+        $maxPages = 0;
+        $usuario = array();
+        $user = $this->getUser();
+        
+        $formUsuarioFilter = $this->createForm(UsuarioFilterType::class);
+        $formUsuarioFilter->handleRequest($request);
+        if ($formUsuarioFilter->isSubmitted() == false && $this->get('session')->get('usuario_listar_request')) {
+            $formUsuarioFilter->handleRequest($this->get('session')->get('usuario_listar_request'));
+        }
+
+        if ($formUsuarioFilter->isValid()) {
+            $filterBuilder = $em->getRepository('AppBundle:Usuario')->createQueryBuilder('p');
+            $filterBuilder->addOrderBy('p.iup', 'ASC');
+            $filterBuilder->addOrderBy('p.email', 'ASC');
+            
+            $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($formUsuarioFilter, $filterBuilder);
+            $totalItems = count($filterBuilder->getQuery()->getResult());
+            
+            $filterBuilder->setFirstResult($limit * ($currentPage - 1));
+            $filterBuilder->setMaxResults($limit);
+            
+            $paginator = new Paginator($filterBuilder, $fetchJoinCollection = true);
+            $usuario = $paginator->getQuery()->getResult();
+            $maxPages = ceil($totalItems / $limit);
+        }
+        
+        if ($formUsuarioFilter->get('reset')->isClicked()) {
+            $this->get('session')->remove('usuario_listar_request');
+            return $this->redirectToRoute('listado_usuario',['currentPage'=>1]);
+        }
+        
+        if ($formUsuarioFilter->get('filter')->isClicked()) {           
+            $usuarioListarFilterRequest = $request->request->get('usuario_filter');
+            unset($usuarioListarFilterRequest['filter']);
+
+            $request->request->set('usuario_filter', $usuarioListarFilterRequest);
+            $request->request->set('currentPage',1);
+            $this->get('session')->set('usuario_listar_request', $request);
+            if($request->get('currentPage')>$maxPages)
+            {
+                 return $this->redirectToRoute('listado_usuario',['currentPage'=>1]);
+            }
+        }
+        
+        return $this->render('AppBundle:Usuario:listadoUsuarios.html.twig', array(
+                    'usuario' => $usuario,
+                    'maxPages' => $maxPages,
+                    'totalItems' => $totalItems,
+                    'thisPage' => $currentPage,
+                    'page' => $currentPage,
+                    'formUsuarioFilter' => $formUsuarioFilter->createView()
+        ));
     }
 
     /**
