@@ -6,50 +6,75 @@
         <title>            
             {% block title %}SIE{% endblock %}           
         </title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
         <script src="https://code.jquery.com/jquery-1.12.4.js"
                 integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
         crossorigin="anonymous"></script>
+
         <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">	
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+        {#                        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>#}
+        {#                        <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">#}
         <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-      <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet"> 
+        <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet"> 
         <script src="{{ asset('bundles/pugxautocompleter/js/autocompleter-jqueryui.js') }}"></script>
         <script src="{{ asset('js/app.js') }}"></script>  
         <style>
             *{
-               font-family: 'Noto Sans', sans-serif;
+                font-family: 'Noto Sans', sans-serif;
+                font-size: 13px;
             }
-            .active{
-                color:grey;
-                margin-left: 10px;
-                font-size: 20px;
+            body{
+                background-color:#c4c4c4;
             }
-            .footer {
+            .content{
+                {#                margin-left:100px;
+                                margin-right:100px;#}
+                background-color:#fff;
+                padding:30px;
+            }
+            .filtro{
+                background-color: #e8e8e8;
+                margin:auto;
+                padding:10px;
+                width:1200px;
+            }
 
+            table{
+                color:#616161;
+            }
+            .dropdown-menu {display: block;visibility: hidden;opacity:0;transform: translateY(50px);transition:.5s ease all;}
+            .dropdown-menu.show {display: block;visibility: visible;opacity:1;transform: translateY(0px);transition:.5s ease all;}
+
+            .right{
+                margin-left: auto;
+                margin-right: 0;
+
+            }
+            .sidebar{
+                width:125px;
+                height:900px;
+                background-color:#e3e3e3;
+                /* float:left  Removed*/
+                left:0; /* Added */
                 position: fixed;
-
-                bottom: 0;
-
-                width: 100%;
-
-                height: 55px;
-
-                background-color: #3e3e3e;
-
+                border: #b3b3b3 .2px;
             }
-            .container{
-                background-color: #3e3e3e;
-                padding:15px;
+            .contentmain{
+                margin-top:30px;
+                margin-left:150px; /* Added */
+                margin-right:25px;
+                -webkit-box-shadow: 10px 10px 5px -9px rgba(0,0,0,0.39);
+-moz-box-shadow: 10px 10px 5px -9px rgba(0,0,0,0.39);
+box-shadow: 10px 10px 5px -9px rgba(0,0,0,0.39);
             }
-            .footer p{
-                text-align: center;
-                color:#fff;
-            }
-            .dropdown a{
-                font-size:15px;
-            }
+
+
         </style>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="stylesheet" href="/resources/demos/style.css">
@@ -65,152 +90,183 @@
             });
         </script>
     </head>
+
     <body>       
         {% if app.user != null %}
             <header>  
-                <nav class="navbar navbar-sticky-top navbar-default ">
-                    <div class="container-fluid">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <a class="navbar-brand" href="{{ path("homepage") }}">Sistema de Pases de Expediente</a>
-                        </div>
+                <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
+                    {#                                        <img width="35px" src="{{ asset('logo.png') }}">#}
+                    <a class="navbar-brand abs" href="#"><strong style="font-size:16px;">
+                           <img width="30" src="{{ asset('dpv.jpeg') }}">Sistema de Gestión Interna de Expedientes
+                        </strong></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse" id="collapsingNavbar">
 
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav">                        
-                                {% block menu %}  
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <div class="dropdown right">
 
-                                {% endblock %}
-                            </ul>
-                            <ul class="nav navbar-nav navbar-right">
+                                    {% if(app.user == null) %}
+                                        <li class="nav-item">
+                                            <a class="btn btn-success nav-link" href="{{ path("loginUsuario") }}">Iniciar Sesión<i class="fa fa-sign-in"></i></a>
+                                        </li>
+                                    {% else %}
 
-                                {#<li><a href="#">
-                                         {% if app.user != null %}
-                                        Bienvenido, {{}}
-    
-                                    {%endif%}
-                                    </a>
-                                </li>#}
+                                        <button class="btn btn-dark dropdown-toggle right" type="button" id="dropdownMenuMenu" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-user"></i>  {{ app.user.userName }}  
+                                            </a>        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuMenu">
+                                            <a class="dropdown-item" type="button"><i class="fab fa-whmcs"></i>  Configuración</a>
+                                            <a class="dropdown-item" href="{{ path("logout") }}" type="button"><i class="fas fa-sign-out-alt"></i>  Cerrar Sesión</a>
+                                        </div>
+                                    {% endif %}
 
-                                <li>
-
-                                </li>
-
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% if app.user != null %} <strong>Bienvenido/a</strong>, {{ app.user.persona.nombre }} {% else %} Iniciar Sesion {% endif %} <span class="glyphicon glyphicon-cog"></span><span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-
-                                        {% if app.user == null %}
-
-                                            <li><a href="{{ path("loginUsuario") }}">Entrar</a></li>
-
-                                        {%else%}
-                                            <li><a href="#">Opciones</a></li>
-                                            <li><a href="{{ path("editar_usuario", {'id':app.user.id}) }}">Configuración de Cuenta</a></li>
-                                            <li><a href="{{ path("editar_persona", {'id':app.user.persona.id}) }}">Configuración Personal</a></li>
-                                            <li role="separator" class="divider"></li>
-                                            <li><a href="{{ path("logout") }}">Salir</a></li>
-                                            {%endif%}
-
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div><!-- /.navbar-collapse -->
-                    </div><!-- /.container-fluid -->
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </nav>
 
-                <nav class="navbar navbar-default">
-                    <div class="container-fluid">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
+                <div class="sidebar"> 
+                    {#   <div class="sidebar-item" href="#">
+                           
+                       </div>#}
 
-                        </div>
+                    <div class="list-group" style="margin-top:15px;">
+                        <a href="#" class="list-group-item list-group-item-action text-center">
+                            <i class="far fa-file-alt" style="font-size:27px; margin:0 auto;"></i>
+                            <br/>
+                            Expedientes
+                        </a>
+                        {% if app.user.role == 'ROLE_ADMIN' %}
+                         <a href="#" class="list-group-item list-group-item-action text-center">
+                            <i class="fas fa-building" style="font-size:27px; margin:0 auto;"></i>
+                            <br/>
+                            Dependencias
+                        </a>
+                         <a href="#" class="list-group-item list-group-item-action text-center">
+                            <i class="fas fa-male" style="font-size:27px; margin:0 auto;"></i>
+                            <br/>
+                            Personas
+                        </a>
+                         <a href="#" class="list-group-item list-group-item-action text-center">
+                            <i class="fas fa-user" style="font-size:27px; margin:0 auto;"></i>
+                            <br/>
+                            Usuarios
+                        </a>
+                         {% endif %}
+                        <a href="#" class="list-group-item list-group-item-action text-center">
+                            <i class="fas fa-archive" style="font-size:27px;"></i>
+                            <br/>
+                            Lugares
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action text-center">
+                            <i class="fas fa-history" style="font-size:27px;"></i>
+                            <br/>
+                            Últimos Registros
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action text-center">
+                            <i class="fas fa-question-circle" style="font-size:27px;"></i>
+                            <br/>
+                            Ayuda
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action text-center">
+                            <i class="fas fa-sign-out-alt" style="font-size:27px;"></i>
+                            <br/>
+                            Salir
+                        </a>
+                    </div>
+                </div>
 
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                            <ul class="nav navbar-nav">
 
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">EXPEDIENTE <span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="{{ path("listado_expediente",{'currentPage':1}) }}">LISTADO</a></li>
-                                        <li role="separator" class="divider"></li>
-                                        <li><a href="{{ path("nuevo_expediente") }}">NUEVO EXPEDIENTE</a></li>
-                                            {#  <li role="separator" class="divider"></li>
-                                              <li><a href="#">Separated link</a></li>
-                                              <li role="separator" class="divider"></li>
-                                              <li><a href="#">One more separated link</a></li>#}
-                                    </ul>
-                                </li>
+                <div class="contentmain">
 
+                    {% block contentmain %}
+
+                    {% endblock %}
+
+                </div>
+                {#<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+                    <div class="mx-auto d-sm-flex d-block flex-sm-nowrap">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample11" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse text-center" id="navbarsExample11">
+                            <ul class="navbar-nav">
+                                <div class="dropdown">
+                                    <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuMenu" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-file-alt"></i>  EXPEDIENTES
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuMenu">
+                                        <a class="dropdown-item" href="{{ path("nuevo_expediente") }}" 
+                                           type="button"><i class="fas fa-plus"></i> NUEVO</a>
+                                        <a class="dropdown-item" href="{{ path("listado_expediente",{'currentPage':1}) }}" 
+                                           type="button"><i class="fas fa-list"></i>  LISTADO</a>
+                                    </div>
+                                </div>
                                 {% if app.user.role == 'ROLE_ADMIN' %}
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">DEPENDENCIA <span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="{{ path("listado_dependencia",{'currentPage':1}) }}">LISTADO</a></li>
-                                            <li role="separator" class="divider"></li>
-                                            <li><a href="{{ path("nueva_dependencia") }}">NUEVA DEPENDENCIA</a></li>
-                                                {#  <li role="separator" class="divider"></li>
-                                                  <li><a href="#">Separated link</a></li>
-                                                  <li role="separator" class="divider"></li>
-                                                  <li><a href="#">One more separated link</a></li>#}
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">PERSONA <span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="{{ path("listado_persona",{'currentPage':1}) }}">LISTADO</a></li>
-                                            <li role="separator" class="divider"></li>
-                                            <li><a href="{{ path("nueva_persona") }}">NUEVA PERSONA</a></li>
-                                                {#  <li role="separator" class="divider"></li>
-                                                  <li><a href="#">Separated link</a></li>
-                                                  <li role="separator" class="divider"></li>
-                                                  <li><a href="#">One more separated link</a></li>#}
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">USUARIOS <span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="{{ path("listado_usuario",{'currentPage':1}) }}">LISTADO</a></li>
-                                            <li role="separator" class="divider"></li>
-                                            <li><a href="{{ path("nuevo_usuario") }}">NUEVO USUARIO</a></li>
-                                                {#  <li role="separator" class="divider"></li>
-                                                  <li><a href="#">Separated link</a></li>
-                                                  <li role="separator" class="divider"></li>
-                                                  <li><a href="#">One more separated link</a></li>#}
-                                        </ul>
-                                    </li>
+                                    <div class="dropdown">
+                                        <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuMenu" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-building"></i>  DEPENDENCIAS
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuMenu">
+                                            <a class="dropdown-item" href="{{ path("nueva_dependencia") }}" type="button">NUEVO</a>
+                                            <a class="dropdown-item" href="{{ path("listado_dependencia",{'currentPage':1}) }}" type="button">LISTADO</a>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown">
+                                        <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuMenu" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-male"></i>  PERSONAS
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuMenu">
+                                            <a class="dropdown-item" href="{{ path("nueva_persona") }}" type="button">NUEVO</a>
+                                            <a class="dropdown-item" href="{{ path("listado_persona",{'currentPage':1}) }}" type="button">LISTADO</a>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown">
+                                        <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuMenu" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-user"></i>  USUARIOS
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuMenu">
+                                            <a class="dropdown-item" href="{{ path("nuevo_usuario") }}" type="button">NUEVO</a>
+                                            <a class="dropdown-item" href="{{ path("listado_usuario",{'currentPage':1}) }}" type="button">LISTADO</a>
+                                        </div>
+                                    </div>
                                 {% endif %}
+                                <div class="dropdown">
+                                    <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuMenu" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                        <i class="fas fa-archive"></i>  LUGARES
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuMenu">
+                                        <a class="dropdown-item" href="{{ path("nuevo_lugarfisico") }}" type="button">NUEVO</a>
+                                        <a class="dropdown-item" href="{{ path("listado_lugarfisico",{'currentPage':1}) }}" type="button">LISTADO</a>
+                                    </div>
+                                </div>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>#}
 
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">LUGAR FÍSICO <span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="{{ path("listado_lugarfisico",{'currentPage':1}) }}">LISTADO</a></li>
-                                        <li role="separator" class="divider"></li>
-                                        <li><a href="{{ path("nuevo_lugarfisico") }}">NUEVO LUGAR FISICO</a></li>
-                                            {#  <li role="separator" class="divider"></li>
-                                              <li><a href="#">Separated link</a></li>
-                                              <li role="separator" class="divider"></li>
-                                              <li><a href="#">One more separated link</a></li>#}
-                                    </ul>
-                                </li>
 
-                            </ul>        
-                        </div><!-- /.navbar-collapse -->
-                    </div><!-- /.container-fluid -->
-                </nav>
+                {# <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav-bot">
+                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                         <ul class="navbar-nav mr-auto">
+                            
+                         </ul>
+ 
+                     </div>
+                 </nav>#}
 
             </header>
         {% endif %}
-        <section id="content">             
-            {% block content %}Content default{% endblock %}   
-        </section>
 
 
     </body>

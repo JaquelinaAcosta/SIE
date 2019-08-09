@@ -22,7 +22,7 @@ class MesaEntrada extends Ubicacion {
 
     public function __toString() {
 //        return "Mesa de Entrada - ".parent::getDependencia()->getDescripcion();
-        return "Mesa de Entrada";
+        return "Mesa de Entrada - ".parent::getDependencia()->getDescripcion();
     }
     
     /**

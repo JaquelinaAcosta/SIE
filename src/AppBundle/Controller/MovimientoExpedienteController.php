@@ -91,6 +91,7 @@ class MovimientoExpedienteController extends Controller {
                 $movimientoExpediente->setUbicacion($mesaentrada);
                 $expediente->getMovimientos()->add($movimientoExpediente);
                 $expediente->setUbicacionActual($mesaentrada);
+                $expediente->setEstado('NUEVO');
                 $em->persist($expediente);
                 $em->flush();
             }
