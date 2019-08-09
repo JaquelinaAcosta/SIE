@@ -48,6 +48,15 @@ class Expediente
      * @ORM\Column(name="concepto", type="string", length=255, nullable=true)
      */
     private $concepto;
+    
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="estado", type="string", length=255, nullable=true)
+     */
+    private $estado;
+    
 
     /**
      * @var int
@@ -551,5 +560,29 @@ class Expediente
     public function getMovimientos()
     {
         return $this->movimientos;
+    }
+
+    /**
+     * Set estado
+     *
+     * @param string $estado
+     *
+     * @return Expediente
+     */
+    public function setEstado($estado)
+    {
+        $this->estado = $estado;
+
+        return $this;
+    }
+
+    /**
+     * Get estado
+     *
+     * @return string
+     */
+    public function getEstado()
+    {
+        return $this->estado;
     }
 }

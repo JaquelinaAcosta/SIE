@@ -153,7 +153,11 @@ class ExpedienteController extends Controller {
         $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
         $AsociadoCount = $em->getRepository('AppBundle:ExpedienteAsociado')->findBy([
             'expedienteAsociado' => $expediente->getId()]);
-
+        $expediente->setEstado('VISTO');
+        $em->persist($expediente);
+        $em->flush();
+        
+        
         if (count($AsociadoCount) == 0) {
             $asociado = false;
         } else {

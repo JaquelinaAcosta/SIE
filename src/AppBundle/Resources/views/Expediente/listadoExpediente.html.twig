@@ -1,5 +1,114 @@
 {% extends "AppBundle::layout.html.twig" %}
 
+
+{% block contentmain %}
+
+    <div class="content">
+        <div class="row form col-lg-10" style="background:none;margin:0;">
+            <div class="filtro">
+                <div class="header"><h4><i class="fas fa-search"></i> Búsqueda de Expediente</h4></div>
+                <hr/>
+                <form method="post" novalidate="true" id="form_buscar">
+                    {{ form_errors(formExpedienteFilter) }}
+                    <div class="row">
+                        <div class="threecol col-lg-4">
+                            {{ form_label(formExpedienteFilter.nroExpediente, 'EXPEDIENTE') }}
+                            {{ form_widget(formExpedienteFilter.nroExpediente) }}
+                            <div class="help-block with-errors">
+                                {{ form_errors(formExpedienteFilter.nroExpediente) }}
+                            </div>
+                        </div>
+                        <div class="threecol col-lg-5">
+                            {{ form_label(formExpedienteFilter.tema, 'TEMA') }}
+                            {{ form_widget(formExpedienteFilter.tema) }}
+                            <div class="help-block with-errors">
+                                {{ form_errors(formExpedienteFilter.tema) }}
+                            </div>
+                        </div>    
+                        <div class="threecol col-lg-3">
+                            {{ form_label(formExpedienteFilter.tipo, 'TIPO') }}
+                            {{ form_widget(formExpedienteFilter.tipo) }}
+                            <div class="help-block with-errors">
+                                {{ form_errors(formExpedienteFilter.tipo) }}
+                            </div>
+                        </div>   
+                        <div class="threecol col-lg-3">
+                            {{ form_label(formExpedienteFilter.fechaInicio, 'FECHA DESDE') }}
+                            {{ form_row(formExpedienteFilter.fechaInicio, { 'id': 'date1' })}} 
+                            {{ form_widget(formExpedienteFilter.fechaInicio) }}
+                            <div class="help-block with-errors">
+                                {{ form_errors(formExpedienteFilter.fechaInicio) }}
+                            </div>
+                        </div>     
+
+                        <div class="col-lg-12">
+                            <div class="col-lg-6">
+                                {{ form_row(formExpedienteFilter.filter) }}
+                            </div>
+                            <div class="col-lg-6">
+                                {{ form_row(formExpedienteFilter.reset) }}
+                            </div>
+                        </div>
+                        {{ form_end(formExpedienteFilter) }}
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+
+    <table class="table table-sm table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">NUMERO</th>
+                <th scope="col">TEMA</th>
+                <th scope="col">UBICACION ACTUAL</th>
+                <th scope="col">ACCIONES</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {% for expediente in expediente|reverse %}
+                <tr>
+                    <td class="text-default">
+                        {% if expediente.estado == 'NUEVO' %}
+                            <span style="color:red;">Nuevo</span> <i class="fas fa-bell" style="color:red;"></i> - 
+                        {% endif %}
+                        {{expediente.nroExpediente|e }}
+                    </td>            
+                    <td class="text-default">{{expediente.tema|e }}</td>         
+                    <td class="text-default">{{expediente.ubicacionActual|e }}</td>
+                    <td><a class="btn btn-info" href="{{ path("ver_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Ver Detalle"><i class="fas fa-search"></i></a>
+                        <a class="btn btn-warning" href="{{ path("editar_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit"></i></a>
+                        <a class="btn btn-danger" href="{{ path("eliminar_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt"></i></a></td>
+                </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+</div>
+
+<script>
+
+    $('#expediente_filter_tema').autocompleter({
+                    url_list: "{{ path('tema_search') }}",
+                    url_get: "{{ path('tema_get') }}"
+    });
+    {#  $('#expediente_filter_nroExpediente').autocompleter({
+            url_list: "{{ path('expediente_search') }}",
+            url_get: "{{ path('expediente_get') }}"
+        });#}
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+
+
+{% endblock %}
+
+
 {% block content %}
     <style>
         input[type=text]{
@@ -44,102 +153,9 @@
 
     </style>
 
-
-
-    <h4 class="text-center"><i class="fas fa-bars"></i> Lista de Expedientes -  {{ app.user.persona.dependencia.descripcion }} <a href="{{ path('nuevo_expediente') }}" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Nuevo Expediente"><i class="fas fa-plus"></i></a></h4>
-    
-    <div class="row form col-lg-10" style="background:none;margin:0;">
-            <h4>FILTROS</h4>
-            <form method="post" novalidate="true" id="form_buscar">
-                {{ form_errors(formExpedienteFilter) }}
-                <div class="row">
-                    <div class="threecol col-lg-4">
-                        {{ form_label(formExpedienteFilter.nroExpediente, 'EXPEDIENTE') }}
-                        {{ form_widget(formExpedienteFilter.nroExpediente) }}
-                        <div class="help-block with-errors">
-                            {{ form_errors(formExpedienteFilter.nroExpediente) }}
-                        </div>
-                    </div>
-                    <div class="threecol col-lg-5">
-                        {{ form_label(formExpedienteFilter.tema, 'TEMA') }}
-                        {{ form_widget(formExpedienteFilter.tema) }}
-                        <div class="help-block with-errors">
-                            {{ form_errors(formExpedienteFilter.tema) }}
-                        </div>
-                    </div>    
-                     <div class="threecol col-lg-3">
-                        {{ form_label(formExpedienteFilter.tipo, 'TIPO') }}
-                        {{ form_widget(formExpedienteFilter.tipo) }}
-                        <div class="help-block with-errors">
-                            {{ form_errors(formExpedienteFilter.tipo) }}
-                        </div>
-                    </div>   
-                         <div class="threecol col-lg-3">
-                        {{ form_label(formExpedienteFilter.fechaInicio, 'FECHA DESDE') }}
-                         {{ form_row(formExpedienteFilter.fechaInicio, { 'id': 'date1' })}} 
-                        {{ form_widget(formExpedienteFilter.fechaInicio) }}
-                        <div class="help-block with-errors">
-                            {{ form_errors(formExpedienteFilter.fechaInicio) }}
-                        </div>
-                    </div>     
-                    
-                <div class="col-lg-12">
-                    <div class="col-lg-1">
-                        {{ form_row(formExpedienteFilter.filter) }}
-                    </div>
-                    <div class="col-lg-1">
-                        {{ form_row(formExpedienteFilter.reset) }}
-                    </div>
-                </div>
-                {{ form_end(formExpedienteFilter) }}
-            </form>
-        </div>
-    </div>
-
-    <hr/>
-    
-    <table class="table table-striped">
-        <thead class="">
-            <tr>
-                <th scope="col">EXPEDIENTE</th>
-                <th scope="col">TEMA</th>
-                <th scope="col">FECHA DE INICIO</th>
-                <th scope="col">UBICACION ACTUAL</th>
-                <th scope="col">ACCIONES</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            {% for expediente in expediente|reverse %}
-                <tr>
-                    <td class="text-default">{{expediente.nroExpediente|e }}</td>            
-                    <td class="text-default">{{expediente.tema|e }}</td>
-                    <td class="text-default">{{expediente.fechaInicio|e }}</td>
-                    <td class="text-default">{{expediente.ubicacionActual|e }}</td>
-                    <td><a class="btn btn-info" href="{{ path("ver_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Ver Detalle"><i class="fas fa-search"></i></a>
-                        <a class="btn btn-warning" href="{{ path("editar_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit"></i></a>
-                        <a class="btn btn-danger" href="{{ path("eliminar_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt"></i></a></td>
-                </tr>
-            {% endfor %}
-
-        </tbody>
-    </table>
-
     <script>
-        
-      
-         $('#expediente_filter_tema').autocompleter({
-                url_list: "{{ path('tema_search') }}",
-                url_get: "{{ path('tema_get') }}"
-            });
-        {#  $('#expediente_filter_nroExpediente').autocompleter({
-                url_list: "{{ path('expediente_search') }}",
-                url_get: "{{ path('expediente_get') }}"
-            });#}
-        
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
+
+
     </script>
     <hr/>
 {% endblock %}
