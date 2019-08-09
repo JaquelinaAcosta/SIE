@@ -8,6 +8,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Entity\LugarFisico;
 use AppBundle\Entity\Dependencia;
 use AppBundle\Form\LugarFisicoType;
+use AppBundle\Form\LugarFisicoFilterType;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 class LugarFisicoController extends Controller {
 
@@ -112,33 +114,92 @@ class LugarFisicoController extends Controller {
         // replace this example code with whatever you need    
     }
     
+//    /**
+//     * @Route("/lugar_fisico/listado/{currentPage}", name="listado_lugarfisico")
+//     */
+//    public function listaLugarFisicoAction(Request $request, $currentPage) {
+//
+//        $em = $this->getDoctrine()->getEntityManager();
+//        $limit=15;
+//        $user = $this->getUser();
+//        $lugares = new LugarFisico();
+//
+//        if ($user->getRole() == "ROLE_ADMIN") {
+//            $lugares = $em->getRepository("AppBundle:LugarFisico")->getAllPers($currentPage,$limit);
+//            $totalItems=count($lugares);
+//            $maxPages = ceil($totalItems/$limit);
+//        } else {
+//            $lugares = $em->getRepository("AppBundle:LugarFisico")->findBy(['dependencia' => $user->getPersona()->getDependencia()->getId()]);
+//        }
+//
+//
+//        // replace this example code with whatever you need
+//        return $this->render('AppBundle:Ubicacion:listadoLugarFisico.html.twig', [
+//                    'lugaresfisicos' => $lugares, 
+//                    'maxPages'=>$maxPages,
+//                    'totalItems'=>$totalItems,
+//                    'thisPage' => $currentPage,
+//                    'page' => $currentPage,
+//        ]);
+//    }
+    
     /**
      * @Route("/lugar_fisico/listado/{currentPage}", name="listado_lugarfisico")
      */
     public function listaLugarFisicoAction(Request $request, $currentPage) {
-
         $em = $this->getDoctrine()->getEntityManager();
-        $limit=15;
+        $limit = 15;
+        $totalItems = 0;
+        $maxPages = 0;
+        $lugarFisico = array();
         $user = $this->getUser();
-        $lugares = new LugarFisico();
-
-        if ($user->getRole() == "ROLE_ADMIN") {
-            $lugares = $em->getRepository("AppBundle:LugarFisico")->getAllPers($currentPage,$limit);
-            $totalItems=count($lugares);
-            $maxPages = ceil($totalItems/$limit);
-        } else {
-            $lugares = $em->getRepository("AppBundle:LugarFisico")->findBy(['dependencia' => $user->getPersona()->getDependencia()->getId()]);
+        
+        $formLugarFisicoFilter = $this->createForm(LugarFisicoFilterType::class);
+        $formLugarFisicoFilter->handleRequest($request);
+        if ($formLugarFisicoFilter->isSubmitted() == false && $this->get('session')->get('lugarFisico_listar_request')) {
+            $formLugarFisicoFilter->handleRequest($this->get('session')->get('lugarFisico_listar_request'));
         }
 
+        if ($formLugarFisicoFilter->isValid()) {
+            $filterBuilder = $em->getRepository('AppBundle:LugarFisico')->createQueryBuilder('p');
+            $filterBuilder->addOrderBy('p.tipo', 'ASC');
+            $filterBuilder->addOrderBy('p.descripcion', 'ASC');
+            
+            $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($formLugarFisicoFilter, $filterBuilder);
+            $totalItems = count($filterBuilder->getQuery()->getResult());
+            
+            $filterBuilder->setFirstResult($limit * ($currentPage - 1));
+            $filterBuilder->setMaxResults($limit);
+            
+            $paginator = new Paginator($filterBuilder, $fetchJoinCollection = true);
+            $lugarFisico = $paginator->getQuery()->getResult();
+            $maxPages = ceil($totalItems / $limit);
+        }
+        
+        if ($formLugarFisicoFilter->get('reset')->isClicked()) {
+            $this->get('session')->remove('lugarFisico_listar_request');
+            return $this->redirectToRoute('listado_lugarfisico',['currentPage'=>1]);
+        }
+        
+        if ($formLugarFisicoFilter->get('filter')->isClicked()) {           
+            $usuarioListarFilterRequest = $request->request->get('lugarFisico_filter');
+            unset($usuarioListarFilterRequest['filter']);
 
-        // replace this example code with whatever you need
-        return $this->render('AppBundle:Ubicacion:listadoLugarFisico.html.twig', [
-                    'lugaresfisicos' => $lugares, 
-                    'maxPages'=>$maxPages,
-                    'totalItems'=>$totalItems,
+            $request->request->set('lugarFisico_filter', $usuarioListarFilterRequest);
+            $request->request->set('currentPage',1);
+            $this->get('session')->set('lugarFisico_listar_request', $request);
+            if($request->get('currentPage')>$maxPages)
+            {
+                 return $this->redirectToRoute('listado_lugarfisico',['currentPage'=>1]);
+            }
+        }
+        return $this->render('AppBundle:Ubicacion:listadoLugarFisico.html.twig', array(
+                    'lugarFisico' => $lugarFisico,
+                    'maxPages' => $maxPages,
+                    'totalItems' => $totalItems,
                     'thisPage' => $currentPage,
                     'page' => $currentPage,
-        ]);
+                    'formLugarFisicoFilter' => $formLugarFisicoFilter->createView()
+        ));
     }
-
 }

@@ -17,8 +17,13 @@
         crossorigin="anonymous"></script>
 
         <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">	
+<<<<<<< HEAD
         {#                        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>#}
         {#                        <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">#}
+=======
+        {#        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+                <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">#}
+>>>>>>> ab2842b5589d6a0803da88c3a55e1de94d1535d3
         <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
         <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Noto+Sans&display=swap" rel="stylesheet"> 
@@ -27,6 +32,7 @@
         <style>
             *{
                 font-family: 'Noto Sans', sans-serif;
+<<<<<<< HEAD
                 font-size: 13px;
             }
             body{
@@ -35,6 +41,16 @@
             .content{
                 {#                margin-left:100px;
                                 margin-right:100px;#}
+=======
+                font-size: 12px;
+            }
+            body{
+                background-color:#e8e8e8;
+            }
+            .content{
+                margin-left:100px;
+                margin-right:100px;
+>>>>>>> ab2842b5589d6a0803da88c3a55e1de94d1535d3
                 background-color:#fff;
                 padding:30px;
             }
@@ -42,6 +58,7 @@
                 background-color: #e8e8e8;
                 margin:auto;
                 padding:10px;
+<<<<<<< HEAD
                 width:1200px;
             }
 
@@ -75,6 +92,18 @@ box-shadow: 10px 10px 5px -9px rgba(0,0,0,0.39);
             }
 
 
+=======
+            }
+
+            table{
+                color:#616161;
+            }
+
+
+            .dropdown-menu {display: block;visibility: hidden;opacity:0;transform: translateY(50px);transition:.5s ease all;}
+            .dropdown-menu.show {display: block;visibility: visible;opacity:1;transform: translateY(0px);transition:.5s ease all;}
+
+>>>>>>> ab2842b5589d6a0803da88c3a55e1de94d1535d3
         </style>
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <link rel="stylesheet" href="/resources/demos/style.css">
@@ -94,6 +123,7 @@ box-shadow: 10px 10px 5px -9px rgba(0,0,0,0.39);
     <body>       
         {% if app.user != null %}
             <header>  
+<<<<<<< HEAD
                 <nav class="navbar fixed-top navbar-expand-md navbar-dark bg-dark">
                     {#                                        <img width="35px" src="{{ asset('logo.png') }}">#}
                     <a class="navbar-brand abs" href="#"><strong style="font-size:16px;">
@@ -238,6 +268,32 @@ box-shadow: 10px 10px 5px -9px rgba(0,0,0,0.39);
                                             <a class="dropdown-item" href="{{ path("nuevo_usuario") }}" type="button">NUEVO</a>
                                             <a class="dropdown-item" href="{{ path("listado_usuario",{'currentPage':1}) }}" type="button">LISTADO</a>
                                         </div>
+=======
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                    <a class="navbar-brand" href="#">SIE</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+
+                            <div class="dropdown dropdown-menu-right">
+
+                                {% if(app.user == null) %}
+                                    <li class="nav-item">
+                                        <a class="btn btn-success nav-link" href="{{ path("loginUsuario") }}">Iniciar Sesión<i class="fa fa-sign-in"></i></a>
+                                    </li>
+                                {% else %}
+
+                                    <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuMenu" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                        Bienvenido, {{ app.user.persona.nombre }}
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuMenu">
+                                        <a class="dropdown-item" type="button">Configuración</a>
+                                        <a class="dropdown-item" href="{{ path("logout") }}" type="button">Cerrar Sesión</a>
+>>>>>>> ab2842b5589d6a0803da88c3a55e1de94d1535d3
                                     </div>
                                 {% endif %}
                                 <div class="dropdown">
@@ -255,6 +311,7 @@ box-shadow: 10px 10px 5px -9px rgba(0,0,0,0.39);
                     </div>
                 </nav>#}
 
+<<<<<<< HEAD
 
                 {# <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav-bot">
                      <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -264,6 +321,71 @@ box-shadow: 10px 10px 5px -9px rgba(0,0,0,0.39);
  
                      </div>
                  </nav>#}
+=======
+                            </div>
+                        </ul>
+
+                    </div>
+                </nav>
+
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark nav-bot">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <div class="dropdown">
+                                <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuMenu" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                    EXPEDIENTES
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuMenu">
+                                    <a class="dropdown-item" href="{{ path("nuevo_expediente") }}" type="button">NUEVO</a>
+                                    <a class="dropdown-item" href="{{ path("listado_expediente",{'currentPage':1}) }}" type="button">LISTADO</a>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuMenu" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                    DEPENDENCIAS
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuMenu">
+                                    <a class="dropdown-item" href="{{ path("nueva_dependencia") }}" type="button">NUEVO</a>
+                                    <a class="dropdown-item" href="{{ path("listado_dependencia",{'currentPage':1}) }}" type="button">LISTADO</a>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuMenu" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                    PERSONAS
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuMenu">
+                                    <a class="dropdown-item" href="{{ path("nueva_persona") }}" type="button">NUEVO</a>
+                                    <a class="dropdown-item" href="{{ path("listado_persona",{'currentPage':1}) }}" type="button">LISTADO</a>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuMenu" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                    USUARIOS
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuMenu">
+                                    <a class="dropdown-item" href="{{ path("nuevo_usuario") }}" type="button">NUEVO</a>
+                                    <a class="dropdown-item" href="{{ path("listado_usuario",{'currentPage':1}) }}" type="button">LISTADO</a>
+                                </div>
+                            </div>
+                            <div class="dropdown">
+                                <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuMenu" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                    LUGARES
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuMenu">
+                                    <a class="dropdown-item" href="{{ path("nuevo_lugarfisico") }}" type="button">NUEVO</a>
+                                    <a class="dropdown-item" href="{{ path("listado_lugarfisico",{'currentPage':1}) }}" type="button">LISTADO</a>
+                                </div>
+                            </div>
+                        </ul>
+
+                    </div>
+                </nav>
+>>>>>>> ab2842b5589d6a0803da88c3a55e1de94d1535d3
 
             </header>
         {% endif %}
