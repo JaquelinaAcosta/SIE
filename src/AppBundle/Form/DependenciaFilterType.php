@@ -33,6 +33,7 @@ class DependenciaFilterType extends AbstractType implements EmbeddedFilterTypeIn
             
         $builder->add('dependenciaPadre', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\EntityFilterType', array(
             'class' => 'AppBundle\Entity\Dependencia',
+            'placeholder'=>'--Seleccione--',
             'query_builder' => function (EntityRepository $repositorio) {
                 return $repositorio
                                 ->createQueryBuilder('e')
@@ -45,7 +46,8 @@ class DependenciaFilterType extends AbstractType implements EmbeddedFilterTypeIn
                     $qb->andWhere($filterQuery->getExpr()->eq('d.descripcion', ':dependenciaPadre'));
                     $qb->setParameter('dependenciaPadre', '' . $values['value'] . '');
                 }
-            }
+            },
+            'attr' => ['class' => 'form-control']
         ));
             
             
@@ -75,7 +77,8 @@ class DependenciaFilterType extends AbstractType implements EmbeddedFilterTypeIn
             'class' => 'AppBundle:Persona',
             'required' => false,
             'attr'=>[
-                'class'=>'form-control'
+                'class'=>'form-control',
+                'placeholder'=>'Escriba parte del nombre y seleccione'
             ]
             
         ));
