@@ -1,6 +1,6 @@
 {% extends "AppBundle::layout.html.twig" %}
 
-{% block content %}
+{% block contentmain %}
     <style>
         .panel{
             width: 50%;
@@ -12,26 +12,26 @@
         }
     </style>
 
-
+ <div class="content">
 
     <h4 class="text-center">ELIGA EL TIPO DE PASE A REALIZAR</h4>
     <hr/>
     <div class="panel">
 
-        <a class="btn btn-default" href="{{ path("movimiento_externo", {'id':expediente.id}) }}"  
+        <a class="btn btn-primary" href="{{ path("movimiento_externo", {'id':expediente.id}) }}"  
            role="button" data-toggle="tooltip" data-placement="top" 
-           title="Movimiento Externo">EXTERNO<i class="fas fa-search"></i></a>
+           title="Desde una Mesa de Entrada a otra">EXTERNO</a>
 
-        <a class="btn btn-default" href="{{ path("movimiento_interno", {'id':expediente.id}) }}"  
+        <a class="btn btn-primary" href="{{ path("movimiento_interno", {'id':expediente.id}) }}"  
            role="button" data-toggle="tooltip" data-placement="top" 
-           title="Movimiento Interno">INTERNO<i class="fas fa-search"></i></a>
+           title="Hacia una Persona">INTERNO</a>
 
-        <a class="btn btn-default" href="{{ path("movimiento_archivado", {'id':expediente.id}) }}"  
+        <a class="btn btn-primary" href="{{ path("movimiento_archivado", {'id':expediente.id}) }}"  
            role="button" data-toggle="tooltip" data-placement="top" 
-           title="Movimiento Archivador ">ARCHIVADOR<i class="fas fa-search"></i></a>
+           title="Hacia un lugar Físico">ARCHIVADOR</a>
     </div>
 
-
+ </div>
 
     <script>
         $(function () {

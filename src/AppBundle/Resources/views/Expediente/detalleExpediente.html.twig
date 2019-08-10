@@ -1,6 +1,7 @@
 {% extends "AppBundle::layout.html.twig" %}
 
 {% block contentmain %}
+    <div class="content">
     <div class="border border-primary">
         <div class="list-group col-lg-30 col-md-offset-1">
             <div class="expediente col-lg-10 panel panel-primary">
@@ -107,7 +108,7 @@
                 <a class="btn btn-primary" onclick="history.back()"  role="button">Volver</a>
             </div>
         </div>
-
+    </div>
         <script>
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()

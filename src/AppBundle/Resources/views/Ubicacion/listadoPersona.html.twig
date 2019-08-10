@@ -1,6 +1,6 @@
 {% extends "AppBundle::layout.html.twig" %}
 
-{% block content %}
+{% block contentmain %}
     <style>
         input[type=text]{
             margin-bottom: 10px;
@@ -43,9 +43,7 @@
     </style>
 
 
-
-    <h4 class="text-center"><i class="fas fa-bars"></i> Lista de Personas <a href="{{ path('nueva_persona') }}" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Nueva Persona"><i class="fas fa-plus"></i></a></h4>
-    <hr/>
+<div class="content">
     {% for message in app.flashes('success') %}
         <div class="alert alert-success">
             {{ message }}
@@ -61,15 +59,13 @@
     {% endfor %}
 
 
+
+  
     <div id="accordion_filtros">
-
-        <div class="row form col-lg-10" style="background:none;margin:0;">
-   
-
-    <div id="accordion_filtros">
-
-        <div class="row form col-lg-12" style="background:none;margin:0;">
-            <h4>FILTROS</h4>
+        <div class="row form col-lg-12">
+            <div class="filtro">
+             <div class="header"><h4><i class="fas fa-search"></i> Búsqueda de Persona</h4></div>
+                         <hr/>
             <form method="post" novalidate="true" id="form_buscar">
                 {{ form_errors(formPersonaFilter) }}
                 <div class="row">
@@ -88,7 +84,7 @@
                         </div>
                     </div>                  
                     <div class="twocol col-lg-2">
-                        {{ form_label(formPersonaFilter.dni, 'NRO. DOCUMENTO') }}
+                        {{ form_label(formPersonaFilter.dni, 'DOCUMENTO') }}
                         {{ form_widget(formPersonaFilter.dni) }}
                         <div class="help-block with-errors">
                             {{ form_errors(formPersonaFilter.dni) }}
@@ -112,19 +108,14 @@
                         {{ form_row(formPersonaFilter.reset) }}
                     </div>
                 </div>
-                    <br/>
-                    <br/>
-                    <hr/>
                 {{ form_end(formPersonaFilter) }}
             </form>
+            </div
         </div>
-    </div>
-
-    <hr/>
-    
+            <hr/>
     {% if persona|length >0 %}
     <table class="table table-striped">
-        <thead class="">
+        <thead class="thead-dark">
             <tr>
                 <th scope="col">APELLIDO</th>
                 <th scope="col">NOMBRE</th>
@@ -177,7 +168,7 @@
 
 
     {% endif %}
-
+    </div>
     <script>
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()

@@ -1,39 +1,7 @@
 {% extends "AppBundle::layout.html.twig" %}
 
-{% block content %}
+{% block contentmain %}
     <style>
-        input[type=text]{
-            margin-bottom: 10px;
-            padding:10px;            
-        }
-        input[type=submit]{
-            margin-bottom: 10px;           
-        }
-        .expediente{
-            margin-right: 12px;
-            padding:15px;
-        }
-        .expediente p{
-            margin-top:10px;
-        }
-        .titulo{
-            height: 30px;
-            padding:7px;
-            background-color:black;
-            color: #fff;
-        }
-        .panel{
-            font-size: 15px; 
-            margin-bottom: 20px;
-            margin-right: 20px;
-        }
-        .form-exp{
-            font-size:15px;
-            padding:10px;
-        }
-        .title{
-            font-size:16px;
-        }
 
         p {
             white-space: nowrap;
@@ -43,151 +11,147 @@
         }
 
     </style>
-    
-    
-    <h4 class="text-center"><i class="fas fa-building"></i> Lista de Dependencias <a href="{{ path('nueva_dependencia') }}" class="btn btn-success" data-toggle="tooltip" data-placement="top" title="Nueva Dependencia"><i class="fas fa-plus"></i></a></h4>
-    <hr/>
-    <div id="accordion_filtros">
 
-        <div class="row form col-lg-12" style="background:none;margin:0;">
-            
-            <h4>FILTROS</h4>
-            <form method="post" novalidate="true" id="form_buscar">
-                {{ form_errors(formDependenciaFilter) }}
-                <div class="row">
-                    <div class="threecol col-lg-3">
-                        {{ form_label(formDependenciaFilter.descripcion, 'DESCRIPCIÓN') }}
-                        {{ form_widget(formDependenciaFilter.descripcion) }}
-                        <div class="help-block with-errors">
-                            {{ form_errors(formDependenciaFilter.descripcion) }}
-                        </div>
-                    </div>
-                    <div class="threecol col-lg-4">
-                        {{ form_label(formDependenciaFilter.dependenciaPadre, 'DEPENDENCIA PADRE') }}
-                        {{ form_widget(formDependenciaFilter.dependenciaPadre) }}
-                        <div class="help-block with-errors">
-                            {{ form_errors(formDependenciaFilter.dependenciaPadre) }}
-                        </div>
-                    </div> 
-                    <div class="threecol col-lg-2">
-                        {{ form_label(formDependenciaFilter.responsable, 'NOMBRE RESPONSABLE') }}
-                        {{ form_widget(formDependenciaFilter.responsable) }}
-                        <div class="help-block with-errors">
-                            {{ form_errors(formDependenciaFilter.responsable) }}
-                        </div>
-                    </div>  
-                    <div class="twocol col-lg-1">
-                        {{ form_label(formDependenciaFilter.nivel, 'NIVEL') }}
-                        {{ form_widget(formDependenciaFilter.nivel) }}
-                        <div class="help-block with-errors">
-                            {{ form_errors(formDependenciaFilter.nivel) }}
-                        </div>
-                    </div> 
-                    <div class="twocol col-lg-2">
-                        {{ form_label(formDependenciaFilter.archivado, 'ARCHIVADO: Si/No') }}
-                        {{ form_widget(formDependenciaFilter.archivado) }}
-                        <div class="help-block with-errors">
-                            {{ form_errors(formDependenciaFilter.archivado) }}
-                        </div>
-                    </div> 
-                </div>
-                
-                <div class="col-lg-12">
-                    <div class="col-lg-1">
-                        {{ form_row(formDependenciaFilter.filter) }}
-                    </div>
-                    <div class="col-lg-1">
-                        {{ form_row(formDependenciaFilter.reset) }}
-                    </div>
-                </div>
-                    <br/>
-                    <br/>
+    <div class="content">
+            <div class="row form col-lg-12">
+                <div class="filtro">
+                    <div class="header"><h4><i class="fas fa-search"></i> Búsqueda de Dependencia</h4></div>
                     <hr/>
-                {{ form_end(formDependenciaFilter) }}
+                    <form method="post" novalidate="true" id="form_buscar">
+                        {{ form_errors(formDependenciaFilter) }}
+                        <div class="row">
+                            <div class="threecol col-lg-4">
+                                {{ form_label(formDependenciaFilter.descripcion, 'DESCRIPCIÓN') }}
+                                {{ form_widget(formDependenciaFilter.descripcion) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formDependenciaFilter.descripcion) }}
+                                </div>
+                            </div>
+                            <div class="threecol col-lg-4">
+                                {{ form_label(formDependenciaFilter.dependenciaPadre, 'DEPENDENCIA PADRE') }}
+                                {{ form_widget(formDependenciaFilter.dependenciaPadre) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formDependenciaFilter.dependenciaPadre) }}
+                                </div>
+                            </div> 
+                            <div class="threecol col-lg-4">
+                                {{ form_label(formDependenciaFilter.responsable, 'NOMBRE RESPONSABLE') }}
+                                {{ form_widget(formDependenciaFilter.responsable) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formDependenciaFilter.responsable) }}
+                                </div>
+                            </div>  
+                            <div class="twocol col-lg-1">
+                                {{ form_label(formDependenciaFilter.nivel, 'NIVEL') }}
+                                {{ form_widget(formDependenciaFilter.nivel) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formDependenciaFilter.nivel) }}
+                                </div>
+                            </div> 
+                            <div class="twocol col-lg-1">
+                                {{ form_label(formDependenciaFilter.archivado, 'ESTADO') }}
+                                {{ form_widget(formDependenciaFilter.archivado) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formDependenciaFilter.archivado) }}
+                                </div>
+                            </div> 
+                        </div>
 
-            </form>
-                 
+                        <div class="col-lg-12">
+                            <div class="col-lg-1">
+                                {{ form_row(formDependenciaFilter.filter) }}
+                            </div>
+                            <div class="col-lg-1">
+                                {{ form_row(formDependenciaFilter.reset) }}
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
+                        <hr/>
+                        {{ form_end(formDependenciaFilter) }}
+
+                    </form>
+                </div>
         </div>
-    </div>
 
 
-    <br/>
-    
-  
-    <table class="table table-striped">
-        <thead class="">
-            <tr>
-                <th scope="col">Descripción</th>
-                <th scope="col">Dependencia Padre</th>
-                <th scope="col">Responsable</th>
-                <th scope="col">Estado</th>
-                <th scope="col">Nivel</th>
-                <th scope="col">Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
+        <br/>
 
-            {% for dependencia in dependencias|reverse %}
+
+        <table class="table table-striped">
+            <thead class="thead-dark">
                 <tr>
-                    <td class="text-default">{{dependencia.descripcion|e }}</td>
-                    <td class="text-default"><p>{{dependencia.dependenciaPadre.descripcion|e }}</p></td>
-                    <td class="text-default">{{dependencia.responsable|e }}</td>
-                    
-                    {% if dependencia.archivado == 'NO' %}
-                        <td class="text-default">Vigente</td>
-                          <td class="text-default">{{dependencia.nivel|e }}</td>
-                    <td> <a class="btn btn-info" href="{{ path('adm_gestionar_mesaentrada',{'id':dependencia.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Gestionar Mesa de Entrada">  <i class="fas fa-table"></i></a>
-                        <a class="btn btn-warning" href="{{ path('editar_dependencia',{'id':dependencia.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit"></i></a>
-                        <a class="btn btn-danger" href="{{ path('archivar_dependencia',{'id':dependencia.id}) }}"  role="button"><i class="far fa-file-archive" data-toggle="tooltip" data-placement="top" title="Archivar"></i></a></td>
-                    {% else %}
-                        <td class="text-default">Archivado</td>
-                          <td class="text-default">{{dependencia.nivel|e }}</td>
-                    <td> <a class="btn btn-info" href="{{ path('adm_gestionar_mesaentrada',{'id':dependencia.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Gestionar mesa de Entrada">  <i class="fas fa-table"></i></a>
-                        <a class="btn btn-warning" href="{{ path('editar_dependencia',{'id':dependencia.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Editar Dependencia"><i class="fas fa-edit"></i></a>
-                        <a class="btn btn-success" href="{{ path('alta_dependencia',{'id':dependencia.id}) }}"  role="button"><i class="far fa-calendar-check" data-toggle="tooltip" data-placement="top" title="Dar de Alta"></i></a></td>
-                    {% endif %}
-                  
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Dependencia Padre</th>
+                    <th scope="col">Responsable</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Nivel</th>
+                    <th scope="col">Acciones</th>
                 </tr>
-            {% endfor %}
+            </thead>
+            <tbody>
 
-        </tbody>
-    </table>
-    
-    {% if dependencias|length < totalItems %}
-    <ul class="pagination">
-        {%if (thisPage==1)%}           
-        {%else%}
-            {%set thisPage= thisPage-1%}
-        {%endif%}
+                {% for dependencia in dependencias|reverse %}
+                    <tr>
+                        <td class="text-default">{{dependencia.descripcion|e }}</td>
+                        <td class="text-default"><p>{{dependencia.dependenciaPadre.descripcion|e }}</p></td>
+                        <td class="text-default">{{dependencia.responsable|e }}</td>
+
+                        {% if dependencia.archivado == 'NO' %}
+                            <td class="text-default">Vigente</td>
+                            <td class="text-default">{{dependencia.nivel|e }}</td>
+                            <td> <a class="btn btn-info" href="{{ path('adm_gestionar_mesaentrada',{'id':dependencia.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Gestionar Mesa de Entrada">  <i class="fas fa-table"></i></a>
+                                <a class="btn btn-warning" href="{{ path('editar_dependencia',{'id':dependencia.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit"></i></a>
+                                <a class="btn btn-danger" href="{{ path('archivar_dependencia',{'id':dependencia.id}) }}"  role="button"><i class="far fa-file-archive" data-toggle="tooltip" data-placement="top" title="Archivar"></i></a></td>
+                                {% else %}
+                            <td class="text-default">Archivado</td>
+                            <td class="text-default">{{dependencia.nivel|e }}</td>
+                            <td> <a class="btn btn-info" href="{{ path('adm_gestionar_mesaentrada',{'id':dependencia.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Gestionar mesa de Entrada">  <i class="fas fa-table"></i></a>
+                                <a class="btn btn-warning" href="{{ path('editar_dependencia',{'id':dependencia.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Editar Dependencia"><i class="fas fa-edit"></i></a>
+                                <a class="btn btn-success" href="{{ path('alta_dependencia',{'id':dependencia.id}) }}"  role="button"><i class="far fa-calendar-check" data-toggle="tooltip" data-placement="top" title="Dar de Alta"></i></a></td>
+                                {% endif %}
+
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+        {% if dependencias|length < totalItems %}
+            <ul class="pagination">
+                {%if (thisPage==1)%}           
+                {%else%}
+                    {%set thisPage= thisPage-1%}
+                {%endif%}
 
 
-        <li ><a class="page-link" href="{{ path('listado_dependencia', {"currentPage": thisPage}) }}">&laquo</a></li>
-            {% for i in 1..maxPages %}
-            <li><a class="page-link"  href="{{ path('listado_dependencia', {"currentPage": i}) }}">{{ i }}</a></li>
-            {% endfor %}
-        
-        {%if (page==maxPages)%}
+                <li ><a class="page-link" href="{{ path('listado_dependencia', {"currentPage": thisPage}) }}">&laquo</a></li>
+                    {% for i in 1..maxPages %}
+                    <li><a class="page-link"  href="{{ path('listado_dependencia', {"currentPage": i}) }}">{{ i }}</a></li>
+                    {% endfor %}
 
-        {%else%}
-            {%set page= page+1%}
-        {%endif%}
-        <li><a class="page-link" href="{{ path('listado_dependencia', {"currentPage": page}) }}">&raquo</a></li>
+                {%if (page==maxPages)%}
 
-    </ul>
-    {% endif %}
+                {%else%}
+                    {%set page= page+1%}
+                {%endif%}
+                <li><a class="page-link" href="{{ path('listado_dependencia', {"currentPage": page}) }}">&raquo</a></li>
 
-    <script>
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
-    </script>
-    
-    <script>
-        $('#dependencia_filter_responsable').autocompleter({
-            url_list: "{{ path('persona_search') }}",
-            url_get: "{{ path('persona_get') }}"
-        });
-    </script>
+            </ul>
+        {% endif %}
 
-    <hr/>
-{% endblock %}
+        <script>
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
+        </script>
+
+        <script>
+            $('#dependencia_filter_responsable').autocompleter({
+                url_list: "{{ path('persona_search') }}",
+                url_get: "{{ path('persona_get') }}"
+            });
+        </script>
+
+        <hr/>
+    {% endblock %}

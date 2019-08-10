@@ -1,7 +1,7 @@
 
 {% extends "AppBundle::layout.html.twig" %}
 
-{% block content %}
+{% block login %}
     
     <style>
         input[type=text]{
@@ -14,13 +14,12 @@
          }
 
     </style>
-    
-   
+     
     <div class="col-lg-10" style="padding-left:  300px; padding-top:  50px">
         <div class="list-group col-lg-11 col-md-offset-1">
                 <div class="expediente col-lg-10 panel panel-primary"  style="padding: 10px">
                     <div class="panel-heading" style="font-size:18px;">
-                        INGRESO DE USUARIO
+                        Iniciar Sesión
                     </div>
     
             <form action="{{ path('login_check') }}" method="post">

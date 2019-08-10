@@ -1,6 +1,6 @@
 {% extends "AppBundle::layout.html.twig" %}
 
-{% block content %}
+{% block contentmain %}
     <style>
         input[type=text]{
             margin-bottom: 10px;
@@ -44,11 +44,16 @@
 
     </style>
 
+    <div class="content">
+    
+        <div class="filtro">
+        
     <h4 class="text-center"><i class="fas fa-bars"></i>Movimientos - Expediente {{ expediente.nroExpediente }}
     <a href="{{ path('elegir_movimiento',{'id':expediente.id}) }}">Nuevo</a></h4>
+        </div>
     <hr/>
     <table class="table table-striped">
-        <thead>
+        <thead class="thead-dark">
             <tr>
                 <th scope="col"></th>
                 <th scope="col">UBICACION</th>
@@ -85,7 +90,8 @@
 
         </tbody>
     </table>
-
+            
+    </div>
     <script>
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
