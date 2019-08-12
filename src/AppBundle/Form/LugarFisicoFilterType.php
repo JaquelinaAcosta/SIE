@@ -9,6 +9,7 @@ use Lexik\Bundle\FormFilterBundle\Filter\Form\Type\EmbeddedFilterTypeInterface;
 use Lexik\Bundle\FormFilterBundle\Filter\Query\QueryInterface;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\Expr\Join;
+use Doctrine\ORM\Query\Expr\From;
 
 
 class LugarFisicoFilterType extends AbstractType implements EmbeddedFilterTypeInterface
@@ -18,6 +19,7 @@ class LugarFisicoFilterType extends AbstractType implements EmbeddedFilterTypeIn
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $role = $options['role'];
         $builder->add('tipo', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType', array(
             'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
                 if (!empty($values['value'])) {
@@ -40,7 +42,29 @@ class LugarFisicoFilterType extends AbstractType implements EmbeddedFilterTypeIn
             },
             'attr' => ['class' => 'form-control']
         ));
-            
+                    
+        if($role != 'ROLE_USER'){
+            $builder->add('dependencia', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\EntityFilterType', array(
+                'class' => 'AppBundle\Entity\Dependencia',
+                'placeholder'=>'--Seleccione--',
+                'query_builder' => function (EntityRepository $repositorio) {
+                    return $repositorio
+                                    ->createQueryBuilder('e')
+                                    ->from(\AppBundle\Entity\LugarFisico::class, "l")
+                                    ->innerJoin(\AppBundle\Entity\Ubicacion::class, "u", "WITH",
+                                    "e.id = u.dependencia")
+                                    ->andWhere('u.id = l.id')
+                                    ->orderBy('e.descripcion', 'ASC');
+                },
+                'attr'=>[
+                    'class'=>'form-control',
+                    'placeholder'=>'Escriba parte del nombre y seleccione'
+                ]
+
+
+            )); 
+        }   
+       
             
         $builder->add('filter', 'Symfony\Component\Form\Extension\Core\Type\SubmitType', array(
             'label' => 'Filtrar',
@@ -51,59 +75,6 @@ class LugarFisicoFilterType extends AbstractType implements EmbeddedFilterTypeIn
             'label' => 'Reiniciar',
             'attr' => ['class' => 'btn btn-danger']
         ));
-            
-//       if($options['movimiento_lugar'] == null){
-//           $builder                
-//                ->add('tipo', TextType::class, array(
-//                    "label" => "Ingrese un tipo", "attr" => array(
-//                        "class" => "form-name form-control",
-//                        "placeholder" => "Ingrese un tipo"
-//                    )
-//                ))
-//                ->add('descripcion', TextType::class, array(
-//                    "label" => "ingrese una descripción", "attr" => array(
-//                        "class" => "form-name form-control",
-//                        "placeholder" => "Ingrese una descripción"
-//                    )
-//                ))
-//                ->add('acceso', TextType::class, array(
-//                    "label" => "Ingrese el acceso", "attr" => array(
-//                        "class" => "form-name form-control",
-//                        "placeholder" => "Ingrese un acceso"
-//                    )
-//                ))              
-//                ->add('Aceptar', SubmitType::class, array("attr" => array(
-//                        "class" => "form-submit btn btn-primary"
-//                    )
-//                ));
-//        
-//        if($options['edit_mode'] != null)
-//        {
-//            $builder->add('dependencia', EntityType::class, array(
-//                    "label" => false,
-//                    "placeholder" => "--Seleccione--",
-//                    'query_builder' => function (EntityRepository $er) {
-//                                return $er->createQueryBuilder('u')
-//                                    ->orderBy('u.descripcion', 'ASC');
-//                            },
-//                    "class" => 'AppBundle:Dependencia', "attr" => array(
-//                        "class" => "form-control"
-//                    ))
-//                );
-//        }
-//       } else{
-//           $builder->add('tipo', EntityType::class, array(
-//                    "label" => false,
-//                    "placeholder" => "--Seleccione--",
-//                    'query_builder' => function (EntityRepository $er) {
-//                                return $er->createQueryBuilder('u')
-//                                    ->orderBy('u.descripcion', 'ASC');
-//                            },
-//                    "class" => 'AppBundle:LugarFisico', "attr" => array(
-//                        "class" => "form-control"
-//                    ))
-//                );
-//       }
         
         
     }/**
@@ -113,8 +84,9 @@ class LugarFisicoFilterType extends AbstractType implements EmbeddedFilterTypeIn
     {
         $resolver->setDefaults(array(
             'csrf_protection' => false,
+            'role' => null,
             'validation_groups' => array('filtering') // avoid NotBlank() constraint-related message
-        ));
+            ));
     }
 
     /**

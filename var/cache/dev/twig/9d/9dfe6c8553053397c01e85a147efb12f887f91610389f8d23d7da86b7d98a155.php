@@ -182,6 +182,6 @@ class __TwigTemplate_dfc6036fa56eda70cb2bd40ece1b7ce08051cf6683f937e1daddf0423f6
     </div>
         
  
-{% endblock %}", "AppBundle:PaginaPrincipal:login.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/PaginaPrincipal/login.html.twig");
+{% endblock %}", "AppBundle:PaginaPrincipal:login.html.twig", "/var/www/html/gitSIE/src/AppBundle/Resources/views/PaginaPrincipal/login.html.twig");
     }
 }

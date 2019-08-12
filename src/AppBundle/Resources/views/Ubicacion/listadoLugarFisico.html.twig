@@ -13,26 +13,37 @@
     </style>
 
     <div class="content">
+        <div class="row form col-lg-12" style="background:none;margin:0;">
             <div class ="filtro">
                 <div class="header"><h4><i class="fas fa-search"></i> Búsqueda de Lugares</h4></div>
                 <hr/>
                 <form method="post" novalidate="true" id="form_buscar">
                     {{ form_errors(formLugarFisicoFilter) }}
                     <div class="row">
-                        <div class="threecol col-lg-4">
+                        <div class="threecol col-lg-2">
                             {{ form_label(formLugarFisicoFilter.tipo, 'TIPO') }}
                             {{ form_widget(formLugarFisicoFilter.tipo) }}
                             <div class="help-block with-errors">
                                 {{ form_errors(formLugarFisicoFilter.tipo) }}
                             </div>
                         </div>  
-                        <div class="threecol col-lg-4">
+                        <div class="threecol col-lg-2">
                             {{ form_label(formLugarFisicoFilter.descripcion, 'DESCRIPCIÓN') }}
                             {{ form_widget(formLugarFisicoFilter.descripcion) }}
                             <div class="help-block with-errors">
                                 {{ form_errors(formLugarFisicoFilter.descripcion) }}
                             </div>
                         </div>
+       
+                        {% if formLugarFisicoFilter.dependencia is defined %}                    
+                        <div class="threecol col-lg-2">
+                            {{ form_label(formLugarFisicoFilter.dependencia, 'DEPENDENCIA') }}
+                            {{ form_widget(formLugarFisicoFilter.dependencia) }}
+                            <div class="help-block with-errors">
+                                {{ form_errors(formLugarFisicoFilter.dependencia) }}
+                            </div>
+                        </div>
+                        {% endif %}
                     </div>
 
                     <div class="col-lg-12">
@@ -50,6 +61,7 @@
 
                 </form>
             </div>
+        </div>
         <hr/>
         {% for message in app.flashes('success') %}
             <div class="alert alert-success">
