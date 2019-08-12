@@ -114,35 +114,6 @@ class LugarFisicoController extends Controller {
         // replace this example code with whatever you need    
     }
     
-//    /**
-//     * @Route("/lugar_fisico/listado/{currentPage}", name="listado_lugarfisico")
-//     */
-//    public function listaLugarFisicoAction(Request $request, $currentPage) {
-//
-//        $em = $this->getDoctrine()->getEntityManager();
-//        $limit=15;
-//        $user = $this->getUser();
-//        $lugares = new LugarFisico();
-//
-//        if ($user->getRole() == "ROLE_ADMIN") {
-//            $lugares = $em->getRepository("AppBundle:LugarFisico")->getAllPers($currentPage,$limit);
-//            $totalItems=count($lugares);
-//            $maxPages = ceil($totalItems/$limit);
-//        } else {
-//            $lugares = $em->getRepository("AppBundle:LugarFisico")->findBy(['dependencia' => $user->getPersona()->getDependencia()->getId()]);
-//        }
-//
-//
-//        // replace this example code with whatever you need
-//        return $this->render('AppBundle:Ubicacion:listadoLugarFisico.html.twig', [
-//                    'lugaresfisicos' => $lugares, 
-//                    'maxPages'=>$maxPages,
-//                    'totalItems'=>$totalItems,
-//                    'thisPage' => $currentPage,
-//                    'page' => $currentPage,
-//        ]);
-//    }
-    
     /**
      * @Route("/lugar_fisico/listado/{currentPage}", name="listado_lugarfisico")
      */
@@ -153,8 +124,10 @@ class LugarFisicoController extends Controller {
         $maxPages = 0;
         $lugarFisico = array();
         $user = $this->getUser();
+        $rol=$user->getRole();
         
-        $formLugarFisicoFilter = $this->createForm(LugarFisicoFilterType::class);
+        $formLugarFisicoFilter = $this->createForm(LugarFisicoFilterType::class, $lugarFisico, [
+                'role' => $rol]);
         $formLugarFisicoFilter->handleRequest($request);
         if ($formLugarFisicoFilter->isSubmitted() == false && $this->get('session')->get('lugarFisico_listar_request')) {
             $formLugarFisicoFilter->handleRequest($this->get('session')->get('lugarFisico_listar_request'));
@@ -162,6 +135,13 @@ class LugarFisicoController extends Controller {
 
         if ($formLugarFisicoFilter->isValid()) {
             $filterBuilder = $em->getRepository('AppBundle:LugarFisico')->createQueryBuilder('p');
+           if ($user->getRole() != "ROLE_ADMIN") {
+                $filterBuilder->leftJoin(\AppBundle\Entity\Ubicacion::class, "u", "WITH",
+                                "p.id = u.id")
+                        ->where('u.dependencia= :dependencia')
+//                                ->andWhere('w.id != :expediente_id')
+                        ->setParameter('dependencia', $user->getPersona()->getDependencia());
+            }
             $filterBuilder->addOrderBy('p.tipo', 'ASC');
             $filterBuilder->addOrderBy('p.descripcion', 'ASC');
             

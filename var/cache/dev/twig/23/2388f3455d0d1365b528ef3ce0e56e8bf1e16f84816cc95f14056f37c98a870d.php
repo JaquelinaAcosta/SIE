@@ -286,6 +286,6 @@ class __TwigTemplate_f00a9fe82af130be4151094a955578bdb99db76fa1545477496e9c6c74b
         <hr/>
     </div>
     
-{% endblock %}", "AppBundle:PaginaPrincipal:index.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/PaginaPrincipal/index.html.twig");
+{% endblock %}", "AppBundle:PaginaPrincipal:index.html.twig", "/var/www/html/gitSIE/src/AppBundle/Resources/views/PaginaPrincipal/index.html.twig");
     }
 }
