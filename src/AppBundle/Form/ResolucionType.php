@@ -7,7 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextAreaType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use AppBundle\Form\PersonaType;
@@ -50,7 +50,7 @@ class ResolucionType extends AbstractType {
                         "class" => 'datepicker form-control',
                         "placeholder" => 'MM-DD-AAAA')
                 ))
-                ->add('observacion', TextAreaType::class, array(
+                ->add('observacion', TextareaType::class, array(
                     "required"=>false,
                     "label" => false, "attr" => array(
                         "class" => 'datepicker form-control',
