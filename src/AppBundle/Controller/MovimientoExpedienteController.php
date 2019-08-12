@@ -94,6 +94,13 @@ class MovimientoExpedienteController extends Controller {
                 $expediente->setEstado('NUEVO');
                 $em->persist($expediente);
                 $em->flush();
+                
+                $this->rediectToRoute('listado_expediente',
+                ['currentPage'=>1]);
+                
+                $this->addFlash('success','Pase externo hacia '.$mesaentrada
+                        ->getDependencia()->getDescripcion(). 'exitoso.');
+                
             }
         }
         return $this->render('AppBundle:Movimiento:externo.html.twig', [
@@ -139,7 +146,6 @@ class MovimientoExpedienteController extends Controller {
      * @Route("expediente/{id}/movimiento/listado", name="listado_movimiento")
      */
     public function listaMovimientoAction(Request $request,$id) {
-
         $em = $this->getDoctrine()->getEntityManager();
         $user = $this->getUser();
         $expediente = $em->getRepository('AppBundle:Expediente')->find($id);

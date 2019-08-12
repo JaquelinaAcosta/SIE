@@ -41,14 +41,11 @@
                             </div>
                         </div>     
 
-                        <div class="col-lg-12">
-                            <div class="col-lg-6">
-                                {{ form_row(formExpedienteFilter.filter) }}
-                            </div>
-                            <div class="col-lg-6">
-                                {{ form_row(formExpedienteFilter.reset) }}
-                            </div>
-                        </div>
+                            {{ form_widget(formExpedienteFilter.filter) }}
+                            {{ form_widget(formExpedienteFilter.reset) }}
+                            <a class="btn btn-success" role="button" 
+                               href="{{ path('nuevo_expediente') }}">Nuevo</a>
+
                         {{ form_end(formExpedienteFilter) }}
                 </form>
             </div>
@@ -92,167 +89,18 @@
 <script>
 
     $('#expediente_filter_tema').autocompleter({
-                    url_list: "{{ path('tema_search') }}",
-                    url_get: "{{ path('tema_get') }}"
+        url_list: "{{ path('tema_search') }}",
+        url_get: "{{ path('tema_get') }}"
     });
     {#  $('#expediente_filter_nroExpediente').autocompleter({
             url_list: "{{ path('expediente_search') }}",
             url_get: "{{ path('expediente_get') }}"
         });#}
 
-$(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-})
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
 </script>
 
 
-{% endblock %}
-
-
-{% block content %}
-    <style>
-        input[type=text]{
-            margin-bottom: 10px;
-            padding:10px;            
-        }
-        input[type=submit]{
-            margin-bottom: 10px;           
-        }
-        .expediente{
-            margin-right: 12px;
-            padding:15px;
-        }
-        .expediente p{
-            margin-top:10px;
-        }
-        .titulo{
-            height: 30px;
-            padding:7px;
-            background-color:black;
-            color: #fff;
-        }
-        .panel{
-            font-size: 15px; 
-            margin-bottom: 20px;
-            margin-right: 20px;
-        }
-        .form-exp{
-            font-size:15px;
-            padding:10px;
-        }
-        .title{
-            font-size:16px;
-        }
-
-        p {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 200px;
-        }
-
-    </style>
-<<<<<<< HEAD
-
-    <script>
-
-
-=======
-    <div class="content">
-    <div class="row form col-lg-10" style="background:none;margin:0;">
-            <div class="filtro">
-                <div class="header"><h4>Búsqueda de Expediente</h4></div>
-                <hr/>
-            <form method="post" novalidate="true" id="form_buscar">
-                {{ form_errors(formExpedienteFilter) }}
-                <div class="row">
-                    <div class="threecol col-lg-4">
-                        {{ form_label(formExpedienteFilter.nroExpediente, 'EXPEDIENTE') }}
-                        {{ form_widget(formExpedienteFilter.nroExpediente) }}
-                        <div class="help-block with-errors">
-                            {{ form_errors(formExpedienteFilter.nroExpediente) }}
-                        </div>
-                    </div>
-                    <div class="threecol col-lg-5">
-                        {{ form_label(formExpedienteFilter.tema, 'TEMA') }}
-                        {{ form_widget(formExpedienteFilter.tema) }}
-                        <div class="help-block with-errors">
-                            {{ form_errors(formExpedienteFilter.tema) }}
-                        </div>
-                    </div>    
-                     <div class="threecol col-lg-3">
-                        {{ form_label(formExpedienteFilter.tipo, 'TIPO') }}
-                        {{ form_widget(formExpedienteFilter.tipo) }}
-                        <div class="help-block with-errors">
-                            {{ form_errors(formExpedienteFilter.tipo) }}
-                        </div>
-                    </div>   
-                         <div class="threecol col-lg-3">
-                        {{ form_label(formExpedienteFilter.fechaInicio, 'FECHA DESDE') }}
-                         {{ form_row(formExpedienteFilter.fechaInicio, { 'id': 'date1' })}} 
-                        {{ form_widget(formExpedienteFilter.fechaInicio) }}
-                        <div class="help-block with-errors">
-                            {{ form_errors(formExpedienteFilter.fechaInicio) }}
-                        </div>
-                    </div>     
-                    
-                <div class="col-lg-12">
-                    <div class="col-lg-6">
-                        {{ form_row(formExpedienteFilter.filter) }}
-                    </div>
-                    <div class="col-lg-6">
-                        {{ form_row(formExpedienteFilter.reset) }}
-                    </div>
-                </div>
-                {{ form_end(formExpedienteFilter) }}
-            </form>
-        </div>
-        </div>
-    </div>
-
-    <hr/>
-    
-    <table class="table table-sm">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col">NUMERO</th>
-                <th scope="col">TEMA</th>
-                <th scope="col">UBICACION ACTUAL</th>
-                <th scope="col">ACCIONES</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            {% for expediente in expediente|reverse %}
-                <tr>
-                    <td class="text-default">{{expediente.nroExpediente|e }}</td>            
-                    <td class="text-default">{{expediente.tema|e }}</td>         
-                    <td class="text-default">{{expediente.ubicacionActual|e }}</td>
-                    <td><a class="btn btn-info" href="{{ path("ver_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Ver Detalle"><i class="fas fa-search"></i></a>
-                        <a class="btn btn-warning" href="{{ path("editar_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit"></i></a>
-                        <a class="btn btn-danger" href="{{ path("eliminar_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt"></i></a></td>
-                </tr>
-            {% endfor %}
-
-        </tbody>
-    </table>
-    </div>
-    <script>
-        
-      
-         $('#expediente_filter_tema').autocompleter({
-                url_list: "{{ path('tema_search') }}",
-                url_get: "{{ path('tema_get') }}"
-            });
-        {#  $('#expediente_filter_nroExpediente').autocompleter({
-                url_list: "{{ path('expediente_search') }}",
-                url_get: "{{ path('expediente_get') }}"
-            });#}
-        
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
->>>>>>> ab2842b5589d6a0803da88c3a55e1de94d1535d3
-    </script>
-    <hr/>
 {% endblock %}

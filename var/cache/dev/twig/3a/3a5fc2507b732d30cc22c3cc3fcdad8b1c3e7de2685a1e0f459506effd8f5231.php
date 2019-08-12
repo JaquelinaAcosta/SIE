@@ -77,82 +77,79 @@ class __TwigTemplate_cd45afe2b0aaf6535a379a4a2e524e13f75e81d1b5823dd50720c50cd86
 
     </style>
 
-
-    <div class=\"col-ls-12\">
-        <div class=\"title \">Expediente -> Movimiento</div>
-        <hr/>
-
-            <h4 class=\"text-default\">Expediente Número: ";
-        // line 29
+    <div class=\"content\">
+        <div class=\"col-ls-12\">
+            <strong>PASE EXTERNO, EXPEDIENTE ";
+        // line 26
         echo twig_escape_filter($this->env, $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "nroExpediente", []), "html", null, true);
-        echo "</h4>        
-        ";
-        // line 30
+        echo " </strong>
+            <hr/>    
+            ";
+        // line 28
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_start', ["action" => "", "method" => "POST"]);
         echo "
-        
-        
-        <div class=\"col-lg-4\">
-            <label class=\"text-default\">DEPENDENCIA</label>
-            ";
-        // line 35
+
+            <div class=\"col-lg-6\">
+                <label class=\"text-default\">MESA DE ENTRADA</label>
+                ";
+        // line 32
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "mesaentrada", []), 'errors');
         echo "
-            ";
-        // line 36
+                ";
+        // line 33
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "mesaentrada", []), 'widget');
         echo "
-        </div>   
-        <hr/>
-        <div class=\"col-lg-2\">
-            <label class=\"text-default\">FOJAS</label>
-            ";
-        // line 41
+            </div>   
+            <hr/>
+            <div class=\"col-lg-2\">
+                <label class=\"text-default\">FOJAS</label>
+                ";
+        // line 38
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fojas", []), 'errors');
         echo "
-            ";
-        // line 42
+                ";
+        // line 39
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fojas", []), 'widget');
         echo "
-        </div>   
-        <div class=\"col-lg-12\">
-            <hr/>
-            <label class=\"text-default\">OBSERVACIONES</label>
-            ";
-        // line 47
+            </div>   
+            <div class=\"col-lg-12\">
+                <hr/>
+                <label class=\"text-default\">OBSERVACIONES</label>
+                ";
+        // line 44
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "observacion", []), 'errors');
         echo "
-            ";
-        // line 48
+                ";
+        // line 45
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "observacion", []), 'widget');
         echo "
-        </div>   
-        <div class=\"col-lg-12\">
-            <label class=\"text-default\">COMENTARIO</label>
-            ";
-        // line 52
+            </div>   
+            <div class=\"col-lg-12\">
+                <label class=\"text-default\">COMENTARIO</label>
+                ";
+        // line 49
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "comentario", []), 'errors');
         echo "
-            ";
-        // line 53
+                ";
+        // line 50
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "comentario", []), 'widget');
         echo "
-            <hr/>
-        </div>  
-        <div class=\"col-lg-3 float left\">
-            ";
-        // line 57
+                <hr/>
+            </div>  
+            <div class=\"col-lg-3 float left\">
+                ";
+        // line 54
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "Aceptar", []), 'widget');
         echo "
+            </div>
         </div>
-    </div>
-    ";
-        // line 60
+        ";
+        // line 57
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_end');
         echo "
 
-</div>      
-
+    </div>      
+</div>
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -174,7 +171,7 @@ class __TwigTemplate_cd45afe2b0aaf6535a379a4a2e524e13f75e81d1b5823dd50720c50cd86
 
     public function getDebugInfo()
     {
-        return array (  151 => 60,  145 => 57,  138 => 53,  134 => 52,  127 => 48,  123 => 47,  115 => 42,  111 => 41,  103 => 36,  99 => 35,  91 => 30,  87 => 29,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  148 => 57,  142 => 54,  135 => 50,  131 => 49,  124 => 45,  120 => 44,  112 => 39,  108 => 38,  100 => 33,  96 => 32,  89 => 28,  84 => 26,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -210,46 +207,43 @@ class __TwigTemplate_cd45afe2b0aaf6535a379a4a2e524e13f75e81d1b5823dd50720c50cd86
 
     </style>
 
+    <div class=\"content\">
+        <div class=\"col-ls-12\">
+            <strong>PASE EXTERNO, EXPEDIENTE {{ expediente.nroExpediente }} </strong>
+            <hr/>    
+            {{form_start(form,{'action':'' ,'method':'POST'})}}
 
-    <div class=\"col-ls-12\">
-        <div class=\"title \">Expediente -> Movimiento</div>
-        <hr/>
-
-            <h4 class=\"text-default\">Expediente Número: {{ expediente.nroExpediente }}</h4>        
-        {{form_start(form,{'action':'' ,'method':'POST'})}}
-        
-        
-        <div class=\"col-lg-4\">
-            <label class=\"text-default\">DEPENDENCIA</label>
-            {{ form_errors(form.mesaentrada) }}
-            {{ form_widget(form.mesaentrada) }}
-        </div>   
-        <hr/>
-        <div class=\"col-lg-2\">
-            <label class=\"text-default\">FOJAS</label>
-            {{ form_errors(form.fojas) }}
-            {{ form_widget(form.fojas) }}
-        </div>   
-        <div class=\"col-lg-12\">
+            <div class=\"col-lg-6\">
+                <label class=\"text-default\">MESA DE ENTRADA</label>
+                {{ form_errors(form.mesaentrada) }}
+                {{ form_widget(form.mesaentrada) }}
+            </div>   
             <hr/>
-            <label class=\"text-default\">OBSERVACIONES</label>
-            {{ form_errors(form.observacion) }}
-            {{ form_widget(form.observacion) }}
-        </div>   
-        <div class=\"col-lg-12\">
-            <label class=\"text-default\">COMENTARIO</label>
-            {{ form_errors(form.comentario) }}
-            {{ form_widget(form.comentario) }}
-            <hr/>
-        </div>  
-        <div class=\"col-lg-3 float left\">
-            {{ form_widget(form.Aceptar) }}
+            <div class=\"col-lg-2\">
+                <label class=\"text-default\">FOJAS</label>
+                {{ form_errors(form.fojas) }}
+                {{ form_widget(form.fojas) }}
+            </div>   
+            <div class=\"col-lg-12\">
+                <hr/>
+                <label class=\"text-default\">OBSERVACIONES</label>
+                {{ form_errors(form.observacion) }}
+                {{ form_widget(form.observacion) }}
+            </div>   
+            <div class=\"col-lg-12\">
+                <label class=\"text-default\">COMENTARIO</label>
+                {{ form_errors(form.comentario) }}
+                {{ form_widget(form.comentario) }}
+                <hr/>
+            </div>  
+            <div class=\"col-lg-3 float left\">
+                {{ form_widget(form.Aceptar) }}
+            </div>
         </div>
-    </div>
-    {{form_end(form)}}
+        {{form_end(form)}}
 
-</div>      
-
+    </div>      
+</div>
 {% endblock %}", "AppBundle:Movimiento:externo.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/Movimiento/externo.html.twig");
     }
 }
