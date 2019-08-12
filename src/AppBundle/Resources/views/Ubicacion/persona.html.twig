@@ -13,44 +13,36 @@
         }
 
     </style>
-    
-   <div class="content"> 
-    <div class="col-lg-10" style="padding-left:  300px; padding-top:  50px">
-        <div class="list-group col-lg-11 col-md-offset-1">
-            <div class="expediente col-lg-10 panel panel-primary"  style="padding: 10px">
-                <div class="panel-heading" style="font-size:18px;">
-                    <i clas="fas fa-edit"></i> ALTA DE PERSONA
-                </div>
-                <br/>
-                {{form_start(form,{'action':'','method':'POST'})}}
-                {{ form_errors(form) }}
-                <div class="col-lg-14">
-                    {% if form.dependencia is defined %}
-                        <label class="text-default">Dependencia:</label>
-                        {{ form_errors(form.dependencia) }}
-                        {{ form_widget(form.dependencia) }}
-                    {% endif %}
 
-                    <label class="text-default">Nombre:</label>
-                    {{ form_errors(form.nombre) }}
-                    {{ form_widget(form.nombre) }}
-                    <label class="text-default">Apellido:</label>
-                    {{ form_errors(form.apellido) }}
-                    {{ form_widget(form.apellido) }}
-                    <label class="text-default">DNI:</label>
-                    {{ form_errors(form.dni) }}
-                    {{ form_widget(form.dni) }}
-                    <label class="text-default">Cargo:</label>
-                    {{ form_errors(form.cargo) }}
-                    {{ form_widget(form.cargo) }}
+    <div class="content"> 
 
-                    {{ form_widget(form.Aceptar) }}
-                    <a class="btn btn-default" onclick="history.back()"  role="button">Volver</a>
+        <i clas="fas fa-edit"></i> ALTA DE PERSONA
 
-                    {{form_end(form)}}
-                </div>
-            </div>
-        </div>
+        <hr/>
+        {{form_start(form,{'action':'','method':'POST'})}}
+        {{ form_errors(form) }}
+        {% if form.dependencia is defined %}
+            <label class="text-default">Dependencia:</label>
+            {{ form_errors(form.dependencia) }}
+            {{ form_widget(form.dependencia) }}
+        {% endif %}
+
+        <label class="text-default">Nombre:</label>
+        {{ form_errors(form.nombre) }}
+        {{ form_widget(form.nombre) }}
+        <label class="text-default">Apellido:</label>
+        {{ form_errors(form.apellido) }}
+        {{ form_widget(form.apellido) }}
+        <label class="text-default">DNI:</label>
+        {{ form_errors(form.dni) }}
+        {{ form_widget(form.dni) }}
+        <label class="text-default">Cargo:</label>
+        {{ form_errors(form.cargo) }}
+        {{ form_widget(form.cargo) }}
+
+        {{ form_widget(form.Aceptar) }}
+        <a class="btn btn-default" onclick="history.back()"  role="button">Volver</a>
+
+        {{form_end(form)}}
     </div>
-   </div>
 {% endblock %}

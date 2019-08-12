@@ -3,83 +3,52 @@
 {% block contentmain %}
 
     <style>
-        input[type=text]{
-            margin-bottom: 10px;
-            padding:10px;            
-        }
-        input[type=submit]{
-            margin-bottom: 10px;
-            padding:10px;            
-        }
-        body{
-            background-color:#fff;
 
-        }
-        .title{
-            font-size:24px;
-        }
-        .formu{
-            width: 600px;
-            float: none;
-            margin: 0 auto;
-        }
-        .float{
-            margin-top:15px;
-        }
-        body label{
-            font-size: 12px;
-            font-style:normal;
-        }
         .panel-body{
             padding:30px;
         }
     </style>  
 
-    <div class="formu col-ls-4">
-        <div class="panel panel-primary ">
-            <div class="title panel-heading text-center">Alta de Usuario</div>
-            <div class="panel panel-body">
-                <br/>
+    <div class="content">
+        <div class="formu col-ls-4">
+            <br/>
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
 
-                {% for message in app.flashes('success') %}
-                    <div class="alert alert-success">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-                
-                {% for message in app.flashes('danger') %}
-                    <div class="alert alert-danger">
-                        {{ message }}
-                    </div>
-                {% endfor %}
-                
-                {{form_start(form,{'action':'','method':'POST'})}}        
-                <label class="float exp">NOMBRE DE USUARIO</label>
-                {{ form_errors(form.iup) }}
-                {{ form_widget(form.iup) }}
-                 <label class="float left">EMAIL</label>
-                {{ form_errors(form.email) }}
-                {{ form_row(form.email.first) }}
-                <label class="float left">CONFIRMAR EMAIL</label>
-                {{ form_row(form.email.second) }}
-                <label class="float left">CONTRASEÑA</label>
-                {{ form_errors(form.contrasenia) }}
-                {{ form_row(form.contrasenia.first) }}
-                <label class="float left">CONFIRMAR CONTRASEÑA</label>
-                {{ form_row(form.contrasenia.second) }}
-                <label class="float left">PERSONA GESTIONANTE</label>
-                {{ form_errors(form.persona) }}
-                {{ form_widget(form.persona) }}                  
-                <label class="float left">ROLES</label>
-                {{ form_errors(form.role) }}
-                {{ form_widget(form.role) }}                                        
-                <br/>
-                {{ form_widget(form.Aceptar) }}          
+            {% for message in app.flashes('danger') %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+            {% endfor %}
+            {{form_start(form,{'action':'','method':'POST'})}}        
+            <label class="float exp">NOMBRE DE USUARIO</label>
+            {{ form_errors(form.iup) }}
+            {{ form_widget(form.iup) }}
+            <label class="float left">EMAIL</label>
+            {{ form_errors(form.email) }}
+            {{ form_row(form.email.first) }}
+            <label class="float left">CONFIRMAR EMAIL</label>
+            {{ form_row(form.email.second) }}
+            <label class="float left">CONTRASEÑA</label>
+            {{ form_errors(form.contrasenia) }}
+            {{ form_row(form.contrasenia.first) }}
+            <label class="float left">CONFIRMAR CONTRASEÑA</label>
+            {{ form_row(form.contrasenia.second) }}
+            <label class="float left">PERSONA GESTIONANTE</label>
+            {{ form_errors(form.persona) }}
+            {{ form_widget(form.persona) }}                  
+            <label class="float left">ROLES</label>
+            {{ form_errors(form.role) }}
+            {{ form_widget(form.role) }}                                        
+            <br/>
+            {{ form_widget(form.Aceptar) }}          
 
-                {{form_end(form)}}
-            </div>
-        </div>
-    </div>           
+            {{form_end(form)}}
+        </div>        
+    </div>
     <script>
         $('#usuario_persona').autocompleter({
             url_list: "{{ path('persona_search') }}",

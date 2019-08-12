@@ -58,39 +58,7 @@ class __TwigTemplate_a5748b60bfc0fc50b2211f17757d2ea6b068a394ec4a680bbac375a8e5c
 
         // line 4
         echo "    <style>
-        input[type=text]{
-            margin-bottom: 10px;
-            padding:10px;            
-        }
-        input[type=submit]{
-            margin-bottom: 10px;           
-        }
-        .expediente{
-            margin-right: 12px;
-            padding:15px;
-        }
-        .expediente p{
-            margin-top:10px;
-        }
-        .titulo{
-            height: 30px;
-            padding:7px;
-            background-color:black;
-            color: #fff;
-        }
-        .panel{
-            font-size: 15px; 
-            margin-bottom: 20px;
-            margin-right: 20px;
-        }
-        .form-exp{
-            font-size:15px;
-            padding:10px;
-        }
-        .title{
-            font-size:16px;
-        }
-
+       
         p {
             white-space: nowrap;
             overflow: hidden;
@@ -101,68 +69,79 @@ class __TwigTemplate_a5748b60bfc0fc50b2211f17757d2ea6b068a394ec4a680bbac375a8e5c
     </style>
 
 
-    <h4 class=\"text-center\"><i class=\"fas fa-bars\"></i>EXPEDIENTES ASOCIADOS - EXPEDIENTE ";
-        // line 48
-        echo twig_escape_filter($this->env, $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "nroExpediente", []), "html", null, true);
-        echo "
-    <a href=\"";
-        // line 49
-        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nuevo_expediente_asociado", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", [])]), "html", null, true);
-        echo "\">Nuevo</a></h4>
-    <hr/>
+    <div class=\"content\">
+        <div class=\"filtro\">
+            <div class=\"header\">
+                <i class=\"fas fa-search\"></i> Búsqueda de Expediente Asociado</h4> 
+            <a role=\"button\" 
+               class=\"btn btn-success float-right\" 
+                    href=\"";
+        // line 22
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nuevo_expediente_asociado", ["id" => $this->getAttribute(        // line 23
+($context["expediente"] ?? $this->getContext($context, "expediente")), "id", [])]), "html", null, true);
+        echo "\">
+                    Nuevo Expediente Asociado</a>
+            </div>
+            <hr/>
+            
+        </div>
+        <hr/>
 
-    <table class=\"table table-striped\">
-        <thead>
-            <tr>
-                <th scope=\"col\">EXPEDIENTE</th>
-                <th scope=\"col\">DESCRIPCION</th>
-                <th scope=\"col\">CODIGO</th>
-                <th scope=\"col\">ACCIONES</th>
-            </tr>
-        </thead>
-        <tbody>
+        <table class=\"table table-striped\">
+            <thead>
+                <tr>
+                    <th scope=\"col\">EXPEDIENTE</th>
+                    <th scope=\"col\">DESCRIPCION</th>
+                    <th scope=\"col\">CODIGO</th>
+                    <th scope=\"col\">ACCIONES</th>
+                </tr>
+            </thead>
+            <tbody>
 
-            ";
-        // line 63
+                ";
+        // line 42
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "ExpedientesAsociados", []), "getValues", []));
         foreach ($context['_seq'] as $context["_key"] => $context["expediente_asoc"]) {
-            // line 64
-            echo "                <tr>
-                    <td>";
-            // line 65
+            // line 43
+            echo "                    <tr>
+                        <td>";
+            // line 44
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "html", null, true);
             echo "</td>
-                    <td>";
-            // line 66
+                        <td>";
+            // line 45
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "tema", []), "descripcion", []), "html", null, true);
             echo "</td>
-                    <td>";
-            // line 67
+                        <td>";
+            // line 46
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "tema", []), "codigo", []), "html", null, true);
             echo "</td>
-                    <td><a class=\"btn btn-info\" href=\"";
-            // line 68
+                        <td><a class=\"btn btn-info\" href=\"";
+            // line 47
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("ver_expediente", ["id" => $this->getAttribute($this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "id", [])]), "html", null, true);
             echo "\"  role=\"button\" title=\"Ver Detalle\"><i class=\"fas fa-search\"></i></a>
-                        <a class=\"btn btn-warning\" href=\"";
-            // line 69
+                            <a class=\"btn btn-warning\" href=\"";
+            // line 48
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_expediente", ["id" => $this->getAttribute($this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "id", [])]), "html", null, true);
             echo "\"  role=\"button\" title=\"Modificar\"><i class=\"fas fa-edit\"></i></a>
-                        <a class=\"btn btn-danger\" href=\"";
-            // line 70
+                            <a class=\"btn btn-danger\" href=\"";
+            // line 49
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("eliminar_expediente", ["id" => $this->getAttribute($this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "id", [])]), "html", null, true);
             echo "\"  role=\"button\" title=\"Archivar\"><i class=\"fas fa-trash-alt\"></i></a></td>
-                </tr>
-            ";
+                    </tr>
+                ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['expediente_asoc'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 73
+        // line 52
         echo "
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+
+    </div>
+
     <script>
         \$(function () {
             \$('[data-toggle=\"tooltip\"]').tooltip()
@@ -190,7 +169,7 @@ class __TwigTemplate_a5748b60bfc0fc50b2211f17757d2ea6b068a394ec4a680bbac375a8e5c
 
     public function getDebugInfo()
     {
-        return array (  163 => 73,  154 => 70,  150 => 69,  146 => 68,  142 => 67,  138 => 66,  134 => 65,  131 => 64,  127 => 63,  110 => 49,  106 => 48,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  139 => 52,  130 => 49,  126 => 48,  122 => 47,  118 => 46,  114 => 45,  110 => 44,  107 => 43,  103 => 42,  81 => 23,  80 => 22,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -207,39 +186,7 @@ class __TwigTemplate_a5748b60bfc0fc50b2211f17757d2ea6b068a394ec4a680bbac375a8e5c
 
 {% block contentmain %}
     <style>
-        input[type=text]{
-            margin-bottom: 10px;
-            padding:10px;            
-        }
-        input[type=submit]{
-            margin-bottom: 10px;           
-        }
-        .expediente{
-            margin-right: 12px;
-            padding:15px;
-        }
-        .expediente p{
-            margin-top:10px;
-        }
-        .titulo{
-            height: 30px;
-            padding:7px;
-            background-color:black;
-            color: #fff;
-        }
-        .panel{
-            font-size: 15px; 
-            margin-bottom: 20px;
-            margin-right: 20px;
-        }
-        .form-exp{
-            font-size:15px;
-            padding:10px;
-        }
-        .title{
-            font-size:16px;
-        }
-
+       
         p {
             white-space: nowrap;
             overflow: hidden;
@@ -250,34 +197,48 @@ class __TwigTemplate_a5748b60bfc0fc50b2211f17757d2ea6b068a394ec4a680bbac375a8e5c
     </style>
 
 
-    <h4 class=\"text-center\"><i class=\"fas fa-bars\"></i>EXPEDIENTES ASOCIADOS - EXPEDIENTE {{ expediente.nroExpediente }}
-    <a href=\"{{ path('nuevo_expediente_asociado',{'id':expediente.id}) }}\">Nuevo</a></h4>
-    <hr/>
+    <div class=\"content\">
+        <div class=\"filtro\">
+            <div class=\"header\">
+                <i class=\"fas fa-search\"></i> Búsqueda de Expediente Asociado</h4> 
+            <a role=\"button\" 
+               class=\"btn btn-success float-right\" 
+                    href=\"{{ path('nuevo_expediente_asociado',
+                                 {'id':expediente.id}) }}\">
+                    Nuevo Expediente Asociado</a>
+            </div>
+            <hr/>
+            
+        </div>
+        <hr/>
 
-    <table class=\"table table-striped\">
-        <thead>
-            <tr>
-                <th scope=\"col\">EXPEDIENTE</th>
-                <th scope=\"col\">DESCRIPCION</th>
-                <th scope=\"col\">CODIGO</th>
-                <th scope=\"col\">ACCIONES</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            {% for expediente_asoc in expediente.ExpedientesAsociados.getValues %}
+        <table class=\"table table-striped\">
+            <thead>
                 <tr>
-                    <td>{{expediente_asoc.expedienteAsociado}}</td>
-                    <td>{{expediente_asoc.expedienteAsociado.tema.descripcion}}</td>
-                    <td>{{expediente_asoc.expedienteAsociado.tema.codigo}}</td>
-                    <td><a class=\"btn btn-info\" href=\"{{ path(\"ver_expediente\", {'id':expediente_asoc.expedienteAsociado.id}) }}\"  role=\"button\" title=\"Ver Detalle\"><i class=\"fas fa-search\"></i></a>
-                        <a class=\"btn btn-warning\" href=\"{{ path(\"editar_expediente\", {'id':expediente_asoc.expedienteAsociado.id}) }}\"  role=\"button\" title=\"Modificar\"><i class=\"fas fa-edit\"></i></a>
-                        <a class=\"btn btn-danger\" href=\"{{ path(\"eliminar_expediente\", {'id':expediente_asoc.expedienteAsociado.id}) }}\"  role=\"button\" title=\"Archivar\"><i class=\"fas fa-trash-alt\"></i></a></td>
+                    <th scope=\"col\">EXPEDIENTE</th>
+                    <th scope=\"col\">DESCRIPCION</th>
+                    <th scope=\"col\">CODIGO</th>
+                    <th scope=\"col\">ACCIONES</th>
                 </tr>
-            {% endfor %}
+            </thead>
+            <tbody>
 
-        </tbody>
-    </table>
+                {% for expediente_asoc in expediente.ExpedientesAsociados.getValues %}
+                    <tr>
+                        <td>{{expediente_asoc.expedienteAsociado}}</td>
+                        <td>{{expediente_asoc.expedienteAsociado.tema.descripcion}}</td>
+                        <td>{{expediente_asoc.expedienteAsociado.tema.codigo}}</td>
+                        <td><a class=\"btn btn-info\" href=\"{{ path(\"ver_expediente\", {'id':expediente_asoc.expedienteAsociado.id}) }}\"  role=\"button\" title=\"Ver Detalle\"><i class=\"fas fa-search\"></i></a>
+                            <a class=\"btn btn-warning\" href=\"{{ path(\"editar_expediente\", {'id':expediente_asoc.expedienteAsociado.id}) }}\"  role=\"button\" title=\"Modificar\"><i class=\"fas fa-edit\"></i></a>
+                            <a class=\"btn btn-danger\" href=\"{{ path(\"eliminar_expediente\", {'id':expediente_asoc.expedienteAsociado.id}) }}\"  role=\"button\" title=\"Archivar\"><i class=\"fas fa-trash-alt\"></i></a></td>
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+    </div>
+
     <script>
         \$(function () {
             \$('[data-toggle=\"tooltip\"]').tooltip()

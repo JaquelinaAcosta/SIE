@@ -19,7 +19,7 @@ class __TwigTemplate_d296c4d8cfb8ffc0e6a07ec720ebb0ae348173767bc8bc17dc177af768c
         parent::__construct($env);
 
         $this->blocks = [
-            'content' => [$this, 'block_content'],
+            'contentmain' => [$this, 'block_contentmain'],
         ];
     }
 
@@ -48,13 +48,13 @@ class __TwigTemplate_d296c4d8cfb8ffc0e6a07ec720ebb0ae348173767bc8bc17dc177af768c
     }
 
     // line 4
-    public function block_content($context, array $blocks = [])
+    public function block_contentmain($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "content"));
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "contentmain"));
 
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "content"));
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "contentmain"));
 
         // line 5
         echo "
@@ -70,30 +70,33 @@ class __TwigTemplate_d296c4d8cfb8ffc0e6a07ec720ebb0ae348173767bc8bc17dc177af768c
 
     </style>
 
-
-    <div class=\"formu col-lg-4 col-md-offset-1\">
-        <div class=\"border border-primary\">
-            <h4 class=\"text-center\">Expediente->Resolución</h4>
-            <hr/>
-            ";
-        // line 23
+    <div class=\"content\">
+        <strong>NUEVA RESOLUCIÓN, EXPEDIENTE ";
+        // line 19
+        echo twig_escape_filter($this->env, $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "nroExpediente", []), "html", null, true);
+        echo "</strong>
+        <hr/>
+        ";
+        // line 21
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_start', ["action" => "", "method" => "POST"]);
         echo "
-
+        <div class=\"col-lg-4\">
             <label class=\"text-default\">FECHA DE RESOLUCIÓN</label>
             ";
-        // line 26
+        // line 24
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fechaResolucion", []), 'row', ["id" => "date1"]);
         echo " 
             ";
-        // line 27
+        // line 25
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fechaResolucion", []), 'errors');
         echo "
             ";
-        // line 28
+        // line 26
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fechaResolucion", []), 'widget');
         echo "
+        </div>
 
+        <div class=\"col-lg-3\">
             <label class=\"text-default\">NÚMERO DE RESOLUCIÓN</label>
             ";
         // line 31
@@ -107,25 +110,35 @@ class __TwigTemplate_d296c4d8cfb8ffc0e6a07ec720ebb0ae348173767bc8bc17dc177af768c
         // line 33
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "numeroResolucion", []), 'widget');
         echo "
+        </div>
 
+        <div class=\"col-lg-4\">
             <label class=\"text-default\">TIPO</label>
             ";
-        // line 36
+        // line 38
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "tipo", []), 'row', ["id" => "date1"]);
         echo " 
             ";
-        // line 37
+        // line 39
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "tipo", []), 'errors');
         echo "
             ";
-        // line 38
+        // line 40
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "tipo", []), 'widget');
         echo "
+        </div>
+        <hr/>
+        <div class=\"col-lg-4\">
             ";
-        // line 39
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_end');
+        // line 44
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "Aceptar", []), 'widget');
         echo "
         </div>
+
+        ";
+        // line 47
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_end');
+        echo "
     </div>
 ";
         
@@ -148,7 +161,7 @@ class __TwigTemplate_d296c4d8cfb8ffc0e6a07ec720ebb0ae348173767bc8bc17dc177af768c
 
     public function getDebugInfo()
     {
-        return array (  126 => 39,  122 => 38,  118 => 37,  114 => 36,  108 => 33,  104 => 32,  100 => 31,  94 => 28,  90 => 27,  86 => 26,  80 => 23,  60 => 5,  51 => 4,  29 => 2,);
+        return array (  140 => 47,  134 => 44,  127 => 40,  123 => 39,  119 => 38,  111 => 33,  107 => 32,  103 => 31,  95 => 26,  91 => 25,  87 => 24,  81 => 21,  76 => 19,  60 => 5,  51 => 4,  29 => 2,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -164,7 +177,7 @@ class __TwigTemplate_d296c4d8cfb8ffc0e6a07ec720ebb0ae348173767bc8bc17dc177af768c
         return new Source("
 {% extends \"AppBundle::layout.html.twig\" %}
 
-{% block content %}
+{% block contentmain %}
 
     <style>
         input[type=text]{
@@ -178,29 +191,36 @@ class __TwigTemplate_d296c4d8cfb8ffc0e6a07ec720ebb0ae348173767bc8bc17dc177af768c
 
     </style>
 
-
-    <div class=\"formu col-lg-4 col-md-offset-1\">
-        <div class=\"border border-primary\">
-            <h4 class=\"text-center\">Expediente->Resolución</h4>
-            <hr/>
-            {{form_start(form,{'action':'','method':'POST'})}}
-
+    <div class=\"content\">
+        <strong>NUEVA RESOLUCIÓN, EXPEDIENTE {{ expediente.nroExpediente }}</strong>
+        <hr/>
+        {{form_start(form,{'action':'','method':'POST'})}}
+        <div class=\"col-lg-4\">
             <label class=\"text-default\">FECHA DE RESOLUCIÓN</label>
             {{ form_row(form.fechaResolucion, { 'id': 'date1' })}} 
             {{ form_errors(form.fechaResolucion) }}
             {{ form_widget(form.fechaResolucion) }}
+        </div>
 
+        <div class=\"col-lg-3\">
             <label class=\"text-default\">NÚMERO DE RESOLUCIÓN</label>
             {{ form_row(form.numeroResolucion, { 'id': 'date1' })}} 
             {{ form_errors(form.numeroResolucion) }}
             {{ form_widget(form.numeroResolucion) }}
+        </div>
 
+        <div class=\"col-lg-4\">
             <label class=\"text-default\">TIPO</label>
             {{ form_row(form.tipo, { 'id': 'date1' })}} 
             {{ form_errors(form.tipo) }}
             {{ form_widget(form.tipo) }}
-            {{form_end(form)}}
         </div>
+        <hr/>
+        <div class=\"col-lg-4\">
+            {{ form_widget(form.Aceptar) }}
+        </div>
+
+        {{form_end(form)}}
     </div>
 {% endblock %}", "AppBundle:Expediente:resolucion.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/Expediente/resolucion.html.twig");
     }

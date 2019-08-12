@@ -69,93 +69,85 @@ class __TwigTemplate_6d29912d8fb6035b041ba81fde74f64b217b0063e74152400bd92c81751
         }
 
     </style>
-    
-   <div class=\"content\"> 
-    <div class=\"col-lg-10\" style=\"padding-left:  300px; padding-top:  50px\">
-        <div class=\"list-group col-lg-11 col-md-offset-1\">
-            <div class=\"expediente col-lg-10 panel panel-primary\"  style=\"padding: 10px\">
-                <div class=\"panel-heading\" style=\"font-size:18px;\">
-                    <i clas=\"fas fa-edit\"></i> ALTA DE PERSONA
-                </div>
-                <br/>
-                ";
-        // line 25
+
+    <div class=\"content\"> 
+
+        <i clas=\"fas fa-edit\"></i> ALTA DE PERSONA
+
+        <hr/>
+        ";
+        // line 22
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_start', ["action" => "", "method" => "POST"]);
         echo "
-                ";
-        // line 26
+        ";
+        // line 23
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(($context["form"] ?? $this->getContext($context, "form")), 'errors');
         echo "
-                <div class=\"col-lg-14\">
-                    ";
-        // line 28
+        ";
+        // line 24
         if ($this->getAttribute(($context["form"] ?? null), "dependencia", [], "any", true, true)) {
-            // line 29
-            echo "                        <label class=\"text-default\">Dependencia:</label>
-                        ";
-            // line 30
+            // line 25
+            echo "            <label class=\"text-default\">Dependencia:</label>
+            ";
+            // line 26
             echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "dependencia", []), 'errors');
             echo "
-                        ";
-            // line 31
+            ";
+            // line 27
             echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "dependencia", []), 'widget');
             echo "
-                    ";
+        ";
         }
-        // line 33
+        // line 29
         echo "
-                    <label class=\"text-default\">Nombre:</label>
-                    ";
-        // line 35
+        <label class=\"text-default\">Nombre:</label>
+        ";
+        // line 31
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "nombre", []), 'errors');
         echo "
-                    ";
-        // line 36
+        ";
+        // line 32
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "nombre", []), 'widget');
         echo "
-                    <label class=\"text-default\">Apellido:</label>
-                    ";
-        // line 38
+        <label class=\"text-default\">Apellido:</label>
+        ";
+        // line 34
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "apellido", []), 'errors');
         echo "
-                    ";
-        // line 39
+        ";
+        // line 35
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "apellido", []), 'widget');
         echo "
-                    <label class=\"text-default\">DNI:</label>
-                    ";
-        // line 41
+        <label class=\"text-default\">DNI:</label>
+        ";
+        // line 37
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "dni", []), 'errors');
         echo "
-                    ";
-        // line 42
+        ";
+        // line 38
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "dni", []), 'widget');
         echo "
-                    <label class=\"text-default\">Cargo:</label>
-                    ";
-        // line 44
+        <label class=\"text-default\">Cargo:</label>
+        ";
+        // line 40
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "cargo", []), 'errors');
         echo "
-                    ";
-        // line 45
+        ";
+        // line 41
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "cargo", []), 'widget');
         echo "
 
-                    ";
-        // line 47
+        ";
+        // line 43
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "Aceptar", []), 'widget');
         echo "
-                    <a class=\"btn btn-default\" onclick=\"history.back()\"  role=\"button\">Volver</a>
+        <a class=\"btn btn-default\" onclick=\"history.back()\"  role=\"button\">Volver</a>
 
-                    ";
-        // line 50
+        ";
+        // line 46
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_end');
         echo "
-                </div>
-            </div>
-        </div>
     </div>
-   </div>
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -177,7 +169,7 @@ class __TwigTemplate_6d29912d8fb6035b041ba81fde74f64b217b0063e74152400bd92c81751
 
     public function getDebugInfo()
     {
-        return array (  152 => 50,  146 => 47,  141 => 45,  137 => 44,  132 => 42,  128 => 41,  123 => 39,  119 => 38,  114 => 36,  110 => 35,  106 => 33,  101 => 31,  97 => 30,  94 => 29,  92 => 28,  87 => 26,  83 => 25,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  148 => 46,  142 => 43,  137 => 41,  133 => 40,  128 => 38,  124 => 37,  119 => 35,  115 => 34,  110 => 32,  106 => 31,  102 => 29,  97 => 27,  93 => 26,  90 => 25,  88 => 24,  84 => 23,  80 => 22,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -205,46 +197,38 @@ class __TwigTemplate_6d29912d8fb6035b041ba81fde74f64b217b0063e74152400bd92c81751
         }
 
     </style>
-    
-   <div class=\"content\"> 
-    <div class=\"col-lg-10\" style=\"padding-left:  300px; padding-top:  50px\">
-        <div class=\"list-group col-lg-11 col-md-offset-1\">
-            <div class=\"expediente col-lg-10 panel panel-primary\"  style=\"padding: 10px\">
-                <div class=\"panel-heading\" style=\"font-size:18px;\">
-                    <i clas=\"fas fa-edit\"></i> ALTA DE PERSONA
-                </div>
-                <br/>
-                {{form_start(form,{'action':'','method':'POST'})}}
-                {{ form_errors(form) }}
-                <div class=\"col-lg-14\">
-                    {% if form.dependencia is defined %}
-                        <label class=\"text-default\">Dependencia:</label>
-                        {{ form_errors(form.dependencia) }}
-                        {{ form_widget(form.dependencia) }}
-                    {% endif %}
 
-                    <label class=\"text-default\">Nombre:</label>
-                    {{ form_errors(form.nombre) }}
-                    {{ form_widget(form.nombre) }}
-                    <label class=\"text-default\">Apellido:</label>
-                    {{ form_errors(form.apellido) }}
-                    {{ form_widget(form.apellido) }}
-                    <label class=\"text-default\">DNI:</label>
-                    {{ form_errors(form.dni) }}
-                    {{ form_widget(form.dni) }}
-                    <label class=\"text-default\">Cargo:</label>
-                    {{ form_errors(form.cargo) }}
-                    {{ form_widget(form.cargo) }}
+    <div class=\"content\"> 
 
-                    {{ form_widget(form.Aceptar) }}
-                    <a class=\"btn btn-default\" onclick=\"history.back()\"  role=\"button\">Volver</a>
+        <i clas=\"fas fa-edit\"></i> ALTA DE PERSONA
 
-                    {{form_end(form)}}
-                </div>
-            </div>
-        </div>
+        <hr/>
+        {{form_start(form,{'action':'','method':'POST'})}}
+        {{ form_errors(form) }}
+        {% if form.dependencia is defined %}
+            <label class=\"text-default\">Dependencia:</label>
+            {{ form_errors(form.dependencia) }}
+            {{ form_widget(form.dependencia) }}
+        {% endif %}
+
+        <label class=\"text-default\">Nombre:</label>
+        {{ form_errors(form.nombre) }}
+        {{ form_widget(form.nombre) }}
+        <label class=\"text-default\">Apellido:</label>
+        {{ form_errors(form.apellido) }}
+        {{ form_widget(form.apellido) }}
+        <label class=\"text-default\">DNI:</label>
+        {{ form_errors(form.dni) }}
+        {{ form_widget(form.dni) }}
+        <label class=\"text-default\">Cargo:</label>
+        {{ form_errors(form.cargo) }}
+        {{ form_widget(form.cargo) }}
+
+        {{ form_widget(form.Aceptar) }}
+        <a class=\"btn btn-default\" onclick=\"history.back()\"  role=\"button\">Volver</a>
+
+        {{form_end(form)}}
     </div>
-   </div>
 {% endblock %}", "AppBundle:Ubicacion:persona.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/Ubicacion/persona.html.twig");
     }
 }

@@ -42,7 +42,14 @@ class Resolucion
      * @ORM\Column(name="tipo", type="string", length=255)
      */
     private $tipo;
-
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="observacion", type="string", length=255)
+     */
+    private $observacion;
+    
     /**
      * @var string
      *
@@ -282,5 +289,29 @@ class Resolucion
     public function getUsuario()
     {
         return $this->usuario;
+    }
+
+    /**
+     * Set observacion
+     *
+     * @param string $observacion
+     *
+     * @return Resolucion
+     */
+    public function setObservacion($observacion)
+    {
+        $this->observacion = $observacion;
+
+        return $this;
+    }
+
+    /**
+     * Get observacion
+     *
+     * @return string
+     */
+    public function getObservacion()
+    {
+        return $this->observacion;
     }
 }

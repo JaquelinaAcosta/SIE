@@ -98,155 +98,155 @@ class __TwigTemplate_1589bfab07a73fbe8e84db8dd0881de74672307661fe2cbf0f708219792
         }
     </style>
 
+    <div class=\"content\">
+        <div class=\"filtro\">
+            <div class=\"header\"><i class=\"fas fa-search\"></i> <strong>Búsqueda de Personas</strong></h4>
+                <a role=\"button\" 
+                   class=\"btn btn-success float-right\" 
+                   href=\"";
+        // line 50
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nueva_persona");
+        echo "\">
+                    Nueva Persona</a>
+            </div>
+            <hr/>
 
-<div class=\"content\">
-    ";
-        // line 47
+            ";
+        // line 55
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "flashes", [0 => "success"], "method"));
         foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
-            // line 48
-            echo "        <div class=\"alert alert-success\">
-            ";
-            // line 49
+            // line 56
+            echo "                <div class=\"alert alert-success\">
+                    ";
+            // line 57
             echo twig_escape_filter($this->env, $context["message"], "html", null, true);
             echo "
-        </div>
-        <hr/>
-    ";
+                </div>
+                <hr/>
+            ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 53
+        // line 61
         echo "
-    ";
-        // line 54
+            ";
+        // line 62
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "flashes", [0 => "danger"], "method"));
         foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
-            // line 55
-            echo "        <div class=\"alert alert-danger\">
-            ";
-            // line 56
+            // line 63
+            echo "                <div class=\"alert alert-danger\">
+                    ";
+            // line 64
             echo twig_escape_filter($this->env, $context["message"], "html", null, true);
             echo "
-        </div>
-        <hr/>
-    ";
+                </div>
+                <hr/>
+            ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 60
+        // line 68
         echo "
 
-
-  
-    <div id=\"accordion_filtros\">
-        <div class=\"row form col-lg-12\">
-            <div class=\"filtro\">
-             <div class=\"header\"><h4><i class=\"fas fa-search\"></i> Búsqueda de Persona</h4></div>
-                         <hr/>
             <form method=\"post\" novalidate=\"true\" id=\"form_buscar\">
                 ";
-        // line 70
+        // line 71
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(($context["formPersonaFilter"] ?? $this->getContext($context, "formPersonaFilter")), 'errors');
         echo "
                 <div class=\"row\">
-                    <div class=\"threecol col-lg-2\">
+                    <div class=\"threecol col-lg-3\">
                         ";
-        // line 73
+        // line 74
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formPersonaFilter"] ?? $this->getContext($context, "formPersonaFilter")), "apellido", []), 'label', ["label" => "APELLIDO"]);
         echo "
                         ";
-        // line 74
+        // line 75
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formPersonaFilter"] ?? $this->getContext($context, "formPersonaFilter")), "apellido", []), 'widget');
         echo "
                         <div class=\"help-block with-errors\">
                             ";
-        // line 76
+        // line 77
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formPersonaFilter"] ?? $this->getContext($context, "formPersonaFilter")), "apellido", []), 'errors');
         echo "
                         </div>
                     </div>
-                    <div class=\"threecol col-lg-2\">
+                    <div class=\"threecol col-lg-3\">
                         ";
-        // line 80
+        // line 81
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formPersonaFilter"] ?? $this->getContext($context, "formPersonaFilter")), "nombre", []), 'label', ["label" => "NOMBRE"]);
         echo "
                         ";
-        // line 81
+        // line 82
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formPersonaFilter"] ?? $this->getContext($context, "formPersonaFilter")), "nombre", []), 'widget');
         echo "
                         <div class=\"help-block with-errors\">
                             ";
-        // line 83
+        // line 84
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formPersonaFilter"] ?? $this->getContext($context, "formPersonaFilter")), "nombre", []), 'errors');
         echo "
                         </div>
                     </div>                  
-                    <div class=\"twocol col-lg-2\">
+                    <div class=\"twocol col-lg-3\">
                         ";
-        // line 87
+        // line 88
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formPersonaFilter"] ?? $this->getContext($context, "formPersonaFilter")), "dni", []), 'label', ["label" => "DOCUMENTO"]);
         echo "
                         ";
-        // line 88
+        // line 89
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formPersonaFilter"] ?? $this->getContext($context, "formPersonaFilter")), "dni", []), 'widget');
         echo "
                         <div class=\"help-block with-errors\">
                             ";
-        // line 90
+        // line 91
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formPersonaFilter"] ?? $this->getContext($context, "formPersonaFilter")), "dni", []), 'errors');
         echo "
                         </div>
                     </div>   
-                    <div class=\"twocol col-lg-2\">
+                    <div class=\"twocol col-lg-3\">
                         ";
-        // line 94
+        // line 95
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formPersonaFilter"] ?? $this->getContext($context, "formPersonaFilter")), "cargo", []), 'label', ["label" => "CARGO"]);
         echo "
                         ";
-        // line 95
+        // line 96
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formPersonaFilter"] ?? $this->getContext($context, "formPersonaFilter")), "cargo", []), 'widget');
         echo "
                         <div class=\"help-block with-errors\">
                             ";
-        // line 97
+        // line 98
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formPersonaFilter"] ?? $this->getContext($context, "formPersonaFilter")), "cargo", []), 'errors');
         echo "
                         </div>
                     </div>                          
-                    </div>      
-                   
-                </div>
-                <div class=\"col-lg-12\">
-                    <div class=\"col-lg-1\">
-                        ";
-        // line 105
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formPersonaFilter"] ?? $this->getContext($context, "formPersonaFilter")), "filter", []), 'row');
-        echo "
-                    </div>
-                    <div class=\"col-lg-1\">
-                        ";
-        // line 108
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formPersonaFilter"] ?? $this->getContext($context, "formPersonaFilter")), "reset", []), 'row');
-        echo "
-                    </div>
-                </div>
+                </div>      
+        <hr/>
+        <div class=\"row\">
+            <div class=\"col-lg-4\">
                 ";
-        // line 111
+        // line 105
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formPersonaFilter"] ?? $this->getContext($context, "formPersonaFilter")), "filter", []), 'widget');
+        echo "
+                ";
+        // line 106
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formPersonaFilter"] ?? $this->getContext($context, "formPersonaFilter")), "reset", []), 'widget');
+        echo "
+            </div>
+        </div>
+        ";
+        // line 109
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["formPersonaFilter"] ?? $this->getContext($context, "formPersonaFilter")), 'form_end');
         echo "
-            </form>
-            </div
         </div>
-            <hr/>
-    ";
-        // line 116
+    </form>
+<hr/>
+";
+        // line 113
         if ((twig_length_filter($this->env, ($context["persona"] ?? $this->getContext($context, "persona"))) > 0)) {
-            // line 117
+            // line 114
             echo "    <table class=\"table table-striped\">
         <thead class=\"thead-dark\">
             <tr>
@@ -254,45 +254,45 @@ class __TwigTemplate_1589bfab07a73fbe8e84db8dd0881de74672307661fe2cbf0f708219792
                 <th scope=\"col\">NOMBRE</th>
                 <th scope=\"col\">DNI</th>
                 <th scope=\"col\">CARGO</th>
-                      <th scope=\"col\">DEPENDENCIA</th>
+                <th scope=\"col\">DEPENDENCIA</th>
                 <th scope=\"col\">ACCIONES</th>
             </tr>
         </thead>
         <tbody>
             ";
-            // line 129
+            // line 126
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable($context["persona"]);
             foreach ($context['_seq'] as $context["_key"] => $context["persona"]) {
-                // line 130
+                // line 127
                 echo "                <tr>
                     <td class=\"text-default\">";
-                // line 131
+                // line 128
                 echo twig_escape_filter($this->env, $this->getAttribute($context["persona"], "apellido", []));
                 echo "</td>
                     <td class=\"text-default\"><p>";
-                // line 132
+                // line 129
                 echo twig_escape_filter($this->env, $this->getAttribute($context["persona"], "nombre", []));
                 echo "</p></td>
                     <td class=\"text-default\">";
-                // line 133
+                // line 130
                 echo twig_escape_filter($this->env, $this->getAttribute($context["persona"], "dni", []));
                 echo "</td>
                     <td class=\"text-default\">";
-                // line 134
+                // line 131
                 echo twig_escape_filter($this->env, $this->getAttribute($context["persona"], "cargo", []));
                 echo "</td>
                     <td class=\"text-default\">";
-                // line 135
+                // line 132
                 echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["persona"], "dependencia", []), "descripcion", []));
                 echo "</td>
 
                     <td> <a class=\"btn btn-warning\" href=\"";
-                // line 137
+                // line 134
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_persona", ["id" => $this->getAttribute($context["persona"], "id", [])]), "html", null, true);
                 echo "\"  role=\"button\"><i class=\"fas fa-edit\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"></i></a>
                         <a class=\"btn btn-danger\" href=\"";
-                // line 138
+                // line 135
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("eliminar_persona", ["id" => $this->getAttribute($context["persona"], "id", [])]), "html", null, true);
                 echo "\"  role=\"button\"><i class=\"fas fa-trash-alt\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Eliminar\"></i></a></td>
                 </tr>             
@@ -301,88 +301,89 @@ class __TwigTemplate_1589bfab07a73fbe8e84db8dd0881de74672307661fe2cbf0f708219792
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['persona'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 141
+            // line 138
             echo "
 
         </tbody>
     </table>
-     ";
+";
         }
-        // line 145
+        // line 142
         echo "       
-    ";
-        // line 146
+";
+        // line 143
         if ((twig_length_filter($this->env, ($context["persona"] ?? $this->getContext($context, "persona"))) < ($context["totalItems"] ?? $this->getContext($context, "totalItems")))) {
-            // line 147
-            echo "
-        <ul class=\"pagination\">
-            ";
-            // line 149
+            // line 144
+            echo "    <ul class=\"pagination\">
+        ";
+            // line 145
             if ((($context["thisPage"] ?? $this->getContext($context, "thisPage")) == 1)) {
                 echo "           
-            ";
+        ";
             } else {
-                // line 151
-                echo "                ";
-                $context["thisPage"] = (($context["thisPage"] ?? $this->getContext($context, "thisPage")) - 1);
-                // line 152
+                // line 147
                 echo "            ";
+                $context["thisPage"] = (($context["thisPage"] ?? $this->getContext($context, "thisPage")) - 1);
+                // line 148
+                echo "        ";
             }
-            // line 153
+            // line 149
             echo "
 
-            <li ><a class=\"page-link\" href=\"";
-            // line 155
+        <li ><a class=\"page-link\" href=\"";
+            // line 151
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_persona", ["currentPage" => ($context["thisPage"] ?? $this->getContext($context, "thisPage"))]), "html", null, true);
             echo "\">&laquo</a></li>
-                ";
-            // line 156
+            ";
+            // line 152
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable(range(1, ($context["maxPages"] ?? $this->getContext($context, "maxPages"))));
             foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
-                // line 157
-                echo "                <li><a class=\"page-link\"  href=\"";
+                // line 153
+                echo "            <li><a class=\"page-link\"  href=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_persona", ["currentPage" => $context["i"]]), "html", null, true);
                 echo "\">";
                 echo twig_escape_filter($this->env, $context["i"], "html", null, true);
                 echo "</a></li>
-                ";
+            ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 159
+            // line 155
             echo "
-            ";
-            // line 160
+        ";
+            // line 156
             if ((($context["page"] ?? $this->getContext($context, "page")) == ($context["maxPages"] ?? $this->getContext($context, "maxPages")))) {
-                // line 161
+                // line 157
                 echo "
-            ";
+        ";
             } else {
-                // line 163
-                echo "                ";
-                $context["page"] = (($context["page"] ?? $this->getContext($context, "page")) + 1);
-                // line 164
+                // line 159
                 echo "            ";
+                $context["page"] = (($context["page"] ?? $this->getContext($context, "page")) + 1);
+                // line 160
+                echo "        ";
             }
-            // line 165
-            echo "            <li><a class=\"page-link\" href=\"";
+            // line 161
+            echo "        <li><a class=\"page-link\" href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_persona", ["currentPage" => ($context["page"] ?? $this->getContext($context, "page"))]), "html", null, true);
             echo "\">&raquo</a></li>
 
-        </ul>
-    ";
+    </ul>
+</div>
+";
         }
-        // line 169
-        echo "    </div>
-    <script>
-        \$(function () {
-            \$('[data-toggle=\"tooltip\"]').tooltip()
-        })
-    </script>
+        // line 166
+        echo "
+</div>
+<script>
+    \$(function () {
+        \$('[data-toggle=\"tooltip\"]').tooltip()
+    })
+</script>
 
-    <hr/>
+<hr/>
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -404,7 +405,7 @@ class __TwigTemplate_1589bfab07a73fbe8e84db8dd0881de74672307661fe2cbf0f708219792
 
     public function getDebugInfo()
     {
-        return array (  378 => 169,  370 => 165,  367 => 164,  364 => 163,  360 => 161,  358 => 160,  355 => 159,  344 => 157,  340 => 156,  336 => 155,  332 => 153,  329 => 152,  326 => 151,  321 => 149,  317 => 147,  315 => 146,  312 => 145,  305 => 141,  296 => 138,  292 => 137,  287 => 135,  283 => 134,  279 => 133,  275 => 132,  271 => 131,  268 => 130,  264 => 129,  250 => 117,  248 => 116,  240 => 111,  234 => 108,  228 => 105,  217 => 97,  212 => 95,  208 => 94,  201 => 90,  196 => 88,  192 => 87,  185 => 83,  180 => 81,  176 => 80,  169 => 76,  164 => 74,  160 => 73,  154 => 70,  142 => 60,  132 => 56,  129 => 55,  125 => 54,  122 => 53,  112 => 49,  109 => 48,  105 => 47,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  378 => 166,  369 => 161,  366 => 160,  363 => 159,  359 => 157,  357 => 156,  354 => 155,  343 => 153,  339 => 152,  335 => 151,  331 => 149,  328 => 148,  325 => 147,  320 => 145,  317 => 144,  315 => 143,  312 => 142,  305 => 138,  296 => 135,  292 => 134,  287 => 132,  283 => 131,  279 => 130,  275 => 129,  271 => 128,  268 => 127,  264 => 126,  250 => 114,  248 => 113,  241 => 109,  235 => 106,  231 => 105,  221 => 98,  216 => 96,  212 => 95,  205 => 91,  200 => 89,  196 => 88,  189 => 84,  184 => 82,  180 => 81,  173 => 77,  168 => 75,  164 => 74,  158 => 71,  153 => 68,  143 => 64,  140 => 63,  136 => 62,  133 => 61,  123 => 57,  120 => 56,  116 => 55,  108 => 50,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -461,78 +462,75 @@ class __TwigTemplate_1589bfab07a73fbe8e84db8dd0881de74672307661fe2cbf0f708219792
         }
     </style>
 
+    <div class=\"content\">
+        <div class=\"filtro\">
+            <div class=\"header\"><i class=\"fas fa-search\"></i> <strong>Búsqueda de Personas</strong></h4>
+                <a role=\"button\" 
+                   class=\"btn btn-success float-right\" 
+                   href=\"{{ path('nueva_persona')}}\">
+                    Nueva Persona</a>
+            </div>
+            <hr/>
 
-<div class=\"content\">
-    {% for message in app.flashes('success') %}
-        <div class=\"alert alert-success\">
-            {{ message }}
-        </div>
-        <hr/>
-    {% endfor %}
+            {% for message in app.flashes('success') %}
+                <div class=\"alert alert-success\">
+                    {{ message }}
+                </div>
+                <hr/>
+            {% endfor %}
 
-    {% for message in app.flashes('danger') %}
-        <div class=\"alert alert-danger\">
-            {{ message }}
-        </div>
-        <hr/>
-    {% endfor %}
-
+            {% for message in app.flashes('danger') %}
+                <div class=\"alert alert-danger\">
+                    {{ message }}
+                </div>
+                <hr/>
+            {% endfor %}
 
 
-  
-    <div id=\"accordion_filtros\">
-        <div class=\"row form col-lg-12\">
-            <div class=\"filtro\">
-             <div class=\"header\"><h4><i class=\"fas fa-search\"></i> Búsqueda de Persona</h4></div>
-                         <hr/>
             <form method=\"post\" novalidate=\"true\" id=\"form_buscar\">
                 {{ form_errors(formPersonaFilter) }}
                 <div class=\"row\">
-                    <div class=\"threecol col-lg-2\">
+                    <div class=\"threecol col-lg-3\">
                         {{ form_label(formPersonaFilter.apellido, 'APELLIDO') }}
                         {{ form_widget(formPersonaFilter.apellido) }}
                         <div class=\"help-block with-errors\">
                             {{ form_errors(formPersonaFilter.apellido) }}
                         </div>
                     </div>
-                    <div class=\"threecol col-lg-2\">
+                    <div class=\"threecol col-lg-3\">
                         {{ form_label(formPersonaFilter.nombre, 'NOMBRE') }}
                         {{ form_widget(formPersonaFilter.nombre) }}
                         <div class=\"help-block with-errors\">
                             {{ form_errors(formPersonaFilter.nombre) }}
                         </div>
                     </div>                  
-                    <div class=\"twocol col-lg-2\">
+                    <div class=\"twocol col-lg-3\">
                         {{ form_label(formPersonaFilter.dni, 'DOCUMENTO') }}
                         {{ form_widget(formPersonaFilter.dni) }}
                         <div class=\"help-block with-errors\">
                             {{ form_errors(formPersonaFilter.dni) }}
                         </div>
                     </div>   
-                    <div class=\"twocol col-lg-2\">
+                    <div class=\"twocol col-lg-3\">
                         {{ form_label(formPersonaFilter.cargo, 'CARGO') }}
                         {{ form_widget(formPersonaFilter.cargo) }}
                         <div class=\"help-block with-errors\">
                             {{ form_errors(formPersonaFilter.cargo) }}
                         </div>
                     </div>                          
-                    </div>      
-                   
-                </div>
-                <div class=\"col-lg-12\">
-                    <div class=\"col-lg-1\">
-                        {{ form_row(formPersonaFilter.filter) }}
-                    </div>
-                    <div class=\"col-lg-1\">
-                        {{ form_row(formPersonaFilter.reset) }}
-                    </div>
-                </div>
-                {{ form_end(formPersonaFilter) }}
-            </form>
-            </div
+                </div>      
+        <hr/>
+        <div class=\"row\">
+            <div class=\"col-lg-4\">
+                {{ form_widget(formPersonaFilter.filter) }}
+                {{ form_widget(formPersonaFilter.reset) }}
+            </div>
         </div>
-            <hr/>
-    {% if persona|length >0 %}
+        {{ form_end(formPersonaFilter) }}
+        </div>
+    </form>
+<hr/>
+{% if persona|length >0 %}
     <table class=\"table table-striped\">
         <thead class=\"thead-dark\">
             <tr>
@@ -540,7 +538,7 @@ class __TwigTemplate_1589bfab07a73fbe8e84db8dd0881de74672307661fe2cbf0f708219792
                 <th scope=\"col\">NOMBRE</th>
                 <th scope=\"col\">DNI</th>
                 <th scope=\"col\">CARGO</th>
-                      <th scope=\"col\">DEPENDENCIA</th>
+                <th scope=\"col\">DEPENDENCIA</th>
                 <th scope=\"col\">ACCIONES</th>
             </tr>
         </thead>
@@ -561,38 +559,39 @@ class __TwigTemplate_1589bfab07a73fbe8e84db8dd0881de74672307661fe2cbf0f708219792
 
         </tbody>
     </table>
-     {% endif %}       
-    {% if persona|length < totalItems %}
+{% endif %}       
+{% if persona|length < totalItems %}
+    <ul class=\"pagination\">
+        {%if (thisPage==1)%}           
+        {%else%}
+            {%set thisPage= thisPage-1%}
+        {%endif%}
 
-        <ul class=\"pagination\">
-            {%if (thisPage==1)%}           
-            {%else%}
-                {%set thisPage= thisPage-1%}
-            {%endif%}
 
+        <li ><a class=\"page-link\" href=\"{{ path('listado_persona', {\"currentPage\": thisPage}) }}\">&laquo</a></li>
+            {% for i in 1..maxPages %}
+            <li><a class=\"page-link\"  href=\"{{ path('listado_persona', {\"currentPage\": i}) }}\">{{ i }}</a></li>
+            {% endfor %}
 
-            <li ><a class=\"page-link\" href=\"{{ path('listado_persona', {\"currentPage\": thisPage}) }}\">&laquo</a></li>
-                {% for i in 1..maxPages %}
-                <li><a class=\"page-link\"  href=\"{{ path('listado_persona', {\"currentPage\": i}) }}\">{{ i }}</a></li>
-                {% endfor %}
+        {%if (page==maxPages)%}
 
-            {%if (page==maxPages)%}
+        {%else%}
+            {%set page= page+1%}
+        {%endif%}
+        <li><a class=\"page-link\" href=\"{{ path('listado_persona', {\"currentPage\": page}) }}\">&raquo</a></li>
 
-            {%else%}
-                {%set page= page+1%}
-            {%endif%}
-            <li><a class=\"page-link\" href=\"{{ path('listado_persona', {\"currentPage\": page}) }}\">&raquo</a></li>
+    </ul>
+</div>
+{% endif %}
 
-        </ul>
-    {% endif %}
-    </div>
-    <script>
-        \$(function () {
-            \$('[data-toggle=\"tooltip\"]').tooltip()
-        })
-    </script>
+</div>
+<script>
+    \$(function () {
+        \$('[data-toggle=\"tooltip\"]').tooltip()
+    })
+</script>
 
-    <hr/>
+<hr/>
 {% endblock %}", "AppBundle:Ubicacion:listadoPersona.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/Ubicacion/listadoPersona.html.twig");
     }
 }

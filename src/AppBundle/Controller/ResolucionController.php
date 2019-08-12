@@ -37,7 +37,8 @@ class ResolucionController extends Controller {
         // replace this example code with whatever you need
         return $this->render('AppBundle:Expediente:resolucion.html.twig', [
                     'form' => $form->createView(),
-                    'usuario' => $usuario
+                    'usuario' => $usuario,
+                'expediente'=>$expediente
         ]);
     }
     
