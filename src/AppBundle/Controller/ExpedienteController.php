@@ -23,7 +23,6 @@ class ExpedienteController extends Controller {
     public function indexAction(Request $request) {
         $em = $this->getDoctrine()->getEntityManager();
         $expediente = new Expediente();
-        $expedienteAsociado = new ExpedienteAsociado();
 
         $form = $this->createForm(ExpedienteType::class, $expediente);
 
@@ -36,9 +35,9 @@ class ExpedienteController extends Controller {
 
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
-                foreach ($form['expedientes_asociados']->getData() as $expediente_asoc) {
-                    $expediente_asoc->setExpedientePadre($expediente);
-                }
+//                foreach ($form['expedientes_asociados']->getData() as $expediente_asoc) {
+//                    $expediente_asoc->setExpedientePadre($expediente);
+//                }
 
 //                $expediente->setFechaInicio(date($form['fechaInicio']->getData()." H:i:s"));
 //                $expediente->setFechaFin(date($form['fechaFin']->getData()." H:i:s"));
@@ -46,7 +45,7 @@ class ExpedienteController extends Controller {
                 $em->flush();
             }
 
-            return $this->redirectToRoute('listado_expediente',['currentPage'=>1]);
+            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
         }
 
 
@@ -103,10 +102,10 @@ class ExpedienteController extends Controller {
             $filterBuilder = $em->getRepository('AppBundle:Expediente')->createQueryBuilder('e');
             if ($user->getRole() != "ROLE_ADMIN") {
                 $filterBuilder->leftJoin(\AppBundle\Entity\Ubicacion::class, "u", "WITH",
-                                        "e.ubicacionActual = u.id")
-                                ->where('u.dependencia= :dependencia')
+                                "e.ubicacionActual = u.id")
+                        ->where('u.dependencia= :dependencia')
 //                                ->andWhere('w.id != :expediente_id')
-                                ->setParameter('dependencia', $user->getPersona()->getDependencia());
+                        ->setParameter('dependencia', $user->getPersona()->getDependencia());
             }
             $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($formExpedienteFilter, $filterBuilder);
             $totalItems = count($filterBuilder->getQuery()->getResult());
@@ -156,8 +155,8 @@ class ExpedienteController extends Controller {
         $expediente->setEstado('VISTO');
         $em->persist($expediente);
         $em->flush();
-        
-        
+
+
         if (count($AsociadoCount) == 0) {
             $asociado = false;
         } else {
@@ -206,7 +205,7 @@ class ExpedienteController extends Controller {
 
         $form = $this->createForm(ExpedienteType::class, $expediente);
 
-        $user = $this->getUser();     
+        $user = $this->getUser();
 
 //        $original_expedientes_asociados = new ArrayCollection();
 //
@@ -241,7 +240,7 @@ class ExpedienteController extends Controller {
                 $em->persist($expediente);
                 $em->flush();
             }
-            return $this->redirectToRoute('listado_expediente',['currentPage'=>1]);
+            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
         }
 
         // replace this example code with whatever you need
