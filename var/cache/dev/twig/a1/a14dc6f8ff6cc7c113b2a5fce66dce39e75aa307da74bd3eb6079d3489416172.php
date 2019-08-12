@@ -78,28 +78,27 @@ class __TwigTemplate_07902573f5080b1de7f519a55de53b23f85bebc0ce477fde3566c982d60
     </style>
 
 
-    <div class=\"col-ls-12\">
-        <div class=\"title \">Expediente -> Movimiento</div>
-        <hr/>
-
-            <h4 class=\"text-default\">Expediente Número: ";
-        // line 29
+    <div class=\"content\">
+        <div class=\"col-ls-12\">
+      <strong>PASE INTERNO, EXPEDIENTE ";
+        // line 27
         echo twig_escape_filter($this->env, $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "nroExpediente", []), "html", null, true);
-        echo "</h4>        
+        echo " </strong>
+      <hr/>
         ";
-        // line 30
+        // line 29
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_start', ["action" => "", "method" => "POST"]);
         echo "
         
         
-        <div class=\"col-lg-4\">
+        <div class=\"col-lg-6\">
             <label class=\"text-default\">NOMBRE DE LA PERSONA</label>
             ";
-        // line 35
+        // line 34
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "persona", []), 'errors');
         echo "
             ";
-        // line 36
+        // line 35
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "persona", []), 'widget');
         echo "
         </div>   
@@ -107,11 +106,11 @@ class __TwigTemplate_07902573f5080b1de7f519a55de53b23f85bebc0ce477fde3566c982d60
         <div class=\"col-lg-2\">
             <label class=\"text-default\">FOJAS</label>
             ";
-        // line 41
+        // line 40
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fojas", []), 'errors');
         echo "
             ";
-        // line 42
+        // line 41
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fojas", []), 'widget');
         echo "
         </div>   
@@ -119,32 +118,33 @@ class __TwigTemplate_07902573f5080b1de7f519a55de53b23f85bebc0ce477fde3566c982d60
             <hr/>
             <label class=\"text-default\">OBSERVACIONES</label>
             ";
-        // line 47
+        // line 46
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "observacion", []), 'errors');
         echo "
             ";
-        // line 48
+        // line 47
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "observacion", []), 'widget');
         echo "
         </div>   
         <div class=\"col-lg-12\">
             <label class=\"text-default\">COMENTARIO</label>
             ";
-        // line 52
+        // line 51
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "comentario", []), 'errors');
         echo "
             ";
-        // line 53
+        // line 52
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "comentario", []), 'widget');
         echo "
             <hr/>
         </div>  
         <div class=\"col-lg-3 float left\">
             ";
-        // line 57
+        // line 56
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "Aceptar", []), 'widget');
         echo "
         </div>
+    </div>
     </div>
     ";
         // line 60
@@ -188,7 +188,7 @@ class __TwigTemplate_07902573f5080b1de7f519a55de53b23f85bebc0ce477fde3566c982d60
 
     public function getDebugInfo()
     {
-        return array (  164 => 67,  160 => 66,  151 => 60,  145 => 57,  138 => 53,  134 => 52,  127 => 48,  123 => 47,  115 => 42,  111 => 41,  103 => 36,  99 => 35,  91 => 30,  87 => 29,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  164 => 67,  160 => 66,  151 => 60,  144 => 56,  137 => 52,  133 => 51,  126 => 47,  122 => 46,  114 => 41,  110 => 40,  102 => 35,  98 => 34,  90 => 29,  85 => 27,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -225,15 +225,14 @@ class __TwigTemplate_07902573f5080b1de7f519a55de53b23f85bebc0ce477fde3566c982d60
     </style>
 
 
-    <div class=\"col-ls-12\">
-        <div class=\"title \">Expediente -> Movimiento</div>
-        <hr/>
-
-            <h4 class=\"text-default\">Expediente Número: {{ expediente.nroExpediente }}</h4>        
+    <div class=\"content\">
+        <div class=\"col-ls-12\">
+      <strong>PASE INTERNO, EXPEDIENTE {{ expediente.nroExpediente }} </strong>
+      <hr/>
         {{form_start(form,{'action':'' ,'method':'POST'})}}
         
         
-        <div class=\"col-lg-4\">
+        <div class=\"col-lg-6\">
             <label class=\"text-default\">NOMBRE DE LA PERSONA</label>
             {{ form_errors(form.persona) }}
             {{ form_widget(form.persona) }}
@@ -259,6 +258,7 @@ class __TwigTemplate_07902573f5080b1de7f519a55de53b23f85bebc0ce477fde3566c982d60
         <div class=\"col-lg-3 float left\">
             {{ form_widget(form.Aceptar) }}
         </div>
+    </div>
     </div>
     {{form_end(form)}}
 

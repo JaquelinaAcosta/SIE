@@ -51,6 +51,12 @@ class MovimientoExpedienteController extends Controller {
                 $expediente->setUbicacionActual($persona);
                 $em->persist($expediente);
                 $em->flush();
+                
+                 $this->addFlash('success', 'Pase hacia ' .$persona.' exitoso.');
+                
+               return $this->redirectToRoute('listado_movimiento',
+                        ['id' => $expediente->getId()]);
+                
             }
         }
         return $this->render('AppBundle:Movimiento:interno.html.twig', [
@@ -68,13 +74,13 @@ class MovimientoExpedienteController extends Controller {
         $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
         $user = $this->getUser();
 
-        if(get_class($expediente->getUbicacionActual()) == \AppBundle\Entity\MesaEntrada::class){
-               $form = $this->createForm(MovimientoExpedienteType::class,
-                $movimientoExpediente, ['pase' => 'externo']);
-        }else{
-             $form = $this->createForm(MovimientoExpedienteType::class,
-                $movimientoExpediente, ['pase' => 'externo',
-                                        'dependencia_id'=>$user->getPersona()->getDependencia()->getId()]);
+        if (get_class($expediente->getUbicacionActual()) == \AppBundle\Entity\MesaEntrada::class) {
+            $form = $this->createForm(MovimientoExpedienteType::class,
+                    $movimientoExpediente, ['pase' => 'externo']);
+        } else {
+            $form = $this->createForm(MovimientoExpedienteType::class,
+                    $movimientoExpediente, ['pase' => 'externo',
+                'dependencia_id' => $user->getPersona()->getDependencia()->getId()]);
         }
         $form->handleRequest($request);
 
@@ -95,12 +101,11 @@ class MovimientoExpedienteController extends Controller {
                 $em->persist($expediente);
                 $em->flush();
                 
-                $this->rediectToRoute('listado_expediente',
-                ['currentPage'=>1]);
+                $this->addFlash('success', 'Pase hacia ' . $mesaentrada
+                                ->getDependencia()->getDescripcion() .' exitoso.');
                 
-                $this->addFlash('success','Pase externo hacia '.$mesaentrada
-                        ->getDependencia()->getDescripcion(). 'exitoso.');
-                
+               return $this->redirectToRoute('listado_expediente',
+                        ['currentPage' => 1]);
             }
         }
         return $this->render('AppBundle:Movimiento:externo.html.twig', [
@@ -108,7 +113,7 @@ class MovimientoExpedienteController extends Controller {
                     'expediente' => $expediente
         ]);
     }
-    
+
     /**
      * @Route("/expediente/{id}/add/movimiento/archivado", name="movimiento_archivado")
      */
@@ -133,6 +138,12 @@ class MovimientoExpedienteController extends Controller {
                 $expediente->setUbicacionActual($lugarfisico);
                 $em->persist($expediente);
                 $em->flush();
+                $this->addFlash('success', 'Pase hacia ' . $lugarfisico
+                                ->getTipo() .' exitoso.');
+                
+               return $this->redirectToRoute('listado_movimiento',
+                        ['id' => $expediente->getId()]);
+                
             }
         }
         return $this->render('AppBundle:Movimiento:archivar.html.twig', [
@@ -140,12 +151,11 @@ class MovimientoExpedienteController extends Controller {
                     'expediente' => $expediente
         ]);
     }
-    
-    
+
     /**
      * @Route("expediente/{id}/movimiento/listado", name="listado_movimiento")
      */
-    public function listaMovimientoAction(Request $request,$id) {
+    public function listaMovimientoAction(Request $request, $id) {
         $em = $this->getDoctrine()->getEntityManager();
         $user = $this->getUser();
         $expediente = $em->getRepository('AppBundle:Expediente')->find($id);

@@ -3,108 +3,112 @@
 {% block contentmain %}
     <div class="content">
         <div class="col-lg-12 border border-primary">
-                    <div class="panel-heading" style="font-size:18px;">
-                        <i class="fas fa-info-circle"></i> <strong>DETALLE DEL EXPEDIENTE - {{ expediente.nroExpediente}}<a href="{{ path('editar_expediente',{'id':expediente.id}) }}" class="right btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Expediente"><i class="fas fa-edit"></i></a></strong>
-                    </div>
-                    <table class="table table-striped table-hover"> 
-                        <thead>
-                        <br/>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th class="info list-group col-lg-2">Tema</th>
-                                <td>{{ expediente.tema}}</td>
-                            </tr>
-                            <tr>
-                                <th class="info list-group">Concepto</th>
-                                <td>{{ expediente.concepto}}</td>
-                            </tr>
-                            <tr>
-                                <th class="info list-group">Total de Fojas</th>
-                                <td>{{ expediente.fojas}}</td>
-                            </tr>
-                            <tr>
-                                <th class="info list-group">Tipo</th>
-                                <td>{{ expediente.tipo}}</td>
-                            </tr>
-                            <tr>
-                                <th class="info list-group">Iniciador Dependencia</th>
-                                <td>{{ expediente.iniciadorDependencia}}</td>
-                            </tr>
-                            <tr>
-                                <th class="info ">Fecha de inicio</th>
-                                <td>{{ expediente.fechaInicio}}</td>
-                            </tr>
-                            <tr>
-                                <th class="info list-group">Fecha de Fin</th>
-                                <td>{{ expediente.fechaFin}}</td>
-                            </tr>
-                            <tr>
-                                <th class="info list-group">Ubicacion   </th>
-                                <td>{{ expediente.ubicacionActual}}</td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                        <th>
-
-                        </th>
-                    </table>
-                </div>     
-                  <div class="btn-group">
-                    <a href="{{ path('listado_movimiento',{'id':expediente.id}) }}" 
-                       class="btn btn-primary" 
-                       role="button">MOVIMIENTOS</a>
-                    <a href="{{ path('listado_caratula',{'id':expediente.id}) }}" 
-                       class="btn btn-primary" 
-                       role="button">CARATULAS</a>
-                    <a href="{{ path('listado_asociado',{'id':expediente.id}) }}" 
-                       class="btn btn-primary" 
-                       role="button">EXPEDIENTES ASOCIADOS</a>
-                    {% if expediente.resolucion == null %} 
-                        <a href="{{ path('nueva_resolucion',{'id':expediente.id}) }}" 
-                           class="btn btn-primary" 
-                           role="button">RESOLUCION</a>
-                    {% endif %}
-                </div>              
-                {% if expediente.resolucion != null %}
-                    <div class="expediente col-lg-10 panel panel-primary">
-                        <div class="panel-heading" style="font-size:18px;">
-                            <i class="fas fa-info-circle"></i> <strong>RESOLUCIÓN</strong> - {{ expediente.nroExpediente}}
-                        </div>
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">USUARIO</th>
-                                    <th scope="col">NUMERO DE RESOLUCION</th>
-                                    <th scope="col">TIPO</th>
-                                    <th scope="col">FECHA</th>
-                                    <th scope="col">ACCIONES</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <tr>
-                                    <td>{{expediente.resolucion.usuario}}</td>
-                                    <td>{{expediente.resolucion.numeroResolucion}}</td>
-                                    <td>{{expediente.resolucion.tipo}}</td>
-                                    <td>{{expediente.resolucion.fechaResolucion}}</td>
-                                    <td><a class="btn btn-info" href=""  role="button" title="Ver Detalle"><i class="fas fa-search"></i></a>
-                                        <a class="btn btn-warning" href=""  role="button" title="Modificar"><i class="fas fa-edit"></i></a>
-                                        <a class="btn btn-danger" href=""  role="button" title="Archivar"><i class="fas fa-trash-alt"></i></a></td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-                    {% endif %}
-            <div class="col-lg-3 float left">
-                <a class="btn btn-primary" onclick="history.back()"  role="button">Volver</a>
+            <div class="panel-heading" style="font-size:18px;">
+                <i class="fas fa-info-circle"></i> <strong>DETALLE DEL EXPEDIENTE - {{ expediente.nroExpediente}}<a href="{{ path('editar_expediente',{'id':expediente.id}) }}" class="right btn btn-warning" data-toggle="tooltip" data-placement="top" title="Editar Expediente"><i class="fas fa-edit"></i></a></strong>
             </div>
+            <table class="table table-striped table-hover"> 
+                <thead>
+                <br/>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="info list-group col-lg-2">Tema</th>
+                        <td>{{ expediente.tema}}</td>
+                    </tr>
+                    <tr>
+                        <th class="info list-group">Concepto</th>
+                        <td>{{ expediente.concepto}}</td>
+                    </tr>
+                    <tr>
+                        <th class="info list-group">Total de Fojas</th>
+                        <td>{{ expediente.fojas}}</td>
+                    </tr>
+                    <tr>
+                        <th class="info list-group">Tipo</th>
+                        <td>{{ expediente.tipo}}</td>
+                    </tr>
+                    <tr>
+                        <th class="info list-group">Iniciador Dependencia</th>
+                        <td>{{ expediente.iniciadorDependencia}}</td>
+                    </tr>
+                    <tr>
+                        <th class="info ">Fecha de inicio</th>
+                        <td>{{ expediente.fechaInicio}}</td>
+                    </tr>
+                    <tr>
+                        <th class="info list-group">Fecha de Fin</th>
+                        <td>{{ expediente.fechaFin}}</td>
+                    </tr>
+                    <tr>
+                        <th class="info list-group">Ubicacion   </th>
+                        <td>{{ expediente.ubicacionActual}}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                <th>
+
+                </th>
+            </table>
+        </div>     
+        <div class="btn-group">
+            <a href="{{ path('listado_movimiento',{'id':expediente.id}) }}" 
+               class="btn btn-primary" 
+               role="button">MOVIMIENTOS</a>
+            <a href="{{ path('listado_caratula',{'id':expediente.id}) }}" 
+               class="btn btn-primary" 
+               role="button">CARATULAS</a>
+            <a href="{{ path('listado_asociado',{'id':expediente.id}) }}" 
+               class="btn btn-primary" 
+               role="button">EXPEDIENTES ASOCIADOS</a>
+            {% if expediente.resolucion == null %} 
+                <a href="{{ path('nueva_resolucion',{'id':expediente.id}) }}" 
+                   class="btn btn-primary" 
+                   role="button">RESOLUCION</a>
+            {% else %}
+                <a href="{{ path('ver_resolucion',{'id':expediente.id}) }}" 
+                   class="btn btn-primary" 
+                   role="button">VER RESOLUCIÓN</a>
+            {% endif %}
+        </div>              
+        {# {% if expediente.resolucion != null %}
+             <div class="expediente col-lg-10 panel panel-primary">
+                 <div class="panel-heading" style="font-size:18px;">
+                     <i class="fas fa-info-circle"></i> <strong>RESOLUCIÓN</strong> - {{ expediente.nroExpediente}}
+                 </div>
+                 <table class="table table-striped">
+                     <thead>
+                         <tr>
+                             <th scope="col">USUARIO</th>
+                             <th scope="col">NUMERO DE RESOLUCION</th>
+                             <th scope="col">TIPO</th>
+                             <th scope="col">FECHA</th>
+                             <th scope="col">ACCIONES</th>
+                         </tr>
+                     </thead>
+                     <tbody>
+
+                         <tr>
+                             <td>{{expediente.resolucion.usuario}}</td>
+                             <td>{{expediente.resolucion.numeroResolucion}}</td>
+                             <td>{{expediente.resolucion.tipo}}</td>
+                             <td>{{expediente.resolucion.fechaResolucion}}</td>
+                             <td><a class="btn btn-info" href=""  role="button" title="Ver Detalle"><i class="fas fa-search"></i></a>
+                                 <a class="btn btn-warning" href=""  role="button" title="Modificar"><i class="fas fa-edit"></i></a>
+                                 <a class="btn btn-danger" href=""  role="button" title="Archivar"><i class="fas fa-trash-alt"></i></a></td>
+                         </tr>
+
+                     </tbody>
+                 </table>
+             {% endif %}#}
+        <div class="col-lg-3 float left">
+            <a class="btn btn-primary" onclick="history.back()"  role="button">Volver</a>
         </div>
+    </div>
 
-        <script>
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip()
-            })
-        </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
 
-    {% endblock %}
+{% endblock %}

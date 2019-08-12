@@ -59,7 +59,7 @@ class UsuarioFilterType extends AbstractType implements EmbeddedFilterTypeInterf
         
         $builder->add('reset', 'Symfony\Component\Form\Extension\Core\Type\SubmitType', array(
             'label' => 'Reiniciar',
-            'attr' => ['class' => 'btn btn-default']
+            'attr' => ['class' => 'btn btn-secondary']
         ));
         
     }

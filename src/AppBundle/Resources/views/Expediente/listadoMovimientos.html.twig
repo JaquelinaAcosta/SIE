@@ -45,52 +45,72 @@
     </style>
 
     <div class="content">
-    
         <div class="filtro">
-        
-    <h4 class="text-center"><i class="fas fa-bars"></i>Movimientos - Expediente {{ expediente.nroExpediente }}
-    <a href="{{ path('elegir_movimiento',{'id':expediente.id}) }}">Nuevo</a></h4>
-        </div>
-    <hr/>
-    <table class="table table-striped">
-        <thead class="thead-dark">
-            <tr>
-                <th scope="col"></th>
-                <th scope="col">UBICACION</th>
-                <th scope="col">TIPO DE PASE</th>
-                <th scope="col">USUARIO</th>
-                <th scope="col">FECHA</th>
-                <th scope="col">ACCIONES</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% set count = expediente.movimientos.getValues|length+1 %}
+            <div class="header">
+                <i class="fas fa-search"></i> Búsqueda de Movimientos</h4> 
+            <a role="button" 
+               class="btn btn-success float-right" 
+                    href="{{ path('elegir_movimiento',
+                                 {'id':expediente.id}) }}">
+                    Nuevo Movimiento</a>
+            </div>
+            <hr/>
 
-            {% for movimiento in expediente.movimientos.getValues|reverse%}
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+            <hr/>
+        {% endfor %}
+
+        {% for message in app.flashes('danger') %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+            <hr/>
+        {% endfor %}
+
+        <table class="table table-striped">
+            <thead class="thead-dark">
                 <tr>
-                    {% set count= count-1 %}
-                    {% if count != expediente.movimientos.getValues|length %}
-                        <td><i class="fas fa-arrow-up"></i> {{count}} </td>
-                    {% else %}
-                        <td><i class="fas fa-arrows-alt-h"></i> {{ count }} </td>
-                    {% endif %}
-                    <td>{{movimiento.ubicacion}}</td>
-                    <td>{{movimiento.tipoSalida}}</td>
-                    <td>{{movimiento.usuario}}</td>
-                    <td>{{movimiento.fecha}}</td>
-                    {% if (expediente.ubicacionActual == movimiento.ubicacion) and (count == expediente.movimientos.getValues|length) %}
-                        <td><a class="btn btn-info" href=""  role="button" title="Ver Detalle"><i class="fas fa-search"></i></a>
-                            <a class="btn btn-warning" href=""  role="button" title="Modificar"><i class="fas fa-edit"></i></a>
-                            <a class="btn btn-danger" href=""  role="button" title="Archivar"><i class="fas fa-trash-alt"></i></a></td>
-                            {% else %}
-                        <td></td>
-                    {% endif %}
+                    <th scope="col"></th>
+                    <th scope="col">UBICACION</th>
+                    <th scope="col">DEPENDENCIA</th>
+                    <th scope="col">TIPO DE PASE</th>
+                    <th scope="col">USUARIO</th>
+                    <th scope="col">FECHA</th>
+                    <th scope="col">ACCIONES</th>
                 </tr>
-            {% endfor %}
+            </thead>
+            <tbody>
+                {% set count = expediente.movimientos.getValues|length+1 %}
 
-        </tbody>
-    </table>
-            
+                {% for movimiento in expediente.movimientos.getValues|reverse%}
+                    <tr>
+                        {% set count= count-1 %}
+                        {% if count != expediente.movimientos.getValues|length %}
+                            <td><i class="fas fa-arrow-up"></i> {{count}} </td>
+                        {% else %}
+                            <td><i class="fas fa-arrows-alt-h"></i> {{ count }} </td>
+                        {% endif %}
+                        <td>{{movimiento.ubicacion}}</td>
+                        <td>{{movimiento.ubicacion.dependencia}}</td>
+                        <td>{{movimiento.tipoSalida}}</td>
+                        <td>{{movimiento.usuario}}</td>
+                        <td>{{movimiento.fecha}}</td>
+                        {% if (expediente.ubicacionActual == movimiento.ubicacion) and (count == expediente.movimientos.getValues|length) %}
+                            <td><a class="btn btn-info" href=""  role="button" title="Ver Detalle"><i class="fas fa-search"></i></a>
+                                <a class="btn btn-warning" href=""  role="button" title="Modificar"><i class="fas fa-edit"></i></a>
+                                <a class="btn btn-danger" href=""  role="button" title="Archivar"><i class="fas fa-trash-alt"></i></a></td>
+                                {% else %}
+                            <td></td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+
     </div>
     <script>
         $(function () {

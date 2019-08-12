@@ -22,17 +22,15 @@
     </style>
 
     <div class="content">
-        <div class="col-ls-12">
-            <strong>PASE EXTERNO, EXPEDIENTE {{ expediente.nroExpediente }} </strong>
-            <hr/>    
-            {{form_start(form,{'action':'' ,'method':'POST'})}}
-
+        <strong>PASE EXTERNO, EXPEDIENTE {{ expediente.nroExpediente }} </strong>
+        <hr/>    
+        {{form_start(form,{'action':'' ,'method':'POST'})}}
+        <div class="row">
             <div class="col-lg-6">
-                <label class="text-default">MESA DE ENTRADA</label>
+                <label class="text-default">MESA DE ENTRADA DESTINO</label>
                 {{ form_errors(form.mesaentrada) }}
                 {{ form_widget(form.mesaentrada) }}
             </div>   
-            <hr/>
             <div class="col-lg-2">
                 <label class="text-default">FOJAS</label>
                 {{ form_errors(form.fojas) }}

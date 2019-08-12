@@ -59,193 +59,246 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
         // line 5
         echo "
     <div class=\"content\">
-        <div class=\"row form col-lg-12\">
-            <div class=\"filtro\">
-                <div class=\"header\"><h4><i class=\"fas fa-search\"></i> Búsqueda de Expediente</h4></div>
-                <hr/>
-                <form method=\"post\" novalidate=\"true\" id=\"form_buscar\">
-                    ";
-        // line 12
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), 'errors');
-        echo "
-                    <div class=\"row\">
-                        <div class=\"threecol col-lg-4\">
-                            ";
-        // line 15
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), "nroExpediente", []), 'label', ["label" => "EXPEDIENTE"]);
-        echo "
-                            ";
-        // line 16
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), "nroExpediente", []), 'widget');
-        echo "
-                            <div class=\"help-block with-errors\">
-                                ";
-        // line 18
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), "nroExpediente", []), 'errors');
-        echo "
-                            </div>
-                        </div>
-                        <div class=\"threecol col-lg-5\">
-                            ";
-        // line 22
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), "tema", []), 'label', ["label" => "TEMA"]);
-        echo "
-                            ";
-        // line 23
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), "tema", []), 'widget');
-        echo "
-                            <div class=\"help-block with-errors\">
-                                ";
-        // line 25
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), "tema", []), 'errors');
-        echo "
-                            </div>
-                        </div>    
-                        <div class=\"threecol col-lg-3\">
-                            ";
-        // line 29
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), "tipo", []), 'label', ["label" => "TIPO"]);
-        echo "
-                            ";
-        // line 30
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), "tipo", []), 'widget');
-        echo "
-                            <div class=\"help-block with-errors\">
-                                ";
-        // line 32
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), "tipo", []), 'errors');
-        echo "
-                            </div>
-                        </div>   
-                        <div class=\"threecol col-lg-3\">
-                            ";
-        // line 36
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), "fechaInicio", []), 'label', ["label" => "FECHA DESDE"]);
-        echo "
-                            ";
-        // line 37
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), "fechaInicio", []), 'row', ["id" => "date1"]);
-        echo " 
-                            ";
-        // line 38
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), "fechaInicio", []), 'widget');
-        echo "
-                            <div class=\"help-block with-errors\">
-                                ";
-        // line 40
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), "fechaInicio", []), 'errors');
-        echo "
-                            </div>
-                        </div>     
-
-                            ";
-        // line 44
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), "filter", []), 'widget');
-        echo "
-                            ";
-        // line 45
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), "reset", []), 'widget');
-        echo "
-                            <a class=\"btn btn-success\" role=\"button\" 
-                               href=\"";
-        // line 47
+        <div class=\"filtro\">
+            <div class=\"header\"><i class=\"fas fa-search\"></i> <strong>Búsqueda de Expediente</strong></h4>
+                <a role=\"button\" 
+                   class=\"btn btn-success float-right\" 
+                   href=\"";
+        // line 11
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nuevo_expediente");
-        echo "\">Nuevo</a>
-
-                        ";
-        // line 49
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), 'form_end');
-        echo "
-                </form>
+        echo "\">
+                    Nuevo Expediente</a>
             </div>
-        </div>
-    </div>
-
-    <hr/>
-
-    <table class=\"table table-sm table-striped\">
-        <thead class=\"thead-dark\">
-            <tr>
-                <th scope=\"col\">NUMERO</th>
-                <th scope=\"col\">TEMA</th>
-                <th scope=\"col\">UBICACION ACTUAL</th>
-                <th scope=\"col\">ACCIONES</th>
-            </tr>
-        </thead>
-        <tbody>
+            <hr/>
 
             ";
-        // line 68
+        // line 16
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "flashes", [0 => "success"], "method"));
+        foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
+            // line 17
+            echo "                <div class=\"alert alert-success\">
+                    ";
+            // line 18
+            echo twig_escape_filter($this->env, $context["message"], "html", null, true);
+            echo "
+                </div>
+                <hr/>
+            ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 22
+        echo "
+            ";
+        // line 23
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "flashes", [0 => "danger"], "method"));
+        foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
+            // line 24
+            echo "                <div class=\"alert alert-danger\">
+                    ";
+            // line 25
+            echo twig_escape_filter($this->env, $context["message"], "html", null, true);
+            echo "
+                </div>
+                <hr/>
+            ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 29
+        echo "
+            ";
+        // line 30
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), 'form_start');
+        echo "
+            ";
+        // line 31
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), 'errors');
+        echo "
+            <div class=\"row\">
+                <div class=\"threecol col-lg-4\">
+                    ";
+        // line 34
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), "nroExpediente", []), 'label', ["label" => "EXPEDIENTE"]);
+        echo "
+                    ";
+        // line 35
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), "nroExpediente", []), 'widget');
+        echo "
+                    <div class=\"help-block with-errors\">
+                        ";
+        // line 37
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), "nroExpediente", []), 'errors');
+        echo "
+                    </div>
+                </div>
+                <div class=\"threecol col-lg-5\">
+                    ";
+        // line 41
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), "tema", []), 'label', ["label" => "TEMA"]);
+        echo "
+                    ";
+        // line 42
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), "tema", []), 'widget');
+        echo "
+                    <div class=\"help-block with-errors\">
+                        ";
+        // line 44
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), "tema", []), 'errors');
+        echo "
+                    </div>
+                </div>    
+                <div class=\"threecol col-lg-3\">
+                    ";
+        // line 48
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), "tipo", []), 'label', ["label" => "TIPO"]);
+        echo "
+                    ";
+        // line 49
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), "tipo", []), 'widget');
+        echo "
+                    <div class=\"help-block with-errors\">
+                        ";
+        // line 51
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), "tipo", []), 'errors');
+        echo "
+                    </div>
+                </div>   
+                <div class=\"threecol col-lg-3\">
+                    ";
+        // line 55
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), "fechaInicio", []), 'label', ["label" => "FECHA DESDE"]);
+        echo "
+                    ";
+        // line 56
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), "fechaInicio", []), 'row', ["id" => "date1"]);
+        echo " 
+                    ";
+        // line 57
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), "fechaInicio", []), 'widget');
+        echo "
+                    <div class=\"help-block with-errors\">
+                        ";
+        // line 59
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), "fechaInicio", []), 'errors');
+        echo "
+                    </div>
+                </div>   
+
+                ";
+        // line 65
+        echo "            </div>
+            <hr/>
+            <div class=\"row\">
+                <div class=\"col-lg-4\">
+                    ";
+        // line 69
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), "filter", []), 'widget');
+        echo "
+                    ";
+        // line 70
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), "reset", []), 'widget');
+        echo "
+                </div>
+            </div>
+            ";
+        // line 73
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["formExpedienteFilter"] ?? $this->getContext($context, "formExpedienteFilter")), 'form_end');
+        echo "
+
+        </div>
+
+        <hr/>
+
+        <table class=\"table table-sm table-striped\">
+            <thead class=\"thead-dark\">
+                <tr>
+                    <th scope=\"col\">NUMERO</th>
+                    <th scope=\"col\">TEMA</th>
+                    <th scope=\"col\">UBICACION ACTUAL</th>
+                    <th scope=\"col\">ACCIONES</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                ";
+        // line 90
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(twig_reverse_filter($this->env, $context["expediente"]));
         foreach ($context['_seq'] as $context["_key"] => $context["expediente"]) {
-            // line 69
-            echo "                <tr>
-                    <td class=\"text-default\">
-                        ";
-            // line 71
-            if (($this->getAttribute($context["expediente"], "estado", []) == "NUEVO")) {
-                // line 72
-                echo "                            <span style=\"color:red;\">Nuevo</span> <i class=\"fas fa-bell\" style=\"color:red;\"></i> - 
-                        ";
-            }
-            // line 74
-            echo "                        ";
+            // line 91
+            echo "                    <tr>
+                        <td class=\"text-default\">
+                            ";
+            // line 93
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "nroExpediente", []));
             echo "
-                    </td>            
-                    <td class=\"text-default\">";
-            // line 76
+                            ";
+            // line 94
+            if (($this->getAttribute($context["expediente"], "estado", []) == "NUEVO")) {
+                // line 95
+                echo "                                - <span class=\"badge badge-pill badge-info\">NUEVO</span>
+                            ";
+            }
+            // line 97
+            echo "
+                        </td>            
+                        <td class=\"text-default\">";
+            // line 99
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "tema", []));
             echo "</td>         
-                    <td class=\"text-default\">";
-            // line 77
+                        <td class=\"text-default\">";
+            // line 100
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "ubicacionActual", []));
             echo "</td>
-                    <td><a class=\"btn btn-info\" href=\"";
-            // line 78
+                        <td><a class=\"btn btn-info\" href=\"";
+            // line 101
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("ver_expediente", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
             echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Ver Detalle\"><i class=\"fas fa-search\"></i></a>
-                        <a class=\"btn btn-warning\" href=\"";
-            // line 79
+                            <a class=\"btn btn-warning\" href=\"";
+            // line 102
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_expediente", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
             echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"><i class=\"fas fa-edit\"></i></a>
-                        <a class=\"btn btn-danger\" href=\"";
-            // line 80
+                            <a class=\"btn btn-danger\" href=\"";
+            // line 103
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("eliminar_expediente", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
             echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Eliminar\"><i class=\"fas fa-trash-alt\"></i></a></td>
-                </tr>
-            ";
+                    </tr>
+                ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['expediente'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 83
+        // line 106
         echo "
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
-</div>
+    </div>
 
-<script>
+    <script>
 
-    \$('#expediente_filter_tema').autocompleter({
-        url_list: \"";
-        // line 92
+        \$('#expediente_filter_tema').autocompleter({
+            url_list: \"";
+        // line 115
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("tema_search");
         echo "\",
-        url_get: \"";
-        // line 93
+            url_get: \"";
+        // line 116
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("tema_get");
         echo "\"
-    });
-    ";
-        // line 99
+        });
+        ";
+        // line 122
         echo "
-            \$(function () {
-                \$('[data-toggle=\"tooltip\"]').tooltip()
-            })
-</script>
+                \$(function () {
+                    \$('[data-toggle=\"tooltip\"]').tooltip()
+                })
+    </script>
 
 
 ";
@@ -269,7 +322,7 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
 
     public function getDebugInfo()
     {
-        return array (  244 => 99,  239 => 93,  235 => 92,  224 => 83,  215 => 80,  211 => 79,  207 => 78,  203 => 77,  199 => 76,  193 => 74,  189 => 72,  187 => 71,  183 => 69,  179 => 68,  157 => 49,  152 => 47,  147 => 45,  143 => 44,  136 => 40,  131 => 38,  127 => 37,  123 => 36,  116 => 32,  111 => 30,  107 => 29,  100 => 25,  95 => 23,  91 => 22,  84 => 18,  79 => 16,  75 => 15,  69 => 12,  60 => 5,  51 => 4,  29 => 1,);
+        return array (  297 => 122,  292 => 116,  288 => 115,  277 => 106,  268 => 103,  264 => 102,  260 => 101,  256 => 100,  252 => 99,  248 => 97,  244 => 95,  242 => 94,  238 => 93,  234 => 91,  230 => 90,  210 => 73,  204 => 70,  200 => 69,  194 => 65,  187 => 59,  182 => 57,  178 => 56,  174 => 55,  167 => 51,  162 => 49,  158 => 48,  151 => 44,  146 => 42,  142 => 41,  135 => 37,  130 => 35,  126 => 34,  120 => 31,  116 => 30,  113 => 29,  103 => 25,  100 => 24,  96 => 23,  93 => 22,  83 => 18,  80 => 17,  76 => 16,  68 => 11,  60 => 5,  51 => 4,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -288,103 +341,126 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
 {% block contentmain %}
 
     <div class=\"content\">
-        <div class=\"row form col-lg-12\">
-            <div class=\"filtro\">
-                <div class=\"header\"><h4><i class=\"fas fa-search\"></i> Búsqueda de Expediente</h4></div>
-                <hr/>
-                <form method=\"post\" novalidate=\"true\" id=\"form_buscar\">
-                    {{ form_errors(formExpedienteFilter) }}
-                    <div class=\"row\">
-                        <div class=\"threecol col-lg-4\">
-                            {{ form_label(formExpedienteFilter.nroExpediente, 'EXPEDIENTE') }}
-                            {{ form_widget(formExpedienteFilter.nroExpediente) }}
-                            <div class=\"help-block with-errors\">
-                                {{ form_errors(formExpedienteFilter.nroExpediente) }}
-                            </div>
-                        </div>
-                        <div class=\"threecol col-lg-5\">
-                            {{ form_label(formExpedienteFilter.tema, 'TEMA') }}
-                            {{ form_widget(formExpedienteFilter.tema) }}
-                            <div class=\"help-block with-errors\">
-                                {{ form_errors(formExpedienteFilter.tema) }}
-                            </div>
-                        </div>    
-                        <div class=\"threecol col-lg-3\">
-                            {{ form_label(formExpedienteFilter.tipo, 'TIPO') }}
-                            {{ form_widget(formExpedienteFilter.tipo) }}
-                            <div class=\"help-block with-errors\">
-                                {{ form_errors(formExpedienteFilter.tipo) }}
-                            </div>
-                        </div>   
-                        <div class=\"threecol col-lg-3\">
-                            {{ form_label(formExpedienteFilter.fechaInicio, 'FECHA DESDE') }}
-                            {{ form_row(formExpedienteFilter.fechaInicio, { 'id': 'date1' })}} 
-                            {{ form_widget(formExpedienteFilter.fechaInicio) }}
-                            <div class=\"help-block with-errors\">
-                                {{ form_errors(formExpedienteFilter.fechaInicio) }}
-                            </div>
-                        </div>     
-
-                            {{ form_widget(formExpedienteFilter.filter) }}
-                            {{ form_widget(formExpedienteFilter.reset) }}
-                            <a class=\"btn btn-success\" role=\"button\" 
-                               href=\"{{ path('nuevo_expediente') }}\">Nuevo</a>
-
-                        {{ form_end(formExpedienteFilter) }}
-                </form>
+        <div class=\"filtro\">
+            <div class=\"header\"><i class=\"fas fa-search\"></i> <strong>Búsqueda de Expediente</strong></h4>
+                <a role=\"button\" 
+                   class=\"btn btn-success float-right\" 
+                   href=\"{{ path('nuevo_expediente')}}\">
+                    Nuevo Expediente</a>
             </div>
-        </div>
-    </div>
+            <hr/>
 
-    <hr/>
-
-    <table class=\"table table-sm table-striped\">
-        <thead class=\"thead-dark\">
-            <tr>
-                <th scope=\"col\">NUMERO</th>
-                <th scope=\"col\">TEMA</th>
-                <th scope=\"col\">UBICACION ACTUAL</th>
-                <th scope=\"col\">ACCIONES</th>
-            </tr>
-        </thead>
-        <tbody>
-
-            {% for expediente in expediente|reverse %}
-                <tr>
-                    <td class=\"text-default\">
-                        {% if expediente.estado == 'NUEVO' %}
-                            <span style=\"color:red;\">Nuevo</span> <i class=\"fas fa-bell\" style=\"color:red;\"></i> - 
-                        {% endif %}
-                        {{expediente.nroExpediente|e }}
-                    </td>            
-                    <td class=\"text-default\">{{expediente.tema|e }}</td>         
-                    <td class=\"text-default\">{{expediente.ubicacionActual|e }}</td>
-                    <td><a class=\"btn btn-info\" href=\"{{ path(\"ver_expediente\", {'id':expediente.id}) }}\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Ver Detalle\"><i class=\"fas fa-search\"></i></a>
-                        <a class=\"btn btn-warning\" href=\"{{ path(\"editar_expediente\", {'id':expediente.id}) }}\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"><i class=\"fas fa-edit\"></i></a>
-                        <a class=\"btn btn-danger\" href=\"{{ path(\"eliminar_expediente\", {'id':expediente.id}) }}\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Eliminar\"><i class=\"fas fa-trash-alt\"></i></a></td>
-                </tr>
+            {% for message in app.flashes('success') %}
+                <div class=\"alert alert-success\">
+                    {{ message }}
+                </div>
+                <hr/>
             {% endfor %}
 
-        </tbody>
-    </table>
+            {% for message in app.flashes('danger') %}
+                <div class=\"alert alert-danger\">
+                    {{ message }}
+                </div>
+                <hr/>
+            {% endfor %}
 
-</div>
+            {{ form_start(formExpedienteFilter) }}
+            {{ form_errors(formExpedienteFilter) }}
+            <div class=\"row\">
+                <div class=\"threecol col-lg-4\">
+                    {{ form_label(formExpedienteFilter.nroExpediente, 'EXPEDIENTE') }}
+                    {{ form_widget(formExpedienteFilter.nroExpediente) }}
+                    <div class=\"help-block with-errors\">
+                        {{ form_errors(formExpedienteFilter.nroExpediente) }}
+                    </div>
+                </div>
+                <div class=\"threecol col-lg-5\">
+                    {{ form_label(formExpedienteFilter.tema, 'TEMA') }}
+                    {{ form_widget(formExpedienteFilter.tema) }}
+                    <div class=\"help-block with-errors\">
+                        {{ form_errors(formExpedienteFilter.tema) }}
+                    </div>
+                </div>    
+                <div class=\"threecol col-lg-3\">
+                    {{ form_label(formExpedienteFilter.tipo, 'TIPO') }}
+                    {{ form_widget(formExpedienteFilter.tipo) }}
+                    <div class=\"help-block with-errors\">
+                        {{ form_errors(formExpedienteFilter.tipo) }}
+                    </div>
+                </div>   
+                <div class=\"threecol col-lg-3\">
+                    {{ form_label(formExpedienteFilter.fechaInicio, 'FECHA DESDE') }}
+                    {{ form_row(formExpedienteFilter.fechaInicio, { 'id': 'date1' })}} 
+                    {{ form_widget(formExpedienteFilter.fechaInicio) }}
+                    <div class=\"help-block with-errors\">
+                        {{ form_errors(formExpedienteFilter.fechaInicio) }}
+                    </div>
+                </div>   
 
-<script>
+                {# <a class=\"btn btn-success\" role=\"button\" 
+                    href=\"{{ path('nuevo_expediente') }}\">Nuevo</a>#}
+            </div>
+            <hr/>
+            <div class=\"row\">
+                <div class=\"col-lg-4\">
+                    {{ form_widget(formExpedienteFilter.filter) }}
+                    {{ form_widget(formExpedienteFilter.reset) }}
+                </div>
+            </div>
+            {{ form_end(formExpedienteFilter) }}
 
-    \$('#expediente_filter_tema').autocompleter({
-        url_list: \"{{ path('tema_search') }}\",
-        url_get: \"{{ path('tema_get') }}\"
-    });
-    {#  \$('#expediente_filter_nroExpediente').autocompleter({
-            url_list: \"{{ path('expediente_search') }}\",
-            url_get: \"{{ path('expediente_get') }}\"
-        });#}
+        </div>
 
-            \$(function () {
-                \$('[data-toggle=\"tooltip\"]').tooltip()
-            })
-</script>
+        <hr/>
+
+        <table class=\"table table-sm table-striped\">
+            <thead class=\"thead-dark\">
+                <tr>
+                    <th scope=\"col\">NUMERO</th>
+                    <th scope=\"col\">TEMA</th>
+                    <th scope=\"col\">UBICACION ACTUAL</th>
+                    <th scope=\"col\">ACCIONES</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for expediente in expediente|reverse %}
+                    <tr>
+                        <td class=\"text-default\">
+                            {{expediente.nroExpediente|e }}
+                            {% if expediente.estado == 'NUEVO' %}
+                                - <span class=\"badge badge-pill badge-info\">NUEVO</span>
+                            {% endif %}
+
+                        </td>            
+                        <td class=\"text-default\">{{expediente.tema|e }}</td>         
+                        <td class=\"text-default\">{{expediente.ubicacionActual|e }}</td>
+                        <td><a class=\"btn btn-info\" href=\"{{ path(\"ver_expediente\", {'id':expediente.id}) }}\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Ver Detalle\"><i class=\"fas fa-search\"></i></a>
+                            <a class=\"btn btn-warning\" href=\"{{ path(\"editar_expediente\", {'id':expediente.id}) }}\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"><i class=\"fas fa-edit\"></i></a>
+                            <a class=\"btn btn-danger\" href=\"{{ path(\"eliminar_expediente\", {'id':expediente.id}) }}\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Eliminar\"><i class=\"fas fa-trash-alt\"></i></a></td>
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+    </div>
+
+    <script>
+
+        \$('#expediente_filter_tema').autocompleter({
+            url_list: \"{{ path('tema_search') }}\",
+            url_get: \"{{ path('tema_get') }}\"
+        });
+        {#  \$('#expediente_filter_nroExpediente').autocompleter({
+                url_list: \"{{ path('expediente_search') }}\",
+                url_get: \"{{ path('expediente_get') }}\"
+            });#}
+
+                \$(function () {
+                    \$('[data-toggle=\"tooltip\"]').tooltip()
+                })
+    </script>
 
 
 {% endblock %}

@@ -23,10 +23,9 @@
 
     <div class="content">
         <div class="col-ls-12">
-            <h4 class="text-default">Expediente Número: {{ expediente.nroExpediente }}</h4>        
+      <strong>PASE A ARCHIVO, EXPEDIENTE {{ expediente.nroExpediente }} </strong>
+      <hr/>
             {{form_start(form,{'action':'' ,'method':'POST'})}}
-
-
             <div class="col-lg-4">
                 <label class="text-default">LUGAR DESTINO</label>
                 {{ form_errors(form.lugarfisico) }}

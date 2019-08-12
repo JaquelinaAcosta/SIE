@@ -69,122 +69,126 @@ class __TwigTemplate_12f817bb0e2e7275511ada3393220b050f1d08dac0e78d56f7196cf6a9b
     </style>
 
     <div class=\"content\">
-            <div class=\"row form col-lg-12\">
-                <div class=\"filtro\">
-                    <div class=\"header\"><h4><i class=\"fas fa-search\"></i> Búsqueda de Dependencia</h4></div>
-                    <hr/>
-                    <form method=\"post\" novalidate=\"true\" id=\"form_buscar\">
-                        ";
+        <div class=\"row form col-lg-12\">
+            <div class=\"filtro\">
+                <div class=\"header\"><i class=\"fas fa-search\"></i> <strong>Búsqueda de Dependencia</strong>
+                 <a role=\"button\" 
+                   class=\"btn btn-success float-right\" 
+                   href=\"";
         // line 21
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nueva_dependencia");
+        echo "\">
+                    Nueva Dependencia</a>
+                </div>
+                <hr/>
+                <form method=\"post\" novalidate=\"true\" id=\"form_buscar\">
+                    ";
+        // line 26
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), 'errors');
         echo "
-                        <div class=\"row\">
-                            <div class=\"threecol col-lg-4\">
-                                ";
-        // line 24
+                    <div class=\"row\">
+                        <div class=\"threecol col-lg-4\">
+                            ";
+        // line 29
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "descripcion", []), 'label', ["label" => "DESCRIPCIÓN"]);
         echo "
-                                ";
-        // line 25
+                            ";
+        // line 30
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "descripcion", []), 'widget');
         echo "
-                                <div class=\"help-block with-errors\">
-                                    ";
-        // line 27
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "descripcion", []), 'errors');
-        echo "
-                                </div>
-                            </div>
-                            <div class=\"threecol col-lg-4\">
-                                ";
-        // line 31
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "dependenciaPadre", []), 'label', ["label" => "DEPENDENCIA PADRE"]);
-        echo "
+                            <div class=\"help-block with-errors\">
                                 ";
         // line 32
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "descripcion", []), 'errors');
+        echo "
+                            </div>
+                        </div>
+                        <div class=\"threecol col-lg-4\">
+                            ";
+        // line 36
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "dependenciaPadre", []), 'label', ["label" => "DEPENDENCIA PADRE"]);
+        echo "
+                            ";
+        // line 37
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "dependenciaPadre", []), 'widget');
         echo "
-                                <div class=\"help-block with-errors\">
-                                    ";
-        // line 34
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "dependenciaPadre", []), 'errors');
-        echo "
-                                </div>
-                            </div> 
-                            <div class=\"threecol col-lg-4\">
-                                ";
-        // line 38
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "responsable", []), 'label', ["label" => "NOMBRE RESPONSABLE"]);
-        echo "
+                            <div class=\"help-block with-errors\">
                                 ";
         // line 39
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "dependenciaPadre", []), 'errors');
+        echo "
+                            </div>
+                        </div> 
+                        <div class=\"threecol col-lg-4\">
+                            ";
+        // line 43
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "responsable", []), 'label', ["label" => "NOMBRE RESPONSABLE"]);
+        echo "
+                            ";
+        // line 44
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "responsable", []), 'widget');
         echo "
-                                <div class=\"help-block with-errors\">
-                                    ";
-        // line 41
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "responsable", []), 'errors');
-        echo "
-                                </div>
-                            </div>  
-                            <div class=\"twocol col-lg-1\">
-                                ";
-        // line 45
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "nivel", []), 'label', ["label" => "NIVEL"]);
-        echo "
+                            <div class=\"help-block with-errors\">
                                 ";
         // line 46
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "responsable", []), 'errors');
+        echo "
+                            </div>
+                        </div>  
+                        <div class=\"twocol col-lg-1\">
+                            ";
+        // line 50
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "nivel", []), 'label', ["label" => "NIVEL"]);
+        echo "
+                            ";
+        // line 51
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "nivel", []), 'widget');
         echo "
-                                <div class=\"help-block with-errors\">
-                                    ";
-        // line 48
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "nivel", []), 'errors');
-        echo "
-                                </div>
-                            </div> 
-                            <div class=\"twocol col-lg-1\">
-                                ";
-        // line 52
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "archivado", []), 'label', ["label" => "ESTADO"]);
-        echo "
+                            <div class=\"help-block with-errors\">
                                 ";
         // line 53
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "nivel", []), 'errors');
+        echo "
+                            </div>
+                        </div> 
+                        <div class=\"twocol col-lg-2\">
+                            ";
+        // line 57
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "archivado", []), 'label', ["label" => "ESTADO"]);
+        echo "
+                            ";
+        // line 58
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "archivado", []), 'widget');
         echo "
-                                <div class=\"help-block with-errors\">
-                                    ";
-        // line 55
+                            <div class=\"help-block with-errors\">
+                                ";
+        // line 60
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "archivado", []), 'errors');
         echo "
-                                </div>
-                            </div> 
-                        </div>
+                            </div>
+                        </div> 
+                    </div>
 
-                        <div class=\"col-lg-12\">
-                            <div class=\"col-lg-1\">
-                                ";
-        // line 62
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "filter", []), 'row');
+                    <hr/>
+                    <div class=\"row\">
+                        <div class=\"col-lg-4\">
+                            ";
+        // line 68
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "filter", []), 'widget');
         echo "
-                            </div>
-                            <div class=\"col-lg-1\">
-                                ";
-        // line 65
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "reset", []), 'row');
+                            ";
+        // line 69
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "reset", []), 'widget');
         echo "
-                            </div>
                         </div>
-                        <br/>
-                        <br/>
-                        <hr/>
-                        ";
-        // line 71
+                    </div>
+                    ";
+        // line 72
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), 'form_end');
         echo "
 
-                    </form>
-                </div>
+                </form>
+            </div>
         </div>
 
 
@@ -205,69 +209,69 @@ class __TwigTemplate_12f817bb0e2e7275511ada3393220b050f1d08dac0e78d56f7196cf6a9b
             <tbody>
 
                 ";
-        // line 94
+        // line 95
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(twig_reverse_filter($this->env, ($context["dependencias"] ?? $this->getContext($context, "dependencias"))));
         foreach ($context['_seq'] as $context["_key"] => $context["dependencia"]) {
-            // line 95
+            // line 96
             echo "                    <tr>
                         <td class=\"text-default\">";
-            // line 96
+            // line 97
             echo twig_escape_filter($this->env, $this->getAttribute($context["dependencia"], "descripcion", []));
             echo "</td>
                         <td class=\"text-default\"><p>";
-            // line 97
+            // line 98
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["dependencia"], "dependenciaPadre", []), "descripcion", []));
             echo "</p></td>
                         <td class=\"text-default\">";
-            // line 98
+            // line 99
             echo twig_escape_filter($this->env, $this->getAttribute($context["dependencia"], "responsable", []));
             echo "</td>
 
                         ";
-            // line 100
+            // line 101
             if (($this->getAttribute($context["dependencia"], "archivado", []) == "NO")) {
-                // line 101
+                // line 102
                 echo "                            <td class=\"text-default\">Vigente</td>
                             <td class=\"text-default\">";
-                // line 102
+                // line 103
                 echo twig_escape_filter($this->env, $this->getAttribute($context["dependencia"], "nivel", []));
                 echo "</td>
                             <td> <a class=\"btn btn-info\" href=\"";
-                // line 103
+                // line 104
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("adm_gestionar_mesaentrada", ["id" => $this->getAttribute($context["dependencia"], "id", [])]), "html", null, true);
                 echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Gestionar Mesa de Entrada\">  <i class=\"fas fa-table\"></i></a>
                                 <a class=\"btn btn-warning\" href=\"";
-                // line 104
+                // line 105
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_dependencia", ["id" => $this->getAttribute($context["dependencia"], "id", [])]), "html", null, true);
                 echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"><i class=\"fas fa-edit\"></i></a>
                                 <a class=\"btn btn-danger\" href=\"";
-                // line 105
+                // line 106
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("archivar_dependencia", ["id" => $this->getAttribute($context["dependencia"], "id", [])]), "html", null, true);
                 echo "\"  role=\"button\"><i class=\"far fa-file-archive\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Archivar\"></i></a></td>
                                 ";
             } else {
-                // line 107
+                // line 108
                 echo "                            <td class=\"text-default\">Archivado</td>
                             <td class=\"text-default\">";
-                // line 108
+                // line 109
                 echo twig_escape_filter($this->env, $this->getAttribute($context["dependencia"], "nivel", []));
                 echo "</td>
                             <td> <a class=\"btn btn-info\" href=\"";
-                // line 109
+                // line 110
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("adm_gestionar_mesaentrada", ["id" => $this->getAttribute($context["dependencia"], "id", [])]), "html", null, true);
                 echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Gestionar mesa de Entrada\">  <i class=\"fas fa-table\"></i></a>
                                 <a class=\"btn btn-warning\" href=\"";
-                // line 110
+                // line 111
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_dependencia", ["id" => $this->getAttribute($context["dependencia"], "id", [])]), "html", null, true);
                 echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar Dependencia\"><i class=\"fas fa-edit\"></i></a>
                                 <a class=\"btn btn-success\" href=\"";
-                // line 111
+                // line 112
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("alta_dependencia", ["id" => $this->getAttribute($context["dependencia"], "id", [])]), "html", null, true);
                 echo "\"  role=\"button\"><i class=\"far fa-calendar-check\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Dar de Alta\"></i></a></td>
                                 ";
             }
-            // line 113
+            // line 114
             echo "
                     </tr>
                 ";
@@ -275,41 +279,41 @@ class __TwigTemplate_12f817bb0e2e7275511ada3393220b050f1d08dac0e78d56f7196cf6a9b
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['dependencia'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 116
+        // line 117
         echo "
             </tbody>
         </table>
 
         ";
-        // line 120
+        // line 121
         if ((twig_length_filter($this->env, ($context["dependencias"] ?? $this->getContext($context, "dependencias"))) < ($context["totalItems"] ?? $this->getContext($context, "totalItems")))) {
-            // line 121
+            // line 122
             echo "            <ul class=\"pagination\">
                 ";
-            // line 122
+            // line 123
             if ((($context["thisPage"] ?? $this->getContext($context, "thisPage")) == 1)) {
                 echo "           
                 ";
             } else {
-                // line 124
+                // line 125
                 echo "                    ";
                 $context["thisPage"] = (($context["thisPage"] ?? $this->getContext($context, "thisPage")) - 1);
-                // line 125
+                // line 126
                 echo "                ";
             }
-            // line 126
+            // line 127
             echo "
 
                 <li ><a class=\"page-link\" href=\"";
-            // line 128
+            // line 129
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_dependencia", ["currentPage" => ($context["thisPage"] ?? $this->getContext($context, "thisPage"))]), "html", null, true);
             echo "\">&laquo</a></li>
                     ";
-            // line 129
+            // line 130
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable(range(1, ($context["maxPages"] ?? $this->getContext($context, "maxPages"))));
             foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
-                // line 130
+                // line 131
                 echo "                    <li><a class=\"page-link\"  href=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_dependencia", ["currentPage" => $context["i"]]), "html", null, true);
                 echo "\">";
@@ -320,22 +324,22 @@ class __TwigTemplate_12f817bb0e2e7275511ada3393220b050f1d08dac0e78d56f7196cf6a9b
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 132
+            // line 133
             echo "
                 ";
-            // line 133
+            // line 134
             if ((($context["page"] ?? $this->getContext($context, "page")) == ($context["maxPages"] ?? $this->getContext($context, "maxPages")))) {
-                // line 134
+                // line 135
                 echo "
                 ";
             } else {
-                // line 136
+                // line 137
                 echo "                    ";
                 $context["page"] = (($context["page"] ?? $this->getContext($context, "page")) + 1);
-                // line 137
+                // line 138
                 echo "                ";
             }
-            // line 138
+            // line 139
             echo "                <li><a class=\"page-link\" href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_dependencia", ["currentPage" => ($context["page"] ?? $this->getContext($context, "page"))]), "html", null, true);
             echo "\">&raquo</a></li>
@@ -343,7 +347,7 @@ class __TwigTemplate_12f817bb0e2e7275511ada3393220b050f1d08dac0e78d56f7196cf6a9b
             </ul>
         ";
         }
-        // line 142
+        // line 143
         echo "
         <script>
             \$(function () {
@@ -354,11 +358,11 @@ class __TwigTemplate_12f817bb0e2e7275511ada3393220b050f1d08dac0e78d56f7196cf6a9b
         <script>
             \$('#dependencia_filter_responsable').autocompleter({
                 url_list: \"";
-        // line 151
+        // line 152
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("persona_search");
         echo "\",
                 url_get: \"";
-        // line 152
+        // line 153
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("persona_get");
         echo "\"
             });
@@ -386,7 +390,7 @@ class __TwigTemplate_12f817bb0e2e7275511ada3393220b050f1d08dac0e78d56f7196cf6a9b
 
     public function getDebugInfo()
     {
-        return array (  362 => 152,  358 => 151,  347 => 142,  339 => 138,  336 => 137,  333 => 136,  329 => 134,  327 => 133,  324 => 132,  313 => 130,  309 => 129,  305 => 128,  301 => 126,  298 => 125,  295 => 124,  290 => 122,  287 => 121,  285 => 120,  279 => 116,  271 => 113,  266 => 111,  262 => 110,  258 => 109,  254 => 108,  251 => 107,  246 => 105,  242 => 104,  238 => 103,  234 => 102,  231 => 101,  229 => 100,  224 => 98,  220 => 97,  216 => 96,  213 => 95,  209 => 94,  183 => 71,  174 => 65,  168 => 62,  158 => 55,  153 => 53,  149 => 52,  142 => 48,  137 => 46,  133 => 45,  126 => 41,  121 => 39,  117 => 38,  110 => 34,  105 => 32,  101 => 31,  94 => 27,  89 => 25,  85 => 24,  79 => 21,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  366 => 153,  362 => 152,  351 => 143,  343 => 139,  340 => 138,  337 => 137,  333 => 135,  331 => 134,  328 => 133,  317 => 131,  313 => 130,  309 => 129,  305 => 127,  302 => 126,  299 => 125,  294 => 123,  291 => 122,  289 => 121,  283 => 117,  275 => 114,  270 => 112,  266 => 111,  262 => 110,  258 => 109,  255 => 108,  250 => 106,  246 => 105,  242 => 104,  238 => 103,  235 => 102,  233 => 101,  228 => 99,  224 => 98,  220 => 97,  217 => 96,  213 => 95,  187 => 72,  181 => 69,  177 => 68,  166 => 60,  161 => 58,  157 => 57,  150 => 53,  145 => 51,  141 => 50,  134 => 46,  129 => 44,  125 => 43,  118 => 39,  113 => 37,  109 => 36,  102 => 32,  97 => 30,  93 => 29,  87 => 26,  79 => 21,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -414,65 +418,66 @@ class __TwigTemplate_12f817bb0e2e7275511ada3393220b050f1d08dac0e78d56f7196cf6a9b
     </style>
 
     <div class=\"content\">
-            <div class=\"row form col-lg-12\">
-                <div class=\"filtro\">
-                    <div class=\"header\"><h4><i class=\"fas fa-search\"></i> Búsqueda de Dependencia</h4></div>
-                    <hr/>
-                    <form method=\"post\" novalidate=\"true\" id=\"form_buscar\">
-                        {{ form_errors(formDependenciaFilter) }}
-                        <div class=\"row\">
-                            <div class=\"threecol col-lg-4\">
-                                {{ form_label(formDependenciaFilter.descripcion, 'DESCRIPCIÓN') }}
-                                {{ form_widget(formDependenciaFilter.descripcion) }}
-                                <div class=\"help-block with-errors\">
-                                    {{ form_errors(formDependenciaFilter.descripcion) }}
-                                </div>
-                            </div>
-                            <div class=\"threecol col-lg-4\">
-                                {{ form_label(formDependenciaFilter.dependenciaPadre, 'DEPENDENCIA PADRE') }}
-                                {{ form_widget(formDependenciaFilter.dependenciaPadre) }}
-                                <div class=\"help-block with-errors\">
-                                    {{ form_errors(formDependenciaFilter.dependenciaPadre) }}
-                                </div>
-                            </div> 
-                            <div class=\"threecol col-lg-4\">
-                                {{ form_label(formDependenciaFilter.responsable, 'NOMBRE RESPONSABLE') }}
-                                {{ form_widget(formDependenciaFilter.responsable) }}
-                                <div class=\"help-block with-errors\">
-                                    {{ form_errors(formDependenciaFilter.responsable) }}
-                                </div>
-                            </div>  
-                            <div class=\"twocol col-lg-1\">
-                                {{ form_label(formDependenciaFilter.nivel, 'NIVEL') }}
-                                {{ form_widget(formDependenciaFilter.nivel) }}
-                                <div class=\"help-block with-errors\">
-                                    {{ form_errors(formDependenciaFilter.nivel) }}
-                                </div>
-                            </div> 
-                            <div class=\"twocol col-lg-1\">
-                                {{ form_label(formDependenciaFilter.archivado, 'ESTADO') }}
-                                {{ form_widget(formDependenciaFilter.archivado) }}
-                                <div class=\"help-block with-errors\">
-                                    {{ form_errors(formDependenciaFilter.archivado) }}
-                                </div>
-                            </div> 
-                        </div>
-
-                        <div class=\"col-lg-12\">
-                            <div class=\"col-lg-1\">
-                                {{ form_row(formDependenciaFilter.filter) }}
-                            </div>
-                            <div class=\"col-lg-1\">
-                                {{ form_row(formDependenciaFilter.reset) }}
-                            </div>
-                        </div>
-                        <br/>
-                        <br/>
-                        <hr/>
-                        {{ form_end(formDependenciaFilter) }}
-
-                    </form>
+        <div class=\"row form col-lg-12\">
+            <div class=\"filtro\">
+                <div class=\"header\"><i class=\"fas fa-search\"></i> <strong>Búsqueda de Dependencia</strong>
+                 <a role=\"button\" 
+                   class=\"btn btn-success float-right\" 
+                   href=\"{{ path('nueva_dependencia')}}\">
+                    Nueva Dependencia</a>
                 </div>
+                <hr/>
+                <form method=\"post\" novalidate=\"true\" id=\"form_buscar\">
+                    {{ form_errors(formDependenciaFilter) }}
+                    <div class=\"row\">
+                        <div class=\"threecol col-lg-4\">
+                            {{ form_label(formDependenciaFilter.descripcion, 'DESCRIPCIÓN') }}
+                            {{ form_widget(formDependenciaFilter.descripcion) }}
+                            <div class=\"help-block with-errors\">
+                                {{ form_errors(formDependenciaFilter.descripcion) }}
+                            </div>
+                        </div>
+                        <div class=\"threecol col-lg-4\">
+                            {{ form_label(formDependenciaFilter.dependenciaPadre, 'DEPENDENCIA PADRE') }}
+                            {{ form_widget(formDependenciaFilter.dependenciaPadre) }}
+                            <div class=\"help-block with-errors\">
+                                {{ form_errors(formDependenciaFilter.dependenciaPadre) }}
+                            </div>
+                        </div> 
+                        <div class=\"threecol col-lg-4\">
+                            {{ form_label(formDependenciaFilter.responsable, 'NOMBRE RESPONSABLE') }}
+                            {{ form_widget(formDependenciaFilter.responsable) }}
+                            <div class=\"help-block with-errors\">
+                                {{ form_errors(formDependenciaFilter.responsable) }}
+                            </div>
+                        </div>  
+                        <div class=\"twocol col-lg-1\">
+                            {{ form_label(formDependenciaFilter.nivel, 'NIVEL') }}
+                            {{ form_widget(formDependenciaFilter.nivel) }}
+                            <div class=\"help-block with-errors\">
+                                {{ form_errors(formDependenciaFilter.nivel) }}
+                            </div>
+                        </div> 
+                        <div class=\"twocol col-lg-2\">
+                            {{ form_label(formDependenciaFilter.archivado, 'ESTADO') }}
+                            {{ form_widget(formDependenciaFilter.archivado) }}
+                            <div class=\"help-block with-errors\">
+                                {{ form_errors(formDependenciaFilter.archivado) }}
+                            </div>
+                        </div> 
+                    </div>
+
+                    <hr/>
+                    <div class=\"row\">
+                        <div class=\"col-lg-4\">
+                            {{ form_widget(formDependenciaFilter.filter) }}
+                            {{ form_widget(formDependenciaFilter.reset) }}
+                        </div>
+                    </div>
+                    {{ form_end(formDependenciaFilter) }}
+
+                </form>
+            </div>
         </div>
 
 

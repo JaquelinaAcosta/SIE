@@ -13,65 +13,66 @@
     </style>
 
     <div class="content">
-            <div class="row form col-lg-12">
-                <div class="filtro">
-                    <div class="header"><h4><i class="fas fa-search"></i> Búsqueda de Dependencia</h4></div>
-                    <hr/>
-                    <form method="post" novalidate="true" id="form_buscar">
-                        {{ form_errors(formDependenciaFilter) }}
-                        <div class="row">
-                            <div class="threecol col-lg-4">
-                                {{ form_label(formDependenciaFilter.descripcion, 'DESCRIPCIÓN') }}
-                                {{ form_widget(formDependenciaFilter.descripcion) }}
-                                <div class="help-block with-errors">
-                                    {{ form_errors(formDependenciaFilter.descripcion) }}
-                                </div>
-                            </div>
-                            <div class="threecol col-lg-4">
-                                {{ form_label(formDependenciaFilter.dependenciaPadre, 'DEPENDENCIA PADRE') }}
-                                {{ form_widget(formDependenciaFilter.dependenciaPadre) }}
-                                <div class="help-block with-errors">
-                                    {{ form_errors(formDependenciaFilter.dependenciaPadre) }}
-                                </div>
-                            </div> 
-                            <div class="threecol col-lg-4">
-                                {{ form_label(formDependenciaFilter.responsable, 'NOMBRE RESPONSABLE') }}
-                                {{ form_widget(formDependenciaFilter.responsable) }}
-                                <div class="help-block with-errors">
-                                    {{ form_errors(formDependenciaFilter.responsable) }}
-                                </div>
-                            </div>  
-                            <div class="twocol col-lg-1">
-                                {{ form_label(formDependenciaFilter.nivel, 'NIVEL') }}
-                                {{ form_widget(formDependenciaFilter.nivel) }}
-                                <div class="help-block with-errors">
-                                    {{ form_errors(formDependenciaFilter.nivel) }}
-                                </div>
-                            </div> 
-                            <div class="twocol col-lg-1">
-                                {{ form_label(formDependenciaFilter.archivado, 'ESTADO') }}
-                                {{ form_widget(formDependenciaFilter.archivado) }}
-                                <div class="help-block with-errors">
-                                    {{ form_errors(formDependenciaFilter.archivado) }}
-                                </div>
-                            </div> 
-                        </div>
-
-                        <div class="col-lg-12">
-                            <div class="col-lg-1">
-                                {{ form_row(formDependenciaFilter.filter) }}
-                            </div>
-                            <div class="col-lg-1">
-                                {{ form_row(formDependenciaFilter.reset) }}
-                            </div>
-                        </div>
-                        <br/>
-                        <br/>
-                        <hr/>
-                        {{ form_end(formDependenciaFilter) }}
-
-                    </form>
+        <div class="row form col-lg-12">
+            <div class="filtro">
+                <div class="header"><i class="fas fa-search"></i> <strong>Búsqueda de Dependencia</strong>
+                 <a role="button" 
+                   class="btn btn-success float-right" 
+                   href="{{ path('nueva_dependencia')}}">
+                    Nueva Dependencia</a>
                 </div>
+                <hr/>
+                <form method="post" novalidate="true" id="form_buscar">
+                    {{ form_errors(formDependenciaFilter) }}
+                    <div class="row">
+                        <div class="threecol col-lg-4">
+                            {{ form_label(formDependenciaFilter.descripcion, 'DESCRIPCIÓN') }}
+                            {{ form_widget(formDependenciaFilter.descripcion) }}
+                            <div class="help-block with-errors">
+                                {{ form_errors(formDependenciaFilter.descripcion) }}
+                            </div>
+                        </div>
+                        <div class="threecol col-lg-4">
+                            {{ form_label(formDependenciaFilter.dependenciaPadre, 'DEPENDENCIA PADRE') }}
+                            {{ form_widget(formDependenciaFilter.dependenciaPadre) }}
+                            <div class="help-block with-errors">
+                                {{ form_errors(formDependenciaFilter.dependenciaPadre) }}
+                            </div>
+                        </div> 
+                        <div class="threecol col-lg-4">
+                            {{ form_label(formDependenciaFilter.responsable, 'NOMBRE RESPONSABLE') }}
+                            {{ form_widget(formDependenciaFilter.responsable) }}
+                            <div class="help-block with-errors">
+                                {{ form_errors(formDependenciaFilter.responsable) }}
+                            </div>
+                        </div>  
+                        <div class="twocol col-lg-1">
+                            {{ form_label(formDependenciaFilter.nivel, 'NIVEL') }}
+                            {{ form_widget(formDependenciaFilter.nivel) }}
+                            <div class="help-block with-errors">
+                                {{ form_errors(formDependenciaFilter.nivel) }}
+                            </div>
+                        </div> 
+                        <div class="twocol col-lg-2">
+                            {{ form_label(formDependenciaFilter.archivado, 'ESTADO') }}
+                            {{ form_widget(formDependenciaFilter.archivado) }}
+                            <div class="help-block with-errors">
+                                {{ form_errors(formDependenciaFilter.archivado) }}
+                            </div>
+                        </div> 
+                    </div>
+
+                    <hr/>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            {{ form_widget(formDependenciaFilter.filter) }}
+                            {{ form_widget(formDependenciaFilter.reset) }}
+                        </div>
+                    </div>
+                    {{ form_end(formDependenciaFilter) }}
+
+                </form>
+            </div>
         </div>
 
 

@@ -69,85 +69,83 @@ class __TwigTemplate_6046505f96e5228ff3587ae9438108e1b7e25c3ebc3edff398671e3a73f
     </style>
 
     <div class=\"content\">
-            <div class=\"row form col-lg-12\" style=\"background:none;margin:0;\">
-                <div class =\"filtro\">
-                    <div class=\"header\"><h4><i class=\"fas fa-search\"></i> Búsqueda de Lugares</h4></div>
-                    <hr/>
-                    <form method=\"post\" novalidate=\"true\" id=\"form_buscar\">
-                        ";
-        // line 21
+            <div class =\"filtro\">
+                <div class=\"header\"><h4><i class=\"fas fa-search\"></i> Búsqueda de Lugares</h4></div>
+                <hr/>
+                <form method=\"post\" novalidate=\"true\" id=\"form_buscar\">
+                    ";
+        // line 20
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(($context["formLugarFisicoFilter"] ?? $this->getContext($context, "formLugarFisicoFilter")), 'errors');
         echo "
-                        <div class=\"row\">
-                            <div class=\"threecol col-lg-2\">
-                                ";
-        // line 24
+                    <div class=\"row\">
+                        <div class=\"threecol col-lg-4\">
+                            ";
+        // line 23
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formLugarFisicoFilter"] ?? $this->getContext($context, "formLugarFisicoFilter")), "tipo", []), 'label', ["label" => "TIPO"]);
         echo "
-                                ";
-        // line 25
+                            ";
+        // line 24
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formLugarFisicoFilter"] ?? $this->getContext($context, "formLugarFisicoFilter")), "tipo", []), 'widget');
         echo "
-                                <div class=\"help-block with-errors\">
-                                    ";
-        // line 27
+                            <div class=\"help-block with-errors\">
+                                ";
+        // line 26
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formLugarFisicoFilter"] ?? $this->getContext($context, "formLugarFisicoFilter")), "tipo", []), 'errors');
         echo "
-                                </div>
-                            </div>  
-                            <div class=\"threecol col-lg-2\">
-                                ";
-        // line 31
+                            </div>
+                        </div>  
+                        <div class=\"threecol col-lg-4\">
+                            ";
+        // line 30
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formLugarFisicoFilter"] ?? $this->getContext($context, "formLugarFisicoFilter")), "descripcion", []), 'label', ["label" => "DESCRIPCIÓN"]);
         echo "
-                                ";
-        // line 32
+                            ";
+        // line 31
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formLugarFisicoFilter"] ?? $this->getContext($context, "formLugarFisicoFilter")), "descripcion", []), 'widget');
         echo "
-                                <div class=\"help-block with-errors\">
-                                    ";
-        // line 34
+                            <div class=\"help-block with-errors\">
+                                ";
+        // line 33
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formLugarFisicoFilter"] ?? $this->getContext($context, "formLugarFisicoFilter")), "descripcion", []), 'errors');
         echo "
-                                </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class=\"col-lg-12\">
-                            <div class=\"col-lg-1\">
-                                ";
-        // line 41
+                    <div class=\"col-lg-12\">
+                        <div class=\"col-lg-1\">
+                            ";
+        // line 40
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formLugarFisicoFilter"] ?? $this->getContext($context, "formLugarFisicoFilter")), "filter", []), 'row');
         echo "
-                            </div>
-                            <div class=\"col-lg-1\">
-                                ";
-        // line 44
+                        </div>
+                        <div class=\"col-lg-1\">
+                            ";
+        // line 43
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formLugarFisicoFilter"] ?? $this->getContext($context, "formLugarFisicoFilter")), "reset", []), 'row');
         echo "
-                            </div>
                         </div>
-                        <br/>
-                        <br/>
-                        <hr/>
-                        ";
-        // line 50
+                    </div>
+                    <br/>
+                    <br/>
+                    <hr/>
+                    ";
+        // line 49
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["formLugarFisicoFilter"] ?? $this->getContext($context, "formLugarFisicoFilter")), 'form_end');
         echo "
 
-                    </form>
-                </div>
+                </form>
             </div>
-                        <hr/>
+        <hr/>
         ";
-        // line 56
+        // line 54
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "flashes", [0 => "success"], "method"));
         foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
-            // line 57
+            // line 55
             echo "            <div class=\"alert alert-success\">
                 ";
-            // line 58
+            // line 56
             echo twig_escape_filter($this->env, $context["message"], "html", null, true);
             echo "
             </div>
@@ -156,17 +154,17 @@ class __TwigTemplate_6046505f96e5228ff3587ae9438108e1b7e25c3ebc3edff398671e3a73f
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 61
+        // line 59
         echo "
         ";
-        // line 62
+        // line 60
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "flashes", [0 => "danger"], "method"));
         foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
-            // line 63
+            // line 61
             echo "            <div class=\"alert alert-danger\">
                 ";
-            // line 64
+            // line 62
             echo twig_escape_filter($this->env, $context["message"], "html", null, true);
             echo "
             </div>
@@ -175,20 +173,20 @@ class __TwigTemplate_6046505f96e5228ff3587ae9438108e1b7e25c3ebc3edff398671e3a73f
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 67
-        echo "        
-        
+        // line 65
+        echo "
+
         <table class=\"table table-striped\">
             <thead class=\"thead-dark\">
                 <tr>
                     ";
-        // line 72
+        // line 70
         if (($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "role", []) == "ROLE_ADMIN")) {
-            // line 73
+            // line 71
             echo "                        <th scope=\"col\">Lugar de origen</th>
                         ";
         }
-        // line 75
+        // line 73
         echo "                    <th scope=\"col\">Tipo</th>
                     <th scope=\"col\">Descripción</th> 
                     <th scope=\"col\">Acceso</th>
@@ -197,39 +195,39 @@ class __TwigTemplate_6046505f96e5228ff3587ae9438108e1b7e25c3ebc3edff398671e3a73f
             </thead>
             <tbody>
                 ";
-        // line 82
+        // line 80
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(twig_reverse_filter($this->env, ($context["lugarFisico"] ?? $this->getContext($context, "lugarFisico"))));
         foreach ($context['_seq'] as $context["_key"] => $context["lugarfisico"]) {
-            // line 83
+            // line 81
             echo "                    <tr>
                         ";
-            // line 84
+            // line 82
             if (($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "role", []) == "ROLE_ADMIN")) {
-                // line 85
+                // line 83
                 echo "                            <td class=\"text-default\">";
                 echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["lugarfisico"], "dependencia", []), "descripcion", []));
                 echo "</td>
                         ";
             }
-            // line 87
+            // line 85
             echo "                        <td class=\"text-default\">";
             echo twig_escape_filter($this->env, $this->getAttribute($context["lugarfisico"], "tipo", []));
             echo "</td>
                         <td class=\"text-default\"><p>";
-            // line 88
+            // line 86
             echo twig_escape_filter($this->env, $this->getAttribute($context["lugarfisico"], "descripcion", []));
             echo "</p></td>
                         <td class=\"text-default\">";
-            // line 89
+            // line 87
             echo twig_escape_filter($this->env, $this->getAttribute($context["lugarfisico"], "acceso", []));
             echo "</td>
                         <td><a class=\"btn btn-warning\" href=\"";
-            // line 90
+            // line 88
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_lugarfisico", ["id" => $this->getAttribute($context["lugarfisico"], "id", [])]), "html", null, true);
             echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"><i class=\"fas fa-edit\"></i></a>
                             <a class=\"btn btn-danger\" href=\"";
-            // line 91
+            // line 89
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("borrar_lugarfisico", ["id" => $this->getAttribute($context["lugarfisico"], "id", [])]), "html", null, true);
             echo "\"  role=\"button\"><i class=\"far fa-file-archive\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Borrar\"></i></a></td>
                     </tr>
@@ -238,41 +236,41 @@ class __TwigTemplate_6046505f96e5228ff3587ae9438108e1b7e25c3ebc3edff398671e3a73f
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['lugarfisico'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 94
+        // line 92
         echo "
             </tbody>
         </table>
 
         ";
-        // line 98
+        // line 96
         if ((twig_length_filter($this->env, ($context["lugarFisico"] ?? $this->getContext($context, "lugarFisico"))) < ($context["totalItems"] ?? $this->getContext($context, "totalItems")))) {
             echo "        
             <ul class=\"pagination\">
                 ";
-            // line 100
+            // line 98
             if ((($context["thisPage"] ?? $this->getContext($context, "thisPage")) == 1)) {
                 echo "           
                 ";
             } else {
-                // line 102
+                // line 100
                 echo "                    ";
                 $context["thisPage"] = (($context["thisPage"] ?? $this->getContext($context, "thisPage")) - 1);
-                // line 103
+                // line 101
                 echo "                ";
             }
-            // line 104
+            // line 102
             echo "
 
                 <li ><a class=\"page-link\" href=\"";
-            // line 106
+            // line 104
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_lugarfisico", ["currentPage" => ($context["thisPage"] ?? $this->getContext($context, "thisPage"))]), "html", null, true);
             echo "\">&laquo</a></li>
                     ";
-            // line 107
+            // line 105
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable(range(1, ($context["maxPages"] ?? $this->getContext($context, "maxPages"))));
             foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
-                // line 108
+                // line 106
                 echo "                    <li><a class=\"page-link\"  href=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_lugarfisico", ["currentPage" => $context["i"]]), "html", null, true);
                 echo "\">";
@@ -283,21 +281,21 @@ class __TwigTemplate_6046505f96e5228ff3587ae9438108e1b7e25c3ebc3edff398671e3a73f
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 110
+            // line 108
             echo "
                 ";
-            // line 111
+            // line 109
             if ((($context["page"] ?? $this->getContext($context, "page")) == ($context["maxPages"] ?? $this->getContext($context, "maxPages")))) {
-                // line 112
+                // line 110
                 echo "                ";
             } else {
-                // line 113
+                // line 111
                 echo "                    ";
                 $context["page"] = (($context["page"] ?? $this->getContext($context, "page")) + 1);
-                // line 114
+                // line 112
                 echo "                ";
             }
-            // line 115
+            // line 113
             echo "                <li><a class=\"page-link\" href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_lugarfisico", ["currentPage" => ($context["page"] ?? $this->getContext($context, "page"))]), "html", null, true);
             echo "\">&raquo</a></li>
@@ -307,7 +305,7 @@ class __TwigTemplate_6046505f96e5228ff3587ae9438108e1b7e25c3ebc3edff398671e3a73f
         </div> 
     ";
         }
-        // line 121
+        // line 119
         echo "
     <script>
         \$(function () {
@@ -337,7 +335,7 @@ class __TwigTemplate_6046505f96e5228ff3587ae9438108e1b7e25c3ebc3edff398671e3a73f
 
     public function getDebugInfo()
     {
-        return array (  311 => 121,  301 => 115,  298 => 114,  295 => 113,  292 => 112,  290 => 111,  287 => 110,  276 => 108,  272 => 107,  268 => 106,  264 => 104,  261 => 103,  258 => 102,  253 => 100,  248 => 98,  242 => 94,  233 => 91,  229 => 90,  225 => 89,  221 => 88,  216 => 87,  210 => 85,  208 => 84,  205 => 83,  201 => 82,  192 => 75,  188 => 73,  186 => 72,  179 => 67,  170 => 64,  167 => 63,  163 => 62,  160 => 61,  151 => 58,  148 => 57,  144 => 56,  135 => 50,  126 => 44,  120 => 41,  110 => 34,  105 => 32,  101 => 31,  94 => 27,  89 => 25,  85 => 24,  79 => 21,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  309 => 119,  299 => 113,  296 => 112,  293 => 111,  290 => 110,  288 => 109,  285 => 108,  274 => 106,  270 => 105,  266 => 104,  262 => 102,  259 => 101,  256 => 100,  251 => 98,  246 => 96,  240 => 92,  231 => 89,  227 => 88,  223 => 87,  219 => 86,  214 => 85,  208 => 83,  206 => 82,  203 => 81,  199 => 80,  190 => 73,  186 => 71,  184 => 70,  177 => 65,  168 => 62,  165 => 61,  161 => 60,  158 => 59,  149 => 56,  146 => 55,  142 => 54,  134 => 49,  125 => 43,  119 => 40,  109 => 33,  104 => 31,  100 => 30,  93 => 26,  88 => 24,  84 => 23,  78 => 20,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -365,46 +363,44 @@ class __TwigTemplate_6046505f96e5228ff3587ae9438108e1b7e25c3ebc3edff398671e3a73f
     </style>
 
     <div class=\"content\">
-            <div class=\"row form col-lg-12\" style=\"background:none;margin:0;\">
-                <div class =\"filtro\">
-                    <div class=\"header\"><h4><i class=\"fas fa-search\"></i> Búsqueda de Lugares</h4></div>
+            <div class =\"filtro\">
+                <div class=\"header\"><h4><i class=\"fas fa-search\"></i> Búsqueda de Lugares</h4></div>
+                <hr/>
+                <form method=\"post\" novalidate=\"true\" id=\"form_buscar\">
+                    {{ form_errors(formLugarFisicoFilter) }}
+                    <div class=\"row\">
+                        <div class=\"threecol col-lg-4\">
+                            {{ form_label(formLugarFisicoFilter.tipo, 'TIPO') }}
+                            {{ form_widget(formLugarFisicoFilter.tipo) }}
+                            <div class=\"help-block with-errors\">
+                                {{ form_errors(formLugarFisicoFilter.tipo) }}
+                            </div>
+                        </div>  
+                        <div class=\"threecol col-lg-4\">
+                            {{ form_label(formLugarFisicoFilter.descripcion, 'DESCRIPCIÓN') }}
+                            {{ form_widget(formLugarFisicoFilter.descripcion) }}
+                            <div class=\"help-block with-errors\">
+                                {{ form_errors(formLugarFisicoFilter.descripcion) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class=\"col-lg-12\">
+                        <div class=\"col-lg-1\">
+                            {{ form_row(formLugarFisicoFilter.filter) }}
+                        </div>
+                        <div class=\"col-lg-1\">
+                            {{ form_row(formLugarFisicoFilter.reset) }}
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
                     <hr/>
-                    <form method=\"post\" novalidate=\"true\" id=\"form_buscar\">
-                        {{ form_errors(formLugarFisicoFilter) }}
-                        <div class=\"row\">
-                            <div class=\"threecol col-lg-2\">
-                                {{ form_label(formLugarFisicoFilter.tipo, 'TIPO') }}
-                                {{ form_widget(formLugarFisicoFilter.tipo) }}
-                                <div class=\"help-block with-errors\">
-                                    {{ form_errors(formLugarFisicoFilter.tipo) }}
-                                </div>
-                            </div>  
-                            <div class=\"threecol col-lg-2\">
-                                {{ form_label(formLugarFisicoFilter.descripcion, 'DESCRIPCIÓN') }}
-                                {{ form_widget(formLugarFisicoFilter.descripcion) }}
-                                <div class=\"help-block with-errors\">
-                                    {{ form_errors(formLugarFisicoFilter.descripcion) }}
-                                </div>
-                            </div>
-                        </div>
+                    {{ form_end(formLugarFisicoFilter) }}
 
-                        <div class=\"col-lg-12\">
-                            <div class=\"col-lg-1\">
-                                {{ form_row(formLugarFisicoFilter.filter) }}
-                            </div>
-                            <div class=\"col-lg-1\">
-                                {{ form_row(formLugarFisicoFilter.reset) }}
-                            </div>
-                        </div>
-                        <br/>
-                        <br/>
-                        <hr/>
-                        {{ form_end(formLugarFisicoFilter) }}
-
-                    </form>
-                </div>
+                </form>
             </div>
-                        <hr/>
+        <hr/>
         {% for message in app.flashes('success') %}
             <div class=\"alert alert-success\">
                 {{ message }}
@@ -416,8 +412,8 @@ class __TwigTemplate_6046505f96e5228ff3587ae9438108e1b7e25c3ebc3edff398671e3a73f
                 {{ message }}
             </div>
         {% endfor %}
-        
-        
+
+
         <table class=\"table table-striped\">
             <thead class=\"thead-dark\">
                 <tr>

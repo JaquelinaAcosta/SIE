@@ -22,15 +22,14 @@
     </style>
 
 
-    <div class="col-ls-12">
-        <div class="title ">Expediente -> Movimiento</div>
-        <hr/>
-
-            <h4 class="text-default">Expediente Número: {{ expediente.nroExpediente }}</h4>        
+    <div class="content">
+        <div class="col-ls-12">
+      <strong>PASE INTERNO, EXPEDIENTE {{ expediente.nroExpediente }} </strong>
+      <hr/>
         {{form_start(form,{'action':'' ,'method':'POST'})}}
         
         
-        <div class="col-lg-4">
+        <div class="col-lg-6">
             <label class="text-default">NOMBRE DE LA PERSONA</label>
             {{ form_errors(form.persona) }}
             {{ form_widget(form.persona) }}
@@ -56,6 +55,7 @@
         <div class="col-lg-3 float left">
             {{ form_widget(form.Aceptar) }}
         </div>
+    </div>
     </div>
     {{form_end(form)}}
 

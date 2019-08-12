@@ -22,7 +22,8 @@ class PersonaFilterType extends AbstractType implements EmbeddedFilterTypeInterf
                     $qb->setParameter('apellido', '%' . $values['value'] . '%');
                 }
             },
-            'attr' => ['class' => 'form-control']
+            'attr' => ['class' => 'form-control',
+                'placeholder'=>'Ingrese un apellido...']
         ));
         $builder->add('nombre', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType', array(
             'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
@@ -32,7 +33,8 @@ class PersonaFilterType extends AbstractType implements EmbeddedFilterTypeInterf
                     $qb->setParameter('nombre', '%' . $values['value'] . '%');
                 }
             },
-            'attr' => ['class' => 'form-control']
+            'attr' => ['class' => 'form-control',
+                'placeholder'=>'Ingrese un nombre...']
         ));
         $builder->add('dni', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\NumberFilterType', array(
             'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
@@ -42,7 +44,8 @@ class PersonaFilterType extends AbstractType implements EmbeddedFilterTypeInterf
                     $qb->setParameter('numeroDocumento', '%' . $values['value'] . '%');
                 }
             },
-            'attr' => ['class' => 'form-control']
+            'attr' => ['class' => 'form-control',
+                'placeholder'=>'Ingrese un DNI']
         ));
         $builder->add('cargo', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType', array(
             'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
@@ -52,7 +55,8 @@ class PersonaFilterType extends AbstractType implements EmbeddedFilterTypeInterf
                     $qb->setParameter('cargo', '%' . $values['value'] . '%');
                 }
             },
-            'attr' => ['class' => 'form-control']
+            'attr' => ['class' => 'form-control',
+                'placeholder'=>'Ingrese un cargo...']
         ));       
         $builder->add('filter', 'Symfony\Component\Form\Extension\Core\Type\SubmitType', array(
             'label' => 'Filtrar',
@@ -60,7 +64,7 @@ class PersonaFilterType extends AbstractType implements EmbeddedFilterTypeInterf
         ));
         $builder->add('reset', 'Symfony\Component\Form\Extension\Core\Type\SubmitType', array(
             'label' => 'Reiniciar',
-            'attr' => ['class' => 'btn btn-danger']
+            'attr' => ['class' => 'btn btn-secondary']
         ));
     }
 

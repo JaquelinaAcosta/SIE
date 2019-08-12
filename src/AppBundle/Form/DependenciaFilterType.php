@@ -27,7 +27,8 @@ class DependenciaFilterType extends AbstractType implements EmbeddedFilterTypeIn
                     $qb->setParameter('descripcion', '%' . $values['value'] . '%');
                 }
             },
-            'attr' => ['class' => 'form-control']
+            'attr' => ['class' => 'form-control',
+                'placeholder'=>'Sub dirección de..']
         ));
             
             
@@ -59,7 +60,8 @@ class DependenciaFilterType extends AbstractType implements EmbeddedFilterTypeIn
                     $qb->setParameter('nivel', '%' . $values['value'] . '%');
                 }
             },
-            'attr' => ['class' => 'form-control']
+            'attr' => ['class' => 'form-control',
+                'placeholder'=>'1..2..3']
         ));
             
         $builder->add('archivado', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType', array(
@@ -70,7 +72,8 @@ class DependenciaFilterType extends AbstractType implements EmbeddedFilterTypeIn
                     $qb->setParameter('archivado', '%' . $values['value'] . '%');
                 }
             },
-            'attr' => ['class' => 'form-control']
+            'attr' => ['class' => 'form-control',
+                'placeholder'=>'SI / NO']
         ));
           
         $builder->add('responsable', 'PUGX\AutocompleterBundle\Form\Type\AutocompleteFilterType', array(
@@ -91,7 +94,7 @@ class DependenciaFilterType extends AbstractType implements EmbeddedFilterTypeIn
         
         $builder->add('reset', 'Symfony\Component\Form\Extension\Core\Type\SubmitType', array(
             'label' => 'Reiniciar',
-            'attr' => ['class' => 'btn btn-danger']
+            'attr' => ['class' => 'btn btn-secondary']
         ));
         
     }

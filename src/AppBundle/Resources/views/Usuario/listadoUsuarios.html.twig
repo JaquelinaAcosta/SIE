@@ -46,12 +46,14 @@
 
 
     <div class="content">
-
-
-        <div class="row form col-lg-12" style="background:none;margin:0;">
-            <div class="filtro">
-                    <div class="header"><h4><i class="fas fa-search"></i> Búsqueda de Usuario</h4></div>
-                    <hr/>
+        <div class="filtro">
+            <div class="header"><i class="fas fa-search"></i> <strong>Búsqueda de Usuarios</strong></h4>
+                <a role="button" 
+                   class="btn btn-success float-right" 
+                   href="{{ path('nuevo_usuario')}}">
+                    Nuevo Usuario</a>
+            </div>
+            <hr/>
             <form method="post" novalidate="true" id="form_buscar">
                 {{ form_errors(formUsuarioFilter) }}
                 <div class="row">
@@ -79,22 +81,19 @@
 
                 </div>
 
-                <div class="col-lg-12">
-                    <div class="col-lg-1">
-                        {{ form_row(formUsuarioFilter.filter) }}
-                    </div>
-                    <div class="col-lg-1">
-                        {{ form_row(formUsuarioFilter.reset) }}
+                <hr/>
+                <div class="row">
+                    <div class="col-lg-4">
+                        {{ form_widget(formUsuarioFilter.filter) }}
+                        {{ form_widget(formUsuarioFilter.reset) }}
                     </div>
                 </div>
-                <hr/>
                 {{ form_end(formUsuarioFilter) }}
 
             </form>
-            </div>
         </div>
 
-                <hr/>
+        <hr/>
 
 
         {% for message in app.flashes('success') %}
@@ -161,17 +160,17 @@
         {% endif %}
 
     </div>
-        <script>
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip()
-            })
-        </script>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
 
-        <script>
-            $('#usuario_filter_persona').autocompleter({
-                url_list: "{{ path('persona_search') }}",
-                url_get: "{{ path('persona_get') }}"
-            });
-        </script>
-        <hr/>
-    {% endblock %}
+    <script>
+        $('#usuario_filter_persona').autocompleter({
+            url_list: "{{ path('persona_search') }}",
+            url_get: "{{ path('persona_get') }}"
+        });
+    </script>
+    <hr/>
+{% endblock %}
