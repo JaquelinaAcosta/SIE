@@ -104,7 +104,7 @@ class __TwigTemplate_ba7aa7db0e5d0776e97e52d2b98426a14fe47233f903abeb0477efb49f7
 
    <div class=\"content\">
         <div class=\"filtro\">
-            <div class=\"header\"><i class=\"fas fa-search\"></i> <strong>Búsqueda de Expediente</strong></h4>
+            <div class=\"header\"><i class=\"fas fa-search\"></i> <strong>Búsqueda de carátula</strong></h4>
                 <a role=\"button\" 
                    class=\"btn btn-success float-right\" 
                    href=\"";
@@ -263,7 +263,7 @@ class __TwigTemplate_ba7aa7db0e5d0776e97e52d2b98426a14fe47233f903abeb0477efb49f7
 
    <div class=\"content\">
         <div class=\"filtro\">
-            <div class=\"header\"><i class=\"fas fa-search\"></i> <strong>Búsqueda de Expediente</strong></h4>
+            <div class=\"header\"><i class=\"fas fa-search\"></i> <strong>Búsqueda de carátula</strong></h4>
                 <a role=\"button\" 
                    class=\"btn btn-success float-right\" 
                    href=\"{{ path('nuevo_expediente')}}\">
