@@ -124,8 +124,8 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             }
 
             // listado_caratula
-            if (preg_match('#^/expediente/(?P<id>[^/]++)/caratula/listado$#sD', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, ['_route' => 'listado_caratula']), array (  '_controller' => 'AppBundle\\Controller\\CaratulaAgregadaController::listaMovimientoAction',));
+            if (preg_match('#^/expediente/(?P<id>[^/]++)/caratula/listado/(?P<currentPage>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'listado_caratula']), array (  '_controller' => 'AppBundle\\Controller\\CaratulaAgregadaController::listaCaratulaAction',));
             }
 
             // expediente_search
