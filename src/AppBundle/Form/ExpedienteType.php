@@ -39,7 +39,8 @@ class ExpedienteType extends AbstractType {
                 ->add('concepto', TextareaType::class, array(
                     "label" => "Concepto: ", "attr" => array(
                         "class" => "form-name form-control",
-                        "placeholder" => "Concepto..."
+                        "placeholder" => "Concepto...",
+                        "rows"=>5
                     )
                 ))
                  ->add('tema', 'PUGX\AutocompleterBundle\Form\Type\AutocompleteType', array(
@@ -84,7 +85,8 @@ class ExpedienteType extends AbstractType {
                     "label" => false, "attr" => array(
                         "class" => 'datepicker form-control',
                         "placeholder" => 'MM-DD-AAAA'
-                    )
+                    ),
+                    "required"=>false
                 ))
 //                ->add('expedientes_asociados', CollectionType::class,[
 //                   'entry_type'=> ExpedienteAsociadoType::class,

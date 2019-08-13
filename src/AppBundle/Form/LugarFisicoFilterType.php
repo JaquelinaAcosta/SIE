@@ -28,7 +28,7 @@ class LugarFisicoFilterType extends AbstractType implements EmbeddedFilterTypeIn
                     $qb->setParameter('tipo', '%' . $values['value'] . '%');
                 }
             },
-            'attr' => ['class' => 'form-control']
+            'attr' => ['class' => 'form-control','placeholder'=>'Armario, Cajón..']
         ));
             
         
@@ -40,7 +40,7 @@ class LugarFisicoFilterType extends AbstractType implements EmbeddedFilterTypeIn
                     $qb->setParameter('descripcion', '%' . $values['value'] . '%');
                 }
             },
-            'attr' => ['class' => 'form-control']
+            'attr' => ['class' => 'form-control','placeholder'=>'Metálico, De madera...']
         ));
                     
         if($role != 'ROLE_USER'){
@@ -73,7 +73,7 @@ class LugarFisicoFilterType extends AbstractType implements EmbeddedFilterTypeIn
         
         $builder->add('reset', 'Symfony\Component\Form\Extension\Core\Type\SubmitType', array(
             'label' => 'Reiniciar',
-            'attr' => ['class' => 'btn btn-danger']
+            'attr' => ['class' => 'btn btn-secondary']
         ));
         
         

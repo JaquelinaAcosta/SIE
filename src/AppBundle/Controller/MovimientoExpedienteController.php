@@ -8,7 +8,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Entity\MovimientoExpediente;
 use AppBundle\Entity\Expediente;
 use AppBundle\Entity\Ubicacion;
-use AppBundle\Form\MovimientoExpedienteType;
+use AppBundle\Form\MovimientoExpedienteFilterType;
+use Symfony\Component\Validator\Constraints\DateTime;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 class MovimientoExpedienteController extends Controller {
 
@@ -45,18 +47,19 @@ class MovimientoExpedienteController extends Controller {
                 $persona = $em->getRepository("AppBundle:Persona")->find($form['persona']['nombre']->getData()->getId());
                 $movimientoExpediente->setTipoSalida('Interno');
                 $movimientoExpediente->setExpediente($expediente);
-                $movimientoExpediente->setFecha(date("d-m-Y H:i:s"));
+                $fechaHoy = date("d-m-Y");
+                $date = \DateTime::createFromFormat('d-m-Y', $fechaHoy);
+                $movimientoExpediente->setFecha($date);
                 $movimientoExpediente->setUbicacion($persona);
                 $expediente->getMovimientos()->add($movimientoExpediente);
                 $expediente->setUbicacionActual($persona);
                 $em->persist($expediente);
                 $em->flush();
-                
-                 $this->addFlash('success', 'Pase hacia ' .$persona.' exitoso.');
-                
-               return $this->redirectToRoute('listado_movimiento',
-                        ['id' => $expediente->getId()]);
-                
+
+                $this->addFlash('success', 'Pase hacia ' . $persona . ' exitoso.');
+
+                return $this->redirectToRoute('listado_movimiento',
+                                ['id' => $expediente->getId()]);
             }
         }
         return $this->render('AppBundle:Movimiento:interno.html.twig', [
@@ -93,19 +96,21 @@ class MovimientoExpedienteController extends Controller {
                                         ->getId())->getMesaentrada();
                 $movimientoExpediente->setTipoSalida('Externo');
                 $movimientoExpediente->setExpediente($expediente);
-                $movimientoExpediente->setFecha(date("d-m-Y H:i:s"));
+                $fechaHoy = date("d-m-Y");
+                $date = \DateTime::createFromFormat('d-m-Y', $fechaHoy);
+                $movimientoExpediente->setFecha($date);
                 $movimientoExpediente->setUbicacion($mesaentrada);
                 $expediente->getMovimientos()->add($movimientoExpediente);
                 $expediente->setUbicacionActual($mesaentrada);
                 $expediente->setEstado('NUEVO');
                 $em->persist($expediente);
                 $em->flush();
-                
+
                 $this->addFlash('success', 'Pase hacia ' . $mesaentrada
-                                ->getDependencia()->getDescripcion() .' exitoso.');
-                
-               return $this->redirectToRoute('listado_expediente',
-                        ['currentPage' => 1]);
+                                ->getDependencia()->getDescripcion() . ' exitoso.');
+
+                return $this->redirectToRoute('listado_expediente',
+                                ['currentPage' => 1]);
             }
         }
         return $this->render('AppBundle:Movimiento:externo.html.twig', [
@@ -132,18 +137,19 @@ class MovimientoExpedienteController extends Controller {
                 $lugarfisico = $em->getRepository("AppBundle:LugarFisico")->find($form['lugarfisico']['tipo']->getData()->getId());
                 $movimientoExpediente->setTipoSalida('Archivado');
                 $movimientoExpediente->setExpediente($expediente);
-                $movimientoExpediente->setFecha(date("d-m-Y H:i:s"));
+                $fechaHoy = date("d-m-Y");
+                $date = \DateTime::createFromFormat('d-m-Y', $fechaHoy);
+                $movimientoExpediente->setFecha($date);
                 $movimientoExpediente->setUbicacion($lugarfisico);
                 $expediente->getMovimientos()->add($movimientoExpediente);
                 $expediente->setUbicacionActual($lugarfisico);
                 $em->persist($expediente);
                 $em->flush();
                 $this->addFlash('success', 'Pase hacia ' . $lugarfisico
-                                ->getTipo() .' exitoso.');
-                
-               return $this->redirectToRoute('listado_movimiento',
-                        ['id' => $expediente->getId()]);
-                
+                                ->getTipo() . ' exitoso.');
+
+                return $this->redirectToRoute('listado_movimiento',
+                                ['id' => $expediente->getId()]);
             }
         }
         return $this->render('AppBundle:Movimiento:archivar.html.twig', [
@@ -153,17 +159,67 @@ class MovimientoExpedienteController extends Controller {
     }
 
     /**
-     * @Route("expediente/{id}/movimiento/listado", name="listado_movimiento")
+     * @Route("expediente/{id}/movimiento/listado/{currentPage}", name="listado_movimiento")
      */
-    public function listaMovimientoAction(Request $request, $id) {
+    public function listaMovimientoAction(Request $request, $id, $currentPage) {
         $em = $this->getDoctrine()->getEntityManager();
         $user = $this->getUser();
-        $expediente = $em->getRepository('AppBundle:Expediente')->find($id);
+        $limit = 15;
+        $totalItems = 0;
+        $maxPages = 0;
+        $movimientos = array();
 
-        // replace this example code with whatever you need
-        return $this->render('AppBundle:Expediente:listadoMovimientos.html.twig', [
-                    'expediente' => $expediente
-        ]);
+        $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
+
+        $formMovimientoFilter = $this->createForm(MovimientoExpedienteFilterType::class);
+        $formMovimientoFilter->handleRequest($request);
+        if ($formMovimientoFilter->isSubmitted() == false && $this->get('session')->get('movimiento_listar_request')) {
+            $formMovimientoFilter->handleRequest($this->get('session')->get('movimiento_listar_request'));
+        }
+
+        if ($formMovimientoFilter->isValid()) {
+            $filterBuilder = $em->getRepository('AppBundle:MovimientoExpediente')->createQueryBuilder('m');
+            $filterBuilder->leftJoin(Expediente::class, "e", "WITH",
+                            "m.expediente = e.id")
+                    ->where('m.expediente = :expediente')
+//                                ->andWhere('w.id != :expediente_id')
+                    ->setParameter('expediente', $expediente);
+            $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($formMovimientoFilter, $filterBuilder);
+            $totalItems = count($filterBuilder->getQuery()->getResult());
+
+            $filterBuilder->setFirstResult($limit * ($currentPage - 1));
+            $filterBuilder->setMaxResults($limit);
+
+            $paginator = new Paginator($filterBuilder, $fetchJoinCollection = true);
+            $movimientos = $paginator->getQuery()->getResult();
+            $maxPages = ceil($totalItems / $limit);
+
+        }
+
+        if ($formMovimientoFilter->get('reset')->isClicked()) {
+            $this->get('session')->remove('movimiento_listar_request');
+            return $this->redirectToRoute('listado_movimiento', ['id' => $expediente->getId(), 'currentPage' => 1]);
+        }
+
+        if ($formMovimientoFilter->get('filter')->isClicked()) {
+            $movimientoListarFilterRequest = $request->request->get('movimiento_filter');
+            unset($movimientoListarFilterRequest['filter']);
+            $request->request->set('movimiento_filter', $movimientoListarFilterRequest);
+            $this->get('session')->set('movimiento_listar_request', $request);
+            if ($request->get('currentPage') > $maxPages) {
+                return $this->redirectToRoute('listado_movimiento', ['id' => $expediente->getId(), 'currentPage' => 1]);
+            }
+        }
+
+        return $this->render('AppBundle:Expediente:listadoMovimientos.html.twig', array(
+                    'movimientos' => $movimientos,
+                    'expediente' => $expediente,
+                    'maxPages' => $maxPages,
+                    'totalItems' => $totalItems,
+                    'thisPage' => $currentPage,
+                    'page' => $currentPage,
+                    'formMovimientoFilter' => $formMovimientoFilter->createView()
+        ));
     }
 
 }

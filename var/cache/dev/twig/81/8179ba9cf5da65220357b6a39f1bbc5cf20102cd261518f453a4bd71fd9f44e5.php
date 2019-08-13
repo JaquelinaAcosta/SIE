@@ -80,110 +80,112 @@ class __TwigTemplate_8c5f74ff5f6306d6a4d151cf13253aafc5a75cfa38807be853dbb51144d
     <div class=\"content\">
         <div class=\"col-ls-12\">
             <br/>
+            <strong>Nuevo Expediente</strong>
+            <hr/>
             ";
-        // line 27
+        // line 29
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_start', ["action" => "", "method" => "POST"]);
-        echo "        
-            <div class=\"col-lg-14\">
-                <div class=\"col-lg-6\">
-                    <label class=\"exp text-default\">NRO. DE EXPEDIENTE</label>
-                    ";
-        // line 31
+        echo "
+            <div class=\"filtro_panel\">
+                <div class=\"row\">
+                    <div class=\"col-lg-6\">
+                        <label class=\"exp text-default\">NRO. DE EXPEDIENTE</label>
+                        ";
+        // line 34
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "nroExpediente", []), 'errors');
         echo "
-                    ";
-        // line 32
+                        ";
+        // line 35
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "nroExpediente", []), 'widget');
         echo "
-                </div>
-                <div class=\"col-lg-3 \">
-                    <label class=\"text-default\">TIPO</label>
-                    ";
-        // line 36
+                    </div>
+                    <div class=\"col-lg-3 \">
+                        <label class=\"text-default\">TIPO</label>
+                        ";
+        // line 39
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "tipo", []), 'errors');
         echo "
-                    ";
-        // line 37
+                        ";
+        // line 40
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "tipo", []), 'widget');
         echo "
-                </div>
-                <div class=\"col-lg-1\">
-                    <label class=\"text-default\">FOJAS</label>
-                    ";
-        // line 41
+                    </div>
+                    <div class=\"col-lg-1\">
+                        <label class=\"text-default\">FOJAS</label>
+                        ";
+        // line 44
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fojas", []), 'errors');
         echo "
-                    ";
-        // line 42
+                        ";
+        // line 45
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fojas", []), 'widget');
         echo "
-                </div>    
-                <div class=\"col-lg-6 \">
-                    <label class=\"text-default\">CODIGO TEMA</label>
-                    ";
-        // line 46
+                    </div>    
+                    <div class=\"col-lg-6 \">
+                        <label class=\"text-default\">CODIGO TEMA</label>
+                        ";
+        // line 49
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "tema", []), 'errors');
         echo "
-                    ";
-        // line 47
+                        ";
+        // line 50
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "tema", []), 'widget');
         echo "
-                </div>                                   
-                <div class=\"col-lg-2\">
-                    <label class=\"text-default\">FECHA DE INICIO</label>
-                    ";
-        // line 51
+                    </div>     
+                    <div class=\"col-lg-2\">
+                        <label class=\"text-default\">FECHA DE INICIO</label>
+                        ";
+        // line 54
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fechaInicio", []), 'row', ["id" => "date1"]);
         echo " 
-                    ";
-        // line 52
+                        ";
+        // line 55
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fechaInicio", []), 'errors');
         echo "
-                    ";
-        // line 53
+                        ";
+        // line 56
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fechaInicio", []), 'widget');
         echo "
-                </div>  
-                <div class=\"col-lg-2\">
-                    <label class=\"text-default\">FECHA DE FIN.</label>
-                    ";
-        // line 57
+                    </div>  
+                    <div class=\"col-lg-2\">
+                        <label class=\"text-default\">FECHA DE FIN.</label>
+                        ";
+        // line 60
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fechaFin", []), 'row', ["id" => "date2"]);
         echo " 
-                    ";
-        // line 58
+                        ";
+        // line 61
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fechaFin", []), 'errors');
         echo "
-                    ";
-        // line 59
+                        ";
+        // line 62
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fechaFin", []), 'widget');
         echo "
-                </div>                      
-            </div>
-            <hr/>              
-            <div class=\"col-lg-12\">
-                <label class=\"text-default\">CONCEPTO</label>
-                ";
-        // line 65
+                    </div>                      
+                </div>
+                <hr/>              
+                    <label class=\"text-default\">CONCEPTO</label>
+                    ";
+        // line 67
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "concepto", []), 'errors');
         echo "
-                ";
-        // line 66
+                    ";
+        // line 68
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "concepto", []), 'widget');
         echo "
-                <hr/>
-            </div>
-            ";
-        // line 82
-        echo "            <div class=\"col-lg-3 float left\">
+                    <hr/>
                 ";
         // line 83
+        echo "                <div class=\"col-lg-3 float left\">
+                    ";
+        // line 84
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "Guardar", []), 'widget');
         echo "
-                <a class=\"btn btn-default\" onclick=\"history.back()\"  role=\"button\">Volver</a>
+                    <a class=\"form-submit btn btn-secondary\" onclick=\"history.back()\"  role=\"button\">Volver</a>
+                </div>
             </div>
             ";
-        // line 86
+        // line 88
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_end');
         echo "
 
@@ -191,11 +193,11 @@ class __TwigTemplate_8c5f74ff5f6306d6a4d151cf13253aafc5a75cfa38807be853dbb51144d
         <script>
             \$('#expediente_tema').autocompleter({
                 url_list: \"";
-        // line 91
+        // line 93
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("tema_search");
         echo "\",
                 url_get: \"";
-        // line 92
+        // line 94
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("tema_get");
         echo "\"
             });
@@ -203,7 +205,7 @@ class __TwigTemplate_8c5f74ff5f6306d6a4d151cf13253aafc5a75cfa38807be853dbb51144d
         </script>     
 
         ";
-        // line 163
+        // line 165
         echo "
     ";
         
@@ -226,7 +228,7 @@ class __TwigTemplate_8c5f74ff5f6306d6a4d151cf13253aafc5a75cfa38807be853dbb51144d
 
     public function getDebugInfo()
     {
-        return array (  207 => 163,  199 => 92,  195 => 91,  187 => 86,  181 => 83,  178 => 82,  172 => 66,  168 => 65,  159 => 59,  155 => 58,  151 => 57,  144 => 53,  140 => 52,  136 => 51,  129 => 47,  125 => 46,  118 => 42,  114 => 41,  107 => 37,  103 => 36,  96 => 32,  92 => 31,  85 => 27,  51 => 3,  29 => 1,);
+        return array (  209 => 165,  201 => 94,  197 => 93,  189 => 88,  182 => 84,  179 => 83,  174 => 68,  170 => 67,  162 => 62,  158 => 61,  154 => 60,  147 => 56,  143 => 55,  139 => 54,  132 => 50,  128 => 49,  121 => 45,  117 => 44,  110 => 40,  106 => 39,  99 => 35,  95 => 34,  87 => 29,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -265,64 +267,66 @@ class __TwigTemplate_8c5f74ff5f6306d6a4d151cf13253aafc5a75cfa38807be853dbb51144d
     <div class=\"content\">
         <div class=\"col-ls-12\">
             <br/>
-            {{form_start(form,{'action':'','method':'POST'})}}        
-            <div class=\"col-lg-14\">
-                <div class=\"col-lg-6\">
-                    <label class=\"exp text-default\">NRO. DE EXPEDIENTE</label>
-                    {{ form_errors(form.nroExpediente) }}
-                    {{ form_widget(form.nroExpediente) }}
+            <strong>Nuevo Expediente</strong>
+            <hr/>
+            {{form_start(form,{'action':'','method':'POST'})}}
+            <div class=\"filtro_panel\">
+                <div class=\"row\">
+                    <div class=\"col-lg-6\">
+                        <label class=\"exp text-default\">NRO. DE EXPEDIENTE</label>
+                        {{ form_errors(form.nroExpediente) }}
+                        {{ form_widget(form.nroExpediente) }}
+                    </div>
+                    <div class=\"col-lg-3 \">
+                        <label class=\"text-default\">TIPO</label>
+                        {{ form_errors(form.tipo) }}
+                        {{ form_widget(form.tipo) }}
+                    </div>
+                    <div class=\"col-lg-1\">
+                        <label class=\"text-default\">FOJAS</label>
+                        {{ form_errors(form.fojas) }}
+                        {{ form_widget(form.fojas) }}
+                    </div>    
+                    <div class=\"col-lg-6 \">
+                        <label class=\"text-default\">CODIGO TEMA</label>
+                        {{ form_errors(form.tema) }}
+                        {{ form_widget(form.tema) }}
+                    </div>     
+                    <div class=\"col-lg-2\">
+                        <label class=\"text-default\">FECHA DE INICIO</label>
+                        {{ form_row(form.fechaInicio, { 'id': 'date1' })}} 
+                        {{ form_errors(form.fechaInicio) }}
+                        {{ form_widget(form.fechaInicio) }}
+                    </div>  
+                    <div class=\"col-lg-2\">
+                        <label class=\"text-default\">FECHA DE FIN.</label>
+                        {{ form_row(form.fechaFin, { 'id': 'date2' })}} 
+                        {{ form_errors(form.fechaFin) }}
+                        {{ form_widget(form.fechaFin) }}
+                    </div>                      
                 </div>
-                <div class=\"col-lg-3 \">
-                    <label class=\"text-default\">TIPO</label>
-                    {{ form_errors(form.tipo) }}
-                    {{ form_widget(form.tipo) }}
+                <hr/>              
+                    <label class=\"text-default\">CONCEPTO</label>
+                    {{ form_errors(form.concepto) }}
+                    {{ form_widget(form.concepto) }}
+                    <hr/>
+                {#  <div class=\"col-lg-12\">
+                      <label class=\"text-default\">EXPEDIENTE/S ASOCIADOS</label>                 
+                      <div class=\"expediente_items\">
+                          {% for expediente_asociado in form.expedientes_asociados %}
+                              {{ form_row(expediente_asociado) }}
+                          {% endfor %}      
+                      </div>
+                      <div class=\"add float right\"></div>
+                      <div class=\"expedientes\" data-prototype=\"{{ form_widget(form.expedientes_asociados.vars.prototype)|e('html_attr') }}\">
+    
+                      </div>
+                      <hr/>     
+                  </div>#}
+                <div class=\"col-lg-3 float left\">
+                    {{ form_widget(form.Guardar) }}
+                    <a class=\"form-submit btn btn-secondary\" onclick=\"history.back()\"  role=\"button\">Volver</a>
                 </div>
-                <div class=\"col-lg-1\">
-                    <label class=\"text-default\">FOJAS</label>
-                    {{ form_errors(form.fojas) }}
-                    {{ form_widget(form.fojas) }}
-                </div>    
-                <div class=\"col-lg-6 \">
-                    <label class=\"text-default\">CODIGO TEMA</label>
-                    {{ form_errors(form.tema) }}
-                    {{ form_widget(form.tema) }}
-                </div>                                   
-                <div class=\"col-lg-2\">
-                    <label class=\"text-default\">FECHA DE INICIO</label>
-                    {{ form_row(form.fechaInicio, { 'id': 'date1' })}} 
-                    {{ form_errors(form.fechaInicio) }}
-                    {{ form_widget(form.fechaInicio) }}
-                </div>  
-                <div class=\"col-lg-2\">
-                    <label class=\"text-default\">FECHA DE FIN.</label>
-                    {{ form_row(form.fechaFin, { 'id': 'date2' })}} 
-                    {{ form_errors(form.fechaFin) }}
-                    {{ form_widget(form.fechaFin) }}
-                </div>                      
-            </div>
-            <hr/>              
-            <div class=\"col-lg-12\">
-                <label class=\"text-default\">CONCEPTO</label>
-                {{ form_errors(form.concepto) }}
-                {{ form_widget(form.concepto) }}
-                <hr/>
-            </div>
-            {#  <div class=\"col-lg-12\">
-                  <label class=\"text-default\">EXPEDIENTE/S ASOCIADOS</label>                 
-                  <div class=\"expediente_items\">
-                      {% for expediente_asociado in form.expedientes_asociados %}
-                          {{ form_row(expediente_asociado) }}
-                      {% endfor %}      
-                  </div>
-                  <div class=\"add float right\"></div>
-                  <div class=\"expedientes\" data-prototype=\"{{ form_widget(form.expedientes_asociados.vars.prototype)|e('html_attr') }}\">
-
-                  </div>
-                  <hr/>     
-              </div>#}
-            <div class=\"col-lg-3 float left\">
-                {{ form_widget(form.Guardar) }}
-                <a class=\"btn btn-default\" onclick=\"history.back()\"  role=\"button\">Volver</a>
             </div>
             {{form_end(form)}}
 

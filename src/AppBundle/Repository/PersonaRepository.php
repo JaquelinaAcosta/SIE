@@ -22,7 +22,22 @@ class PersonaRepository extends \Doctrine\ORM\EntityRepository {
                         ->setMaxResults(10)->getQuery()->getResult();
         return $result;
     }
-
+     public function findByDependencia($term,$dependencia) {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+        $result = $qb->select('n')
+                        ->from('AppBundle:Persona', 'n')
+                        ->leftJoin(\AppBundle\Entity\Ubicacion::class, "u", "WITH",
+                                "n.id = u.id")
+                        ->where('u.dependencia = :dependencia')
+                        ->andWhere($qb->expr()
+                                ->like('n.nombre', $qb->expr()
+                                        ->literal('%' . $term . '%')))
+                        ->setParameter('dependencia', $dependencia)
+                        ->setMaxResults(10)->getQuery()->getResult();
+        return $result;
+    }
+    
+    
     public function getAllPers($currentPage = 1, $limit = 15) {
 
         $em = $this->getEntityManager();

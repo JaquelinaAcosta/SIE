@@ -14,6 +14,7 @@ use AppBundle\Entity\ExpedienteAsociado;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use AppBundle\Form\ExpedienteFilterType;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class ExpedienteController extends Controller {
 
@@ -35,10 +36,21 @@ class ExpedienteController extends Controller {
 
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
+
+                $fechaIni = \DateTime::createFromFormat('d-m-Y',
+                                $form['fechaInicio']->getData());
+//                $fechaIni->format('Y-m-d');
+//                dump($fechaIni);die();
+                $fechaFin = \DateTime::createFromFormat('d-m-Y',
+                                $form['fechaFin']->getData());
+//                $fechaFin->format('Y-m-d');
+//                dump($fechaIni);die();
+//                $expediente->setFechaInicio());
+                $expediente->setFechaInicio($fechaIni);
+                $expediente->setFechaFin($fechaFin);
 //                foreach ($form['expedientes_asociados']->getData() as $expediente_asoc) {
 //                    $expediente_asoc->setExpedientePadre($expediente);
 //                }
-
 //                $expediente->setFechaInicio(date($form['fechaInicio']->getData()." H:i:s"));
 //                $expediente->setFechaFin(date($form['fechaFin']->getData()." H:i:s"));
                 $em->persist($expediente);
@@ -203,8 +215,11 @@ class ExpedienteController extends Controller {
         $em = $this->getDoctrine()->getEntityManager();
         $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
 
-        $form = $this->createForm(ExpedienteType::class, $expediente);
+        //SI NO SE HACE EL FORMAT TIRA ERROR DE OBJETO TIPO DATETIME
+        $expediente->setFechaInicio($expediente->getFechaInicio()->format('Y-m-d'));
+        $expediente->setFechaFin($expediente->getFechaFin()->format('Y-m-d'));
 
+        $form = $this->createForm(ExpedienteType::class, $expediente);
         $user = $this->getUser();
 
 //        $original_expedientes_asociados = new ArrayCollection();
@@ -218,6 +233,8 @@ class ExpedienteController extends Controller {
 
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
+
+
 
 //                foreach ($original_expedientes_asociados as $expediente_asoc) {
 //                    if (false === $expediente->getExpedientesAsociados()->contains($expediente_asoc)) {
@@ -237,6 +254,19 @@ class ExpedienteController extends Controller {
 //                }
 //                $expediente->setFechaInicio(date($form['fechaInicio']->getData()." H:i:s"));
 //                $expediente->setFechaFin(date($form['fechaFin']->getData()." H:i:s"));
+
+                $fechaIni = \DateTime::createFromFormat('d-m-Y',
+                                $form['fechaInicio']->getData());
+//                $fechaIni->format('Y-m-d');
+//                dump($fechaIni);die();
+                $fechaFin = \DateTime::createFromFormat('d-m-Y',
+                                $form['fechaFin']->getData());
+//                $fechaFin->format('Y-m-d');
+//                dump($fechaIni);die();
+//                $expediente->setFechaInicio());
+                $expediente->setFechaInicio($fechaIni);
+                $expediente->setFechaFin($fechaFin);
+
                 $em->persist($expediente);
                 $em->flush();
             }
