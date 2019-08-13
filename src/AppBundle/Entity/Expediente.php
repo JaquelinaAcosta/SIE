@@ -82,13 +82,13 @@ class Expediente
     /**
      * @var string
      *
-     * @ORM\Column(name="fecha_inicio", type="string",length=255)
+     * @ORM\Column(name="fecha_inicio", type="datetime",nullable=true)
      */
     private $fechaInicio;
 
     /**
      * @var string
-     * @ORM\Column(name="fecha_fin", type="string",length=255)
+     * @ORM\Column(name="fecha_fin", type="datetime",nullable=true)
      */
     private $fechaFin;
 

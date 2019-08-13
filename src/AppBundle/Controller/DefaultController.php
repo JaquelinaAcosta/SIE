@@ -28,7 +28,8 @@ class DefaultController extends Controller {
      */
     public function searchPersonaAction(Request $request) {
         $q = $request->query->get('term'); // use "term" instead of "q" for jquery-ui
-        $personas = $this->getDoctrine()->getRepository('AppBundle:Persona')->findLikeName($q);
+        $dependencia = $this->getUser()->getPersona()->getDependencia();
+        $personas = $this->getDoctrine()->getRepository('AppBundle:Persona')->findLikeName($q,$dependencia->getId());
 
         $results = array();
         foreach ($personas as $persona) {
@@ -38,7 +39,23 @@ class DefaultController extends Controller {
         }
         return new JsonResponse($results);
     }
-
+    
+    /**
+     * @Route("/persona_search_dependencia", name="persona_search_dependencia")
+     */
+    public function searchPersonaByDependenciaAction(Request $request) {
+        $q = $request->query->get('term'); // use "term" instead of "q" for jquery-ui
+        $dependencia = $this->getUser()->getPersona()->getDependencia();
+        $personas = $this->getDoctrine()->getRepository('AppBundle:Persona')->findByDependencia($q,$dependencia);
+        $results = array();
+        foreach ($personas as $persona) {
+            $results[] = array('id' => $persona->getId(),
+                'label' => trim($persona->getApellido().", ".$persona->getNombre()),
+                'value' => trim($persona->getApellido().", ".$persona->getNombre()));
+        }
+        return new JsonResponse($results);
+    }
+    
     /**
      * @Route("/persona_get{id}", name="persona_get")
      */

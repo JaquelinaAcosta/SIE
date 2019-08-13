@@ -35,11 +35,11 @@
                     </tr>
                     <tr>
                         <th class="info ">Fecha de inicio</th>
-                        <td>{{ expediente.fechaInicio}}</td>
+                        <td>{{ expediente.fechaInicio|date('d-m-Y')}}</td>
                     </tr>
                     <tr>
                         <th class="info list-group">Fecha de Fin</th>
-                        <td>{{ expediente.fechaFin}}</td>
+                        <td>{{ expediente.fechaFin|date('d-m-Y')}}</td>
                     </tr>
                     <tr>
                         <th class="info list-group">Ubicacion   </th>
@@ -54,7 +54,7 @@
         </div>    
         <br/>
         <div class="btn-group float-right">
-            <a href="{{ path('listado_movimiento',{'id':expediente.id}) }}" 
+            <a href="{{ path('listado_movimiento',{'id':expediente.id,'currentPage':1}) }}" 
                class="btn btn-primary" 
                role="button">MOVIMIENTOS</a>
             <a href="{{ path('listado_caratula',{'id':expediente.id, 'currentPage':1}) }}" 

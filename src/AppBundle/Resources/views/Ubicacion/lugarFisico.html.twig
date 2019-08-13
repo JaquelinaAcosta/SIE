@@ -14,18 +14,12 @@
 
     </style>
     
-    
+    <div class="content">
    
-    
-     <div class="col-lg-10" style="padding-left:  300px; padding-top:  50px">
-        <div class="list-group col-lg-11 col-md-offset-1">
-            <div class="expediente col-lg-10 panel panel-primary"  style="padding: 10px">
-                    <div class="panel-heading" style="font-size:18px;">
-                        {{ accion }} Lugar Físico
-                    </div>
-                <br/>
+        <strong> Nuevo Lugar Físico</strong>
+        <hr/>
             {{form_start(form,{'action':'','method':'POST'})}}
-             <div class="col-lg-14">
+             <div class="row">
                     {% if form.dependencia is defined %}
                         <label class="text-default">Dependencia:</label>
                         {{ form_errors(form.dependencia) }}
@@ -43,12 +37,11 @@
                     {{ form_widget(form.acceso) }}                  
 
                     {{ form_widget(form.Aceptar) }}
-                    <a class="btn btn-default" onclick="history.back()"  role="button">Volver</a>
+                    <a class="btn btn-secondary" onclick="history.back()"  role="button">Volver</a>
 
                     {{form_end(form)}}
                 </div>
             {{form_end(form)}}
-            </div>
-        </div>
+
     </div>
 {% endblock %}

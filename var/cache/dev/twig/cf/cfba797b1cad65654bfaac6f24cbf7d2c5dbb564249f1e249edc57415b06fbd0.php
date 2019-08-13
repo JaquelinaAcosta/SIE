@@ -142,7 +142,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                     inline: true,
                     showOtherMonths: true,
                     dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
-                    dateFormat: 'dd/mm/yy'
+                    dateFormat: 'dd-mm-yy'
                 });
             });
         </script>
@@ -477,7 +477,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                     inline: true,
                     showOtherMonths: true,
                     dayNamesMin: ['Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab'],
-                    dateFormat: 'dd/mm/yy'
+                    dateFormat: 'dd-mm-yy'
                 });
             });
         </script>

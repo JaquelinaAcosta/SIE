@@ -199,7 +199,7 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             }
 
             // listado_movimiento
-            if (preg_match('#^/expediente/(?P<id>[^/]++)/movimiento/listado$#sD', $pathinfo, $matches)) {
+            if (preg_match('#^/expediente/(?P<id>[^/]++)/movimiento/listado/(?P<currentPage>[^/]++)$#sD', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, ['_route' => 'listado_movimiento']), array (  '_controller' => 'AppBundle\\Controller\\MovimientoExpedienteController::listaMovimientoAction',));
             }
 
@@ -267,9 +267,17 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         }
 
         elseif (0 === strpos($pathinfo, '/persona')) {
-            // persona_search
-            if ('/persona_search' === $pathinfo) {
-                return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::searchPersonaAction',  '_route' => 'persona_search',);
+            if (0 === strpos($pathinfo, '/persona_search')) {
+                // persona_search
+                if ('/persona_search' === $pathinfo) {
+                    return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::searchPersonaAction',  '_route' => 'persona_search',);
+                }
+
+                // persona_search_dependencia
+                if ('/persona_search_dependencia' === $pathinfo) {
+                    return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::searchPersonaByDependenciaAction',  '_route' => 'persona_search_dependencia',);
+                }
+
             }
 
             // persona_get
