@@ -57,7 +57,7 @@
             <a href="{{ path('listado_movimiento',{'id':expediente.id}) }}" 
                class="btn btn-primary" 
                role="button">MOVIMIENTOS</a>
-            <a href="{{ path('listado_caratula',{'id':expediente.id}) }}" 
+            <a href="{{ path('listado_caratula',{'id':expediente.id, 'currentPage':1}) }}" 
                class="btn btn-primary" 
                role="button">CARATULAS</a>
             <a href="{{ path('listado_asociado',{'id':expediente.id}) }}" 

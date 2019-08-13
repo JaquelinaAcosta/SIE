@@ -148,7 +148,7 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
                role=\"button\">MOVIMIENTOS</a>
             <a href=\"";
         // line 60
-        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_caratula", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", [])]), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_caratula", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", []), "currentPage" => 1]), "html", null, true);
         echo "\" 
                class=\"btn btn-primary\" 
                role=\"button\">CARATULAS</a>
@@ -288,7 +288,7 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
             <a href=\"{{ path('listado_movimiento',{'id':expediente.id}) }}\" 
                class=\"btn btn-primary\" 
                role=\"button\">MOVIMIENTOS</a>
-            <a href=\"{{ path('listado_caratula',{'id':expediente.id}) }}\" 
+            <a href=\"{{ path('listado_caratula',{'id':expediente.id, 'currentPage':1}) }}\" 
                class=\"btn btn-primary\" 
                role=\"button\">CARATULAS</a>
             <a href=\"{{ path('listado_asociado',{'id':expediente.id}) }}\" 

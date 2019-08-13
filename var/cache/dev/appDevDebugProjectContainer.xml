@@ -586,6 +586,9 @@
     <service id="AppBundle\Controller\UsuarioController" class="AppBundle\Controller\UsuarioController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
     </service>
+    <service id="AppBundle\Form\CaratulaAgregadaFilterType" class="AppBundle\Form\CaratulaAgregadaFilterType" public="false" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
     <service id="AppBundle\Form\CaratulaAgregadaType" class="AppBundle\Form\CaratulaAgregadaType" public="false" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
@@ -998,6 +1001,7 @@
         <argument>Symfony\Bridge\Doctrine\Form\Type</argument>
       </argument>
       <argument type="collection">
+        <argument>AppBundle\Form\CaratulaAgregadaFilterType</argument>
         <argument>AppBundle\Form\CaratulaAgregadaType</argument>
         <argument>AppBundle\Form\DependenciaFilterType</argument>
         <argument>AppBundle\Form\DependenciaType</argument>
@@ -1249,7 +1253,7 @@
       <argument type="service" id="form.resolved_type_factory"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id="service_locator.gffmzdp"/>
+      <argument type="service" id="service_locator.ghlul5x"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="lexik_form_filter.type_extension.filter_extension"/>
@@ -4466,6 +4470,8 @@
     <service id="abstract.instanceof.AppBundle\Controller\ResolucionController" class="AppBundle\Controller\ResolucionController" public="true" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Bundle\FrameworkBundle\Controller\Controller.0.AppBundle\Controller\UsuarioController" class="AppBundle\Controller\UsuarioController" public="true" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Controller\UsuarioController" class="AppBundle\Controller\UsuarioController" public="true" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\CaratulaAgregadaFilterType" class="AppBundle\Form\CaratulaAgregadaFilterType" public="false" autowire="true" abstract="true"/>
+    <service id="abstract.instanceof.AppBundle\Form\CaratulaAgregadaFilterType" class="AppBundle\Form\CaratulaAgregadaFilterType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\CaratulaAgregadaType" class="AppBundle\Form\CaratulaAgregadaType" public="false" autowire="true" abstract="true"/>
     <service id="abstract.instanceof.AppBundle\Form\CaratulaAgregadaType" class="AppBundle\Form\CaratulaAgregadaType" public="false" autowire="true" autoconfigure="true" abstract="true"/>
     <service id="instanceof.Symfony\Component\Form\FormTypeInterface.0.AppBundle\Form\DependenciaFilterType" class="AppBundle\Form\DependenciaFilterType" public="false" autowire="true" abstract="true"/>
@@ -4525,7 +4531,7 @@
         <argument key="inline" type="service" id="fragment.renderer.inline"/>
       </argument>
     </service>
-    <service id="service_locator.gffmzdp" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id="service_locator.ghlul5x" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="Lexik\Bundle\FormFilterBundle\Filter\Form\Type\BooleanFilterType" type="service" id="lexik_form_filter.type.filter_boolean"/>
@@ -4543,6 +4549,7 @@
         <argument key="Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType" type="service" id="lexik_form_filter.type.filter_text"/>
         <argument key="PUGX\AutocompleterBundle\Form\Type\AutocompleteType" type="service" id="pugx_autocompleter.autocomplete"/>
         <argument key="PUGX\AutocompleterBundle\Form\Type\AutocompleteFilterType" type="service" id="pugx_autocompleter.filter_autocomplete"/>
+        <argument key="AppBundle\Form\CaratulaAgregadaFilterType" type="service" id="AppBundle\Form\CaratulaAgregadaFilterType"/>
         <argument key="AppBundle\Form\CaratulaAgregadaType" type="service" id="AppBundle\Form\CaratulaAgregadaType"/>
         <argument key="AppBundle\Form\DependenciaFilterType" type="service" id="AppBundle\Form\DependenciaFilterType"/>
         <argument key="AppBundle\Form\DependenciaType" type="service" id="AppBundle\Form\DependenciaType"/>
