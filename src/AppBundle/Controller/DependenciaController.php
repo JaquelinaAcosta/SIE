@@ -30,7 +30,7 @@ class DependenciaController extends Controller {
         if ($form->isSubmitted()) {
             $mesaentrada->setDependencia($dependencia);
             $dependencia->setMesaentrada($mesaentrada);
-            $dependencia->setArchivado('NO');
+            $dependencia->setEstado('HABILITADO');
           //  $dependencia->setResponsable($form['responsable']);
             $mesaentrada->setCodigoExpediente($form['mesaentrada']['codigoExpediente']->getData());
             foreach ($form['mesaentrada']['responsables']->getData() as $responsable) {
@@ -109,7 +109,7 @@ class DependenciaController extends Controller {
     }
 
     /**
-     * @Route("dependencia/archivar/{id}", name="archivar_dependencia")
+     * @Route("dependencia/archivar/{id}", name="deshabilitar_dependencia")
      */
     public function archivarAction(Request $request, $id) {
 
@@ -118,7 +118,7 @@ class DependenciaController extends Controller {
                
        // $em->remove($mesaentrada);
                
-        $dependencia->setArchivado('SI');
+        $dependencia->setEstado(null);
         
         $em->persist($dependencia);
         $flush = $em->flush();
@@ -142,7 +142,7 @@ class DependenciaController extends Controller {
                
        // $em->remove($mesaentrada);
                
-        $dependencia->setArchivado('NO');
+        $dependencia->setEstado('HABILITADO');
         
         $em->persist($dependencia);
         $flush = $em->flush();

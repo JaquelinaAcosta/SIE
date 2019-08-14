@@ -64,9 +64,9 @@ class Dependencia
      /**
      * @var string
      *
-     * @ORM\Column(name="archivado", type="string")
+     * @ORM\Column(name="estado", type="string",nullable=true)
      */
-    private $archivado;
+    private $estado;
     
     
     /**
@@ -326,5 +326,29 @@ class Dependencia
     public function getArchivado()
     {
         return $this->archivado;
+    }
+
+    /**
+     * Set estado
+     *
+     * @param string $estado
+     *
+     * @return Dependencia
+     */
+    public function setEstado($estado)
+    {
+        $this->estado = $estado;
+
+        return $this;
+    }
+
+    /**
+     * Get estado
+     *
+     * @return string
+     */
+    public function getEstado()
+    {
+        return $this->estado;
     }
 }

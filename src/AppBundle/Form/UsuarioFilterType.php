@@ -8,9 +8,6 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Lexik\Bundle\FormFilterBundle\Filter\Form\Type\EmbeddedFilterTypeInterface;
 use Lexik\Bundle\FormFilterBundle\Filter\Query\QueryInterface;
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Query\Expr\Join;
-use AppBundle\Entity\Usuario;
-use AppBundle\Entity\Persona;
 
 class UsuarioFilterType extends AbstractType implements EmbeddedFilterTypeInterface {
 
@@ -40,12 +37,12 @@ class UsuarioFilterType extends AbstractType implements EmbeddedFilterTypeInterf
             'query_builder' => function (EntityRepository $repositorio) {
                 return $repositorio
                                 ->createQueryBuilder('e')
+                                 ->where("e.estado IS NOT NULL")
                                 ->orderBy('e.descripcion', 'ASC');
             },
             'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
                 if (!empty($values['value'])) {
                     $qb = $filterQuery->getQueryBuilder();
-                   
                     $qb->andWhere($filterQuery->getExpr()->eq('d.descripcion', ':dependencia'));
                     $qb->setParameter('dependencia', '' . $values['value'] . '');
                 }

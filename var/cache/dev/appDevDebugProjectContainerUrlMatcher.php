@@ -357,9 +357,9 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                     return array (  '_controller' => 'AppBundle\\Controller\\DependenciaController::indexAction',  '_route' => 'nueva_dependencia',);
                 }
 
-                // archivar_dependencia
+                // deshabilitar_dependencia
                 if (0 === strpos($pathinfo, '/dependencia/archivar') && preg_match('#^/dependencia/archivar/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
-                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'archivar_dependencia']), array (  '_controller' => 'AppBundle\\Controller\\DependenciaController::archivarAction',));
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'deshabilitar_dependencia']), array (  '_controller' => 'AppBundle\\Controller\\DependenciaController::archivarAction',));
                 }
 
                 // alta_dependencia

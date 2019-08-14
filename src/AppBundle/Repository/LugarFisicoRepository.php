@@ -17,10 +17,17 @@ class LugarFisicoRepository extends \Doctrine\ORM\EntityRepository {
         $result = $qb->select('l')
                 ->from('AppBundle:LugarFisico', 'l');
         if ($user->getRole() != "ROLE_ADMIN") {
-            $result->leftJoin(\AppBundle\Entity\Ubicacion::class, "u", "WITH",
+            $result
+                    ->innerJoin(\AppBundle\Entity\Ubicacion::class, "u", "WITH",
                             "l.id = u.id")
                     ->where('l.dependencia= :dependencia')
                     ->setParameter('dependencia', $user->getPersona()->getDependencia());
+        } else {
+            $result
+                    ->innerJoin(\AppBundle\Entity\Ubicacion::class, "u", "WITH",
+                            "l.id = u.id")
+                    ->innerJoin(\AppBundle\Entity\Dependencia::class, "d", "WITH",
+                            "l.dependencia = d.id");
         }
 
         return $result;

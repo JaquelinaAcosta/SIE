@@ -46,18 +46,18 @@
                                 {{ form_errors(formDependenciaFilter.responsable) }}
                             </div>
                         </div>  
-                        <div class="twocol col-lg-1">
+                        <div class="twocol col-lg-2">
                             {{ form_label(formDependenciaFilter.nivel, 'NIVEL') }}
                             {{ form_widget(formDependenciaFilter.nivel) }}
                             <div class="help-block with-errors">
                                 {{ form_errors(formDependenciaFilter.nivel) }}
                             </div>
                         </div> 
-                        <div class="twocol col-lg-2">
-                            {{ form_label(formDependenciaFilter.archivado, 'ESTADO') }}
-                            {{ form_widget(formDependenciaFilter.archivado) }}
+                        <div class="twocol col-lg-3">
+                            {{ form_label(formDependenciaFilter.estado, 'ESTADO') }}
+                            {{ form_widget(formDependenciaFilter.estado) }}
                             <div class="help-block with-errors">
-                                {{ form_errors(formDependenciaFilter.archivado) }}
+                                {{ form_errors(formDependenciaFilter.estado) }}
                             </div>
                         </div> 
                     </div>
@@ -98,14 +98,14 @@
                         <td class="text-default"><p>{{dependencia.dependenciaPadre.descripcion|e }}</p></td>
                         <td class="text-default">{{dependencia.responsable|e }}</td>
 
-                        {% if dependencia.archivado == 'NO' %}
-                            <td class="text-default">Vigente</td>
+                        {% if dependencia.estado != null %}
+                            <td class="text-default">HABILITADO</td>
                             <td class="text-default">{{dependencia.nivel|e }}</td>
                             <td> <a class="btn btn-info" href="{{ path('adm_gestionar_mesaentrada',{'id':dependencia.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Gestionar Mesa de Entrada">  <i class="fas fa-table"></i></a>
                                 <a class="btn btn-warning" href="{{ path('editar_dependencia',{'id':dependencia.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit"></i></a>
-                                <a class="btn btn-danger" href="{{ path('archivar_dependencia',{'id':dependencia.id}) }}"  role="button"><i class="far fa-file-archive" data-toggle="tooltip" data-placement="top" title="Archivar"></i></a></td>
+                                <a class="btn btn-danger" href="{{ path('deshabilitar_dependencia',{'id':dependencia.id}) }}"  role="button"><i class="far fa-file-archive" data-toggle="tooltip" data-placement="top" title="Archivar"></i></a></td>
                                 {% else %}
-                            <td class="text-default">Archivado</td>
+                            <td class="text-default">DESHABILITADO</td>
                             <td class="text-default">{{dependencia.nivel|e }}</td>
                             <td> <a class="btn btn-info" href="{{ path('adm_gestionar_mesaentrada',{'id':dependencia.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Gestionar mesa de Entrada">  <i class="fas fa-table"></i></a>
                                 <a class="btn btn-warning" href="{{ path('editar_dependencia',{'id':dependencia.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Editar Dependencia"><i class="fas fa-edit"></i></a>

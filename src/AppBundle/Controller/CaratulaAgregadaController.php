@@ -127,7 +127,7 @@ class CaratulaAgregadaController extends Controller {
 
         if ($formCaratulaAgregadaFilter->isValid()) {
             $filterBuilder = $em->getRepository('AppBundle:CaratulaAgregada')
-                    ->createCaratulaQuery($expediente);
+                    ->createCaratulaFilterQuery($expediente);
 
             $this->get('lexik_form_filter.query_builder_updater')
                     ->addFilterConditions($formCaratulaAgregadaFilter, $filterBuilder);

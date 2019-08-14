@@ -135,7 +135,7 @@ class __TwigTemplate_12f817bb0e2e7275511ada3393220b050f1d08dac0e78d56f7196cf6a9b
         echo "
                             </div>
                         </div>  
-                        <div class=\"twocol col-lg-1\">
+                        <div class=\"twocol col-lg-2\">
                             ";
         // line 50
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "nivel", []), 'label', ["label" => "NIVEL"]);
@@ -151,19 +151,19 @@ class __TwigTemplate_12f817bb0e2e7275511ada3393220b050f1d08dac0e78d56f7196cf6a9b
         echo "
                             </div>
                         </div> 
-                        <div class=\"twocol col-lg-2\">
+                        <div class=\"twocol col-lg-3\">
                             ";
         // line 57
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "archivado", []), 'label', ["label" => "ESTADO"]);
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "estado", []), 'label', ["label" => "ESTADO"]);
         echo "
                             ";
         // line 58
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "archivado", []), 'widget');
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "estado", []), 'widget');
         echo "
                             <div class=\"help-block with-errors\">
                                 ";
         // line 60
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "archivado", []), 'errors');
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "estado", []), 'errors');
         echo "
                             </div>
                         </div> 
@@ -230,9 +230,9 @@ class __TwigTemplate_12f817bb0e2e7275511ada3393220b050f1d08dac0e78d56f7196cf6a9b
 
                         ";
             // line 101
-            if (($this->getAttribute($context["dependencia"], "archivado", []) == "NO")) {
+            if (($this->getAttribute($context["dependencia"], "estado", []) != null)) {
                 // line 102
-                echo "                            <td class=\"text-default\">Vigente</td>
+                echo "                            <td class=\"text-default\">HABILITADO</td>
                             <td class=\"text-default\">";
                 // line 103
                 echo twig_escape_filter($this->env, $this->getAttribute($context["dependencia"], "nivel", []));
@@ -247,12 +247,12 @@ class __TwigTemplate_12f817bb0e2e7275511ada3393220b050f1d08dac0e78d56f7196cf6a9b
                 echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"><i class=\"fas fa-edit\"></i></a>
                                 <a class=\"btn btn-danger\" href=\"";
                 // line 106
-                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("archivar_dependencia", ["id" => $this->getAttribute($context["dependencia"], "id", [])]), "html", null, true);
+                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("deshabilitar_dependencia", ["id" => $this->getAttribute($context["dependencia"], "id", [])]), "html", null, true);
                 echo "\"  role=\"button\"><i class=\"far fa-file-archive\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Archivar\"></i></a></td>
                                 ";
             } else {
                 // line 108
-                echo "                            <td class=\"text-default\">Archivado</td>
+                echo "                            <td class=\"text-default\">DESHABILITADO</td>
                             <td class=\"text-default\">";
                 // line 109
                 echo twig_escape_filter($this->env, $this->getAttribute($context["dependencia"], "nivel", []));
@@ -451,18 +451,18 @@ class __TwigTemplate_12f817bb0e2e7275511ada3393220b050f1d08dac0e78d56f7196cf6a9b
                                 {{ form_errors(formDependenciaFilter.responsable) }}
                             </div>
                         </div>  
-                        <div class=\"twocol col-lg-1\">
+                        <div class=\"twocol col-lg-2\">
                             {{ form_label(formDependenciaFilter.nivel, 'NIVEL') }}
                             {{ form_widget(formDependenciaFilter.nivel) }}
                             <div class=\"help-block with-errors\">
                                 {{ form_errors(formDependenciaFilter.nivel) }}
                             </div>
                         </div> 
-                        <div class=\"twocol col-lg-2\">
-                            {{ form_label(formDependenciaFilter.archivado, 'ESTADO') }}
-                            {{ form_widget(formDependenciaFilter.archivado) }}
+                        <div class=\"twocol col-lg-3\">
+                            {{ form_label(formDependenciaFilter.estado, 'ESTADO') }}
+                            {{ form_widget(formDependenciaFilter.estado) }}
                             <div class=\"help-block with-errors\">
-                                {{ form_errors(formDependenciaFilter.archivado) }}
+                                {{ form_errors(formDependenciaFilter.estado) }}
                             </div>
                         </div> 
                     </div>
@@ -503,14 +503,14 @@ class __TwigTemplate_12f817bb0e2e7275511ada3393220b050f1d08dac0e78d56f7196cf6a9b
                         <td class=\"text-default\"><p>{{dependencia.dependenciaPadre.descripcion|e }}</p></td>
                         <td class=\"text-default\">{{dependencia.responsable|e }}</td>
 
-                        {% if dependencia.archivado == 'NO' %}
-                            <td class=\"text-default\">Vigente</td>
+                        {% if dependencia.estado != null %}
+                            <td class=\"text-default\">HABILITADO</td>
                             <td class=\"text-default\">{{dependencia.nivel|e }}</td>
                             <td> <a class=\"btn btn-info\" href=\"{{ path('adm_gestionar_mesaentrada',{'id':dependencia.id}) }}\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Gestionar Mesa de Entrada\">  <i class=\"fas fa-table\"></i></a>
                                 <a class=\"btn btn-warning\" href=\"{{ path('editar_dependencia',{'id':dependencia.id}) }}\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"><i class=\"fas fa-edit\"></i></a>
-                                <a class=\"btn btn-danger\" href=\"{{ path('archivar_dependencia',{'id':dependencia.id}) }}\"  role=\"button\"><i class=\"far fa-file-archive\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Archivar\"></i></a></td>
+                                <a class=\"btn btn-danger\" href=\"{{ path('deshabilitar_dependencia',{'id':dependencia.id}) }}\"  role=\"button\"><i class=\"far fa-file-archive\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Archivar\"></i></a></td>
                                 {% else %}
-                            <td class=\"text-default\">Archivado</td>
+                            <td class=\"text-default\">DESHABILITADO</td>
                             <td class=\"text-default\">{{dependencia.nivel|e }}</td>
                             <td> <a class=\"btn btn-info\" href=\"{{ path('adm_gestionar_mesaentrada',{'id':dependencia.id}) }}\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Gestionar mesa de Entrada\">  <i class=\"fas fa-table\"></i></a>
                                 <a class=\"btn btn-warning\" href=\"{{ path('editar_dependencia',{'id':dependencia.id}) }}\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar Dependencia\"><i class=\"fas fa-edit\"></i></a>

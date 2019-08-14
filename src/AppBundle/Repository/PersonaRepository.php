@@ -22,7 +22,8 @@ class PersonaRepository extends \Doctrine\ORM\EntityRepository {
                         ->setMaxResults(10)->getQuery()->getResult();
         return $result;
     }
-     public function findByDependencia($term,$dependencia) {
+
+    public function findByDependencia($term, $dependencia) {
         $qb = $this->getEntityManager()->createQueryBuilder();
         $result = $qb->select('n')
                         ->from('AppBundle:Persona', 'n')
@@ -36,15 +37,18 @@ class PersonaRepository extends \Doctrine\ORM\EntityRepository {
                         ->setMaxResults(10)->getQuery()->getResult();
         return $result;
     }
-    
-  
+
     public function createPersonaFilter() {
         $qb = $this->getEntityManager()->createQueryBuilder('p');
         $result = $qb->select('p')
                 ->from(\AppBundle\Entity\Persona::class, 'p')
+                ->innerJoin(\AppBundle\Entity\Ubicacion::class, "u", "WITH",
+                        "p.id=u.id")
+                ->innerJoin(\AppBundle\Entity\Dependencia::class, "d", "WITH",
+                        "u.dependencia=d.id")
                 ->addOrderBy('p.apellido', 'ASC');
-        
+
         return $result;
-    }  
-  
+    }
+
 }

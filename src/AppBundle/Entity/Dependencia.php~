@@ -64,9 +64,9 @@ class Dependencia
      /**
      * @var string
      *
-     * @ORM\Column(name="archivado", type="string")
+     * @ORM\Column(name="estado", type="string",nullable=true)
      */
-    private $archivado;
+    private $estado;
     
     
     /**

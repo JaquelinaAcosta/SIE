@@ -64,10 +64,10 @@ class Dependencia extends \AppBundle\Entity\Dependencia implements \Doctrine\ORM
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'id', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'descripcion', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'dependenciaPadre', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'responsable', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'nivel', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'expedientes', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'ubicaciones', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'archivado', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'mesaentrada', 'persona'];
+            return ['__isInitialized__', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'id', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'descripcion', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'dependenciaPadre', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'responsable', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'nivel', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'expedientes', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'ubicaciones', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'estado', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'mesaentrada', 'persona'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'id', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'descripcion', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'dependenciaPadre', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'responsable', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'nivel', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'expedientes', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'ubicaciones', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'archivado', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'mesaentrada', 'persona'];
+        return ['__isInitialized__', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'id', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'descripcion', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'dependenciaPadre', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'responsable', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'nivel', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'expedientes', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'ubicaciones', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'estado', '' . "\0" . 'AppBundle\\Entity\\Dependencia' . "\0" . 'mesaentrada', 'persona'];
     }
 
     /**
@@ -428,6 +428,28 @@ class Dependencia extends \AppBundle\Entity\Dependencia implements \Doctrine\ORM
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getArchivado', []);
 
         return parent::getArchivado();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setEstado($estado)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setEstado', [$estado]);
+
+        return parent::setEstado($estado);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getEstado()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEstado', []);
+
+        return parent::getEstado();
     }
 
 }

@@ -71,6 +71,13 @@
                 {{ form_errors(formPersonaFilter) }}
                 <div class="row">
                     <div class="threecol col-lg-3">
+                        {{ form_label(formPersonaFilter.dependencia, 'DEPENDENCIA') }}
+                        {{ form_widget(formPersonaFilter.dependencia) }}
+                        <div class="help-block with-errors">
+                            {{ form_errors(formPersonaFilter.dependencia) }}
+                        </div>
+                    </div>
+                    <div class="threecol col-lg-3">
                         {{ form_label(formPersonaFilter.apellido, 'APELLIDO') }}
                         {{ form_widget(formPersonaFilter.apellido) }}
                         <div class="help-block with-errors">
