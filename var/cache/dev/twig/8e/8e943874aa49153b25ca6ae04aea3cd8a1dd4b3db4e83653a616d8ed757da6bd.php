@@ -72,7 +72,10 @@ class __TwigTemplate_a5748b60bfc0fc50b2211f17757d2ea6b068a394ec4a680bbac375a8e5c
     <div class=\"content\">
         <div class=\"filtro\">
             <div class=\"header\">
-                <i class=\"fas fa-search\"></i> Búsqueda de Expediente Asociado</h4> 
+                <i class=\"fas fa-search\"></i> Búsqueda de Expediente Asociado. Expediente - ";
+        // line 19
+        echo twig_escape_filter($this->env, $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "nroExpediente", []), "html", null, true);
+        echo "</h4> 
             <a role=\"button\" 
                class=\"btn btn-success float-right\" 
                     href=\"";
@@ -316,7 +319,7 @@ class __TwigTemplate_a5748b60bfc0fc50b2211f17757d2ea6b068a394ec4a680bbac375a8e5c
 
     public function getDebugInfo()
     {
-        return array (  288 => 119,  280 => 116,  277 => 115,  274 => 114,  270 => 112,  268 => 111,  265 => 110,  254 => 108,  250 => 107,  246 => 106,  242 => 104,  239 => 103,  236 => 102,  231 => 100,  228 => 99,  226 => 98,  218 => 92,  209 => 89,  205 => 88,  201 => 87,  197 => 86,  193 => 85,  189 => 84,  186 => 83,  182 => 82,  162 => 65,  155 => 61,  150 => 59,  137 => 49,  132 => 47,  128 => 46,  121 => 42,  116 => 40,  112 => 39,  105 => 35,  100 => 33,  96 => 32,  90 => 29,  81 => 23,  80 => 22,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  291 => 119,  283 => 116,  280 => 115,  277 => 114,  273 => 112,  271 => 111,  268 => 110,  257 => 108,  253 => 107,  249 => 106,  245 => 104,  242 => 103,  239 => 102,  234 => 100,  231 => 99,  229 => 98,  221 => 92,  212 => 89,  208 => 88,  204 => 87,  200 => 86,  196 => 85,  192 => 84,  189 => 83,  185 => 82,  165 => 65,  158 => 61,  153 => 59,  140 => 49,  135 => 47,  131 => 46,  124 => 42,  119 => 40,  115 => 39,  108 => 35,  103 => 33,  99 => 32,  93 => 29,  84 => 23,  83 => 22,  77 => 19,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -347,7 +350,7 @@ class __TwigTemplate_a5748b60bfc0fc50b2211f17757d2ea6b068a394ec4a680bbac375a8e5c
     <div class=\"content\">
         <div class=\"filtro\">
             <div class=\"header\">
-                <i class=\"fas fa-search\"></i> Búsqueda de Expediente Asociado</h4> 
+                <i class=\"fas fa-search\"></i> Búsqueda de Expediente Asociado. Expediente - {{ expediente.nroExpediente }}</h4> 
             <a role=\"button\" 
                class=\"btn btn-success float-right\" 
                     href=\"{{ path('nuevo_expediente_asociado',
@@ -457,6 +460,6 @@ class __TwigTemplate_a5748b60bfc0fc50b2211f17757d2ea6b068a394ec4a680bbac375a8e5c
         })
     </script>
 
-{% endblock %}", "AppBundle:Expediente:listadoExpedienteAsociado.html.twig", "/var/www/html/gitSIE/src/AppBundle/Resources/views/Expediente/listadoExpedienteAsociado.html.twig");
+{% endblock %}", "AppBundle:Expediente:listadoExpedienteAsociado.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/Expediente/listadoExpedienteAsociado.html.twig");
     }
 }

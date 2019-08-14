@@ -21,19 +21,28 @@ class ExpedienteAsociadoType extends AbstractType {
         $expedientePadre_id = $options['expediente_id'];
 
         $builder
-                ->add('expedienteAsociado', EntityType::class, array(
-                    "class" => 'AppBundle:Expediente',
-                    'query_builder' => function(EntityRepository $er ) use ($expedientePadre_id) {
-                        return $er->createQueryBuilder('w')
-                                ->leftJoin(ExpedienteAsociado::class, "ea", "WITH",
-                                        "w.id = ea.expedienteAsociado")
-                                ->where('ea.id IS NULL')
-                                ->andWhere('w.id != :expediente_id')
-                                ->setParameter('expediente_id', $expedientePadre_id);
-                    },
-                    "placeholder" => "--Seleccione--",
-                    "label" => "Nro. de Expediente Asociado:", "attr" => array(
-                        "class" => "form-exp form-control"
+//                ->add('expedienteAsociado', EntityType::class, array(
+//                    "class" => 'AppBundle:Expediente',
+//                    'query_builder' => function(EntityRepository $er ) use ($expedientePadre_id) {
+//                        return $er->createQueryBuilder('w')
+//                                ->leftJoin(ExpedienteAsociado::class, "ea", "WITH",
+//                                        "w.id = ea.expedienteAsociado")
+//                                ->where('ea.id IS NULL')
+//                                ->andWhere('w.id != :expediente_id')
+//                                ->setParameter('expediente_id', $expedientePadre_id);
+//                    },
+//                    "placeholder" => "--Seleccione--",
+//                    "label" => "Nro. de Expediente Asociado:", "attr" => array(
+//                        "class" => "form-exp form-control"
+//                    )
+//                ))
+                ->add('expedienteAsociado', 'PUGX\AutocompleterBundle\Form\Type\AutocompleteType', array(
+                    'class' => 'AppBundle:Expediente',
+                    'label' => 'Responsable',
+                    'required' => false,
+                    'attr' => array(
+                        'class' => 'form form-control',
+                        'placeholder' => 'Escriba parte del número y seleccione una de las opciones'
                     )
                 ))
                 ->add('ordenAsociacion', TextType::class, array(
@@ -49,10 +58,9 @@ class ExpedienteAsociadoType extends AbstractType {
         ;
     }
 
-/**
+    /**
      * {@inheritdoc}
      */
-
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\ExpedienteAsociado',

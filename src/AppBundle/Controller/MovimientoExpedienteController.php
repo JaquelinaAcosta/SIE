@@ -12,6 +12,7 @@ use AppBundle\Form\MovimientoExpedienteFilterType;
 use Symfony\Component\Validator\Constraints\DateTime;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use AppBundle\Form\MovimientoExpedienteType;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class MovimientoExpedienteController extends Controller {
 
@@ -52,6 +53,17 @@ class MovimientoExpedienteController extends Controller {
                 $date = \DateTime::createFromFormat('d-m-Y', $fechaHoy);
                 $movimientoExpediente->setFecha($date);
                 $movimientoExpediente->setUbicacion($persona);
+                
+                  $original_expedientes_asociados = new ArrayCollection();
+                  
+
+                  
+        foreach ($expediente->getExpedientesAsociados() as $expediente_asoc) {
+                    $original_expedientes_asociados->add($expediente_asoc);
+                                      dump($original_expedientes_asociados);die();
+                }
+
+
                 $expediente->getMovimientos()->add($movimientoExpediente);
                 $expediente->setUbicacionActual($persona);
                 $em->persist($expediente);

@@ -126,12 +126,14 @@ class DefaultController extends Controller {
     }
 
     /**
-     * @Route("/expediente_search", name="expediente_search")
+     * @Route("/expediente_asociado_search/{id}", name="expediente_asociado_search")
      */
-    public function searchExpedienteAction(Request $request) {
+    public function searchExpedienteAction(Request $request,$id) {
         $q = $request->query->get('term'); // use "term" instead of "q" for jquery-ui
+        $user = $this->getUser();
         $expedientes = $this->getDoctrine()->getRepository('AppBundle:Expediente')
-                ->findLikeNumber($q, $this->getUser()->getPersona()->getDependencia());
+                ->findExpedientesAsociados($q,$id,
+                        $user->getPersona()->getDependencia());
 
         $results = array();
         foreach ($expedientes as $expediente) {
@@ -143,7 +145,7 @@ class DefaultController extends Controller {
     }
 
     /**
-     * @Route("/expediente_get{id}", name="expediente_get")
+     * @Route("/expediente_asociado_get{id}", name="expediente_asociado_get")
      */
     public function getExpedienteAction($id = null) {
         $expediente = $this->getDoctrine()->getRepository('AppBundle:Expediente')->find($id);

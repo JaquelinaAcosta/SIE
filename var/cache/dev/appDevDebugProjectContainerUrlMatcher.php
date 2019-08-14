@@ -128,14 +128,14 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                 return $this->mergeDefaults(array_replace($matches, ['_route' => 'listado_caratula']), array (  '_controller' => 'AppBundle\\Controller\\CaratulaAgregadaController::listaCaratulaAction',));
             }
 
-            // expediente_search
-            if ('/expediente_search' === $pathinfo) {
-                return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::searchExpedienteAction',  '_route' => 'expediente_search',);
+            // expediente_asociado_search
+            if (0 === strpos($pathinfo, '/expediente_asociado_search') && preg_match('#^/expediente_asociado_search/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'expediente_asociado_search']), array (  '_controller' => 'AppBundle\\Controller\\DefaultController::searchExpedienteAction',));
             }
 
-            // expediente_get
-            if (0 === strpos($pathinfo, '/expediente_get') && preg_match('#^/expediente_get(?:(?P<id>[^/]++))?$#sD', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, ['_route' => 'expediente_get']), array (  'id' => NULL,  '_controller' => 'AppBundle\\Controller\\DefaultController::getExpedienteAction',));
+            // expediente_asociado_get
+            if (0 === strpos($pathinfo, '/expediente_asociado_get') && preg_match('#^/expediente_asociado_get(?:(?P<id>[^/]++))?$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'expediente_asociado_get']), array (  'id' => NULL,  '_controller' => 'AppBundle\\Controller\\DefaultController::getExpedienteAction',));
             }
 
             // nuevo_expediente_asociado
