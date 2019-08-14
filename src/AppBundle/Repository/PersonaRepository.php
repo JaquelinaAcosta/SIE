@@ -37,21 +37,14 @@ class PersonaRepository extends \Doctrine\ORM\EntityRepository {
         return $result;
     }
     
-    
-    public function getAllPers($currentPage = 1, $limit = 15) {
-
-        $em = $this->getEntityManager();
-
-        $dql = "SELECT e FROM AppBundle\Entity\Persona e ORDER BY e.id";
-
-        $query = $em->createQuery($dql)
-                ->setFirstResult($limit * ($currentPage - 1))
-                ->setMaxResults($limit);
-
-
-        $paginator = new Paginator($query, $fetchJoinCollection = true);
-
-        return $paginator;
-    }
-
+  
+    public function createPersonaFilter() {
+        $qb = $this->getEntityManager()->createQueryBuilder('p');
+        $result = $qb->select('p')
+                ->from(\AppBundle\Entity\Persona::class, 'p')
+                ->addOrderBy('p.apellido', 'ASC');
+        
+        return $result;
+    }  
+  
 }

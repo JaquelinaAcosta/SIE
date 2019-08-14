@@ -13,38 +13,34 @@
         }
 
     </style>
+    <div class="content">
 
-    <div class="col-lg-16" style="padding-left:  300px; padding-top:  50px">
-        <div class="list-group col-lg-11 col-md-offset-1">
-            <div class="expediente col-lg-10 panel panel-primary"  style="padding: 10px">
-                <div class="panel-heading" style="font-size:18px;">
-                   {{ accion }} Carátula para Expediente Nro. - {{ expediente.nroExpediente}}
-                </div>
-                <br/>
-                {{form_start(form,{'action':'','method':'POST'})}}
-                <div class="col-lg-14">
-                    <label class="text-default">EXPEDIENTE ASOCIADO</label>
-                    {{ form_errors(form.tema) }}
-                    {{ form_widget(form.tema) }}
-                    <label class="text-default">CONCEPTO</label>
-                    {{ form_errors(form.concepto) }}
-                    {{ form_widget(form.concepto) }}
-                    <label class="text-default">FOJAS</label>
-                    {{ form_errors(form.fojas) }}
-                    {{ form_widget(form.fojas) }}
+        <strong>{{ accion }} Carátula para Expediente Nro. - {{ expediente.nroExpediente}}</strong>
 
-                    {{ form_widget(form.Aceptar) }}
-                    <a class="btn btn-default" onclick="history.back()"  role="button">Volver</a>
+        <hr/>
+        {{form_start(form,{'action':'','method':'POST'})}}
+        <div class="row">
+            <label class="text-default">TEMA</label>
+            {{ form_errors(form.tema) }}
+            {{ form_widget(form.tema) }}
+            <label class="text-default">CONCEPTO</label>
+            {{ form_errors(form.concepto) }}
+            {{ form_widget(form.concepto) }}
+            <label class="text-default">CANTIDAD DE FOJAS</label>
+            {{ form_errors(form.fojas) }}
+            {{ form_widget(form.fojas) }}
 
-                    {{form_end(form)}}
-                </div>
-            </div>
+            {{ form_widget(form.Aceptar) }}
+            <a class="btn btn-default" onclick="history.back()"  role="button">Volver</a>
+
+            {{form_end(form)}}
         </div>
-        <script>
-            $('#caratulaagregada_tema').autocompleter({
-                url_list: "{{ path('tema_search') }}",
-                url_get: "{{ path('tema_get') }}"
-            });
-        </script>
+    </div>
+    <script>
+        $('#caratulaagregada_tema').autocompleter({
+            url_list: "{{ path('tema_search') }}",
+            url_get: "{{ path('tema_get') }}"
+        });
+    </script>
 
-    {% endblock %}
+{% endblock %}

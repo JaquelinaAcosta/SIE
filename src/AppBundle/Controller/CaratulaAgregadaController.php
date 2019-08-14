@@ -91,7 +91,7 @@ class CaratulaAgregadaController extends Controller {
                     'accion' => 'Editar'
         ));
     }
-    
+
 //     /**
 //     * @Route("expediente/{id}/caratula/listado", name="listado_caratula")
 //     */
@@ -106,14 +106,14 @@ class CaratulaAgregadaController extends Controller {
 //                    'expediente' => $expediente
 //        ]);
 //    }
-    
+
     /**
      * @Route("expediente/{id}/caratula/listado/{currentPage}", name="listado_caratula")
      */
     public function listaCaratulaAction(Request $request, $id, $currentPage) {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $expediente=$em->getRepository('AppBundle:Expediente')->find($id);
+        $expediente = $em->getRepository('AppBundle:Expediente')->find($id);
         $limit = 15;
         $totalItems = 0;
         $maxPages = 0;
@@ -125,21 +125,12 @@ class CaratulaAgregadaController extends Controller {
             $formCaratulaAgregadaFilter->handleRequest($this->get('session')->get('caratula_listar_request'));
         }
 
-        if  ($formCaratulaAgregadaFilter->isValid()) {
-            $filterBuilder = $em->getRepository('AppBundle:CaratulaAgregada')->createQueryBuilder('c');
-            
-            $filterBuilder->innerJoin(\AppBundle\Entity\Expediente::class, "e", "WITH",
-                                "c.expediente=e.id")
-                        ->where('e.id = :expediente')
-//                                ->andWhere('w.id != :expediente_id')
-                        ->setParameter('expediente', $expediente);
-            
-            
-            
-//            $filterBuilder->addOrderBy('p.tema', 'ASC');
-//            $filterBuilder->addOrderBy('p.concepto', 'ASC');
+        if ($formCaratulaAgregadaFilter->isValid()) {
+            $filterBuilder = $em->getRepository('AppBundle:CaratulaAgregada')
+                    ->createCaratulaQuery($expediente);
 
-            $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($formCaratulaAgregadaFilter, $filterBuilder);
+            $this->get('lexik_form_filter.query_builder_updater')
+                    ->addFilterConditions($formCaratulaAgregadaFilter, $filterBuilder);
             $totalItems = count($filterBuilder->getQuery()->getResult());
 
             $filterBuilder->setFirstResult($limit * ($currentPage - 1));
@@ -148,13 +139,11 @@ class CaratulaAgregadaController extends Controller {
             $paginator = new Paginator($filterBuilder, $fetchJoinCollection = true);
             $caratulas = $paginator->getQuery()->getResult();
             $maxPages = ceil($totalItems / $limit);
-            
-           
         }
 
         if ($formCaratulaAgregadaFilter->get('reset')->isClicked()) {
             $this->get('session')->remove('caratula_listar_request');
-            return $this->redirectToRoute('listado_caratula',['id'=>$expediente->getId(),'currentPage' => 1]);
+            return $this->redirectToRoute('listado_caratula', ['id' => $expediente->getId(), 'currentPage' => 1]);
         }
 
         if ($formCaratulaAgregadaFilter->get('filter')->isClicked()) {
@@ -165,7 +154,7 @@ class CaratulaAgregadaController extends Controller {
             $request->request->set('currentPage', 1);
             $this->get('session')->set('caratula_listar_request', $request);
             if ($request->get('currentPage') > $maxPages) {
-                return $this->redirectToRoute('listado_caratula', ['id'=>$expediente->getId(),'currentPage' => 1]);
+                return $this->redirectToRoute('listado_caratula', ['id' => $expediente->getId(), 'currentPage' => 1]);
             }
         }
 
@@ -179,4 +168,5 @@ class CaratulaAgregadaController extends Controller {
                     'formCaratulaAgregadaFilter' => $formCaratulaAgregadaFilter->createView()
         ));
     }
+
 }

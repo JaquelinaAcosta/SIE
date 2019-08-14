@@ -124,9 +124,8 @@ class UsuarioController extends Controller {
         }
 
         if ($formUsuarioFilter->isValid()) {
-            $filterBuilder = $em->getRepository('AppBundle:Usuario')->createQueryBuilder('p');
-            $filterBuilder->addOrderBy('p.iup', 'ASC');
-            $filterBuilder->addOrderBy('p.email', 'ASC');
+            $filterBuilder = $em->getRepository('AppBundle:Usuario')
+                    ->createUsuarioFilter();
             
             $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($formUsuarioFilter, $filterBuilder);
             $totalItems = count($filterBuilder->getQuery()->getResult());
@@ -183,11 +182,6 @@ class UsuarioController extends Controller {
         $em->remove($usuario);
         $flush = $em->flush();
 
-//        if ($flush == null) {
-//            echo "Post se ha borrado correctamente";
-//        } else {
-//            echo "El post no se ha borrado";
-//        }
 
         return $this->redirectToRoute('lista_usuario');
     }

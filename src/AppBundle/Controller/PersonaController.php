@@ -143,9 +143,7 @@ class PersonaController extends Controller {
         }
 
         if ($formPersonaFilter->isValid()) {
-            $filterBuilder = $em->getRepository('AppBundle:Persona')->createQueryBuilder('p');
-            $filterBuilder->addOrderBy('p.apellido', 'ASC');
-            $filterBuilder->addOrderBy('p.nombre', 'ASC');
+            $filterBuilder = $em->getRepository('AppBundle:Persona')->createPersonaFilter();
 
             $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($formPersonaFilter, $filterBuilder);
             $totalItems = count($filterBuilder->getQuery()->getResult());

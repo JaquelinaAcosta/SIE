@@ -29,33 +29,33 @@ class DefaultController extends Controller {
     public function searchPersonaAction(Request $request) {
         $q = $request->query->get('term'); // use "term" instead of "q" for jquery-ui
         $dependencia = $this->getUser()->getPersona()->getDependencia();
-        $personas = $this->getDoctrine()->getRepository('AppBundle:Persona')->findLikeName($q,$dependencia->getId());
+        $personas = $this->getDoctrine()->getRepository('AppBundle:Persona')->findLikeName($q, $dependencia->getId());
 
         $results = array();
         foreach ($personas as $persona) {
             $results[] = array('id' => $persona->getId(),
-                'label' => trim($persona->getApellido().", ".$persona->getNombre()),
-                'value' => trim($persona->getApellido().", ".$persona->getNombre()));
+                'label' => trim($persona->getApellido() . ", " . $persona->getNombre()),
+                'value' => trim($persona->getApellido() . ", " . $persona->getNombre()));
         }
         return new JsonResponse($results);
     }
-    
+
     /**
      * @Route("/persona_search_dependencia", name="persona_search_dependencia")
      */
     public function searchPersonaByDependenciaAction(Request $request) {
         $q = $request->query->get('term'); // use "term" instead of "q" for jquery-ui
         $dependencia = $this->getUser()->getPersona()->getDependencia();
-        $personas = $this->getDoctrine()->getRepository('AppBundle:Persona')->findByDependencia($q,$dependencia);
+        $personas = $this->getDoctrine()->getRepository('AppBundle:Persona')->findByDependencia($q, $dependencia);
         $results = array();
         foreach ($personas as $persona) {
             $results[] = array('id' => $persona->getId(),
-                'label' => trim($persona->getApellido().", ".$persona->getNombre()),
-                'value' => trim($persona->getApellido().", ".$persona->getNombre()));
+                'label' => trim($persona->getApellido() . ", " . $persona->getNombre()),
+                'value' => trim($persona->getApellido() . ", " . $persona->getNombre()));
         }
         return new JsonResponse($results);
     }
-    
+
     /**
      * @Route("/persona_get{id}", name="persona_get")
      */
@@ -66,7 +66,7 @@ class DefaultController extends Controller {
             $this->addFlash('info', 'La persona no existe.');
             return $this->redirectToRoute('homepage');
         }
-        return new JsonResponse(trim($persona->getApellido().", ".$persona->getNombre()));
+        return new JsonResponse(trim($persona->getApellido() . ", " . $persona->getNombre()));
     }
 
     /**
@@ -96,14 +96,42 @@ class DefaultController extends Controller {
         }
         return new JsonResponse(trim($tema->__toString()));
     }
-    
+
+    /**
+     * @Route("/usuario_search", name="usuario_search")
+     */
+    public function searchUsuarioAction(Request $request) {
+        $q = $request->query->get('term'); // use "term" instead of "q" for jquery-ui
+        $usuarios = $this->getDoctrine()->getRepository('AppBundle:Usuario')->findLikeName($q);
+
+        $results = array();
+        foreach ($usuarios as $usuario) {
+            $results[] = array('id' => $usuario->getId(),
+                'label' => trim($usuario->__toString()),
+                'value' => trim($usuario->__toString()));
+        }
+        return new JsonResponse($results);
+    }
+
+    /**
+     * @Route("/usuario_get{id}", name="usuario_get")
+     */
+    public function getUsuarioAction($id = null) {
+        $usuario = $this->getDoctrine()->getRepository('AppBundle:Usuario')->find($id);
+        if (null == $usuario) {
+            $this->addFlash('info', 'El usuario no existe.');
+            return $this->redirectToRoute('homepage');
+        }
+        return new JsonResponse(trim($usuario->__toString()));
+    }
+
     /**
      * @Route("/expediente_search", name="expediente_search")
      */
     public function searchExpedienteAction(Request $request) {
         $q = $request->query->get('term'); // use "term" instead of "q" for jquery-ui
         $expedientes = $this->getDoctrine()->getRepository('AppBundle:Expediente')
-                ->findLikeNumber($q,$this->getUser()->getPersona()->getDependencia());
+                ->findLikeNumber($q, $this->getUser()->getPersona()->getDependencia());
 
         $results = array();
         foreach ($expedientes as $expediente) {
@@ -124,5 +152,6 @@ class DefaultController extends Controller {
             return $this->redirectToRoute('homepage');
         }
         return new JsonResponse(trim($expediente->__toString()));
-    } 
+    }
+
 }

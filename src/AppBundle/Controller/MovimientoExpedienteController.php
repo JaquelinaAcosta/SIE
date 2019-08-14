@@ -11,6 +11,7 @@ use AppBundle\Entity\Ubicacion;
 use AppBundle\Form\MovimientoExpedienteFilterType;
 use Symfony\Component\Validator\Constraints\DateTime;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use AppBundle\Form\MovimientoExpedienteType;
 
 class MovimientoExpedienteController extends Controller {
 

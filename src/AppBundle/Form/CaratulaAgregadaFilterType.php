@@ -26,27 +26,20 @@ class CaratulaAgregadaFilterType extends AbstractType implements EmbeddedFilterT
                 }
             },
             'attr' => ['class' => 'form-control',
-                'placeholder' => 'Sub dirección de..']
+                'placeholder' => 'Búsqueda por concepto...']
         ));
-
+            
+//            SELECT * FROM `caratula_agregada` LEFT JOIN tema ON caratula_agregada.tema = tema.id WHERE tema.id = 69
+            
         $builder->add('tema', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType', array(
             'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
-
-//            if (!empty($values['value'])) {
-//                    $qb = $filterQuery->getQueryBuilder();
-//                    $qb->innerJoin('e.tema', 'd', Join::WITH, 'd.codigo IS NOT NULL');
-//                    $qb->andWhere($filterQuery->getExpr()->eq('d.id', ':tema'));
-//                    $qb->setParameter('tema', '%' . $values['value'] . '%');
-//                }
                 if (!empty($values['value'])) {
-                    $qb = $filterQuery->getQueryBuilder('e');
-                    $qb->leftJoin(\AppBundle\Entity\Tema::class, "t", "WITH", "t.id = e.id");
+                    $qb = $filterQuery->getQueryBuilder();
                     $qb->andWhere(
                             $filterQuery->getExpr()->orX(
                                     $filterQuery->getExpr()->like('t.codigo', ':codigo')
                             )
                     )->setParameter('codigo', '%' . $values['value'] . '%');
-//                    $qb->setParameter('codigo', '%' . $values['value'] . '%');
                 }
             },
             'attr' => ['class' => 'form-control',

@@ -11,21 +11,13 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
  */
 class DependenciaRepository extends \Doctrine\ORM\EntityRepository {
     
-        public function getAllPers($currentPage = 1, $limit = 15)
-       {
-
-           $em = $this->getEntityManager();
-
-           $dql= "SELECT e FROM AppBundle\Entity\Dependencia e ORDER BY e.id";
-
-           $query = $em->createQuery($dql)
-                   ->setFirstResult($limit*($currentPage-1))
-                   ->setMaxResults($limit);
-
-
-           $paginator = new Paginator($query, $fetchJoinCollection=true);
-
-           return $paginator;
-       }
+       public function createDependenciaFilter() {
+        $qb = $this->getEntityManager()->createQueryBuilder('d');
+        $result = $qb->select('d')
+                ->from(\AppBundle\Entity\Dependencia::class, 'd')
+                ->addOrderBy('d.descripcion', 'ASC');
+        
+        return $result;
+    }  
 
 }

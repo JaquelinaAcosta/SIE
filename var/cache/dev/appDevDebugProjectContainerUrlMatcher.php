@@ -317,7 +317,40 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return $this->mergeDefaults(array_replace($matches, ['_route' => 'tema_get']), array (  'id' => NULL,  '_controller' => 'AppBundle\\Controller\\DefaultController::getTemaAction',));
         }
 
-        if (0 === strpos($pathinfo, '/dependencia')) {
+        if (0 === strpos($pathinfo, '/usuario')) {
+            // usuario_search
+            if ('/usuario_search' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::searchUsuarioAction',  '_route' => 'usuario_search',);
+            }
+
+            // usuario_get
+            if (0 === strpos($pathinfo, '/usuario_get') && preg_match('#^/usuario_get(?:(?P<id>[^/]++))?$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'usuario_get']), array (  'id' => NULL,  '_controller' => 'AppBundle\\Controller\\DefaultController::getUsuarioAction',));
+            }
+
+            // nuevo_usuario
+            if ('/usuario/add' === $pathinfo) {
+                return array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::indexAction',  '_route' => 'nuevo_usuario',);
+            }
+
+            // editar_usuario
+            if (0 === strpos($pathinfo, '/usuario/edit') && preg_match('#^/usuario/edit/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'editar_usuario']), array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::editUsuarioAction',));
+            }
+
+            // listado_usuario
+            if (0 === strpos($pathinfo, '/usuario/listado') && preg_match('#^/usuario/listado/(?P<currentPage>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'listado_usuario']), array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::listaUsuarioAction',));
+            }
+
+            // eliminar_usuario
+            if (0 === strpos($pathinfo, '/usuario/delete') && preg_match('#^/usuario/delete/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'eliminar_usuario']), array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::deleteAction',));
+            }
+
+        }
+
+        elseif (0 === strpos($pathinfo, '/dependencia')) {
             if (0 === strpos($pathinfo, '/dependencia/a')) {
                 // nueva_dependencia
                 if ('/dependencia/add' === $pathinfo) {
@@ -422,29 +455,6 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         // homepage
         if ('/home' === $pathinfo) {
             return array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::homeAction',  '_route' => 'homepage',);
-        }
-
-        if (0 === strpos($pathinfo, '/usuario')) {
-            // nuevo_usuario
-            if ('/usuario/add' === $pathinfo) {
-                return array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::indexAction',  '_route' => 'nuevo_usuario',);
-            }
-
-            // editar_usuario
-            if (0 === strpos($pathinfo, '/usuario/edit') && preg_match('#^/usuario/edit/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, ['_route' => 'editar_usuario']), array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::editUsuarioAction',));
-            }
-
-            // listado_usuario
-            if (0 === strpos($pathinfo, '/usuario/listado') && preg_match('#^/usuario/listado/(?P<currentPage>[^/]++)$#sD', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, ['_route' => 'listado_usuario']), array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::listaUsuarioAction',));
-            }
-
-            // eliminar_usuario
-            if (0 === strpos($pathinfo, '/usuario/delete') && preg_match('#^/usuario/delete/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, ['_route' => 'eliminar_usuario']), array (  '_controller' => 'AppBundle\\Controller\\UsuarioController::deleteAction',));
-            }
-
         }
 
         if ('/' === $pathinfo && !$allow) {

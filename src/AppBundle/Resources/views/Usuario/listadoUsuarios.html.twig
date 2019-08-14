@@ -58,6 +58,13 @@
                 {{ form_errors(formUsuarioFilter) }}
                 <div class="row">
                     <div class="threecol col-lg-4">
+                        {{ form_label(formUsuarioFilter.dependencia, 'DEPENDENCIA') }}
+                        {{ form_widget(formUsuarioFilter.dependencia) }}
+                        <div class="help-block with-errors">
+                            {{ form_errors(formUsuarioFilter.dependencia) }}
+                        </div>
+                    </div>
+                    <div class="threecol col-lg-4">
                         {{ form_label(formUsuarioFilter.iup, 'USUARIO') }}
                         {{ form_widget(formUsuarioFilter.iup) }}
                         <div class="help-block with-errors">
@@ -167,6 +174,7 @@
     </script>
 
     <script>
+
         $('#usuario_filter_persona').autocompleter({
             url_list: "{{ path('persona_search') }}",
             url_get: "{{ path('persona_get') }}"

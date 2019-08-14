@@ -2,39 +2,7 @@
 
 {% block contentmain %}
     <style>
-        input[type=text]{
-            margin-bottom: 10px;
-            padding:10px;            
-        }
-        input[type=submit]{
-            margin-bottom: 10px;           
-        }
-        .expediente{
-            margin-right: 12px;
-            padding:15px;
-        }
-        .expediente p{
-            margin-top:10px;
-        }
-        .titulo{
-            height: 30px;
-            padding:7px;
-            background-color:black;
-            color: #fff;
-        }
-        .panel{
-            font-size: 15px; 
-            margin-bottom: 20px;
-            margin-right: 20px;
-        }
-        .form-exp{
-            font-size:15px;
-            padding:10px;
-        }
-        .title{
-            font-size:16px;
-        }
-
+       
         p {
             white-space: nowrap;
             overflow: hidden;
@@ -51,8 +19,8 @@
             <div class="header"><i class="fas fa-search"></i> <strong>Búsqueda de carátula</strong></h4>
                 <a role="button" 
                    class="btn btn-success float-right" 
-                   href="{{ path('nuevo_expediente')}}">
-                    Nuevo Expediente</a>
+                   href="{{ path('nueva_caratula',{'id':expediente.id})}}">
+                    Agregar Carátula</a>
             </div>
                     
             <hr/>

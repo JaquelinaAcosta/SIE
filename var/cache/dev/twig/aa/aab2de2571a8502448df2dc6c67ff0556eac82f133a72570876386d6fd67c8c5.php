@@ -58,39 +58,7 @@ class __TwigTemplate_ba7aa7db0e5d0776e97e52d2b98426a14fe47233f903abeb0477efb49f7
 
         // line 4
         echo "    <style>
-        input[type=text]{
-            margin-bottom: 10px;
-            padding:10px;            
-        }
-        input[type=submit]{
-            margin-bottom: 10px;           
-        }
-        .expediente{
-            margin-right: 12px;
-            padding:15px;
-        }
-        .expediente p{
-            margin-top:10px;
-        }
-        .titulo{
-            height: 30px;
-            padding:7px;
-            background-color:black;
-            color: #fff;
-        }
-        .panel{
-            font-size: 15px; 
-            margin-bottom: 20px;
-            margin-right: 20px;
-        }
-        .form-exp{
-            font-size:15px;
-            padding:10px;
-        }
-        .title{
-            font-size:16px;
-        }
-
+       
         p {
             white-space: nowrap;
             overflow: hidden;
@@ -108,47 +76,47 @@ class __TwigTemplate_ba7aa7db0e5d0776e97e52d2b98426a14fe47233f903abeb0477efb49f7
                 <a role=\"button\" 
                    class=\"btn btn-success float-right\" 
                    href=\"";
-        // line 54
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nuevo_expediente");
+        // line 22
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nueva_caratula", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", [])]), "html", null, true);
         echo "\">
-                    Nuevo Expediente</a>
+                    Agregar Carátula</a>
             </div>
                     
             <hr/>
             <form method=\"post\" novalidate=\"true\" id=\"form_buscar\">
                     ";
-        // line 60
+        // line 28
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(($context["formCaratulaAgregadaFilter"] ?? $this->getContext($context, "formCaratulaAgregadaFilter")), 'errors');
         echo "
                     <div class=\"row\">
                         <div class=\"threecol col-lg-4\">
                             ";
-        // line 63
+        // line 31
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formCaratulaAgregadaFilter"] ?? $this->getContext($context, "formCaratulaAgregadaFilter")), "concepto", []), 'label', ["label" => "CONCEPTO"]);
         echo "
                             ";
-        // line 64
+        // line 32
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formCaratulaAgregadaFilter"] ?? $this->getContext($context, "formCaratulaAgregadaFilter")), "concepto", []), 'widget');
         echo "
                             <div class=\"help-block with-errors\">
                                 ";
-        // line 66
+        // line 34
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formCaratulaAgregadaFilter"] ?? $this->getContext($context, "formCaratulaAgregadaFilter")), "concepto", []), 'errors');
         echo "
                             </div>
                         </div>
                         <div class=\"threecol col-lg-4\">
                             ";
-        // line 70
+        // line 38
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formCaratulaAgregadaFilter"] ?? $this->getContext($context, "formCaratulaAgregadaFilter")), "tema", []), 'label', ["label" => "CODIGO"]);
         echo "
                             ";
-        // line 71
+        // line 39
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formCaratulaAgregadaFilter"] ?? $this->getContext($context, "formCaratulaAgregadaFilter")), "tema", []), 'widget');
         echo "
                             <div class=\"help-block with-errors\">
                                 ";
-        // line 73
+        // line 41
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formCaratulaAgregadaFilter"] ?? $this->getContext($context, "formCaratulaAgregadaFilter")), "tema", []), 'errors');
         echo "
                             </div>
@@ -156,7 +124,7 @@ class __TwigTemplate_ba7aa7db0e5d0776e97e52d2b98426a14fe47233f903abeb0477efb49f7
                                 
                                 
                                ";
-        // line 79
+        // line 47
         echo "                        </div> 
                        
                     </div>
@@ -165,17 +133,17 @@ class __TwigTemplate_ba7aa7db0e5d0776e97e52d2b98426a14fe47233f903abeb0477efb49f7
                     <div class=\"row\">
                         <div class=\"col-lg-4\">
                             ";
-        // line 86
+        // line 54
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formCaratulaAgregadaFilter"] ?? $this->getContext($context, "formCaratulaAgregadaFilter")), "filter", []), 'widget');
         echo "
                             ";
-        // line 87
+        // line 55
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formCaratulaAgregadaFilter"] ?? $this->getContext($context, "formCaratulaAgregadaFilter")), "reset", []), 'widget');
         echo "
                         </div>
                     </div>
                     ";
-        // line 90
+        // line 58
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["formCaratulaAgregadaFilter"] ?? $this->getContext($context, "formCaratulaAgregadaFilter")), 'form_end');
         echo "
 
@@ -198,36 +166,36 @@ class __TwigTemplate_ba7aa7db0e5d0776e97e52d2b98426a14fe47233f903abeb0477efb49f7
                         <tbody>
 
                             ";
-        // line 110
+        // line 78
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(($context["caratulas"] ?? $this->getContext($context, "caratulas")));
         foreach ($context['_seq'] as $context["_key"] => $context["caratulaAgregada"]) {
-            // line 111
+            // line 79
             echo "
                                 <tr>
                                     <td>";
-            // line 113
+            // line 81
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["caratulaAgregada"], "tema", []), "codigo", []), "html", null, true);
             echo "</td>
                                     <td>";
-            // line 114
+            // line 82
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["caratulaAgregada"], "tema", []), "descripcion", []), "html", null, true);
             echo "</td>
                                     <td>";
-            // line 115
+            // line 83
             echo twig_escape_filter($this->env, $this->getAttribute($context["caratulaAgregada"], "concepto", []), "html", null, true);
             echo "</td>
                                     <td>";
-            // line 116
+            // line 84
             echo twig_escape_filter($this->env, $this->getAttribute($context["caratulaAgregada"], "fojas", []), "html", null, true);
             echo "</td>
                                     <td>
                                         <a class=\"btn btn-warning\" href=\"";
-            // line 118
+            // line 86
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_caratula", ["id" => $this->getAttribute($context["caratulaAgregada"], "id", [])]), "html", null, true);
             echo "\"  role=\"button\"><i class=\"fas fa-edit\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"></i></a>
                                         <a class=\"btn btn-danger\" href=\"";
-            // line 119
+            // line 87
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("eliminar_caratula", ["id" => $this->getAttribute($context["caratulaAgregada"], "id", [])]), "html", null, true);
             echo "\"  role=\"button\"><i class=\"fas fa-trash-alt\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Eliminar\"></i></a></td>
                                 </tr>
@@ -237,7 +205,7 @@ class __TwigTemplate_ba7aa7db0e5d0776e97e52d2b98426a14fe47233f903abeb0477efb49f7
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['caratulaAgregada'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 123
+        // line 91
         echo "
                         </tbody>
 
@@ -248,35 +216,35 @@ class __TwigTemplate_ba7aa7db0e5d0776e97e52d2b98426a14fe47233f903abeb0477efb49f7
                             
                             
     ";
-        // line 132
+        // line 100
         if ((twig_length_filter($this->env, ($context["caratulas"] ?? $this->getContext($context, "caratulas"))) < ($context["totalItems"] ?? $this->getContext($context, "totalItems")))) {
-            // line 133
+            // line 101
             echo "            <ul class=\"pagination\">
                 ";
-            // line 134
+            // line 102
             if ((($context["thisPage"] ?? $this->getContext($context, "thisPage")) == 1)) {
                 echo "           
                 ";
             } else {
-                // line 136
+                // line 104
                 echo "                    ";
                 $context["thisPage"] = (($context["thisPage"] ?? $this->getContext($context, "thisPage")) - 1);
-                // line 137
+                // line 105
                 echo "                ";
             }
-            // line 138
+            // line 106
             echo "
 
                 <li ><a class=\"page-link\" href=\"";
-            // line 140
+            // line 108
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_caratula", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", []), "currentPage" => ($context["thisPage"] ?? $this->getContext($context, "thisPage"))]), "html", null, true);
             echo "\">&laquo</a></li>
                     ";
-            // line 141
+            // line 109
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable(range(1, ($context["maxPages"] ?? $this->getContext($context, "maxPages"))));
             foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
-                // line 142
+                // line 110
                 echo "                    <li><a class=\"page-link\"  href=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_caratula", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", []), "currentPage" => $context["i"]]), "html", null, true);
                 echo "\">";
@@ -287,22 +255,22 @@ class __TwigTemplate_ba7aa7db0e5d0776e97e52d2b98426a14fe47233f903abeb0477efb49f7
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 144
+            // line 112
             echo "
                 ";
-            // line 145
+            // line 113
             if ((($context["page"] ?? $this->getContext($context, "page")) == ($context["maxPages"] ?? $this->getContext($context, "maxPages")))) {
-                // line 146
+                // line 114
                 echo "
                 ";
             } else {
-                // line 148
+                // line 116
                 echo "                    ";
                 $context["page"] = (($context["page"] ?? $this->getContext($context, "page")) + 1);
-                // line 149
+                // line 117
                 echo "                ";
             }
-            // line 150
+            // line 118
             echo "                <li><a class=\"page-link\" href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_caratula", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", []), "currentPage" => ($context["page"] ?? $this->getContext($context, "page"))]), "html", null, true);
             echo "\">&raquo</a></li>
@@ -310,7 +278,7 @@ class __TwigTemplate_ba7aa7db0e5d0776e97e52d2b98426a14fe47233f903abeb0477efb49f7
             </ul>
         ";
         }
-        // line 154
+        // line 122
         echo "        
                             
     <script>
@@ -322,11 +290,11 @@ class __TwigTemplate_ba7aa7db0e5d0776e97e52d2b98426a14fe47233f903abeb0477efb49f7
     <script>
             \$('#caratula_filter_responsable').autocompleter({
                 url_list: \"";
-        // line 164
+        // line 132
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("tema_search");
         echo "\",
                 url_get: \"";
-        // line 165
+        // line 133
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("tema_get");
         echo "\"
             });
@@ -354,7 +322,7 @@ class __TwigTemplate_ba7aa7db0e5d0776e97e52d2b98426a14fe47233f903abeb0477efb49f7
 
     public function getDebugInfo()
     {
-        return array (  330 => 165,  326 => 164,  314 => 154,  306 => 150,  303 => 149,  300 => 148,  296 => 146,  294 => 145,  291 => 144,  280 => 142,  276 => 141,  272 => 140,  268 => 138,  265 => 137,  262 => 136,  257 => 134,  254 => 133,  252 => 132,  241 => 123,  231 => 119,  227 => 118,  222 => 116,  218 => 115,  214 => 114,  210 => 113,  206 => 111,  202 => 110,  179 => 90,  173 => 87,  169 => 86,  160 => 79,  152 => 73,  147 => 71,  143 => 70,  136 => 66,  131 => 64,  127 => 63,  121 => 60,  112 => 54,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  298 => 133,  294 => 132,  282 => 122,  274 => 118,  271 => 117,  268 => 116,  264 => 114,  262 => 113,  259 => 112,  248 => 110,  244 => 109,  240 => 108,  236 => 106,  233 => 105,  230 => 104,  225 => 102,  222 => 101,  220 => 100,  209 => 91,  199 => 87,  195 => 86,  190 => 84,  186 => 83,  182 => 82,  178 => 81,  174 => 79,  170 => 78,  147 => 58,  141 => 55,  137 => 54,  128 => 47,  120 => 41,  115 => 39,  111 => 38,  104 => 34,  99 => 32,  95 => 31,  89 => 28,  80 => 22,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -371,39 +339,7 @@ class __TwigTemplate_ba7aa7db0e5d0776e97e52d2b98426a14fe47233f903abeb0477efb49f7
 
 {% block contentmain %}
     <style>
-        input[type=text]{
-            margin-bottom: 10px;
-            padding:10px;            
-        }
-        input[type=submit]{
-            margin-bottom: 10px;           
-        }
-        .expediente{
-            margin-right: 12px;
-            padding:15px;
-        }
-        .expediente p{
-            margin-top:10px;
-        }
-        .titulo{
-            height: 30px;
-            padding:7px;
-            background-color:black;
-            color: #fff;
-        }
-        .panel{
-            font-size: 15px; 
-            margin-bottom: 20px;
-            margin-right: 20px;
-        }
-        .form-exp{
-            font-size:15px;
-            padding:10px;
-        }
-        .title{
-            font-size:16px;
-        }
-
+       
         p {
             white-space: nowrap;
             overflow: hidden;
@@ -420,8 +356,8 @@ class __TwigTemplate_ba7aa7db0e5d0776e97e52d2b98426a14fe47233f903abeb0477efb49f7
             <div class=\"header\"><i class=\"fas fa-search\"></i> <strong>Búsqueda de carátula</strong></h4>
                 <a role=\"button\" 
                    class=\"btn btn-success float-right\" 
-                   href=\"{{ path('nuevo_expediente')}}\">
-                    Nuevo Expediente</a>
+                   href=\"{{ path('nueva_caratula',{'id':expediente.id})}}\">
+                    Agregar Carátula</a>
             </div>
                     
             <hr/>
@@ -536,6 +472,6 @@ class __TwigTemplate_ba7aa7db0e5d0776e97e52d2b98426a14fe47233f903abeb0477efb49f7
     </script>
     
     <hr/>
-{% endblock %}", "AppBundle:Expediente:listadoCaratulas.html.twig", "/var/www/html/gitSIE/src/AppBundle/Resources/views/Expediente/listadoCaratulas.html.twig");
+{% endblock %}", "AppBundle:Expediente:listadoCaratulas.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/Expediente/listadoCaratulas.html.twig");
     }
 }
