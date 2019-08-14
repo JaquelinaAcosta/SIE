@@ -23,13 +23,53 @@
                                  {'id':expediente.id}) }}">
                     Nuevo Expediente Asociado</a>
             </div>
+                    
             <hr/>
-            
-        </div>
+            <form method="post" novalidate="true" id="form_buscar">
+                    {{ form_errors(formExpedienteAsociadoFilter) }}
+                    <div class="row">
+                        <div class="threecol col-lg-4">
+                            {{ form_label(formExpedienteAsociadoFilter.expedienteAsociado, 'EXPEDIENTE') }}
+                            {{ form_widget(formExpedienteAsociadoFilter.expedienteAsociado) }}
+                            <div class="help-block with-errors">
+                                {{ form_errors(formExpedienteAsociadoFilter.expedienteAsociado) }}
+                            </div>
+                        </div>
+                        <div class="threecol col-lg-4">
+                            {{ form_label(formExpedienteAsociadoFilter.descripcion, 'DESCRIPCION') }}
+                            {{ form_widget(formExpedienteAsociadoFilter.descripcion) }}
+                            <div class="help-block with-errors">
+                                {{ form_errors(formExpedienteAsociadoFilter.descripcion) }}
+                            </div>
+                        </div> 
+                        <div class="threecol col-lg-4">
+                            {{ form_label(formExpedienteAsociadoFilter.tema, 'CODIGO DE TEMA') }}
+                            {{ form_widget(formExpedienteAsociadoFilter.tema) }}
+                            <div class="help-block with-errors">
+                                {{ form_errors(formExpedienteAsociadoFilter.tema) }}
+                            </div>
+                        </div> 
+                            
+                       
+                    </div>
+
+                    <hr/>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            {{ form_widget(formExpedienteAsociadoFilter.filter) }}
+                            
+                            {{ form_widget(formExpedienteAsociadoFilter.reset) }}
+                        </div>
+                    </div>
+                        
+                    {{ form_end(formExpedienteAsociadoFilter) }}
+
+                </form> 
+            </div>               
         <hr/>
 
         <table class="table table-striped">
-            <thead>
+            <thead class="thead-dark">
                 <tr>
                     <th scope="col">EXPEDIENTE</th>
                     <th scope="col">DESCRIPCION</th>
@@ -39,7 +79,7 @@
             </thead>
             <tbody>
 
-                {% for expediente_asoc in expediente.ExpedientesAsociados.getValues %}
+                {% for expediente_asoc in asociados %}
                     <tr>
                         <td>{{expediente_asoc.expedienteAsociado}}</td>
                         <td>{{expediente_asoc.expedienteAsociado.tema.descripcion}}</td>
@@ -54,11 +94,36 @@
         </table>
 
     </div>
+                
+    {% if asociados|length < totalItems %}
+            <ul class="pagination">
+                {%if (thisPage==1)%}           
+                {%else%}
+                    {%set thisPage= thisPage-1%}
+                {%endif%}
+
+
+                <li ><a class="page-link" href="{{ path('listado_asociado', {'id':expediente.id, "currentPage": thisPage}) }}">&laquo</a></li>
+                    {% for i in 1..maxPages %}
+                    <li><a class="page-link"  href="{{ path('listado_asociado', {'id':expediente.id, "currentPage": i}) }}">{{ i }}</a></li>
+                    {% endfor %}
+
+                {%if (page==maxPages)%}
+
+                {%else%}
+                    {%set page= page+1%}
+                {%endif%}
+                <li><a class="page-link" href="{{ path('listado_asociado', {'id':expediente.id, "currentPage": page}) }}">&raquo</a></li>
+
+            </ul>
+        {% endif %}            
+                
+         
 
     <script>
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
     </script>
-    <hr/>
+
 {% endblock %}

@@ -30,7 +30,7 @@ class CaratulaAgregadaFilterType extends AbstractType implements EmbeddedFilterT
         ));
             
 //            SELECT * FROM `caratula_agregada` LEFT JOIN tema ON caratula_agregada.tema = tema.id WHERE tema.id = 69
-            
+           
         $builder->add('tema', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType', array(
             'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
                 if (!empty($values['value'])) {

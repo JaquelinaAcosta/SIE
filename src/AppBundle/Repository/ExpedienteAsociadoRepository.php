@@ -10,4 +10,15 @@ namespace AppBundle\Repository;
  */
 class ExpedienteAsociadoRepository extends \Doctrine\ORM\EntityRepository
 {
+     public function createAsociadoFilterQuery($expediente) {
+        $qb = $this->getEntityManager()->createQueryBuilder('ea');
+        $result = $qb->select('ea')
+                ->from('AppBundle:ExpedienteAsociado', 'ea')
+                ->innerJoin(\AppBundle\Entity\Expediente::class, "e", "WITH",
+                        "ea.expedienteAsociado=e.id")
+                ->innerJoin(\AppBundle\Entity\Tema::class, "t", "WITH",
+                        "e.tema=t.id");
+
+        return $result;
+    }
 }

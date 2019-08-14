@@ -181,7 +181,7 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
         echo "                </a>
                 <a href=\"";
         // line 74
-        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_asociado", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", [])]), "html", null, true);
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_asociado", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", []), "currentPage" => 1]), "html", null, true);
         echo "\" 
                    class=\"btn btn-primary\" 
                    role=\"button\">EXPEDIENTES ASOCIADOS
@@ -339,7 +339,7 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
                         </span>
                     {% endif %}
                 </a>
-                <a href=\"{{ path('listado_asociado',{'id':expediente.id}) }}\" 
+                <a href=\"{{ path('listado_asociado',{'id':expediente.id,'currentPage':1}) }}\" 
                    class=\"btn btn-primary\" 
                    role=\"button\">EXPEDIENTES ASOCIADOS
                     {% if expediente.expedientesAsociados|length >0 %}
@@ -369,6 +369,6 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
         })
     </script>
 
-{% endblock %}", "AppBundle:Expediente:detalleExpediente.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/Expediente/detalleExpediente.html.twig");
+{% endblock %}", "AppBundle:Expediente:detalleExpediente.html.twig", "/var/www/html/gitSIE/src/AppBundle/Resources/views/Expediente/detalleExpediente.html.twig");
     }
 }

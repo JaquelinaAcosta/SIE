@@ -154,7 +154,7 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             not_nuevo_expediente_asociado:
 
             // listado_asociado
-            if (preg_match('#^/expediente/(?P<id>[^/]++)/asociado/listado$#sD', $pathinfo, $matches)) {
+            if (preg_match('#^/expediente/(?P<id>[^/]++)/asociado/listado/(?P<currentPage>[^/]++)$#sD', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, ['_route' => 'listado_asociado']), array (  '_controller' => 'AppBundle\\Controller\\ExpedienteAsociadoController::listaAsociadoAction',));
             }
 
