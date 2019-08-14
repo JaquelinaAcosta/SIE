@@ -102,22 +102,6 @@ class ExpedienteFilterType extends AbstractType implements EmbeddedFilterTypeInt
                 'placeholder' => 'Ejemplo: Jurídico, Varios, Etc.'
             ]
         ));
-//        $builder->add('nroExpediente', 'PUGX\AutocompleterBundle\Form\Type\AutocompleteFilterType', array(
-//            'class' => 'AppBundle:Expediente',
-//            'required' => false,
-//            'attr' => [
-//                'class' => 'form-control',
-//                'placeholder' => 'Ingrese parte del número y seleccione'
-//            ],
-//            'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
-//                if (!empty($values['value'])) {
-//                    $qb = $filterQuery->getQueryBuilder();
-//                    $qb->andWhere($filterQuery->getExpr()->like($field, ':nroExpediente'));
-//                    $qb->setParameter('nroExpediente', '%' . $values['value'] . '%');
-//                }
-//            }
-//        ));
-
 
         $builder->add('estado', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\ChoiceFilterType', array(
             'placeholder'=>'--Seleccione--',

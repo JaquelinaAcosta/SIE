@@ -67,9 +67,7 @@ class DependenciaController extends Controller {
         }
 
         if ($formDependenciaFilter->isValid()) {
-            $filterBuilder = $em->getRepository('AppBundle:Dependencia')->createQueryBuilder('p');
-            $filterBuilder->addOrderBy('p.descripcion', 'ASC');
-            $filterBuilder->addOrderBy('p.dependenciaPadre', 'ASC');
+            $filterBuilder = $em->getRepository('AppBundle:Dependencia')->createDependenciaFilter();
             
             $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($formDependenciaFilter, $filterBuilder);
             $totalItems = count($filterBuilder->getQuery()->getResult());

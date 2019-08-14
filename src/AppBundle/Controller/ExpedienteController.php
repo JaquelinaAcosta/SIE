@@ -111,14 +111,8 @@ class ExpedienteController extends Controller {
         }
 
         if ($formExpedienteFilter->isValid()) {
-            $filterBuilder = $em->getRepository('AppBundle:Expediente')->createQueryBuilder('e');
-            if ($user->getRole() != "ROLE_ADMIN") {
-                $filterBuilder->leftJoin(\AppBundle\Entity\Ubicacion::class, "u", "WITH",
-                                "e.ubicacionActual = u.id")
-                        ->where('u.dependencia= :dependencia')
-//                                ->andWhere('w.id != :expediente_id')
-                        ->setParameter('dependencia', $user->getPersona()->getDependencia());
-            }
+            $filterBuilder = $em->getRepository('AppBundle:Expediente')
+                    ->createExpedienteFilterQuery($user);
             $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($formExpedienteFilter, $filterBuilder);
             $totalItems = count($filterBuilder->getQuery()->getResult());
 
