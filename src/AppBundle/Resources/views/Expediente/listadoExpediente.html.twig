@@ -2,14 +2,14 @@
 
 
 {% block contentmain %}
-    
+
     <style>
         label{
             margin-top:6px;
         }
-        </style>
-    
-    
+    </style>
+
+
     <div class="content">
         <div class="filtro">
             <div class="header"><i class="fas fa-search"></i> <strong>Búsqueda de Expediente</strong></h4>
@@ -58,7 +58,7 @@
                         {{ form_errors(formExpedienteFilter.tipo) }}
                     </div>
                 </div>  
-                 <div class="threecol col-lg-3">
+                <div class="threecol col-lg-3">
                     {{ form_label(formExpedienteFilter.estado, 'ESTADO') }}
                     {{ form_widget(formExpedienteFilter.estado) }}
                     <div class="help-block with-errors">
@@ -66,20 +66,10 @@
                     </div>
                 </div>  
 
-                {# <a class="btn btn-success" role="button" 
-                    href="{{ path('nuevo_expediente') }}">Nuevo</a>#}
-            </div>
-            <hr/>
-
-            <div class="row range">
 
                 <div class="help-block with-errors">
                     {{ form_errors(formExpedienteFilter.fechaInicio) }}
                 </div>
-                
-                 <div class="col-lg-12"> 
-                     {{ form_label(formExpedienteFilter.fechaInicio, 'RANGO FECHA DE INICIO') }}
-                 </div>
                 <div class="threecol col-lg-2">            
                     {{ form_row(formExpedienteFilter.fechaInicio.left_date, { 'id': 'date1' })}} 
                     {{ form_widget(formExpedienteFilter.fechaInicio.left_date) }}
@@ -90,6 +80,10 @@
                     {{ form_widget(formExpedienteFilter.fechaInicio.right_date) }}
 
                 </div>
+
+
+                {# <a class="btn btn-success" role="button" 
+                    href="{{ path('nuevo_expediente') }}">Nuevo</a>#}
             </div>
             <hr/>
             <div class="row">

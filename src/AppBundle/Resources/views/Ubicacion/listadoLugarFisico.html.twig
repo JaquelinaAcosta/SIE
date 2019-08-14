@@ -24,6 +24,17 @@
             <form method="post" novalidate="true" id="form_buscar">
                 {{ form_errors(formLugarFisicoFilter) }}
                 <div class="row">
+
+                    {% if formLugarFisicoFilter.dependencia is defined %}                    
+                        <div class="threecol col-lg-4">
+                            {{ form_label(formLugarFisicoFilter.dependencia, 'DEPENDENCIA') }}
+                            {{ form_widget(formLugarFisicoFilter.dependencia) }}
+                            <div class="help-block with-errors">
+                                {{ form_errors(formLugarFisicoFilter.dependencia) }}
+                            </div>
+                        </div>
+                    {% endif %}
+
                     <div class="threecol col-lg-3">
                         {{ form_label(formLugarFisicoFilter.tipo, 'TIPO') }}
                         {{ form_widget(formLugarFisicoFilter.tipo) }}
@@ -38,16 +49,6 @@
                             {{ form_errors(formLugarFisicoFilter.descripcion) }}
                         </div>
                     </div>
-
-                    {% if formLugarFisicoFilter.dependencia is defined %}                    
-                        <div class="threecol col-lg-4">
-                            {{ form_label(formLugarFisicoFilter.dependencia, 'DEPENDENCIA') }}
-                            {{ form_widget(formLugarFisicoFilter.dependencia) }}
-                            <div class="help-block with-errors">
-                                {{ form_errors(formLugarFisicoFilter.dependencia) }}
-                            </div>
-                        </div>
-                    {% endif %}
                 </div>
                 <hr/>
                 <div class="row">
@@ -61,78 +62,78 @@
             </form>
         </div>
 
-    <hr/>
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success">
-            {{ message }}
-        </div>
-    {% endfor %}
+        <hr/>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
 
-    {% for message in app.flashes('danger') %}
-        <div class="alert alert-danger">
-            {{ message }}
-        </div>
-    {% endfor %}
+        {% for message in app.flashes('danger') %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
 
 
-    <table class="table table-striped">
-        <thead class="thead-dark">
-            <tr>
-                {% if app.user.role == "ROLE_ADMIN" %}
-                    <th scope="col">Lugar de origen</th>
-                    {% endif %}
-                <th scope="col">Tipo</th>
-                <th scope="col">Descripción</th> 
-                <th scope="col">Acceso</th>
-                <th scope="col">Acciones</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for lugarfisico in lugarFisico|reverse %}
+        <table class="table table-striped">
+            <thead class="thead-dark">
                 <tr>
                     {% if app.user.role == "ROLE_ADMIN" %}
-                        <td class="text-default">{{lugarfisico.dependencia.descripcion|e }}</td>
-                    {% endif %}
-                    <td class="text-default">{{lugarfisico.tipo|e }}</td>
-                    <td class="text-default"><p>{{lugarfisico.descripcion|e }}</p></td>
-                    <td class="text-default">{{lugarfisico.acceso|e }}</td>
-                    <td><a class="btn btn-warning" href="{{ path('editar_lugarfisico',{'id':lugarfisico.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit"></i></a>
-                        <a class="btn btn-danger" href="{{ path('borrar_lugarfisico',{'id':lugarfisico.id}) }}"  role="button"><i class="far fa-file-archive" data-toggle="tooltip" data-placement="top" title="Borrar"></i></a></td>
+                        <th scope="col">Lugar de origen</th>
+                        {% endif %}
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Descripción</th> 
+                    <th scope="col">Acceso</th>
+                    <th scope="col">Acciones</th>
                 </tr>
-            {% endfor %}
-
-        </tbody>
-    </table>
-
-    {% if lugarFisico|length < totalItems %}        
-        <ul class="pagination">
-            {%if (thisPage==1)%}           
-            {%else%}
-                {%set thisPage= thisPage-1%}
-            {%endif%}
-
-
-            <li ><a class="page-link" href="{{ path('listado_lugarfisico', {"currentPage": thisPage}) }}">&laquo</a></li>
-                {% for i in 1..maxPages %}
-                <li><a class="page-link"  href="{{ path('listado_lugarfisico', {"currentPage": i}) }}">{{ i }}</a></li>
+            </thead>
+            <tbody>
+                {% for lugarfisico in lugarFisico|reverse %}
+                    <tr>
+                        {% if app.user.role == "ROLE_ADMIN" %}
+                            <td class="text-default">{{lugarfisico.dependencia.descripcion|e }}</td>
+                        {% endif %}
+                        <td class="text-default">{{lugarfisico.tipo|e }}</td>
+                        <td class="text-default"><p>{{lugarfisico.descripcion|e }}</p></td>
+                        <td class="text-default">{{lugarfisico.acceso|e }}</td>
+                        <td><a class="btn btn-warning" href="{{ path('editar_lugarfisico',{'id':lugarfisico.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit"></i></a>
+                            <a class="btn btn-danger" href="{{ path('borrar_lugarfisico',{'id':lugarfisico.id}) }}"  role="button"><i class="far fa-file-archive" data-toggle="tooltip" data-placement="top" title="Borrar"></i></a></td>
+                    </tr>
                 {% endfor %}
 
-            {%if (page==maxPages)%}
-            {%else%}
-                {%set page= page+1%}
-            {%endif%}
-            <li><a class="page-link" href="{{ path('listado_lugarfisico', {"currentPage": page}) }}">&raquo</a></li>
+            </tbody>
+        </table>
 
-        </ul>
+        {% if lugarFisico|length < totalItems %}        
+            <ul class="pagination">
+                {%if (thisPage==1)%}           
+                {%else%}
+                    {%set thisPage= thisPage-1%}
+                {%endif%}
 
-    </div> 
-{%endif%}
 
-<script>
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
-</script>
+                <li ><a class="page-link" href="{{ path('listado_lugarfisico', {"currentPage": thisPage}) }}">&laquo</a></li>
+                    {% for i in 1..maxPages %}
+                    <li><a class="page-link"  href="{{ path('listado_lugarfisico', {"currentPage": i}) }}">{{ i }}</a></li>
+                    {% endfor %}
 
-<hr/>
+                {%if (page==maxPages)%}
+                {%else%}
+                    {%set page= page+1%}
+                {%endif%}
+                <li><a class="page-link" href="{{ path('listado_lugarfisico', {"currentPage": page}) }}">&raquo</a></li>
+
+            </ul>
+
+        </div> 
+    {%endif%}
+
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+
+    <hr/>
 {% endblock %}

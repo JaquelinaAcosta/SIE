@@ -27,7 +27,12 @@ class UsuarioRepository extends \Doctrine\ORM\EntityRepository {
         $qb = $this->getEntityManager()->createQueryBuilder('u');
         $result = $qb->select('u')
                 ->from(\AppBundle\Entity\Usuario::class, 'u')
-                ->innerJoin(\AppBundle\Entity\Dependencia::class, "d")
+                ->innerJoin(\AppBundle\Entity\Persona::class, "p", "WITH",
+                        "u.persona=p.id")    
+                ->innerJoin(\AppBundle\Entity\Ubicacion::class, "ub", "WITH",
+                        "p.id=ub.id")
+                ->innerJoin(\AppBundle\Entity\Dependencia::class, "d", "WITH",
+                        "ub.dependencia=d.id")
                 ->addOrderBy('u.iup', 'ASC');
 
         return $result;

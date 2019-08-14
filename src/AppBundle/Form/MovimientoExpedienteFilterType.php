@@ -30,7 +30,7 @@ class MovimientoExpedienteFilterType extends AbstractType implements EmbeddedFil
             },
             'attr' => [
                 'class' => 'form-control',
-                'placeholder' => 'Ingrese el número de expediente'
+                'placeholder' => 'Buscar por nombre de usuario...'
             ]
         ));
         

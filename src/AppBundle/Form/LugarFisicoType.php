@@ -48,6 +48,7 @@ class LugarFisicoType extends AbstractType
                     "placeholder" => "--Seleccione--",
                     'query_builder' => function (EntityRepository $er) {
                                 return $er->createQueryBuilder('u')
+                                    ->where('u.estado IS NOT NULL')
                                     ->orderBy('u.descripcion', 'ASC');
                             },
                     "class" => 'AppBundle:Dependencia', "attr" => array(
