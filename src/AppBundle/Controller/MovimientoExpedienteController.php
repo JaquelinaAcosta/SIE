@@ -222,5 +222,20 @@ class MovimientoExpedienteController extends Controller {
                     'formMovimientoFilter' => $formMovimientoFilter->createView()
         ));
     }
+    
+    
+    /**
+     * @Route("expediente/{id}/movimiento/detalle", name="ver_movimiento")
+     */
+    public function verMovimientoAction(Request $request, $id) {
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $movimiento = $em->getRepository("AppBundle:MovimientoExpediente")->find($id);
+        
+        // replace this example code with whatever you need
+        return $this->render('AppBundle:Movimiento:detalleMovimiento.html.twig', [
+                    'movimiento' => $movimiento
+        ]);
+    }
 
 }

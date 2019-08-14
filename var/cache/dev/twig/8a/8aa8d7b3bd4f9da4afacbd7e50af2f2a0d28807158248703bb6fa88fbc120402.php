@@ -313,7 +313,9 @@ class __TwigTemplate_79b125a8839e3561f1f1221b6bf9d8b767211763bfbbd4e7975162da093
             // line 147
             if ((($this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "ubicacionActual", []) == $this->getAttribute($context["movimiento"], "ubicacion", [])) && (($context["count"] ?? $this->getContext($context, "count")) == twig_length_filter($this->env, ($context["movimientos"] ?? $this->getContext($context, "movimientos")))))) {
                 // line 148
-                echo "                            <td><a class=\"btn btn-info\" href=\"\"  role=\"button\" title=\"Ver Detalle\"><i class=\"fas fa-search\"></i></a>
+                echo "                            <td><a class=\"btn btn-info\" href=\"";
+                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("ver_movimiento", ["id" => $this->getAttribute($context["movimiento"], "id", [])]), "html", null, true);
+                echo "\"  role=\"button\" title=\"Ver Detalle\"><i class=\"fas fa-search\"></i></a>
                                 <a class=\"btn btn-warning\" href=\"\"  role=\"button\" title=\"Modificar\"><i class=\"fas fa-edit\"></i></a>
                                 <a class=\"btn btn-danger\" href=\"\"  role=\"button\" title=\"Archivar\"><i class=\"fas fa-trash-alt\"></i></a></td>
                                 ";
@@ -433,7 +435,7 @@ class __TwigTemplate_79b125a8839e3561f1f1221b6bf9d8b767211763bfbbd4e7975162da093
 
     public function getDebugInfo()
     {
-        return array (  405 => 185,  395 => 180,  392 => 179,  389 => 178,  386 => 177,  384 => 176,  381 => 175,  370 => 173,  366 => 172,  362 => 171,  358 => 169,  355 => 168,  352 => 167,  347 => 165,  342 => 163,  336 => 159,  329 => 157,  322 => 152,  316 => 148,  314 => 147,  310 => 146,  306 => 145,  302 => 144,  298 => 143,  293 => 142,  287 => 140,  281 => 138,  278 => 137,  276 => 136,  273 => 135,  269 => 134,  266 => 133,  264 => 132,  248 => 118,  238 => 114,  235 => 113,  231 => 112,  228 => 111,  218 => 107,  215 => 106,  211 => 105,  201 => 98,  195 => 95,  191 => 94,  179 => 85,  175 => 84,  168 => 80,  164 => 79,  158 => 76,  151 => 72,  146 => 70,  142 => 69,  135 => 65,  130 => 63,  126 => 62,  120 => 59,  112 => 54,  111 => 53,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  407 => 185,  397 => 180,  394 => 179,  391 => 178,  388 => 177,  386 => 176,  383 => 175,  372 => 173,  368 => 172,  364 => 171,  360 => 169,  357 => 168,  354 => 167,  349 => 165,  344 => 163,  338 => 159,  331 => 157,  324 => 152,  316 => 148,  314 => 147,  310 => 146,  306 => 145,  302 => 144,  298 => 143,  293 => 142,  287 => 140,  281 => 138,  278 => 137,  276 => 136,  273 => 135,  269 => 134,  266 => 133,  264 => 132,  248 => 118,  238 => 114,  235 => 113,  231 => 112,  228 => 111,  218 => 107,  215 => 106,  211 => 105,  201 => 98,  195 => 95,  191 => 94,  179 => 85,  175 => 84,  168 => 80,  164 => 79,  158 => 76,  151 => 72,  146 => 70,  142 => 69,  135 => 65,  130 => 63,  126 => 62,  120 => 59,  112 => 54,  111 => 53,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -593,7 +595,7 @@ class __TwigTemplate_79b125a8839e3561f1f1221b6bf9d8b767211763bfbbd4e7975162da093
                         <td>{{movimiento.usuario}}</td>
                         <td>{{movimiento.fecha|date('d-m-Y')}}</td>
                         {% if (expediente.ubicacionActual == movimiento.ubicacion) and (count == movimientos|length) %}
-                            <td><a class=\"btn btn-info\" href=\"\"  role=\"button\" title=\"Ver Detalle\"><i class=\"fas fa-search\"></i></a>
+                            <td><a class=\"btn btn-info\" href=\"{{ path('ver_movimiento',{'id':movimiento.id}) }}\"  role=\"button\" title=\"Ver Detalle\"><i class=\"fas fa-search\"></i></a>
                                 <a class=\"btn btn-warning\" href=\"\"  role=\"button\" title=\"Modificar\"><i class=\"fas fa-edit\"></i></a>
                                 <a class=\"btn btn-danger\" href=\"\"  role=\"button\" title=\"Archivar\"><i class=\"fas fa-trash-alt\"></i></a></td>
                                 {% else %}
@@ -640,6 +642,6 @@ class __TwigTemplate_79b125a8839e3561f1f1221b6bf9d8b767211763bfbbd4e7975162da093
     })
 </script>
 <hr/>
-{% endblock %}", "AppBundle:Expediente:listadoMovimientos.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/Expediente/listadoMovimientos.html.twig");
+{% endblock %}", "AppBundle:Expediente:listadoMovimientos.html.twig", "/var/www/html/gitSIE/src/AppBundle/Resources/views/Expediente/listadoMovimientos.html.twig");
     }
 }
