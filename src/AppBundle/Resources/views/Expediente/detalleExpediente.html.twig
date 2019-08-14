@@ -71,7 +71,7 @@
                         </span>
                     {% endif %}
                 </a>
-                <a href="{{ path('listado_asociado',{'id':expediente.id}) }}" 
+                <a href="{{ path('listado_asociado',{'id':expediente.id,'currentPage':1}) }}" 
                    class="btn btn-primary" 
                    role="button">EXPEDIENTES ASOCIADOS
                     {% if expediente.expedientesAsociados|length >0 %}

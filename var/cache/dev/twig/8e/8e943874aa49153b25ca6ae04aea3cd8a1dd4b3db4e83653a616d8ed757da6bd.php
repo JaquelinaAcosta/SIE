@@ -82,13 +82,92 @@ class __TwigTemplate_a5748b60bfc0fc50b2211f17757d2ea6b068a394ec4a680bbac375a8e5c
         echo "\">
                     Nuevo Expediente Asociado</a>
             </div>
+                    
             <hr/>
-            
-        </div>
+            <form method=\"post\" novalidate=\"true\" id=\"form_buscar\">
+                    ";
+        // line 29
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(($context["formExpedienteAsociadoFilter"] ?? $this->getContext($context, "formExpedienteAsociadoFilter")), 'errors');
+        echo "
+                    <div class=\"row\">
+                        <div class=\"threecol col-lg-4\">
+                            ";
+        // line 32
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteAsociadoFilter"] ?? $this->getContext($context, "formExpedienteAsociadoFilter")), "expedienteAsociado", []), 'label', ["label" => "EXPEDIENTE"]);
+        echo "
+                            ";
+        // line 33
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteAsociadoFilter"] ?? $this->getContext($context, "formExpedienteAsociadoFilter")), "expedienteAsociado", []), 'widget');
+        echo "
+                            <div class=\"help-block with-errors\">
+                                ";
+        // line 35
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteAsociadoFilter"] ?? $this->getContext($context, "formExpedienteAsociadoFilter")), "expedienteAsociado", []), 'errors');
+        echo "
+                            </div>
+                        </div>
+                        <div class=\"threecol col-lg-4\">
+                            ";
+        // line 39
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteAsociadoFilter"] ?? $this->getContext($context, "formExpedienteAsociadoFilter")), "descripcion", []), 'label', ["label" => "DESCRIPCION"]);
+        echo "
+                            ";
+        // line 40
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteAsociadoFilter"] ?? $this->getContext($context, "formExpedienteAsociadoFilter")), "descripcion", []), 'widget');
+        echo "
+                            <div class=\"help-block with-errors\">
+                                ";
+        // line 42
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteAsociadoFilter"] ?? $this->getContext($context, "formExpedienteAsociadoFilter")), "descripcion", []), 'errors');
+        echo "
+                            </div>
+                        </div> 
+                        <div class=\"threecol col-lg-4\">
+                            ";
+        // line 46
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteAsociadoFilter"] ?? $this->getContext($context, "formExpedienteAsociadoFilter")), "tema", []), 'label', ["label" => "CODIGO DE TEMA"]);
+        echo "
+                            ";
+        // line 47
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteAsociadoFilter"] ?? $this->getContext($context, "formExpedienteAsociadoFilter")), "tema", []), 'widget');
+        echo "
+                            <div class=\"help-block with-errors\">
+                                ";
+        // line 49
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteAsociadoFilter"] ?? $this->getContext($context, "formExpedienteAsociadoFilter")), "tema", []), 'errors');
+        echo "
+                            </div>
+                        </div> 
+                            
+                       
+                    </div>
+
+                    <hr/>
+                    <div class=\"row\">
+                        <div class=\"col-lg-4\">
+                            ";
+        // line 59
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteAsociadoFilter"] ?? $this->getContext($context, "formExpedienteAsociadoFilter")), "filter", []), 'widget');
+        echo "
+                            
+                            ";
+        // line 61
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formExpedienteAsociadoFilter"] ?? $this->getContext($context, "formExpedienteAsociadoFilter")), "reset", []), 'widget');
+        echo "
+                        </div>
+                    </div>
+                        
+                    ";
+        // line 65
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["formExpedienteAsociadoFilter"] ?? $this->getContext($context, "formExpedienteAsociadoFilter")), 'form_end');
+        echo "
+
+                </form> 
+            </div>               
         <hr/>
 
         <table class=\"table table-striped\">
-            <thead>
+            <thead class=\"thead-dark\">
                 <tr>
                     <th scope=\"col\">EXPEDIENTE</th>
                     <th scope=\"col\">DESCRIPCION</th>
@@ -99,34 +178,34 @@ class __TwigTemplate_a5748b60bfc0fc50b2211f17757d2ea6b068a394ec4a680bbac375a8e5c
             <tbody>
 
                 ";
-        // line 42
+        // line 82
         $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "ExpedientesAsociados", []), "getValues", []));
+        $context['_seq'] = twig_ensure_traversable(($context["asociados"] ?? $this->getContext($context, "asociados")));
         foreach ($context['_seq'] as $context["_key"] => $context["expediente_asoc"]) {
-            // line 43
+            // line 83
             echo "                    <tr>
                         <td>";
-            // line 44
+            // line 84
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "html", null, true);
             echo "</td>
                         <td>";
-            // line 45
+            // line 85
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "tema", []), "descripcion", []), "html", null, true);
             echo "</td>
                         <td>";
-            // line 46
+            // line 86
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "tema", []), "codigo", []), "html", null, true);
             echo "</td>
                         <td><a class=\"btn btn-info\" href=\"";
-            // line 47
+            // line 87
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("ver_expediente", ["id" => $this->getAttribute($this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "id", [])]), "html", null, true);
             echo "\"  role=\"button\" title=\"Ver Detalle\"><i class=\"fas fa-search\"></i></a>
                             <a class=\"btn btn-warning\" href=\"";
-            // line 48
+            // line 88
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_expediente", ["id" => $this->getAttribute($this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "id", [])]), "html", null, true);
             echo "\"  role=\"button\" title=\"Modificar\"><i class=\"fas fa-edit\"></i></a>
                             <a class=\"btn btn-danger\" href=\"";
-            // line 49
+            // line 89
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("eliminar_expediente", ["id" => $this->getAttribute($this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "id", [])]), "html", null, true);
             echo "\"  role=\"button\" title=\"Archivar\"><i class=\"fas fa-trash-alt\"></i></a></td>
                     </tr>
@@ -135,19 +214,87 @@ class __TwigTemplate_a5748b60bfc0fc50b2211f17757d2ea6b068a394ec4a680bbac375a8e5c
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['expediente_asoc'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 52
+        // line 92
         echo "
             </tbody>
         </table>
 
     </div>
+                
+    ";
+        // line 98
+        if ((twig_length_filter($this->env, ($context["asociados"] ?? $this->getContext($context, "asociados"))) < ($context["totalItems"] ?? $this->getContext($context, "totalItems")))) {
+            // line 99
+            echo "            <ul class=\"pagination\">
+                ";
+            // line 100
+            if ((($context["thisPage"] ?? $this->getContext($context, "thisPage")) == 1)) {
+                echo "           
+                ";
+            } else {
+                // line 102
+                echo "                    ";
+                $context["thisPage"] = (($context["thisPage"] ?? $this->getContext($context, "thisPage")) - 1);
+                // line 103
+                echo "                ";
+            }
+            // line 104
+            echo "
+
+                <li ><a class=\"page-link\" href=\"";
+            // line 106
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_asociado", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", []), "currentPage" => ($context["thisPage"] ?? $this->getContext($context, "thisPage"))]), "html", null, true);
+            echo "\">&laquo</a></li>
+                    ";
+            // line 107
+            $context['_parent'] = $context;
+            $context['_seq'] = twig_ensure_traversable(range(1, ($context["maxPages"] ?? $this->getContext($context, "maxPages"))));
+            foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
+                // line 108
+                echo "                    <li><a class=\"page-link\"  href=\"";
+                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_asociado", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", []), "currentPage" => $context["i"]]), "html", null, true);
+                echo "\">";
+                echo twig_escape_filter($this->env, $context["i"], "html", null, true);
+                echo "</a></li>
+                    ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 110
+            echo "
+                ";
+            // line 111
+            if ((($context["page"] ?? $this->getContext($context, "page")) == ($context["maxPages"] ?? $this->getContext($context, "maxPages")))) {
+                // line 112
+                echo "
+                ";
+            } else {
+                // line 114
+                echo "                    ";
+                $context["page"] = (($context["page"] ?? $this->getContext($context, "page")) + 1);
+                // line 115
+                echo "                ";
+            }
+            // line 116
+            echo "                <li><a class=\"page-link\" href=\"";
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_asociado", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", []), "currentPage" => ($context["page"] ?? $this->getContext($context, "page"))]), "html", null, true);
+            echo "\">&raquo</a></li>
+
+            </ul>
+        ";
+        }
+        // line 119
+        echo "            
+                
+         
 
     <script>
         \$(function () {
             \$('[data-toggle=\"tooltip\"]').tooltip()
         })
     </script>
-    <hr/>
+
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -169,7 +316,7 @@ class __TwigTemplate_a5748b60bfc0fc50b2211f17757d2ea6b068a394ec4a680bbac375a8e5c
 
     public function getDebugInfo()
     {
-        return array (  139 => 52,  130 => 49,  126 => 48,  122 => 47,  118 => 46,  114 => 45,  110 => 44,  107 => 43,  103 => 42,  81 => 23,  80 => 22,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  288 => 119,  280 => 116,  277 => 115,  274 => 114,  270 => 112,  268 => 111,  265 => 110,  254 => 108,  250 => 107,  246 => 106,  242 => 104,  239 => 103,  236 => 102,  231 => 100,  228 => 99,  226 => 98,  218 => 92,  209 => 89,  205 => 88,  201 => 87,  197 => 86,  193 => 85,  189 => 84,  186 => 83,  182 => 82,  162 => 65,  155 => 61,  150 => 59,  137 => 49,  132 => 47,  128 => 46,  121 => 42,  116 => 40,  112 => 39,  105 => 35,  100 => 33,  96 => 32,  90 => 29,  81 => 23,  80 => 22,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -207,13 +354,53 @@ class __TwigTemplate_a5748b60bfc0fc50b2211f17757d2ea6b068a394ec4a680bbac375a8e5c
                                  {'id':expediente.id}) }}\">
                     Nuevo Expediente Asociado</a>
             </div>
+                    
             <hr/>
-            
-        </div>
+            <form method=\"post\" novalidate=\"true\" id=\"form_buscar\">
+                    {{ form_errors(formExpedienteAsociadoFilter) }}
+                    <div class=\"row\">
+                        <div class=\"threecol col-lg-4\">
+                            {{ form_label(formExpedienteAsociadoFilter.expedienteAsociado, 'EXPEDIENTE') }}
+                            {{ form_widget(formExpedienteAsociadoFilter.expedienteAsociado) }}
+                            <div class=\"help-block with-errors\">
+                                {{ form_errors(formExpedienteAsociadoFilter.expedienteAsociado) }}
+                            </div>
+                        </div>
+                        <div class=\"threecol col-lg-4\">
+                            {{ form_label(formExpedienteAsociadoFilter.descripcion, 'DESCRIPCION') }}
+                            {{ form_widget(formExpedienteAsociadoFilter.descripcion) }}
+                            <div class=\"help-block with-errors\">
+                                {{ form_errors(formExpedienteAsociadoFilter.descripcion) }}
+                            </div>
+                        </div> 
+                        <div class=\"threecol col-lg-4\">
+                            {{ form_label(formExpedienteAsociadoFilter.tema, 'CODIGO DE TEMA') }}
+                            {{ form_widget(formExpedienteAsociadoFilter.tema) }}
+                            <div class=\"help-block with-errors\">
+                                {{ form_errors(formExpedienteAsociadoFilter.tema) }}
+                            </div>
+                        </div> 
+                            
+                       
+                    </div>
+
+                    <hr/>
+                    <div class=\"row\">
+                        <div class=\"col-lg-4\">
+                            {{ form_widget(formExpedienteAsociadoFilter.filter) }}
+                            
+                            {{ form_widget(formExpedienteAsociadoFilter.reset) }}
+                        </div>
+                    </div>
+                        
+                    {{ form_end(formExpedienteAsociadoFilter) }}
+
+                </form> 
+            </div>               
         <hr/>
 
         <table class=\"table table-striped\">
-            <thead>
+            <thead class=\"thead-dark\">
                 <tr>
                     <th scope=\"col\">EXPEDIENTE</th>
                     <th scope=\"col\">DESCRIPCION</th>
@@ -223,7 +410,7 @@ class __TwigTemplate_a5748b60bfc0fc50b2211f17757d2ea6b068a394ec4a680bbac375a8e5c
             </thead>
             <tbody>
 
-                {% for expediente_asoc in expediente.ExpedientesAsociados.getValues %}
+                {% for expediente_asoc in asociados %}
                     <tr>
                         <td>{{expediente_asoc.expedienteAsociado}}</td>
                         <td>{{expediente_asoc.expedienteAsociado.tema.descripcion}}</td>
@@ -238,13 +425,38 @@ class __TwigTemplate_a5748b60bfc0fc50b2211f17757d2ea6b068a394ec4a680bbac375a8e5c
         </table>
 
     </div>
+                
+    {% if asociados|length < totalItems %}
+            <ul class=\"pagination\">
+                {%if (thisPage==1)%}           
+                {%else%}
+                    {%set thisPage= thisPage-1%}
+                {%endif%}
+
+
+                <li ><a class=\"page-link\" href=\"{{ path('listado_asociado', {'id':expediente.id, \"currentPage\": thisPage}) }}\">&laquo</a></li>
+                    {% for i in 1..maxPages %}
+                    <li><a class=\"page-link\"  href=\"{{ path('listado_asociado', {'id':expediente.id, \"currentPage\": i}) }}\">{{ i }}</a></li>
+                    {% endfor %}
+
+                {%if (page==maxPages)%}
+
+                {%else%}
+                    {%set page= page+1%}
+                {%endif%}
+                <li><a class=\"page-link\" href=\"{{ path('listado_asociado', {'id':expediente.id, \"currentPage\": page}) }}\">&raquo</a></li>
+
+            </ul>
+        {% endif %}            
+                
+         
 
     <script>
         \$(function () {
             \$('[data-toggle=\"tooltip\"]').tooltip()
         })
     </script>
-    <hr/>
-{% endblock %}", "AppBundle:Expediente:listadoExpedienteAsociado.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/Expediente/listadoExpedienteAsociado.html.twig");
+
+{% endblock %}", "AppBundle:Expediente:listadoExpedienteAsociado.html.twig", "/var/www/html/gitSIE/src/AppBundle/Resources/views/Expediente/listadoExpedienteAsociado.html.twig");
     }
 }
