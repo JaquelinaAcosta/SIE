@@ -156,23 +156,16 @@ class ExpedienteController extends Controller {
 
         $em = $this->getDoctrine()->getEntityManager();
         $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
-        $AsociadoCount = $em->getRepository('AppBundle:ExpedienteAsociado')->findBy([
+        $expedientes_asociados = $em->getRepository('AppBundle:ExpedienteAsociado')->findBy([
             'expedienteAsociado' => $expediente->getId()]);
         $expediente->setEstado('VISTO');
         $em->persist($expediente);
         $em->flush();
 
-
-        if (count($AsociadoCount) == 0) {
-            $asociado = false;
-        } else {
-            $asociado = true;
-        }
-
         // replace this example code with whatever you need
         return $this->render('AppBundle:Expediente:detalleExpediente.html.twig', [
                     'expediente' => $expediente,
-                    'asociado' => $asociado
+                    'expedientes_asociados'=>$expedientes_asociados
         ]);
     }
 

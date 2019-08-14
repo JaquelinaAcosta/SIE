@@ -30,7 +30,7 @@ class ExpedienteAsociadoFilterType extends AbstractType implements EmbeddedFilte
                 }
             },
             'attr' => ['class' => 'form-control',
-                'placeholder' => 'Ingrese el codigo del tema...']
+                'placeholder' => 'Buscar por el número de expediente..']
         ));
         
             
@@ -46,7 +46,7 @@ class ExpedienteAsociadoFilterType extends AbstractType implements EmbeddedFilte
                 }
             },
             'attr' => ['class' => 'form-control',
-                'placeholder' => 'Ingrese el codigo del tema...']
+                'placeholder' => 'Buscar por descripcion...']
         ));
             
             
@@ -64,21 +64,7 @@ class ExpedienteAsociadoFilterType extends AbstractType implements EmbeddedFilte
             'attr' => ['class' => 'form-control',
                 'placeholder' => 'Ingrese el codigo del tema...']
         ));
-//            
-        
-//           $builder->add('expedienteAsociado', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType', array(
-//            'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
-//                if (!empty($values['value'])) {
-//                    $qb = $filterQuery->getQueryBuilder();
-//                    $qb->andWhere($filterQuery->getExpr()->like($field, ':expedienteAsociado'));
-//                    $qb->setParameter('expedienteAsociado', '%' . $values['value'] . '%');
-//                }
-//            },
-//            'attr' => ['class' => 'form-control',
-//                'placeholder' => 'Búsqueda por concepto...']
-//        ));    
-//            
-            
+//               
         $builder->add('filter', 'Symfony\Component\Form\Extension\Core\Type\SubmitType', array(
             'label' => 'Filtrar',
             'attr' => ['class' => 'btn btn-primary']

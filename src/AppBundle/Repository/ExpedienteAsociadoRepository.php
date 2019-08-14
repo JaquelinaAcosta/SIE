@@ -17,7 +17,9 @@ class ExpedienteAsociadoRepository extends \Doctrine\ORM\EntityRepository
                 ->innerJoin(\AppBundle\Entity\Expediente::class, "e", "WITH",
                         "ea.expedienteAsociado=e.id")
                 ->innerJoin(\AppBundle\Entity\Tema::class, "t", "WITH",
-                        "e.tema=t.id");
+                        "e.tema=t.id")
+                ->where("ea.expedientePadre = :expediente_padre")
+                ->setParameter('expediente_padre',$expediente);
 
         return $result;
     }

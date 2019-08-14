@@ -35,7 +35,9 @@ class UsuarioController extends Controller {
                     
                     if($flush == false){
                         $this->addFlash('success', "Usuario añadido correctamente.");
-                        return $this->redirectToRoute('listado_usuario');
+                        return $this->redirectToRoute('listado_usuario',[
+                            'currentPage'=>1
+                        ]);
                     }else{
                         $this->addFlash('danger', "Ocurrió un error en la creacion del usuario.");
                     }

@@ -14,25 +14,33 @@
 
     </style>
 
-    <div class="formu col-lg-12">
-        <div class="border border-primary">
-            <h3 class="text-center ">AGREGAR EXPEDIENTE ASOCIADO</h3>
-            <hr/>
+    <div class="content">
 
-            {{form_start(form,{'action':'','method':'POST'})}}
-            <div class="col-lg-14">
-                <label class="text-default">EXPEDIENTE ASOCIADO</label>
-                {{ form_errors(form.expedienteAsociado) }}
-                {{ form_widget(form.expedienteAsociado) }}
-                <label class="text-default">ORDEN DE ASOCIACIÓN</label>
-                {{ form_errors(form.ordenAsociacion) }}
-                {{ form_widget(form.ordenAsociacion) }}
-                
-                {{ form_widget(form.Aceptar) }}
-                <a class="btn btn-default" onclick="history.back()"  role="button">Volver</a>
+        <strong>EXPEDIENTE {{ expediente.nroExpediente }}, AGREGAR EXPEDIENTE ASOCIADO</strong>
+        <hr/>
 
-                {{form_end(form)}}    
+        {{form_start(form,{'action':'','method':'POST'})}}
+        <div class="row">
+            <label class="text-default">EXPEDIENTE ASOCIADO</label>
+            {{ form_errors(form.expedienteAsociado) }}
+            {{ form_widget(form.expedienteAsociado) }}
+            <label class="text-default">ORDEN DE ASOCIACIÓN</label>
+            {{ form_errors(form.ordenAsociacion) }}
+            {{ form_widget(form.ordenAsociacion) }}
 
-            </div>
+            {{ form_widget(form.Aceptar) }}
+            <a class="btn btn-default" onclick="history.back()"  role="button">Volver</a>
+
+            {{form_end(form)}}    
+
         </div>
-    {% endblock %}
+    </div>
+
+    <script>
+        $('#expedienteasociado_expedienteAsociado').autocompleter({
+            url_list: "{{ path('expediente_asociado_search',{'id':expediente.id}) }}",
+            url_get: "{{ path('expediente_asociado_get') }}"
+        });
+    </script>
+
+{% endblock %}

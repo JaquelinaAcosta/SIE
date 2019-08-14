@@ -6,7 +6,7 @@
             <table class="table table-bordered"> 
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col"> <i class="fas fa-info-circle "></i> <strong>DETALLE DEL EXPEDIENTE - {{ expediente.nroExpediente}}</th>
+                        <th scope="col"> <i class="fas fa-info-circle "></i> <strong>DETALLE DEL EXPEDIENTE  {{ expediente.nroExpediente}}</th>
                         <th scope="col"> <a href="{{ path('editar_expediente',{'id':expediente.id}) }}" class="right btn btn-warning float-right" data-toggle="tooltip" data-placement="top" title="Editar Expediente"><i class="fas fa-edit"></i></a></th>       
                     </tr>
 
@@ -43,7 +43,21 @@
                     <tr>
                         <th class="w-25">UBICACION ACTUAL</th>
                         <td>{{ expediente.ubicacionActual}}</td>
-                    </tr>                       
+                    </tr>   
+
+                    {% if expedientes_asociados|length>0 %}                        
+                        <tr>
+
+                            <th class="w-25">ASOCIADO A EXPEDIENTE</th>
+                            <td>
+                                {% for exp_asoc in expedientes_asociados %}
+                                    {{ exp_asoc.expedientePadre.nroExpediente}}
+                                    <br/>
+                                {% endfor %}
+                            <td/>
+                        </tr>              
+                    {% endif %}
+
                 </tbody>
                 <tfoot>
             </table>  
@@ -71,16 +85,18 @@
                         </span>
                     {% endif %}
                 </a>
-                <a href="{{ path('listado_asociado',{'id':expediente.id,'currentPage':1}) }}" 
-                   class="btn btn-primary" 
-                   role="button">EXPEDIENTES ASOCIADOS
-                    {% if expediente.expedientesAsociados|length >0 %}
-                        <span class="badge badge-danger badge-pill">
-                            {{ expediente.expedientesAsociados|length }}
-                        </span>
-                    {% endif %}
+                    {% if expedientes_asociados|length == 0 %}
+                    <a href="{{ path('listado_asociado',{'id':expediente.id,'currentPage':1}) }}" 
+                       class="btn btn-primary" 
+                       role="button">EXPEDIENTES ASOCIADOS
+                        {% if expediente.expedientesAsociados|length >0 %}
+                            <span class="badge badge-danger badge-pill">
+                                {{ expediente.expedientesAsociados|length }}
+                            </span>
+                        {% endif %}
 
-                </a>
+                    </a>
+                {% endif %}
                 {% if expediente.resolucion == null %} 
                     <a href="{{ path('nueva_resolucion',{'id':expediente.id}) }}" 
                        class="btn btn-primary" 
