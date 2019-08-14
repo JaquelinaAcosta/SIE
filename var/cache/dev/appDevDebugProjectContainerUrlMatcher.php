@@ -203,6 +203,11 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                 return $this->mergeDefaults(array_replace($matches, ['_route' => 'listado_movimiento']), array (  '_controller' => 'AppBundle\\Controller\\MovimientoExpedienteController::listaMovimientoAction',));
             }
 
+            // ver_movimiento
+            if (preg_match('#^/expediente/(?P<id>[^/]++)/movimiento/detalle$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'ver_movimiento']), array (  '_controller' => 'AppBundle\\Controller\\MovimientoExpedienteController::verMovimientoAction',));
+            }
+
             // nueva_resolucion
             if (preg_match('#^/expediente/(?P<id>[^/]++)/resolucion/?$#sD', $pathinfo, $matches)) {
                 $ret = $this->mergeDefaults(array_replace($matches, ['_route' => 'nueva_resolucion']), array (  '_controller' => 'AppBundle\\Controller\\ResolucionController::indexAction',));
