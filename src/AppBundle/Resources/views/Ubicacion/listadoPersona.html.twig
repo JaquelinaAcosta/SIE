@@ -34,6 +34,18 @@
         .title{
             font-size:16px;
         }
+        .modal-header-warning {
+            color:#fff;
+            padding:9px 15px;
+            border-bottom:1px solid #eee;
+            background-color: #060325;
+            -webkit-border-top-left-radius: 5px;
+            -webkit-border-top-right-radius: 5px;
+            -moz-border-radius-topleft: 5px;
+            -moz-border-radius-topright: 5px;
+             border-top-left-radius: 5px;
+             border-top-right-radius: 5px;
+        }
         p {
             white-space: nowrap;
             overflow: hidden;
@@ -137,9 +149,38 @@
                         <td class="text-default">{{persona.dni|e }}</td>
                         <td class="text-default">{{persona.cargo|e }}</td>
                         <td class="text-default">{{persona.dependencia.descripcion|e }}</td>
-
+                        
                         <td> <a class="btn btn-warning" href="{{ path("editar_persona", {'id':persona.id}) }}"  role="button"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Editar"></i></a>
-                            <a class="btn btn-danger" href="{{ path("eliminar_persona", {'id':persona.id}) }}"  role="button"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></a></td>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></button>    
+                        
+                            
+                        <!-- The Modal -->
+                            <div class="modal fade" id="myModal">
+                              <div class="modal-dialog modal-sm modal-dialog-centered">
+                                <div class="modal-content">
+
+                                  <!-- Modal Header -->
+                                  <div class="modal-header-warning">
+                                    <button type="button" class="close text-danger" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">Eliminar Persona</h4>
+                                  </div>
+
+                                  <!-- Modal body -->
+                                  <div class="modal-body">
+                                    ¿Desea Eliminar a {{persona.nombre|e}} {{ persona.apellido|e}}?
+                                  </div>
+
+                                  <!-- Modal footer -->
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                    <button type="button" class="btn btn-primary"><a class="text-type btn-primary"href="{{ path("eliminar_persona", {'id':persona.id}) }}"  role="button">Si</a></button>                                   
+                                  </div>
+
+                                </div>
+                              </div>
+                            </div>
+                            
+
                     </tr>             
                 {% endfor %}
 

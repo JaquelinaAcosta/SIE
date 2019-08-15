@@ -95,36 +95,6 @@ class PersonaController extends Controller {
         ));
     }
 
-//      /**
-//     * @Route("/persona/listado/{currentPage}", name="listado_persona")
-//     */
-//    public function listaPersonaAction(Request $request, $currentPage ) {
-//
-//        $em = $this->getDoctrine()->getEntityManager();
-//        
-//        $limit = 15;
-//        $user = $this->getUser();
-//        $persona = new Persona();
-//
-//        if ($user->getRole() == "ROLE_ADMIN") {
-//            $persona = $em->getRepository("AppBundle:Persona")->getAllPers($currentPage, $limit);
-//            $totalItems=count($persona);
-//            $maxPages = ceil($totalItems/$limit);
-//        } else {
-//            $this->redirectToRoute('homepage');
-//        }
-//
-//        // replace this example code with whatever you need
-//        return $this->render('AppBundle:Ubicacion:listadoPersona.html.twig', [
-//                    'persona' => $persona,
-//                    'maxPages'=>$maxPages,
-//                    'totalItems'=>$totalItems,
-//                    'thisPage' => $currentPage,
-//                    'page' => $currentPage,
-//        ]);      
-//    }
-//    
-
     /**
      * @Route("/persona/listado/{currentPage}", name="listado_persona")
      */
