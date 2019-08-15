@@ -324,12 +324,20 @@ class __TwigTemplate_79b125a8839e3561f1f1221b6bf9d8b767211763bfbbd4e7975162da093
                 echo "                            <td><a class=\"btn btn-info\" href=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("ver_movimiento", ["id" => $this->getAttribute($context["movimiento"], "id", [])]), "html", null, true);
                 echo "\"  role=\"button\" title=\"Ver Detalle\"><i class=\"fas fa-search\"></i></a>
-                                <a class=\"btn btn-warning\" href=\"\"  role=\"button\" title=\"Modificar\"><i class=\"fas fa-edit\"></i></a>
-                                <a class=\"btn btn-danger\" href=\"\"  role=\"button\" title=\"Archivar\"><i class=\"fas fa-trash-alt\"></i></a></td>
+                                <a class=\"btn btn-warning\" href=\"";
+                // line 152
+                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_movimiento", ["id" => $this->getAttribute($context["movimiento"], "id", [])]), "html", null, true);
+                echo "\"  role=\"button\" title=\"Modificar\"><i class=\"fas fa-edit\"></i></a>
+                                <a class=\"btn btn-danger\" href=\"";
+                // line 153
+                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("eliminar_movimiento", ["id" => $this->getAttribute($context["movimiento"], "id", [])]), "html", null, true);
+                echo "\"  role=\"button\" title=\"Archivar\"><i class=\"fas fa-trash-alt\"></i></a></td>
                                 ";
             } else {
                 // line 155
-                echo "                            <td><a class=\"btn btn-info\" href=\"\"  role=\"button\" title=\"Ver Detalle\"><i class=\"fas fa-search\"></i></a></td>
+                echo "                            <td><a class=\"btn btn-info\" href=\"";
+                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("ver_movimiento", ["id" => $this->getAttribute($context["movimiento"], "id", [])]), "html", null, true);
+                echo "\"  role=\"button\" title=\"Ver Detalle\"><i class=\"fas fa-search\"></i></a></td>
                         ";
             }
             // line 157
@@ -440,7 +448,7 @@ class __TwigTemplate_79b125a8839e3561f1f1221b6bf9d8b767211763bfbbd4e7975162da093
 
     public function getDebugInfo()
     {
-        return array (  412 => 185,  402 => 180,  399 => 179,  396 => 178,  393 => 177,  391 => 176,  388 => 175,  377 => 173,  373 => 172,  369 => 171,  365 => 169,  362 => 168,  359 => 167,  354 => 165,  349 => 163,  343 => 159,  336 => 157,  332 => 155,  324 => 151,  322 => 150,  318 => 149,  314 => 148,  310 => 147,  306 => 146,  301 => 145,  295 => 143,  289 => 141,  286 => 140,  284 => 139,  281 => 138,  277 => 137,  274 => 136,  272 => 135,  256 => 121,  246 => 117,  243 => 116,  239 => 115,  236 => 114,  226 => 110,  223 => 109,  219 => 108,  209 => 101,  203 => 98,  199 => 97,  187 => 88,  183 => 87,  176 => 83,  172 => 82,  166 => 79,  159 => 75,  154 => 73,  150 => 72,  143 => 68,  138 => 66,  134 => 65,  128 => 62,  122 => 58,  116 => 55,  115 => 54,  111 => 52,  109 => 51,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  420 => 185,  410 => 180,  407 => 179,  404 => 178,  401 => 177,  399 => 176,  396 => 175,  385 => 173,  381 => 172,  377 => 171,  373 => 169,  370 => 168,  367 => 167,  362 => 165,  357 => 163,  351 => 159,  344 => 157,  338 => 155,  333 => 153,  329 => 152,  324 => 151,  322 => 150,  318 => 149,  314 => 148,  310 => 147,  306 => 146,  301 => 145,  295 => 143,  289 => 141,  286 => 140,  284 => 139,  281 => 138,  277 => 137,  274 => 136,  272 => 135,  256 => 121,  246 => 117,  243 => 116,  239 => 115,  236 => 114,  226 => 110,  223 => 109,  219 => 108,  209 => 101,  203 => 98,  199 => 97,  187 => 88,  183 => 87,  176 => 83,  172 => 82,  166 => 79,  159 => 75,  154 => 73,  150 => 72,  143 => 68,  138 => 66,  134 => 65,  128 => 62,  122 => 58,  116 => 55,  115 => 54,  111 => 52,  109 => 51,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -604,10 +612,10 @@ class __TwigTemplate_79b125a8839e3561f1f1221b6bf9d8b767211763bfbbd4e7975162da093
                         <td>{{movimiento.fecha|date('d-m-Y')}}</td>
                         {% if (expediente.ubicacionActual == movimiento.ubicacion) and (count == movimientos|length) %}
                             <td><a class=\"btn btn-info\" href=\"{{ path('ver_movimiento',{'id':movimiento.id}) }}\"  role=\"button\" title=\"Ver Detalle\"><i class=\"fas fa-search\"></i></a>
-                                <a class=\"btn btn-warning\" href=\"\"  role=\"button\" title=\"Modificar\"><i class=\"fas fa-edit\"></i></a>
-                                <a class=\"btn btn-danger\" href=\"\"  role=\"button\" title=\"Archivar\"><i class=\"fas fa-trash-alt\"></i></a></td>
+                                <a class=\"btn btn-warning\" href=\"{{ path('editar_movimiento',{'id':movimiento.id}) }}\"  role=\"button\" title=\"Modificar\"><i class=\"fas fa-edit\"></i></a>
+                                <a class=\"btn btn-danger\" href=\"{{path('eliminar_movimiento',{'id':movimiento.id})}}\"  role=\"button\" title=\"Archivar\"><i class=\"fas fa-trash-alt\"></i></a></td>
                                 {% else %}
-                            <td><a class=\"btn btn-info\" href=\"\"  role=\"button\" title=\"Ver Detalle\"><i class=\"fas fa-search\"></i></a></td>
+                            <td><a class=\"btn btn-info\" href=\"{{ path('ver_movimiento',{'id':movimiento.id}) }}\"  role=\"button\" title=\"Ver Detalle\"><i class=\"fas fa-search\"></i></a></td>
                         {% endif %}
                     </tr>
                 {% endfor %}
@@ -647,6 +655,6 @@ class __TwigTemplate_79b125a8839e3561f1f1221b6bf9d8b767211763bfbbd4e7975162da093
     })
 </script>
 <hr/>
-{% endblock %}", "AppBundle:Expediente:listadoMovimientos.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/Expediente/listadoMovimientos.html.twig");
+{% endblock %}", "AppBundle:Expediente:listadoMovimientos.html.twig", "/var/www/html/gitSIE/src/AppBundle/Resources/views/Expediente/listadoMovimientos.html.twig");
     }
 }

@@ -180,6 +180,6 @@ class __TwigTemplate_ed07f0fac41d562c416af6877cc09465a6566e78424b79c17a31aeecc4a
     </script>
     <hr/>
 {% endblock %}
-", "AppBundle:Movimiento:chooser.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/Movimiento/chooser.html.twig");
+", "AppBundle:Movimiento:chooser.html.twig", "/var/www/html/gitSIE/src/AppBundle/Resources/views/Movimiento/chooser.html.twig");
     }
 }
