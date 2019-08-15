@@ -1,0 +1,73 @@
+{% extends "AppBundle::layout.html.twig" %}
+
+{% block contentmain %}
+
+    <style>
+        body{
+            font-size: 11px;
+        }
+        input[type=text]{
+            margin-bottom: 10px;
+            padding:10px;            
+        }
+        input[type=textarea]{
+            margin-bottom: 10px;
+            padding:10px;            
+        }
+        input[type=submit]{
+            margin-bottom: 10px;
+            padding:10px;            
+        }
+
+    </style>
+
+
+    <div class="content">
+        <div class="col-ls-12">
+      <strong>PASE INTERNO, EXPEDIENTE {{ movimiento.expediente }} </strong>
+      <hr/>
+        {{form_start(form,{'action':'' ,'method':'POST'})}}
+        
+        
+        <div class="col-lg-6">
+            <label class="text-default">NOMBRE DE LA PERSONA</label>
+            {{ form_errors(form.persona) }}
+            {{ form_widget(form.persona) }}
+        </div>   
+        <hr/>
+        <div class="col-lg-2">
+            <label class="text-default">FOJAS</label>
+            {{ form_errors(form.fojas) }}
+            {{ form_widget(form.fojas) }}
+        </div>   
+        <div class="col-lg-12">
+            <hr/>
+            <label class="text-default">OBSERVACIONES</label>
+            {{ form_errors(form.observacion) }}
+            {{ form_widget(form.observacion) }}
+        </div>   
+        <div class="col-lg-12">
+            <label class="text-default">COMENTARIO</label>
+            {{ form_errors(form.comentario) }}
+            {{ form_widget(form.comentario) }}
+            <hr/>
+        </div>  
+        <div class="col-lg-3 float left">
+            {{ form_widget(form.Aceptar) }}
+            <a class="btn btn-primary" href="#" onclick="history.back()"  role="button">Volver</a>
+        </div>
+    </div>
+    </div>
+    {{form_end(form)}}
+
+</div>      
+
+<script>
+    $('#movimientoexpediente_persona_nombre').autocompleter({
+        url_list: "{{ path('persona_search_dependencia',{'id':expediente.id}) }}",
+        url_get: "{{ path('persona_get') }}"
+    });
+</script>
+
+
+{% endblock %}

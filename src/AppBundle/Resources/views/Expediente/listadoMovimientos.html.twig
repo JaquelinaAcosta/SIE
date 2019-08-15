@@ -149,10 +149,10 @@
                         <td>{{movimiento.fecha|date('d-m-Y')}}</td>
                         {% if (expediente.ubicacionActual == movimiento.ubicacion) and (count == movimientos|length) %}
                             <td><a class="btn btn-info" href="{{ path('ver_movimiento',{'id':movimiento.id}) }}"  role="button" title="Ver Detalle"><i class="fas fa-search"></i></a>
-                                <a class="btn btn-warning" href=""  role="button" title="Modificar"><i class="fas fa-edit"></i></a>
-                                <a class="btn btn-danger" href=""  role="button" title="Archivar"><i class="fas fa-trash-alt"></i></a></td>
+                                <a class="btn btn-warning" href="{{ path('editar_movimiento',{'id':movimiento.id}) }}"  role="button" title="Modificar"><i class="fas fa-edit"></i></a>
+                                <a class="btn btn-danger" href="{{path('eliminar_movimiento',{'id':movimiento.id})}}"  role="button" title="Archivar"><i class="fas fa-trash-alt"></i></a></td>
                                 {% else %}
-                            <td><a class="btn btn-info" href=""  role="button" title="Ver Detalle"><i class="fas fa-search"></i></a></td>
+                            <td><a class="btn btn-info" href="{{ path('ver_movimiento',{'id':movimiento.id}) }}"  role="button" title="Ver Detalle"><i class="fas fa-search"></i></a></td>
                         {% endif %}
                     </tr>
                 {% endfor %}
