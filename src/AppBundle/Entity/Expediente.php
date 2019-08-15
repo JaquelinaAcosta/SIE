@@ -200,7 +200,6 @@ class Expediente
 
         return $this;
     }
-
     /**
      * Get nroExpediente
      *

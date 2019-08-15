@@ -39,7 +39,7 @@ class LugarFisicoFilterType extends AbstractType implements EmbeddedFilterTypeIn
             'attr' => ['class' => 'form-control', 'placeholder' => 'Metálico, De madera...']
         ));
 
-        if ($role != 'ROLE_USER') {
+        if ($role == 'ROLE_ADMIN') {
             $builder->add('dependencia', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\EntityFilterType', array(
                 'class' => 'AppBundle\Entity\Dependencia',
                 'placeholder' => '--Seleccione--',
