@@ -48,6 +48,7 @@ class ExpedienteController extends Controller {
 //                $expediente->setFechaInicio());
                 $expediente->setFechaInicio($fechaIni);
                 $expediente->setFechaFin($fechaFin);
+                $expediente->setEstado('NUEVO');
 //                foreach ($form['expedientes_asociados']->getData() as $expediente_asoc) {
 //                    $expediente_asoc->setExpedientePadre($expediente);
 //                }
@@ -158,14 +159,17 @@ class ExpedienteController extends Controller {
         $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
         $expedientes_asociados = $em->getRepository('AppBundle:ExpedienteAsociado')->findBy([
             'expedienteAsociado' => $expediente->getId()]);
-        $expediente->setEstado('VISTO');
+        if($expediente->getEstado() != 'ASOCIADO')
+        {
+            $expediente->setEstado('VISTO');
+        }
         $em->persist($expediente);
         $em->flush();
 
         // replace this example code with whatever you need
         return $this->render('AppBundle:Expediente:detalleExpediente.html.twig', [
                     'expediente' => $expediente,
-                    'expedientes_asociados'=>$expedientes_asociados
+                    'expedientes_asociados' => $expedientes_asociados
         ]);
     }
 

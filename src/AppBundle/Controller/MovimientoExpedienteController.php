@@ -9,7 +9,6 @@ use AppBundle\Entity\MovimientoExpediente;
 use AppBundle\Entity\Expediente;
 use AppBundle\Entity\Ubicacion;
 use AppBundle\Form\MovimientoExpedienteFilterType;
-use Symfony\Component\Validator\Constraints\DateTime;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use AppBundle\Form\MovimientoExpedienteType;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -40,39 +39,31 @@ class MovimientoExpedienteController extends Controller {
         $movimientoExpediente = new MovimientoExpediente();
         $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
 
-        $form = $this->createForm(MovimientoExpedienteType::class, $movimientoExpediente, ['pase' => 'interno']);
+        $form = $this->createForm(MovimientoExpedienteType::class,
+                $movimientoExpediente, ['pase' => 'interno']);
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
                 $movimientoExpediente->setUsuario($this->getUser()->getIup());
-                $persona = $em->getRepository("AppBundle:Persona")->find($form['persona']['nombre']->getData()->getId());
+                $persona = $em->getRepository("AppBundle:Persona")
+                        ->find($form['persona']['nombre']->getData()->getId());
                 $movimientoExpediente->setTipoSalida('Interno');
                 $movimientoExpediente->setExpediente($expediente);
                 $fechaHoy = date("d-m-Y");
                 $date = \DateTime::createFromFormat('d-m-Y', $fechaHoy);
                 $movimientoExpediente->setFecha($date);
                 $movimientoExpediente->setUbicacion($persona);
-                
-                  $original_expedientes_asociados = new ArrayCollection();
-                  
-
-                  
-        foreach ($expediente->getExpedientesAsociados() as $expediente_asoc) {
-                    $original_expedientes_asociados->add($expediente_asoc);
-                                      dump($original_expedientes_asociados);die();
-                }
-
 
                 $expediente->getMovimientos()->add($movimientoExpediente);
                 $expediente->setUbicacionActual($persona);
-                $em->persist($expediente);
                 $em->flush();
 
                 $this->addFlash('success', 'Pase hacia ' . $persona . ' exitoso.');
 
                 return $this->redirectToRoute('listado_movimiento',
-                                ['id' => $expediente->getId()]);
+                                ['id' => $expediente->getId(),
+                                    'currentPage' => 1]);
             }
         }
         return $this->render('AppBundle:Movimiento:interno.html.twig', [
@@ -113,6 +104,7 @@ class MovimientoExpedienteController extends Controller {
                 $date = \DateTime::createFromFormat('d-m-Y', $fechaHoy);
                 $movimientoExpediente->setFecha($date);
                 $movimientoExpediente->setUbicacion($mesaentrada);
+     
                 $expediente->getMovimientos()->add($movimientoExpediente);
                 $expediente->setUbicacionActual($mesaentrada);
                 $expediente->setEstado('NUEVO');
@@ -206,7 +198,6 @@ class MovimientoExpedienteController extends Controller {
             $paginator = new Paginator($filterBuilder, $fetchJoinCollection = true);
             $movimientos = $paginator->getQuery()->getResult();
             $maxPages = ceil($totalItems / $limit);
-
         }
 
         if ($formMovimientoFilter->get('reset')->isClicked()) {
@@ -234,8 +225,7 @@ class MovimientoExpedienteController extends Controller {
                     'formMovimientoFilter' => $formMovimientoFilter->createView()
         ));
     }
-    
-    
+
     /**
      * @Route("expediente/{id}/movimiento/detalle", name="ver_movimiento")
      */
@@ -243,7 +233,7 @@ class MovimientoExpedienteController extends Controller {
 
         $em = $this->getDoctrine()->getEntityManager();
         $movimiento = $em->getRepository("AppBundle:MovimientoExpediente")->find($id);
-        
+
         // replace this example code with whatever you need
         return $this->render('AppBundle:Movimiento:detalleMovimiento.html.twig', [
                     'movimiento' => $movimiento

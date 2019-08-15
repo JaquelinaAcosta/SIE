@@ -90,49 +90,78 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
                     </tr>
                     <tr>
                         <th class=\"w-25\">TOTAL DE FOJAS</th>
-                        <td>";
-        // line 25
-        echo twig_escape_filter($this->env, $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "fojas", []), "html", null, true);
-        echo "</td>
+                        <td>
+
+                            ";
+        // line 27
+        $context["fojas"] = $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "fojas", []);
+        // line 28
+        echo "                            
+                            ";
+        // line 29
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "caratulas", []), "getValues", []));
+        foreach ($context['_seq'] as $context["_key"] => $context["caratula"]) {
+            // line 30
+            echo "                                
+                                ";
+            // line 31
+            $context["fojas"] = (($context["fojas"] ?? $this->getContext($context, "fojas")) + $this->getAttribute($context["caratula"], "fojas", []));
+            // line 32
+            echo "
+                            ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['caratula'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 34
+        echo "                            
+                            ";
+        // line 35
+        echo twig_escape_filter($this->env, ($context["fojas"] ?? $this->getContext($context, "fojas")), "html", null, true);
+        echo " (foja iniciales + fojas de caratulas)
+                            
+
+                        </td>
                     </tr>
                     <tr>
                         <th class=\"w-25\">TIPO</th>
                         <td>";
-        // line 29
+        // line 42
         echo twig_escape_filter($this->env, $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "tipo", []), "html", null, true);
         echo "</td>
                     </tr>
                     <tr>
                         <th class=\"w-25\">INICIADOR DEPENDENCIA</th>
                         <td>";
-        // line 33
+        // line 46
         echo twig_escape_filter($this->env, $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "iniciadorDependencia", []), "html", null, true);
         echo "</td>
                     </tr>
                     <tr>
                         <th class=\"w-25 \">FECHA DE INICIO</th>
                         <td>";
-        // line 37
+        // line 50
         echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "fechaInicio", []), "d-m-Y"), "html", null, true);
         echo "</td>
                     </tr>
                     <tr>
                         <th class=\"w-25\">FECHA DE FIN</th>
                         <td>";
-        // line 41
+        // line 54
         echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "fechaFin", []), "d-m-Y"), "html", null, true);
         echo "</td>
                     </tr>
                     <tr>
                         <th class=\"w-25\">UBICACION ACTUAL</th>
                         <td>";
-        // line 45
+        // line 58
         echo twig_escape_filter($this->env, $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "ubicacionActual", []), "html", null, true);
         echo "</td>
                     </tr>   
 
                     ";
-        // line 48
+        // line 61
         if ((twig_length_filter($this->env, ($context["expedientes_asociados"] ?? $this->getContext($context, "expedientes_asociados"))) > 0)) {
             echo "                        
                         <tr>
@@ -140,11 +169,11 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
                             <th class=\"w-25\">ASOCIADO A EXPEDIENTE</th>
                             <td>
                                 ";
-            // line 53
+            // line 66
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable(($context["expedientes_asociados"] ?? $this->getContext($context, "expedientes_asociados")));
             foreach ($context['_seq'] as $context["_key"] => $context["exp_asoc"]) {
-                // line 54
+                // line 67
                 echo "                                    ";
                 echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["exp_asoc"], "expedientePadre", []), "nroExpediente", []), "html", null, true);
                 echo "
@@ -154,12 +183,12 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['exp_asoc'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 57
+            // line 70
             echo "                            <td/>
                         </tr>              
                     ";
         }
-        // line 60
+        // line 73
         echo "
                 </tbody>
                 <tfoot>
@@ -171,84 +200,84 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
         <div class=\"row\">
             <div class=\"btn-group float-left\">
                 <a href=\"";
-        // line 70
+        // line 83
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_movimiento", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", []), "currentPage" => 1]), "html", null, true);
         echo "\" 
                    class=\"btn btn-primary\" 
                    role=\"button\">MOVIMIENTOS
                     ";
-        // line 73
+        // line 86
         if ((twig_length_filter($this->env, $this->getAttribute($this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "movimientos", []), "getValues", [])) > 0)) {
-            // line 74
+            // line 87
             echo "                        <span class=\"badge badge-danger badge-pill\">
                             ";
-            // line 75
+            // line 88
             echo twig_escape_filter($this->env, twig_length_filter($this->env, $this->getAttribute($this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "movimientos", []), "getValues", [])), "html", null, true);
             echo "
                         </span>
                     ";
         }
-        // line 78
+        // line 91
         echo "                </a>
                 <a href=\"";
-        // line 79
+        // line 92
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_caratula", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", []), "currentPage" => 1]), "html", null, true);
         echo "\" 
                    class=\"btn btn-primary\" 
                    role=\"button\">CARATULAS
                     ";
-        // line 82
+        // line 95
         if ((twig_length_filter($this->env, $this->getAttribute($this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "caratulas", []), "getValues", [])) > 0)) {
-            // line 83
+            // line 96
             echo "                        <span class=\"badge badge-danger badge-pill\">
                             ";
-            // line 84
+            // line 97
             echo twig_escape_filter($this->env, twig_length_filter($this->env, $this->getAttribute($this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "caratulas", []), "getValues", [])), "html", null, true);
             echo "
                         </span>
                     ";
         }
-        // line 87
+        // line 100
         echo "                </a>
-                    ";
-        // line 88
+                ";
+        // line 101
         if ((twig_length_filter($this->env, ($context["expedientes_asociados"] ?? $this->getContext($context, "expedientes_asociados"))) == 0)) {
-            // line 89
+            // line 102
             echo "                    <a href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_asociado", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", []), "currentPage" => 1]), "html", null, true);
             echo "\" 
                        class=\"btn btn-primary\" 
                        role=\"button\">EXPEDIENTES ASOCIADOS
                         ";
-            // line 92
+            // line 105
             if ((twig_length_filter($this->env, $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "expedientesAsociados", [])) > 0)) {
-                // line 93
+                // line 106
                 echo "                            <span class=\"badge badge-danger badge-pill\">
                                 ";
-                // line 94
+                // line 107
                 echo twig_escape_filter($this->env, twig_length_filter($this->env, $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "expedientesAsociados", [])), "html", null, true);
                 echo "
                             </span>
                         ";
             }
-            // line 97
+            // line 110
             echo "
                     </a>
                 ";
         }
-        // line 100
+        // line 113
         echo "                ";
         if (($this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "resolucion", []) == null)) {
             echo " 
                     <a href=\"";
-            // line 101
+            // line 114
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nueva_resolucion", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", [])]), "html", null, true);
             echo "\" 
                        class=\"btn btn-primary\" 
                        role=\"button\">RESOLUCION</a>
                 ";
         } else {
-            // line 105
+            // line 118
             echo "                    <a href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("ver_resolucion", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", [])]), "html", null, true);
             echo "\" 
@@ -256,7 +285,7 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
                        role=\"button\">VER RESOLUCIÓN</a>
                 ";
         }
-        // line 109
+        // line 122
         echo "
                 <a class=\"btn btn-primary\" href=\"#\" onclick=\"history.back()\"  role=\"button\">Volver</a>
             </div>            
@@ -289,7 +318,7 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
 
     public function getDebugInfo()
     {
-        return array (  260 => 109,  252 => 105,  245 => 101,  240 => 100,  235 => 97,  229 => 94,  226 => 93,  224 => 92,  217 => 89,  215 => 88,  212 => 87,  206 => 84,  203 => 83,  201 => 82,  195 => 79,  192 => 78,  186 => 75,  183 => 74,  181 => 73,  175 => 70,  163 => 60,  158 => 57,  148 => 54,  144 => 53,  136 => 48,  130 => 45,  123 => 41,  116 => 37,  109 => 33,  102 => 29,  95 => 25,  88 => 21,  81 => 17,  71 => 10,  67 => 9,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  289 => 122,  281 => 118,  274 => 114,  269 => 113,  264 => 110,  258 => 107,  255 => 106,  253 => 105,  246 => 102,  244 => 101,  241 => 100,  235 => 97,  232 => 96,  230 => 95,  224 => 92,  221 => 91,  215 => 88,  212 => 87,  210 => 86,  204 => 83,  192 => 73,  187 => 70,  177 => 67,  173 => 66,  165 => 61,  159 => 58,  152 => 54,  145 => 50,  138 => 46,  131 => 42,  121 => 35,  118 => 34,  111 => 32,  109 => 31,  106 => 30,  102 => 29,  99 => 28,  97 => 27,  88 => 21,  81 => 17,  71 => 10,  67 => 9,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -326,7 +355,20 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
                     </tr>
                     <tr>
                         <th class=\"w-25\">TOTAL DE FOJAS</th>
-                        <td>{{ expediente.fojas}}</td>
+                        <td>
+
+                            {% set fojas = expediente.fojas %}
+                            
+                            {% for caratula in expediente.caratulas.getValues %}
+                                
+                                {% set fojas = fojas+caratula.fojas %}
+
+                            {% endfor %}
+                            
+                            {{ fojas }} (foja iniciales + fojas de caratulas)
+                            
+
+                        </td>
                     </tr>
                     <tr>
                         <th class=\"w-25\">TIPO</th>
@@ -389,7 +431,7 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
                         </span>
                     {% endif %}
                 </a>
-                    {% if expedientes_asociados|length == 0 %}
+                {% if expedientes_asociados|length == 0 %}
                     <a href=\"{{ path('listado_asociado',{'id':expediente.id,'currentPage':1}) }}\" 
                        class=\"btn btn-primary\" 
                        role=\"button\">EXPEDIENTES ASOCIADOS

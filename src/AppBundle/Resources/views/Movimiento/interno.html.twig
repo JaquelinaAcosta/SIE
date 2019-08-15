@@ -63,7 +63,7 @@
 
 <script>
     $('#movimientoexpediente_persona_nombre').autocompleter({
-        url_list: "{{ path('persona_search_dependencia') }}",
+        url_list: "{{ path('persona_search_dependencia',{'id':expediente.id}) }}",
         url_get: "{{ path('persona_get') }}"
     });
 </script>

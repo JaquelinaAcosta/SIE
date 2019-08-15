@@ -27,6 +27,9 @@ class ExpedienteAsociadoController extends Controller {
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
+            $expediente_asoc= $form['expedienteAsociado']->getData();
+            $expediente_asoc->setEstado('ASOCIADO');
             $expedienteAsociado->setExpedientePadre($expediente);
             $expedienteAsociado->setFecha(date("d-m-Y H:i:s"));
             $expediente->getExpedientesAsociados()->add($expedienteAsociado);
@@ -76,19 +79,8 @@ class ExpedienteAsociadoController extends Controller {
         }
 
         if  ($formExpedienteAsociadoFilter->isValid()) {
-//            $filterBuilder = $em->getRepository('AppBundle:ExpedienteAsociado')->createQueryBuilder('ea');
             $filterBuilder = $em->getRepository('AppBundle:ExpedienteAsociado')
                     ->createAsociadoFilterQuery($expediente);
-            
-            
-//            $filterBuilder->innerJoin(\AppBundle\Entity\Expediente::class, "e", "WITH",
-//                                "ea.expedienteAsociado=e.id")
-//                        ->where('ea.expedienteAsociado = :expediente')
-////                                ->andWhere('w.id != :expediente_id')
-//                        ->setParameter('expedienteAsociado', $expediente);
-            
-//            $filterBuilder->addOrderBy('p.tema', 'ASC');
-//            $filterBuilder->addOrderBy('p.concepto', 'ASC');
 
             $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($formExpedienteAsociadoFilter, $filterBuilder);
             $totalItems = count($filterBuilder->getQuery()->getResult());

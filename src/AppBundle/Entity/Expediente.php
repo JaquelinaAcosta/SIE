@@ -103,7 +103,7 @@ class Expediente
     private $resolucion;
 
     /**
-    *@ORM\OneToMany(targetEntity="CaratulaAgregada", mappedBy="expediente")
+    *@ORM\OneToMany(targetEntity="CaratulaAgregada", mappedBy="expediente",cascade={"persist"})
     */
     private $caratulas;
     
@@ -144,6 +144,7 @@ class Expediente
 
     public function __construct(){
         $this->expedientes_asociados = new ArrayCollection();
+        $this->caratulas = new ArrayCollection();
 //        $this->caratulas = new ArrayCollection();
         $this->movimientos = new ArrayCollection();
     }

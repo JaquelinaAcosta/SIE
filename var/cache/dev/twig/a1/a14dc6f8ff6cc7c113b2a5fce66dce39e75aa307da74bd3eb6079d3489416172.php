@@ -157,7 +157,7 @@ class __TwigTemplate_07902573f5080b1de7f519a55de53b23f85bebc0ce477fde3566c982d60
     \$('#movimientoexpediente_persona_nombre').autocompleter({
         url_list: \"";
         // line 66
-        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("persona_search_dependencia");
+        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("persona_search_dependencia", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", [])]), "html", null, true);
         echo "\",
         url_get: \"";
         // line 67
@@ -266,7 +266,7 @@ class __TwigTemplate_07902573f5080b1de7f519a55de53b23f85bebc0ce477fde3566c982d60
 
 <script>
     \$('#movimientoexpediente_persona_nombre').autocompleter({
-        url_list: \"{{ path('persona_search_dependencia') }}\",
+        url_list: \"{{ path('persona_search_dependencia',{'id':expediente.id}) }}\",
         url_get: \"{{ path('persona_get') }}\"
     });
 </script>
