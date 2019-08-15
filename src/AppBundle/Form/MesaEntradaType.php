@@ -9,7 +9,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use AppBundle\Form\MesaEntradaType;
 use Doctrine\ORM\EntityRepository;
 
 class MesaEntradaType extends AbstractType {
@@ -52,6 +51,7 @@ class MesaEntradaType extends AbstractType {
                         'label' => false,
                         'entry_options' => [
                             'label' => false,
+                            'dependencia_id'=>$dependenciaId
                         ],
                         'prototype' => true,
                         'allow_add' => true,

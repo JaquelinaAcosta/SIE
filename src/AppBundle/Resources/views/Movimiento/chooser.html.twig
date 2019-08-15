@@ -17,8 +17,8 @@
     <h4 class="text-center">ELIGA EL TIPO DE PASE A REALIZAR</h4>
     <hr/>
     <div class="panel">
-
-        <a class="btn btn-primary" href="{{ path("movimiento_externo", {'id':expediente.id}) }}"  
+{#       {% if expediente.ubicacionActual %}#}
+        <a class="btn btn-primary disabled" href="{{ path("movimiento_externo", {'id':expediente.id}) }}"  
            role="button" data-toggle="tooltip" data-placement="top" 
            title="Desde una Mesa de Entrada a otra">EXTERNO</a>
 
