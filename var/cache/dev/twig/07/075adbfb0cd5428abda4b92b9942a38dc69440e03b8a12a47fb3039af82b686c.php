@@ -224,6 +224,6 @@ class __TwigTemplate_65d901fed6b6832c0f528287b006c475aacf59261e050888f0d713ab4e7
         })
     </script>
 
-{% endblock %}", "AppBundle:Movimiento:detalleMovimiento.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/Movimiento/detalleMovimiento.html.twig");
+{% endblock %}", "AppBundle:Movimiento:detalleMovimiento.html.twig", "/var/www/html/gitSIE/src/AppBundle/Resources/views/Movimiento/detalleMovimiento.html.twig");
     }
 }
