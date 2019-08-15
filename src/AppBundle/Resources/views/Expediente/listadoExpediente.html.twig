@@ -103,24 +103,24 @@
                 <tr>
                     <th scope="col">NUMERO</th>
                     <th scope="col">TEMA</th>
-                    <th scope="col">UBICACION ACTUAL</th>
-                    <th scope="col">ACCIONES</th>
+                    <th class="text-center" scope="col">UBICACION ACTUAL</th>
+                    <th class="text-center" scope="col">ACCIONES</th>
                 </tr>
             </thead>
             <tbody>
 
                 {% for expediente in expediente|reverse %}
                     <tr>
-                        <td class="text-default">
+                        <td class="">
                             {{expediente.nroExpediente|e }}
                             {% if expediente.estado == 'NUEVO' %}
                                 - <span class="badge badge-pill badge-info">NUEVO</span>
                             {% endif %}
 
                         </td>            
-                        <td class="text-default">{{expediente.tema|e }}</td>         
-                        <td class="text-default">{{expediente.ubicacionActual|e }}</td>
-                        <td><a class="btn btn-info" href="{{ path("ver_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Ver Detalle"><i class="fas fa-search"></i></a>
+                        <td class="">{{expediente.tema|e }}</td>         
+                        <td class="text-center">{{expediente.ubicacionActual|e }}</td>
+                        <td class="text-center"><a class="btn btn-info" href="{{ path("ver_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Ver Detalle"><i class="fas fa-search"></i></a>
                             <a class="btn btn-warning" href="{{ path("editar_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit"></i></a>
                             <a class="btn btn-danger" href="{{ path("eliminar_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt"></i></a></td>
                     </tr>

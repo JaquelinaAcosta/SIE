@@ -22,7 +22,10 @@ class MesaEntradaController extends Controller {
 
         $original_responsables = new ArrayCollection();
 
-        $form = $this->createForm(MesaEntradaType::class, $mesaentrada, ['gestion' => true]);
+        $form = $this->createForm(MesaEntradaType::class, $mesaentrada, [
+            'gestion' => true,
+            'dependencia_id'=>$mesaentrada->getDependencia()->getId()
+            ]);
 
         foreach ($mesaentrada->getResponsables() as $responsable) {
             $original_responsables->add($responsable);
@@ -71,7 +74,8 @@ class MesaEntradaController extends Controller {
 
         $original_responsables = new ArrayCollection();
 
-        $form = $this->createForm(MesaEntradaType::class, $mesaentrada, ['gestion' => true]);
+        $form = $this->createForm(MesaEntradaType::class, $mesaentrada, ['gestion' => true,
+            'dependencia_id'=>$mesaentrada->getDependencia()->getId()]);
 
         foreach ($mesaentrada->getResponsables() as $responsable) {
             $original_responsables->add($responsable);
