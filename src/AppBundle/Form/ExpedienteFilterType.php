@@ -7,8 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Lexik\Bundle\FormFilterBundle\Filter\Form\Type\EmbeddedFilterTypeInterface;
 use Lexik\Bundle\FormFilterBundle\Filter\Query\QueryInterface;
-use Symfony\Component\Validator\Constraints\DateTime;
-use Symfony\Component\Form\Extension\Core\Type\DateIntervalType;
+use Doctrine\ORM\EntityRepository;
 
 class ExpedienteFilterType extends AbstractType implements EmbeddedFilterTypeInterface {
 
@@ -16,6 +15,29 @@ class ExpedienteFilterType extends AbstractType implements EmbeddedFilterTypeInt
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
+
+        if ($options['role'] != null) {
+            $builder->add('dependencia', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\EntityFilterType', array(
+                'class' => 'AppBundle\Entity\Dependencia',
+                'placeholder' => '--Seleccione--',
+                'query_builder' => function (EntityRepository $repositorio) {
+                    return $repositorio
+                                    ->createQueryBuilder('e')
+                                    ->where("e.estado IS NOT NULL")
+                                    ->orderBy('e.descripcion', 'ASC');
+                },
+                'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
+                    if (!empty($values['value'])) {
+                        $qb = $filterQuery->getQueryBuilder();
+                        $qb->andWhere($filterQuery->getExpr()->eq('d.descripcion', ':dependencia'));
+                        $qb->setParameter('dependencia', '' . $values['value'] . '');
+                    }
+                },
+                'attr' => ['class' => 'form-control']
+            ));
+        }
+
+
         $builder->add('nroExpediente', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType', array(
             'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
                 if (!empty($values['value'])) {
@@ -29,21 +51,6 @@ class ExpedienteFilterType extends AbstractType implements EmbeddedFilterTypeInt
                 'placeholder' => 'Ingrese el número de expediente'
             ]
         ));
-//        $builder->add('fechaInicio', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType', array(
-//            'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
-//                if (!empty($values['value'])) {
-//                    $qb = $filterQuery->getQueryBuilder();
-//                    $qb->andWhere($filterQuery->getExpr()->like($field, ':fechaInicio'));
-//                    $qb->setParameter('fechaInicio', '%' . $values['value'] . '%');
-//                }
-//            },
-//            'label' => false,
-//            'attr' => [
-//                'class' => 'datepicker form-control',
-//                'placeholder' => 'Seleccione una fecha'
-//            ]
-//        ));
-
         $builder->add('fechaInicio', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\DateRangeFilterType', array(
             'label' => 'RANGO FECHA DE INICIO',
             'left_date_options' => array(
@@ -104,7 +111,7 @@ class ExpedienteFilterType extends AbstractType implements EmbeddedFilterTypeInt
         ));
 
         $builder->add('estado', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\ChoiceFilterType', array(
-            'placeholder'=>'--Seleccione--',
+            'placeholder' => '--Seleccione--',
             'attr' => [
                 'class' => 'form-control'
             ],
@@ -138,7 +145,8 @@ class ExpedienteFilterType extends AbstractType implements EmbeddedFilterTypeInt
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(
             'csrf_protection' => false,
-            'validation_groups' => array('filtering') // avoid NotBlank() constraint-related message
+            'validation_groups' => array('filtering'), // avoid NotBlank() constraint-related message
+            'role' => null
         ));
     }
 

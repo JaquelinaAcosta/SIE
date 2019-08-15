@@ -105,7 +105,8 @@ class ExpedienteController extends Controller {
         $maxPages = 0;
         $expedientes = array();
 
-        $formExpedienteFilter = $this->createForm(ExpedienteFilterType::class);
+        $formExpedienteFilter = $this->createForm(ExpedienteFilterType::class,
+                $expedientes,['role'=>'ROLE_ADMIN']);
         $formExpedienteFilter->handleRequest($request);
         if ($formExpedienteFilter->isSubmitted() == false && $this->get('session')->get('expediente_listar_request')) {
             $formExpedienteFilter->handleRequest($this->get('session')->get('expediente_listar_request'));

@@ -12,26 +12,30 @@
         }
     </style>
 
- <div class="content">
+    <div class="content">
 
-    <h4 class="text-center">ELIGA EL TIPO DE PASE A REALIZAR</h4>
-    <hr/>
-    <div class="panel">
-{#       {% if expediente.ubicacionActual %}#}
-        <a class="btn btn-primary disabled" href="{{ path("movimiento_externo", {'id':expediente.id}) }}"  
-           role="button" data-toggle="tooltip" data-placement="top" 
-           title="Desde una Mesa de Entrada a otra">EXTERNO</a>
+        <h4 class="text-center">ELIGA EL TIPO DE PASE A REALIZAR</h4>
+        <hr/>
+        <div class="panel">
+            {% if pase_externo == true %}
+                <a class="btn btn-primary" href="{{ path("movimiento_externo", {'id':expediente.id}) }}"  
+                   role="button" data-toggle="tooltip" data-placement="top" 
+                   title="Desde una Mesa de Entrada a otra">EXTERNO</a>
+            {% else %}
+                 <a class="btn btn-primary disabled" href="{{ path("movimiento_externo", {'id':expediente.id}) }}"  
+                   role="button" data-toggle="tooltip" data-placement="top" 
+                   title="Desde una Mesa de Entrada a otra">EXTERNO</a>
+            {% endif %}
+            <a class="btn btn-primary" href="{{ path("movimiento_interno", {'id':expediente.id}) }}"  
+               role="button" data-toggle="tooltip" data-placement="top" 
+               title="Hacia una Persona">INTERNO</a>
 
-        <a class="btn btn-primary" href="{{ path("movimiento_interno", {'id':expediente.id}) }}"  
-           role="button" data-toggle="tooltip" data-placement="top" 
-           title="Hacia una Persona">INTERNO</a>
+            <a class="btn btn-primary" href="{{ path("movimiento_archivado", {'id':expediente.id}) }}"  
+               role="button" data-toggle="tooltip" data-placement="top" 
+               title="Hacia un lugar Físico">ARCHIVADOR</a>
+        </div>
 
-        <a class="btn btn-primary" href="{{ path("movimiento_archivado", {'id':expediente.id}) }}"  
-           role="button" data-toggle="tooltip" data-placement="top" 
-           title="Hacia un lugar Físico">ARCHIVADOR</a>
     </div>
-
- </div>
 
     <script>
         $(function () {

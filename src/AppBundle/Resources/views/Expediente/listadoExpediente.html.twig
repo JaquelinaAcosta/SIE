@@ -37,6 +37,17 @@
             {{ form_start(formExpedienteFilter) }}
             {{ form_errors(formExpedienteFilter) }}
             <div class="row">
+
+                {% if formExpedienteFilter.dependencia is defined %}
+                    <div class="threecol col-lg-4">
+                        {{ form_label(formExpedienteFilter.dependencia, 'DEPENDENCIA') }}
+                        {{ form_widget(formExpedienteFilter.dependencia) }}
+                        <div class="help-block with-errors">
+                            {{ form_errors(formExpedienteFilter.dependencia) }}
+                        </div>
+                    </div>
+                {% endif %}
+
                 <div class="threecol col-lg-4">
                     {{ form_label(formExpedienteFilter.nroExpediente, 'EXPEDIENTE') }}
                     {{ form_widget(formExpedienteFilter.nroExpediente) }}

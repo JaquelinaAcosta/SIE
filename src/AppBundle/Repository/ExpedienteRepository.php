@@ -11,7 +11,8 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
  * repository methods below.
  */
 class ExpedienteRepository extends \Doctrine\ORM\EntityRepository {
-
+    
+    //autocompletado
     public function findExpedientesAsociados($term, $id, $dependencia) {
         $qb = $this->getEntityManager()->createQueryBuilder('e');
         $result = $qb->select('e')
@@ -29,13 +30,14 @@ class ExpedienteRepository extends \Doctrine\ORM\EntityRepository {
                                 ->like('e.nroExpediente', $qb->expr()
                                         ->literal('%' . $term . '%')))
                         ->setParameters([
-                            'expediente_padre'=> $id,
-                            'dependencia'=>$dependencia
-                                ])
+                            'expediente_padre' => $id,
+                            'dependencia' => $dependencia
+                        ])
                         ->setMaxResults(10)->getQuery()->getResult();
         return $result;
     }
-
+    
+    //filtro
     public function createExpedienteFilterQuery($user) {
         $qb = $this->getEntityManager()->createQueryBuilder('e');
         $result = $qb->select('e')
@@ -46,8 +48,12 @@ class ExpedienteRepository extends \Doctrine\ORM\EntityRepository {
                             "e.ubicacionActual = u.id")
                     ->andWhere('u.dependencia= :dependencia')
                     ->setParameter('dependencia', $user->getPersona()->getDependencia());
+        } else {
+            $result->innerJoin(\AppBundle\Entity\Ubicacion::class, "u", "WITH",
+                            "e.ubicacionActual = u.id")
+                    ->innerJoin(\AppBundle\Entity\Dependencia::class, "d", "WITH",
+                            "u.dependencia = d.id");
         }
-
         return $result;
     }
 
