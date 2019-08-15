@@ -39,11 +39,12 @@ class ExpedienteRepository extends \Doctrine\ORM\EntityRepository {
     public function createExpedienteFilterQuery($user) {
         $qb = $this->getEntityManager()->createQueryBuilder('e');
         $result = $qb->select('e')
-                ->from('AppBundle:Expediente', 'e');
+                ->from('AppBundle:Expediente', 'e')
+                ->where("e.estado <>'ASOCIADO'");
         if ($user->getRole() != "ROLE_ADMIN") {
             $result->leftJoin(\AppBundle\Entity\Ubicacion::class, "u", "WITH",
                             "e.ubicacionActual = u.id")
-                    ->where('u.dependencia= :dependencia')
+                    ->andWhere('u.dependencia= :dependencia')
                     ->setParameter('dependencia', $user->getPersona()->getDependencia());
         }
 

@@ -36,6 +36,7 @@ class DependenciaFilterType extends AbstractType implements EmbeddedFilterTypeIn
             'query_builder' => function (EntityRepository $repositorio) {
                 return $repositorio
                                 ->createQueryBuilder('e')
+                                ->where('e.estado IS NOT NULL')
                                 ->orderBy('e.responsable', 'ASC');
             },
             'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {

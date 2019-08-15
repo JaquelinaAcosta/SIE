@@ -48,11 +48,14 @@
         <div class="filtro">
             <div class="header">
                 <i class="fas fa-search"></i> <strong>Búsqueda de Movimientos</strong></h4> 
-                <a role="button" 
-                   class="btn btn-success float-right" 
-                   href="{{ path('elegir_movimiento',
+                {% if expediente.estado != 'ASOCIADO' %}
+                    <a role="button" 
+                       class="btn btn-success float-right" 
+                       href="{{ path('elegir_movimiento',
                                  {'id':expediente.id}) }}">
-                    Nuevo Movimiento</a>
+                        Nuevo Movimiento</a>
+                    {% endif %}
+
             </div>
             <hr/>
             <form method="post" novalidate="true" id="form_buscar">
@@ -150,9 +153,6 @@
                                 <a class="btn btn-danger" href=""  role="button" title="Archivar"><i class="fas fa-trash-alt"></i></a></td>
                                 {% else %}
                             <td><a class="btn btn-info" href=""  role="button" title="Ver Detalle"><i class="fas fa-search"></i></a></td>
-
-
-
                         {% endif %}
                     </tr>
                 {% endfor %}

@@ -28,8 +28,10 @@ class CaratulaAgregadaController extends Controller {
 
         if ($form->isValid()) {
             $caratulaAgregada->setExpediente($expediente);
-            $em->persist($caratulaAgregada);
+            $expediente->getCaratulas()->add($caratulaAgregada);
+            $em->persist($expediente);
             $em->flush();
+            
             return $this->redirectToRoute('ver_expediente', ['id' => $id]);
         }
 
@@ -76,7 +78,7 @@ class CaratulaAgregadaController extends Controller {
         $user = $this->getUser();
 
         if ($form->isSubmitted()) {
-            if ($form->isValid()) {
+            if ($form->isValid()) {               
                 $em->persist($caratulaAgregada);
                 $em->flush();
             }

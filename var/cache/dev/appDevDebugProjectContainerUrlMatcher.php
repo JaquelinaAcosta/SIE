@@ -279,8 +279,8 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                 }
 
                 // persona_search_dependencia
-                if ('/persona_search_dependencia' === $pathinfo) {
-                    return array (  '_controller' => 'AppBundle\\Controller\\DefaultController::searchPersonaByDependenciaAction',  '_route' => 'persona_search_dependencia',);
+                if (0 === strpos($pathinfo, '/persona_search_dependencia') && preg_match('#^/persona_search_dependencia/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'persona_search_dependencia']), array (  '_controller' => 'AppBundle\\Controller\\DefaultController::searchPersonaByDependenciaAction',));
                 }
 
             }

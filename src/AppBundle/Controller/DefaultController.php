@@ -41,12 +41,12 @@ class DefaultController extends Controller {
     }
 
     /**
-     * @Route("/persona_search_dependencia", name="persona_search_dependencia")
+     * @Route("/persona_search_dependencia/{id}", name="persona_search_dependencia")
      */
-    public function searchPersonaByDependenciaAction(Request $request) {
+    public function searchPersonaByDependenciaAction(Request $request,$id) {
         $q = $request->query->get('term'); // use "term" instead of "q" for jquery-ui
         $dependencia = $this->getUser()->getPersona()->getDependencia();
-        $personas = $this->getDoctrine()->getRepository('AppBundle:Persona')->findByDependencia($q, $dependencia);
+        $personas = $this->getDoctrine()->getRepository('AppBundle:Persona')->findByDependencia($q, $dependencia,$id);
         $results = array();
         foreach ($personas as $persona) {
             $results[] = array('id' => $persona->getId(),

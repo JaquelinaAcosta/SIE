@@ -174,6 +174,7 @@ class __TwigTemplate_a5748b60bfc0fc50b2211f17757d2ea6b068a394ec4a680bbac375a8e5c
                 <tr>
                     <th scope=\"col\">EXPEDIENTE</th>
                     <th scope=\"col\">DESCRIPCION</th>
+                    <th scope=\"col\">FOJAS</th>
                     <th scope=\"col\">CODIGO</th>
                     <th scope=\"col\">ACCIONES</th>
                 </tr>
@@ -181,34 +182,38 @@ class __TwigTemplate_a5748b60bfc0fc50b2211f17757d2ea6b068a394ec4a680bbac375a8e5c
             <tbody>
 
                 ";
-        // line 82
+        // line 83
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(($context["asociados"] ?? $this->getContext($context, "asociados")));
         foreach ($context['_seq'] as $context["_key"] => $context["expediente_asoc"]) {
-            // line 83
+            // line 84
             echo "                    <tr>
                         <td>";
-            // line 84
+            // line 85
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "html", null, true);
             echo "</td>
                         <td>";
-            // line 85
+            // line 86
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "tema", []), "descripcion", []), "html", null, true);
             echo "</td>
                         <td>";
-            // line 86
+            // line 87
+            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "fojas", []), "html", null, true);
+            echo "</td>
+                        <td>";
+            // line 88
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "tema", []), "codigo", []), "html", null, true);
             echo "</td>
                         <td><a class=\"btn btn-info\" href=\"";
-            // line 87
+            // line 89
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("ver_expediente", ["id" => $this->getAttribute($this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "id", [])]), "html", null, true);
             echo "\"  role=\"button\" title=\"Ver Detalle\"><i class=\"fas fa-search\"></i></a>
                             <a class=\"btn btn-warning\" href=\"";
-            // line 88
+            // line 90
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_expediente", ["id" => $this->getAttribute($this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "id", [])]), "html", null, true);
             echo "\"  role=\"button\" title=\"Modificar\"><i class=\"fas fa-edit\"></i></a>
                             <a class=\"btn btn-danger\" href=\"";
-            // line 89
+            // line 91
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("eliminar_expediente", ["id" => $this->getAttribute($this->getAttribute($context["expediente_asoc"], "expedienteAsociado", []), "id", [])]), "html", null, true);
             echo "\"  role=\"button\" title=\"Archivar\"><i class=\"fas fa-trash-alt\"></i></a></td>
                     </tr>
@@ -217,7 +222,7 @@ class __TwigTemplate_a5748b60bfc0fc50b2211f17757d2ea6b068a394ec4a680bbac375a8e5c
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['expediente_asoc'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 92
+        // line 94
         echo "
             </tbody>
         </table>
@@ -225,35 +230,35 @@ class __TwigTemplate_a5748b60bfc0fc50b2211f17757d2ea6b068a394ec4a680bbac375a8e5c
     </div>
                 
     ";
-        // line 98
+        // line 100
         if ((twig_length_filter($this->env, ($context["asociados"] ?? $this->getContext($context, "asociados"))) < ($context["totalItems"] ?? $this->getContext($context, "totalItems")))) {
-            // line 99
+            // line 101
             echo "            <ul class=\"pagination\">
                 ";
-            // line 100
+            // line 102
             if ((($context["thisPage"] ?? $this->getContext($context, "thisPage")) == 1)) {
                 echo "           
                 ";
             } else {
-                // line 102
+                // line 104
                 echo "                    ";
                 $context["thisPage"] = (($context["thisPage"] ?? $this->getContext($context, "thisPage")) - 1);
-                // line 103
+                // line 105
                 echo "                ";
             }
-            // line 104
+            // line 106
             echo "
 
                 <li ><a class=\"page-link\" href=\"";
-            // line 106
+            // line 108
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_asociado", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", []), "currentPage" => ($context["thisPage"] ?? $this->getContext($context, "thisPage"))]), "html", null, true);
             echo "\">&laquo</a></li>
                     ";
-            // line 107
+            // line 109
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable(range(1, ($context["maxPages"] ?? $this->getContext($context, "maxPages"))));
             foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
-                // line 108
+                // line 110
                 echo "                    <li><a class=\"page-link\"  href=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_asociado", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", []), "currentPage" => $context["i"]]), "html", null, true);
                 echo "\">";
@@ -264,22 +269,22 @@ class __TwigTemplate_a5748b60bfc0fc50b2211f17757d2ea6b068a394ec4a680bbac375a8e5c
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 110
+            // line 112
             echo "
                 ";
-            // line 111
+            // line 113
             if ((($context["page"] ?? $this->getContext($context, "page")) == ($context["maxPages"] ?? $this->getContext($context, "maxPages")))) {
-                // line 112
+                // line 114
                 echo "
                 ";
             } else {
-                // line 114
+                // line 116
                 echo "                    ";
                 $context["page"] = (($context["page"] ?? $this->getContext($context, "page")) + 1);
-                // line 115
+                // line 117
                 echo "                ";
             }
-            // line 116
+            // line 118
             echo "                <li><a class=\"page-link\" href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_asociado", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", []), "currentPage" => ($context["page"] ?? $this->getContext($context, "page"))]), "html", null, true);
             echo "\">&raquo</a></li>
@@ -287,7 +292,7 @@ class __TwigTemplate_a5748b60bfc0fc50b2211f17757d2ea6b068a394ec4a680bbac375a8e5c
             </ul>
         ";
         }
-        // line 119
+        // line 121
         echo "            
                 
          
@@ -319,7 +324,7 @@ class __TwigTemplate_a5748b60bfc0fc50b2211f17757d2ea6b068a394ec4a680bbac375a8e5c
 
     public function getDebugInfo()
     {
-        return array (  291 => 119,  283 => 116,  280 => 115,  277 => 114,  273 => 112,  271 => 111,  268 => 110,  257 => 108,  253 => 107,  249 => 106,  245 => 104,  242 => 103,  239 => 102,  234 => 100,  231 => 99,  229 => 98,  221 => 92,  212 => 89,  208 => 88,  204 => 87,  200 => 86,  196 => 85,  192 => 84,  189 => 83,  185 => 82,  165 => 65,  158 => 61,  153 => 59,  140 => 49,  135 => 47,  131 => 46,  124 => 42,  119 => 40,  115 => 39,  108 => 35,  103 => 33,  99 => 32,  93 => 29,  84 => 23,  83 => 22,  77 => 19,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  296 => 121,  288 => 118,  285 => 117,  282 => 116,  278 => 114,  276 => 113,  273 => 112,  262 => 110,  258 => 109,  254 => 108,  250 => 106,  247 => 105,  244 => 104,  239 => 102,  236 => 101,  234 => 100,  226 => 94,  217 => 91,  213 => 90,  209 => 89,  205 => 88,  201 => 87,  197 => 86,  193 => 85,  190 => 84,  186 => 83,  165 => 65,  158 => 61,  153 => 59,  140 => 49,  135 => 47,  131 => 46,  124 => 42,  119 => 40,  115 => 39,  108 => 35,  103 => 33,  99 => 32,  93 => 29,  84 => 23,  83 => 22,  77 => 19,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -407,6 +412,7 @@ class __TwigTemplate_a5748b60bfc0fc50b2211f17757d2ea6b068a394ec4a680bbac375a8e5c
                 <tr>
                     <th scope=\"col\">EXPEDIENTE</th>
                     <th scope=\"col\">DESCRIPCION</th>
+                    <th scope=\"col\">FOJAS</th>
                     <th scope=\"col\">CODIGO</th>
                     <th scope=\"col\">ACCIONES</th>
                 </tr>
@@ -417,6 +423,7 @@ class __TwigTemplate_a5748b60bfc0fc50b2211f17757d2ea6b068a394ec4a680bbac375a8e5c
                     <tr>
                         <td>{{expediente_asoc.expedienteAsociado}}</td>
                         <td>{{expediente_asoc.expedienteAsociado.tema.descripcion}}</td>
+                        <td>{{expediente_asoc.expedienteAsociado.fojas}}</td>
                         <td>{{expediente_asoc.expedienteAsociado.tema.codigo}}</td>
                         <td><a class=\"btn btn-info\" href=\"{{ path(\"ver_expediente\", {'id':expediente_asoc.expedienteAsociado.id}) }}\"  role=\"button\" title=\"Ver Detalle\"><i class=\"fas fa-search\"></i></a>
                             <a class=\"btn btn-warning\" href=\"{{ path(\"editar_expediente\", {'id':expediente_asoc.expedienteAsociado.id}) }}\"  role=\"button\" title=\"Modificar\"><i class=\"fas fa-edit\"></i></a>

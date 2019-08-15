@@ -73,6 +73,7 @@
                 <tr>
                     <th scope="col">EXPEDIENTE</th>
                     <th scope="col">DESCRIPCION</th>
+                    <th scope="col">FOJAS</th>
                     <th scope="col">CODIGO</th>
                     <th scope="col">ACCIONES</th>
                 </tr>
@@ -83,6 +84,7 @@
                     <tr>
                         <td>{{expediente_asoc.expedienteAsociado}}</td>
                         <td>{{expediente_asoc.expedienteAsociado.tema.descripcion}}</td>
+                        <td>{{expediente_asoc.expedienteAsociado.fojas}}</td>
                         <td>{{expediente_asoc.expedienteAsociado.tema.codigo}}</td>
                         <td><a class="btn btn-info" href="{{ path("ver_expediente", {'id':expediente_asoc.expedienteAsociado.id}) }}"  role="button" title="Ver Detalle"><i class="fas fa-search"></i></a>
                             <a class="btn btn-warning" href="{{ path("editar_expediente", {'id':expediente_asoc.expedienteAsociado.id}) }}"  role="button" title="Modificar"><i class="fas fa-edit"></i></a>

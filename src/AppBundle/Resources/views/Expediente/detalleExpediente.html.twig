@@ -22,7 +22,20 @@
                     </tr>
                     <tr>
                         <th class="w-25">TOTAL DE FOJAS</th>
-                        <td>{{ expediente.fojas}}</td>
+                        <td>
+
+                            {% set fojas = expediente.fojas %}
+                            
+                            {% for caratula in expediente.caratulas.getValues %}
+                                
+                                {% set fojas = fojas+caratula.fojas %}
+
+                            {% endfor %}
+                            
+                            {{ fojas }} (foja iniciales + fojas de caratulas)
+                            
+
+                        </td>
                     </tr>
                     <tr>
                         <th class="w-25">TIPO</th>
@@ -85,7 +98,7 @@
                         </span>
                     {% endif %}
                 </a>
-                    {% if expedientes_asociados|length == 0 %}
+                {% if expedientes_asociados|length == 0 %}
                     <a href="{{ path('listado_asociado',{'id':expediente.id,'currentPage':1}) }}" 
                        class="btn btn-primary" 
                        role="button">EXPEDIENTES ASOCIADOS
