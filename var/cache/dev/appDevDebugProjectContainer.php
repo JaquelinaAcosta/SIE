@@ -14,16 +14,8 @@ if (!\class_exists(appDevDebugProjectContainer::class, false)) {
     \class_alias(\Container4hvxvxj\appDevDebugProjectContainer::class, appDevDebugProjectContainer::class, false);
 }
 
-<<<<<<< HEAD
-return new \ContainerUbninn3\appDevDebugProjectContainer([
-    'container.build_hash' => 'Ubninn3',
-    'container.build_id' => 'f9af43c3',
-    'container.build_time' => 1565876604,
-], __DIR__.\DIRECTORY_SEPARATOR.'ContainerUbninn3');
-=======
 return new \Container4hvxvxj\appDevDebugProjectContainer([
     'container.build_hash' => '4hvxvxj',
-    'container.build_id' => 'ebdf1419',
-    'container.build_time' => 1565875272,
+    'container.build_id' => '1524a5f9',
+    'container.build_time' => 1565877549,
 ], __DIR__.\DIRECTORY_SEPARATOR.'Container4hvxvxj');
->>>>>>> b690f43504a11978fd650d67807f7b9b29f04a43
