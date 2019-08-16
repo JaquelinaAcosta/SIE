@@ -96,10 +96,9 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                 background-color:#fff;
 
                 padding:30px;
-                -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.12);
-                -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.12);
-                box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.12);
-            }
+              ";
+        // line 55
+        echo "            }
             .filtro{
                 background-color: #e8e8e8;
                 padding:20px;
@@ -116,7 +115,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                 margin-right: 0;
 
             }
-
+            
             table{
                 color:#616161;
             }
@@ -378,7 +377,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     public function getDebugInfo()
     {
-        return array (  359 => 204,  350 => 203,  339 => 194,  330 => 193,  312 => 7,  297 => 211,  290 => 206,  288 => 203,  283 => 200,  277 => 196,  275 => 193,  261 => 182,  242 => 167,  233 => 161,  225 => 156,  216 => 151,  214 => 150,  206 => 145,  193 => 135,  186 => 131,  172 => 119,  169 => 118,  165 => 115,  163 => 114,  67 => 21,  63 => 20,  47 => 7,  39 => 1,);
+        return array (  358 => 204,  349 => 203,  338 => 194,  329 => 193,  311 => 7,  296 => 211,  289 => 206,  287 => 203,  282 => 200,  276 => 196,  274 => 193,  260 => 182,  241 => 167,  232 => 161,  224 => 156,  215 => 151,  213 => 150,  205 => 145,  192 => 135,  185 => 131,  171 => 119,  168 => 118,  164 => 115,  162 => 114,  101 => 55,  67 => 21,  63 => 20,  47 => 7,  39 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -442,9 +441,9 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                 background-color:#fff;
 
                 padding:30px;
-                -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.12);
-                -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.12);
-                box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.12);
+              {#  -webkit-box-shadow: -1px 0px 5px 3px rgba(0,0,0,0.31);
+            -moz-box-shadow: -1px 0px 5px 3px rgba(0,0,0,0.31);
+            box-shadow: -1px 0px 5px 3px rgba(0,0,0,0.31);#}
             }
             .filtro{
                 background-color: #e8e8e8;
@@ -462,7 +461,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                 margin-right: 0;
 
             }
-
+            
             table{
                 color:#616161;
             }

@@ -1,0 +1,66 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * DependenciaRegistro
+ *
+ * @ORM\Table(name="dependencia_registro")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\DependenciaRegistroRepository")
+ */
+class DependenciaRegistro
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="dependencia_id", type="integer")
+     */
+    private $dependenciaId;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set dependenciaId
+     *
+     * @param integer $dependenciaId
+     *
+     * @return DependenciaRegistro
+     */
+    public function setDependenciaId($dependenciaId)
+    {
+        $this->dependenciaId = $dependenciaId;
+
+        return $this;
+    }
+
+    /**
+     * Get dependenciaId
+     *
+     * @return int
+     */
+    public function getDependenciaId()
+    {
+        return $this->dependenciaId;
+    }
+}
+
