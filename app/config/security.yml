@@ -31,11 +31,11 @@ security:
             anonymous: ~
             provider: our_db_provider
             form_login:
-                login_path: /loginUsuario
+                login_path: /login
                 check_path: /login_check
             logout:
                 path: /logout
-                target: /loginUsuario
+                target: /login
                 
                 
     role_hierarchy:

@@ -5,11 +5,6 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-use AppBundle\Entity\Expediente;
-use AppBundle\Entity\Dependencia;
-use AppBundle\Entity\Persona;
-use AppBundle\Entity\MesaEntrada;
-use AppBundle\Form\ExpedienteType;
 
 class PaginaPrincipalController extends Controller {
 
@@ -34,7 +29,7 @@ class PaginaPrincipalController extends Controller {
     }
 
     /**
-     * @Route("/loginUsuario", name="loginUsuario")
+     * @Route("/login", name="loginUsuario")
      */
     public function loginAction(Request $request) {
         // Recupera el servicio de autenticación
