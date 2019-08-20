@@ -122,9 +122,10 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
             .dropdown-menu {display: block;visibility: hidden;opacity:0;transform: translateY(50px);transition:.5s ease all;}
             .dropdown-menu.show {display: block;visibility: visible;opacity:1;transform: translateY(0px);transition:.5s ease all;}
 
+            
+            
         </style>
         <script>
-
             \$.datepicker.regional['es'] = {
                 closeText: 'Cerrar',
                 prevText: '< Ant',
@@ -158,16 +159,16 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     <body>       
         ";
-        // line 114
+        // line 115
         if (($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []) != null)) {
-            // line 115
+            // line 116
             echo "            <header>  
                 <nav class=\"navbar fixed-top navbar-expand-md navbar-dark bg-dark\">
                     ";
-            // line 118
+            // line 119
             echo "                    <a class=\"navbar-brand abs\" href=\"#\"><strong style=\"font-size:16px;\">
                             ";
-            // line 119
+            // line 120
             echo "Sistema de Gestión Interna de Expedientes
                         </strong></a>
                     <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#collapsingNavbar\">
@@ -181,14 +182,14 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                                     <button class=\"btn btn-dark dropdown-toggle right\" type=\"button\" id=\"dropdownMenuMenu\" data-toggle=\"dropdown\"
                                             aria-haspopup=\"true\" aria-expanded=\"false\">
                                         <i class=\"fas fa-user\"></i>  ";
-            // line 131
+            // line 132
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "userName", []), "html", null, true);
             echo "  
                                         </a>        </button>
                                     <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuMenu\">
                                         <a class=\"dropdown-item\" type=\"button\"><i class=\"fab fa-whmcs\"></i>  Configuración</a>
                                         <a class=\"dropdown-item\" href=\"";
-            // line 135
+            // line 136
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("logout");
             echo "\" type=\"button\"><i class=\"fas fa-sign-out-alt\"></i>  Cerrar Sesión</a>
                                     </div>
@@ -201,7 +202,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                 <div class=\"sidebar\"> 
                     <div class=\"list-group\" style=\"margin-top:15px;\">
                         <a href=\"";
-            // line 145
+            // line 146
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_expediente", ["currentPage" => 1]);
             echo "\" class=\"list-group-item list-group-item-action text-center\">
                             <i class=\"far fa-file-alt\" style=\"font-size:27px; margin:0 auto;\"></i>
@@ -209,9 +210,9 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                             Expedientes
                         </a>
                         ";
-            // line 150
+            // line 151
             if (($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "role", []) == "ROLE_ADMIN")) {
-                // line 151
+                // line 152
                 echo "                            <a href=\"";
                 echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_dependencia", ["currentPage" => 1]);
                 echo "\" class=\"list-group-item list-group-item-action text-center\">
@@ -220,7 +221,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                                 Dependencias
                             </a>
                             <a href=\"";
-                // line 156
+                // line 157
                 echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_persona", ["currentPage" => 1]);
                 echo "\" class=\"list-group-item list-group-item-action text-center\">
                                 <i class=\"fas fa-male\" style=\"font-size:27px; margin:0 auto;\"></i>
@@ -228,7 +229,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                                 Personas
                             </a>
                             <a href=\"";
-                // line 161
+                // line 162
                 echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_usuario", ["currentPage" => 1]);
                 echo "\" class=\"list-group-item list-group-item-action text-center\">
                                 <i class=\"fas fa-user\" style=\"font-size:27px; margin:0 auto;\"></i>
@@ -237,7 +238,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                             </a>
                         ";
             }
-            // line 167
+            // line 168
             echo "                        <a href=\"";
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_lugarfisico", ["currentPage" => 1]);
             echo "\" class=\"list-group-item list-group-item-action text-center\">
@@ -256,7 +257,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                             Ayuda
                         </a>
                         <a href=\"";
-            // line 182
+            // line 183
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("logout");
             echo "\" class=\"list-group-item list-group-item-action text-center\">
                             <i class=\"fas fa-sign-out-alt\" style=\"font-size:27px;\"></i>
@@ -270,29 +271,29 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                 <div class=\"contentmain\">
 
                     ";
-            // line 193
+            // line 194
             $this->displayBlock('contentmain', $context, $blocks);
-            // line 196
+            // line 197
             echo "
                 </div>
             </header>
         ";
         } else {
-            // line 200
+            // line 201
             echo "
             <div class=\"login\">
 
                 ";
-            // line 203
+            // line 204
             $this->displayBlock('login', $context, $blocks);
-            // line 206
+            // line 207
             echo "
             </div>
 
 
         ";
         }
-        // line 211
+        // line 212
         echo "
 
     </body>
@@ -325,7 +326,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     }
 
-    // line 193
+    // line 194
     public function block_contentmain($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -334,7 +335,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "contentmain"));
 
-        // line 194
+        // line 195
         echo "
                     ";
         
@@ -345,7 +346,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     }
 
-    // line 203
+    // line 204
     public function block_login($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -354,7 +355,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "login"));
 
-        // line 204
+        // line 205
         echo "
                 ";
         
@@ -377,7 +378,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     public function getDebugInfo()
     {
-        return array (  358 => 204,  349 => 203,  338 => 194,  329 => 193,  311 => 7,  296 => 211,  289 => 206,  287 => 203,  282 => 200,  276 => 196,  274 => 193,  260 => 182,  241 => 167,  232 => 161,  224 => 156,  215 => 151,  213 => 150,  205 => 145,  192 => 135,  185 => 131,  171 => 119,  168 => 118,  164 => 115,  162 => 114,  101 => 55,  67 => 21,  63 => 20,  47 => 7,  39 => 1,);
+        return array (  359 => 205,  350 => 204,  339 => 195,  330 => 194,  312 => 7,  297 => 212,  290 => 207,  288 => 204,  283 => 201,  277 => 197,  275 => 194,  261 => 183,  242 => 168,  233 => 162,  225 => 157,  216 => 152,  214 => 151,  206 => 146,  193 => 136,  186 => 132,  172 => 120,  169 => 119,  165 => 116,  163 => 115,  101 => 55,  67 => 21,  63 => 20,  47 => 7,  39 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -468,9 +469,10 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
             .dropdown-menu {display: block;visibility: hidden;opacity:0;transform: translateY(50px);transition:.5s ease all;}
             .dropdown-menu.show {display: block;visibility: visible;opacity:1;transform: translateY(0px);transition:.5s ease all;}
 
+            
+            
         </style>
         <script>
-
             \$.datepicker.regional['es'] = {
                 closeText: 'Cerrar',
                 prevText: '< Ant',

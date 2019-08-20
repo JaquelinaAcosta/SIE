@@ -139,19 +139,14 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             }
 
             // nuevo_expediente_asociado
-            if (preg_match('#^/expediente/(?P<id>[^/]++)/add/expediente_asociado/?$#sD', $pathinfo, $matches)) {
-                $ret = $this->mergeDefaults(array_replace($matches, ['_route' => 'nuevo_expediente_asociado']), array (  '_controller' => 'AppBundle\\Controller\\ExpedienteAsociadoController::nuevoAction',));
-                if ('/' === substr($pathinfo, -1)) {
-                    // no-op
-                } elseif ('GET' !== $canonicalMethod) {
-                    goto not_nuevo_expediente_asociado;
-                } else {
-                    return array_replace($ret, $this->redirect($rawPathinfo.'/', 'nuevo_expediente_asociado'));
-                }
-
-                return $ret;
+            if (preg_match('#^/expediente/(?P<id>[^/]++)/add/expediente_asociado/(?P<id_asoc>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'nuevo_expediente_asociado']), array (  '_controller' => 'AppBundle\\Controller\\ExpedienteAsociadoController::nuevoAction',));
             }
-            not_nuevo_expediente_asociado:
+
+            // remover_expediente_asociado
+            if (preg_match('#^/expediente/(?P<id>[^/]++)/delete/expediente_asociado/(?P<id_asoc>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'remover_expediente_asociado']), array (  '_controller' => 'AppBundle\\Controller\\ExpedienteAsociadoController::deleteAction',));
+            }
 
             // listado_asociado
             if (preg_match('#^/expediente/(?P<id>[^/]++)/asociado/listado/(?P<currentPage>[^/]++)$#sD', $pathinfo, $matches)) {

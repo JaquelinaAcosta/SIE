@@ -23,7 +23,7 @@ class MovimientoExpedienteController extends Controller {
         $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
         $pase_externo = false;
 
-        if($this->getUser()->getRole() == 'ROLE_RESPONSABLE') {
+        if ($this->getUser()->getRole() == 'ROLE_RESPONSABLE') {
             if (get_class($expediente->getUbicacionActual()) == \AppBundle\Entity\MesaEntrada::class) {
                 $pase_externo = true;
             }
@@ -37,7 +37,7 @@ class MovimientoExpedienteController extends Controller {
         return $this->render('AppBundle:Movimiento:chooser.html.twig', [
                     'form' => $form->createView(),
                     'expediente' => $expediente,
-                    'pase_externo'=>$pase_externo
+                    'pase_externo' => $pase_externo
         ]);
     }
 
@@ -64,8 +64,13 @@ class MovimientoExpedienteController extends Controller {
                 $date = \DateTime::createFromFormat('d-m-Y', $fechaHoy);
                 $movimientoExpediente->setFecha($date);
                 $movimientoExpediente->setUbicacion($persona);
-
+                foreach ($expediente->getExpedientesAsociados()->getValues() as $expediente_asoc) {
+                    $expediente_asoc->getExpedienteAsociado()->setUltimaUbicacion($expediente_asoc
+                                    ->getExpedienteAsociado()->getUbicacionActual());
+                    $expediente_asoc->getExpedienteAsociado()->setUbicacionActual($persona);
+                }
                 $expediente->getMovimientos()->add($movimientoExpediente);
+                $expediente->setUltimaUbicacion($expediente->getUbicacionActual());
                 $expediente->setUbicacionActual($persona);
                 $em->flush();
 
@@ -114,8 +119,13 @@ class MovimientoExpedienteController extends Controller {
                 $date = \DateTime::createFromFormat('d-m-Y', $fechaHoy);
                 $movimientoExpediente->setFecha($date);
                 $movimientoExpediente->setUbicacion($mesaentrada);
-
+                foreach ($expediente->getExpedientesAsociados()->getValues() as $expediente_asoc) {
+                    $expediente_asoc->getExpedienteAsociado()->setUltimaUbicacion($expediente_asoc
+                                    ->getExpedienteAsociado()->getUbicacionActual());
+                    $expediente_asoc->getExpedienteAsociado()->setUbicacionActual($mesaentrada);
+                }
                 $expediente->getMovimientos()->add($movimientoExpediente);
+                $expediente->setUltimaUbicacion($expediente->getUbicacionActual());
                 $expediente->setUbicacionActual($mesaentrada);
                 $expediente->setEstado('NUEVO');
                 $em->persist($expediente);
@@ -156,7 +166,15 @@ class MovimientoExpedienteController extends Controller {
                 $date = \DateTime::createFromFormat('d-m-Y', $fechaHoy);
                 $movimientoExpediente->setFecha($date);
                 $movimientoExpediente->setUbicacion($lugarfisico);
+                foreach ($expediente->getExpedientesAsociados()->getValues() as $expediente_asoc) {
+
+                    $expediente_asoc->getExpedienteAsociado()->setUltimaUbicacion($expediente_asoc
+                                    ->getExpedienteAsociado()->getUbicacionActual());
+                    $expediente_asoc->getExpedienteAsociado()->setUbicacionActual($lugarfisico);
+                }
+
                 $expediente->getMovimientos()->add($movimientoExpediente);
+                $expediente->setUltimaUbicacion($expediente->getUbicacionActual());
                 $expediente->setUbicacionActual($lugarfisico);
                 $em->persist($expediente);
                 $em->flush();
@@ -277,7 +295,8 @@ class MovimientoExpedienteController extends Controller {
                 break;
 
             case('Interno'):
-                $form = $this->createForm(MovimientoExpedienteType::class, $movimiento, ['pase' => 'interno']);
+                $form = $this->createForm(MovimientoExpedienteType::class, 
+                        $movimiento, ['pase' => 'interno']);
                 $form->handleRequest($request);
                 $expediente = $em->getRepository("AppBundle:Expediente")->find($movimiento->getExpediente()->getId());
 
@@ -327,6 +346,7 @@ class MovimientoExpedienteController extends Controller {
 
         $em = $this->getDoctrine()->getEntityManager();
         $movimiento = $em->getRepository("AppBundle:MovimientoExpediente")->find($id);
+        $movimiento->getExpediente()->setUbicacionActual($movimiento->getExpediente()->getUltimaUbicacion());
 
         // replace this example code with whatever you need
         if (!$movimiento) {

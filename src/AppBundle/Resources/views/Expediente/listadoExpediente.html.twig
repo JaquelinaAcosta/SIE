@@ -7,6 +7,20 @@
         label{
             margin-top:6px;
         }
+        .cod{
+            width:60px;
+
+        }
+        .num{
+            width:115px;
+            margin-left:-4px;
+        }
+        .dig{
+            width:35px;
+            margin-left:-32px;
+
+        }
+
     </style>
 
 
@@ -36,8 +50,29 @@
 
             {{ form_start(formExpedienteFilter) }}
             {{ form_errors(formExpedienteFilter) }}
-            <div class="row">
 
+            <label class="text-default">NUMERO DE EXPEDIENTE</label>
+            <div class="row">
+                <div class="threecol col-lg-1">
+                    {{ form_widget(formExpedienteFilter.codigoExpediente) }}
+                    <div class="help-block with-errors">
+                        {{ form_errors(formExpedienteFilter.codigoExpediente) }}
+                    </div>
+                </div>
+                <div class="threecol col-lg-2">
+                    {{ form_widget(formExpedienteFilter.numeroExpediente) }}
+                    <div class="help-block with-errors">
+                        {{ form_errors(formExpedienteFilter.numeroExpediente) }}
+                    </div>
+                </div>
+                <div class="threecol col-lg-1">
+                    {{ form_widget(formExpedienteFilter.digitoExpediente) }}
+                    <div class="help-block with-errors">
+                        {{ form_errors(formExpedienteFilter.digitoExpediente) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 {% if formExpedienteFilter.dependencia is defined %}
                     <div class="threecol col-lg-4">
                         {{ form_label(formExpedienteFilter.dependencia, 'DEPENDENCIA') }}
@@ -47,14 +82,6 @@
                         </div>
                     </div>
                 {% endif %}
-
-                <div class="threecol col-lg-4">
-                    {{ form_label(formExpedienteFilter.nroExpediente, 'EXPEDIENTE') }}
-                    {{ form_widget(formExpedienteFilter.nroExpediente) }}
-                    <div class="help-block with-errors">
-                        {{ form_errors(formExpedienteFilter.nroExpediente) }}
-                    </div>
-                </div>
                 <div class="threecol col-lg-5">
                     {{ form_label(formExpedienteFilter.tema, 'TEMA') }}
                     {{ form_widget(formExpedienteFilter.tema) }}
@@ -89,12 +116,7 @@
                 <div class="threecol col-lg-2">
                     {{ form_row(formExpedienteFilter.fechaInicio.right_date, { 'id': 'date2' })}} 
                     {{ form_widget(formExpedienteFilter.fechaInicio.right_date) }}
-
                 </div>
-
-
-                {# <a class="btn btn-success" role="button" 
-                    href="{{ path('nuevo_expediente') }}">Nuevo</a>#}
             </div>
             <hr/>
             <div class="row">
@@ -119,11 +141,10 @@
                 </tr>
             </thead>
             <tbody>
-
                 {% for expediente in expediente|reverse %}
                     <tr>
                         <td class="">
-                            {{expediente.nroExpediente|e }}
+                            {{expediente.codigoExpediente }}-{{expediente.numeroExpediente }}-{{expediente.digitoExpediente }}
                             {% if expediente.estado == 'NUEVO' %}
                                 - <span class="badge badge-pill badge-info">NUEVO</span>
                             {% endif %}
@@ -131,9 +152,17 @@
                         </td>            
                         <td class="">{{expediente.tema|e }}</td>         
                         <td class="text-center">{{expediente.ubicacionActual|e }}</td>
-                        <td class="text-center"><a class="btn btn-info" href="{{ path("ver_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Ver Detalle"><i class="fas fa-search"></i></a>
-                            <a class="btn btn-warning" href="{{ path("editar_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit"></i></a>
-                            <a class="btn btn-danger" href="{{ path("eliminar_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt"></i></a></td>
+                        {% if asociado == false %}
+                            <td class="text-center"><a class="btn btn-info" href="{{ path("ver_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Ver Detalle"><i class="fas fa-search"></i></a>
+                                <a class="btn btn-warning" href="{{ path("editar_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit"></i></a>
+                                <a class="btn btn-danger" href="{{ path("eliminar_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt"></i></a></td>
+
+                        {% else %}
+                            <td class="text-center"><a class="btn btn-warning" href="{{ path("nuevo_expediente_asociado", {'id':padre_id, 'id_asoc':expediente.id}) }}"  
+                                                       role="button" data-toggle="tooltip" 
+                                                       data-placement="top" title="Asociar"></i>Asociar</a></td>
+
+                        {% endif %}
                     </tr>
                 {% endfor %}
 

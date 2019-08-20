@@ -36,19 +36,40 @@ class ExpedienteFilterType extends AbstractType implements EmbeddedFilterTypeInt
                 'attr' => ['class' => 'form-control']
             ));
         }
-
-
-        $builder->add('nroExpediente', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType', array(
+        $builder->add('codigoExpediente', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType', array(
             'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
                 if (!empty($values['value'])) {
                     $qb = $filterQuery->getQueryBuilder();
-                    $qb->andWhere($filterQuery->getExpr()->like($field, ':nroExpediente'));
-                    $qb->setParameter('nroExpediente', '%' . $values['value'] . '%');
+                    $qb->andWhere($filterQuery->getExpr()->like($field, ':codigoExpediente'));
+                    $qb->setParameter('codigoExpediente', '%' . $values['value'] . '%');
                 }
             },
             'attr' => [
-                'class' => 'form-control',
-                'placeholder' => 'Ingrese el número de expediente'
+                'class' => 'cod form-control',
+            ]
+        ));
+        $builder->add('numeroExpediente', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType', array(
+            'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
+                if (!empty($values['value'])) {
+                    $qb = $filterQuery->getQueryBuilder();
+                    $qb->andWhere($filterQuery->getExpr()->like($field, ':numeroExpediente'));
+                    $qb->setParameter('numeroExpediente', '%' . $values['value'] . '%');
+                }
+            },
+            'attr' => [
+                'class' => 'num form-control',
+            ]
+        ));
+        $builder->add('digitoExpediente', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType', array(
+            'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
+                if (!empty($values['value'])) {
+                    $qb = $filterQuery->getQueryBuilder();
+                    $qb->andWhere($filterQuery->getExpr()->like($field, ':digitoExpediente'));
+                    $qb->setParameter('digitoExpediente', '%' . $values['value'] . '%');
+                }
+            },
+            'attr' => [
+                'class' => 'dig form-control',
             ]
         ));
         $builder->add('fechaInicio', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\DateRangeFilterType', array(

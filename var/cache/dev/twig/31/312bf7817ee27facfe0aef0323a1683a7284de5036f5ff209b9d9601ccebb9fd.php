@@ -62,9 +62,13 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
             <table class=\"table table-bordered\"> 
                 <thead class=\"thead-dark\">
                     <tr>
-                        <th scope=\"col\"> <i class=\"fas fa-info-circle \"></i> <strong>DETALLE DEL EXPEDIENTE  ";
+                        <th scope=\"col\"> <i class=\"fas fa-info-circle \"></i> <strong>DETALLE DEL EXPEDIENTE ";
         // line 9
-        echo twig_escape_filter($this->env, $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "nroExpediente", []), "html", null, true);
+        echo twig_escape_filter($this->env, $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "codigoExpediente", []), "html", null, true);
+        echo "-";
+        echo twig_escape_filter($this->env, $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "numeroExpediente", []), "html", null, true);
+        echo "-";
+        echo twig_escape_filter($this->env, $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "digitoExpediente", []), "html", null, true);
         echo "</th>
                         <th scope=\"col\"> <a href=\"";
         // line 10
@@ -96,14 +100,14 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
         // line 27
         $context["fojas"] = $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "fojas", []);
         // line 28
-        echo "                            
+        echo "
                             ";
         // line 29
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "caratulas", []), "getValues", []));
         foreach ($context['_seq'] as $context["_key"] => $context["caratula"]) {
             // line 30
-            echo "                                
+            echo "
                                 ";
             // line 31
             $context["fojas"] = (($context["fojas"] ?? $this->getContext($context, "fojas")) + $this->getAttribute($context["caratula"], "fojas", []));
@@ -115,12 +119,12 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['caratula'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
         // line 34
-        echo "                            
+        echo "
                             ";
         // line 35
         echo twig_escape_filter($this->env, ($context["fojas"] ?? $this->getContext($context, "fojas")), "html", null, true);
         echo " (foja iniciales + fojas de caratulas)
-                            
+
 
                         </td>
                     </tr>
@@ -153,15 +157,42 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
         echo "</td>
                     </tr>
                     <tr>
-                        <th class=\"w-25\">UBICACION ACTUAL</th>
+                        <th class=\"w-25\">ULTIMO PASE</th>
                         <td>";
         // line 58
-        echo twig_escape_filter($this->env, $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "ubicacionActual", []), "html", null, true);
+        echo twig_escape_filter($this->env, $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "ultimaUbicacion", []), "html", null, true);
         echo "</td>
+                    </tr>  
+                    <tr>
+                        <th class=\"w-25\">UBICACION ACTUAL</th>
+                        <td>
+
+                            ";
+        // line 64
+        if (($this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "ubicacionActual", []) != null)) {
+            // line 65
+            echo "
+                                ";
+            // line 66
+            echo twig_escape_filter($this->env, $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "ubicacionActual", []), "html", null, true);
+            echo "
+
+                            ";
+        } else {
+            // line 69
+            echo "                                
+                                La ubicación actual fue borrada.
+                                
+                            ";
+        }
+        // line 73
+        echo "
+
+                        </td>
                     </tr>   
 
                     ";
-        // line 61
+        // line 78
         if ((twig_length_filter($this->env, ($context["expedientes_asociados"] ?? $this->getContext($context, "expedientes_asociados"))) > 0)) {
             echo "                        
                         <tr>
@@ -169,26 +200,28 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
                             <th class=\"w-25\">ASOCIADO A EXPEDIENTE</th>
                             <td>
                                 ";
-            // line 66
+            // line 83
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable(($context["expedientes_asociados"] ?? $this->getContext($context, "expedientes_asociados")));
             foreach ($context['_seq'] as $context["_key"] => $context["exp_asoc"]) {
-                // line 67
-                echo "                                    ";
-                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["exp_asoc"], "expedientePadre", []), "nroExpediente", []), "html", null, true);
-                echo "
+                // line 84
+                echo "                                    <a href=\"";
+                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("ver_expediente", ["id" => $this->getAttribute($this->getAttribute($context["exp_asoc"], "expedientePadre", []), "id", [])]), "html", null, true);
+                echo "\">";
+                echo twig_escape_filter($this->env, $this->getAttribute($context["exp_asoc"], "expedientePadre", []), "html", null, true);
+                echo "</a> 
                                     <br/>
                                 ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['exp_asoc'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 70
+            // line 87
             echo "                            <td/>
                         </tr>              
                     ";
         }
-        // line 73
+        // line 90
         echo "
                 </tbody>
                 <tfoot>
@@ -200,84 +233,84 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
         <div class=\"row\">
             <div class=\"btn-group float-left\">
                 <a href=\"";
-        // line 83
+        // line 100
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_movimiento", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", []), "currentPage" => 1]), "html", null, true);
         echo "\" 
                    class=\"btn btn-primary\" 
                    role=\"button\">MOVIMIENTOS
                     ";
-        // line 86
+        // line 103
         if ((twig_length_filter($this->env, $this->getAttribute($this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "movimientos", []), "getValues", [])) > 0)) {
-            // line 87
+            // line 104
             echo "                        <span class=\"badge badge-danger badge-pill\">
                             ";
-            // line 88
+            // line 105
             echo twig_escape_filter($this->env, twig_length_filter($this->env, $this->getAttribute($this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "movimientos", []), "getValues", [])), "html", null, true);
             echo "
                         </span>
                     ";
         }
-        // line 91
+        // line 108
         echo "                </a>
                 <a href=\"";
-        // line 92
+        // line 109
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_caratula", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", []), "currentPage" => 1]), "html", null, true);
         echo "\" 
                    class=\"btn btn-primary\" 
                    role=\"button\">CARATULAS
                     ";
-        // line 95
+        // line 112
         if ((twig_length_filter($this->env, $this->getAttribute($this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "caratulas", []), "getValues", [])) > 0)) {
-            // line 96
+            // line 113
             echo "                        <span class=\"badge badge-danger badge-pill\">
                             ";
-            // line 97
+            // line 114
             echo twig_escape_filter($this->env, twig_length_filter($this->env, $this->getAttribute($this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "caratulas", []), "getValues", [])), "html", null, true);
             echo "
                         </span>
                     ";
         }
-        // line 100
+        // line 117
         echo "                </a>
                 ";
-        // line 101
+        // line 118
         if ((twig_length_filter($this->env, ($context["expedientes_asociados"] ?? $this->getContext($context, "expedientes_asociados"))) == 0)) {
-            // line 102
+            // line 119
             echo "                    <a href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_asociado", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", []), "currentPage" => 1]), "html", null, true);
             echo "\" 
                        class=\"btn btn-primary\" 
                        role=\"button\">EXPEDIENTES ASOCIADOS
                         ";
-            // line 105
+            // line 122
             if ((twig_length_filter($this->env, $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "expedientesAsociados", [])) > 0)) {
-                // line 106
+                // line 123
                 echo "                            <span class=\"badge badge-danger badge-pill\">
                                 ";
-                // line 107
+                // line 124
                 echo twig_escape_filter($this->env, twig_length_filter($this->env, $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "expedientesAsociados", [])), "html", null, true);
                 echo "
                             </span>
                         ";
             }
-            // line 110
+            // line 127
             echo "
                     </a>
                 ";
         }
-        // line 113
+        // line 130
         echo "                ";
         if (($this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "resolucion", []) == null)) {
             echo " 
                     <a href=\"";
-            // line 114
+            // line 131
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nueva_resolucion", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", [])]), "html", null, true);
             echo "\" 
                        class=\"btn btn-primary\" 
                        role=\"button\">RESOLUCION</a>
                 ";
         } else {
-            // line 118
+            // line 135
             echo "                    <a href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("ver_resolucion", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", [])]), "html", null, true);
             echo "\" 
@@ -285,7 +318,7 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
                        role=\"button\">VER RESOLUCIÓN</a>
                 ";
         }
-        // line 122
+        // line 139
         echo "
                 <a class=\"btn btn-primary\" href=\"#\" onclick=\"history.back()\"  role=\"button\">Volver</a>
             </div>            
@@ -318,7 +351,7 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
 
     public function getDebugInfo()
     {
-        return array (  289 => 122,  281 => 118,  274 => 114,  269 => 113,  264 => 110,  258 => 107,  255 => 106,  253 => 105,  246 => 102,  244 => 101,  241 => 100,  235 => 97,  232 => 96,  230 => 95,  224 => 92,  221 => 91,  215 => 88,  212 => 87,  210 => 86,  204 => 83,  192 => 73,  187 => 70,  177 => 67,  173 => 66,  165 => 61,  159 => 58,  152 => 54,  145 => 50,  138 => 46,  131 => 42,  121 => 35,  118 => 34,  111 => 32,  109 => 31,  106 => 30,  102 => 29,  99 => 28,  97 => 27,  88 => 21,  81 => 17,  71 => 10,  67 => 9,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  322 => 139,  314 => 135,  307 => 131,  302 => 130,  297 => 127,  291 => 124,  288 => 123,  286 => 122,  279 => 119,  277 => 118,  274 => 117,  268 => 114,  265 => 113,  263 => 112,  257 => 109,  254 => 108,  248 => 105,  245 => 104,  243 => 103,  237 => 100,  225 => 90,  220 => 87,  208 => 84,  204 => 83,  196 => 78,  189 => 73,  183 => 69,  177 => 66,  174 => 65,  172 => 64,  163 => 58,  156 => 54,  149 => 50,  142 => 46,  135 => 42,  125 => 35,  122 => 34,  115 => 32,  113 => 31,  110 => 30,  106 => 29,  103 => 28,  101 => 27,  92 => 21,  85 => 17,  75 => 10,  67 => 9,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -339,7 +372,7 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
             <table class=\"table table-bordered\"> 
                 <thead class=\"thead-dark\">
                     <tr>
-                        <th scope=\"col\"> <i class=\"fas fa-info-circle \"></i> <strong>DETALLE DEL EXPEDIENTE  {{ expediente.nroExpediente}}</th>
+                        <th scope=\"col\"> <i class=\"fas fa-info-circle \"></i> <strong>DETALLE DEL EXPEDIENTE {{expediente.codigoExpediente }}-{{expediente.numeroExpediente }}-{{expediente.digitoExpediente }}</th>
                         <th scope=\"col\"> <a href=\"{{ path('editar_expediente',{'id':expediente.id}) }}\" class=\"right btn btn-warning float-right\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar Expediente\"><i class=\"fas fa-edit\"></i></a></th>       
                     </tr>
 
@@ -358,15 +391,15 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
                         <td>
 
                             {% set fojas = expediente.fojas %}
-                            
+
                             {% for caratula in expediente.caratulas.getValues %}
-                                
+
                                 {% set fojas = fojas+caratula.fojas %}
 
                             {% endfor %}
-                            
+
                             {{ fojas }} (foja iniciales + fojas de caratulas)
-                            
+
 
                         </td>
                     </tr>
@@ -387,8 +420,25 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
                         <td>{{ expediente.fechaFin|date('d-m-Y')}}</td>
                     </tr>
                     <tr>
+                        <th class=\"w-25\">ULTIMO PASE</th>
+                        <td>{{ expediente.ultimaUbicacion}}</td>
+                    </tr>  
+                    <tr>
                         <th class=\"w-25\">UBICACION ACTUAL</th>
-                        <td>{{ expediente.ubicacionActual}}</td>
+                        <td>
+
+                            {% if expediente.ubicacionActual != null %}
+
+                                {{ expediente.ubicacionActual}}
+
+                            {% else %}
+                                
+                                La ubicación actual fue borrada.
+                                
+                            {% endif %}
+
+
+                        </td>
                     </tr>   
 
                     {% if expedientes_asociados|length>0 %}                        
@@ -397,7 +447,7 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
                             <th class=\"w-25\">ASOCIADO A EXPEDIENTE</th>
                             <td>
                                 {% for exp_asoc in expedientes_asociados %}
-                                    {{ exp_asoc.expedientePadre.nroExpediente}}
+                                    <a href=\"{{ path('ver_expediente',{'id':exp_asoc.expedientePadre.id}) }}\">{{ exp_asoc.expedientePadre}}</a> 
                                     <br/>
                                 {% endfor %}
                             <td/>

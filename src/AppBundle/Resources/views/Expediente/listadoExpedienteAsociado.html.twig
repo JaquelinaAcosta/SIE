@@ -2,12 +2,25 @@
 
 {% block contentmain %}
     <style>
-       
+
         p {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
             max-width: 200px;
+        }
+
+        .modal-header-warning {
+            color:#fff;
+            padding:9px 15px;
+            border-bottom:1px solid #eee;
+            background-color: #060325;
+            -webkit-border-top-left-radius: 5px;
+            -webkit-border-top-right-radius: 5px;
+            -moz-border-radius-topleft: 5px;
+            -moz-border-radius-topright: 5px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
         }
 
     </style>
@@ -16,58 +29,70 @@
     <div class="content">
         <div class="filtro">
             <div class="header">
-                <i class="fas fa-search"></i> Búsqueda de Expediente Asociado. Expediente - {{ expediente.nroExpediente }}</h4> 
-            <a role="button" 
-               class="btn btn-success float-right" 
-                    href="{{ path('nuevo_expediente_asociado',
-                                 {'id':expediente.id}) }}">
+                <i class="fas fa-search"></i> Búsqueda de Expediente Asociado. Expediente - {{expediente.codigoExpediente }}-{{expediente.numeroExpediente }}-{{expediente.digitoExpediente }}</h4> 
+                <a role="button" 
+                   class="btn btn-success float-right" 
+                   href="{{ path('listado_expediente',
+                                 {'currentPage':1,'modo':'asociado','padre_id':expediente.id}) }}">
                     Nuevo Expediente Asociado</a>
             </div>
-                    
+
             <hr/>
             <form method="post" novalidate="true" id="form_buscar">
-                    {{ form_errors(formExpedienteAsociadoFilter) }}
-                    <div class="row">
-                        <div class="threecol col-lg-4">
-                            {{ form_label(formExpedienteAsociadoFilter.expedienteAsociado, 'EXPEDIENTE') }}
-                            {{ form_widget(formExpedienteAsociadoFilter.expedienteAsociado) }}
-                            <div class="help-block with-errors">
-                                {{ form_errors(formExpedienteAsociadoFilter.expedienteAsociado) }}
-                            </div>
-                        </div>
-                        <div class="threecol col-lg-4">
-                            {{ form_label(formExpedienteAsociadoFilter.descripcion, 'DESCRIPCION') }}
-                            {{ form_widget(formExpedienteAsociadoFilter.descripcion) }}
-                            <div class="help-block with-errors">
-                                {{ form_errors(formExpedienteAsociadoFilter.descripcion) }}
-                            </div>
-                        </div> 
-                        <div class="threecol col-lg-4">
-                            {{ form_label(formExpedienteAsociadoFilter.tema, 'CODIGO DE TEMA') }}
-                            {{ form_widget(formExpedienteAsociadoFilter.tema) }}
-                            <div class="help-block with-errors">
-                                {{ form_errors(formExpedienteAsociadoFilter.tema) }}
-                            </div>
-                        </div> 
-                            
-                       
-                    </div>
-
-                    <hr/>
-                    <div class="row">
-                        <div class="col-lg-4">
-                            {{ form_widget(formExpedienteAsociadoFilter.filter) }}
-                            
-                            {{ form_widget(formExpedienteAsociadoFilter.reset) }}
+                {{ form_errors(formExpedienteAsociadoFilter) }}
+                <div class="row">
+                    <div class="threecol col-lg-4">
+                        {{ form_label(formExpedienteAsociadoFilter.expedienteAsociado, 'EXPEDIENTE') }}
+                        {{ form_widget(formExpedienteAsociadoFilter.expedienteAsociado) }}
+                        <div class="help-block with-errors">
+                            {{ form_errors(formExpedienteAsociadoFilter.expedienteAsociado) }}
                         </div>
                     </div>
-                        
-                    {{ form_end(formExpedienteAsociadoFilter) }}
+                    <div class="threecol col-lg-4">
+                        {{ form_label(formExpedienteAsociadoFilter.descripcion, 'DESCRIPCION') }}
+                        {{ form_widget(formExpedienteAsociadoFilter.descripcion) }}
+                        <div class="help-block with-errors">
+                            {{ form_errors(formExpedienteAsociadoFilter.descripcion) }}
+                        </div>
+                    </div> 
+                    <div class="threecol col-lg-4">
+                        {{ form_label(formExpedienteAsociadoFilter.tema, 'CODIGO DE TEMA') }}
+                        {{ form_widget(formExpedienteAsociadoFilter.tema) }}
+                        <div class="help-block with-errors">
+                            {{ form_errors(formExpedienteAsociadoFilter.tema) }}
+                        </div>
+                    </div> 
 
-                </form> 
-            </div>               
+
+                </div>
+
+                <hr/>
+                <div class="row">
+                    <div class="col-lg-4">
+                        {{ form_widget(formExpedienteAsociadoFilter.filter) }}
+
+                        {{ form_widget(formExpedienteAsociadoFilter.reset) }}
+                    </div>
+                </div>
+
+                {{ form_end(formExpedienteAsociadoFilter) }}
+
+            </form> 
+        </div>               
         <hr/>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+            <hr/>
+        {% endfor %}
 
+        {% for message in app.flashes('danger') %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+            <hr/>
+        {% endfor %}
         <table class="table table-striped">
             <thead class="thead-dark">
                 <tr>
@@ -88,7 +113,39 @@
                         <td>{{expediente_asoc.expedienteAsociado.tema.codigo}}</td>
                         <td><a class="btn btn-info" href="{{ path("ver_expediente", {'id':expediente_asoc.expedienteAsociado.id}) }}"  role="button" title="Ver Detalle"><i class="fas fa-search"></i></a>
                             <a class="btn btn-warning" href="{{ path("editar_expediente", {'id':expediente_asoc.expedienteAsociado.id}) }}"  role="button" title="Modificar"><i class="fas fa-edit"></i></a>
-                            <a class="btn btn-danger" href="{{ path("eliminar_expediente", {'id':expediente_asoc.expedienteAsociado.id}) }}"  role="button" title="Archivar"><i class="fas fa-trash-alt"></i></a></td>
+                                {#                            <a class="btn btn-danger" href="{{ path("remover_expediente_asociado", {'id':padre_id, 'id_asoc':expediente_asoc.expedienteAsociado.id}) }}"  role="button" title="Archivar"><i class="fas fa-trash-alt"></i></a>#}
+
+
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></button>    
+
+
+                            <!-- The Modal -->
+                            <div class="modal fade" id="myModal">
+                                <div class="modal-dialog modal-sm modal-dialog-centered">
+                                    <div class="modal-content">
+
+                                        <!-- Modal Header -->
+                                        <div class="modal-header-warning">
+                                            <button type="button" class="close text-danger" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title">Eliminar Persona</h4>
+                                        </div>
+
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            ¿Está seguro de quitar el expediente asociado {{expediente_asoc.expedienteAsociado}}?
+                                        </div>
+
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">                                          
+                                            <button type="button" class="btn btn-primary"><a class="text-type btn-primary"href="{{ path("remover_expediente_asociado", {'id':padre_id, 'id_asoc':expediente_asoc.expedienteAsociado.id}) }}"  role="button">Si</a></button>                                   
+                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </td>
                     </tr>
                 {% endfor %}
 
@@ -96,31 +153,31 @@
         </table>
 
     </div>
-                
+
     {% if asociados|length < totalItems %}
-            <ul class="pagination">
-                {%if (thisPage==1)%}           
-                {%else%}
-                    {%set thisPage= thisPage-1%}
-                {%endif%}
+        <ul class="pagination">
+            {%if (thisPage==1)%}           
+            {%else%}
+                {%set thisPage= thisPage-1%}
+            {%endif%}
 
 
-                <li ><a class="page-link" href="{{ path('listado_asociado', {'id':expediente.id, "currentPage": thisPage}) }}">&laquo</a></li>
-                    {% for i in 1..maxPages %}
-                    <li><a class="page-link"  href="{{ path('listado_asociado', {'id':expediente.id, "currentPage": i}) }}">{{ i }}</a></li>
-                    {% endfor %}
+            <li ><a class="page-link" href="{{ path('listado_asociado', {'id':expediente.id, "currentPage": thisPage}) }}">&laquo</a></li>
+                {% for i in 1..maxPages %}
+                <li><a class="page-link"  href="{{ path('listado_asociado', {'id':expediente.id, "currentPage": i}) }}">{{ i }}</a></li>
+                {% endfor %}
 
-                {%if (page==maxPages)%}
+            {%if (page==maxPages)%}
 
-                {%else%}
-                    {%set page= page+1%}
-                {%endif%}
-                <li><a class="page-link" href="{{ path('listado_asociado', {'id':expediente.id, "currentPage": page}) }}">&raquo</a></li>
+            {%else%}
+                {%set page= page+1%}
+            {%endif%}
+            <li><a class="page-link" href="{{ path('listado_asociado', {'id':expediente.id, "currentPage": page}) }}">&raquo</a></li>
 
-            </ul>
-        {% endif %}            
-                
-         
+        </ul>
+    {% endif %}            
+
+
 
     <script>
         $(function () {

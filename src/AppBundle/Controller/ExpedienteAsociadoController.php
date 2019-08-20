@@ -12,38 +12,43 @@ use AppBundle\Form\ExpedienteAsociadoType;
 use AppBundle\Form\ExpedienteType;
 use AppBundle\Form\ExpedienteAsociadoFilterType;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class ExpedienteAsociadoController extends Controller {
 
     /**
-     * @Route("/expediente/{id}/add/expediente_asociado/", name="nuevo_expediente_asociado")
+     * @Route("/expediente/{id}/add/expediente_asociado/{id_asoc}", name="nuevo_expediente_asociado")
      */
-    public function nuevoAction(Request $request, $id) {
+    public function nuevoAction(Request $request, $id, $id_asoc) {
         $em = $this->getDoctrine()->getEntityManager();
-        $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
+        $expediente_padre = $em->getRepository("AppBundle:Expediente")->find($id);
         $expedienteAsociado = new ExpedienteAsociado();
-        $form = $this->createForm(ExpedienteAsociadoType::class, $expedienteAsociado,['expediente_id'=>$expediente->getId()]);
+        $expediente_asoc = $em->getRepository("AppBundle:Expediente")
+                ->findOneBy(['id' => $id_asoc]);
+        $expediente_asoc->setEstado('ASOCIADO');
 
-        $form->handleRequest($request);
+        $expedienteAsociado->setExpedientePadre($expediente_padre);
+        $expedienteAsociado->setExpedienteAsociado($expediente_asoc);
+        $expedienteAsociado->setFecha(date("d-m-Y H:i:s"));
+        $expedienteAsociado->setOrdenAsociacion('1');
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            
-            $expediente_asoc= $form['expedienteAsociado']->getData();
-            $expediente_asoc->setEstado('ASOCIADO');
-            $expedienteAsociado->setExpedientePadre($expediente);
-            $expedienteAsociado->setFecha(date("d-m-Y H:i:s"));
-            $expediente->getExpedientesAsociados()->add($expedienteAsociado);
-            $em->persist($expediente);
-            $em->flush();
+        $expediente_padre->getExpedientesAsociados()->add($expedienteAsociado);
+
+        $em->persist($expediente_padre);
+        $flush = $em->flush();
+
+        if ($flush == false) {
+            $this->addFlash('success', 'Expediente ' . $expediente_asoc . ""
+                    . " asociado correctamente a " . $expediente_padre);
+        } else {
+            $this->addFlash('danger', 'Ocurrió un error al intentar asociar el expediente');
         }
 
         // replace this example code with whatever you need
-        return $this->render('AppBundle:Expediente:expedienteAsociado.html.twig', [
-                    'form' => $form->createView(),
-                    'expediente' => $expediente
-        ]);
+        return $this->redirectToRoute('listado_asociado', ['currentPage' => 1,
+                    'id' => $expediente_padre->getId()]);
     }
-    
+
 //     /**
 //     * @Route("expediente/{id}/asociado/listado", name="listado_asociado")
 //     */
@@ -59,14 +64,41 @@ class ExpedienteAsociadoController extends Controller {
 //        ]);
 //    }
 //    
-    
+
+    /**
+     * @Route("/expediente/{id}/delete/expediente_asociado/{id_asoc}", name="remover_expediente_asociado")
+     */
+    public function deleteAction(Request $request, $id, $id_asoc) {
+        $em = $this->getDoctrine()->getEntityManager();
+        $expediente = $em->getRepository('AppBundle:Expediente')->find($id);
+//        $expediente_asoc_name= $em->getRepository('AppBundle:Expediente')->find($id_asoc)->toString();
+        $expediente_asoc = $em->getRepository("AppBundle:ExpedienteAsociado")
+                ->findOneBy(['expedienteAsociado' => $id_asoc]);
+        
+        $expediente_asoc->getExpedienteAsociado()->setEstado('NUEVO');
+        $em->remove($expediente_asoc);
+        $em->persist($expediente);
+        $flush = $em->flush();
+
+        if ($flush == false) {
+            $this->addFlash('success', 'Expediente ' . ""
+                    . " eliminado correctamente de " . $expediente);
+        } else {
+            $this->addFlash('danger', 'Ocurrió un error al intentar eliminar el expediente asociado');
+        }
+
+        // replace this example code with whatever you need
+        return $this->redirectToRoute('listado_asociado', ['currentPage' => 1,
+                    'id' => $expediente->getId()]);
+    }
+
     /**
      * @Route("expediente/{id}/asociado/listado/{currentPage}", name="listado_asociado")
      */
     public function listaAsociadoAction(Request $request, $id, $currentPage) {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $expediente=$em->getRepository('AppBundle:Expediente')->find($id);
+        $expediente = $em->getRepository('AppBundle:Expediente')->find($id);
         $limit = 15;
         $totalItems = 0;
         $maxPages = 0;
@@ -78,7 +110,7 @@ class ExpedienteAsociadoController extends Controller {
             $formExpedienteAsociadoFilter->handleRequest($this->get('session')->get('asociado_listar_request'));
         }
 
-        if  ($formExpedienteAsociadoFilter->isValid()) {
+        if ($formExpedienteAsociadoFilter->isValid()) {
             $filterBuilder = $em->getRepository('AppBundle:ExpedienteAsociado')
                     ->createAsociadoFilterQuery($expediente);
 
@@ -91,13 +123,11 @@ class ExpedienteAsociadoController extends Controller {
             $paginator = new Paginator($filterBuilder, $fetchJoinCollection = true);
             $asociados = $paginator->getQuery()->getResult();
             $maxPages = ceil($totalItems / $limit);
-            
-           
         }
 
         if ($formExpedienteAsociadoFilter->get('reset')->isClicked()) {
             $this->get('session')->remove('asociado_listar_request');
-            return $this->redirectToRoute('listado_asociado',['id'=>$expediente->getId(),'currentPage' => 1]);
+            return $this->redirectToRoute('listado_asociado', ['id' => $expediente->getId(), 'currentPage' => 1]);
         }
 
         if ($formExpedienteAsociadoFilter->get('filter')->isClicked()) {
@@ -108,7 +138,7 @@ class ExpedienteAsociadoController extends Controller {
             $request->request->set('currentPage', 1);
             $this->get('session')->set('asociado_listar_request', $request);
             if ($request->get('currentPage') > $maxPages) {
-                return $this->redirectToRoute('listado_asociado', ['id'=>$expediente->getId(),'currentPage' => 1]);
+                return $this->redirectToRoute('listado_asociado', ['id' => $expediente->getId(), 'currentPage' => 1]);
             }
         }
 
@@ -119,7 +149,9 @@ class ExpedienteAsociadoController extends Controller {
                     'totalItems' => $totalItems,
                     'thisPage' => $currentPage,
                     'page' => $currentPage,
-                    'formExpedienteAsociadoFilter' => $formExpedienteAsociadoFilter->createView()
+                    'formExpedienteAsociadoFilter' => $formExpedienteAsociadoFilter->createView(),
+                    'padre_id' => $id
         ));
     }
+
 }

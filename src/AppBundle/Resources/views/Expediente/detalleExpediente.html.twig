@@ -6,7 +6,7 @@
             <table class="table table-bordered"> 
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col"> <i class="fas fa-info-circle "></i> <strong>DETALLE DEL EXPEDIENTE  {{ expediente.nroExpediente}}</th>
+                        <th scope="col"> <i class="fas fa-info-circle "></i> <strong>DETALLE DEL EXPEDIENTE {{expediente.codigoExpediente }}-{{expediente.numeroExpediente }}-{{expediente.digitoExpediente }}</th>
                         <th scope="col"> <a href="{{ path('editar_expediente',{'id':expediente.id}) }}" class="right btn btn-warning float-right" data-toggle="tooltip" data-placement="top" title="Editar Expediente"><i class="fas fa-edit"></i></a></th>       
                     </tr>
 
@@ -25,15 +25,15 @@
                         <td>
 
                             {% set fojas = expediente.fojas %}
-                            
+
                             {% for caratula in expediente.caratulas.getValues %}
-                                
+
                                 {% set fojas = fojas+caratula.fojas %}
 
                             {% endfor %}
-                            
+
                             {{ fojas }} (foja iniciales + fojas de caratulas)
-                            
+
 
                         </td>
                     </tr>
@@ -54,8 +54,25 @@
                         <td>{{ expediente.fechaFin|date('d-m-Y')}}</td>
                     </tr>
                     <tr>
+                        <th class="w-25">ULTIMO PASE</th>
+                        <td>{{ expediente.ultimaUbicacion}}</td>
+                    </tr>  
+                    <tr>
                         <th class="w-25">UBICACION ACTUAL</th>
-                        <td>{{ expediente.ubicacionActual}}</td>
+                        <td>
+
+                            {% if expediente.ubicacionActual != null %}
+
+                                {{ expediente.ubicacionActual}}
+
+                            {% else %}
+                                
+                                La ubicación actual fue borrada.
+                                
+                            {% endif %}
+
+
+                        </td>
                     </tr>   
 
                     {% if expedientes_asociados|length>0 %}                        
@@ -64,7 +81,7 @@
                             <th class="w-25">ASOCIADO A EXPEDIENTE</th>
                             <td>
                                 {% for exp_asoc in expedientes_asociados %}
-                                    {{ exp_asoc.expedientePadre.nroExpediente}}
+                                    <a href="{{ path('ver_expediente',{'id':exp_asoc.expedientePadre.id}) }}">{{ exp_asoc.expedientePadre}}</a> 
                                     <br/>
                                 {% endfor %}
                             <td/>

@@ -19,6 +19,22 @@
         .title{
             font-size:16px;
         }
+        
+        .cod{
+            width:60px;
+            
+        }
+        .num{
+            width:115px;
+              margin-left:-4px;
+        }
+        .dig{
+            width:35px;
+            margin-left:-19px;
+            
+        }
+        
+
     </style>
 
     <div class="content">
@@ -27,13 +43,27 @@
             <strong>Nuevo Expediente</strong>
             <hr/>
             {{form_start(form,{'action':'','method':'POST'})}}
-            <div class="filtro_panel">
+            <div class="filtro_panel"
+                    <label class="text-default">NUMERO DE EXPEDIENTE</label>
                 <div class="row">
-                    <div class="col-lg-6">
-                        <label class="exp text-default">NRO. DE EXPEDIENTE</label>
-                        {{ form_errors(form.nroExpediente) }}
-                        {{ form_widget(form.nroExpediente) }}
+                    <div class="cod col-lg-1">
+                        <label class="exp text-default"></label>
+                        {{ form_errors(form.codigoExpediente) }}
+                        {{ form_widget(form.codigoExpediente) }}
+                    </div>                   
+                    <div class="num col-lg-2">
+                        <label class="exp text-default"></label>
+                        {{ form_errors(form.numeroExpediente) }}
+                        {{ form_widget(form.numeroExpediente) }}
                     </div>
+                    <div class="dig col-lg-1">
+                        <label class="exp text-default"></label>
+                        {{ form_errors(form.digitoExpediente) }}
+                        {{ form_widget(form.digitoExpediente) }}
+                    </div>
+                </div>
+                <hr/>
+                <div class="row">                   
                     <div class="col-lg-3 ">
                         <label class="text-default">TIPO</label>
                         {{ form_errors(form.tipo) }}
@@ -44,8 +74,8 @@
                         {{ form_errors(form.fojas) }}
                         {{ form_widget(form.fojas) }}
                     </div>    
-                    <div class="col-lg-6 ">
-                        <label class="text-default">CODIGO TEMA</label>
+                    <div class="col-lg-7">
+                        <label class="text-default">TEMA</label>
                         {{ form_errors(form.tema) }}
                         {{ form_widget(form.tema) }}
                     </div>     
@@ -63,10 +93,10 @@
                     </div>                      
                 </div>
                 <hr/>              
-                    <label class="text-default">CONCEPTO</label>
-                    {{ form_errors(form.concepto) }}
-                    {{ form_widget(form.concepto) }}
-                    <hr/>
+                <label class="text-default">CONCEPTO</label>
+                {{ form_errors(form.concepto) }}
+                {{ form_widget(form.concepto) }}
+                <hr/>
                 {#  <div class="col-lg-12">
                       <label class="text-default">EXPEDIENTE/S ASOCIADOS</label>                 
                       <div class="expediente_items">

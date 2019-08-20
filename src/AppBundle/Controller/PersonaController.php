@@ -144,7 +144,7 @@ class PersonaController extends Controller {
         }
 
         return $this->render('AppBundle:Ubicacion:listadoPersona.html.twig', array(
-                    'persona' => $personas,
+                    'personas' => $personas,
                     'maxPages' => $maxPages,
                     'totalItems' => $totalItems,
                     'thisPage' => $currentPage,

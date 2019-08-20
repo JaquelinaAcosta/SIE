@@ -32,7 +32,7 @@ class ExpedienteController extends Controller {
         $user = $this->getUser();
         $expediente->setIniciadorDependencia($user->getPersona()->getDependencia());
         $expediente->setUbicacionActual($expediente->getIniciadorDependencia()->getMesaentrada());
-
+        $expediente->setUltimaUbicacion($expediente->getIniciadorDependencia()->getMesaentrada());
 
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
@@ -97,7 +97,13 @@ class ExpedienteController extends Controller {
      * @Route("expediente/listado/{currentPage}", name="listado_expediente")
      */
     public function listaExpedientesAction(Request $request, $currentPage) {
-
+        $q = $request->query->get('modo');
+        $asociado = false;
+        $padre_id = null;
+        if ($q != null && $q == 'asociado') {
+            $asociado = true;
+            $padre_id = $request->query->get('padre_id');
+        }
         $em = $this->getDoctrine()->getEntityManager();
         $user = $this->getUser();
         $limit = 15;
@@ -106,15 +112,22 @@ class ExpedienteController extends Controller {
         $expedientes = array();
 
         $formExpedienteFilter = $this->createForm(ExpedienteFilterType::class,
-                $expedientes,['role'=>'ROLE_ADMIN']);
+                $expedientes, ['role' => 'ROLE_ADMIN']);
         $formExpedienteFilter->handleRequest($request);
         if ($formExpedienteFilter->isSubmitted() == false && $this->get('session')->get('expediente_listar_request')) {
             $formExpedienteFilter->handleRequest($this->get('session')->get('expediente_listar_request'));
         }
 
         if ($formExpedienteFilter->isValid()) {
-            $filterBuilder = $em->getRepository('AppBundle:Expediente')
-                    ->createExpedienteFilterQuery($user);
+            if ($asociado == false) {
+                $filterBuilder = $em->getRepository('AppBundle:Expediente')
+                        ->createExpedienteFilterQuery($user);
+            } else {
+                $filterBuilder = $em->getRepository('AppBundle:Expediente')
+                        ->createExpedienteFilterQuery($user, $padre_id);
+            }
+
+
             $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($formExpedienteFilter, $filterBuilder);
             $totalItems = count($filterBuilder->getQuery()->getResult());
 
@@ -128,7 +141,14 @@ class ExpedienteController extends Controller {
 
         if ($formExpedienteFilter->get('reset')->isClicked()) {
             $this->get('session')->remove('expediente_listar_request');
-            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+            if ($asociado == false) {
+                return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+            } else {
+                return $this->redirectToRoute('listado_expediente', ['currentPage' => 1,
+                            'modo' => 'asociado',
+                            'padre_id' => $padre_id
+                ]);
+            }
         }
 
         if ($formExpedienteFilter->get('filter')->isClicked()) {
@@ -137,7 +157,14 @@ class ExpedienteController extends Controller {
             $request->request->set('expediente_filter', $expedienteListarFilterRequest);
             $this->get('session')->set('expediente_listar_request', $request);
             if ($request->get('currentPage') > $maxPages) {
-                return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+                if ($asociado == false) {
+                    return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+                } else {
+                    return $this->redirectToRoute('listado_expediente', ['currentPage' => 1,
+                                'modo' => 'asociado',
+                                'padre_id' => $padre_id
+                    ]);
+                }
             }
         }
 
@@ -147,7 +174,9 @@ class ExpedienteController extends Controller {
                     'totalItems' => $totalItems,
                     'thisPage' => $currentPage,
                     'page' => $currentPage,
-                    'formExpedienteFilter' => $formExpedienteFilter->createView()
+                    'formExpedienteFilter' => $formExpedienteFilter->createView(),
+                    'asociado' => $asociado,
+                    'padre_id' => $padre_id
         ));
     }
 
@@ -160,8 +189,7 @@ class ExpedienteController extends Controller {
         $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
         $expedientes_asociados = $em->getRepository('AppBundle:ExpedienteAsociado')->findBy([
             'expedienteAsociado' => $expediente->getId()]);
-        if($expediente->getEstado() != 'ASOCIADO')
-        {
+        if ($expediente->getEstado() != 'ASOCIADO') {
             $expediente->setEstado('VISTO');
         }
         $em->persist($expediente);

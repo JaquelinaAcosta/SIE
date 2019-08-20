@@ -16,7 +16,7 @@
     </style>
 
     <div class="content">
-        <strong>NUEVA RESOLUCIÓN, EXPEDIENTE {{ expediente.nroExpediente }}</strong>
+        <strong>NUEVA RESOLUCIÓN, EXPEDIENTE {{expediente.codigoExpediente }}-{{expediente.numeroExpediente }}-{{expediente.digitoExpediente }}</strong>
         <hr/>
         {{form_start(form,{'action':'','method':'POST'})}}
         <div class="col-lg-4">
