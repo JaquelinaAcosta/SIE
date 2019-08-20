@@ -7,16 +7,16 @@ USE Symfony\Component\Validator\Constraints as Assert;
 use AppBundle\Entity\CaratulaAgregada;
 use AppBundle\Entity\Resolucion;
 use AppBundle\Entity\Dependencia;
-
 use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * Expediente
  *
  * @ORM\Table(name="expediente")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ExpedienteRepository")
  */
-class Expediente
-{
+class Expediente {
+
     /**
      * @var int
      *
@@ -30,10 +30,24 @@ class Expediente
     /**
      * @var int
      *
-     * @ORM\Column(name="nro_expediente")
+     * @ORM\Column(name="codigo_expediente")
      */
-    private $nroExpediente;
+    private $codigoExpediente;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="numero_expediente")
+     */
+    private $numeroExpediente;
+    
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="digito_expediente")
+     */
+    private $digitoExpediente;
+    
     /**
      * @var int
      *
@@ -48,15 +62,13 @@ class Expediente
      * @ORM\Column(name="concepto", type="string", length=255, nullable=true)
      */
     private $concepto;
-    
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="estado", type="string", length=255, nullable=true)
      */
     private $estado;
-    
 
     /**
      * @var int
@@ -93,97 +105,95 @@ class Expediente
     private $fechaFin;
 
     /**
-     *@ORM\ManyToOne(targetEntity="Ubicacion")
+     * @ORM\ManyToOne(targetEntity="Ubicacion")
      */
     private $ubicacionActual;
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="Ubicacion")
+     */
+    private $ultimaUbicacion;
+    
 
     /**
-    *@ORM\OneToOne(targetEntity="Resolucion", mappedBy="expediente")
-    */
+     * @ORM\OneToOne(targetEntity="Resolucion", mappedBy="expediente")
+     */
     private $resolucion;
 
     /**
-    *@ORM\OneToMany(targetEntity="CaratulaAgregada", mappedBy="expediente",cascade={"persist"})
-    */
+     * @ORM\OneToMany(targetEntity="CaratulaAgregada", mappedBy="expediente",cascade={"persist"})
+     */
     private $caratulas;
-    
+
     /**
-    *@ORM\OneToMany(targetEntity="ExpedienteAsociado", mappedBy="expedientePadre",cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="ExpedienteAsociado", mappedBy="expedientePadre",cascade={"persist"})
      */
     protected $expedientes_asociados;
-    
-    
+
     /**
-    *@ORM\OneToMany(targetEntity="MovimientoExpediente", mappedBy="expediente",cascade={"persist"})
-    */
+     * @ORM\OneToMany(targetEntity="MovimientoExpediente", mappedBy="expediente",cascade={"persist"})
+     */
     private $movimientos;
-    
+
     /**
-     *@Assert\Type(type="AppBundle\Entity\Persona")
-     *@Assert\Valid
+     * @Assert\Type(type="AppBundle\Entity\Persona")
+     * @Assert\Valid
      */
     private $persona;
-    
-    
+
     /**
-     *@Assert\Type(type="AppBundle\Entity\MesaEntrada")
-     *@Assert\Valid
+     * @Assert\Type(type="AppBundle\Entity\MesaEntrada")
+     * @Assert\Valid
      */
     private $mesaentrada;
-    
-    
+
     /**
-     *@Assert\Type(type="AppBundle\Entity\LugarFisico")
-     *@Assert\Valid
+     * @Assert\Type(type="AppBundle\Entity\LugarFisico")
+     * @Assert\Valid
      */
     private $lugarfisico;
-    
+
     public function __toString() {
-        return $this->nroExpediente;
+         return $this->codigoExpediente."-".$this->numeroExpediente."-".$this->digitoExpediente;
     }
 
-    public function __construct(){
+    public function __construct() {
         $this->expedientes_asociados = new ArrayCollection();
         $this->caratulas = new ArrayCollection();
 //        $this->caratulas = new ArrayCollection();
         $this->movimientos = new ArrayCollection();
     }
-    
-    public function getLugarfisico()
-    {
+
+    public function getLugarfisico() {
         return $this->lugarfisico;
     }
-    public function setLugarfisico(Lugarfisico $lugarfisico = null)
-    {
+
+    public function setLugarfisico(Lugarfisico $lugarfisico = null) {
         $this->lugarfisico = $lugarfisico;
     }
-    
-    public function getPersona()
-    {
+
+    public function getPersona() {
         return $this->persona;
     }
-    public function setPersona(Persona $persona = null)
-    {
+
+    public function setPersona(Persona $persona = null) {
         $this->persona = $persona;
     }
-    public function setMesaentrada(MesaEntrada $mesaentrada = null)
-    {
+
+    public function setMesaentrada(MesaEntrada $mesaentrada = null) {
         $this->mesaentrada = $mesaentrada;
     }
-    
-     public function getMesaentrada()
-    {
+
+    public function getMesaentrada() {
         return $this->mesaentrada;
     }
 
-    
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -194,19 +204,18 @@ class Expediente
      *
      * @return Expediente
      */
-    public function setNroExpediente($nroExpediente)
-    {
+    public function setNroExpediente($nroExpediente) {
         $this->nroExpediente = $nroExpediente;
 
         return $this;
     }
+
     /**
      * Get nroExpediente
      *
      * @return int
      */
-    public function getNroExpediente()
-    {
+    public function getNroExpediente() {
         return $this->nroExpediente;
     }
 
@@ -217,8 +226,7 @@ class Expediente
      *
      * @return Expediente
      */
-    public function setTema($tema)
-    {
+    public function setTema($tema) {
         $this->tema = $tema;
         return $this;
     }
@@ -228,8 +236,7 @@ class Expediente
      *
      * @return int
      */
-    public function getTema()
-    {
+    public function getTema() {
         return $this->tema;
     }
 
@@ -240,8 +247,7 @@ class Expediente
      *
      * @return Expediente
      */
-    public function setConcepto($concepto)
-    {
+    public function setConcepto($concepto) {
         $this->concepto = $concepto;
 
         return $this;
@@ -252,8 +258,7 @@ class Expediente
      *
      * @return string
      */
-    public function getConcepto()
-    {
+    public function getConcepto() {
         return $this->concepto;
     }
 
@@ -264,8 +269,7 @@ class Expediente
      *
      * @return Expediente
      */
-    public function setFojas($fojas)
-    {
+    public function setFojas($fojas) {
         $this->fojas = $fojas;
 
         return $this;
@@ -276,8 +280,7 @@ class Expediente
      *
      * @return int
      */
-    public function getFojas()
-    {
+    public function getFojas() {
         return $this->fojas;
     }
 
@@ -288,8 +291,7 @@ class Expediente
      *
      * @return Expediente
      */
-    public function setTipo($tipo)
-    {
+    public function setTipo($tipo) {
         $this->tipo = $tipo;
 
         return $this;
@@ -300,8 +302,7 @@ class Expediente
      *
      * @return string
      */
-    public function getTipo()
-    {
+    public function getTipo() {
         return $this->tipo;
     }
 
@@ -312,8 +313,7 @@ class Expediente
      *
      * @return Expediente
      */
-    public function setIniciadorDependencia($iniciadorDependencia)
-    {
+    public function setIniciadorDependencia($iniciadorDependencia) {
         $this->iniciadorDependencia = $iniciadorDependencia;
 
         return $this;
@@ -324,8 +324,7 @@ class Expediente
      *
      * @return int
      */
-    public function getIniciadorDependencia()
-    {
+    public function getIniciadorDependencia() {
         return $this->iniciadorDependencia;
     }
 
@@ -336,8 +335,7 @@ class Expediente
      *
      * @return Expediente
      */
-    public function setFechaInicio($fechaInicio)
-    {
+    public function setFechaInicio($fechaInicio) {
         $this->fechaInicio = $fechaInicio;
 
         return $this;
@@ -348,8 +346,7 @@ class Expediente
      *
      * @return \DateTime
      */
-    public function getFechaInicio()
-    {
+    public function getFechaInicio() {
         return $this->fechaInicio;
     }
 
@@ -360,8 +357,7 @@ class Expediente
      *
      * @return Expediente
      */
-    public function setFechaFin($fechaFin)
-    {
+    public function setFechaFin($fechaFin) {
         $this->fechaFin = $fechaFin;
 
         return $this;
@@ -372,8 +368,7 @@ class Expediente
      *
      * @return \DateTime
      */
-    public function getFechaFin()
-    {
+    public function getFechaFin() {
         return $this->fechaFin;
     }
 
@@ -384,8 +379,7 @@ class Expediente
      *
      * @return Expediente
      */
-    public function setUbicacionActual($ubicacionActual)
-    {
+    public function setUbicacionActual($ubicacionActual) {
         $this->ubicacionActual = $ubicacionActual;
 
         return $this;
@@ -396,8 +390,7 @@ class Expediente
      *
      * @return string
      */
-    public function getUbicacionActual()
-    {
+    public function getUbicacionActual() {
         return $this->ubicacionActual;
     }
 
@@ -408,8 +401,7 @@ class Expediente
      *
      * @return Expediente
      */
-    public function addCaratula(\AppBundle\Entity\CaratulaAgregada $caratula)
-    {
+    public function addCaratula(\AppBundle\Entity\CaratulaAgregada $caratula) {
         $this->caratulas[] = $caratula;
 
         return $this;
@@ -420,8 +412,7 @@ class Expediente
      *
      * @param \AppBundle\Entity\CaratulaAgregada $caratula
      */
-    public function removeCaratula(\AppBundle\Entity\CaratulaAgregada $caratula)
-    {
+    public function removeCaratula(\AppBundle\Entity\CaratulaAgregada $caratula) {
         $this->caratulas->removeElement($caratula);
     }
 
@@ -430,8 +421,7 @@ class Expediente
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCaratulas()
-    {
+    public function getCaratulas() {
         return $this->caratulas;
     }
 
@@ -442,8 +432,7 @@ class Expediente
      *
      * @return Expediente
      */
-    public function setResolucion(\AppBundle\Entity\Resolucion $resolucion = null)
-    {
+    public function setResolucion(\AppBundle\Entity\Resolucion $resolucion = null) {
         $this->resolucion = $resolucion;
         return $this;
     }
@@ -453,12 +442,9 @@ class Expediente
      *
      * @return \AppBundle\Entity\Resolucion
      */
-    public function getResolucion()
-    {
+    public function getResolucion() {
         return $this->resolucion;
     }
-
-    
 
     /**
      * Add expediente
@@ -467,8 +453,7 @@ class Expediente
      *
      * @return Expediente
      */
-    public function addExpediente(\AppBundle\Entity\ExpedienteAsociado $expediente)
-    {
+    public function addExpediente(\AppBundle\Entity\ExpedienteAsociado $expediente) {
         $this->expediente[] = $expediente;
 
         return $this;
@@ -479,8 +464,7 @@ class Expediente
      *
      * @param \AppBundle\Entity\ExpedienteAsociado $expediente
      */
-    public function removeExpediente(\AppBundle\Entity\ExpedienteAsociado $expediente)
-    {
+    public function removeExpediente(\AppBundle\Entity\ExpedienteAsociado $expediente) {
         $this->expediente->removeElement($expediente);
     }
 
@@ -489,8 +473,7 @@ class Expediente
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getExpediente()
-    {
+    public function getExpediente() {
         return $this->expediente;
     }
 
@@ -501,8 +484,7 @@ class Expediente
      *
      * @return Expediente
      */
-    public function addExpedientesAsociado(\AppBundle\Entity\ExpedienteAsociado $expedientesAsociado)
-    {
+    public function addExpedientesAsociado(\AppBundle\Entity\ExpedienteAsociado $expedientesAsociado) {
         $this->expedientes_asociados[] = $expedientesAsociado;
 
         return $this;
@@ -513,8 +495,7 @@ class Expediente
      *
      * @param \AppBundle\Entity\ExpedienteAsociado $expedientesAsociado
      */
-    public function removeExpedientesAsociado(\AppBundle\Entity\ExpedienteAsociado $expedientesAsociado)
-    {
+    public function removeExpedientesAsociado(\AppBundle\Entity\ExpedienteAsociado $expedientesAsociado) {
         $this->expedientes_asociados->removeElement($expedientesAsociado);
     }
 
@@ -523,9 +504,8 @@ class Expediente
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getExpedientesAsociados()
-    {
-        return  $this->expedientes_asociados;
+    public function getExpedientesAsociados() {
+        return $this->expedientes_asociados;
     }
 
     /**
@@ -535,8 +515,7 @@ class Expediente
      *
      * @return Expediente
      */
-    public function addMovimiento(\AppBundle\Entity\MovimientoExpediente $movimiento)
-    {
+    public function addMovimiento(\AppBundle\Entity\MovimientoExpediente $movimiento) {
         $this->movimientos[] = $movimiento;
 
         return $this;
@@ -547,8 +526,7 @@ class Expediente
      *
      * @param \AppBundle\Entity\MovimientoExpediente $movimiento
      */
-    public function removeMovimiento(\AppBundle\Entity\MovimientoExpediente $movimiento)
-    {
+    public function removeMovimiento(\AppBundle\Entity\MovimientoExpediente $movimiento) {
         $this->movimientos->removeElement($movimiento);
     }
 
@@ -557,8 +535,7 @@ class Expediente
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getMovimientos()
-    {
+    public function getMovimientos() {
         return $this->movimientos;
     }
 
@@ -569,8 +546,7 @@ class Expediente
      *
      * @return Expediente
      */
-    public function setEstado($estado)
-    {
+    public function setEstado($estado) {
         $this->estado = $estado;
 
         return $this;
@@ -581,8 +557,128 @@ class Expediente
      *
      * @return string
      */
-    public function getEstado()
-    {
+    public function getEstado() {
         return $this->estado;
+    }
+
+
+    /**
+     * Set codigoExpediente
+     *
+     * @param string $codigoExpediente
+     *
+     * @return Expediente
+     */
+    public function setCodigoExpediente($codigoExpediente)
+    {
+        $this->codigoExpediente = $codigoExpediente;
+
+        return $this;
+    }
+
+    /**
+     * Get codigoExpediente
+     *
+     * @return string
+     */
+    public function getCodigoExpediente()
+    {
+        return $this->codigoExpediente;
+    }
+
+    /**
+     * Set numeroExpdiente
+     *
+     * @param string $numeroExpdiente
+     *
+     * @return Expediente
+     */
+    public function setNumeroExpdiente($numeroExpdiente)
+    {
+        $this->numeroExpdiente = $numeroExpdiente;
+
+        return $this;
+    }
+
+    /**
+     * Get numeroExpdiente
+     *
+     * @return string
+     */
+    public function getNumeroExpdiente()
+    {
+        return $this->numeroExpdiente;
+    }
+
+    /**
+     * Set digitoExpediente
+     *
+     * @param string $digitoExpediente
+     *
+     * @return Expediente
+     */
+    public function setDigitoExpediente($digitoExpediente)
+    {
+        $this->digitoExpediente = $digitoExpediente;
+
+        return $this;
+    }
+
+    /**
+     * Get digitoExpediente
+     *
+     * @return string
+     */
+    public function getDigitoExpediente()
+    {
+        return $this->digitoExpediente;
+    }
+
+    /**
+     * Set numeroExpediente
+     *
+     * @param string $numeroExpediente
+     *
+     * @return Expediente
+     */
+    public function setNumeroExpediente($numeroExpediente)
+    {
+        $this->numeroExpediente = $numeroExpediente;
+
+        return $this;
+    }
+
+    /**
+     * Get numeroExpediente
+     *
+     * @return string
+     */
+    public function getNumeroExpediente()
+    {
+        return $this->numeroExpediente;
+    }
+
+    /**
+     * Set ultimaUbicacion
+     *
+     * @param \AppBundle\Entity\Ubicacion $ultimaUbicacion
+     *
+     * @return Expediente
+     */
+    public function setUltimaUbicacion(\AppBundle\Entity\Ubicacion $ultimaUbicacion = null)
+    {
+        $this->ultimaUbicacion = $ultimaUbicacion;
+
+        return $this;
+    }
+
+    /**
+     * Get ultimaUbicacion
+     *
+     * @return \AppBundle\Entity\Ubicacion
+     */
+    public function getUltimaUbicacion()
+    {
+        return $this->ultimaUbicacion;
     }
 }

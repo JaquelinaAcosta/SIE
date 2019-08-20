@@ -23,10 +23,22 @@ class ExpedienteType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
 
-                ->add('nroExpediente', TextType::class, array(
+                ->add('codigoExpediente', TextType::class, array(
                     "label" => "Nro. de Expediente:", "attr" => array(
-                        "class" => "form-exp form-control",
-                        "placeholder" => "00000-000000000-0"
+                        "class" => "cod form-control",
+                        "placeholder" => ""
+                    )
+                ))
+                ->add('numeroExpediente', TextType::class, array(
+                    "label" => "Nro. de Expediente:", "attr" => array(
+                        "class" => "num form-control",
+                        "placeholder" => ""
+                    )
+                ))
+                ->add('digitoExpediente', TextType::class, array(
+                    "label" => "Nro. de Expediente:", "attr" => array(
+                        "class" => "dig form-control",
+                        "placeholder" => ""
                     )
                 ))
 //                ->add('iniciadorDependencia', EntityType::class, array(

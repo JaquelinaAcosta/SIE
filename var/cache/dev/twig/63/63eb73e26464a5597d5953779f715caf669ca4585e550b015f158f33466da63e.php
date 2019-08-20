@@ -74,7 +74,11 @@ class __TwigTemplate_55c13262f49cb111bc8e15c13ae738ee9d4ace7ceafb38f344ee0db21cf
 
         <strong>EXPEDIENTE ";
         // line 19
-        echo twig_escape_filter($this->env, $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "nroExpediente", []), "html", null, true);
+        echo twig_escape_filter($this->env, $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "codigoExpediente", []), "html", null, true);
+        echo "-";
+        echo twig_escape_filter($this->env, $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "numeroExpediente", []), "html", null, true);
+        echo "-";
+        echo twig_escape_filter($this->env, $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "digitoExpediente", []), "html", null, true);
         echo ", AGREGAR EXPEDIENTE ASOCIADO</strong>
         <hr/>
 
@@ -150,7 +154,7 @@ class __TwigTemplate_55c13262f49cb111bc8e15c13ae738ee9d4ace7ceafb38f344ee0db21cf
 
     public function getDebugInfo()
     {
-        return array (  127 => 42,  123 => 41,  113 => 34,  107 => 31,  102 => 29,  98 => 28,  93 => 26,  89 => 25,  83 => 22,  77 => 19,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  131 => 42,  127 => 41,  117 => 34,  111 => 31,  106 => 29,  102 => 28,  97 => 26,  93 => 25,  87 => 22,  77 => 19,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -181,7 +185,7 @@ class __TwigTemplate_55c13262f49cb111bc8e15c13ae738ee9d4ace7ceafb38f344ee0db21cf
 
     <div class=\"content\">
 
-        <strong>EXPEDIENTE {{ expediente.nroExpediente }}, AGREGAR EXPEDIENTE ASOCIADO</strong>
+        <strong>EXPEDIENTE {{expediente.codigoExpediente }}-{{expediente.numeroExpediente }}-{{expediente.digitoExpediente }}, AGREGAR EXPEDIENTE ASOCIADO</strong>
         <hr/>
 
         {{form_start(form,{'action':'','method':'POST'})}}

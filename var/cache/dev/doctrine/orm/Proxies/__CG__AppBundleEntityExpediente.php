@@ -64,10 +64,10 @@ class Expediente extends \AppBundle\Entity\Expediente implements \Doctrine\ORM\P
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'id', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'nroExpediente', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'tema', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'concepto', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'estado', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'fojas', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'tipo', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'iniciadorDependencia', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'fechaInicio', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'fechaFin', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'ubicacionActual', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'resolucion', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'caratulas', 'expedientes_asociados', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'movimientos', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'persona', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'mesaentrada', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'lugarfisico'];
+            return ['__isInitialized__', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'id', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'codigoExpediente', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'numeroExpediente', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'digitoExpediente', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'tema', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'concepto', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'estado', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'fojas', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'tipo', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'iniciadorDependencia', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'fechaInicio', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'fechaFin', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'ubicacionActual', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'ultimaUbicacion', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'resolucion', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'caratulas', 'expedientes_asociados', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'movimientos', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'persona', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'mesaentrada', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'lugarfisico'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'id', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'nroExpediente', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'tema', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'concepto', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'estado', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'fojas', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'tipo', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'iniciadorDependencia', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'fechaInicio', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'fechaFin', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'ubicacionActual', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'resolucion', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'caratulas', 'expedientes_asociados', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'movimientos', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'persona', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'mesaentrada', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'lugarfisico'];
+        return ['__isInitialized__', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'id', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'codigoExpediente', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'numeroExpediente', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'digitoExpediente', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'tema', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'concepto', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'estado', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'fojas', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'tipo', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'iniciadorDependencia', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'fechaInicio', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'fechaFin', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'ubicacionActual', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'ultimaUbicacion', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'resolucion', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'caratulas', 'expedientes_asociados', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'movimientos', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'persona', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'mesaentrada', '' . "\0" . 'AppBundle\\Entity\\Expediente' . "\0" . 'lugarfisico'];
     }
 
     /**
@@ -637,6 +637,116 @@ class Expediente extends \AppBundle\Entity\Expediente implements \Doctrine\ORM\P
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEstado', []);
 
         return parent::getEstado();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCodigoExpediente($codigoExpediente)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCodigoExpediente', [$codigoExpediente]);
+
+        return parent::setCodigoExpediente($codigoExpediente);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCodigoExpediente()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCodigoExpediente', []);
+
+        return parent::getCodigoExpediente();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setNumeroExpdiente($numeroExpdiente)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNumeroExpdiente', [$numeroExpdiente]);
+
+        return parent::setNumeroExpdiente($numeroExpdiente);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getNumeroExpdiente()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNumeroExpdiente', []);
+
+        return parent::getNumeroExpdiente();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setDigitoExpediente($digitoExpediente)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDigitoExpediente', [$digitoExpediente]);
+
+        return parent::setDigitoExpediente($digitoExpediente);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDigitoExpediente()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDigitoExpediente', []);
+
+        return parent::getDigitoExpediente();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setNumeroExpediente($numeroExpediente)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNumeroExpediente', [$numeroExpediente]);
+
+        return parent::setNumeroExpediente($numeroExpediente);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getNumeroExpediente()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNumeroExpediente', []);
+
+        return parent::getNumeroExpediente();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setUltimaUbicacion(\AppBundle\Entity\Ubicacion $ultimaUbicacion = NULL)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUltimaUbicacion', [$ultimaUbicacion]);
+
+        return parent::setUltimaUbicacion($ultimaUbicacion);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getUltimaUbicacion()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUltimaUbicacion', []);
+
+        return parent::getUltimaUbicacion();
     }
 
 }

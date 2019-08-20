@@ -11,7 +11,7 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
  * repository methods below.
  */
 class ExpedienteRepository extends \Doctrine\ORM\EntityRepository {
-    
+
     //autocompletado
     public function findExpedientesAsociados($term, $id, $dependencia) {
         $qb = $this->getEntityManager()->createQueryBuilder('e');
@@ -27,7 +27,13 @@ class ExpedienteRepository extends \Doctrine\ORM\EntityRepository {
                         ->andWhere('ea.id IS NULL')
                         ->andWhere('e.id != :expediente_padre')
                         ->andWhere($qb->expr()
-                                ->like('e.nroExpediente', $qb->expr()
+                                ->like('e.codigoExpediente', $qb->expr()
+                                        ->literal('%' . $term . '%')))
+                        ->andWhere($qb->expr()
+                                ->like('e.numeroExpediente', $qb->expr()
+                                        ->literal('%' . $term . '%')))
+                        ->andWhere($qb->expr()
+                                ->like('e.digitoExpediente', $qb->expr()
                                         ->literal('%' . $term . '%')))
                         ->setParameters([
                             'expediente_padre' => $id,
@@ -36,13 +42,17 @@ class ExpedienteRepository extends \Doctrine\ORM\EntityRepository {
                         ->setMaxResults(10)->getQuery()->getResult();
         return $result;
     }
-    
+
     //filtro
-    public function createExpedienteFilterQuery($user) {
+    public function createExpedienteFilterQuery($user,$padre_id=null) {
         $qb = $this->getEntityManager()->createQueryBuilder('e');
         $result = $qb->select('e')
                 ->from('AppBundle:Expediente', 'e')
                 ->where("e.estado <>'ASOCIADO'");
+        if($padre_id != null){
+            $result->andWhere('e.id != :expediente_padre_id')
+                   ->setParameter('expediente_padre_id',$padre_id);
+        }
         if ($user->getRole() != "ROLE_ADMIN") {
             $result->leftJoin(\AppBundle\Entity\Ubicacion::class, "u", "WITH",
                             "e.ubicacionActual = u.id")
