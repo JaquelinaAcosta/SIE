@@ -41,13 +41,19 @@ class ExpedienteController extends Controller {
                                 $form['fechaInicio']->getData());
 //                $fechaIni->format('Y-m-d');
 //                dump($fechaIni);die();
-                $fechaFin = \DateTime::createFromFormat('d-m-Y',
-                                $form['fechaFin']->getData());
+                if ($form['fechaFin']->getData() != null) {
+                    $fechaFin = \DateTime::createFromFormat('d-m-Y',
+                                    $form['fechaFin']->getData());
+                    $expediente->setFechaFin($fechaFin);
+                }else{
+                    $expediente->setFechaFin(null);
+                }
+
 //                $fechaFin->format('Y-m-d');
 //                dump($fechaIni);die();
 //                $expediente->setFechaInicio());
                 $expediente->setFechaInicio($fechaIni);
-                $expediente->setFechaFin($fechaFin);
+
                 $expediente->setEstado('NUEVO');
 //                foreach ($form['expedientes_asociados']->getData() as $expediente_asoc) {
 //                    $expediente_asoc->setExpedientePadre($expediente);
@@ -111,8 +117,17 @@ class ExpedienteController extends Controller {
         $maxPages = 0;
         $expedientes = array();
 
-        $formExpedienteFilter = $this->createForm(ExpedienteFilterType::class,
-                $expedientes, ['role' => 'ROLE_ADMIN']);
+        if ($this->getUser()->getRole() == 'ROLE_ADMIN') {
+            $formExpedienteFilter = $this->createForm(ExpedienteFilterType::class,
+                    $expedientes, ['role' => 'ROLE_ADMIN']);
+        } else {
+            $formExpedienteFilter = $this->createForm(ExpedienteFilterType::class,
+                    $expedientes);
+        }
+
+
+
+
         $formExpedienteFilter->handleRequest($request);
         if ($formExpedienteFilter->isSubmitted() == false && $this->get('session')->get('expediente_listar_request')) {
             $formExpedienteFilter->handleRequest($this->get('session')->get('expediente_listar_request'));

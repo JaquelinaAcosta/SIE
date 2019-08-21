@@ -46,58 +46,67 @@
 
 
     <div class="content">
-        <div class="filtro">
-            <div class="header"><i class="fas fa-search"></i> <strong>Búsqueda de Usuarios</strong></h4>
-                <a role="button" 
-                   class="btn btn-success float-right" 
-                   href="{{ path('nuevo_usuario')}}">
-                    Nuevo Usuario</a>
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                    <button class="btn btn-dark search" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <i class="fas fa-search-plus"></i> Filtros de Búsqueda de Usuarios
+                    </button>
+                    <a href="{{ path('nuevo_usuario') }}" 
+                       role="button" class="btn btn-info float-right">Nuevo Usuario</a>
+
+                </h2>
             </div>
-            <hr/>
-            <form method="post" novalidate="true" id="form_buscar">
-                {{ form_errors(formUsuarioFilter) }}
-                <div class="row">
-                    <div class="threecol col-lg-4">
-                        {{ form_label(formUsuarioFilter.dependencia, 'DEPENDENCIA') }}
-                        {{ form_widget(formUsuarioFilter.dependencia) }}
-                        <div class="help-block with-errors">
-                            {{ form_errors(formUsuarioFilter.dependencia) }}
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    <form method="post" novalidate="true" id="form_buscar">
+                        {{ form_errors(formUsuarioFilter) }}
+                        <div class="row">
+                            <div class="threecol col-lg-4">
+                                {{ form_label(formUsuarioFilter.dependencia, 'DEPENDENCIA') }}
+                                {{ form_widget(formUsuarioFilter.dependencia) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formUsuarioFilter.dependencia) }}
+                                </div>
+                            </div>
+                            <div class="threecol col-lg-4">
+                                {{ form_label(formUsuarioFilter.iup, 'USUARIO') }}
+                                {{ form_widget(formUsuarioFilter.iup) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formUsuarioFilter.iup) }}
+                                </div>
+                            </div>
+                            <div class="threecol col-lg-4">
+                                {{ form_label(formUsuarioFilter.role, 'ROL') }}
+                                {{ form_widget(formUsuarioFilter.role) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formUsuarioFilter.role) }}
+                                </div>
+                            </div>  
+                            <div class="threecol col-lg-4">
+                                {{ form_label(formUsuarioFilter.persona, 'NOMBRE RESPONSABLE') }}
+                                {{ form_widget(formUsuarioFilter.persona) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formUsuarioFilter.persona) }}
+                                </div>
+                            </div>              
+
                         </div>
-                    </div>
-                    <div class="threecol col-lg-4">
-                        {{ form_label(formUsuarioFilter.iup, 'USUARIO') }}
-                        {{ form_widget(formUsuarioFilter.iup) }}
-                        <div class="help-block with-errors">
-                            {{ form_errors(formUsuarioFilter.iup) }}
+
+                        <hr/>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                {{ form_widget(formUsuarioFilter.filter) }}
+                                {{ form_widget(formUsuarioFilter.reset) }}
+                            </div>
                         </div>
-                    </div>
-                    <div class="threecol col-lg-4">
-                        {{ form_label(formUsuarioFilter.role, 'ROL') }}
-                        {{ form_widget(formUsuarioFilter.role) }}
-                        <div class="help-block with-errors">
-                            {{ form_errors(formUsuarioFilter.role) }}
-                        </div>
-                    </div>  
-                    <div class="threecol col-lg-4">
-                        {{ form_label(formUsuarioFilter.persona, 'NOMBRE RESPONSABLE') }}
-                        {{ form_widget(formUsuarioFilter.persona) }}
-                        <div class="help-block with-errors">
-                            {{ form_errors(formUsuarioFilter.persona) }}
-                        </div>
-                    </div>              
+                        {{ form_end(formUsuarioFilter) }}
+
+                    </form>
 
                 </div>
-
-                <hr/>
-                <div class="row">
-                    <div class="col-lg-4">
-                        {{ form_widget(formUsuarioFilter.filter) }}
-                        {{ form_widget(formUsuarioFilter.reset) }}
-                    </div>
-                </div>
-                {{ form_end(formUsuarioFilter) }}
-
-            </form>
+            </div>
         </div>
 
         <hr/>

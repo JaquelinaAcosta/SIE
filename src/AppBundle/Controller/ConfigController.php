@@ -51,7 +51,7 @@ class ConfigController extends Controller {
         //GENERACION DE CADA PERSONA
         for ($i = 0; $i < count($personaArray); $i++) {
             $persona = new Persona();
-             $metadata = $em->getClassMetadata(get_parent_class($persona));
+            $metadata = $em->getClassMetadata(get_parent_class($persona));
             $metadata->setIdGenerator(new \Doctrine\ORM\Id\AssignedGenerator());
             $metadata->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
             $persona->setId($personaArray[$i]['id']);        

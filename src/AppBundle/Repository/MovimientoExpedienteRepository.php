@@ -10,4 +10,6 @@ namespace AppBundle\Repository;
  */
 class MovimientoExpedienteRepository extends \Doctrine\ORM\EntityRepository
 {
+    
+    
 }

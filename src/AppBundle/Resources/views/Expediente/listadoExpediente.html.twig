@@ -25,12 +25,102 @@
 
 
     <div class="content">
-        <div class="filtro">
-            <div class="header"><i class="fas fa-search"></i> <strong>Búsqueda de Expediente</strong></h4>
-                <a role="button" 
-                   class="btn btn-success float-right" 
-                   href="{{ path('nuevo_expediente')}}">
-                    Nuevo Expediente</a>
+        <div class="accordion" id="accordionExample">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-dark search" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <i class="fas fa-search-plus"></i> Filtros de Búsqueda de Expediente
+                        </button>
+                        {% if asociado == false %}
+                            <a href="{{ path('nuevo_expediente') }}" role="button" class="btn btn-info float-right"><i class="fas fa-file-alt"></i> Nuevo Expediente</a>
+                        {% endif %}
+
+                    </h2>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        {{ form_start(formExpedienteFilter) }}
+                        {{ form_errors(formExpedienteFilter) }}
+
+                        <label class="text-default">NUMERO DE EXPEDIENTE</label>
+                        <div class="row">
+                            <div class="threecol col-lg-1">
+                                {{ form_widget(formExpedienteFilter.codigoExpediente) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formExpedienteFilter.codigoExpediente) }}
+                                </div>
+                            </div>
+                            <div class="threecol col-lg-2">
+                                {{ form_widget(formExpedienteFilter.numeroExpediente) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formExpedienteFilter.numeroExpediente) }}
+                                </div>
+                            </div>
+                            <div class="threecol col-lg-1">
+                                {{ form_widget(formExpedienteFilter.digitoExpediente) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formExpedienteFilter.digitoExpediente) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            {% if formExpedienteFilter.dependencia is defined %}
+                                <div class="threecol col-lg-4">
+                                    {{ form_label(formExpedienteFilter.dependencia, 'DEPENDENCIA') }}
+                                    {{ form_widget(formExpedienteFilter.dependencia) }}
+                                    <div class="help-block with-errors">
+                                        {{ form_errors(formExpedienteFilter.dependencia) }}
+                                    </div>
+                                </div>
+                            {% endif %}
+                            <div class="threecol col-lg-5">
+                                {{ form_label(formExpedienteFilter.tema, 'TEMA') }}
+                                {{ form_widget(formExpedienteFilter.tema) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formExpedienteFilter.tema) }}
+                                </div>
+                            </div>    
+                            <div class="threecol col-lg-3">
+                                {{ form_label(formExpedienteFilter.tipo, 'TIPO') }}
+                                {{ form_widget(formExpedienteFilter.tipo) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formExpedienteFilter.tipo) }}
+                                </div>
+                            </div>  
+                            <div class="threecol col-lg-3">
+                                {{ form_label(formExpedienteFilter.estado, 'ESTADO') }}
+                                {{ form_widget(formExpedienteFilter.estado) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formExpedienteFilter.estado) }}
+                                </div>
+                            </div>  
+
+
+                            <div class="help-block with-errors">
+                                {{ form_errors(formExpedienteFilter.fechaInicio) }}
+                            </div>
+                            <div class="threecol col-lg-2">            
+                                {{ form_row(formExpedienteFilter.fechaInicio.left_date, { 'id': 'date1' })}} 
+                                {{ form_widget(formExpedienteFilter.fechaInicio.left_date) }}
+
+                            </div>   
+                            <div class="threecol col-lg-2">
+                                {{ form_row(formExpedienteFilter.fechaInicio.right_date, { 'id': 'date2' })}} 
+                                {{ form_widget(formExpedienteFilter.fechaInicio.right_date) }}
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                {{ form_widget(formExpedienteFilter.filter) }}
+                                {{ form_widget(formExpedienteFilter.reset) }}
+                            </div>
+                        </div>
+                        {{ form_end(formExpedienteFilter) }}
+                    </div>
+                </div>
             </div>
             <hr/>
 
@@ -48,88 +138,10 @@
                 <hr/>
             {% endfor %}
 
-            {{ form_start(formExpedienteFilter) }}
-            {{ form_errors(formExpedienteFilter) }}
 
-            <label class="text-default">NUMERO DE EXPEDIENTE</label>
-            <div class="row">
-                <div class="threecol col-lg-1">
-                    {{ form_widget(formExpedienteFilter.codigoExpediente) }}
-                    <div class="help-block with-errors">
-                        {{ form_errors(formExpedienteFilter.codigoExpediente) }}
-                    </div>
-                </div>
-                <div class="threecol col-lg-2">
-                    {{ form_widget(formExpedienteFilter.numeroExpediente) }}
-                    <div class="help-block with-errors">
-                        {{ form_errors(formExpedienteFilter.numeroExpediente) }}
-                    </div>
-                </div>
-                <div class="threecol col-lg-1">
-                    {{ form_widget(formExpedienteFilter.digitoExpediente) }}
-                    <div class="help-block with-errors">
-                        {{ form_errors(formExpedienteFilter.digitoExpediente) }}
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                {% if formExpedienteFilter.dependencia is defined %}
-                    <div class="threecol col-lg-4">
-                        {{ form_label(formExpedienteFilter.dependencia, 'DEPENDENCIA') }}
-                        {{ form_widget(formExpedienteFilter.dependencia) }}
-                        <div class="help-block with-errors">
-                            {{ form_errors(formExpedienteFilter.dependencia) }}
-                        </div>
-                    </div>
-                {% endif %}
-                <div class="threecol col-lg-5">
-                    {{ form_label(formExpedienteFilter.tema, 'TEMA') }}
-                    {{ form_widget(formExpedienteFilter.tema) }}
-                    <div class="help-block with-errors">
-                        {{ form_errors(formExpedienteFilter.tema) }}
-                    </div>
-                </div>    
-                <div class="threecol col-lg-3">
-                    {{ form_label(formExpedienteFilter.tipo, 'TIPO') }}
-                    {{ form_widget(formExpedienteFilter.tipo) }}
-                    <div class="help-block with-errors">
-                        {{ form_errors(formExpedienteFilter.tipo) }}
-                    </div>
-                </div>  
-                <div class="threecol col-lg-3">
-                    {{ form_label(formExpedienteFilter.estado, 'ESTADO') }}
-                    {{ form_widget(formExpedienteFilter.estado) }}
-                    <div class="help-block with-errors">
-                        {{ form_errors(formExpedienteFilter.estado) }}
-                    </div>
-                </div>  
-
-
-                <div class="help-block with-errors">
-                    {{ form_errors(formExpedienteFilter.fechaInicio) }}
-                </div>
-                <div class="threecol col-lg-2">            
-                    {{ form_row(formExpedienteFilter.fechaInicio.left_date, { 'id': 'date1' })}} 
-                    {{ form_widget(formExpedienteFilter.fechaInicio.left_date) }}
-
-                </div>   
-                <div class="threecol col-lg-2">
-                    {{ form_row(formExpedienteFilter.fechaInicio.right_date, { 'id': 'date2' })}} 
-                    {{ form_widget(formExpedienteFilter.fechaInicio.right_date) }}
-                </div>
-            </div>
-            <hr/>
-            <div class="row">
-                <div class="col-lg-4">
-                    {{ form_widget(formExpedienteFilter.filter) }}
-                    {{ form_widget(formExpedienteFilter.reset) }}
-                </div>
-            </div>
-            {{ form_end(formExpedienteFilter) }}
 
         </div>
 
-        <hr/>
 
         <table class="table table-sm table-striped">
             <thead class="thead-dark">
@@ -158,7 +170,7 @@
                                 <a class="btn btn-danger" href="{{ path("eliminar_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt"></i></a></td>
 
                         {% else %}
-                            <td class="text-center"><a class="btn btn-warning" href="{{ path("nuevo_expediente_asociado", {'id':padre_id, 'id_asoc':expediente.id}) }}"  
+                            <td class="text-center"><a class="btn btn-info" href="{{ path("nuevo_expediente_asociado", {'id':padre_id, 'id_asoc':expediente.id}) }}"  
                                                        role="button" data-toggle="tooltip" 
                                                        data-placement="top" title="Asociar"></i>Asociar</a></td>
 
