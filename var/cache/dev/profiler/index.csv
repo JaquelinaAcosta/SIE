@@ -1894,3 +1894,13 @@ cae382,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/persona_get11,15663
 5c1523,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/persona_get11,1566392220,,200
 e45376,127.0.0.1,POST,http://localhost/gitSIE/web/app_dev.php/usuario/edit/10,1566392224,,302
 18352d,127.0.0.1,GET,http://localhost/gitSIE/web/app_dev.php/usuario/listado/1,1566392224,,200
+2acee4,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/loginUsuario,1566394297,c8865e,200
+c8865e,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/loginUsuario,1566394297,,404
+e45658,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/login,1566394298,,200
+719bbe,127.0.0.1,POST,http://localhost/SIE/web/app_dev.php/login_check,1566394305,,302
+074d57,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/home,1566394305,,200
+ffbbc9,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/expediente/listado/1,1566394307,,200
+6c17d5,127.0.0.1,POST,http://localhost/SIE/web/app_dev.php/expediente/listado/1,1566394310,,200
+cb80f9,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/expediente/edit/28,1566394313,,200
+2bbf12,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/tema_get309,1566394313,,200
+1591f6,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/dependencia/listado/1,1566394325,,200

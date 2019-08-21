@@ -2,7 +2,7 @@
 
 {% block contentmain %}
     <style>
-       
+
         p {
             white-space: nowrap;
             overflow: hidden;
@@ -14,125 +14,134 @@
 
 
 
-   <div class="content">
-        <div class="filtro">
-            <div class="header"><i class="fas fa-search"></i> <strong>Búsqueda de carátula</strong></h4>
-                <a role="button" 
-                   class="btn btn-success float-right" 
-                   href="{{ path('nueva_caratula',{'id':expediente.id})}}">
-                    Agregar Carátula</a>
+    <div class="content">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                    <button class="btn btn-dark search" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <i class="fas fa-search-plus"></i> Filtros de Búsqueda de Carátulas
+                    </button>
+                    <a href="{{ path('nueva_caratula',{'id':expediente.id}) }}" 
+                       role="button" class="btn btn-info float-right">Nuevo Carátula</a>
+
+                </h2>
             </div>
-                    
-            <hr/>
-            <form method="post" novalidate="true" id="form_buscar">
-                    {{ form_errors(formCaratulaAgregadaFilter) }}
-                    <div class="row">
-                        <div class="threecol col-lg-4">
-                            {{ form_label(formCaratulaAgregadaFilter.concepto, 'CONCEPTO') }}
-                            {{ form_widget(formCaratulaAgregadaFilter.concepto) }}
-                            <div class="help-block with-errors">
-                                {{ form_errors(formCaratulaAgregadaFilter.concepto) }}
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    <form method="post" novalidate="true" id="form_buscar">
+                        {{ form_errors(formCaratulaAgregadaFilter) }}
+                        <div class="row">
+                            <div class="threecol col-lg-4">
+                                {{ form_label(formCaratulaAgregadaFilter.concepto, 'CONCEPTO') }}
+                                {{ form_widget(formCaratulaAgregadaFilter.concepto) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formCaratulaAgregadaFilter.concepto) }}
+                                </div>
+                            </div>
+                            <div class="threecol col-lg-4">
+                                {{ form_label(formCaratulaAgregadaFilter.tema, 'CODIGO') }}
+                                {{ form_widget(formCaratulaAgregadaFilter.tema) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formCaratulaAgregadaFilter.tema) }}
+                                </div>
+
+
+
+                                {# {{dump(formCaratulaAgregadaFilter.tema)}}#}
+                            </div> 
+
+                        </div>
+
+                        <hr/>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                {{ form_widget(formCaratulaAgregadaFilter.filter) }}
+                                {{ form_widget(formCaratulaAgregadaFilter.reset) }}
                             </div>
                         </div>
-                        <div class="threecol col-lg-4">
-                            {{ form_label(formCaratulaAgregadaFilter.tema, 'CODIGO') }}
-                            {{ form_widget(formCaratulaAgregadaFilter.tema) }}
-                            <div class="help-block with-errors">
-                                {{ form_errors(formCaratulaAgregadaFilter.tema) }}
-                            </div>
-                           
-                                
-                                
-                               {# {{dump(formCaratulaAgregadaFilter.tema)}}#}
-                        </div> 
-                       
-                    </div>
+                        {{ form_end(formCaratulaAgregadaFilter) }}
 
-                    <hr/>
-                    <div class="row">
-                        <div class="col-lg-4">
-                            {{ form_widget(formCaratulaAgregadaFilter.filter) }}
-                            {{ form_widget(formCaratulaAgregadaFilter.reset) }}
-                        </div>
-                    </div>
-                    {{ form_end(formCaratulaAgregadaFilter) }}
+                    </form>
 
-                </form>
+                </div>
+            </div>
         </div>
-            <hr/>
-                
-                    <table class="table table-striped table-hover"> 
-                        <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">CODIGO TEMA</th>
-                                <th scope="col">DESCRIPCION</th>
-                                <th scope="col">CONCEPTO</th>
-                                <th scope="col">FOJAS</th>
-                                <th scope="col">ACCIONES</th>
+       
+        <hr/>
 
-                            </tr>
-                        </thead>
+        <table class="table table-striped table-hover"> 
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">CODIGO TEMA</th>
+                    <th scope="col">DESCRIPCION</th>
+                    <th scope="col">CONCEPTO</th>
+                    <th scope="col">FOJAS</th>
+                    <th scope="col">ACCIONES</th>
 
-                        <tbody>
+                </tr>
+            </thead>
 
-                            {% for caratulaAgregada in caratulas %}
+            <tbody>
 
-                                <tr>
-                                    <td>{{caratulaAgregada.tema.codigo}}</td>
-                                    <td>{{caratulaAgregada.tema.descripcion}}</td>
-                                    <td>{{caratulaAgregada.concepto}}</td>
-                                    <td>{{caratulaAgregada.fojas}}</td>
-                                    <td>
-                                        <a class="btn btn-warning" href="{{ path("editar_caratula", {'id':caratulaAgregada.id}) }}"  role="button"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Editar"></i></a>
-                                        <a class="btn btn-danger" href="{{ path("eliminar_caratula", {'id':caratulaAgregada.id}) }}"  role="button"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></a></td>
-                                </tr>
+                {% for caratulaAgregada in caratulas %}
 
-                            {% endfor %}
+                    <tr>
+                        <td>{{caratulaAgregada.tema.codigo}}</td>
+                        <td>{{caratulaAgregada.tema.descripcion}}</td>
+                        <td>{{caratulaAgregada.concepto}}</td>
+                        <td>{{caratulaAgregada.fojas}}</td>
+                        <td>
+                            <a class="btn btn-warning" href="{{ path("editar_caratula", {'id':caratulaAgregada.id}) }}"  role="button"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Editar"></i></a>
+                            <a class="btn btn-danger" href="{{ path("eliminar_caratula", {'id':caratulaAgregada.id}) }}"  role="button"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></a></td>
+                    </tr>
 
-                        </tbody>
+                {% endfor %}
 
-                    </table>
+            </tbody>
+
+        </table>
 
 
-   </div>
-                            
-                            
+    </div>
+
+
     {% if caratulas|length < totalItems %}
-            <ul class="pagination">
-                {%if (thisPage==1)%}           
-                {%else%}
-                    {%set thisPage= thisPage-1%}
-                {%endif%}
+        <ul class="pagination">
+            {%if (thisPage==1)%}           
+            {%else%}
+                {%set thisPage= thisPage-1%}
+            {%endif%}
 
 
-                <li ><a class="page-link" href="{{ path('listado_caratula', {'id':expediente.id, "currentPage": thisPage}) }}">&laquo</a></li>
-                    {% for i in 1..maxPages %}
-                    <li><a class="page-link"  href="{{ path('listado_caratula', {'id':expediente.id, "currentPage": i}) }}">{{ i }}</a></li>
-                    {% endfor %}
+            <li ><a class="page-link" href="{{ path('listado_caratula', {'id':expediente.id, "currentPage": thisPage}) }}">&laquo</a></li>
+                {% for i in 1..maxPages %}
+                <li><a class="page-link"  href="{{ path('listado_caratula', {'id':expediente.id, "currentPage": i}) }}">{{ i }}</a></li>
+                {% endfor %}
 
-                {%if (page==maxPages)%}
+            {%if (page==maxPages)%}
 
-                {%else%}
-                    {%set page= page+1%}
-                {%endif%}
-                <li><a class="page-link" href="{{ path('listado_caratula', {'id':expediente.id, "currentPage": page}) }}">&raquo</a></li>
+            {%else%}
+                {%set page= page+1%}
+            {%endif%}
+            <li><a class="page-link" href="{{ path('listado_caratula', {'id':expediente.id, "currentPage": page}) }}">&raquo</a></li>
 
-            </ul>
-        {% endif %}
-        
-                            
+        </ul>
+    {% endif %}
+
+
     <script>
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
     </script>
-    
+
     <script>
-            $('#caratula_filter_responsable').autocompleter({
-                url_list: "{{ path('tema_search') }}",
-                url_get: "{{ path('tema_get') }}"
-            });
+        $('#caratula_filter_responsable').autocompleter({
+            url_list: "{{ path('tema_search') }}",
+            url_get: "{{ path('tema_get') }}"
+        });
     </script>
-    
+
     <hr/>
 {% endblock %}

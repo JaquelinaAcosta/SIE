@@ -23,19 +23,19 @@ class MovimientoExpedienteType extends AbstractType
         $builder             
                 ->add('fojas', TextType::class,array(
             "label"=>"Nro. de fojas:","attr"=> array(
-               "class"=>"form-name form-control" ,
+               "class"=>"form-control" ,
                "placeholder"=>"1...2..."
             )
         ))
                 ->add('observacion', TextareaType::class, array(
                 "label"=>"Observaciones: ","attr"=> array(
-               "class"=>"form-name form-control" ,
+               "class"=>"form-control" ,
                 'rows'=> 4
             )
         ))
                 ->add('comentario', TextareaType::class, array(
                "label"=>"Comentario: ","attr"=> array(
-               "class"=>"form-name form-control" ,
+               "class"=>"form-control" ,
                "placeholder"=>"Comentario..."
             )
         ))          
@@ -48,7 +48,15 @@ class MovimientoExpedienteType extends AbstractType
 //                $builder->addEventSubscriber($eventSuscriber);
         
         if($options['pase'] == 'interno'){
-            $builder->add('persona', PersonaType::class, ['role' => null, 'movimiento_persona' => true]);
+           $builder->add('persona', 'PUGX\AutocompleterBundle\Form\Type\AutocompleteType', array(
+                'class' => 'AppBundle:Persona',
+                'label' => false,
+                'required' => false,
+                'attr' => array(
+                    'class' => 'form form-control',
+                    'placeholder' => 'Escriba parte del nombre y seleccione una opción'
+                )
+            ));
         }
         if($options['pase'] == 'externo'){
             if($options['dependencia_id'] != null){
@@ -61,7 +69,11 @@ class MovimientoExpedienteType extends AbstractType
           
         }
         if($options['pase'] == 'archivar'){
-            $builder->add('lugarfisico', LugarFisicoType::class, ['edit_mode' => null, 'movimiento_lugar' => true]);
+            $builder->add('lugarfisico', LugarFisicoType::class, [
+                'edit_mode' => null, 
+                'movimiento_lugar' => true,
+                'dependencia_id'=>$options['dependencia_id']
+                ]);
         }
         
     }/**

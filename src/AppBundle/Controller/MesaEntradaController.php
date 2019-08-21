@@ -20,13 +20,13 @@ class MesaEntradaController extends Controller {
         $em = $this->getDoctrine()->getEntityManager();
         $mesaentrada = $this->getUser()->getPersona()->getDependencia()->getMesaentrada();
 
-        $original_responsables = new ArrayCollection();
+     
 
         $form = $this->createForm(MesaEntradaType::class, $mesaentrada, [
             'gestion' => true,
             'dependencia_id'=>$mesaentrada->getDependencia()->getId()
             ]);
-
+   $original_responsables = new ArrayCollection();
         foreach ($mesaentrada->getResponsables() as $responsable) {
             $original_responsables->add($responsable);
         }

@@ -24,7 +24,7 @@
 
     <div class="content">
         <div class="col-ls-12">
-      <strong>PASE INTERNO, EXPEDIENTE {{expediente.codigoExpediente }}-{{expediente.numeroExpediente }}-{{expediente.digitoExpediente }} </strong>
+      <strong>{{ accion }} PASE INTERNO, EXPEDIENTE {{expediente.codigoExpediente }}-{{expediente.numeroExpediente }}-{{expediente.digitoExpediente }} </strong>
       <hr/>
         {{form_start(form,{'action':'' ,'method':'POST'})}}
         
@@ -62,7 +62,7 @@
 </div>      
 
 <script>
-    $('#movimientoexpediente_persona_nombre').autocompleter({
+    $('#movimientoexpediente_persona').autocompleter({
         url_list: "{{ path('persona_search_dependencia',{'id':expediente.id}) }}",
         url_get: "{{ path('persona_get') }}"
     });

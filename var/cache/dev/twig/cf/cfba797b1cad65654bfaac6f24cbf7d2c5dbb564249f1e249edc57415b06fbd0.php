@@ -48,9 +48,9 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         echo "           
         </title>
 
-        <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\">
+        <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css\">
         <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js\"></script>
-        <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js\"></script>
+        <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js\"></script>
         <link href=\"https://use.fontawesome.com/releases/v5.0.6/css/all.css\" rel=\"stylesheet\">\t   
 
         <link rel=\"stylesheet\" href=\"http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css\" />
@@ -87,16 +87,16 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
             }
             body{
-                background-color:#ededed;
+                background-color:#bfbfbf;
                 color:#616161;
             }
             .content{
                 margin:0 auto;
                 width:1000px;
-                background-color:#fff;
+                background-color:#ebebeb;
 
                 padding:30px;
-              ";
+                ";
         // line 55
         echo "            }
             .filtro{
@@ -115,15 +115,28 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                 margin-right: 0;
 
             }
-            
+
+            .card-header{
+                background-color:#3d3d3d;
+            }
+            .card-body{
+                background-color:#f5f5f5;
+            }
+            .search{
+                outline: none;
+                border: 0;
+                box-shadow: none;
+                background-color: transparent;
+            }
+
             table{
                 color:#616161;
             }
             .dropdown-menu {display: block;visibility: hidden;opacity:0;transform: translateY(50px);transition:.5s ease all;}
             .dropdown-menu.show {display: block;visibility: visible;opacity:1;transform: translateY(0px);transition:.5s ease all;}
 
-            
-            
+
+
         </style>
         <script>
             \$.datepicker.regional['es'] = {
@@ -159,16 +172,16 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     <body>       
         ";
-        // line 115
+        // line 128
         if (($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []) != null)) {
-            // line 116
+            // line 129
             echo "            <header>  
                 <nav class=\"navbar fixed-top navbar-expand-md navbar-dark bg-dark\">
                     ";
-            // line 119
+            // line 132
             echo "                    <a class=\"navbar-brand abs\" href=\"#\"><strong style=\"font-size:16px;\">
                             ";
-            // line 120
+            // line 133
             echo "Sistema de Gestión Interna de Expedientes
                         </strong></a>
                     <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#collapsingNavbar\">
@@ -182,14 +195,14 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                                     <button class=\"btn btn-dark dropdown-toggle right\" type=\"button\" id=\"dropdownMenuMenu\" data-toggle=\"dropdown\"
                                             aria-haspopup=\"true\" aria-expanded=\"false\">
                                         <i class=\"fas fa-user\"></i>  ";
-            // line 132
+            // line 145
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "userName", []), "html", null, true);
             echo "  
                                         </a>        </button>
                                     <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuMenu\">
                                         <a class=\"dropdown-item\" type=\"button\"><i class=\"fab fa-whmcs\"></i>  Configuración</a>
                                         <a class=\"dropdown-item\" href=\"";
-            // line 136
+            // line 149
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("logout");
             echo "\" type=\"button\"><i class=\"fas fa-sign-out-alt\"></i>  Cerrar Sesión</a>
                                     </div>
@@ -202,7 +215,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                 <div class=\"sidebar\"> 
                     <div class=\"list-group\" style=\"margin-top:15px;\">
                         <a href=\"";
-            // line 146
+            // line 159
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_expediente", ["currentPage" => 1]);
             echo "\" class=\"list-group-item list-group-item-action text-center\">
                             <i class=\"far fa-file-alt\" style=\"font-size:27px; margin:0 auto;\"></i>
@@ -210,9 +223,9 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                             Expedientes
                         </a>
                         ";
-            // line 151
+            // line 164
             if (($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "role", []) == "ROLE_ADMIN")) {
-                // line 152
+                // line 165
                 echo "                            <a href=\"";
                 echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_dependencia", ["currentPage" => 1]);
                 echo "\" class=\"list-group-item list-group-item-action text-center\">
@@ -221,7 +234,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                                 Dependencias
                             </a>
                             <a href=\"";
-                // line 157
+                // line 170
                 echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_persona", ["currentPage" => 1]);
                 echo "\" class=\"list-group-item list-group-item-action text-center\">
                                 <i class=\"fas fa-male\" style=\"font-size:27px; margin:0 auto;\"></i>
@@ -229,7 +242,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                                 Personas
                             </a>
                             <a href=\"";
-                // line 162
+                // line 175
                 echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_usuario", ["currentPage" => 1]);
                 echo "\" class=\"list-group-item list-group-item-action text-center\">
                                 <i class=\"fas fa-user\" style=\"font-size:27px; margin:0 auto;\"></i>
@@ -238,7 +251,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                             </a>
                         ";
             }
-            // line 168
+            // line 181
             echo "                        <a href=\"";
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_lugarfisico", ["currentPage" => 1]);
             echo "\" class=\"list-group-item list-group-item-action text-center\">
@@ -246,18 +259,15 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                             <br/>
                             Lugares
                         </a>
-                        <a href=\"#\" class=\"list-group-item list-group-item-action text-center\">
-                            <i class=\"fas fa-history\" style=\"font-size:27px;\"></i>
-                            <br/>
-                            Últimos Registros
-                        </a>
-                        <a href=\"#\" class=\"list-group-item list-group-item-action text-center\">
+                        ";
+            // line 191
+            echo "                        <a href=\"#\" class=\"list-group-item list-group-item-action text-center\">
                             <i class=\"fas fa-question-circle\" style=\"font-size:27px;\"></i>
                             <br/>
                             Ayuda
                         </a>
                         <a href=\"";
-            // line 183
+            // line 196
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("logout");
             echo "\" class=\"list-group-item list-group-item-action text-center\">
                             <i class=\"fas fa-sign-out-alt\" style=\"font-size:27px;\"></i>
@@ -271,29 +281,29 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                 <div class=\"contentmain\">
 
                     ";
-            // line 194
+            // line 207
             $this->displayBlock('contentmain', $context, $blocks);
-            // line 197
+            // line 210
             echo "
                 </div>
             </header>
         ";
         } else {
-            // line 201
+            // line 214
             echo "
             <div class=\"login\">
 
                 ";
-            // line 204
+            // line 217
             $this->displayBlock('login', $context, $blocks);
-            // line 207
+            // line 220
             echo "
             </div>
 
 
         ";
         }
-        // line 212
+        // line 225
         echo "
 
     </body>
@@ -326,7 +336,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     }
 
-    // line 194
+    // line 207
     public function block_contentmain($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -335,7 +345,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "contentmain"));
 
-        // line 195
+        // line 208
         echo "
                     ";
         
@@ -346,7 +356,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     }
 
-    // line 204
+    // line 217
     public function block_login($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -355,7 +365,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "login"));
 
-        // line 205
+        // line 218
         echo "
                 ";
         
@@ -378,7 +388,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     public function getDebugInfo()
     {
-        return array (  359 => 205,  350 => 204,  339 => 195,  330 => 194,  312 => 7,  297 => 212,  290 => 207,  288 => 204,  283 => 201,  277 => 197,  275 => 194,  261 => 183,  242 => 168,  233 => 162,  225 => 157,  216 => 152,  214 => 151,  206 => 146,  193 => 136,  186 => 132,  172 => 120,  169 => 119,  165 => 116,  163 => 115,  101 => 55,  67 => 21,  63 => 20,  47 => 7,  39 => 1,);
+        return array (  369 => 218,  360 => 217,  349 => 208,  340 => 207,  322 => 7,  307 => 225,  300 => 220,  298 => 217,  293 => 214,  287 => 210,  285 => 207,  271 => 196,  264 => 191,  255 => 181,  246 => 175,  238 => 170,  229 => 165,  227 => 164,  219 => 159,  206 => 149,  199 => 145,  185 => 133,  182 => 132,  178 => 129,  176 => 128,  101 => 55,  67 => 21,  63 => 20,  47 => 7,  39 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -400,9 +410,9 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
             {% block title %}SIE{% endblock %}           
         </title>
 
-        <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css\">
+        <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css\">
         <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js\"></script>
-        <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js\"></script>
+        <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js\"></script>
         <link href=\"https://use.fontawesome.com/releases/v5.0.6/css/all.css\" rel=\"stylesheet\">\t   
 
         <link rel=\"stylesheet\" href=\"http://code.jquery.com/ui/1.10.1/themes/base/jquery-ui.css\" />
@@ -433,18 +443,18 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
             }
             body{
-                background-color:#ededed;
+                background-color:#bfbfbf;
                 color:#616161;
             }
             .content{
                 margin:0 auto;
                 width:1000px;
-                background-color:#fff;
+                background-color:#ebebeb;
 
                 padding:30px;
-              {#  -webkit-box-shadow: -1px 0px 5px 3px rgba(0,0,0,0.31);
-            -moz-box-shadow: -1px 0px 5px 3px rgba(0,0,0,0.31);
-            box-shadow: -1px 0px 5px 3px rgba(0,0,0,0.31);#}
+                {#  -webkit-box-shadow: -1px 0px 5px 3px rgba(0,0,0,0.31);
+              -moz-box-shadow: -1px 0px 5px 3px rgba(0,0,0,0.31);
+              box-shadow: -1px 0px 5px 3px rgba(0,0,0,0.31);#}
             }
             .filtro{
                 background-color: #e8e8e8;
@@ -462,15 +472,28 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                 margin-right: 0;
 
             }
-            
+
+            .card-header{
+                background-color:#3d3d3d;
+            }
+            .card-body{
+                background-color:#f5f5f5;
+            }
+            .search{
+                outline: none;
+                border: 0;
+                box-shadow: none;
+                background-color: transparent;
+            }
+
             table{
                 color:#616161;
             }
             .dropdown-menu {display: block;visibility: hidden;opacity:0;transform: translateY(50px);transition:.5s ease all;}
             .dropdown-menu.show {display: block;visibility: visible;opacity:1;transform: translateY(0px);transition:.5s ease all;}
 
-            
-            
+
+
         </style>
         <script>
             \$.datepicker.regional['es'] = {
@@ -563,11 +586,11 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                             <br/>
                             Lugares
                         </a>
-                        <a href=\"#\" class=\"list-group-item list-group-item-action text-center\">
-                            <i class=\"fas fa-history\" style=\"font-size:27px;\"></i>
-                            <br/>
-                            Últimos Registros
-                        </a>
+                        {# <a href=\"#\" class=\"list-group-item list-group-item-action text-center\">
+                             <i class=\"fas fa-history\" style=\"font-size:27px;\"></i>
+                             <br/>
+                             Últimos Registros
+                         </a>#}
                         <a href=\"#\" class=\"list-group-item list-group-item-action text-center\">
                             <i class=\"fas fa-question-circle\" style=\"font-size:27px;\"></i>
                             <br/>
