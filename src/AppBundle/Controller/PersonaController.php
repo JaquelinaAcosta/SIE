@@ -36,10 +36,15 @@ class PersonaController extends Controller {
 
             $dependencia = $form['dependencia']->getData();
             $persona->setDependencia($dependencia);
+            
+            //formato para ingreso de texto
+            $persona->setNombre(trim(strtoupper($persona->getNombre())));
+            $persona->setApellido(trim(strtoupper($persona->getApellido())));
+            $persona->setCargo(trim(strtoupper($persona->getCargo())));
+            //fin formato
 
             $em->persist($persona);
             $flush = $em->flush();
-
 
             if ($flush == false) {
                 $this->addFlash('success', "La persona " . $persona->getnombre() . " " . $persona->getapellido() . " se agregó correctamente.");

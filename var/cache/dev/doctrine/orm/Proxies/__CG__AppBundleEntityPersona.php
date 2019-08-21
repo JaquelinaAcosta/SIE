@@ -312,6 +312,17 @@ class Persona extends \AppBundle\Entity\Persona implements \Doctrine\ORM\Proxy\P
     /**
      * {@inheritDoc}
      */
+    public function getValidarDNI()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getValidarDNI', []);
+
+        return parent::getValidarDNI();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getUbicacionId()
     {
 

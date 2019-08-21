@@ -117,10 +117,10 @@ class __TwigTemplate_10459d26ce8a546104f75016e96858442860fea8bc8befc8d87546d073e
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "apellido", []), 'widget');
         echo "
         <label class=\"text-default\">DNI:</label>
-        ";
+        <div class=\" text-danger\">";
         // line 35
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "dni", []), 'errors');
-        echo "
+        echo "</div>
         ";
         // line 36
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "dni", []), 'widget');
@@ -216,7 +216,7 @@ class __TwigTemplate_10459d26ce8a546104f75016e96858442860fea8bc8befc8d87546d073e
         {{ form_errors(form.apellido) }}
         {{ form_widget(form.apellido) }}
         <label class=\"text-default\">DNI:</label>
-        {{ form_errors(form.dni) }}
+        <div class=\" text-danger\">{{ form_errors(form.dni) }}</div>
         {{ form_widget(form.dni) }}
         <label class=\"text-default\">Cargo:</label>
         {{ form_errors(form.cargo) }}
