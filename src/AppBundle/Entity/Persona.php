@@ -3,7 +3,10 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Symfony\Component\Validator\Constraints\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Persona
@@ -180,4 +183,15 @@ class Persona extends Ubicacion
     {
         return $this->usuario;
     }
+            
+    /**
+    * @Assert\IsTrue(message="El DNI debe tener 8 números.")
+    */
+    public function getValidarDNI() {
+        if(strlen($this->dni) == 8){
+            return true;
+        }
+        return false;
+    }
+    
 }

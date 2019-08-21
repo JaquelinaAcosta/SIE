@@ -109,7 +109,10 @@ class UsuarioType extends AbstractType {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\Usuario',
             'contrasenia' => null,
-            'role' => null
+            'role' => null,
+            'error_mapping' => array(
+                'validarPassword' => 'contrasenia'
+            ),
         ));
     }
 

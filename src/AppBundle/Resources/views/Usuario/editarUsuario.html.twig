@@ -23,9 +23,10 @@
         {{ form_errors(form.email) }}
         {{ form_widget(form.email) }}
         <label class="float left">CONTRASEÑA</label>
-        {{ form_errors(form.contrasenia) }}
+        <div class=" text-danger">{{ form_errors(form.contrasenia) }}</div>
         {{ form_widget(form.contrasenia) }}
 
+        
         {% if form.persona is defined %}
 
             <label class="float left">PERSONA GESTIONANTE</label>

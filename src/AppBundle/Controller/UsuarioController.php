@@ -21,9 +21,10 @@ class UsuarioController extends Controller {
         $form = $this->createForm(UsuarioType::class, $usuario, ['contrasenia' => null, 'role' => 'su']);
         $form->handleRequest($request);
         
-        if ($form->isSubmitted() and $form->isValid()) {
+        if ($form->isSubmitted()) {
+            if($form->isValid()){
             if (count($em->getRepository("AppBundle:Usuario")->findBy(['iup' => $form['iup']->getData()])) == 0) {
-                if ($usuario->getPersona()->getUsuario() == null) {
+                if ($usuario->getPersona()->getUsuario() == null){
                     $factory = $this->get("security.encoder_factory");
                     $encoder = $factory->getEncoder($usuario);
                     $password = $encoder->encodePassword($usuario->getContrasenia(), $usuario->getSalt());
@@ -47,7 +48,7 @@ class UsuarioController extends Controller {
                 }
             } else {
                 $this->addFlash('danger', "El nombre de usuario ya existe.");
-            }
+            }}
         }
 
         // replace this example code with whatever you need
@@ -92,7 +93,8 @@ class UsuarioController extends Controller {
                     
                     if($flush == false){
                         $this->addFlash('success', "Usuario editado correctamente.");
-                        return $this->redirectToRoute('listado_usuario');
+                        return $this->redirectToRoute('listado_usuario',[
+                            'currentPage'=>1]);
                     }else{
                         $this->addFlash('danger', "Ocurrió un error en la edicion del usuario.");
                     }                    
@@ -185,7 +187,7 @@ class UsuarioController extends Controller {
         $flush = $em->flush();
 
 
-        return $this->redirectToRoute('lista_usuario');
+        return $this->redirectToRoute('listado_usuario',['currentPage'=>1]);
     }
 
 }

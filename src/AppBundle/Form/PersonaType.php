@@ -83,7 +83,11 @@ class PersonaType extends AbstractType {
         $resolver->setDefaults(array(
             'data_class' => 'AppBundle\Entity\Persona',
             'role' => null,
-            'movimiento_persona' => null
+            'movimiento_persona' => null,
+            'error_mapping' => array(
+                'validarDNI' => 'dni'
+            ),
+          
         ));
     }
 

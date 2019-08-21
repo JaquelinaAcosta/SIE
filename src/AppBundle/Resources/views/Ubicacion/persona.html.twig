@@ -34,7 +34,7 @@
         {{ form_errors(form.apellido) }}
         {{ form_widget(form.apellido) }}
         <label class="text-default">DNI:</label>
-        {{ form_errors(form.dni) }}
+        <div class=" text-danger">{{ form_errors(form.dni) }}</div>
         {{ form_widget(form.dni) }}
         <label class="text-default">Cargo:</label>
         {{ form_errors(form.cargo) }}
