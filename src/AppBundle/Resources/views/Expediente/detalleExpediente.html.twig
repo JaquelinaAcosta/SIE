@@ -51,7 +51,11 @@
                     </tr>
                     <tr>
                         <th class="w-25">FECHA DE FIN</th>
-                        <td>{{ expediente.fechaFin|date('d-m-Y')}}</td>
+                        <td>
+                            {% if expediente.fechaFin != null %}
+                                {{ expediente.fechaFin|date('d-m-Y')}}
+                            {% endif %}
+                        </td>
                     </tr>
                     <tr>
                         <th class="w-25">ULTIMO PASE</th>
@@ -66,9 +70,9 @@
                                 {{ expediente.ubicacionActual}}
 
                             {% else %}
-                                
+
                                 La ubicación actual fue borrada.
-                                
+
                             {% endif %}
 
 
