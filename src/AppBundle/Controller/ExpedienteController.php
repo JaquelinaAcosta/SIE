@@ -60,11 +60,18 @@ class ExpedienteController extends Controller {
 //                }
 //                $expediente->setFechaInicio(date($form['fechaInicio']->getData()." H:i:s"));
 //                $expediente->setFechaFin(date($form['fechaFin']->getData()." H:i:s"));
+                
                 $em->persist($expediente);
-                $em->flush();
+                $flush=$em->flush();
+                
+                if ($flush == false) {
+                    $this->addFlash('success', "El Expediente: " . $expediente->getCodigoExpediente() . "-".$expediente->getNumeroExpediente(). "-". $expediente->getDigitoExpediente() . " se agregó correctamente.");
+                    return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+                } else {
+                    $this->addFlash('danger', "Ocurrió un error en la creacion de Expediente.");
+                }
             }
 
-            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
         }
 
 
@@ -75,29 +82,6 @@ class ExpedienteController extends Controller {
         ]);
     }
 
-//    /**
-//     * @Route("expediente/listado", name="listado_expediente")
-//     */
-//    public function listaExpedientesAction(Request $request) {
-//
-//        $em = $this->getDoctrine()->getEntityManager();
-//        $user = $this->getUser();
-//        $expediente = new Expediente();
-//
-//        if ($user->getRole() == "ROLE_ADMIN") {
-//            $expediente = $em->getRepository("AppBundle:Expediente")->findAll();
-//        } else {
-//            $expediente = $em->getRepository("AppBundle:Expediente")->findBy([
-//                'iniciadorDependencia' => $user->getPersona()->getDependencia()
-//            ]);
-//        }
-//
-//
-//        // replace this example code with whatever you need
-//        return $this->render('AppBundle:Expediente:listadoExpediente.html.twig', [
-//                    'expediente' => $expediente
-//        ]);
-//    }
 
     /**
      * @Route("expediente/listado/{currentPage}", name="listado_expediente")
@@ -256,14 +240,15 @@ class ExpedienteController extends Controller {
 
         $em->remove($expediente);
         $flush = $em->flush();
+              
+        if ($flush == false) {
+            $this->addFlash('success', "El Expediente: " . $expediente->getCodigoExpediente() . "-".$expediente->getNumeroExpediente(). "-". $expediente->getDigitoExpediente() . " se eliminó correctamente.");
+            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+        } else {
+            $this->addFlash('danger', "Ocurrió un error en la Eliminacón de Expediente.");
+        }
 
-//        if ($flush == null) {
-//            echo "Post se ha borrado correctamente";
-//        } else {
-//            echo "El post no se ha borrado";
-//        }
-
-        return $this->redirectToRoute('listado_expediente');
+        return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
     }
 
     /**
@@ -330,7 +315,14 @@ class ExpedienteController extends Controller {
                 $expediente->setFechaFin($fechaFin);
 
                 $em->persist($expediente);
-                $em->flush();
+                $flush = $em->flush();
+                                
+                if ($flush == false) {
+                    $this->addFlash('success', "El Expediente: " . $expediente->getCodigoExpediente() . "-".$expediente->getNumeroExpediente(). "-". $expediente->getDigitoExpediente() . " se modificó correctamente.");
+                    return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+                } else {
+                    $this->addFlash('danger', "Ocurrió un error en la Modificación de Expediente.");
+                }
             }
             return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
         }

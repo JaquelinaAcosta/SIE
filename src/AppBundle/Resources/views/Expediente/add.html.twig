@@ -48,17 +48,17 @@
                 <div class="row">
                     <div class="cod col-lg-1">
                         <label class="exp text-default"></label>
-                        {{ form_errors(form.codigoExpediente) }}
+                        <div class=" text-danger">{{ form_errors(form.codigoExpediente) }}</div>
                         {{ form_widget(form.codigoExpediente) }}
                     </div>                   
                     <div class="num col-lg-2">
                         <label class="exp text-default"></label>
-                        {{ form_errors(form.numeroExpediente) }}
+                        <div class=" text-danger">{{ form_errors(form.numeroExpediente) }}</div>
                         {{ form_widget(form.numeroExpediente) }}
                     </div>
                     <div class="dig col-lg-1">
                         <label class="exp text-default"></label>
-                        {{ form_errors(form.digitoExpediente) }}
+                        <div class=" text-danger">{{ form_errors(form.digitoExpediente) }}</div>
                         {{ form_widget(form.digitoExpediente) }}
                     </div>
                 </div>
@@ -69,9 +69,9 @@
                         {{ form_errors(form.tipo) }}
                         {{ form_widget(form.tipo) }}
                     </div>
-                    <div class="col-lg-1">
+                    <div class="col-lg-2">
                         <label class="text-default">FOJAS</label>
-                        {{ form_errors(form.fojas) }}
+                        <div class=" text-danger">{{ form_errors(form.fojas) }}</div>
                         {{ form_widget(form.fojas) }}
                     </div>    
                     <div class="col-lg-7">
@@ -81,8 +81,8 @@
                     </div>     
                     <div class="col-lg-2">
                         <label class="text-default">FECHA DE INICIO</label>
-                        {{ form_row(form.fechaInicio, { 'id': 'date1' })}} 
-                        {{ form_errors(form.fechaInicio) }}
+                        <div class=" text-danger">{{ form_row(form.fechaInicio, { 'id': 'date1' })}} </div>
+{#                        {{ form_errors(form.fechaInicio) }}#}
                         {{ form_widget(form.fechaInicio) }}
                     </div>  
                     <div class="col-lg-2">

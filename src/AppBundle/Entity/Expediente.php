@@ -8,6 +8,8 @@ use AppBundle\Entity\CaratulaAgregada;
 use AppBundle\Entity\Resolucion;
 use AppBundle\Entity\Dependencia;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Symfony\Component\Validator\Constraints\Collection;
 
 /**
  * Expediente
@@ -680,5 +682,57 @@ class Expediente {
     public function getUltimaUbicacion()
     {
         return $this->ultimaUbicacion;
+    }
+    
+    
+    
+    /**
+    * @Assert\IsTrue(message="El Codigo de Expediente debe tener 5 Dígitos.")
+    */
+    public function getValidarCodigoExpediente() {
+        if(strlen($this->codigoExpediente) == 5){
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+    * @Assert\IsTrue(message="El Número de Expediente debe tener 7 Dígitos.")
+    */
+    public function getValidarNumeroExpediente() {
+        if(strlen($this->numeroExpediente) == 7){
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+    * @Assert\IsTrue(message="El Dígito de Expediente debe tener longitud 1.")
+    */
+    public function getValidarDigitoExpediente() {
+        if(strlen($this->digitoExpediente) == 1){
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+    * @Assert\IsTrue(message="La fecha de inicio debe ser menor que la de fin.")
+    */
+    public function getValidarFecha() {
+        if(($this->fechaInicio) <= ($this->fechaFin)){
+            return true;
+        }
+        return false;
+    }
+    
+    /**
+    * @Assert\IsTrue(message="La cantidad de fojas debe ser mayor que 0")
+    */
+    public function getValidarFojas() {
+        if(($this->fojas) >0){
+            return true;
+        }
+        return false;
     }
 }
