@@ -199,18 +199,45 @@ class ExpedienteController extends Controller {
 
         $em = $this->getDoctrine()->getEntityManager();
         $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
+
+        $expedientePadre = new Expediente();
+        $actualFecha = '';
+        $ultimaFecha = '';
+
+        if ($expediente->getEstado() == 'ASOCIADO') {
+            $expedientePadre = $em->getRepository('AppBundle:ExpedienteAsociado')->findOneBy([
+                        'expedienteAsociado' => $expediente
+                    ])->getExpedientePadre();
+        }
+        if ($expediente != null) {
+            $actualFecha = $em->getRepository('AppBundle:MovimientoExpediente')->findOneBy(
+                            [
+                                'ubicacion' => $expediente->getUbicacionActual()
+                            ], ['fecha' => 'DESC'], ['expediente' => $expediente])->getFecha()->format('d-m-Y');
+            $ultimaFecha = $em->getRepository('AppBundle:MovimientoExpediente')->findOneBy(
+                            [
+                                'ubicacion' => $expediente->getUltimaUbicacion()
+                            ], ['fecha' => 'DESC'], ['expediente' => $expediente])->getFecha()->format('d-m-Y');
+        }
+
         $expedientes_asociados = $em->getRepository('AppBundle:ExpedienteAsociado')->findBy([
             'expedienteAsociado' => $expediente->getId()]);
         if ($expediente->getEstado() != 'ASOCIADO') {
             $expediente->setEstado('VISTO');
         }
+
+
+
         $em->persist($expediente);
         $em->flush();
 
         // replace this example code with whatever you need
         return $this->render('AppBundle:Expediente:detalleExpediente.html.twig', [
                     'expediente' => $expediente,
-                    'expedientes_asociados' => $expedientes_asociados
+                    'expedientes_asociados' => $expedientes_asociados,
+                    'expediente_padre' => $expedientePadre,
+                    'actual_fecha' => $actualFecha,
+                    'ultima_fecha' => $ultimaFecha,
         ]);
     }
 

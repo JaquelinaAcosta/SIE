@@ -11,7 +11,7 @@ use AppBundle\Entity\MesaEntrada;
 use AppBundle\Entity\Usuario;
 
 class ConfigController extends Controller {
- 
+
     /**
      * @Route("/config_inicial", name="generar_dependencia")
      */
@@ -31,13 +31,12 @@ class ConfigController extends Controller {
             $dependencia->setDescripcion($dependenciasArray[$i]['descripcion']);
             $dependencia->setNivel($dependenciasArray[$i]['categoriaProgramatica']);
             $dependencia->setId($dependenciasArray[$i]['id']);
-           
+            $dependencia->setEstado('HABILITADO');
             $em->persist($dependencia);
             $em->flush();
-        }        
-         return $this->redirectToRoute('generar_persona');
+        }
+        return $this->redirectToRoute('generar_persona');
     }
-    
 
     /**
      * @Route("/config_inicial_persona", name="generar_persona")
@@ -55,8 +54,8 @@ class ConfigController extends Controller {
             $metadata = $em->getClassMetadata(get_parent_class($persona));
             $metadata->setIdGenerator(new \Doctrine\ORM\Id\AssignedGenerator());
             $metadata->setIdGeneratorType(\Doctrine\ORM\Mapping\ClassMetadata::GENERATOR_TYPE_NONE);
-            $persona->setId($personaArray[$i]['id']);        
-            
+            $persona->setId($personaArray[$i]['id']);
+
             $dependencia = $em->getRepository("AppBundle:Dependencia")->find($personaArray[$i]['dependencia_id']);
 
             $persona->setNombre($personaArray[$i]['nombre']);
@@ -67,58 +66,70 @@ class ConfigController extends Controller {
             $em->persist($persona);
             $em->flush();
         }
-        
-         return $this->redirectToRoute('generar_administrador');
+
+        return $this->redirectToRoute('generar_administrador');
     }
+
     /**
      * @Route("/config_inicial_usuario", name="generar_administrador")
      */
     public function cargarUsuarioAdminisradorAction(Request $request) {
         $em = $this->getDoctrine()->getEntityManager();
-       
-        $persona= $em->getRepository('AppBundle:Persona')->find(1038);
-        
-        
-         return $this->redirectToRoute('set_dependencia');
+
+        $persona = $em->getRepository('AppBundle:Persona')->find(1038);
+        $usuario = new Usuario();
+        $usuario->setIup('informatica');
+        $usuario->setEmail('informaticadpv@santafe.gov.ar');
+        $usuario->setRole('ROLE_ADMIN');
+        $usuario->setSavedPassword('luminox1049');
+        $usuario->setPersona($persona);
+        $factory = $this->get("security.encoder_factory");
+        $encoder = $factory->getEncoder($usuario);
+        $password = $encoder->encodePassword('luminox1049', $usuario->getSalt());
+        $usuario->setContrasenia($password);
+
+        $em->persist($usuario);
+        $em->flush();
+
+        return $this->redirectToRoute('set_dependencia');
     }
-    
+
     /**
      * @Route("/config_inicial_dependencia_set", name="set_dependencia")
      */
-     public function setearDependenciaAction(Request $request) {
+    public function setearDependenciaAction(Request $request) {
         $em = $this->getDoctrine()->getEntityManager();
         $assetPath = $this->get('kernel')->getProjectDir() . "/web/config_inicial/";
-        
+
         $dependenciasFile = file_get_contents($assetPath . "dependencia.json");
         $dependenciasArray = json_decode($dependenciasFile, true);
-        
-       //SETEO DE DATA EN DEPENDENCIA
-         for ($i = 0; $i < count($dependenciasArray); $i++) {
+
+        //SETEO DE DATA EN DEPENDENCIA
+        for ($i = 0; $i < count($dependenciasArray); $i++) {
             $dependencia = $em->getRepository("AppBundle:Dependencia")->find($dependenciasArray[$i]['id']);
             $dependenciaPadre = $em->getRepository("AppBundle:Dependencia")->find($dependenciasArray[$i]['dependenciaPadre_id']);
             $personaResponsable = $em->getRepository("AppBundle:Persona")->find($dependenciasArray[$i]['personaResponsable_id']);
-            
+
             $dependencia->setDependenciaPadre($dependenciaPadre);
             $dependencia->setResponsable($personaResponsable);
-            
+
             $em->persist($dependencia);
             $em->flush();
         }
-               
+
         return $this->redirectToRoute('generar_mesaentrada');
     }
-    
-    
+
     /**
      * @Route("/config_inicial_dependencia_mesaentrada", name="generar_mesaentrada")
      */
-     public function generarMesaEntradaAction(Request $request) {
+    public function generarMesaEntradaAction(Request $request) {
         $em = $this->getDoctrine()->getEntityManager();
         $assetPath = $this->get('kernel')->getProjectDir() . "/web/config_inicial/";
-        
+
         $dependenciasFile = file_get_contents($assetPath . "dependencia.json");
         $dependenciasArray = json_decode($dependenciasFile, true);
-        
+
         //GENERACION DE LAS MESAS DE ENTRADA DE LAS DEPENDENCIAS PERSISTIDAS ARRIBA
         for ($i = 0; $i < count($dependenciasArray); $i++) {
 
@@ -127,11 +138,12 @@ class ConfigController extends Controller {
             $mesaentrada->setCodigoExpediente('Sin codigo asignado');
             $mesaentrada->setDependencia($dependencia);
             $dependencia->setMesaentrada($mesaentrada);
-            $lastUbicacion = $em->getRepository('AppBundle:Ubicacion')->findOneBy(array(),array('id'=>'DESC'),0,1);
-            $mesaentrada->setId($lastUbicacion->getId()+1);
+            $lastUbicacion = $em->getRepository('AppBundle:Ubicacion')->findOneBy(array(), array('id' => 'DESC'), 0, 1);
+            $mesaentrada->setId($lastUbicacion->getId() + 1);
             $em->persist($mesaentrada);
             $em->flush();
-        }        
+        }
         return $this->redirectToRoute('homepage');
     }
+
 }
