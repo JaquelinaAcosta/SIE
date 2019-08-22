@@ -450,20 +450,20 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         }
         not_gestionar_mesaentrada:
 
-        // inicio
+        // busqueda_expediente
         if ('' === $trimmedPathinfo) {
-            $ret = array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::indexAction',  '_route' => 'inicio',);
+            $ret = array (  '_controller' => 'AppBundle\\Controller\\PaginaPrincipalController::indexAction',  '_route' => 'busqueda_expediente',);
             if ('/' === substr($pathinfo, -1)) {
                 // no-op
             } elseif ('GET' !== $canonicalMethod) {
-                goto not_inicio;
+                goto not_busqueda_expediente;
             } else {
-                return array_replace($ret, $this->redirect($rawPathinfo.'/', 'inicio'));
+                return array_replace($ret, $this->redirect($rawPathinfo.'/', 'busqueda_expediente'));
             }
 
             return $ret;
         }
-        not_inicio:
+        not_busqueda_expediente:
 
         // homepage
         if ('/home' === $pathinfo) {

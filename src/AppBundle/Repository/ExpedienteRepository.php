@@ -12,46 +12,15 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
  */
 class ExpedienteRepository extends \Doctrine\ORM\EntityRepository {
 
-    //autocompletado
-    public function findExpedientesAsociados($term, $id, $dependencia) {
-        $qb = $this->getEntityManager()->createQueryBuilder('e');
-        $result = $qb->select('e')
-                        ->from('AppBundle:Expediente', 'e')
-                        ->leftJoin(\AppBundle\Entity\ExpedienteAsociado::class, "ea", "WITH",
-                                "e.id = ea.expedienteAsociado")
-                        ->leftJoin(\AppBundle\Entity\Ubicacion::class, "u", "WITH",
-                                "e.ubicacionActual =u.id")
-                        ->leftJoin(\AppBundle\Entity\Dependencia::class, "d", "WITH",
-                                "u.dependencia =d.id")
-                        ->where('d.id = :dependencia')
-                        ->andWhere('ea.id IS NULL')
-                        ->andWhere('e.id != :expediente_padre')
-                        ->andWhere($qb->expr()
-                                ->like('e.codigoExpediente', $qb->expr()
-                                        ->literal('%' . $term . '%')))
-                        ->andWhere($qb->expr()
-                                ->like('e.numeroExpediente', $qb->expr()
-                                        ->literal('%' . $term . '%')))
-                        ->andWhere($qb->expr()
-                                ->like('e.digitoExpediente', $qb->expr()
-                                        ->literal('%' . $term . '%')))
-                        ->setParameters([
-                            'expediente_padre' => $id,
-                            'dependencia' => $dependencia
-                        ])
-                        ->setMaxResults(10)->getQuery()->getResult();
-        return $result;
-    }
-
     //filtro
-    public function createExpedienteFilterQuery($user,$padre_id=null) {
+    public function createExpedienteFilterQuery($user, $padre_id = null) {
         $qb = $this->getEntityManager()->createQueryBuilder('e');
         $result = $qb->select('e')
                 ->from('AppBundle:Expediente', 'e')
                 ->where("e.estado <>'ASOCIADO'");
-        if($padre_id != null){
+        if ($padre_id != null) {
             $result->andWhere('e.id != :expediente_padre_id')
-                   ->setParameter('expediente_padre_id',$padre_id);
+                    ->setParameter('expediente_padre_id', $padre_id);
         }
         if ($user->getRole() != "ROLE_ADMIN") {
             $result->leftJoin(\AppBundle\Entity\Ubicacion::class, "u", "WITH",
@@ -64,6 +33,13 @@ class ExpedienteRepository extends \Doctrine\ORM\EntityRepository {
                     ->innerJoin(\AppBundle\Entity\Dependencia::class, "d", "WITH",
                             "u.dependencia = d.id");
         }
+        return $result;
+    }
+
+    public function createExpedienteFastFilterQuery() {
+        $qb = $this->getEntityManager()->createQueryBuilder('e');
+        $result = $qb->select('e')
+                ->from('AppBundle:Expediente', 'e');
         return $result;
     }
 

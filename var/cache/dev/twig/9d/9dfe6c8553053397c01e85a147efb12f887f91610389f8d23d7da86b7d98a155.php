@@ -137,7 +137,7 @@ class __TwigTemplate_dfc6036fa56eda70cb2bd40ece1b7ce08051cf6683f937e1daddf0423f6
 
                     <button style=\"padding:20px;\" type=\"submit\" class=\"form-submit btn btn-success\">ENTRAR</button>
 
-                    <input type=\"hidden\" name=\"_target_path\" value=\"/home\" />
+                    <input type=\"hidden\" name=\"_target_path\" value=\"/\" />
                 </div>
             </form>
         </div>
@@ -257,7 +257,7 @@ class __TwigTemplate_dfc6036fa56eda70cb2bd40ece1b7ce08051cf6683f937e1daddf0423f6
 
                     <button style=\"padding:20px;\" type=\"submit\" class=\"form-submit btn btn-success\">ENTRAR</button>
 
-                    <input type=\"hidden\" name=\"_target_path\" value=\"/home\" />
+                    <input type=\"hidden\" name=\"_target_path\" value=\"/\" />
                 </div>
             </form>
         </div>
