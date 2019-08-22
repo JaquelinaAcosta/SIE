@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Entity\Dependencia;
 use AppBundle\Entity\Persona;
 use AppBundle\Entity\MesaEntrada;
+use AppBundle\Entity\Usuario;
 
 class ConfigController extends Controller {
  
@@ -67,9 +68,19 @@ class ConfigController extends Controller {
             $em->flush();
         }
         
+         return $this->redirectToRoute('generar_administrador');
+    }
+    /**
+     * @Route("/config_inicial_usuario", name="generar_administrador")
+     */
+    public function cargarUsuarioAdminisradorAction(Request $request) {
+        $em = $this->getDoctrine()->getEntityManager();
+       
+        $persona= $em->getRepository('AppBundle:Persona')->find(1038);
+        
+        
          return $this->redirectToRoute('set_dependencia');
     }
-    
     
     /**
      * @Route("/config_inicial_dependencia_set", name="set_dependencia")
