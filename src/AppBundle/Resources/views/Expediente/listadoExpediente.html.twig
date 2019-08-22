@@ -20,6 +20,18 @@
             margin-left:-32px;
 
         }
+        .modal-header-warning {
+            color:#fff;
+            padding:9px 15px;
+            border-bottom:1px solid #eee;
+            background-color: #060325;
+            -webkit-border-top-left-radius: 5px;
+            -webkit-border-top-right-radius: 5px;
+            -moz-border-radius-topleft: 5px;
+            -moz-border-radius-topright: 5px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
 
     </style>
 
@@ -197,9 +209,36 @@
                         {% if asociado == false %}
                             <td class="text-center"><a class="btn btn-info" href="{{ path("ver_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Ver Detalle"><i class="fas fa-search"></i></a>
                                 <a class="btn btn-warning" href="{{ path("editar_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit"></i></a>
-                                <a class="btn btn-danger" href="{{ path("eliminar_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt"></i></a></td>
+                                {#<a class="btn btn-danger" href="{{ path("eliminar_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt"></i></a></td>
+#}
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></button>    
 
-                        {% else %}
+
+                                <!-- The Modal -->
+                                <div class="modal fade" id="myModal">
+                                    <div class="modal-dialog modal-sm modal-dialog-centered">
+                                        <div class="modal-content">
+
+                                            <!-- Modal Header -->
+                                            <div class="modal-header-warning">
+                                                <button type="button" class="close text-danger" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title">Eliminar Expediente</h4>
+                                            </div>
+
+                                            <!-- Modal body -->
+                                            <div class="modal-body">
+                                                ¿Desea Eliminar el Expediente: {{expediente.codigoExpediente }}-{{expediente.numeroExpediente }}-{{expediente.digitoExpediente }}?
+                                            </div>
+                                            <!-- Modal footer -->
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary"><a class="text-type btn-primary"href="{{ path("eliminar_expediente", {'id':expediente.id})  }}"  role="button">Si</a></button>                          
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            {% else %}
                             <td class="text-center"><a class="btn btn-info" href="{{ path("nuevo_expediente_asociado", {'id':padre_id, 'id_asoc':expediente.id}) }}"  
                                                        role="button" data-toggle="tooltip" 
                                                        data-placement="top" title="Asociar"></i>Asociar</a></td>

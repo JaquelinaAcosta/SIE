@@ -107,10 +107,10 @@ class __TwigTemplate_8c5f74ff5f6306d6a4d151cf13253aafc5a75cfa38807be853dbb51144d
                 <div class=\"row\">
                     <div class=\"cod col-lg-1\">
                         <label class=\"exp text-default\"></label>
-                        ";
+                        <div class=\" text-danger\">";
         // line 51
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "codigoExpediente", []), 'errors');
-        echo "
+        echo "</div>
                         ";
         // line 52
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "codigoExpediente", []), 'widget');
@@ -118,10 +118,10 @@ class __TwigTemplate_8c5f74ff5f6306d6a4d151cf13253aafc5a75cfa38807be853dbb51144d
                     </div>                   
                     <div class=\"num col-lg-2\">
                         <label class=\"exp text-default\"></label>
-                        ";
+                        <div class=\" text-danger\">";
         // line 56
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "numeroExpediente", []), 'errors');
-        echo "
+        echo "</div>
                         ";
         // line 57
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "numeroExpediente", []), 'widget');
@@ -129,10 +129,10 @@ class __TwigTemplate_8c5f74ff5f6306d6a4d151cf13253aafc5a75cfa38807be853dbb51144d
                     </div>
                     <div class=\"dig col-lg-1\">
                         <label class=\"exp text-default\"></label>
-                        ";
+                        <div class=\" text-danger\">";
         // line 61
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "digitoExpediente", []), 'errors');
-        echo "
+        echo "</div>
                         ";
         // line 62
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "digitoExpediente", []), 'widget');
@@ -152,12 +152,12 @@ class __TwigTemplate_8c5f74ff5f6306d6a4d151cf13253aafc5a75cfa38807be853dbb51144d
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "tipo", []), 'widget');
         echo "
                     </div>
-                    <div class=\"col-lg-1\">
+                    <div class=\"col-lg-2\">
                         <label class=\"text-default\">FOJAS</label>
-                        ";
+                        <div class=\" text-danger\">";
         // line 74
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fojas", []), 'errors');
-        echo "
+        echo "</div>
                         ";
         // line 75
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fojas", []), 'widget');
@@ -176,16 +176,13 @@ class __TwigTemplate_8c5f74ff5f6306d6a4d151cf13253aafc5a75cfa38807be853dbb51144d
                     </div>     
                     <div class=\"col-lg-2\">
                         <label class=\"text-default\">FECHA DE INICIO</label>
-                        ";
+                        <div class=\" text-danger\">";
         // line 84
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fechaInicio", []), 'row', ["id" => "date1"]);
-        echo " 
-                        ";
-        // line 85
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fechaInicio", []), 'errors');
-        echo "
-                        ";
+        echo " </div>
+";
         // line 86
+        echo "                        ";
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "fechaInicio", []), 'widget');
         echo "
                     </div>  
@@ -270,7 +267,7 @@ class __TwigTemplate_8c5f74ff5f6306d6a4d151cf13253aafc5a75cfa38807be853dbb51144d
 
     public function getDebugInfo()
     {
-        return array (  251 => 195,  243 => 124,  239 => 123,  231 => 118,  224 => 114,  221 => 113,  216 => 98,  212 => 97,  204 => 92,  200 => 91,  196 => 90,  189 => 86,  185 => 85,  181 => 84,  174 => 80,  170 => 79,  163 => 75,  159 => 74,  152 => 70,  148 => 69,  138 => 62,  134 => 61,  127 => 57,  123 => 56,  116 => 52,  112 => 51,  103 => 45,  51 => 3,  29 => 1,);
+        return array (  248 => 195,  240 => 124,  236 => 123,  228 => 118,  221 => 114,  218 => 113,  213 => 98,  209 => 97,  201 => 92,  197 => 91,  193 => 90,  185 => 86,  181 => 84,  174 => 80,  170 => 79,  163 => 75,  159 => 74,  152 => 70,  148 => 69,  138 => 62,  134 => 61,  127 => 57,  123 => 56,  116 => 52,  112 => 51,  103 => 45,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -333,17 +330,17 @@ class __TwigTemplate_8c5f74ff5f6306d6a4d151cf13253aafc5a75cfa38807be853dbb51144d
                 <div class=\"row\">
                     <div class=\"cod col-lg-1\">
                         <label class=\"exp text-default\"></label>
-                        {{ form_errors(form.codigoExpediente) }}
+                        <div class=\" text-danger\">{{ form_errors(form.codigoExpediente) }}</div>
                         {{ form_widget(form.codigoExpediente) }}
                     </div>                   
                     <div class=\"num col-lg-2\">
                         <label class=\"exp text-default\"></label>
-                        {{ form_errors(form.numeroExpediente) }}
+                        <div class=\" text-danger\">{{ form_errors(form.numeroExpediente) }}</div>
                         {{ form_widget(form.numeroExpediente) }}
                     </div>
                     <div class=\"dig col-lg-1\">
                         <label class=\"exp text-default\"></label>
-                        {{ form_errors(form.digitoExpediente) }}
+                        <div class=\" text-danger\">{{ form_errors(form.digitoExpediente) }}</div>
                         {{ form_widget(form.digitoExpediente) }}
                     </div>
                 </div>
@@ -354,9 +351,9 @@ class __TwigTemplate_8c5f74ff5f6306d6a4d151cf13253aafc5a75cfa38807be853dbb51144d
                         {{ form_errors(form.tipo) }}
                         {{ form_widget(form.tipo) }}
                     </div>
-                    <div class=\"col-lg-1\">
+                    <div class=\"col-lg-2\">
                         <label class=\"text-default\">FOJAS</label>
-                        {{ form_errors(form.fojas) }}
+                        <div class=\" text-danger\">{{ form_errors(form.fojas) }}</div>
                         {{ form_widget(form.fojas) }}
                     </div>    
                     <div class=\"col-lg-7\">
@@ -366,8 +363,8 @@ class __TwigTemplate_8c5f74ff5f6306d6a4d151cf13253aafc5a75cfa38807be853dbb51144d
                     </div>     
                     <div class=\"col-lg-2\">
                         <label class=\"text-default\">FECHA DE INICIO</label>
-                        {{ form_row(form.fechaInicio, { 'id': 'date1' })}} 
-                        {{ form_errors(form.fechaInicio) }}
+                        <div class=\" text-danger\">{{ form_row(form.fechaInicio, { 'id': 'date1' })}} </div>
+{#                        {{ form_errors(form.fechaInicio) }}#}
                         {{ form_widget(form.fechaInicio) }}
                     </div>  
                     <div class=\"col-lg-2\">

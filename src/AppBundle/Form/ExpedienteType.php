@@ -124,7 +124,14 @@ class ExpedienteType extends AbstractType {
 
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Expediente'
+            'data_class' => 'AppBundle\Entity\Expediente',
+            'error_mapping' => array(
+                'validarCodigoExpediente' => 'codigoExpediente',
+                'validarNumeroExpediente' => 'numeroExpediente',
+                'validarDigitoExpediente' => 'digitoExpediente',
+                'validarFecha'=>'fechaInicio',
+                'validarFojas'=>'fojas'
+            ),
         ));
     }
 
