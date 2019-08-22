@@ -41,11 +41,11 @@ class ExpedienteController extends Controller {
                                 $form['fechaInicio']->getData());
 //                $fechaIni->format('Y-m-d');
 //                dump($fechaIni);die();
-                if ($form['fechaFin']->getData() != null) {
+                if ($form['fechaFin']->getData() != '') {
                     $fechaFin = \DateTime::createFromFormat('d-m-Y',
                                     $form['fechaFin']->getData());
                     $expediente->setFechaFin($fechaFin);
-                }else{
+                } else {
                     $expediente->setFechaFin(null);
                 }
 
@@ -249,7 +249,10 @@ class ExpedienteController extends Controller {
 
         //SI NO SE HACE EL FORMAT TIRA ERROR DE OBJETO TIPO DATETIME
         $expediente->setFechaInicio($expediente->getFechaInicio()->format('d-m-Y'));
-        $expediente->setFechaFin($expediente->getFechaFin()->format('d-m-Y'));
+        IF ($expediente->getFechaFin() != null) {
+            $expediente->setFechaFin($expediente->getFechaFin()->format('d-m-Y'));
+        }
+
 
         $form = $this->createForm(ExpedienteType::class, $expediente);
         $user = $this->getUser();
