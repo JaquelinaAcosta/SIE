@@ -13,16 +13,16 @@
                 </thead>
                 <tbody >
                     <tr>
-                        <th class="w-25">TEMA</th>
-                        <td>{{ expediente.tema}}</td>
+                        <th class="w-25 bg-gray">TEMA</th>
+                        <td class="bg-white">{{ expediente.tema}}</td>
                     </tr>
                     <tr>
-                        <th class="w-25">CONCEPTO</th>
-                        <td>{{ expediente.concepto}}</td>
+                        <th class="w-25 bg-gray">CONCEPTO</th>
+                        <td class="bg-white">{{ expediente.concepto}}</td>
                     </tr>
                     <tr>
-                        <th class="w-25">TOTAL DE FOJAS</th>
-                        <td>
+                        <th class="w-25 bg-gray">TOTAL DE FOJAS</th>
+                        <td class="bg-white">
 
                             {% set fojas = expediente.fojas %}
 
@@ -38,56 +38,52 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="w-25">TIPO</th>
-                        <td>{{ expediente.tipo}}</td>
+                        <th class="w-25 bg-gray">TIPO</th>
+                        <td class="bg-white">{{ expediente.tipo}}</td>
                     </tr>
                     <tr>
-                        <th class="w-25">INICIADOR DEPENDENCIA</th>
-                        <td>{{ expediente.iniciadorDependencia}}</td>
+                        <th class="w-25 bg-gray">INICIADOR DEPENDENCIA</th>
+                        <td class="bg-white">{{ expediente.iniciadorDependencia}}</td>
                     </tr>
                     <tr>
-                        <th class="w-25 ">FECHA DE INICIO</th>
-                        <td>{{ expediente.fechaInicio|date('d-m-Y')}}</td>
+                        <th class="w-25 bg-gray">FECHA DE INICIO</th>
+                        <td class="bg-white">{{ expediente.fechaInicio|date('d-m-Y')}}</td>
                     </tr>
                     <tr>
-                        <th class="w-25">FECHA DE FIN</th>
-                        <td>
+                        <th class="w-25 bg-gray">FECHA DE FIN</th>
+                        <td class="bg-white">
                             {% if expediente.fechaFin != null %}
                                 {{ expediente.fechaFin|date('d-m-Y')}}
                             {% endif %}
                         </td>
                     </tr>
                     <tr>
-                        <th class="w-25">ULTIMO PASE</th>
-                        <td>{{ expediente.ultimaUbicacion}}</td>
+                        <th class="w-25 bg-gray">ULTIMO PASE</th>
+                        <td  class="bg-white">
+                            {{ expediente.ultimaUbicacion}}
+
+                            - {{ expediente.ultimaUbicacion.dependencia }}
+
+                            , en fecha <strong>{{ ultima_fecha }}</strong>
+                        </td>
                     </tr>  
                     <tr>
-                        <th class="w-25">UBICACION ACTUAL</th>
-                        <td>
-
-                            {% if expediente.ubicacionActual != null %}
-
-                                {{ expediente.ubicacionActual}}
-
-                            {% else %}
-
-                                La ubicación actual fue borrada.
-
-                            {% endif %}
-
-
+                        <th class="w-25 bg-gray">UBICACION ACTUAL</th>
+                        <td  class="bg-white">
+                            {{ expediente.ubicacionActual}}                          
+                            - {{ expediente.ubicacionActual.dependencia }}
+                            , desde el <strong>{{ actual_fecha }}</strong>
                         </td>
                     </tr>   
 
-                    {% if expedientes_asociados|length>0 %}                        
-                        <tr>
 
-                            <th class="w-25">ASOCIADO A EXPEDIENTE</th>
-                            <td>
-                                {% for exp_asoc in expedientes_asociados %}
-                                    <a href="{{ path('ver_expediente',{'id':exp_asoc.expedientePadre.id}) }}">{{ exp_asoc.expedientePadre}}</a> 
-                                    <br/>
-                                {% endfor %}
+                    {% if expediente.estado == 'ASOCIADO' %}                        
+                        <tr>
+                            <th class="w-25 bg-gray">ASOCIADO A EXPEDIENTE</th>
+                            <td  class="bg-white">
+
+                                {{ expediente_padre }}
+                                <br/>
                             <td/>
                         </tr>              
                     {% endif %}
