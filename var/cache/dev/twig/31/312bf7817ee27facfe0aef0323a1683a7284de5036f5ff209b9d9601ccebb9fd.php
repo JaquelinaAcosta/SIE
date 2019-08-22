@@ -123,7 +123,7 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
                             ";
         // line 35
         echo twig_escape_filter($this->env, ($context["fojas"] ?? $this->getContext($context, "fojas")), "html", null, true);
-        echo " (foja iniciales + fojas de caratulas)
+        echo "
 
 
                         </td>
@@ -398,7 +398,7 @@ class __TwigTemplate_62c4432632740064b916d87d3e0fd7af4f013e01581d3ac7a4fd5b3de51
 
                             {% endfor %}
 
-                            {{ fojas }} (foja iniciales + fojas de caratulas)
+                            {{ fojas }}
 
 
                         </td>

@@ -59,7 +59,7 @@ class Expediente {
     /**
      * @var string
      *
-     * @ORM\Column(name="concepto", type="string", length=255, nullable=true)
+     * @ORM\Column(name="concepto", type="text", length=21845, nullable=true)
      */
     private $concepto;
 

@@ -85,7 +85,10 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
                 <div class=\"card-header\" id=\"headingOne\">
                     <h2 class=\"mb-0\">
                         <button class=\"btn btn-dark search\" type=\"button\" data-toggle=\"collapse\" data-target=\"#collapseOne\" aria-expanded=\"true\" aria-controls=\"collapseOne\">
-                            <i class=\"fas fa-search-plus\"></i> Filtros de Búsqueda de Expediente
+                            <i class=\"fas fa-search-plus\"></i> Filtros de Búsqueda de Expediente - ";
+        // line 33
+        echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "persona", []), "dependencia", []), "html", null, true);
+        echo "
                         </button>
                         ";
         // line 35
@@ -319,70 +322,149 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
 
         </div>
 
+        ";
+        // line 145
+        if ((twig_length_filter($this->env, ($context["expediente"] ?? $this->getContext($context, "expediente"))) > 0)) {
+            // line 146
+            echo "
+            <div class=\"alert alert-info\">
+                <i class=\"fas fa-search\"></i> Resultados de la búsqueda: ";
+            // line 148
+            echo twig_escape_filter($this->env, twig_length_filter($this->env, ($context["expediente"] ?? $this->getContext($context, "expediente"))), "html", null, true);
+            echo " &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 
+                ";
+            // line 150
+            $context["nuevoCount"] = 0;
+            // line 151
+            echo "                ";
+            $context["vistoCount"] = 0;
+            // line 152
+            echo "
+                ";
+            // line 153
+            $context['_parent'] = $context;
+            $context['_seq'] = twig_ensure_traversable($context["expediente"]);
+            foreach ($context['_seq'] as $context["_key"] => $context["expediente"]) {
+                // line 154
+                echo "                    ";
+                if (($this->getAttribute($context["expediente"], "estado", []) == "NUEVO")) {
+                    // line 155
+                    echo "                        ";
+                    $context["nuevoCount"] = (($context["nuevoCount"] ?? $this->getContext($context, "nuevoCount")) + 1);
+                    // line 156
+                    echo "                    ";
+                } elseif (($this->getAttribute($context["expediente"], "estado", []) == "VISTO")) {
+                    // line 157
+                    echo "                        ";
+                    $context["vistoCount"] = (($context["vistoCount"] ?? $this->getContext($context, "vistoCount")) + 1);
+                    // line 158
+                    echo "                    ";
+                }
+                // line 159
+                echo "                ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['expediente'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 160
+            echo "
+                ";
+            // line 161
+            if ((($context["nuevoCount"] ?? $this->getContext($context, "nuevoCount")) > 0)) {
+                // line 162
+                echo "                    <i class=\"far fa-file\"></i> Nuevos: ";
+                echo twig_escape_filter($this->env, ($context["nuevoCount"] ?? $this->getContext($context, "nuevoCount")), "html", null, true);
+                echo " &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                ";
+            }
+            // line 164
+            echo "                ";
+            if ((($context["vistoCount"] ?? $this->getContext($context, "vistoCount")) > 0)) {
+                // line 165
+                echo "                    <i class=\"fas fa-check\"></i> Visto: ";
+                echo twig_escape_filter($this->env, ($context["vistoCount"] ?? $this->getContext($context, "vistoCount")), "html", null, true);
+                echo " &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                ";
+            }
+            // line 167
+            echo "              
+            </div>
+            <hr/>
+
+        ";
+        }
+        // line 172
+        echo "
         <table class=\"table table-sm table-striped\">
             <thead class=\"thead-dark\">
                 <tr>
                     <th scope=\"col\">NUMERO</th>
                     <th scope=\"col\">TEMA</th>
                     <th class=\"text-center\" scope=\"col\">UBICACION ACTUAL</th>
+                    <th class=\"text-center\" scope=\"col\">ESTADO</th>
                     <th class=\"text-center\" scope=\"col\">ACCIONES</th>
                 </tr>
             </thead>
             <tbody>
                 ";
-        // line 156
+        // line 184
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(twig_reverse_filter($this->env, $context["expediente"]));
         foreach ($context['_seq'] as $context["_key"] => $context["expediente"]) {
-            // line 157
+            // line 185
             echo "                    <tr>
                         <td class=\"\">
                             ";
-            // line 159
+            // line 187
+            if (($this->getAttribute($context["expediente"], "estado", []) == "NUEVO")) {
+                // line 188
+                echo "                                <span class=\"badge badge-pill badge-info\">Nuevo</span>
+                            ";
+            }
+            // line 190
+            echo "
+                            ";
+            // line 191
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "codigoExpediente", []), "html", null, true);
             echo "-";
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "numeroExpediente", []), "html", null, true);
             echo "-";
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "digitoExpediente", []), "html", null, true);
             echo "
-                            ";
-            // line 160
-            if (($this->getAttribute($context["expediente"], "estado", []) == "NUEVO")) {
-                // line 161
-                echo "                                - <span class=\"badge badge-pill badge-info\">NUEVO</span>
-                            ";
-            }
-            // line 163
-            echo "
+
                         </td>            
                         <td class=\"\">";
-            // line 165
+            // line 194
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "tema", []));
             echo "</td>         
                         <td class=\"text-center\">";
-            // line 166
+            // line 195
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "ubicacionActual", []));
             echo "</td>
+                         <td class=\"text-center\">";
+            // line 196
+            echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "estado", []));
+            echo "</td>        
                         ";
-            // line 167
+            // line 197
             if ((($context["asociado"] ?? $this->getContext($context, "asociado")) == false)) {
-                // line 168
+                // line 198
                 echo "                            <td class=\"text-center\"><a class=\"btn btn-info\" href=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("ver_expediente", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
                 echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Ver Detalle\"><i class=\"fas fa-search\"></i></a>
                                 <a class=\"btn btn-warning\" href=\"";
-                // line 169
+                // line 199
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_expediente", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
                 echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"><i class=\"fas fa-edit\"></i></a>
                                 <a class=\"btn btn-danger\" href=\"";
-                // line 170
+                // line 200
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("eliminar_expediente", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
                 echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Eliminar\"><i class=\"fas fa-trash-alt\"></i></a></td>
 
                         ";
             } else {
-                // line 173
+                // line 203
                 echo "                            <td class=\"text-center\"><a class=\"btn btn-info\" href=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nuevo_expediente_asociado", ["id" => ($context["padre_id"] ?? $this->getContext($context, "padre_id")), "id_asoc" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
                 echo "\"  
@@ -391,14 +473,14 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
 
                         ";
             }
-            // line 178
+            // line 208
             echo "                    </tr>
                 ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['expediente'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 180
+        // line 210
         echo "
             </tbody>
         </table>
@@ -409,16 +491,16 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
 
         \$('#expediente_filter_tema').autocompleter({
             url_list: \"";
-        // line 189
+        // line 219
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("tema_search");
         echo "\",
             url_get: \"";
-        // line 190
+        // line 220
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("tema_get");
         echo "\"
         });
         ";
-        // line 196
+        // line 226
         echo "
                 \$(function () {
                     \$('[data-toggle=\"tooltip\"]').tooltip()
@@ -447,7 +529,7 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
 
     public function getDebugInfo()
     {
-        return array (  422 => 196,  417 => 190,  413 => 189,  402 => 180,  395 => 178,  386 => 173,  380 => 170,  376 => 169,  371 => 168,  369 => 167,  365 => 166,  361 => 165,  357 => 163,  353 => 161,  351 => 160,  343 => 159,  339 => 157,  335 => 156,  317 => 140,  307 => 136,  304 => 135,  300 => 134,  297 => 133,  287 => 129,  284 => 128,  280 => 127,  271 => 121,  265 => 118,  261 => 117,  252 => 111,  248 => 110,  241 => 106,  237 => 105,  231 => 102,  222 => 96,  217 => 94,  213 => 93,  206 => 89,  201 => 87,  197 => 86,  190 => 82,  185 => 80,  181 => 79,  178 => 78,  171 => 74,  166 => 72,  162 => 71,  159 => 70,  157 => 69,  149 => 64,  144 => 62,  137 => 58,  132 => 56,  125 => 52,  120 => 50,  112 => 45,  108 => 44,  100 => 38,  94 => 36,  92 => 35,  60 => 5,  51 => 4,  29 => 1,);
+        return array (  504 => 226,  499 => 220,  495 => 219,  484 => 210,  477 => 208,  468 => 203,  462 => 200,  458 => 199,  453 => 198,  451 => 197,  447 => 196,  443 => 195,  439 => 194,  429 => 191,  426 => 190,  422 => 188,  420 => 187,  416 => 185,  412 => 184,  398 => 172,  391 => 167,  385 => 165,  382 => 164,  376 => 162,  374 => 161,  371 => 160,  365 => 159,  362 => 158,  359 => 157,  356 => 156,  353 => 155,  350 => 154,  346 => 153,  343 => 152,  340 => 151,  338 => 150,  333 => 148,  329 => 146,  327 => 145,  320 => 140,  310 => 136,  307 => 135,  303 => 134,  300 => 133,  290 => 129,  287 => 128,  283 => 127,  274 => 121,  268 => 118,  264 => 117,  255 => 111,  251 => 110,  244 => 106,  240 => 105,  234 => 102,  225 => 96,  220 => 94,  216 => 93,  209 => 89,  204 => 87,  200 => 86,  193 => 82,  188 => 80,  184 => 79,  181 => 78,  174 => 74,  169 => 72,  165 => 71,  162 => 70,  160 => 69,  152 => 64,  147 => 62,  140 => 58,  135 => 56,  128 => 52,  123 => 50,  115 => 45,  111 => 44,  103 => 38,  97 => 36,  95 => 35,  90 => 33,  60 => 5,  51 => 4,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -492,7 +574,7 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
                 <div class=\"card-header\" id=\"headingOne\">
                     <h2 class=\"mb-0\">
                         <button class=\"btn btn-dark search\" type=\"button\" data-toggle=\"collapse\" data-target=\"#collapseOne\" aria-expanded=\"true\" aria-controls=\"collapseOne\">
-                            <i class=\"fas fa-search-plus\"></i> Filtros de Búsqueda de Expediente
+                            <i class=\"fas fa-search-plus\"></i> Filtros de Búsqueda de Expediente - {{ app.user.persona.dependencia }}
                         </button>
                         {% if asociado == false %}
                             <a href=\"{{ path('nuevo_expediente') }}\" role=\"button\" class=\"btn btn-info float-right\"><i class=\"fas fa-file-alt\"></i> Nuevo Expediente</a>
@@ -604,6 +686,33 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
 
         </div>
 
+        {% if expediente|length >0 %}
+
+            <div class=\"alert alert-info\">
+                <i class=\"fas fa-search\"></i> Resultados de la búsqueda: {{ expediente|length }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+                {% set nuevoCount=0 %}
+                {% set vistoCount=0 %}
+
+                {% for expediente in expediente %}
+                    {% if expediente.estado == 'NUEVO' %}
+                        {% set nuevoCount= nuevoCount+1 %}
+                    {% elseif expediente.estado == 'VISTO' %}
+                        {% set vistoCount= vistoCount+1 %}
+                    {% endif %}
+                {% endfor %}
+
+                {% if nuevoCount > 0 %}
+                    <i class=\"far fa-file\"></i> Nuevos: {{nuevoCount}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                {% endif %}
+                {% if vistoCount > 0 %}
+                    <i class=\"fas fa-check\"></i> Visto: {{vistoCount}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                {% endif %}
+              
+            </div>
+            <hr/>
+
+        {% endif %}
 
         <table class=\"table table-sm table-striped\">
             <thead class=\"thead-dark\">
@@ -611,6 +720,7 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
                     <th scope=\"col\">NUMERO</th>
                     <th scope=\"col\">TEMA</th>
                     <th class=\"text-center\" scope=\"col\">UBICACION ACTUAL</th>
+                    <th class=\"text-center\" scope=\"col\">ESTADO</th>
                     <th class=\"text-center\" scope=\"col\">ACCIONES</th>
                 </tr>
             </thead>
@@ -618,14 +728,16 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
                 {% for expediente in expediente|reverse %}
                     <tr>
                         <td class=\"\">
-                            {{expediente.codigoExpediente }}-{{expediente.numeroExpediente }}-{{expediente.digitoExpediente }}
                             {% if expediente.estado == 'NUEVO' %}
-                                - <span class=\"badge badge-pill badge-info\">NUEVO</span>
+                                <span class=\"badge badge-pill badge-info\">Nuevo</span>
                             {% endif %}
+
+                            {{expediente.codigoExpediente }}-{{expediente.numeroExpediente }}-{{expediente.digitoExpediente }}
 
                         </td>            
                         <td class=\"\">{{expediente.tema|e }}</td>         
                         <td class=\"text-center\">{{expediente.ubicacionActual|e }}</td>
+                         <td class=\"text-center\">{{expediente.estado|e }}</td>        
                         {% if asociado == false %}
                             <td class=\"text-center\"><a class=\"btn btn-info\" href=\"{{ path(\"ver_expediente\", {'id':expediente.id}) }}\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Ver Detalle\"><i class=\"fas fa-search\"></i></a>
                                 <a class=\"btn btn-warning\" href=\"{{ path(\"editar_expediente\", {'id':expediente.id}) }}\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"><i class=\"fas fa-edit\"></i></a>

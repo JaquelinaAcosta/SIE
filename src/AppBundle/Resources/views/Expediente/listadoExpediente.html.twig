@@ -30,7 +30,7 @@
                 <div class="card-header" id="headingOne">
                     <h2 class="mb-0">
                         <button class="btn btn-dark search" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            <i class="fas fa-search-plus"></i> Filtros de Búsqueda de Expediente
+                            <i class="fas fa-search-plus"></i> Filtros de Búsqueda de Expediente - {{ app.user.persona.dependencia }}
                         </button>
                         {% if asociado == false %}
                             <a href="{{ path('nuevo_expediente') }}" role="button" class="btn btn-info float-right"><i class="fas fa-file-alt"></i> Nuevo Expediente</a>
@@ -142,6 +142,33 @@
 
         </div>
 
+        {% if expediente|length >0 %}
+
+            <div class="alert alert-info">
+                <i class="fas fa-search"></i> Resultados de la búsqueda: {{ expediente|length }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+                {% set nuevoCount=0 %}
+                {% set vistoCount=0 %}
+
+                {% for expediente in expediente %}
+                    {% if expediente.estado == 'NUEVO' %}
+                        {% set nuevoCount= nuevoCount+1 %}
+                    {% elseif expediente.estado == 'VISTO' %}
+                        {% set vistoCount= vistoCount+1 %}
+                    {% endif %}
+                {% endfor %}
+
+                {% if nuevoCount > 0 %}
+                    <i class="far fa-file"></i> Nuevos: {{nuevoCount}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                {% endif %}
+                {% if vistoCount > 0 %}
+                    <i class="fas fa-check"></i> Visto: {{vistoCount}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                {% endif %}
+              
+            </div>
+            <hr/>
+
+        {% endif %}
 
         <table class="table table-sm table-striped">
             <thead class="thead-dark">
@@ -149,6 +176,7 @@
                     <th scope="col">NUMERO</th>
                     <th scope="col">TEMA</th>
                     <th class="text-center" scope="col">UBICACION ACTUAL</th>
+                    <th class="text-center" scope="col">ESTADO</th>
                     <th class="text-center" scope="col">ACCIONES</th>
                 </tr>
             </thead>
@@ -156,14 +184,16 @@
                 {% for expediente in expediente|reverse %}
                     <tr>
                         <td class="">
-                            {{expediente.codigoExpediente }}-{{expediente.numeroExpediente }}-{{expediente.digitoExpediente }}
                             {% if expediente.estado == 'NUEVO' %}
-                                - <span class="badge badge-pill badge-info">NUEVO</span>
+                                <span class="badge badge-pill badge-info">Nuevo</span>
                             {% endif %}
+
+                            {{expediente.codigoExpediente }}-{{expediente.numeroExpediente }}-{{expediente.digitoExpediente }}
 
                         </td>            
                         <td class="">{{expediente.tema|e }}</td>         
                         <td class="text-center">{{expediente.ubicacionActual|e }}</td>
+                         <td class="text-center">{{expediente.estado|e }}</td>        
                         {% if asociado == false %}
                             <td class="text-center"><a class="btn btn-info" href="{{ path("ver_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Ver Detalle"><i class="fas fa-search"></i></a>
                                 <a class="btn btn-warning" href="{{ path("editar_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit"></i></a>

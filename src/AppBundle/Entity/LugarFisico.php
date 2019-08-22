@@ -22,7 +22,7 @@ class LugarFisico extends Ubicacion
     /**
      * @var string
      *
-     * @ORM\Column(name="descripcion", type="string", length=255)
+     * @ORM\Column(name="descripcion", type="text", length=21845)
      */
     private $descripcion;
 

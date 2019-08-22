@@ -125,9 +125,6 @@ class ExpedienteController extends Controller {
                     $expedientes);
         }
 
-
-
-
         $formExpedienteFilter->handleRequest($request);
         if ($formExpedienteFilter->isSubmitted() == false && $this->get('session')->get('expediente_listar_request')) {
             $formExpedienteFilter->handleRequest($this->get('session')->get('expediente_listar_request'));
@@ -251,8 +248,8 @@ class ExpedienteController extends Controller {
         $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
 
         //SI NO SE HACE EL FORMAT TIRA ERROR DE OBJETO TIPO DATETIME
-        $expediente->setFechaInicio($expediente->getFechaInicio()->format('Y-m-d'));
-        $expediente->setFechaFin($expediente->getFechaFin()->format('Y-m-d'));
+        $expediente->setFechaInicio($expediente->getFechaInicio()->format('d-m-Y'));
+        $expediente->setFechaFin($expediente->getFechaFin()->format('d-m-Y'));
 
         $form = $this->createForm(ExpedienteType::class, $expediente);
         $user = $this->getUser();

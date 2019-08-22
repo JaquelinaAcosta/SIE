@@ -55,7 +55,6 @@
     </style>
 
     <div class="content">
-
         <div class="card">
             <div class="card-header" id="headingOne">
                 <h2 class="mb-0">
@@ -70,53 +69,53 @@
 
             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                 <div class="card-body">
-                     <form method="post" novalidate="true" id="form_buscar">
-            {{ form_errors(formPersonaFilter) }}
-            <div class="row">
-                <div class="threecol col-lg-3">
-                    {{ form_label(formPersonaFilter.dependencia, 'DEPENDENCIA') }}
-                    {{ form_widget(formPersonaFilter.dependencia) }}
-                    <div class="help-block with-errors">
-                        {{ form_errors(formPersonaFilter.dependencia) }}
-                    </div>
-                </div>
-                <div class="threecol col-lg-3">
-                    {{ form_label(formPersonaFilter.apellido, 'APELLIDO') }}
-                    {{ form_widget(formPersonaFilter.apellido) }}
-                    <div class="help-block with-errors">
-                        {{ form_errors(formPersonaFilter.apellido) }}
-                    </div>
-                </div>
-                <div class="threecol col-lg-3">
-                    {{ form_label(formPersonaFilter.nombre, 'NOMBRE') }}
-                    {{ form_widget(formPersonaFilter.nombre) }}
-                    <div class="help-block with-errors">
-                        {{ form_errors(formPersonaFilter.nombre) }}
-                    </div>
-                </div>                  
-                <div class="twocol col-lg-3">
-                    {{ form_label(formPersonaFilter.dni, 'DOCUMENTO') }}
-                    {{ form_widget(formPersonaFilter.dni) }}
-                    <div class="help-block with-errors">
-                        {{ form_errors(formPersonaFilter.dni) }}
-                    </div>
-                </div>   
-                <div class="twocol col-lg-3">
-                    {{ form_label(formPersonaFilter.cargo, 'CARGO') }}
-                    {{ form_widget(formPersonaFilter.cargo) }}
-                    <div class="help-block with-errors">
-                        {{ form_errors(formPersonaFilter.cargo) }}
-                    </div>
-                </div>                          
-            </div>      
-            <div class="row">
-                <div class="col-lg-4">
-                    {{ form_widget(formPersonaFilter.filter) }}
-                    {{ form_widget(formPersonaFilter.reset) }}
-                </div>
-            </div>
-            {{ form_end(formPersonaFilter) }}
-        </form>
+                    <form method="post" novalidate="true" id="form_buscar">
+                        {{ form_errors(formPersonaFilter) }}
+                        <div class="row">
+                            <div class="threecol col-lg-3">
+                                {{ form_label(formPersonaFilter.dependencia, 'DEPENDENCIA') }}
+                                {{ form_widget(formPersonaFilter.dependencia) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formPersonaFilter.dependencia) }}
+                                </div>
+                            </div>
+                            <div class="threecol col-lg-3">
+                                {{ form_label(formPersonaFilter.apellido, 'APELLIDO') }}
+                                {{ form_widget(formPersonaFilter.apellido) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formPersonaFilter.apellido) }}
+                                </div>
+                            </div>
+                            <div class="threecol col-lg-3">
+                                {{ form_label(formPersonaFilter.nombre, 'NOMBRE') }}
+                                {{ form_widget(formPersonaFilter.nombre) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formPersonaFilter.nombre) }}
+                                </div>
+                            </div>                  
+                            <div class="twocol col-lg-3">
+                                {{ form_label(formPersonaFilter.dni, 'DOCUMENTO') }}
+                                {{ form_widget(formPersonaFilter.dni) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formPersonaFilter.dni) }}
+                                </div>
+                            </div>   
+                            <div class="twocol col-lg-3">
+                                {{ form_label(formPersonaFilter.cargo, 'CARGO') }}
+                                {{ form_widget(formPersonaFilter.cargo) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formPersonaFilter.cargo) }}
+                                </div>
+                            </div>                          
+                        </div>      
+                        <div class="row">
+                            <div class="col-lg-4">
+                                {{ form_widget(formPersonaFilter.filter) }}
+                                {{ form_widget(formPersonaFilter.reset) }}
+                            </div>
+                        </div>
+                        {{ form_end(formPersonaFilter) }}
+                    </form>
                 </div>
             </div>
         </div>

@@ -164,7 +164,8 @@ class MovimientoExpedienteController extends Controller {
         $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
 
         $form = $this->createForm(MovimientoExpedienteType::class,
-                $movimientoExpediente, ['pase' => 'archivar']);
+                $movimientoExpediente, ['pase' => 'archivar',
+                    'dependencia_id'=>$this->getUser()->getPersona()->getDependencia()]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
