@@ -11,7 +11,6 @@ use AppBundle\Form\PersonaType;
 use AppBundle\Form\PersonaFilterType;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
-
 class PersonaController extends Controller {
 
     /**
@@ -20,7 +19,7 @@ class PersonaController extends Controller {
     public function indexAction(Request $request) {
         $em = $this->getDoctrine()->getEntityManager();
         $persona = new Persona();
-         $user = $this->getUser();
+        $user = $this->getUser();
 
         if ($user->getRole() == 'ROLE_ADMIN') {
             $form = $this->createForm(PersonaType::class, $persona, [
@@ -36,7 +35,7 @@ class PersonaController extends Controller {
 
             $dependencia = $form['dependencia']->getData();
             $persona->setDependencia($dependencia);
-            
+
             //formato para ingreso de texto
             $persona->setNombre(trim(strtoupper($persona->getNombre())));
             $persona->setApellido(trim(strtoupper($persona->getApellido())));
@@ -64,6 +63,14 @@ class PersonaController extends Controller {
      * @Route("/persona/edit/{id}", name="editar_persona")
      */
     public function editPersonaAction(Request $request, $id) {
+        
+        $usuarioActual = $this->getUser();
+        
+        if ($usuarioActual->getRole() != 'ROLE_ADMIN') {
+            if ($id != $usuarioActual->getPersona()->getId()) {
+                return $this->redirectToRoute('busqueda_expediente');
+            }
+        }
 
         $em = $this->getDoctrine()->getEntityManager();
         $persona = $em->getRepository("AppBundle:Persona")->find($id);

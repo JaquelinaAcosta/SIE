@@ -42,14 +42,14 @@ class Expediente {
      * @ORM\Column(name="numero_expediente")
      */
     private $numeroExpediente;
-    
+
     /**
      * @var int
      *
      * @ORM\Column(name="digito_expediente")
      */
     private $digitoExpediente;
-    
+
     /**
      * @var int
      *
@@ -102,6 +102,13 @@ class Expediente {
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="fecha_baja", type="datetime",nullable=true)
+     */
+    private $fechaBaja;
+
+    /**
+     * @var string
      * @ORM\Column(name="fecha_fin", type="datetime",nullable=true)
      */
     private $fechaFin;
@@ -110,12 +117,11 @@ class Expediente {
      * @ORM\ManyToOne(targetEntity="Ubicacion")
      */
     private $ubicacionActual;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="Ubicacion")
      */
     private $ultimaUbicacion;
-    
 
     /**
      * @ORM\OneToOne(targetEntity="Resolucion", mappedBy="expediente")
@@ -156,7 +162,7 @@ class Expediente {
     private $lugarfisico;
 
     public function __toString() {
-         return $this->codigoExpediente."-".$this->numeroExpediente."-".$this->digitoExpediente;
+        return $this->codigoExpediente . "-" . $this->numeroExpediente . "-" . $this->digitoExpediente;
     }
 
     public function __construct() {
@@ -563,7 +569,6 @@ class Expediente {
         return $this->estado;
     }
 
-
     /**
      * Set codigoExpediente
      *
@@ -571,8 +576,7 @@ class Expediente {
      *
      * @return Expediente
      */
-    public function setCodigoExpediente($codigoExpediente)
-    {
+    public function setCodigoExpediente($codigoExpediente) {
         $this->codigoExpediente = $codigoExpediente;
 
         return $this;
@@ -583,8 +587,7 @@ class Expediente {
      *
      * @return string
      */
-    public function getCodigoExpediente()
-    {
+    public function getCodigoExpediente() {
         return $this->codigoExpediente;
     }
 
@@ -595,8 +598,7 @@ class Expediente {
      *
      * @return Expediente
      */
-    public function setNumeroExpdiente($numeroExpdiente)
-    {
+    public function setNumeroExpdiente($numeroExpdiente) {
         $this->numeroExpdiente = $numeroExpdiente;
 
         return $this;
@@ -607,8 +609,7 @@ class Expediente {
      *
      * @return string
      */
-    public function getNumeroExpdiente()
-    {
+    public function getNumeroExpdiente() {
         return $this->numeroExpdiente;
     }
 
@@ -619,8 +620,7 @@ class Expediente {
      *
      * @return Expediente
      */
-    public function setDigitoExpediente($digitoExpediente)
-    {
+    public function setDigitoExpediente($digitoExpediente) {
         $this->digitoExpediente = $digitoExpediente;
 
         return $this;
@@ -631,8 +631,7 @@ class Expediente {
      *
      * @return string
      */
-    public function getDigitoExpediente()
-    {
+    public function getDigitoExpediente() {
         return $this->digitoExpediente;
     }
 
@@ -643,8 +642,7 @@ class Expediente {
      *
      * @return Expediente
      */
-    public function setNumeroExpediente($numeroExpediente)
-    {
+    public function setNumeroExpediente($numeroExpediente) {
         $this->numeroExpediente = $numeroExpediente;
 
         return $this;
@@ -655,8 +653,7 @@ class Expediente {
      *
      * @return string
      */
-    public function getNumeroExpediente()
-    {
+    public function getNumeroExpediente() {
         return $this->numeroExpediente;
     }
 
@@ -667,8 +664,7 @@ class Expediente {
      *
      * @return Expediente
      */
-    public function setUltimaUbicacion(\AppBundle\Entity\Ubicacion $ultimaUbicacion = null)
-    {
+    public function setUltimaUbicacion(\AppBundle\Entity\Ubicacion $ultimaUbicacion = null) {
         $this->ultimaUbicacion = $ultimaUbicacion;
 
         return $this;
@@ -679,60 +675,84 @@ class Expediente {
      *
      * @return \AppBundle\Entity\Ubicacion
      */
-    public function getUltimaUbicacion()
-    {
+    public function getUltimaUbicacion() {
         return $this->ultimaUbicacion;
     }
-    
-    
-    
+
     /**
-    * @Assert\IsTrue(message="El Codigo de Expediente debe tener 5 Dígitos.")
-    */
+     * @Assert\IsTrue(message="El Codigo de Expediente debe tener 5 Dígitos.")
+     */
     public function getValidarCodigoExpediente() {
-        if(strlen($this->codigoExpediente) == 5){
+        if (strlen($this->codigoExpediente) == 5) {
             return true;
         }
         return false;
     }
-    
+
     /**
-    * @Assert\IsTrue(message="El Número de Expediente debe tener 7 Dígitos.")
-    */
+     * @Assert\IsTrue(message="El Número de Expediente debe tener 7 Dígitos.")
+     */
     public function getValidarNumeroExpediente() {
-        if(strlen($this->numeroExpediente) == 7){
+        if (strlen($this->numeroExpediente) == 7) {
             return true;
         }
         return false;
     }
-    
+
     /**
-    * @Assert\IsTrue(message="El Dígito de Expediente debe tener longitud 1.")
-    */
+     * @Assert\IsTrue(message="El Dígito de Expediente debe tener longitud 1.")
+     */
     public function getValidarDigitoExpediente() {
-        if(strlen($this->digitoExpediente) == 1){
+        if (strlen($this->digitoExpediente) == 1) {
             return true;
         }
         return false;
     }
-    
+
     /**
-    * @Assert\IsTrue(message="La fecha de inicio debe ser menor que la de fin.")
-    */
+     * @Assert\IsTrue(message="La fecha de inicio debe ser menor que la de fin.")
+     */
     public function getValidarFecha() {
-        if(($this->fechaInicio) <= ($this->fechaFin)){
+        if ($this->fechaFin > null && ($this->fechaInicio) <= ($this->fechaFin)) {
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
+
+    /**
+     * @Assert\IsTrue(message="La cantidad de fojas debe ser mayor que 0")
+     */
+    public function getValidarFojas() {
+        if (($this->fojas) > 0) {
             return true;
         }
         return false;
     }
-    
+
+
     /**
-    * @Assert\IsTrue(message="La cantidad de fojas debe ser mayor que 0")
-    */
-    public function getValidarFojas() {
-        if(($this->fojas) >0){
-            return true;
-        }
-        return false;
+     * Set fechaBaja
+     *
+     * @param \DateTime $fechaBaja
+     *
+     * @return Expediente
+     */
+    public function setFechaBaja($fechaBaja)
+    {
+        $this->fechaBaja = $fechaBaja;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaBaja
+     *
+     * @return \DateTime
+     */
+    public function getFechaBaja()
+    {
+        return $this->fechaBaja;
     }
 }

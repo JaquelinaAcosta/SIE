@@ -119,7 +119,7 @@
                 </div>
             </div>
         </div>
-      
+
         {% for message in app.flashes('success') %}
             <div class="alert alert-success">
                 {{ message }}
@@ -133,7 +133,7 @@
             </div>
             <hr/>
         {% endfor %}
-       
+
         <hr/>
         {% if personas|length >0 %}
             <table class="table table-striped">
@@ -148,6 +148,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {% set count = 0 %}
                     {% for persona in personas %}
                         <tr>
                             <td class="text-default">{{persona.apellido|e }}</td>
@@ -157,11 +158,11 @@
                             <td class="text-default">{{persona.dependencia.descripcion|e }}</td>
 
                             <td> <a class="btn btn-warning" href="{{ path("editar_persona", {'id':persona.id}) }}"  role="button"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Editar"></i></a>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></button>    
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{ count }}"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></button>    
 
 
                                 <!-- The Modal -->
-                                <div class="modal fade" id="myModal">
+                                <div class="modal fade" id="myModal{{count}}">
                                     <div class="modal-dialog modal-sm modal-dialog-centered">
                                         <div class="modal-content">
 
@@ -184,6 +185,8 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                {% set count=count+1 %}
                         </tr>             
                     {% endfor %}
 

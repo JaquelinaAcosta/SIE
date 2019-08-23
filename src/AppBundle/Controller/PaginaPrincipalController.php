@@ -33,20 +33,23 @@ class PaginaPrincipalController extends Controller {
 
             $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($formExpedienteFilter, $filterBuilder);
             $expedientes = $filterBuilder->getQuery()->getResult();
-            if($expedientes[0]->getEstado() == 'ASOCIADO'){
-                $expedientePadre = $em->getRepository('AppBundle:ExpedienteAsociado')->findOneBy([
-                    'expedienteAsociado'=>$expedientes[0]
-                ])->getExpedientePadre();
-            }
+
             if (count($expedientes) > 0) {
-                $actualFecha = $em->getRepository('AppBundle:MovimientoExpediente')->findOneBy(
-                                [
-                                    'ubicacion' => $expedientes[0]->getUbicacionActual()
-                                ], ['fecha' => 'DESC'], ['expediente' => $expedientes[0]])->getFecha()->format('d-m-Y');
-                $ultimaFecha = $em->getRepository('AppBundle:MovimientoExpediente')->findOneBy(
-                                [
-                                    'ubicacion' => $expedientes[0]->getUltimaUbicacion()
-                                ], ['fecha' => 'DESC'], ['expediente' => $expedientes[0]])->getFecha()->format('d-m-Y');
+                if ($expedientes[0]->getEstado() == 'ASOCIADO') {
+                    $expedientePadre = $em->getRepository('AppBundle:ExpedienteAsociado')->findOneBy([
+                                'expedienteAsociado' => $expedientes[0]
+                            ])->getExpedientePadre();
+                }
+                if (count($expedientes) > 0) {
+                    $actualFecha = $em->getRepository('AppBundle:MovimientoExpediente')->findOneBy(
+                                    [
+                                        'ubicacion' => $expedientes[0]->getUbicacionActual()
+                                    ], ['fecha' => 'DESC'], ['expediente' => $expedientes[0]])->getFecha()->format('d-m-Y');
+                    $ultimaFecha = $em->getRepository('AppBundle:MovimientoExpediente')->findOneBy(
+                                    [
+                                        'ubicacion' => $expedientes[0]->getUltimaUbicacion()
+                                    ], ['fecha' => 'DESC'], ['expediente' => $expedientes[0]])->getFecha()->format('d-m-Y');
+                }
             }
         }
         if ($formExpedienteFilter->get('Limpiar')->isClicked()) {
@@ -64,7 +67,7 @@ class PaginaPrincipalController extends Controller {
 
         return $this->render('AppBundle:PaginaPrincipal:inicio.html.twig', array(
                     'expedientes' => $expedientes,
-                    'expediente_padre'=>$expedientePadre,
+                    'expediente_padre' => $expedientePadre,
                     'actual_fecha' => $actualFecha,
                     'ultima_fecha' => $ultimaFecha,
                     'formExpedienteFilter' => $formExpedienteFilter->createView(),

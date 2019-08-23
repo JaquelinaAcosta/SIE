@@ -107,8 +107,6 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
             table{
                 color:#616161;
             }
-            .dropdown-menu {display: block;visibility: hidden;opacity:0;transform: translateY(50px);transition:.5s ease all;}
-            .dropdown-menu.show {display: block;visibility: visible;opacity:1;transform: translateY(0px);transition:.5s ease all;}
 
             .right{
                 margin-left: auto;
@@ -128,14 +126,18 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                 box-shadow: none;
                 background-color: transparent;
             }
-
             table{
                 color:#616161;
             }
-            .dropdown-menu {display: block;visibility: hidden;opacity:0;transform: translateY(50px);transition:.5s ease all;}
-            .dropdown-menu.show {display: block;visibility: visible;opacity:1;transform: translateY(0px);transition:.5s ease all;}
 
 
+            .pull-left{
+                right: 0;
+                left: auto;
+                padding-left: 1px;
+                padding-right: 1px;
+
+            }
 
         </style>
         <script>
@@ -172,16 +174,16 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     <body>       
         ";
-        // line 128
+        // line 130
         if (($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []) != null)) {
-            // line 129
+            // line 131
             echo "            <header>  
                 <nav class=\"navbar fixed-top navbar-expand-md navbar-dark bg-dark\">
                     ";
-            // line 132
+            // line 134
             echo "                    <a class=\"navbar-brand abs\" href=\"#\"><strong style=\"font-size:16px;\">
                             ";
-            // line 133
+            // line 135
             echo "Sistema de Gestión Interna de Expedientes
                         </strong></a>
                     <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#collapsingNavbar\">
@@ -191,18 +193,25 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
                         <ul class=\"navbar-nav ml-auto\">
                             <li class=\"nav-item\">
-                                <div class=\"dropdown right\">
-                                    <button class=\"btn btn-dark dropdown-toggle right\" type=\"button\" id=\"dropdownMenuMenu\" data-toggle=\"dropdown\"
+                                <div class=\"dropdown\">
+                                    <button class=\"btn btn-dark dropdown-toggle left\" type=\"button\" id=\"dropdownMenuMenu\" data-toggle=\"dropdown\"
                                             aria-haspopup=\"true\" aria-expanded=\"false\">
                                         <i class=\"fas fa-user\"></i>  ";
-            // line 145
+            // line 147
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "userName", []), "html", null, true);
             echo "  
                                         </a>        </button>
-                                    <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuMenu\">
-                                        <a class=\"dropdown-item\" type=\"button\"><i class=\"fab fa-whmcs\"></i>  Configuración</a>
+                                    <div class=\"dropdown-menu pull-left\" aria-labelledby=\"dropdownMenuMenu\">
+                                        <a href=\"";
+            // line 150
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_usuario", ["id" => $this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "id", [])]), "html", null, true);
+            echo "\" class=\"dropdown-item\" type=\"button\"><i class=\"fas fa-user\" style=\"\"></i>Configuración de Usuario</a>
+                                        <a href=\"";
+            // line 151
+            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_persona", ["id" => $this->getAttribute($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "persona", []), "id", [])]), "html", null, true);
+            echo "\" class=\"dropdown-item\" type=\"button\"><i class=\"fas fa-male\"></i>Configuración de Personal</a>
                                         <a class=\"dropdown-item\" href=\"";
-            // line 149
+            // line 152
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("logout");
             echo "\" type=\"button\"><i class=\"fas fa-sign-out-alt\"></i>  Cerrar Sesión</a>
                                     </div>
@@ -215,7 +224,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                 <div class=\"sidebar\"> 
                     <div class=\"list-group\" style=\"margin-top:15px;\">
                         <a href=\"";
-            // line 159
+            // line 162
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("busqueda_expediente");
             echo "\" class=\"list-group-item list-group-item-action text-center\">
                             <i class=\"fas fa-search\" style=\"font-size:27px; margin:0 auto;\"></i>
@@ -223,7 +232,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                             Búscar un Expediente
                         </a>
                         <a href=\"";
-            // line 164
+            // line 167
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_expediente", ["currentPage" => 1]);
             echo "\" class=\"list-group-item list-group-item-action text-center\">
                             <i class=\"far fa-file-alt\" style=\"font-size:27px; margin:0 auto;\"></i>
@@ -231,9 +240,9 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                             Listado de Expedientes
                         </a>
                         ";
-            // line 169
+            // line 172
             if (($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "role", []) == "ROLE_ADMIN")) {
-                // line 170
+                // line 173
                 echo "                            <a href=\"";
                 echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_dependencia", ["currentPage" => 1]);
                 echo "\" class=\"list-group-item list-group-item-action text-center\">
@@ -242,7 +251,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                                 Dependencias
                             </a>
                             <a href=\"";
-                // line 175
+                // line 178
                 echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_persona", ["currentPage" => 1]);
                 echo "\" class=\"list-group-item list-group-item-action text-center\">
                                 <i class=\"fas fa-male\" style=\"font-size:27px; margin:0 auto;\"></i>
@@ -250,7 +259,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                                 Personas
                             </a>
                             <a href=\"";
-                // line 180
+                // line 183
                 echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_usuario", ["currentPage" => 1]);
                 echo "\" class=\"list-group-item list-group-item-action text-center\">
                                 <i class=\"fas fa-user\" style=\"font-size:27px; margin:0 auto;\"></i>
@@ -259,7 +268,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                             </a>
                         ";
             }
-            // line 186
+            // line 189
             echo "                        <a href=\"";
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_lugarfisico", ["currentPage" => 1]);
             echo "\" class=\"list-group-item list-group-item-action text-center\">
@@ -268,14 +277,14 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                             Lugares
                         </a>
                         ";
-            // line 196
+            // line 199
             echo "                        <a href=\"#\" class=\"list-group-item list-group-item-action text-center\">
                             <i class=\"fas fa-question-circle\" style=\"font-size:27px;\"></i>
                             <br/>
                             Ayuda
                         </a>
                         <a href=\"";
-            // line 201
+            // line 204
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("logout");
             echo "\" class=\"list-group-item list-group-item-action text-center\">
                             <i class=\"fas fa-sign-out-alt\" style=\"font-size:27px;\"></i>
@@ -289,29 +298,29 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                 <div class=\"contentmain\">
 
                     ";
-            // line 212
-            $this->displayBlock('contentmain', $context, $blocks);
             // line 215
+            $this->displayBlock('contentmain', $context, $blocks);
+            // line 218
             echo "
                 </div>
             </header>
         ";
         } else {
-            // line 219
+            // line 222
             echo "
             <div class=\"login\">
 
                 ";
-            // line 222
-            $this->displayBlock('login', $context, $blocks);
             // line 225
+            $this->displayBlock('login', $context, $blocks);
+            // line 228
             echo "
             </div>
 
 
         ";
         }
-        // line 230
+        // line 233
         echo "
 
     </body>
@@ -344,7 +353,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     }
 
-    // line 212
+    // line 215
     public function block_contentmain($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -353,7 +362,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "contentmain"));
 
-        // line 213
+        // line 216
         echo "
                     ";
         
@@ -364,7 +373,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     }
 
-    // line 222
+    // line 225
     public function block_login($context, array $blocks = [])
     {
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->env->getExtension("Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension");
@@ -373,7 +382,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->env->getExtension("Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension");
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "login"));
 
-        // line 223
+        // line 226
         echo "
                 ";
         
@@ -396,7 +405,7 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
     public function getDebugInfo()
     {
-        return array (  377 => 223,  368 => 222,  357 => 213,  348 => 212,  330 => 7,  315 => 230,  308 => 225,  306 => 222,  301 => 219,  295 => 215,  293 => 212,  279 => 201,  272 => 196,  263 => 186,  254 => 180,  246 => 175,  237 => 170,  235 => 169,  227 => 164,  219 => 159,  206 => 149,  199 => 145,  185 => 133,  182 => 132,  178 => 129,  176 => 128,  101 => 55,  67 => 21,  63 => 20,  47 => 7,  39 => 1,);
+        return array (  386 => 226,  377 => 225,  366 => 216,  357 => 215,  339 => 7,  324 => 233,  317 => 228,  315 => 225,  310 => 222,  304 => 218,  302 => 215,  288 => 204,  281 => 199,  272 => 189,  263 => 183,  255 => 178,  246 => 173,  244 => 172,  236 => 167,  228 => 162,  215 => 152,  211 => 151,  207 => 150,  201 => 147,  187 => 135,  184 => 134,  180 => 131,  178 => 130,  101 => 55,  67 => 21,  63 => 20,  47 => 7,  39 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -472,8 +481,6 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
             table{
                 color:#616161;
             }
-            .dropdown-menu {display: block;visibility: hidden;opacity:0;transform: translateY(50px);transition:.5s ease all;}
-            .dropdown-menu.show {display: block;visibility: visible;opacity:1;transform: translateY(0px);transition:.5s ease all;}
 
             .right{
                 margin-left: auto;
@@ -493,14 +500,18 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
                 box-shadow: none;
                 background-color: transparent;
             }
-
             table{
                 color:#616161;
             }
-            .dropdown-menu {display: block;visibility: hidden;opacity:0;transform: translateY(50px);transition:.5s ease all;}
-            .dropdown-menu.show {display: block;visibility: visible;opacity:1;transform: translateY(0px);transition:.5s ease all;}
 
 
+            .pull-left{
+                right: 0;
+                left: auto;
+                padding-left: 1px;
+                padding-right: 1px;
+
+            }
 
         </style>
         <script>
@@ -550,13 +561,14 @@ class __TwigTemplate_e6d7046595b7d5d4de0de63a50a0b945a6248b4fe6e2f768f9eec36bb34
 
                         <ul class=\"navbar-nav ml-auto\">
                             <li class=\"nav-item\">
-                                <div class=\"dropdown right\">
-                                    <button class=\"btn btn-dark dropdown-toggle right\" type=\"button\" id=\"dropdownMenuMenu\" data-toggle=\"dropdown\"
+                                <div class=\"dropdown\">
+                                    <button class=\"btn btn-dark dropdown-toggle left\" type=\"button\" id=\"dropdownMenuMenu\" data-toggle=\"dropdown\"
                                             aria-haspopup=\"true\" aria-expanded=\"false\">
                                         <i class=\"fas fa-user\"></i>  {{ app.user.userName }}  
                                         </a>        </button>
-                                    <div class=\"dropdown-menu\" aria-labelledby=\"dropdownMenuMenu\">
-                                        <a class=\"dropdown-item\" type=\"button\"><i class=\"fab fa-whmcs\"></i>  Configuración</a>
+                                    <div class=\"dropdown-menu pull-left\" aria-labelledby=\"dropdownMenuMenu\">
+                                        <a href=\"{{ path('editar_usuario',{'id':app.user.id}) }}\" class=\"dropdown-item\" type=\"button\"><i class=\"fas fa-user\" style=\"\"></i>Configuración de Usuario</a>
+                                        <a href=\"{{ path('editar_persona',{'id':app.user.persona.id}) }}\" class=\"dropdown-item\" type=\"button\"><i class=\"fas fa-male\"></i>Configuración de Personal</a>
                                         <a class=\"dropdown-item\" href=\"{{ path(\"logout\") }}\" type=\"button\"><i class=\"fas fa-sign-out-alt\"></i>  Cerrar Sesión</a>
                                     </div>
                                 </div>

@@ -104,7 +104,7 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
                         </button>
                         ";
         // line 47
-        if ((($context["asociado"] ?? $this->getContext($context, "asociado")) == false)) {
+        if (((($context["asociado"] ?? $this->getContext($context, "asociado")) == false) && (($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "role", []) == "ROLE_RESPONSABLE") || ($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "role", []) == "ROLE_ADMIN")))) {
             // line 48
             echo "                            <a href=\"";
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nuevo_expediente");
@@ -352,61 +352,87 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
             echo "                ";
             $context["vistoCount"] = 0;
             // line 164
+            echo "                ";
+            $context["bajaCount"] = 0;
+            // line 165
             echo "
                 ";
-            // line 165
+            // line 166
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable($context["expediente"]);
             foreach ($context['_seq'] as $context["_key"] => $context["expediente"]) {
-                // line 166
+                // line 167
                 echo "                    ";
-                if (($this->getAttribute($context["expediente"], "estado", []) == "NUEVO")) {
-                    // line 167
+                if ((($this->getAttribute($context["expediente"], "estado", []) == "NUEVO") && (null === $this->getAttribute($context["expediente"], "fechaBaja", [])))) {
+                    // line 168
                     echo "                        ";
                     $context["nuevoCount"] = (($context["nuevoCount"] ?? $this->getContext($context, "nuevoCount")) + 1);
-                    // line 168
-                    echo "                    ";
-                } elseif (($this->getAttribute($context["expediente"], "estado", []) == "VISTO")) {
                     // line 169
+                    echo "                    ";
+                } elseif ((($this->getAttribute($context["expediente"], "estado", []) == "VISTO") && (null === $this->getAttribute($context["expediente"], "fechaBaja", [])))) {
+                    // line 170
                     echo "                        ";
                     $context["vistoCount"] = (($context["vistoCount"] ?? $this->getContext($context, "vistoCount")) + 1);
-                    // line 170
+                    // line 171
                     echo "                    ";
                 }
-                // line 171
+                // line 172
+                echo "                    ";
+                if ( !(null === $this->getAttribute($context["expediente"], "fechaBaja", []))) {
+                    // line 173
+                    echo "                        ";
+                    $context["bajaCount"] = (($context["bajaCount"] ?? $this->getContext($context, "bajaCount")) + 1);
+                    // line 174
+                    echo "                    ";
+                }
+                // line 175
                 echo "                ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['expediente'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 172
+            // line 176
             echo "
                 ";
-            // line 173
+            // line 177
             if ((($context["nuevoCount"] ?? $this->getContext($context, "nuevoCount")) > 0)) {
-                // line 174
+                // line 178
                 echo "                    <i class=\"far fa-file\"></i> Nuevos: ";
                 echo twig_escape_filter($this->env, ($context["nuevoCount"] ?? $this->getContext($context, "nuevoCount")), "html", null, true);
                 echo " &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                 ";
             }
-            // line 176
+            // line 180
             echo "                ";
             if ((($context["vistoCount"] ?? $this->getContext($context, "vistoCount")) > 0)) {
-                // line 177
+                // line 181
                 echo "                    <i class=\"fas fa-check\"></i> Visto: ";
                 echo twig_escape_filter($this->env, ($context["vistoCount"] ?? $this->getContext($context, "vistoCount")), "html", null, true);
                 echo " &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                 ";
             }
-            // line 179
-            echo "              
-            </div>
+            // line 183
+            echo "                ";
+            if (($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "role", []) == "ROLE_ADMIN")) {
+                // line 184
+                echo "                    ";
+                if ((($context["bajaCount"] ?? $this->getContext($context, "bajaCount")) > 0)) {
+                    // line 185
+                    echo "                        <i class=\"fas fa-trash-alt\"></i> Baja: ";
+                    echo twig_escape_filter($this->env, ($context["bajaCount"] ?? $this->getContext($context, "bajaCount")), "html", null, true);
+                    echo " &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    ";
+                }
+                // line 187
+                echo "                ";
+            }
+            // line 188
+            echo "            </div>
             <hr/>
 
         ";
         }
-        // line 184
+        // line 192
         echo "
         <table class=\"table table-sm table-striped\">
             <thead class=\"thead-dark\">
@@ -420,24 +446,19 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
             </thead>
             <tbody>
                 ";
-        // line 196
+        // line 204
+        $context["count"] = 0;
+        // line 205
+        echo "                ";
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(twig_reverse_filter($this->env, $context["expediente"]));
         foreach ($context['_seq'] as $context["_key"] => $context["expediente"]) {
-            // line 197
+            // line 206
             echo "                    <tr>
                         <td class=\"\">
+
                             ";
-            // line 199
-            if (($this->getAttribute($context["expediente"], "estado", []) == "NUEVO")) {
-                // line 200
-                echo "                                <span class=\"badge badge-pill badge-info\">Nuevo</span>
-                            ";
-            }
-            // line 202
-            echo "
-                            ";
-            // line 203
+            // line 209
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "codigoExpediente", []), "html", null, true);
             echo "-";
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "numeroExpediente", []), "html", null, true);
@@ -447,70 +468,117 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
 
                         </td>            
                         <td class=\"\">";
-            // line 206
+            // line 212
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "tema", []));
             echo "</td>         
                         <td class=\"text-center\">";
-            // line 207
+            // line 213
             echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "ubicacionActual", []));
             echo "</td>
-                         <td class=\"text-center\">";
-            // line 208
-            echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "estado", []));
-            echo "</td>        
+                        <td class=\"text-center\">
+                            ";
+            // line 215
+            if (($this->getAttribute($context["expediente"], "fechaBaja", []) == null)) {
+                // line 216
+                echo "                                ";
+                if (($this->getAttribute($context["expediente"], "estado", []) == "NUEVO")) {
+                    // line 217
+                    echo "                                    <span class=\"badge badge-pill badge-info\">NUEVO</span>
+                                ";
+                } else {
+                    // line 219
+                    echo "                                    <span class=\"badge badge-pill badge-success\">VISTO</span>
+                                ";
+                }
+                // line 221
+                echo "                            ";
+            } else {
+                // line 222
+                echo "                                <span class=\"badge badge-pill badge-danger\">BAJA</span>
+                            ";
+            }
+            // line 224
+            echo "
+                        </td>  
+
                         ";
-            // line 209
+            // line 227
             if ((($context["asociado"] ?? $this->getContext($context, "asociado")) == false)) {
-                // line 210
+                // line 228
                 echo "                            <td class=\"text-center\"><a class=\"btn btn-info\" href=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("ver_expediente", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
                 echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Ver Detalle\"><i class=\"fas fa-search\"></i></a>
-                                <a class=\"btn btn-warning\" href=\"";
-                // line 211
-                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_expediente", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
-                echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"><i class=\"fas fa-edit\"></i></a>
+
                                 ";
-                // line 214
-                echo "                                <button type=\"button\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fas fa-trash-alt\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Eliminar\"></i></button>    
+                // line 232
+                echo "                                ";
+                if ((($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "role", []) == "ROLE_RESPONSABLE") || ($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "role", []) == "ROLE_ADMIN"))) {
+                    // line 233
+                    echo "                                    <a class=\"btn btn-warning\" href=\"";
+                    echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_expediente", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
+                    echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"><i class=\"fas fa-edit\"></i></a>
+
+                                    ";
+                    // line 235
+                    if ((null === $this->getAttribute($context["expediente"], "fechaBaja", []))) {
+                        // line 236
+                        echo "                                        <button type=\"button\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal";
+                        echo twig_escape_filter($this->env, ($context["count"] ?? $this->getContext($context, "count")), "html", null, true);
+                        echo "\"><i class=\"fas fa-trash-alt\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Eliminar\"></i></button>    
 
 
-                                <!-- The Modal -->
-                                <div class=\"modal fade\" id=\"myModal\">
-                                    <div class=\"modal-dialog modal-sm modal-dialog-centered\">
-                                        <div class=\"modal-content\">
+                                        <!-- The Modal -->
+                                        <div class=\"modal fade\" id=\"myModal";
+                        // line 240
+                        echo twig_escape_filter($this->env, ($context["count"] ?? $this->getContext($context, "count")), "html", null, true);
+                        echo "\">
+                                            <div class=\"modal-dialog modal-sm modal-dialog-centered\">
+                                                <div class=\"modal-content\">
 
-                                            <!-- Modal Header -->
-                                            <div class=\"modal-header-warning\">
-                                                <button type=\"button\" class=\"close text-danger\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>
-                                                <h4 class=\"modal-title\">Eliminar Expediente</h4>
+                                                    <!-- Modal Header -->
+                                                    <div class=\"modal-header-warning\">
+                                                        <button type=\"button\" class=\"close text-danger\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>
+                                                        <h4 class=\"modal-title\">Eliminar Expediente</h4>
+                                                    </div>
+
+                                                    <!-- Modal body -->
+                                                    <div class=\"modal-body\">
+                                                        ¿Desea Eliminar el Expediente: ";
+                        // line 252
+                        echo twig_escape_filter($this->env, $context["expediente"], "html", null, true);
+                        echo "?
+                                                    </div>
+                                                    <!-- Modal footer -->
+                                                    <div class=\"modal-footer\">
+                                                        <button type=\"button\" class=\"btn btn-primary\"><a class=\"text-type btn-primary\"href=\"";
+                        // line 256
+                        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("eliminar_expediente", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
+                        echo "\"  role=\"button\">SI</a></button>                          
+                                                        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">NO</button>
+                                                    </div>
+
+                                                </div>
                                             </div>
-
-                                            <!-- Modal body -->
-                                            <div class=\"modal-body\">
-                                                ¿Desea Eliminar el Expediente: ";
-                // line 230
-                echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "codigoExpediente", []), "html", null, true);
-                echo "-";
-                echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "numeroExpediente", []), "html", null, true);
-                echo "-";
-                echo twig_escape_filter($this->env, $this->getAttribute($context["expediente"], "digitoExpediente", []), "html", null, true);
-                echo "?
-                                            </div>
-                                            <!-- Modal footer -->
-                                            <div class=\"modal-footer\">
-                                                <button type=\"button\" class=\"btn btn-primary\"><a class=\"text-type btn-primary\"href=\"";
-                // line 234
-                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("eliminar_expediente", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
-                echo "\"  role=\"button\">Si</a></button>                          
-                                                <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">No</button>
-                                            </div>
-
                                         </div>
-                                    </div>
-                                </div>
-                            ";
+                                        ";
+                        // line 263
+                        $context["count"] = (($context["count"] ?? $this->getContext($context, "count")) + 1);
+                        // line 264
+                        echo "                                    ";
+                    } else {
+                        // line 265
+                        echo "                                        <a class=\"btn btn-success\" href=\"";
+                        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("alta_expediente", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
+                        echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Dar de alta\"><i class=\"fas fa-check-square\"></i></a>
+                                        ";
+                    }
+                    // line 267
+                    echo "                                    ";
+                }
+                // line 268
+                echo "                                ";
             } else {
-                // line 242
+                // line 269
                 echo "                            <td class=\"text-center\"><a class=\"btn btn-info\" href=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nuevo_expediente_asociado", ["id" => ($context["padre_id"] ?? $this->getContext($context, "padre_id")), "id_asoc" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
                 echo "\"  
@@ -519,14 +587,15 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
 
                         ";
             }
-            // line 247
-            echo "                    </tr>
+            // line 274
+            echo "
+                    </tr>
                 ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['expediente'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 249
+        // line 277
         echo "
             </tbody>
         </table>
@@ -537,16 +606,16 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
 
         \$('#expediente_filter_tema').autocompleter({
             url_list: \"";
-        // line 258
+        // line 286
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("tema_search");
         echo "\",
             url_get: \"";
-        // line 259
+        // line 287
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("tema_get");
         echo "\"
         });
         ";
-        // line 265
+        // line 293
         echo "
                 \$(function () {
                     \$('[data-toggle=\"tooltip\"]').tooltip()
@@ -575,7 +644,7 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
 
     public function getDebugInfo()
     {
-        return array (  550 => 265,  545 => 259,  541 => 258,  530 => 249,  523 => 247,  514 => 242,  503 => 234,  492 => 230,  474 => 214,  470 => 211,  465 => 210,  463 => 209,  459 => 208,  455 => 207,  451 => 206,  441 => 203,  438 => 202,  434 => 200,  432 => 199,  428 => 197,  424 => 196,  410 => 184,  403 => 179,  397 => 177,  394 => 176,  388 => 174,  386 => 173,  383 => 172,  377 => 171,  374 => 170,  371 => 169,  368 => 168,  365 => 167,  362 => 166,  358 => 165,  355 => 164,  352 => 163,  350 => 162,  345 => 160,  341 => 158,  339 => 157,  332 => 152,  322 => 148,  319 => 147,  315 => 146,  312 => 145,  302 => 141,  299 => 140,  295 => 139,  286 => 133,  280 => 130,  276 => 129,  267 => 123,  263 => 122,  256 => 118,  252 => 117,  246 => 114,  237 => 108,  232 => 106,  228 => 105,  221 => 101,  216 => 99,  212 => 98,  205 => 94,  200 => 92,  196 => 91,  193 => 90,  186 => 86,  181 => 84,  177 => 83,  174 => 82,  172 => 81,  164 => 76,  159 => 74,  152 => 70,  147 => 68,  140 => 64,  135 => 62,  127 => 57,  123 => 56,  115 => 50,  109 => 48,  107 => 47,  102 => 45,  60 => 5,  51 => 4,  29 => 1,);
+        return array (  619 => 293,  614 => 287,  610 => 286,  599 => 277,  591 => 274,  582 => 269,  579 => 268,  576 => 267,  570 => 265,  567 => 264,  565 => 263,  555 => 256,  548 => 252,  533 => 240,  525 => 236,  523 => 235,  517 => 233,  514 => 232,  508 => 228,  506 => 227,  501 => 224,  497 => 222,  494 => 221,  490 => 219,  486 => 217,  483 => 216,  481 => 215,  476 => 213,  472 => 212,  462 => 209,  457 => 206,  452 => 205,  450 => 204,  436 => 192,  430 => 188,  427 => 187,  421 => 185,  418 => 184,  415 => 183,  409 => 181,  406 => 180,  400 => 178,  398 => 177,  395 => 176,  389 => 175,  386 => 174,  383 => 173,  380 => 172,  377 => 171,  374 => 170,  371 => 169,  368 => 168,  365 => 167,  361 => 166,  358 => 165,  355 => 164,  352 => 163,  350 => 162,  345 => 160,  341 => 158,  339 => 157,  332 => 152,  322 => 148,  319 => 147,  315 => 146,  312 => 145,  302 => 141,  299 => 140,  295 => 139,  286 => 133,  280 => 130,  276 => 129,  267 => 123,  263 => 122,  256 => 118,  252 => 117,  246 => 114,  237 => 108,  232 => 106,  228 => 105,  221 => 101,  216 => 99,  212 => 98,  205 => 94,  200 => 92,  196 => 91,  193 => 90,  186 => 86,  181 => 84,  177 => 83,  174 => 82,  172 => 81,  164 => 76,  159 => 74,  152 => 70,  147 => 68,  140 => 64,  135 => 62,  127 => 57,  123 => 56,  115 => 50,  109 => 48,  107 => 47,  102 => 45,  60 => 5,  51 => 4,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -634,7 +703,7 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
                         <button class=\"btn btn-dark search\" type=\"button\" data-toggle=\"collapse\" data-target=\"#collapseOne\" aria-expanded=\"true\" aria-controls=\"collapseOne\">
                             <i class=\"fas fa-search-plus\"></i> Filtros de Búsqueda de Expediente - {{ app.user.persona.dependencia }}
                         </button>
-                        {% if asociado == false %}
+                        {% if asociado == false and (app.user.role == 'ROLE_RESPONSABLE' or app.user.role == 'ROLE_ADMIN') %}
                             <a href=\"{{ path('nuevo_expediente') }}\" role=\"button\" class=\"btn btn-info float-right\"><i class=\"fas fa-file-alt\"></i> Nuevo Expediente</a>
                         {% endif %}
 
@@ -751,12 +820,16 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
 
                 {% set nuevoCount=0 %}
                 {% set vistoCount=0 %}
+                {% set bajaCount = 0 %}
 
                 {% for expediente in expediente %}
-                    {% if expediente.estado == 'NUEVO' %}
+                    {% if expediente.estado == 'NUEVO' and expediente.fechaBaja is null %}
                         {% set nuevoCount= nuevoCount+1 %}
-                    {% elseif expediente.estado == 'VISTO' %}
+                    {% elseif expediente.estado == 'VISTO' and expediente.fechaBaja is null %}
                         {% set vistoCount= vistoCount+1 %}
+                    {% endif %}
+                    {% if expediente.fechaBaja is not null%}
+                        {% set bajaCount=bajaCount+1 %}
                     {% endif %}
                 {% endfor %}
 
@@ -766,7 +839,11 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
                 {% if vistoCount > 0 %}
                     <i class=\"fas fa-check\"></i> Visto: {{vistoCount}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                 {% endif %}
-              
+                {% if app.user.role == 'ROLE_ADMIN' %}
+                    {% if bajaCount >0 %}
+                        <i class=\"fas fa-trash-alt\"></i> Baja: {{bajaCount}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    {% endif %}
+                {% endif %}
             </div>
             <hr/>
 
@@ -783,57 +860,77 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
                 </tr>
             </thead>
             <tbody>
+                {% set count=0 %}
                 {% for expediente in expediente|reverse %}
                     <tr>
                         <td class=\"\">
-                            {% if expediente.estado == 'NUEVO' %}
-                                <span class=\"badge badge-pill badge-info\">Nuevo</span>
-                            {% endif %}
 
                             {{expediente.codigoExpediente }}-{{expediente.numeroExpediente }}-{{expediente.digitoExpediente }}
 
                         </td>            
                         <td class=\"\">{{expediente.tema|e }}</td>         
                         <td class=\"text-center\">{{expediente.ubicacionActual|e }}</td>
-                         <td class=\"text-center\">{{expediente.estado|e }}</td>        
+                        <td class=\"text-center\">
+                            {% if expediente.fechaBaja == null %}
+                                {% if expediente.estado == 'NUEVO' %}
+                                    <span class=\"badge badge-pill badge-info\">NUEVO</span>
+                                {% else %}
+                                    <span class=\"badge badge-pill badge-success\">VISTO</span>
+                                {% endif %}
+                            {% else %}
+                                <span class=\"badge badge-pill badge-danger\">BAJA</span>
+                            {% endif %}
+
+                        </td>  
+
                         {% if asociado == false %}
                             <td class=\"text-center\"><a class=\"btn btn-info\" href=\"{{ path(\"ver_expediente\", {'id':expediente.id}) }}\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Ver Detalle\"><i class=\"fas fa-search\"></i></a>
-                                <a class=\"btn btn-warning\" href=\"{{ path(\"editar_expediente\", {'id':expediente.id}) }}\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"><i class=\"fas fa-edit\"></i></a>
+
                                 {#<a class=\"btn btn-danger\" href=\"{{ path(\"eliminar_expediente\", {'id':expediente.id}) }}\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Eliminar\"><i class=\"fas fa-trash-alt\"></i></a></td>
 #}
-                                <button type=\"button\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fas fa-trash-alt\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Eliminar\"></i></button>    
+                                {% if app.user.role == 'ROLE_RESPONSABLE' or app.user.role == 'ROLE_ADMIN' %}
+                                    <a class=\"btn btn-warning\" href=\"{{ path(\"editar_expediente\", {'id':expediente.id}) }}\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"><i class=\"fas fa-edit\"></i></a>
+
+                                    {% if expediente.fechaBaja is null %}
+                                        <button type=\"button\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal{{ count }}\"><i class=\"fas fa-trash-alt\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Eliminar\"></i></button>    
 
 
-                                <!-- The Modal -->
-                                <div class=\"modal fade\" id=\"myModal\">
-                                    <div class=\"modal-dialog modal-sm modal-dialog-centered\">
-                                        <div class=\"modal-content\">
+                                        <!-- The Modal -->
+                                        <div class=\"modal fade\" id=\"myModal{{count}}\">
+                                            <div class=\"modal-dialog modal-sm modal-dialog-centered\">
+                                                <div class=\"modal-content\">
 
-                                            <!-- Modal Header -->
-                                            <div class=\"modal-header-warning\">
-                                                <button type=\"button\" class=\"close text-danger\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>
-                                                <h4 class=\"modal-title\">Eliminar Expediente</h4>
+                                                    <!-- Modal Header -->
+                                                    <div class=\"modal-header-warning\">
+                                                        <button type=\"button\" class=\"close text-danger\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>
+                                                        <h4 class=\"modal-title\">Eliminar Expediente</h4>
+                                                    </div>
+
+                                                    <!-- Modal body -->
+                                                    <div class=\"modal-body\">
+                                                        ¿Desea Eliminar el Expediente: {{ expediente }}?
+                                                    </div>
+                                                    <!-- Modal footer -->
+                                                    <div class=\"modal-footer\">
+                                                        <button type=\"button\" class=\"btn btn-primary\"><a class=\"text-type btn-primary\"href=\"{{ path(\"eliminar_expediente\", {'id':expediente.id})  }}\"  role=\"button\">SI</a></button>                          
+                                                        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">NO</button>
+                                                    </div>
+
+                                                </div>
                                             </div>
-
-                                            <!-- Modal body -->
-                                            <div class=\"modal-body\">
-                                                ¿Desea Eliminar el Expediente: {{expediente.codigoExpediente }}-{{expediente.numeroExpediente }}-{{expediente.digitoExpediente }}?
-                                            </div>
-                                            <!-- Modal footer -->
-                                            <div class=\"modal-footer\">
-                                                <button type=\"button\" class=\"btn btn-primary\"><a class=\"text-type btn-primary\"href=\"{{ path(\"eliminar_expediente\", {'id':expediente.id})  }}\"  role=\"button\">Si</a></button>                          
-                                                <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">No</button>
-                                            </div>
-
                                         </div>
-                                    </div>
-                                </div>
-                            {% else %}
+                                        {% set count=count+1 %}
+                                    {% else %}
+                                        <a class=\"btn btn-success\" href=\"{{ path(\"alta_expediente\", {'id':expediente.id}) }}\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Dar de alta\"><i class=\"fas fa-check-square\"></i></a>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
                             <td class=\"text-center\"><a class=\"btn btn-info\" href=\"{{ path(\"nuevo_expediente_asociado\", {'id':padre_id, 'id_asoc':expediente.id}) }}\"  
                                                        role=\"button\" data-toggle=\"tooltip\" 
                                                        data-placement=\"top\" title=\"Asociar\"></i>Asociar</a></td>
 
                         {% endif %}
+
                     </tr>
                 {% endfor %}
 
