@@ -25,7 +25,8 @@ class UsuarioType extends AbstractType {
                 ->add('iup', TextType::class, array(
                     "label" => "Ej: usuario1:", "attr" => array(
                         "class" => "form-exp form-control",
-                        "placeholder" => "usuario1"
+                        "placeholder" => "usuario1",
+                        "readonly"=>true
                     )
                 ))
                
@@ -86,7 +87,6 @@ class UsuarioType extends AbstractType {
                             "class" => "form-control"],
                         'choices' => array(
                             'Usuario' => 'ROLE_USER',
-                            'Responsable'=>'ROLE_RESPONSABLE',
                             'Administrador' => 'ROLE_ADMIN'
                 )))
                     ->add('persona', 'PUGX\AutocompleterBundle\Form\Type\AutocompleteType', array(

@@ -15,6 +15,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use AppBundle\Form\ExpedienteFilterType;
 use Symfony\Component\Validator\Constraints\DateTime;
+use AppBundle\Entity\MovimientoExpediente;
 
 class ExpedienteController extends Controller {
 
@@ -24,7 +25,7 @@ class ExpedienteController extends Controller {
     public function indexAction(Request $request) {
         $em = $this->getDoctrine()->getEntityManager();
         $expediente = new Expediente();
-
+        $movimientoExpediente = new MovimientoExpediente();
         $form = $this->createForm(ExpedienteType::class, $expediente);
 
         $form->handleRequest($request);
@@ -36,6 +37,18 @@ class ExpedienteController extends Controller {
 
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
+                
+                $movimientoExpediente->setUsuario($this->getUser()->getIup());
+                $movimientoExpediente->setTipoSalida('Externo');
+                $movimientoExpediente->setExpediente($expediente);
+                $movimientoExpediente->setFojas($expediente->getFojas());
+                $movimientoExpediente->setObservacion('Movimiento generado automaticamente en la carga del expediente en la mesa de entrada.');
+                $movimientoExpediente->setComentario('Carga automática.');
+                $fechaHoy = date("d-m-Y");
+                $date = \DateTime::createFromFormat('d-m-Y', $fechaHoy);
+                $movimientoExpediente->setFecha($date);
+                $movimientoExpediente->setUbicacion($expediente->getIniciadorDependencia()->getMesaentrada());               
+                $expediente->getMovimientos()->add($movimientoExpediente);
 
                 $fechaIni = \DateTime::createFromFormat('d-m-Y',
                                 $form['fechaInicio']->getData());
@@ -60,18 +73,17 @@ class ExpedienteController extends Controller {
 //                }
 //                $expediente->setFechaInicio(date($form['fechaInicio']->getData()." H:i:s"));
 //                $expediente->setFechaFin(date($form['fechaFin']->getData()." H:i:s"));
-                
+
                 $em->persist($expediente);
-                $flush=$em->flush();
-                
+                $flush = $em->flush();
+
                 if ($flush == false) {
-                    $this->addFlash('success', "El Expediente: " . $expediente->getCodigoExpediente() . "-".$expediente->getNumeroExpediente(). "-". $expediente->getDigitoExpediente() . " se agregó correctamente.");
+                    $this->addFlash('success', "El Expediente: " . $expediente->getCodigoExpediente() . "-" . $expediente->getNumeroExpediente() . "-" . $expediente->getDigitoExpediente() . " se agregó correctamente.");
                     return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
                 } else {
                     $this->addFlash('danger', "Ocurrió un error en la creacion de Expediente.");
                 }
             }
-
         }
 
 
@@ -81,7 +93,6 @@ class ExpedienteController extends Controller {
                     'accion' => 'Nuevo'
         ]);
     }
-
 
     /**
      * @Route("expediente/listado/{currentPage}", name="listado_expediente")
@@ -232,17 +243,16 @@ class ExpedienteController extends Controller {
 
         $em = $this->getDoctrine()->getEntityManager();
         $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
+        $fechaBaja = \DateTime::createFromFormat('d-m-Y',
+                        date('d-m-Y'));
 
-        // replace this example code with whatever you need
-        if (!$expediente) {
-            throw $this->createNotFoundException('No element found for id ' . $id);
-        }
+        $expediente->setFechaBaja($fechaBaja);
 
-        $em->remove($expediente);
+        $em->persist($expediente);
         $flush = $em->flush();
-              
+
         if ($flush == false) {
-            $this->addFlash('success', "El Expediente: " . $expediente->getCodigoExpediente() . "-".$expediente->getNumeroExpediente(). "-". $expediente->getDigitoExpediente() . " se eliminó correctamente.");
+            $this->addFlash('success', "El Expediente: " . $expediente . " se eliminó correctamente.");
             return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
         } else {
             $this->addFlash('danger', "Ocurrió un error en la Eliminacón de Expediente.");
@@ -252,7 +262,32 @@ class ExpedienteController extends Controller {
     }
 
     /**
-     * @Route("expediente/edit/{id}", name="editar_expediente")
+     * @Route("expediente/alta/{id}", name="alta_expediente")
+     */
+    public function altaAction(Request $request, $id) {
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
+
+
+        $expediente->setFechaBaja(null);
+        $expediente->setEstado('NUEVO');
+
+        $em->persist($expediente);
+        $flush = $em->flush();
+
+        if ($flush == false) {
+            $this->addFlash('success', "El Expediente: " . $expediente . " se dio de alta correctamente.");
+            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+        } else {
+            $this->addFlash('danger', "Ocurrió un error en el alta del Expediente.");
+        }
+
+        return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+    }
+
+    /**
+     * @Route("expediente/editar/{id}", name="editar_expediente")
      */
     public function editAction(Request $request, $id) {
 
@@ -316,9 +351,9 @@ class ExpedienteController extends Controller {
 
                 $em->persist($expediente);
                 $flush = $em->flush();
-                                
+
                 if ($flush == false) {
-                    $this->addFlash('success', "El Expediente: " . $expediente->getCodigoExpediente() . "-".$expediente->getNumeroExpediente(). "-". $expediente->getDigitoExpediente() . " se modificó correctamente.");
+                    $this->addFlash('success', "El Expediente: " . $expediente->getCodigoExpediente() . "-" . $expediente->getNumeroExpediente() . "-" . $expediente->getDigitoExpediente() . " se modificó correctamente.");
                     return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
                 } else {
                     $this->addFlash('danger', "Ocurrió un error en la Modificación de Expediente.");

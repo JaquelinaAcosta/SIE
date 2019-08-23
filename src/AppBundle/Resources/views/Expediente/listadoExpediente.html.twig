@@ -44,7 +44,7 @@
                         <button class="btn btn-dark search" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                             <i class="fas fa-search-plus"></i> Filtros de Búsqueda de Expediente - {{ app.user.persona.dependencia }}
                         </button>
-                        {% if asociado == false %}
+                        {% if asociado == false and (app.user.role == 'ROLE_RESPONSABLE' or app.user.role == 'ROLE_ADMIN') %}
                             <a href="{{ path('nuevo_expediente') }}" role="button" class="btn btn-info float-right"><i class="fas fa-file-alt"></i> Nuevo Expediente</a>
                         {% endif %}
 
@@ -161,12 +161,16 @@
 
                 {% set nuevoCount=0 %}
                 {% set vistoCount=0 %}
+                {% set bajaCount = 0 %}
 
                 {% for expediente in expediente %}
-                    {% if expediente.estado == 'NUEVO' %}
+                    {% if expediente.estado == 'NUEVO' and expediente.fechaBaja is null %}
                         {% set nuevoCount= nuevoCount+1 %}
-                    {% elseif expediente.estado == 'VISTO' %}
+                    {% elseif expediente.estado == 'VISTO' and expediente.fechaBaja is null %}
                         {% set vistoCount= vistoCount+1 %}
+                    {% endif %}
+                    {% if expediente.fechaBaja is not null%}
+                        {% set bajaCount=bajaCount+1 %}
                     {% endif %}
                 {% endfor %}
 
@@ -176,7 +180,11 @@
                 {% if vistoCount > 0 %}
                     <i class="fas fa-check"></i> Visto: {{vistoCount}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                 {% endif %}
-              
+                {% if app.user.role == 'ROLE_ADMIN' %}
+                    {% if bajaCount >0 %}
+                        <i class="fas fa-trash-alt"></i> Baja: {{bajaCount}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                    {% endif %}
+                {% endif %}
             </div>
             <hr/>
 
@@ -193,57 +201,77 @@
                 </tr>
             </thead>
             <tbody>
+                {% set count=0 %}
                 {% for expediente in expediente|reverse %}
                     <tr>
                         <td class="">
-                            {% if expediente.estado == 'NUEVO' %}
-                                <span class="badge badge-pill badge-info">Nuevo</span>
-                            {% endif %}
 
                             {{expediente.codigoExpediente }}-{{expediente.numeroExpediente }}-{{expediente.digitoExpediente }}
 
                         </td>            
                         <td class="">{{expediente.tema|e }}</td>         
                         <td class="text-center">{{expediente.ubicacionActual|e }}</td>
-                         <td class="text-center">{{expediente.estado|e }}</td>        
+                        <td class="text-center">
+                            {% if expediente.fechaBaja == null %}
+                                {% if expediente.estado == 'NUEVO' %}
+                                    <span class="badge badge-pill badge-info">NUEVO</span>
+                                {% else %}
+                                    <span class="badge badge-pill badge-success">VISTO</span>
+                                {% endif %}
+                            {% else %}
+                                <span class="badge badge-pill badge-danger">BAJA</span>
+                            {% endif %}
+
+                        </td>  
+
                         {% if asociado == false %}
                             <td class="text-center"><a class="btn btn-info" href="{{ path("ver_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Ver Detalle"><i class="fas fa-search"></i></a>
-                                <a class="btn btn-warning" href="{{ path("editar_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit"></i></a>
+
                                 {#<a class="btn btn-danger" href="{{ path("eliminar_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt"></i></a></td>
 #}
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></button>    
+                                {% if app.user.role == 'ROLE_RESPONSABLE' or app.user.role == 'ROLE_ADMIN' %}
+                                    <a class="btn btn-warning" href="{{ path("editar_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit"></i></a>
+
+                                    {% if expediente.fechaBaja is null %}
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{ count }}"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></button>    
 
 
-                                <!-- The Modal -->
-                                <div class="modal fade" id="myModal">
-                                    <div class="modal-dialog modal-sm modal-dialog-centered">
-                                        <div class="modal-content">
+                                        <!-- The Modal -->
+                                        <div class="modal fade" id="myModal{{count}}">
+                                            <div class="modal-dialog modal-sm modal-dialog-centered">
+                                                <div class="modal-content">
 
-                                            <!-- Modal Header -->
-                                            <div class="modal-header-warning">
-                                                <button type="button" class="close text-danger" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                <h4 class="modal-title">Eliminar Expediente</h4>
+                                                    <!-- Modal Header -->
+                                                    <div class="modal-header-warning">
+                                                        <button type="button" class="close text-danger" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                        <h4 class="modal-title">Eliminar Expediente</h4>
+                                                    </div>
+
+                                                    <!-- Modal body -->
+                                                    <div class="modal-body">
+                                                        ¿Desea Eliminar el Expediente: {{ expediente }}?
+                                                    </div>
+                                                    <!-- Modal footer -->
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-primary"><a class="text-type btn-primary"href="{{ path("eliminar_expediente", {'id':expediente.id})  }}"  role="button">SI</a></button>                          
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+                                                    </div>
+
+                                                </div>
                                             </div>
-
-                                            <!-- Modal body -->
-                                            <div class="modal-body">
-                                                ¿Desea Eliminar el Expediente: {{expediente.codigoExpediente }}-{{expediente.numeroExpediente }}-{{expediente.digitoExpediente }}?
-                                            </div>
-                                            <!-- Modal footer -->
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary"><a class="text-type btn-primary"href="{{ path("eliminar_expediente", {'id':expediente.id})  }}"  role="button">Si</a></button>                          
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                            </div>
-
                                         </div>
-                                    </div>
-                                </div>
-                            {% else %}
+                                        {% set count=count+1 %}
+                                    {% else %}
+                                        <a class="btn btn-success" href="{{ path("alta_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Dar de alta"><i class="fas fa-check-square"></i></a>
+                                        {% endif %}
+                                    {% endif %}
+                                {% else %}
                             <td class="text-center"><a class="btn btn-info" href="{{ path("nuevo_expediente_asociado", {'id':padre_id, 'id_asoc':expediente.id}) }}"  
                                                        role="button" data-toggle="tooltip" 
                                                        data-placement="top" title="Asociar"></i>Asociar</a></td>
 
                         {% endif %}
+
                     </tr>
                 {% endfor %}
 

@@ -168,8 +168,13 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                 return $this->mergeDefaults(array_replace($matches, ['_route' => 'eliminar_expediente']), array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::deleteAction',));
             }
 
+            // alta_expediente
+            if (0 === strpos($pathinfo, '/expediente/alta') && preg_match('#^/expediente/alta/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                return $this->mergeDefaults(array_replace($matches, ['_route' => 'alta_expediente']), array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::altaAction',));
+            }
+
             // editar_expediente
-            if (0 === strpos($pathinfo, '/expediente/edit') && preg_match('#^/expediente/edit/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+            if (0 === strpos($pathinfo, '/expediente/editar') && preg_match('#^/expediente/editar/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, ['_route' => 'editar_expediente']), array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::editAction',));
             }
 

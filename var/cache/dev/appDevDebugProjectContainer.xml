@@ -2764,7 +2764,6 @@
       <call method="add">
         <argument type="service" id="security.request_matcher.o.x6oa3"/>
         <argument type="collection">
-          <argument>ROLE_USER</argument>
           <argument>ROLE_RESPONSABLE</argument>
         </argument>
         <argument>null</argument>

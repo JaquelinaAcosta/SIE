@@ -8,6 +8,8 @@ use AppBundle\Entity\CaratulaAgregada;
 use AppBundle\Entity\Resolucion;
 use AppBundle\Entity\Dependencia;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Symfony\Component\Validator\Constraints\Collection;
 
 /**
  * Expediente
@@ -40,14 +42,14 @@ class Expediente {
      * @ORM\Column(name="numero_expediente")
      */
     private $numeroExpediente;
-    
+
     /**
      * @var int
      *
      * @ORM\Column(name="digito_expediente")
      */
     private $digitoExpediente;
-    
+
     /**
      * @var int
      *
@@ -59,7 +61,7 @@ class Expediente {
     /**
      * @var string
      *
-     * @ORM\Column(name="concepto", type="string", length=255, nullable=true)
+     * @ORM\Column(name="concepto", type="text", length=21845, nullable=true)
      */
     private $concepto;
 
@@ -100,6 +102,13 @@ class Expediente {
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="fecha_baja", type="datetime",nullable=true)
+     */
+    private $fechaBaja;
+
+    /**
+     * @var string
      * @ORM\Column(name="fecha_fin", type="datetime",nullable=true)
      */
     private $fechaFin;
@@ -108,12 +117,11 @@ class Expediente {
      * @ORM\ManyToOne(targetEntity="Ubicacion")
      */
     private $ubicacionActual;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="Ubicacion")
      */
     private $ultimaUbicacion;
-    
 
     /**
      * @ORM\OneToOne(targetEntity="Resolucion", mappedBy="expediente")
@@ -154,7 +162,7 @@ class Expediente {
     private $lugarfisico;
 
     public function __toString() {
-         return $this->codigoExpediente."-".$this->numeroExpediente."-".$this->digitoExpediente;
+        return $this->codigoExpediente . "-" . $this->numeroExpediente . "-" . $this->digitoExpediente;
     }
 
     public function __construct() {
@@ -561,7 +569,6 @@ class Expediente {
         return $this->estado;
     }
 
-
     /**
      * Set codigoExpediente
      *
@@ -569,8 +576,7 @@ class Expediente {
      *
      * @return Expediente
      */
-    public function setCodigoExpediente($codigoExpediente)
-    {
+    public function setCodigoExpediente($codigoExpediente) {
         $this->codigoExpediente = $codigoExpediente;
 
         return $this;
@@ -581,8 +587,7 @@ class Expediente {
      *
      * @return string
      */
-    public function getCodigoExpediente()
-    {
+    public function getCodigoExpediente() {
         return $this->codigoExpediente;
     }
 
@@ -593,8 +598,7 @@ class Expediente {
      *
      * @return Expediente
      */
-    public function setNumeroExpdiente($numeroExpdiente)
-    {
+    public function setNumeroExpdiente($numeroExpdiente) {
         $this->numeroExpdiente = $numeroExpdiente;
 
         return $this;
@@ -605,8 +609,7 @@ class Expediente {
      *
      * @return string
      */
-    public function getNumeroExpdiente()
-    {
+    public function getNumeroExpdiente() {
         return $this->numeroExpdiente;
     }
 
@@ -617,8 +620,7 @@ class Expediente {
      *
      * @return Expediente
      */
-    public function setDigitoExpediente($digitoExpediente)
-    {
+    public function setDigitoExpediente($digitoExpediente) {
         $this->digitoExpediente = $digitoExpediente;
 
         return $this;
@@ -629,8 +631,7 @@ class Expediente {
      *
      * @return string
      */
-    public function getDigitoExpediente()
-    {
+    public function getDigitoExpediente() {
         return $this->digitoExpediente;
     }
 
@@ -641,8 +642,7 @@ class Expediente {
      *
      * @return Expediente
      */
-    public function setNumeroExpediente($numeroExpediente)
-    {
+    public function setNumeroExpediente($numeroExpediente) {
         $this->numeroExpediente = $numeroExpediente;
 
         return $this;
@@ -653,8 +653,80 @@ class Expediente {
      *
      * @return string
      */
-    public function getNumeroExpediente()
-    {
+    public function getNumeroExpediente() {
         return $this->numeroExpediente;
     }
+
+    /**
+     * Set ultimaUbicacion
+     *
+     * @param \AppBundle\Entity\Ubicacion $ultimaUbicacion
+     *
+     * @return Expediente
+     */
+    public function setUltimaUbicacion(\AppBundle\Entity\Ubicacion $ultimaUbicacion = null) {
+        $this->ultimaUbicacion = $ultimaUbicacion;
+
+        return $this;
+    }
+
+    /**
+     * Get ultimaUbicacion
+     *
+     * @return \AppBundle\Entity\Ubicacion
+     */
+    public function getUltimaUbicacion() {
+        return $this->ultimaUbicacion;
+    }
+
+    /**
+     * @Assert\IsTrue(message="El Codigo de Expediente debe tener 5 Dígitos.")
+     */
+    public function getValidarCodigoExpediente() {
+        if (strlen($this->codigoExpediente) == 5) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * @Assert\IsTrue(message="El Número de Expediente debe tener 7 Dígitos.")
+     */
+    public function getValidarNumeroExpediente() {
+        if (strlen($this->numeroExpediente) == 7) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * @Assert\IsTrue(message="El Dígito de Expediente debe tener longitud 1.")
+     */
+    public function getValidarDigitoExpediente() {
+        if (strlen($this->digitoExpediente) == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * @Assert\IsTrue(message="La fecha de inicio debe ser menor que la de fin.")
+     */
+    public function getValidarFecha() {
+        if (($this->fechaInicio) <= ($this->fechaFin)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * @Assert\IsTrue(message="La cantidad de fojas debe ser mayor que 0")
+     */
+    public function getValidarFojas() {
+        if (($this->fojas) > 0) {
+            return true;
+        }
+        return false;
+    }
+
 }

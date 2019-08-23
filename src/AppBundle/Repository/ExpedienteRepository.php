@@ -17,7 +17,7 @@ class ExpedienteRepository extends \Doctrine\ORM\EntityRepository {
         $qb = $this->getEntityManager()->createQueryBuilder('e');
         $result = $qb->select('e')
                 ->from('AppBundle:Expediente', 'e')
-                ->where("e.estado <>'ASOCIADO'");
+                ->where("e.estado <>'ASOCIADO'");           
         if ($padre_id != null) {
             $result->andWhere('e.id != :expediente_padre_id')
                     ->setParameter('expediente_padre_id', $padre_id);
@@ -25,6 +25,7 @@ class ExpedienteRepository extends \Doctrine\ORM\EntityRepository {
         if ($user->getRole() != "ROLE_ADMIN") {
             $result->leftJoin(\AppBundle\Entity\Ubicacion::class, "u", "WITH",
                             "e.ubicacionActual = u.id")
+                    ->andWhere('e.fechaBaja IS NULL')
                     ->andWhere('u.dependencia= :dependencia')
                     ->setParameter('dependencia', $user->getPersona()->getDependencia());
         } else {

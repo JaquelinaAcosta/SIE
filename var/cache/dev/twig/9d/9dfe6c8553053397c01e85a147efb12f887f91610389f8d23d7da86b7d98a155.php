@@ -60,28 +60,36 @@ class __TwigTemplate_dfc6036fa56eda70cb2bd40ece1b7ce08051cf6683f937e1daddf0423f6
         echo "
     <style>
         body{
-            background-color:#fff;
+            background-color:#474747;
         }
         .logincontent{
             width:525px;
-            height:600px;
+            margin:0 auto;
+            margin-top: 100px;
+            background-color:#fff;
+
+        } 
+        .logincontent .border{
+            padding:15px;
+
+        }
+        .co{
+            background-color:#2e2e2e;
+            height:10px;
+        }
+        .title{
+            width:525px;
             padding:15px;
             margin:0 auto;
             margin-top: 30px;
-            background-color:#dedede;";
-        // line 20
-        echo "        }
-        .title{
-            padding:10px;
-            padding-left:30px;
-            padding-right:30px;
-            outline:1px dashed #a6a6a6;
-            margin-bottom:10px;
         }
-
+        p{
+            text-align:center;
+        }
         .header{
-            background-color:#3d3d3d;
-            color:#fff;
+            ";
+        // line 36
+        echo "            color:gray;
             padding-top:6px;
             padding-bottom: 3px;
         }
@@ -90,9 +98,6 @@ class __TwigTemplate_dfc6036fa56eda70cb2bd40ece1b7ce08051cf6683f937e1daddf0423f6
             font-weight: bold;
 
         }
-        .border{
-            outline:1px solid #c7c7c7;
-        }
         .subcontent{
             padding:30px;
         }
@@ -100,48 +105,38 @@ class __TwigTemplate_dfc6036fa56eda70cb2bd40ece1b7ce08051cf6683f937e1daddf0423f6
             width:100%;
         }
     </style>
-
-    <div class=\"logincontent\"> 
-
-        <div class=\"title\">
-            <strong style=\"color:#5eb5ab;\">BIENVENIDO AL GIE</strong>
-            <p>
-                Gestión Interna de Expedientes.<br/>
-                Dirección Provincial de Vialidad. Ministerio de infraestructura<br/> y transporte.
-
-            <p/>
-
-        </div>
-
+    ";
+        // line 55
+        echo "    <div class=\"logincontent\"> 
+        <hr class=\"co\"/>
         <div class=\"border\">
             <form action=\"";
-        // line 64
+        // line 58
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("login_check");
         echo "\" method=\"post\">
-                <div class=\"header\">
-                    <p>ACCESO AL SISTEMA</p>
-                </div>
-                <div class=\"subcontent\">
-                    ";
-        // line 70
-        echo "                    <label>USUARIO</label>
-                    <input style=\"padding:20px;\" placeholder=\"Email | Usuario(iup)\" type=\"text\" id=\"username\" name=\"_username\" value=\"";
-        // line 71
+                <p>ACCESO AL SISTEMA</p>
+        </div>
+        <div class=\"subcontent\">
+            ";
+        // line 63
+        echo "            <label>USUARIO</label>
+            <input style=\"padding:20px;\" placeholder=\"Email | Usuario(iup)\" type=\"text\" id=\"username\" name=\"_username\" value=\"";
+        // line 64
         echo twig_escape_filter($this->env, ($context["last_username"] ?? $this->getContext($context, "last_username")), "html", null, true);
         echo "\" class=\"form-control\"/>
 
 
-                    <label for=\"password\">CONTRASEÑA</label>
-                    <input style=\"padding:20px;\" placeholder=\"**********\" type=\"password\" id=\"password\" name=\"_password\" class=\"form-control\"/>
-                    <br/>
+            <label for=\"password\">CONTRASEÑA</label>
+            <input style=\"padding:20px;\" placeholder=\"**********\" type=\"password\" id=\"password\" name=\"_password\" class=\"form-control\"/>
+            <br/>
 
-                    <button style=\"padding:20px;\" type=\"submit\" class=\"form-submit btn btn-success\">ENTRAR</button>
+            <button style=\"padding:20px;\" type=\"submit\" class=\"form-submit btn btn-info\">ENTRAR</button>
 
-                    <input type=\"hidden\" name=\"_target_path\" value=\"/\" />
-                </div>
-            </form>
+            <input type=\"hidden\" name=\"_target_path\" value=\"/\" />
         </div>
-    </div>
+    </form>
+</div>
+</div>
 
 
 ";
@@ -165,7 +160,7 @@ class __TwigTemplate_dfc6036fa56eda70cb2bd40ece1b7ce08051cf6683f937e1daddf0423f6
 
     public function getDebugInfo()
     {
-        return array (  130 => 71,  127 => 70,  119 => 64,  73 => 20,  60 => 5,  51 => 4,  29 => 2,);
+        return array (  125 => 64,  122 => 63,  115 => 58,  110 => 55,  92 => 36,  60 => 5,  51 => 4,  29 => 2,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -185,30 +180,35 @@ class __TwigTemplate_dfc6036fa56eda70cb2bd40ece1b7ce08051cf6683f937e1daddf0423f6
 
     <style>
         body{
-            background-color:#fff;
+            background-color:#474747;
         }
         .logincontent{
             width:525px;
-            height:600px;
+            margin:0 auto;
+            margin-top: 100px;
+            background-color:#fff;
+
+        } 
+        .logincontent .border{
+            padding:15px;
+
+        }
+        .co{
+            background-color:#2e2e2e;
+            height:10px;
+        }
+        .title{
+            width:525px;
             padding:15px;
             margin:0 auto;
             margin-top: 30px;
-            background-color:#dedede;
-            {#-webkit-box-shadow: -1px 0px 5px 3px rgba(0,0,0,0.31);
-            -moz-box-shadow: -1px 0px 5px 3px rgba(0,0,0,0.31);
-            box-shadow: -1px 0px 5px 3px rgba(0,0,0,0.31);#}
         }
-        .title{
-            padding:10px;
-            padding-left:30px;
-            padding-right:30px;
-            outline:1px dashed #a6a6a6;
-            margin-bottom:10px;
+        p{
+            text-align:center;
         }
-
         .header{
-            background-color:#3d3d3d;
-            color:#fff;
+            {#            background-color:#5294ff;#}
+            color:gray;
             padding-top:6px;
             padding-bottom: 3px;
         }
@@ -217,9 +217,6 @@ class __TwigTemplate_dfc6036fa56eda70cb2bd40ece1b7ce08051cf6683f937e1daddf0423f6
             font-weight: bold;
 
         }
-        .border{
-            outline:1px solid #c7c7c7;
-        }
         .subcontent{
             padding:30px;
         }
@@ -227,41 +224,32 @@ class __TwigTemplate_dfc6036fa56eda70cb2bd40ece1b7ce08051cf6683f937e1daddf0423f6
             width:100%;
         }
     </style>
-
+    {#    <div class=\"title\">
+            <h1 class=\"text-primary\"><p style=\"color:#5eb5ab;\">BIENVENIDO AL SISTEMA DE GESTION INTERNA DE EXPEDIENTES</p></h1>
+        </div>#}
     <div class=\"logincontent\"> 
-
-        <div class=\"title\">
-            <strong style=\"color:#5eb5ab;\">BIENVENIDO AL GIE</strong>
-            <p>
-                Gestión Interna de Expedientes.<br/>
-                Dirección Provincial de Vialidad. Ministerio de infraestructura<br/> y transporte.
-
-            <p/>
-
-        </div>
-
+        <hr class=\"co\"/>
         <div class=\"border\">
             <form action=\"{{ path('login_check') }}\" method=\"post\">
-                <div class=\"header\">
-                    <p>ACCESO AL SISTEMA</p>
-                </div>
-                <div class=\"subcontent\">
-                    {# Input para el campo iup #}
-                    <label>USUARIO</label>
-                    <input style=\"padding:20px;\" placeholder=\"Email | Usuario(iup)\" type=\"text\" id=\"username\" name=\"_username\" value=\"{{ last_username }}\" class=\"form-control\"/>
-
-
-                    <label for=\"password\">CONTRASEÑA</label>
-                    <input style=\"padding:20px;\" placeholder=\"**********\" type=\"password\" id=\"password\" name=\"_password\" class=\"form-control\"/>
-                    <br/>
-
-                    <button style=\"padding:20px;\" type=\"submit\" class=\"form-submit btn btn-success\">ENTRAR</button>
-
-                    <input type=\"hidden\" name=\"_target_path\" value=\"/\" />
-                </div>
-            </form>
+                <p>ACCESO AL SISTEMA</p>
         </div>
-    </div>
+        <div class=\"subcontent\">
+            {# Input para el campo iup #}
+            <label>USUARIO</label>
+            <input style=\"padding:20px;\" placeholder=\"Email | Usuario(iup)\" type=\"text\" id=\"username\" name=\"_username\" value=\"{{ last_username }}\" class=\"form-control\"/>
+
+
+            <label for=\"password\">CONTRASEÑA</label>
+            <input style=\"padding:20px;\" placeholder=\"**********\" type=\"password\" id=\"password\" name=\"_password\" class=\"form-control\"/>
+            <br/>
+
+            <button style=\"padding:20px;\" type=\"submit\" class=\"form-submit btn btn-info\">ENTRAR</button>
+
+            <input type=\"hidden\" name=\"_target_path\" value=\"/\" />
+        </div>
+    </form>
+</div>
+</div>
 
 
 {% endblock %}", "AppBundle:PaginaPrincipal:login.html.twig", "/var/www/html/SIE/src/AppBundle/Resources/views/PaginaPrincipal/login.html.twig");

@@ -61,8 +61,6 @@
             table{
                 color:#616161;
             }
-            .dropdown-menu {display: block;visibility: hidden;opacity:0;transform: translateY(50px);transition:.5s ease all;}
-            .dropdown-menu.show {display: block;visibility: visible;opacity:1;transform: translateY(0px);transition:.5s ease all;}
 
             .right{
                 margin-left: auto;
@@ -82,14 +80,18 @@
                 box-shadow: none;
                 background-color: transparent;
             }
-
             table{
                 color:#616161;
             }
-            .dropdown-menu {display: block;visibility: hidden;opacity:0;transform: translateY(50px);transition:.5s ease all;}
-            .dropdown-menu.show {display: block;visibility: visible;opacity:1;transform: translateY(0px);transition:.5s ease all;}
 
 
+            .pull-left{
+                right: 0;
+                left: auto;
+                padding-left: 1px;
+                padding-right: 1px;
+
+            }
 
         </style>
         <script>
@@ -139,13 +141,14 @@
 
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
-                                <div class="dropdown right">
-                                    <button class="btn btn-dark dropdown-toggle right" type="button" id="dropdownMenuMenu" data-toggle="dropdown"
+                                <div class="dropdown">
+                                    <button class="btn btn-dark dropdown-toggle left" type="button" id="dropdownMenuMenu" data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-user"></i>  {{ app.user.userName }}  
                                         </a>        </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuMenu">
-                                        <a class="dropdown-item" type="button"><i class="fab fa-whmcs"></i>  Configuración</a>
+                                    <div class="dropdown-menu pull-left" aria-labelledby="dropdownMenuMenu">
+                                        <a href="{{ path('editar_usuario',{'id':app.user.id}) }}" class="dropdown-item" type="button"><i class="fas fa-user" style=""></i>Configuración de Usuario</a>
+                                        <a href="{{ path('editar_persona',{'id':app.user.persona.id}) }}" class="dropdown-item" type="button"><i class="fas fa-male"></i>Configuración de Personal</a>
                                         <a class="dropdown-item" href="{{ path("logout") }}" type="button"><i class="fas fa-sign-out-alt"></i>  Cerrar Sesión</a>
                                     </div>
                                 </div>

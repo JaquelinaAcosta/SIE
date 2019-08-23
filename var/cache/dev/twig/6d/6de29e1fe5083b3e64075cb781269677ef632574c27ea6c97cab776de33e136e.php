@@ -79,29 +79,36 @@ class __TwigTemplate_0127e2f670bd7a805bc9ca8cbb7fbf9668c7fbe6f792b9d843a178e9ccc
                 <tbody>
                         <tr>
                             <th class=\"w-25\">USUARIO</th>
-                            <td>";
+                            <td class=\"bg-white\">";
         // line 19
         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "resolucion", []), "usuario", []), "html", null, true);
         echo "</td>
                         </tr>
                         <tr>
                             <th class=\"w-25\">NUMERO DE RESOLUCION</th>
-                            <td>";
+                            <td class=\"bg-white\">";
         // line 23
         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "resolucion", []), "numeroResolucion", []), "html", null, true);
         echo "</td>
                         </tr>
                         <tr>
                             <th class=\"w-25\">TIPO</th>
-                            <td>";
+                            <td class=\"bg-white\">";
         // line 27
         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "resolucion", []), "tipo", []), "html", null, true);
         echo "</td>
                         </tr>
+                         <tr>
+                            <th class=\"w-25\">OBSERVACION</th>
+                            <td class=\"bg-white\">";
+        // line 31
+        echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "resolucion", []), "observacion", []), "html", null, true);
+        echo "</td>
+                        </tr>
                         <tr>
                             <th class=\"w-25\">FECHA</th>
-                            <td>";
-        // line 31
+                            <td class=\"bg-white\">";
+        // line 35
         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "resolucion", []), "fechaResolucion", []), "html", null, true);
         echo "</td>
                         </tr>
@@ -141,7 +148,7 @@ class __TwigTemplate_0127e2f670bd7a805bc9ca8cbb7fbf9668c7fbe6f792b9d843a178e9ccc
 
     public function getDebugInfo()
     {
-        return array (  105 => 31,  98 => 27,  91 => 23,  84 => 19,  69 => 11,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  112 => 35,  105 => 31,  98 => 27,  91 => 23,  84 => 19,  69 => 11,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -172,19 +179,23 @@ class __TwigTemplate_0127e2f670bd7a805bc9ca8cbb7fbf9668c7fbe6f792b9d843a178e9ccc
                 <tbody>
                         <tr>
                             <th class=\"w-25\">USUARIO</th>
-                            <td>{{ expediente.resolucion.usuario}}</td>
+                            <td class=\"bg-white\">{{ expediente.resolucion.usuario}}</td>
                         </tr>
                         <tr>
                             <th class=\"w-25\">NUMERO DE RESOLUCION</th>
-                            <td>{{ expediente.resolucion.numeroResolucion}}</td>
+                            <td class=\"bg-white\">{{ expediente.resolucion.numeroResolucion}}</td>
                         </tr>
                         <tr>
                             <th class=\"w-25\">TIPO</th>
-                            <td>{{ expediente.resolucion.tipo}}</td>
+                            <td class=\"bg-white\">{{ expediente.resolucion.tipo}}</td>
+                        </tr>
+                         <tr>
+                            <th class=\"w-25\">OBSERVACION</th>
+                            <td class=\"bg-white\">{{ expediente.resolucion.observacion}}</td>
                         </tr>
                         <tr>
                             <th class=\"w-25\">FECHA</th>
-                            <td>{{ expediente.resolucion.fechaResolucion}}</td>
+                            <td class=\"bg-white\">{{ expediente.resolucion.fechaResolucion}}</td>
                         </tr>
                     </tbody>
                 
