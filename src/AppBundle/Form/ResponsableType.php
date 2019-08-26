@@ -27,6 +27,7 @@ class ResponsableType extends AbstractType {
                                 ->leftJoin(\AppBundle\Entity\Ubicacion::class, "ub", "WITH",
                                         "ub.id = p.id")
                                 ->where('ub.dependencia = :id')
+                                ->andWhere("u.role != 'ROLE_ADMIN'")
                                 ->setParameter('id', $id);
                     },
                     'label' => false,

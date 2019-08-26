@@ -159,7 +159,7 @@
 
                             <td> <a class="btn btn-warning" href="{{ path("editar_persona", {'id':persona.id}) }}"  role="button"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Editar"></i></a>
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{ count }}"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></button>    
-
+                                
 
                                 <!-- The Modal -->
                                 <div class="modal fade" id="myModal{{count}}">
@@ -185,7 +185,7 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                                 <a class="btn btn-warning" href="{{ path("gestionar_persona_responsables", {'id':persona.id}) }}"  role="button"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Responsables"></i></a>
                                 {% set count=count+1 %}
                         </tr>             
                     {% endfor %}
