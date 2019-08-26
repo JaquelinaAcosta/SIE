@@ -25,8 +25,7 @@ class UsuarioType extends AbstractType {
                 ->add('iup', TextType::class, array(
                     "label" => "Ej: usuario1:", "attr" => array(
                         "class" => "form-exp form-control",
-                        "placeholder" => "usuario1",
-                        "readonly"=>true
+                        "placeholder" => "usuario1"
                     )
                 ))
                
