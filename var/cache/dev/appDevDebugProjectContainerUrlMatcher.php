@@ -279,9 +279,22 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                 return array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::indexAction',  '_route' => 'nuevo_expediente',);
             }
 
-            // adm_gestionar_mesaentrada
-            if (0 === strpos($pathinfo, '/adm/gestionar/mesa_entrada') && preg_match('#^/adm/gestionar/mesa_entrada/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, ['_route' => 'adm_gestionar_mesaentrada']), array (  '_controller' => 'AppBundle\\Controller\\MesaEntradaController::admGestionarAction',));
+            if (0 === strpos($pathinfo, '/adm/gestionar')) {
+                // gestionar_lugarfisico_responsables
+                if (0 === strpos($pathinfo, '/adm/gestionar/lugarfisico_responsables') && preg_match('#^/adm/gestionar/lugarfisico_responsables/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'gestionar_lugarfisico_responsables']), array (  '_controller' => 'AppBundle\\Controller\\LugarFisicoController::lugarfisicoGestionarResponsblesAction',));
+                }
+
+                // adm_gestionar_mesaentrada
+                if (0 === strpos($pathinfo, '/adm/gestionar/mesa_entrada') && preg_match('#^/adm/gestionar/mesa_entrada/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'adm_gestionar_mesaentrada']), array (  '_controller' => 'AppBundle\\Controller\\MesaEntradaController::admGestionarAction',));
+                }
+
+                // gestionar_persona_responsables
+                if (0 === strpos($pathinfo, '/adm/gestionar/persona_responsbles') && preg_match('#^/adm/gestionar/persona_responsbles/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'gestionar_persona_responsables']), array (  '_controller' => 'AppBundle\\Controller\\PersonaController::personaGestionarResponsblesAction',));
+                }
+
             }
 
         }

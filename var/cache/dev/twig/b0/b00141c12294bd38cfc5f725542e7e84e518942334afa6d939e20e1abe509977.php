@@ -517,11 +517,15 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
                     echo "                                    <a class=\"btn btn-warning\" href=\"";
                     echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_expediente", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
                     echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"><i class=\"fas fa-edit\"></i></a>
+                                    <a class=\"btn btn-warning\" href=\"";
+                    // line 234
+                    echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("elegir_movimiento", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
+                    echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Realizar Movimiento\"><i class=\"fas fa-arrow-alt-circle-right\"></i></a>
 
                                     ";
-                    // line 235
+                    // line 236
                     if ((null === $this->getAttribute($context["expediente"], "fechaBaja", []))) {
-                        // line 236
+                        // line 237
                         echo "                                        <button type=\"button\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal";
                         echo twig_escape_filter($this->env, ($context["count"] ?? $this->getContext($context, "count")), "html", null, true);
                         echo "\"><i class=\"fas fa-trash-alt\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Eliminar\"></i></button>    
@@ -529,7 +533,7 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
 
                                         <!-- The Modal -->
                                         <div class=\"modal fade\" id=\"myModal";
-                        // line 240
+                        // line 241
                         echo twig_escape_filter($this->env, ($context["count"] ?? $this->getContext($context, "count")), "html", null, true);
                         echo "\">
                                             <div class=\"modal-dialog modal-sm modal-dialog-centered\">
@@ -544,14 +548,14 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
                                                     <!-- Modal body -->
                                                     <div class=\"modal-body\">
                                                         ¿Desea Eliminar el Expediente: ";
-                        // line 252
+                        // line 253
                         echo twig_escape_filter($this->env, $context["expediente"], "html", null, true);
                         echo "?
                                                     </div>
                                                     <!-- Modal footer -->
                                                     <div class=\"modal-footer\">
                                                         <button type=\"button\" class=\"btn btn-primary\"><a class=\"text-type btn-primary\"href=\"";
-                        // line 256
+                        // line 257
                         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("eliminar_expediente", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
                         echo "\"  role=\"button\">SI</a></button>                          
                                                         <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">NO</button>
@@ -561,24 +565,24 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
                                             </div>
                                         </div>
                                         ";
-                        // line 263
-                        $context["count"] = (($context["count"] ?? $this->getContext($context, "count")) + 1);
                         // line 264
+                        $context["count"] = (($context["count"] ?? $this->getContext($context, "count")) + 1);
+                        // line 265
                         echo "                                    ";
                     } else {
-                        // line 265
+                        // line 266
                         echo "                                        <a class=\"btn btn-success\" href=\"";
                         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("alta_expediente", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
                         echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Dar de alta\"><i class=\"fas fa-check-square\"></i></a>
                                         ";
                     }
-                    // line 267
+                    // line 268
                     echo "                                    ";
                 }
-                // line 268
+                // line 269
                 echo "                                ";
             } else {
-                // line 269
+                // line 270
                 echo "                            <td class=\"text-center\"><a class=\"btn btn-info\" href=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nuevo_expediente_asociado", ["id" => ($context["padre_id"] ?? $this->getContext($context, "padre_id")), "id_asoc" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
                 echo "\"  
@@ -587,7 +591,7 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
 
                         ";
             }
-            // line 274
+            // line 275
             echo "
                     </tr>
                 ";
@@ -595,7 +599,7 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['expediente'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 277
+        // line 278
         echo "
             </tbody>
         </table>
@@ -606,16 +610,16 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
 
         \$('#expediente_filter_tema').autocompleter({
             url_list: \"";
-        // line 286
+        // line 287
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("tema_search");
         echo "\",
             url_get: \"";
-        // line 287
+        // line 288
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("tema_get");
         echo "\"
         });
         ";
-        // line 293
+        // line 294
         echo "
                 \$(function () {
                     \$('[data-toggle=\"tooltip\"]').tooltip()
@@ -644,7 +648,7 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
 
     public function getDebugInfo()
     {
-        return array (  619 => 293,  614 => 287,  610 => 286,  599 => 277,  591 => 274,  582 => 269,  579 => 268,  576 => 267,  570 => 265,  567 => 264,  565 => 263,  555 => 256,  548 => 252,  533 => 240,  525 => 236,  523 => 235,  517 => 233,  514 => 232,  508 => 228,  506 => 227,  501 => 224,  497 => 222,  494 => 221,  490 => 219,  486 => 217,  483 => 216,  481 => 215,  476 => 213,  472 => 212,  462 => 209,  457 => 206,  452 => 205,  450 => 204,  436 => 192,  430 => 188,  427 => 187,  421 => 185,  418 => 184,  415 => 183,  409 => 181,  406 => 180,  400 => 178,  398 => 177,  395 => 176,  389 => 175,  386 => 174,  383 => 173,  380 => 172,  377 => 171,  374 => 170,  371 => 169,  368 => 168,  365 => 167,  361 => 166,  358 => 165,  355 => 164,  352 => 163,  350 => 162,  345 => 160,  341 => 158,  339 => 157,  332 => 152,  322 => 148,  319 => 147,  315 => 146,  312 => 145,  302 => 141,  299 => 140,  295 => 139,  286 => 133,  280 => 130,  276 => 129,  267 => 123,  263 => 122,  256 => 118,  252 => 117,  246 => 114,  237 => 108,  232 => 106,  228 => 105,  221 => 101,  216 => 99,  212 => 98,  205 => 94,  200 => 92,  196 => 91,  193 => 90,  186 => 86,  181 => 84,  177 => 83,  174 => 82,  172 => 81,  164 => 76,  159 => 74,  152 => 70,  147 => 68,  140 => 64,  135 => 62,  127 => 57,  123 => 56,  115 => 50,  109 => 48,  107 => 47,  102 => 45,  60 => 5,  51 => 4,  29 => 1,);
+        return array (  623 => 294,  618 => 288,  614 => 287,  603 => 278,  595 => 275,  586 => 270,  583 => 269,  580 => 268,  574 => 266,  571 => 265,  569 => 264,  559 => 257,  552 => 253,  537 => 241,  529 => 237,  527 => 236,  522 => 234,  517 => 233,  514 => 232,  508 => 228,  506 => 227,  501 => 224,  497 => 222,  494 => 221,  490 => 219,  486 => 217,  483 => 216,  481 => 215,  476 => 213,  472 => 212,  462 => 209,  457 => 206,  452 => 205,  450 => 204,  436 => 192,  430 => 188,  427 => 187,  421 => 185,  418 => 184,  415 => 183,  409 => 181,  406 => 180,  400 => 178,  398 => 177,  395 => 176,  389 => 175,  386 => 174,  383 => 173,  380 => 172,  377 => 171,  374 => 170,  371 => 169,  368 => 168,  365 => 167,  361 => 166,  358 => 165,  355 => 164,  352 => 163,  350 => 162,  345 => 160,  341 => 158,  339 => 157,  332 => 152,  322 => 148,  319 => 147,  315 => 146,  312 => 145,  302 => 141,  299 => 140,  295 => 139,  286 => 133,  280 => 130,  276 => 129,  267 => 123,  263 => 122,  256 => 118,  252 => 117,  246 => 114,  237 => 108,  232 => 106,  228 => 105,  221 => 101,  216 => 99,  212 => 98,  205 => 94,  200 => 92,  196 => 91,  193 => 90,  186 => 86,  181 => 84,  177 => 83,  174 => 82,  172 => 81,  164 => 76,  159 => 74,  152 => 70,  147 => 68,  140 => 64,  135 => 62,  127 => 57,  123 => 56,  115 => 50,  109 => 48,  107 => 47,  102 => 45,  60 => 5,  51 => 4,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -890,6 +894,7 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
 #}
                                 {% if app.user.role == 'ROLE_RESPONSABLE' or app.user.role == 'ROLE_ADMIN' %}
                                     <a class=\"btn btn-warning\" href=\"{{ path(\"editar_expediente\", {'id':expediente.id}) }}\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"><i class=\"fas fa-edit\"></i></a>
+                                    <a class=\"btn btn-warning\" href=\"{{ path(\"elegir_movimiento\", {'id':expediente.id}) }}\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Realizar Movimiento\"><i class=\"fas fa-arrow-alt-circle-right\"></i></a>
 
                                     {% if expediente.fechaBaja is null %}
                                         <button type=\"button\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal{{ count }}\"><i class=\"fas fa-trash-alt\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Eliminar\"></i></button>    
