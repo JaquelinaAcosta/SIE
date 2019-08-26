@@ -23,26 +23,26 @@
         <h4 class="text-center">Gestionar mesa de Entrada - {{ dependencia.descripcion }}</h4>
         <hr/>
         {{form_start(form,{'action':'','method':'POST'})}}
-<div class="filtro">
-        <label class="text-default">CODIGO DE EXPEDIENTE(<span class="text-danger">*</span>)</label>                 
-        {{ form_errors(form.codigoExpediente) }}
-        {{ form_widget(form.codigoExpediente) }}
-        <hr/>
-        <label class="text-default">USUARIO/S RESPONSABLE/S(<span class="text-danger">*</span>)</label>                 
-        <div class="responsable_items">                       
-            {% for responsable in form.responsables %}
-                {{ form_row(responsable) }}
-            {% endfor %}                       
-        </div>
-        <div class="add col-lg-3"></div>
-        <div class="responsables" data-prototype="{{ form_widget(form.responsables.vars.prototype)|e('html_attr') }}"></div>
-        <hr/>
-        <div class="row col-lg-6">
-            <div class="col-lg-4">
-                {{ form_widget(form.Guardar) }}
+        <div class="filtro">
+            <label class="text-default">CODIGO DE EXPEDIENTE(<span class="text-danger">*</span>)</label>                 
+            {{ form_errors(form.codigoExpediente) }}
+            {{ form_widget(form.codigoExpediente) }}
+            <hr/>
+            <label class="text-default">USUARIO/S RESPONSABLE/S(<span class="text-danger">*</span>)</label>                 
+            <div class="responsable_items">                       
+                {% for responsable in form.responsables %}
+                    {{ form_row(responsable) }}
+                {% endfor %}                       
+            </div>
+            <div class="add col-lg-3"></div>
+            <div class="responsables" data-prototype="{{ form_widget(form.responsables.vars.prototype)|e('html_attr') }}"></div>
+            <hr/>
+            <div class="row col-lg-6">
+                <div class="col-lg-4">
+                    {{ form_widget(form.Guardar) }}
+                </div>
             </div>
         </div>
-</div>
 
         {{form_end(form)}}
     </div>

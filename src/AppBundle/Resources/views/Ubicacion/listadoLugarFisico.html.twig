@@ -107,7 +107,8 @@
                         <td class="text-default"><p>{{lugarfisico.descripcion|e }}</p></td>
                         <td class="text-default">{{lugarfisico.acceso|e }}</td>
                         <td><a class="btn btn-warning" href="{{ path('editar_lugarfisico',{'id':lugarfisico.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit"></i></a>
-                            <a class="btn btn-danger" href="{{ path('borrar_lugarfisico',{'id':lugarfisico.id}) }}"  role="button"><i class="far fa-file-archive" data-toggle="tooltip" data-placement="top" title="Borrar"></i></a></td>
+                            <a class="btn btn-danger" href="{{ path('borrar_lugarfisico',{'id':lugarfisico.id}) }}"  role="button"><i class="far fa-file-archive" data-toggle="tooltip" data-placement="top" title="Borrar"></i></a>
+                        <a class="btn btn-warning" href="{{ path("gestionar_lugarfisico_responsables", {'id':lugarfisico.id}) }}"  role="button"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Responsables"></i></a></td>
                     </tr>
                 {% endfor %}
 

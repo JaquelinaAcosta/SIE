@@ -10,6 +10,7 @@ use AppBundle\Entity\Dependencia;
 use AppBundle\Form\PersonaType;
 use AppBundle\Form\PersonaFilterType;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class PersonaController extends Controller {
 
@@ -63,9 +64,9 @@ class PersonaController extends Controller {
      * @Route("/persona/edit/{id}", name="editar_persona")
      */
     public function editPersonaAction(Request $request, $id) {
-        
+
         $usuarioActual = $this->getUser();
-        
+
         if ($usuarioActual->getRole() != 'ROLE_ADMIN') {
             if ($id != $usuarioActual->getPersona()->getId()) {
                 return $this->redirectToRoute('busqueda_expediente');
@@ -187,10 +188,57 @@ class PersonaController extends Controller {
         } else {
             $this->addFlash('danger', "Ocurrió un error ");
         }
-
-
-
         return $this->redirectToRoute('listado_persona', ["currentPage" => 1]);
+    }
+
+    /**
+     * @Route("/adm/gestionar/persona_responsbles/{id}", name="gestionar_persona_responsables")
+     */
+    public function personaGestionarResponsblesAction(Request $request, $id) {
+        $em = $this->getDoctrine()->getEntityManager();
+        $persona = $em->getRepository("AppBundle:Persona")->find($id);
+
+        $original_responsables = new ArrayCollection();
+
+        $form = $this->createForm(\AppBundle\Form\PersonaResponsablesType::class, $persona,
+                ['dependencia_id'=>$this->getUser()
+                ->getPersona()->getDependencia()->getId()]);
+
+        foreach ($persona->getResponsables() as $responsable) {
+            $original_responsables->add($responsable);
+        }
+
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            foreach ($original_responsables as $responsable) {
+                if (false === $persona->getResponsables()->contains($responsable)) {
+                    // remove the Task from the Tag
+                    //  $responsable->getUbicacion()->removeElement($mesaentrada);
+                    // if it was a many-to-one relationship, remove the relationship like this
+                    // $tag->setTask(null);
+                    // if you wanted to delete the Tag entirely, you can also do that
+                    // $entityManager->remove($tag);
+                    $em->remove($responsable);
+                 } 
+            }
+
+            foreach ($form['responsables']->getData() as $responsable) {
+                $responsable->setUbicacion($persona);
+                //$mesaentrada->addResponsable($responsable);
+            }
+
+            $em->persist($persona);
+            $flush = $em->flush();
+        }
+
+        // replace this example code with whatever you need
+        return $this->render('AppBundle:Ubicacion:personaResponsables.html.twig', [
+                    'form' => $form->createView(),
+                    'persona'=>$persona
+        ]);
     }
 
 }

@@ -178,3 +178,5 @@ b74ec7,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/usuario/login,15668257
 5f9541,127.0.0.1,POST,http://localhost/SIE/web/app_dev.php/,1566825803,,200
 a831af,127.0.0.1,POST,http://localhost/SIE/web/app_dev.php/,1566825825,,200
 0b78da,127.0.0.1,POST,http://localhost/SIE/web/app_dev.php/,1566825849,,200
+0bb279,127.0.0.1,POST,http://localhost/SIE/web/app_dev.php/login_check,1566827680,,302
+19670a,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/,1566827680,,200

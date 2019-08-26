@@ -10,6 +10,7 @@ use AppBundle\Entity\Dependencia;
 use AppBundle\Form\LugarFisicoType;
 use AppBundle\Form\LugarFisicoFilterType;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use Doctrine\Common\Collections\ArrayCollection;
 
 class LugarFisicoController extends Controller {
 
@@ -174,4 +175,54 @@ class LugarFisicoController extends Controller {
         ));
     }
 
+      /**
+     * @Route("/adm/gestionar/lugarfisico_responsables/{id}", name="gestionar_lugarfisico_responsables")
+     */
+    public function lugarfisicoGestionarResponsblesAction(Request $request, $id) {
+        $em = $this->getDoctrine()->getEntityManager();
+        $lugarfisico = $em->getRepository("AppBundle:LugarFisico")->find($id);
+
+        $original_responsables = new ArrayCollection();
+
+        $form = $this->createForm(\AppBundle\Form\LugarFisicoResponsablesType::class, $lugarfisico,
+                ['dependencia_id'=>$this->getUser()
+                ->getPersona()->getDependencia()->getId()]);
+
+        foreach ($lugarfisico->getResponsables() as $responsable) {
+            $original_responsables->add($responsable);
+        }
+
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            foreach ($original_responsables as $responsable) {
+                if (false === $lugarfisico->getResponsables()->contains($responsable)) {
+                    // remove the Task from the Tag
+                    //  $responsable->getUbicacion()->removeElement($mesaentrada);
+                    // if it was a many-to-one relationship, remove the relationship like this
+                    // $tag->setTask(null);
+                    // if you wanted to delete the Tag entirely, you can also do that
+                    // $entityManager->remove($tag);
+                    $em->remove($responsable);
+                 } 
+            }
+
+            foreach ($form['responsables']->getData() as $responsable) {
+                $responsable->setUbicacion($lugarfisico);
+                //$mesaentrada->addResponsable($responsable);
+            }
+
+            $em->persist($lugarfisico);
+            $flush = $em->flush();
+        }
+        
+         // replace this example code with whatever you need
+        return $this->render('AppBundle:Ubicacion:lugarfisicoResponsables.html.twig', [
+                    'form' => $form->createView(),
+                    'lugarfisico'=>$lugarfisico
+        ]);
+        
+    }
 }
