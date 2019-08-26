@@ -128,9 +128,11 @@
                     </a>
                 {% endif %}
                 {% if expediente.resolucion == null %} 
-                    <a href="{{ path('nueva_resolucion',{'id':expediente.id}) }}" 
-                       class="btn btn-primary" 
-                       role="button">RESOLUCION</a>
+                    {% if app.user.role == 'ROLE_ADMIN' or app.user.role == 'R0LE_RESPONSABLE' %}
+                        <a href="{{ path('nueva_resolucion',{'id':expediente.id}) }}" 
+                           class="btn btn-primary" 
+                           role="button">RESOLUCION</a>
+                    {% endif  %}
                 {% else %}
                     <a href="{{ path('ver_resolucion',{'id':expediente.id}) }}" 
                        class="btn btn-primary" 

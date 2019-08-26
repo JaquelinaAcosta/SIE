@@ -19,19 +19,19 @@ class LugarFisicoType extends AbstractType {
         if ($options['movimiento_lugar'] == null) {
             $builder
                     ->add('tipo', TextType::class, array(
-                        "label" => "Ingrese un tipo", "attr" => array(
+                        "label" => "Armario, Cajón...", "attr" => array(
                             "class" => "form-name form-control",
                             "placeholder" => "Ingrese un tipo"
                         )
                     ))
                     ->add('descripcion', TextType::class, array(
-                        "label" => "ingrese una descripción", "attr" => array(
+                        "label" => "número 1020, metálico...", "attr" => array(
                             "class" => "form-name form-control",
                             "placeholder" => "Ingrese una descripción"
                         )
                     ))
                     ->add('acceso', TextType::class, array(
-                        "label" => "Ingrese el acceso", "attr" => array(
+                        "label" => "Candado, sin llave...", "attr" => array(
                             "class" => "form-name form-control",
                             "placeholder" => "Ingrese un acceso"
                         )
