@@ -61,7 +61,7 @@ class ExpedienteSearchFilterType extends AbstractType implements EmbeddedFilterT
             'attr' => ['class' => 'btn btn-primary']
         ));
         $builder->add('Limpiar', 'Symfony\Component\Form\Extension\Core\Type\SubmitType', array(
-            'label' => 'Limpiar',
+            'label' => 'Reiniciar',
             'attr' => ['class' => 'btn btn-secondary']
         ));
     }
