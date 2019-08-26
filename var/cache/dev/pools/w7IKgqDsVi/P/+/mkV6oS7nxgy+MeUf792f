@@ -1,7 +1,0 @@
-<?php return array (
-  0 => 9223372036854775807,
-  1 => 'a:1:{i:0;O:46:"Symfony\\Component\\Validator\\Constraints\\IsTrue":3:{s:7:"message";s:204:"La clave debe tener al menos 6 caracteres,
-     * No puede tener más de 16 caracteres, 
-     * Debe tener al menos una letra minúscula y una mayúscula, 
-     * Debe tener al menos un caracter numérico";s:7:"payload";N;s:6:"groups";a:1:{i:0;s:7:"Default";}}}',
-);

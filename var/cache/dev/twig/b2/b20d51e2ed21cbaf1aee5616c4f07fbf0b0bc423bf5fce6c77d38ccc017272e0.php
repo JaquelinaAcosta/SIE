@@ -332,7 +332,7 @@ class __TwigTemplate_1589bfab07a73fbe8e84db8dd0881de74672307661fe2cbf0f708219792
                 // line 161
                 echo twig_escape_filter($this->env, ($context["count"] ?? $this->getContext($context, "count")), "html", null, true);
                 echo "\"><i class=\"fas fa-trash-alt\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Eliminar\"></i></button>    
-
+                                
 
                                 <!-- The Modal -->
                                 <div class=\"modal fade\" id=\"myModal";
@@ -369,7 +369,10 @@ class __TwigTemplate_1589bfab07a73fbe8e84db8dd0881de74672307661fe2cbf0f708219792
                                         </div>
                                     </div>
                                 </div>
-
+                                                 <a class=\"btn btn-warning\" href=\"";
+                // line 188
+                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("gestionar_persona_responsables", ["id" => $this->getAttribute($context["persona"], "id", [])]), "html", null, true);
+                echo "\"  role=\"button\"><i class=\"fas fa-edit\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Responsables\"></i></a>
                                 ";
                 // line 189
                 $context["count"] = (($context["count"] ?? $this->getContext($context, "count")) + 1);
@@ -485,7 +488,7 @@ class __TwigTemplate_1589bfab07a73fbe8e84db8dd0881de74672307661fe2cbf0f708219792
 
     public function getDebugInfo()
     {
-        return array (  458 => 221,  448 => 215,  445 => 214,  442 => 213,  438 => 211,  436 => 210,  433 => 209,  422 => 207,  418 => 206,  414 => 205,  411 => 204,  408 => 203,  405 => 202,  400 => 200,  396 => 198,  394 => 197,  391 => 196,  384 => 192,  377 => 190,  375 => 189,  364 => 181,  355 => 177,  340 => 165,  333 => 161,  329 => 160,  324 => 158,  320 => 157,  316 => 156,  312 => 155,  308 => 154,  305 => 153,  300 => 152,  298 => 151,  284 => 139,  282 => 138,  278 => 136,  268 => 132,  265 => 131,  261 => 130,  258 => 129,  248 => 125,  245 => 124,  241 => 123,  232 => 117,  226 => 114,  222 => 113,  213 => 107,  208 => 105,  204 => 104,  197 => 100,  192 => 98,  188 => 97,  181 => 93,  176 => 91,  172 => 90,  165 => 86,  160 => 84,  156 => 83,  149 => 79,  144 => 77,  140 => 76,  134 => 73,  122 => 64,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  461 => 221,  451 => 215,  448 => 214,  445 => 213,  441 => 211,  439 => 210,  436 => 209,  425 => 207,  421 => 206,  417 => 205,  414 => 204,  411 => 203,  408 => 202,  403 => 200,  399 => 198,  397 => 197,  394 => 196,  387 => 192,  380 => 190,  378 => 189,  374 => 188,  364 => 181,  355 => 177,  340 => 165,  333 => 161,  329 => 160,  324 => 158,  320 => 157,  316 => 156,  312 => 155,  308 => 154,  305 => 153,  300 => 152,  298 => 151,  284 => 139,  282 => 138,  278 => 136,  268 => 132,  265 => 131,  261 => 130,  258 => 129,  248 => 125,  245 => 124,  241 => 123,  232 => 117,  226 => 114,  222 => 113,  213 => 107,  208 => 105,  204 => 104,  197 => 100,  192 => 98,  188 => 97,  181 => 93,  176 => 91,  172 => 90,  165 => 86,  160 => 84,  156 => 83,  149 => 79,  144 => 77,  140 => 76,  134 => 73,  122 => 64,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -659,7 +662,7 @@ class __TwigTemplate_1589bfab07a73fbe8e84db8dd0881de74672307661fe2cbf0f708219792
 
                             <td> <a class=\"btn btn-warning\" href=\"{{ path(\"editar_persona\", {'id':persona.id}) }}\"  role=\"button\"><i class=\"fas fa-edit\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"></i></a>
                                 <button type=\"button\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal{{ count }}\"><i class=\"fas fa-trash-alt\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Eliminar\"></i></button>    
-
+                                
 
                                 <!-- The Modal -->
                                 <div class=\"modal fade\" id=\"myModal{{count}}\">
@@ -685,7 +688,7 @@ class __TwigTemplate_1589bfab07a73fbe8e84db8dd0881de74672307661fe2cbf0f708219792
                                         </div>
                                     </div>
                                 </div>
-
+                                                 <a class=\"btn btn-warning\" href=\"{{ path(\"gestionar_persona_responsables\", {'id':persona.id}) }}\"  role=\"button\"><i class=\"fas fa-edit\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Responsables\"></i></a>
                                 {% set count=count+1 %}
                         </tr>             
                     {% endfor %}
