@@ -30,57 +30,90 @@
             background-color:red;
         }
     </style>
+    
+    
     <div class="content">
-        <h4>Búsqueda de Expediente</h4>
-        <hr/>
-        <div class="filtro">
-            {{ form_start(formExpedienteFilter) }}
-            {{ form_errors(formExpedienteFilter) }}
-
-            <label class="text-default">NUMERO DE EXPEDIENTE</label>
-            <div class="row">
-                <div class="threecol col-lg-1">
-                    {{ form_widget(formExpedienteFilter.codigoExpediente) }}
-                    <div class="help-block with-errors">
-                        {{ form_errors(formExpedienteFilter.codigoExpediente) }}
-                    </div>
+        <div class="accordion" id="accordionExample">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-dark search" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <i class="fas fa-search-plus"></i>   Búsqueda de Expediente
+                        </button>
+                    </h2>
                 </div>
-                <div class="threecol col-lg-2">
-                    {{ form_widget(formExpedienteFilter.numeroExpediente) }}
-                    <div class="help-block with-errors">
-                        {{ form_errors(formExpedienteFilter.numeroExpediente) }}
-                    </div>
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        {{ form_start(formExpedienteFilter) }}
+                        {{ form_errors(formExpedienteFilter) }}
+                        
+                        <label class="text-default">NUMERO DE EXPEDIENTE</label>
+                        <div class="row">
+                            <div class="threecol col-lg-1">
+                                {{ form_widget(formExpedienteFilter.codigoExpediente) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formExpedienteFilter.codigoExpediente) }}
+                                </div>
+                            </div>
+                            <div class="threecol col-lg-2">
+                                {{ form_widget(formExpedienteFilter.numeroExpediente) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formExpedienteFilter.numeroExpediente) }}
+                                </div>
+                            </div>
+                            <div class="threecol col-lg-1">
+                                {{ form_widget(formExpedienteFilter.digitoExpediente) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formExpedienteFilter.digitoExpediente) }}
+                                </div>
+                            </div>
+                        </div>
+                             
+                        <div class="threecol col-lg-1">
+                                {{ form_widget(formExpedienteFilter.digitoExpediente) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formExpedienteFilter.digitoExpediente) }}
+                                </div>
+                        </div>
+                            <hr/>
+                        <div class="threecol col-lg-4">
+                                {{ form_widget(formExpedienteFilter.Buscar) }}
+                                {{ form_widget(formExpedienteFilter.Limpiar) }}
+                                
+                            </div>
+                        
                 </div>
-                <div class="threecol col-lg-1">
-                    {{ form_widget(formExpedienteFilter.digitoExpediente) }}
-                    <div class="help-block with-errors">
-                        {{ form_errors(formExpedienteFilter.digitoExpediente) }}
-                    </div>
-                </div>
-            </div>
-            {{ form_end(formExpedienteFilter) }}
         </div>
+        </div>
+        
+        
+        
         {% if expedientes|length >0 %}
-            <hr/>
+        
             {% set expediente =  expedientes[0]%}
-
+  
             <table class="table table-bordered"> 
                 <thead class="thead-dark">
-                </thead>
-                <tbody >
+                   
                     <tr>
-                        <th class="w-25 bg-gray">TEMA</th>
-                        <td  class="bg-white">{{ expediente.tema}}</td>
+                        <th scope="col"> </th>
+                        <th scope="col"><i class="fas fa-info-circle "></i> <strong> EXPEDIENTE NÚMERO: {{expediente.codigoExpediente }}-{{expediente.numeroExpediente }}-{{expediente.digitoExpediente }}</th>
                     </tr>
-                    <tr>
-                        <th class="w-25 bg-gray">CONCEPTO</th>
-                        <td  class="bg-white">{{ expediente.concepto}}</td>
-                    </tr>
-                    <tr>
-                        <th class="w-25 bg-gray">TOTAL DE FOJAS</th>
-                        <td  class="bg-white">
 
-                            {% set fojas = expediente.fojas %}
+                </thead>
+                
+                <tbody>
+                        <tr>
+                            <th class="w-25">TEMA</th>
+                            <td class="bg-white">{{ expediente.tema}}</td>
+                        </tr>
+                        <tr>
+                            <th class="w-25">CONCEPTO</th>
+                            <td class="bg-white">{{ expediente.concepto}}</td>
+                        </tr>
+                        <tr>
+                            <th class="w-25">TOTAL DE FOJAS</th>
+                            <td class="bg-white">{% set fojas = expediente.fojas %}
 
                             {% for caratula in expediente.caratulas.getValues %}
 
@@ -88,29 +121,26 @@
 
                             {% endfor %}
 
-                            {{ fojas }} 
-
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <th class="w-25 bg-gray">TIPO</th>
+                            {{ fojas }} </td>
+                        </tr>
+                            <tr>
+                        <th class="w-25">TIPO</th>
                         <td  class="bg-white">{{ expediente.tipo}}</td>
                     </tr>
                     <tr>
-                        <th class="w-25 bg-gray">INICIADOR DEPENDENCIA</th>
+                        <th class="w-25">INICIADOR DEPENDENCIA</th>
                         <td  class="bg-white">{{ expediente.iniciadorDependencia}}</td>
                     </tr>
                     <tr>
-                        <th class="w-25 bg-gray">FECHA DE INICIO</th>
+                        <th class="w-25">FECHA DE INICIO</th>
                         <td class="bg-white">{{ expediente.fechaInicio|date('d-m-Y')}}</td>
                     </tr>
                     <tr>
-                        <th class="w-25 bg-gray">FECHA DE FIN</th>
+                        <th class="w-25">FECHA DE FIN</th>
                         <td  class="bg-white">{{ expediente.fechaFin|date('d-m-Y')}}</td>
                     </tr>
                     <tr>
-                        <th class="w-25 bg-gray">ULTIMO PASE</th>
+                        <th class="w-25">ULTIMO PASE</th>
                         <td  class="bg-white">
                             {{ expediente.ultimaUbicacion}}
 
@@ -120,7 +150,7 @@
                         </td>
                     </tr>  
                     <tr>
-                        <th class="w-25 bg-gray">UBICACION ACTUAL</th>
+                        <th class="w-25">UBICACION ACTUAL</th>
                         <td  class="bg-white">
                             {{ expediente.ubicacionActual}}                          
                             - {{ expediente.ubicacionActual.dependencia }}
@@ -142,8 +172,11 @@
 
                 </tbody>
                 <tfoot>
-            </table>  
+            </table> 
+    
 
         {% endif %}
     </div>
+         
+         </div>
 {% endblock %}
