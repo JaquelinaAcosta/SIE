@@ -25,9 +25,16 @@
         {{form_start(form,{'action':'','method':'POST'})}}
         <div class="filtro">
             <label class="text-default">USUARIO/S RESPONSABLE/S(<span class="text-danger">*</span>)</label>                 
-            <div class="responsable_items">                       
+            <div class="responsable_items">
+                {%set count = 0%}
                 {% for responsable in form.responsables %}
-                    {{ form_row(responsable) }}
+                    {% if count == 0 %}
+                        {{ form_row(responsable.usuario,{'disabled':'disabled'})}}
+                    {%else%}
+                        {{ form_row(responsable)}}
+                        
+                        {%endif%}
+                    {% set count = count+1%}
                 {% endfor %}                       
             </div>
             <div class="add col-lg-3"></div>
@@ -44,6 +51,12 @@
     </div>
 
     <script>
+
+        $("#persona_Guardar").click(function () {
+            $( ".respon" ).prop( "disabled", false );          
+            return true;
+        });
+
         var $collectionHolder;
 
         // setup an "add a tag" link
@@ -68,12 +81,12 @@
 
 
             for (var i = 0; i <= totalCount; i++) {
-                if(i == 0){
-                    addTagFormDeleteLink($('.responsable_items').children().eq(i), $collectionHolder,true);
-                }else{
-                     addTagFormDeleteLink($('.responsable_items').children().eq(i), $collectionHolder,false);
+                if (i == 0) {
+                    addTagFormDeleteLink($('.responsable_items').children().eq(i), $collectionHolder, true);
+                } else {
+                    addTagFormDeleteLink($('.responsable_items').children().eq(i), $collectionHolder, false);
                 }
-               
+
             }
 
             $addResponsableButton.on('click', function (e) {
@@ -122,9 +135,9 @@
 
             // Display the form in the page in an li, before the "Add a tag" link li
             var $newFormLi = $('.responsable_items').append(newForm);
-            if (index > 1) {
+            if (index > 0) {
                 //console.log(totalCount);
-                addTagFormDeleteLink($($newFormLi).children().eq(index - 1), $collectionHolder,false);
+                addTagFormDeleteLink($($newFormLi).children().eq(index - 1), $collectionHolder, false);
             }
 
             //console.log($($newFormLi).children().eq(index-1));

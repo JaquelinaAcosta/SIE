@@ -332,11 +332,48 @@ class __TwigTemplate_1589bfab07a73fbe8e84db8dd0881de74672307661fe2cbf0f708219792
                 // line 161
                 echo twig_escape_filter($this->env, ($context["count"] ?? $this->getContext($context, "count")), "html", null, true);
                 echo "\"><i class=\"fas fa-trash-alt\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Eliminar\"></i></button>    
-                                
 
+                                ";
+                // line 163
+                $context["accion_responsable"] = false;
+                // line 164
+                echo "                                ";
+                if (($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "role", []) == "ROLE_ADMIN")) {
+                    // line 165
+                    echo "                                    ";
+                    $context["accion_responsable"] = true;
+                    // line 166
+                    echo "                                ";
+                }
+                // line 167
+                echo "                                ";
+                if ((twig_length_filter($this->env, $this->getAttribute($context["persona"], "responsables", [])) > 0)) {
+                    // line 168
+                    echo "                                    ";
+                    if ((($this->getAttribute($context["persona"], "usuario", []) != null) && ($this->getAttribute($this->getAttribute($this->getAttribute($context["persona"], "responsables", []), 0, [], "array"), "usuario", []) == $this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", [])))) {
+                        // line 169
+                        echo "                                        ";
+                        $context["accion_responsable"] = true;
+                        // line 170
+                        echo "                                    ";
+                    }
+                    // line 171
+                    echo "                                ";
+                }
+                // line 172
+                echo "                                ";
+                if ((($context["accion_responsable"] ?? $this->getContext($context, "accion_responsable")) == true)) {
+                    // line 173
+                    echo "                                    <a class=\"btn btn-warning\" href=\"";
+                    echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("gestionar_persona_responsables", ["id" => $this->getAttribute($context["persona"], "id", [])]), "html", null, true);
+                    echo "\"  role=\"button\"><i class=\"fas fa-edit\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Responsables\"></i></a>
+                                    ";
+                }
+                // line 175
+                echo "
                                 <!-- The Modal -->
                                 <div class=\"modal fade\" id=\"myModal";
-                // line 165
+                // line 177
                 echo twig_escape_filter($this->env, ($context["count"] ?? $this->getContext($context, "count")), "html", null, true);
                 echo "\">
                                     <div class=\"modal-dialog modal-sm modal-dialog-centered\">
@@ -351,7 +388,7 @@ class __TwigTemplate_1589bfab07a73fbe8e84db8dd0881de74672307661fe2cbf0f708219792
                                             <!-- Modal body -->
                                             <div class=\"modal-body\">
                                                 ¿Desea Eliminar a ";
-                // line 177
+                // line 189
                 echo twig_escape_filter($this->env, $this->getAttribute($context["persona"], "nombre", []), "html", null, true);
                 echo " ";
                 echo twig_escape_filter($this->env, $this->getAttribute($context["persona"], "apellido", []), "html", null, true);
@@ -360,7 +397,7 @@ class __TwigTemplate_1589bfab07a73fbe8e84db8dd0881de74672307661fe2cbf0f708219792
                                             <!-- Modal footer -->
                                             <div class=\"modal-footer\">
                                                 <button type=\"button\" class=\"btn btn-primary\"><a class=\"text-type btn-primary\"href=\"";
-                // line 181
+                // line 193
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("eliminar_persona", ["id" => $this->getAttribute($context["persona"], "id", [])]), "html", null, true);
                 echo "\"  role=\"button\">Si</a></button>                          
                                                 <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">No</button>
@@ -369,59 +406,56 @@ class __TwigTemplate_1589bfab07a73fbe8e84db8dd0881de74672307661fe2cbf0f708219792
                                         </div>
                                     </div>
                                 </div>
-                                                 <a class=\"btn btn-warning\" href=\"";
-                // line 188
-                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("gestionar_persona_responsables", ["id" => $this->getAttribute($context["persona"], "id", [])]), "html", null, true);
-                echo "\"  role=\"button\"><i class=\"fas fa-edit\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Responsables\"></i></a>
+
                                 ";
-                // line 189
+                // line 201
                 $context["count"] = (($context["count"] ?? $this->getContext($context, "count")) + 1);
-                // line 190
+                // line 202
                 echo "                        </tr>             
                     ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['persona'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 192
+            // line 204
             echo "
 
                 </tbody>
             </table>
         ";
         }
-        // line 196
+        // line 208
         echo "       
         ";
-        // line 197
+        // line 209
         if ((twig_length_filter($this->env, ($context["personas"] ?? $this->getContext($context, "personas"))) < ($context["totalItems"] ?? $this->getContext($context, "totalItems")))) {
-            // line 198
+            // line 210
             echo "            <div class=\"row\">
                 <ul class=\"pagination\">
                     ";
-            // line 200
+            // line 212
             if ((($context["thisPage"] ?? $this->getContext($context, "thisPage")) == 1)) {
                 echo "           
                     ";
             } else {
-                // line 202
+                // line 214
                 echo "                        ";
                 $context["thisPage"] = (($context["thisPage"] ?? $this->getContext($context, "thisPage")) - 1);
-                // line 203
+                // line 215
                 echo "                    ";
             }
-            // line 204
+            // line 216
             echo "
                     <li ><a class=\"page-link\" href=\"";
-            // line 205
+            // line 217
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_persona", ["currentPage" => ($context["thisPage"] ?? $this->getContext($context, "thisPage"))]), "html", null, true);
             echo "\">&laquo</a></li>
                         ";
-            // line 206
+            // line 218
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable(range(1, ($context["maxPages"] ?? $this->getContext($context, "maxPages"))));
             foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
-                // line 207
+                // line 219
                 echo "                        <li><a class=\"page-link\"  href=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_persona", ["currentPage" => $context["i"]]), "html", null, true);
                 echo "\">";
@@ -432,22 +466,22 @@ class __TwigTemplate_1589bfab07a73fbe8e84db8dd0881de74672307661fe2cbf0f708219792
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 209
+            // line 221
             echo "
                     ";
-            // line 210
+            // line 222
             if ((($context["page"] ?? $this->getContext($context, "page")) == ($context["maxPages"] ?? $this->getContext($context, "maxPages")))) {
-                // line 211
+                // line 223
                 echo "
                     ";
             } else {
-                // line 213
+                // line 225
                 echo "                        ";
                 $context["page"] = (($context["page"] ?? $this->getContext($context, "page")) + 1);
-                // line 214
+                // line 226
                 echo "                    ";
             }
-            // line 215
+            // line 227
             echo "                    <li><a class=\"page-link\" href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_persona", ["currentPage" => ($context["page"] ?? $this->getContext($context, "page"))]), "html", null, true);
             echo "\">&raquo</a></li>
@@ -457,7 +491,7 @@ class __TwigTemplate_1589bfab07a73fbe8e84db8dd0881de74672307661fe2cbf0f708219792
         </div>
     ";
         }
-        // line 221
+        // line 233
         echo "
 </div>
 <script>
@@ -488,7 +522,7 @@ class __TwigTemplate_1589bfab07a73fbe8e84db8dd0881de74672307661fe2cbf0f708219792
 
     public function getDebugInfo()
     {
-        return array (  461 => 221,  451 => 215,  448 => 214,  445 => 213,  441 => 211,  439 => 210,  436 => 209,  425 => 207,  421 => 206,  417 => 205,  414 => 204,  411 => 203,  408 => 202,  403 => 200,  399 => 198,  397 => 197,  394 => 196,  387 => 192,  380 => 190,  378 => 189,  374 => 188,  364 => 181,  355 => 177,  340 => 165,  333 => 161,  329 => 160,  324 => 158,  320 => 157,  316 => 156,  312 => 155,  308 => 154,  305 => 153,  300 => 152,  298 => 151,  284 => 139,  282 => 138,  278 => 136,  268 => 132,  265 => 131,  261 => 130,  258 => 129,  248 => 125,  245 => 124,  241 => 123,  232 => 117,  226 => 114,  222 => 113,  213 => 107,  208 => 105,  204 => 104,  197 => 100,  192 => 98,  188 => 97,  181 => 93,  176 => 91,  172 => 90,  165 => 86,  160 => 84,  156 => 83,  149 => 79,  144 => 77,  140 => 76,  134 => 73,  122 => 64,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  495 => 233,  485 => 227,  482 => 226,  479 => 225,  475 => 223,  473 => 222,  470 => 221,  459 => 219,  455 => 218,  451 => 217,  448 => 216,  445 => 215,  442 => 214,  437 => 212,  433 => 210,  431 => 209,  428 => 208,  421 => 204,  414 => 202,  412 => 201,  401 => 193,  392 => 189,  377 => 177,  373 => 175,  367 => 173,  364 => 172,  361 => 171,  358 => 170,  355 => 169,  352 => 168,  349 => 167,  346 => 166,  343 => 165,  340 => 164,  338 => 163,  333 => 161,  329 => 160,  324 => 158,  320 => 157,  316 => 156,  312 => 155,  308 => 154,  305 => 153,  300 => 152,  298 => 151,  284 => 139,  282 => 138,  278 => 136,  268 => 132,  265 => 131,  261 => 130,  258 => 129,  248 => 125,  245 => 124,  241 => 123,  232 => 117,  226 => 114,  222 => 113,  213 => 107,  208 => 105,  204 => 104,  197 => 100,  192 => 98,  188 => 97,  181 => 93,  176 => 91,  172 => 90,  165 => 86,  160 => 84,  156 => 83,  149 => 79,  144 => 77,  140 => 76,  134 => 73,  122 => 64,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -662,7 +696,19 @@ class __TwigTemplate_1589bfab07a73fbe8e84db8dd0881de74672307661fe2cbf0f708219792
 
                             <td> <a class=\"btn btn-warning\" href=\"{{ path(\"editar_persona\", {'id':persona.id}) }}\"  role=\"button\"><i class=\"fas fa-edit\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"></i></a>
                                 <button type=\"button\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal{{ count }}\"><i class=\"fas fa-trash-alt\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Eliminar\"></i></button>    
-                                
+
+                                {% set accion_responsable = false %}
+                                {% if app.user.role == 'ROLE_ADMIN' %}
+                                    {% set accion_responsable = true %}
+                                {% endif%}
+                                {% if persona.responsables|length>0%}
+                                    {% if persona.usuario != null and persona.responsables[0].usuario == app.user %}
+                                        {% set accion_responsable = true %}
+                                    {% endif %}
+                                {%endif%}
+                                {% if accion_responsable == true %}
+                                    <a class=\"btn btn-warning\" href=\"{{ path(\"gestionar_persona_responsables\", {'id':persona.id}) }}\"  role=\"button\"><i class=\"fas fa-edit\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Responsables\"></i></a>
+                                    {%endif%}
 
                                 <!-- The Modal -->
                                 <div class=\"modal fade\" id=\"myModal{{count}}\">
@@ -688,7 +734,7 @@ class __TwigTemplate_1589bfab07a73fbe8e84db8dd0881de74672307661fe2cbf0f708219792
                                         </div>
                                     </div>
                                 </div>
-                                                 <a class=\"btn btn-warning\" href=\"{{ path(\"gestionar_persona_responsables\", {'id':persona.id}) }}\"  role=\"button\"><i class=\"fas fa-edit\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Responsables\"></i></a>
+
                                 {% set count=count+1 %}
                         </tr>             
                     {% endfor %}
