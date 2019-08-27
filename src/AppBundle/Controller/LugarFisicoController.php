@@ -11,6 +11,7 @@ use AppBundle\Form\LugarFisicoType;
 use AppBundle\Form\LugarFisicoFilterType;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Common\Collections\ArrayCollection;
+use AppBundle\Entity\Responsable;
 
 class LugarFisicoController extends Controller {
 
@@ -32,6 +33,10 @@ class LugarFisicoController extends Controller {
 
         if ($form->isValid()) {
 
+            $responsable = new Responsable();
+            $responsable->setUbicacion($lugarFisico);
+            $responsable->setUsuario($this->getUser());
+            $lugarFisico->addResponsable($responsable);
             $em->persist($lugarFisico);
             $flush = $em->flush();
 
@@ -175,7 +180,7 @@ class LugarFisicoController extends Controller {
         ));
     }
 
-      /**
+    /**
      * @Route("/adm/gestionar/lugarfisico_responsables/{id}", name="gestionar_lugarfisico_responsables")
      */
     public function lugarfisicoGestionarResponsblesAction(Request $request, $id) {
@@ -184,9 +189,7 @@ class LugarFisicoController extends Controller {
 
         $original_responsables = new ArrayCollection();
 
-        $form = $this->createForm(\AppBundle\Form\LugarFisicoResponsablesType::class, $lugarfisico,
-                ['dependencia_id'=>$this->getUser()
-                ->getPersona()->getDependencia()->getId()]);
+        $form = $this->createForm(\AppBundle\Form\LugarFisicoResponsablesType::class, $lugarfisico, ['dependencia_id' => $lugarfisico->getDependencia()->getId()]);
 
         foreach ($lugarfisico->getResponsables() as $responsable) {
             $original_responsables->add($responsable);
@@ -206,7 +209,7 @@ class LugarFisicoController extends Controller {
                     // if you wanted to delete the Tag entirely, you can also do that
                     // $entityManager->remove($tag);
                     $em->remove($responsable);
-                 } 
+                }
             }
 
             foreach ($form['responsables']->getData() as $responsable) {
@@ -217,12 +220,12 @@ class LugarFisicoController extends Controller {
             $em->persist($lugarfisico);
             $flush = $em->flush();
         }
-        
-         // replace this example code with whatever you need
+
+        // replace this example code with whatever you need
         return $this->render('AppBundle:Ubicacion:lugarfisicoResponsables.html.twig', [
                     'form' => $form->createView(),
-                    'lugarfisico'=>$lugarfisico
+                    'lugarfisico' => $lugarfisico
         ]);
-        
     }
+
 }

@@ -44,9 +44,21 @@
                         <button class="btn btn-dark search" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                             <i class="fas fa-search-plus"></i> Filtros de Búsqueda de Expediente - {{ app.user.persona.dependencia }}
                         </button>
-                        {% if asociado == false and (app.user.role == 'ROLE_RESPONSABLE' or app.user.role == 'ROLE_ADMIN') %}
+                        {% set accion_habilitada = false %}
+                        {% if app.user.role == 'ROLE_ADMIN' %}
+                            {% set accion_habilitada = true %}
+                        {%else%}
+                            {% for responsable in app.user.persona.dependencia.mesaentrada.responsables.getValues %}
+                                {% if user == responsable.usuario %}
+                                    {% set accion_habilitada = true %}
+                                {% endif %}
+                            {%endfor%}
+                        {% endif %}  
+
+                        {% if asociado == false and accion_habilitada == true %}
                             <a href="{{ path('nuevo_expediente') }}" role="button" class="btn btn-info float-right"><i class="fas fa-file-alt"></i> Nuevo Expediente</a>
                         {% endif %}
+
 
                     </h2>
                 </div>
@@ -229,9 +241,20 @@
 
                                 {#<a class="btn btn-danger" href="{{ path("eliminar_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt"></i></a></td>
 #}
-                                {% if app.user.role == 'ROLE_RESPONSABLE' or app.user.role == 'ROLE_ADMIN' %}
+                                 {% set accion_habilitada = false %}
+                                {% if app.user.role == 'ROLE_ADMIN' %}
+                                    {% set accion_habilitada = true %}
+                                {%else%}
+                                    {% for responsable in expediente.ubicacionActual.responsables.getValues %}
+                                        {% if user == responsable.usuario %}
+                                            {% set accion_habilitada = true %}
+                                        {% endif %}
+                                    {%endfor%}
+                                {% endif %}  
+
+                                {% if accion_habilitada == true %}
                                     <a class="btn btn-warning" href="{{ path("editar_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit"></i></a>
-                                    <a class="btn btn-warning" href="{{ path("elegir_movimiento", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Realizar Movimiento"><i class="fas fa-arrow-alt-circle-right"></i></a>
+                                    <a class="btn btn-warning" href="{{ path("elegir_movimiento", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Realizar un pase"><i class="fas fa-arrow-alt-circle-right"></i></a>
 
                                     {% if expediente.fechaBaja is null %}
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{ count }}"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></button>    

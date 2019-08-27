@@ -119,41 +119,53 @@
                         <td class="text-default">{{lugarfisico.tipo|e }}</td>
                         <td class="text-default"><p>{{lugarfisico.descripcion|e }}</p></td>
                         <td class="text-default">{{lugarfisico.acceso|e }}</td>
-                        <td><a class="btn btn-warning" href="{{ path('editar_lugarfisico',{'id':lugarfisico.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit"></i></a>
-{#                            <a class="btn btn-danger" href="{{ path('borrar_lugarfisico',{'id':lugarfisico.id}) }}"  role="button"><i class="far fa-file-archive" data-toggle="tooltip" data-placement="top" title="Borrar"></i></a>#}
-                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{ count }}"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></button>    
+                        <td>
 
+                            {% set accion_habilitada = false %}
+                            {% if app.user.role == 'ROLE_ADMIN' %}
+                                {% set accion_habilitada = true %}
+                            {%else%}
+                                {% for responsable in lugarfisico.responsables.getValues %}
+                                    {% if app.user == responsable.usuario %}
+                                        {% set accion_habilitada = true %}
+                                    {% endif %}
+                                {%endfor%}
+                            {% endif %}  
 
-                                        <!-- The Modal -->
-                                        <div class="modal fade" id="myModal{{count}}">
-                                            <div class="modal-dialog modal-sm modal-dialog-centered">
-                                                <div class="modal-content">
+                            {% if accion_habilitada == true %}
 
-                                                    <!-- Modal Header -->
-                                                    <div class="modal-header-warning">
-                                                        <button type="button" class="close text-danger" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                        <h4 class="modal-title">Eliminar Lugar Físico</h4>
-                                                    </div>
+                                <a class="btn btn-warning" href="{{ path('editar_lugarfisico',{'id':lugarfisico.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit"></i></a>
+                                    {#                            <a class="btn btn-danger" href="{{ path('borrar_lugarfisico',{'id':lugarfisico.id}) }}"  role="button"><i class="far fa-file-archive" data-toggle="tooltip" data-placement="top" title="Borrar"></i></a>#}
 
-                                                    <!-- Modal body -->
-                                                    <div class="modal-body">
-                                                        ¿Desea Eliminar el Lugar Físico: {{ lugarfisico.dependencia.descripcion}}?
-                                                    </div>
-                                                    <!-- Modal footer -->
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-primary"><a class="text-type btn-primary"href="{{ path('borrar_lugarfisico',{'id':lugarfisico.id}) }}"  role="button">SI</a></button>                          
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
-                                                    </div>
+                                <a class="btn btn-info" href="{{ path("gestionar_lugarfisico_responsables", {'id':lugarfisico.id}) }}"  role="button"><i class="fas fa-user" data-toggle="tooltip" data-placement="top" title="Responsables"></i></a>
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{ count }}"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></button>    
+                                <!-- The Modal -->
+                                <div class="modal fade" id="myModal{{count}}">
+                                    <div class="modal-dialog modal-sm modal-dialog-centered">
+                                        <div class="modal-content">
 
-                                                </div>
+                                            <!-- Modal Header -->
+                                            <div class="modal-header-warning">
+                                                <button type="button" class="close text-danger" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title">Eliminar Lugar Físico</h4>
                                             </div>
+
+                                            <!-- Modal body -->
+                                            <div class="modal-body">
+                                                ¿Desea Eliminar el Lugar Físico: {{ lugarfisico.tipo}}?
+                                            </div>
+                                            <!-- Modal footer -->
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary"><a class="text-type btn-primary"href="{{ path('borrar_lugarfisico',{'id':lugarfisico.id}) }}"  role="button">SI</a></button>                          
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+                                            </div>
+
                                         </div>
-                                        {% set count=count+1 %}
-                            
-                            
-                            
-                            
-                            <a class="btn btn-warning" href="{{ path("gestionar_lugarfisico_responsables", {'id':lugarfisico.id}) }}"  role="button"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Responsables"></i></a></td>
+                                    </div>
+                                </div>
+                                {% set count=count+1 %}                               
+                            {%endif%}
+                        </td>
                     </tr>
                 {% endfor %}
 

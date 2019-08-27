@@ -201,8 +201,7 @@ class PersonaController extends Controller {
         $original_responsables = new ArrayCollection();
 
         $form = $this->createForm(\AppBundle\Form\PersonaResponsablesType::class, $persona,
-                ['dependencia_id'=>$this->getUser()
-                ->getPersona()->getDependencia()->getId()]);
+                ['dependencia_id'=>$persona->getDependencia()->getId()]);
 
         foreach ($persona->getResponsables() as $responsable) {
             $original_responsables->add($responsable);

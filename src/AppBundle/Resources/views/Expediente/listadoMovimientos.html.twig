@@ -58,8 +58,6 @@
     </style>
 
     <div class="content">
-
-
         <div class="accordion" id="accordionExample">
             <div class="card">
                 <div class="card-header" id="headingOne">
@@ -67,7 +65,28 @@
                         <button class="btn btn-dark search" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                             <i class="fas fa-search-plus"></i> Filtros de Búsqueda de Movimientos, Expediente {{ expediente }}
                         </button>
-                        {% if expediente.estado != 'ASOCIADO' %}
+
+                        {% set accion_habilitada = false %}
+                        {% if app.user.role == 'ROLE_ADMIN' %}
+                            {% set accion_habilitada = true %}
+                        {%else%}
+                            {% for responsable in expediente.ubicacionActual.responsables.getValues %}
+                                {% if app.user == responsable.usuario %}
+                                    {% set accion_habilitada = true %}
+                                {% endif %}
+                            {%endfor%}
+                            
+                            
+                            {%set index = movimientos|length%}
+                             {%set index = index-1%}
+                            
+                             {% if  movimientos|length>0  and movimientos[index].usuario == app.user.iup %}
+                                {% set accion_habilitada = true %}
+                            {%endif%}
+
+                        {% endif %}  
+
+                        {% if expediente.estado != 'ASOCIADO' and accion_habilitada ==true %}
 
                             <a href="{{ path('elegir_movimiento',
                                  {'id':expediente.id}) }}" 
@@ -173,10 +192,9 @@
                             {% if (movimiento.ubicacion == expediente.ubicacionActual) and (movimiento.ubicacion != expediente.ultimaUbicacion) and (count == movimientos|length) %}
                                 <td><a class="btn btn-info" href="{{ path('ver_movimiento',{'id':movimiento.id}) }}"  role="button" title="Ver Detalle"><i class="fas fa-search"></i></a>
                                         {% if app.user.role=='ROLE_RESPONSABLE' or app.user.role=='ROLE_ADMIN' %}
-                                        <a class="btn btn-warning" href="{{ path('editar_movimiento',{'id':movimiento.id}) }}"  role="button" title="Modificar"><i class="fas fa-edit"></i></a>                                  
                                         {% endif %}
-                                        {% if count >0 and (app.user.role=='ROLE_RESPONSABLE' or app.user.role=='ROLE_ADMIN')%}
-
+                                        {% if count >0 and (accion_habilitada == true or app.user.iup == movimiento.usuario or app.user.role=='ROLE_ADMIN')%}
+                                        <a class="btn btn-warning" href="{{ path('editar_movimiento',{'id':movimiento.id}) }}"  role="button" title="Modificar"><i class="fas fa-edit"></i></a>                                  
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{ count }}"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></button>    
 
 

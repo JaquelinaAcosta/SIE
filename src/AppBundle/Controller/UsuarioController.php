@@ -9,6 +9,7 @@ use AppBundle\Entity\Usuario;
 use AppBundle\Form\UsuarioType;
 use AppBundle\Form\UsuarioFilterType;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use AppBundle\Entity\Responsable;
 
 class UsuarioController extends Controller {
 
@@ -30,7 +31,11 @@ class UsuarioController extends Controller {
                         $password = $encoder->encodePassword($usuario->getContrasenia(), $usuario->getSalt());
                         $usuario->setSavedPassword($form['contrasenia']->getData());
                         $usuario->setContrasenia($password);
-
+                        $responsable = new Responsable();
+                        $responsable->setUsuario($usuario);
+                        $responsable->setUbicacion($usuario->getPersona());
+                        $usuario->getPersona()->addResponsable($responsable);
+                        
                         $em->persist($usuario);
                         $flush = $em->flush();
 

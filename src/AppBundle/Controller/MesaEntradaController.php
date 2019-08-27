@@ -95,7 +95,8 @@ class MesaEntradaController extends Controller {
                     // if you wanted to delete the Tag entirely, you can also do that
                     // $entityManager->remove($tag);
                     $em->remove($responsable);
-                }else{
+                }
+                else{
                     $responsable->getUsuario()->setRole('ROLE_RESPONSABLE');
                 }
             }
