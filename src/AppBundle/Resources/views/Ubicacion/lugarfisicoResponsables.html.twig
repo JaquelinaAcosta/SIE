@@ -16,8 +16,6 @@
         }
     </style>
 
-
-
     <div class="content">
 
         <h4 class="text-center">Gestionar los usuarios responsables de  - {{ lugarfisico }}</h4>
@@ -26,9 +24,16 @@
         <div class="filtro">
             <label class="text-default">USUARIO/S RESPONSABLE/S(<span class="text-danger">*</span>)</label>                 
             <div class="responsable_items">                       
+                {%set count = 0%}
                 {% for responsable in form.responsables %}
-                    {{ form_row(responsable) }}
-                {% endfor %}                       
+                    {% if count == 0 %}
+                        {{ form_row(responsable.usuario,{'disabled':'disabled'})}}
+                    {%else%}
+                        {{ form_row(responsable)}}
+
+                    {%endif%}
+                    {% set count = count+1%}
+                {% endfor %}                              
             </div>
             <div class="add col-lg-3"></div>
             <div class="responsables" data-prototype="{{ form_widget(form.responsables.vars.prototype)|e('html_attr') }}"></div>
@@ -44,6 +49,12 @@
     </div>
 
     <script>
+        
+         $("#persona_Guardar").click(function () {
+            $( ".respon" ).prop( "disabled", false );          
+            return true;
+        });
+        
         var $collectionHolder;
 
         // setup an "add a tag" link

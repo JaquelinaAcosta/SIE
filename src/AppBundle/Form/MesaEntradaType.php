@@ -73,7 +73,7 @@ class MesaEntradaType extends AbstractType {
             ));
         }
 
-        if ($gestion != null and $dependenciaId==null) {
+        if ($gestion != null) {
             $builder->add('Guardar', SubmitType::class,
                     ['attr' => array(
                             "class" => "form-control btn btn-success"
@@ -99,7 +99,7 @@ class MesaEntradaType extends AbstractType {
      * {@inheritdoc}
      */
     public function getBlockPrefix() {
-        return 'appbundle_mesaentrada';
+        return 'mesaentrada';
     }
 
 }

@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use AppBundle\Form\Event\Listener\AddStateFieldSubscriber;
 
 class PersonaResponsablesType extends AbstractType {
 
@@ -35,6 +36,7 @@ class PersonaResponsablesType extends AbstractType {
                     ['attr' => array(
                             "class" => "form-control btn btn-success"
             )]);
+                 $builder->addEventSubscriber(new AddStateFieldSubscriber());
     }
 
     /**
