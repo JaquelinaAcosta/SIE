@@ -100,17 +100,18 @@ class MovimientoExpedienteController extends Controller {
         $movimientoExpediente = new MovimientoExpediente();
         $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
         $user = $this->getUser();
-
+          
         if (get_class($expediente->getUbicacionActual()) == \AppBundle\Entity\MesaEntrada::class) {
             $form = $this->createForm(MovimientoExpedienteType::class,
-                    $movimientoExpediente, ['pase' => 'externo']);
+                    $movimientoExpediente, ['pase' => 'externo',
+             'dependencia_id' => $expediente->getUbicacionActual()->getDependencia()]);
         } else {
             $form = $this->createForm(MovimientoExpedienteType::class,
                     $movimientoExpediente, ['pase' => 'externo',
                 'dependencia_id' => $user->getPersona()->getDependencia()->getId()]);
-        }
+        }        
         $form->handleRequest($request);
-
+             
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
                 $movimientoExpediente->setUsuario($this->getUser()->getIup());
@@ -118,6 +119,7 @@ class MovimientoExpedienteController extends Controller {
                                 ->find($form['mesaentrada']
                                         ->getData()->getDependencia()
                                         ->getId())->getMesaentrada();
+                              
                 $movimientoExpediente->setTipoSalida('Externo');
                 $movimientoExpediente->setExpediente($expediente);
                 $fechaHoy = date("d-m-Y");

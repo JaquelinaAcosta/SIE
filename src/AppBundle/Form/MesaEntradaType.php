@@ -22,11 +22,13 @@ class MesaEntradaType extends AbstractType {
         $dependenciaId = $options['dependencia_id'];
 
         if ($movimiento != null) {
-            if ($dependenciaId == null) {
+            if ($gestion=='externo') {
                 $builder->add('dependencia', EntityType::class, array(
-                    'query_builder' => function(EntityRepository $er ) {
+                    'query_builder' => function(EntityRepository $er )use($dependenciaId) {
                         return $er->createQueryBuilder('w')
-                                        ->where('w.estado IS NOT NULL');
+                                        ->where('w.estado IS NOT NULL')
+                                ->andWhere('w.id!=:id')
+                                ->setParameter('id',$dependenciaId);
                     },
                     "label" => false,
                     "placeholder" => "--Seleccione--",
@@ -71,7 +73,7 @@ class MesaEntradaType extends AbstractType {
             ));
         }
 
-        if ($gestion != null) {
+        if ($gestion != null and $dependenciaId==null) {
             $builder->add('Guardar', SubmitType::class,
                     ['attr' => array(
                             "class" => "form-control btn btn-success"
@@ -88,7 +90,8 @@ class MesaEntradaType extends AbstractType {
             'data_class' => 'AppBundle\Entity\MesaEntrada',
             'gestion' => null,
             'movimiento' => null,
-            'dependencia_id' => null
+            'dependencia_id' => null,
+            
         ));
     }
 
