@@ -70,13 +70,50 @@ class __TwigTemplate_ed07f0fac41d562c416af6877cc09465a6566e78424b79c17a31aeecc4a
 
     <div class=\"content\">
 
+        ";
+        // line 17
+        $context["accion_habilitada"] = false;
+        // line 18
+        echo "        ";
+        if (($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "role", []) == "ROLE_ADMIN")) {
+            // line 19
+            echo "            ";
+            $context["accion_habilitada"] = true;
+            // line 20
+            echo "        ";
+        } else {
+            // line 21
+            echo "            ";
+            $context['_parent'] = $context;
+            $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute($this->getAttribute($this->getAttribute($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "persona", []), "dependencia", []), "mesaentrada", []), "responsables", []), "getValues", []));
+            foreach ($context['_seq'] as $context["_key"] => $context["responsable"]) {
+                // line 22
+                echo "                ";
+                if (($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []) == $this->getAttribute($context["responsable"], "usuario", []))) {
+                    // line 23
+                    echo "                    ";
+                    $context["accion_habilitada"] = true;
+                    // line 24
+                    echo "                ";
+                }
+                // line 25
+                echo "            ";
+            }
+            $_parent = $context['_parent'];
+            unset($context['_seq'], $context['_iterated'], $context['_key'], $context['responsable'], $context['_parent'], $context['loop']);
+            $context = array_intersect_key($context, $_parent) + $_parent;
+            // line 26
+            echo "        ";
+        }
+        echo "  
+
         <h4 class=\"text-center\">ELIGA EL TIPO DE PASE A REALIZAR</h4>
         <hr/>
         <div class=\"panel\">
             ";
-        // line 20
-        if ((($context["pase_externo"] ?? $this->getContext($context, "pase_externo")) == true)) {
-            // line 21
+        // line 31
+        if ((($context["accion_habilitada"] ?? $this->getContext($context, "accion_habilitada")) == true)) {
+            // line 32
             echo "                <a class=\"btn btn-primary\" href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("movimiento_externo", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", [])]), "html", null, true);
             echo "\"  
@@ -84,7 +121,7 @@ class __TwigTemplate_ed07f0fac41d562c416af6877cc09465a6566e78424b79c17a31aeecc4a
                    title=\"Desde una Mesa de Entrada a otra\">EXTERNO</a>
             ";
         } else {
-            // line 25
+            // line 36
             echo "                <a class=\"btn btn-primary disabled\" href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("movimiento_externo", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", [])]), "html", null, true);
             echo "\"  
@@ -92,7 +129,7 @@ class __TwigTemplate_ed07f0fac41d562c416af6877cc09465a6566e78424b79c17a31aeecc4a
                    title=\"Desde una Mesa de Entrada a otra\">EXTERNO</a>
             ";
         }
-        // line 29
+        // line 40
         echo "            <a class=\"btn btn-primary\" href=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("movimiento_interno", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", [])]), "html", null, true);
         echo "\"  
@@ -100,7 +137,7 @@ class __TwigTemplate_ed07f0fac41d562c416af6877cc09465a6566e78424b79c17a31aeecc4a
                title=\"Hacia una Persona\">INTERNO</a>
 
             <a class=\"btn btn-primary\" href=\"";
-        // line 33
+        // line 44
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("movimiento_archivado", ["id" => $this->getAttribute(($context["expediente"] ?? $this->getContext($context, "expediente")), "id", [])]), "html", null, true);
         echo "\"  
                role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" 
@@ -136,7 +173,7 @@ class __TwigTemplate_ed07f0fac41d562c416af6877cc09465a6566e78424b79c17a31aeecc4a
 
     public function getDebugInfo()
     {
-        return array (  104 => 33,  96 => 29,  88 => 25,  80 => 21,  78 => 20,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  141 => 44,  133 => 40,  125 => 36,  117 => 32,  115 => 31,  106 => 26,  100 => 25,  97 => 24,  94 => 23,  91 => 22,  86 => 21,  83 => 20,  80 => 19,  77 => 18,  75 => 17,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -165,10 +202,21 @@ class __TwigTemplate_ed07f0fac41d562c416af6877cc09465a6566e78424b79c17a31aeecc4a
 
     <div class=\"content\">
 
+        {% set accion_habilitada = false %}
+        {% if app.user.role == 'ROLE_ADMIN' %}
+            {% set accion_habilitada = true %}
+        {%else%}
+            {% for responsable in app.user.persona.dependencia.mesaentrada.responsables.getValues %}
+                {% if app.user == responsable.usuario %}
+                    {% set accion_habilitada = true %}
+                {% endif %}
+            {%endfor%}
+        {% endif %}  
+
         <h4 class=\"text-center\">ELIGA EL TIPO DE PASE A REALIZAR</h4>
         <hr/>
         <div class=\"panel\">
-            {% if pase_externo == true %}
+            {% if accion_habilitada == true %}
                 <a class=\"btn btn-primary\" href=\"{{ path(\"movimiento_externo\", {'id':expediente.id}) }}\"  
                    role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" 
                    title=\"Desde una Mesa de Entrada a otra\">EXTERNO</a>

@@ -70,16 +70,18 @@ class UsuarioType extends AbstractType {
                         "placeholder" => "ejemplo@ejemplo.com"
                     )
                 ))
+                    
+                       
+            ;
+        }
+        if ($role != null) {
+            $builder
                     ->add('contrasenia', TextType::class, array(
                         "label" => "Contraseña: ", "attr" => array(
                             "class" => "form-exp form-control",
                             "placeholder" => "Contraseña"
                         )
-                    ))
-            ;
-        }
-        if ($role != null) {
-            $builder
+                    )) 
                     ->add('role', ChoiceType::class, array(
                         "placeholder" => "--Seleccione--",
                         "attr" => [
@@ -96,7 +98,8 @@ class UsuarioType extends AbstractType {
                             'class' => 'form form-control',
                             'placeholder' => 'Escriba parte del nombre y seleccione una de las opciones'
                         )
-            ));
+            ))
+                    ;
         }
     }
 
