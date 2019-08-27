@@ -52,7 +52,20 @@
                         <button class="btn btn-dark search" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                             <i class="fas fa-search-plus"></i> Filtros de Búsqueda de Expedientes Asociados
                         </button>
-                        {% if app.user.role == 'ROLE_ADMIN' or app.user.role =='ROLE_RESPONSABLE' %}
+
+                        {% set accion_habilitada = false %}
+                        {% if app.user.role == 'ROLE_ADMIN' %}
+                            {% set accion_habilitada = true %}
+                        {%else%}
+
+                            {% for responsable in expediente.ubicacionActual.responsables.getValues %}
+                                {% if app.user == responsable.usuario %}
+                                    {% set accion_habilitada = true %}
+                                {% endif %}
+                            {%endfor%}
+                        {% endif %}  
+
+                        {% if accion_habilitada == true  %}
                             <a href="{{ path('listado_expediente',
                                  {'currentPage':1,'modo':'asociado','padre_id':expediente.id}) }}" 
                                role="button" class="btn btn-info float-right">Nuevo Expediente Asociado</a>
@@ -153,39 +166,42 @@
                             <td>{{expediente_asoc.expedienteAsociado.fojas}}</td>
                             <td>{{expediente_asoc.expedienteAsociado.tema.codigo}}</td>
                             <td><a class="btn btn-info" href="{{ path("ver_expediente", {'id':expediente_asoc.expedienteAsociado.id}) }}"  role="button" title="Ver Detalle"><i class="fas fa-search"></i></a>
-                                <a class="btn btn-warning" href="{{ path("editar_expediente", {'id':expediente_asoc.expedienteAsociado.id}) }}"  role="button" title="Modificar"><i class="fas fa-edit"></i></a>
-                                    {#                            <a class="btn btn-danger" href="{{ path("remover_expediente_asociado", {'id':padre_id, 'id_asoc':expediente_asoc.expedienteAsociado.id}) }}"  role="button" title="Archivar"><i class="fas fa-trash-alt"></i></a>#}
+
+                                {% if accion_habilitada == true  %}
+                                    <a class="btn btn-warning" href="{{ path("editar_expediente", {'id':expediente_asoc.expedienteAsociado.id}) }}"  role="button" title="Modificar"><i class="fas fa-edit"></i></a>
+                                        {#                            <a class="btn btn-danger" href="{{ path("remover_expediente_asociado", {'id':padre_id, 'id_asoc':expediente_asoc.expedienteAsociado.id}) }}"  role="button" title="Archivar"><i class="fas fa-trash-alt"></i></a>#}
 
 
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{ count }}"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></button>    
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{ count }}"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></button>    
 
 
-                                <!-- The Modal -->
-                                <div class="modal fade" id="myModal{{count}}">
-                                    <div class="modal-dialog modal-lg modal-dialog-centered">
-                                        <div class="modal-content">
+                                    <!-- The Modal -->
+                                    <div class="modal fade" id="myModal{{count}}">
+                                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                                            <div class="modal-content">
 
-                                            <!-- Modal Header -->
-                                            <div class="modal-header-warning">
-                                                <button type="button" class="close text-danger" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                <h4 class="modal-title">Eliminar Expediente Asociado</h4>
+                                                <!-- Modal Header -->
+                                                <div class="modal-header-warning">
+                                                    <button type="button" class="close text-danger" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                    <h4 class="modal-title">Eliminar Expediente Asociado</h4>
+                                                </div>
+
+                                                <!-- Modal body -->
+                                                <div class="modal-body">
+                                                    ¿Está seguro de quitar la asociacion del expediente {{expediente_asoc.expedienteAsociado}}?
+                                                </div>
+
+                                                <!-- Modal footer -->
+                                                <div class="modal-footer">                                          
+                                                    <button type="button" class="btn btn-primary"><a class="text-type btn-primary"href="{{ path("remover_expediente_asociado", {'id':padre_id, 'id_asoc':expediente_asoc.expedienteAsociado.id}) }}"  role="button">Si</a></button>                                   
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                                </div>
+
                                             </div>
-
-                                            <!-- Modal body -->
-                                            <div class="modal-body">
-                                                ¿Está seguro de quitar la asociacion del expediente {{expediente_asoc.expedienteAsociado}}?
-                                            </div>
-
-                                            <!-- Modal footer -->
-                                            <div class="modal-footer">                                          
-                                                <button type="button" class="btn btn-primary"><a class="text-type btn-primary"href="{{ path("remover_expediente_asociado", {'id':padre_id, 'id_asoc':expediente_asoc.expedienteAsociado.id}) }}"  role="button">Si</a></button>                                   
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                            </div>
-
                                         </div>
                                     </div>
-                                </div>
-                                {% set count=count+1 %}
+                                    {% set count=count+1 %}
+                                {%endif%}
                             </td>
                         </tr>
                     {% endfor %}

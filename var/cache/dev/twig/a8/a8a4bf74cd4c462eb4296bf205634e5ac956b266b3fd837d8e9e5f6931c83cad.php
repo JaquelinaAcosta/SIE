@@ -152,7 +152,12 @@ class __TwigTemplate_8edba1c6e49761ea27746ab49009708f46be5c7f6cc5e51393454268f20
 
 
             for (var i = 0; i <= totalCount; i++) {
-                addTagFormDeleteLink(\$('.responsable_items').children().eq(i), \$collectionHolder);
+                if(i == 0){
+                    addTagFormDeleteLink(\$('.responsable_items').children().eq(i), \$collectionHolder,true);
+                }else{
+                     addTagFormDeleteLink(\$('.responsable_items').children().eq(i), \$collectionHolder,false);
+                }
+               
             }
 
             \$addResponsableButton.on('click', function (e) {
@@ -161,17 +166,23 @@ class __TwigTemplate_8edba1c6e49761ea27746ab49009708f46be5c7f6cc5e51393454268f20
             });
         });
 
-        function addTagFormDeleteLink(\$tagFormLi, \$collectionHolder) {
-            var \$removeFormButton = \$('<button class=\"delete btn btn-danger\" type=\"button\">Quitar Usuario</button>');
-            \$tagFormLi.append(\$removeFormButton);
+        function addTagFormDeleteLink(\$tagFormLi, \$collectionHolder, disabled) {
+            if (!disabled) {
+                var \$removeFormButton = \$('<button class=\"delete btn btn-danger\" type=\"button\">Quitar Usuario</button>');
+                \$tagFormLi.append(\$removeFormButton);
 
-            \$removeFormButton.on('click', function (e) {
-                // remove the li for the tag form
-                var index = \$collectionHolder.data('index');
-                \$tagFormLi.remove();
+                \$removeFormButton.on('click', function (e) {
+                    // remove the li for the tag form
+                    var index = \$collectionHolder.data('index');
+                    \$tagFormLi.remove();
 
-                \$collectionHolder.data('index', index - 1);
-            });
+                    \$collectionHolder.data('index', index - 1);
+                });
+            } else {
+                var \$removeFormButton = \$('<button disabled class=\"delete btn btn-danger\" type=\"button\">Quitar Usuario</button>');
+                \$tagFormLi.append(\$removeFormButton);
+            }
+
         }
 
         function addResponsableForm(\$collectionHolder, \$newLinkLi) {
@@ -195,9 +206,9 @@ class __TwigTemplate_8edba1c6e49761ea27746ab49009708f46be5c7f6cc5e51393454268f20
 
             // Display the form in the page in an li, before the \"Add a tag\" link li
             var \$newFormLi = \$('.responsable_items').append(newForm);
-            if (index > 0) {
+            if (index > 1) {
                 //console.log(totalCount);
-                addTagFormDeleteLink(\$(\$newFormLi).children().eq(index - 1), \$collectionHolder);
+                addTagFormDeleteLink(\$(\$newFormLi).children().eq(index - 1), \$collectionHolder,false);
             }
 
             //console.log(\$(\$newFormLi).children().eq(index-1));
@@ -312,7 +323,12 @@ class __TwigTemplate_8edba1c6e49761ea27746ab49009708f46be5c7f6cc5e51393454268f20
 
 
             for (var i = 0; i <= totalCount; i++) {
-                addTagFormDeleteLink(\$('.responsable_items').children().eq(i), \$collectionHolder);
+                if(i == 0){
+                    addTagFormDeleteLink(\$('.responsable_items').children().eq(i), \$collectionHolder,true);
+                }else{
+                     addTagFormDeleteLink(\$('.responsable_items').children().eq(i), \$collectionHolder,false);
+                }
+               
             }
 
             \$addResponsableButton.on('click', function (e) {
@@ -321,17 +337,23 @@ class __TwigTemplate_8edba1c6e49761ea27746ab49009708f46be5c7f6cc5e51393454268f20
             });
         });
 
-        function addTagFormDeleteLink(\$tagFormLi, \$collectionHolder) {
-            var \$removeFormButton = \$('<button class=\"delete btn btn-danger\" type=\"button\">Quitar Usuario</button>');
-            \$tagFormLi.append(\$removeFormButton);
+        function addTagFormDeleteLink(\$tagFormLi, \$collectionHolder, disabled) {
+            if (!disabled) {
+                var \$removeFormButton = \$('<button class=\"delete btn btn-danger\" type=\"button\">Quitar Usuario</button>');
+                \$tagFormLi.append(\$removeFormButton);
 
-            \$removeFormButton.on('click', function (e) {
-                // remove the li for the tag form
-                var index = \$collectionHolder.data('index');
-                \$tagFormLi.remove();
+                \$removeFormButton.on('click', function (e) {
+                    // remove the li for the tag form
+                    var index = \$collectionHolder.data('index');
+                    \$tagFormLi.remove();
 
-                \$collectionHolder.data('index', index - 1);
-            });
+                    \$collectionHolder.data('index', index - 1);
+                });
+            } else {
+                var \$removeFormButton = \$('<button disabled class=\"delete btn btn-danger\" type=\"button\">Quitar Usuario</button>');
+                \$tagFormLi.append(\$removeFormButton);
+            }
+
         }
 
         function addResponsableForm(\$collectionHolder, \$newLinkLi) {
@@ -355,9 +377,9 @@ class __TwigTemplate_8edba1c6e49761ea27746ab49009708f46be5c7f6cc5e51393454268f20
 
             // Display the form in the page in an li, before the \"Add a tag\" link li
             var \$newFormLi = \$('.responsable_items').append(newForm);
-            if (index > 0) {
+            if (index > 1) {
                 //console.log(totalCount);
-                addTagFormDeleteLink(\$(\$newFormLi).children().eq(index - 1), \$collectionHolder);
+                addTagFormDeleteLink(\$(\$newFormLi).children().eq(index - 1), \$collectionHolder,false);
             }
 
             //console.log(\$(\$newFormLi).children().eq(index-1));

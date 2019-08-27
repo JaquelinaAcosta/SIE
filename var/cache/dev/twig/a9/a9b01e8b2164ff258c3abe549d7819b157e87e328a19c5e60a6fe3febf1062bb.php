@@ -275,103 +275,147 @@ class __TwigTemplate_6046505f96e5228ff3587ae9438108e1b7e25c3ebc3edff398671e3a73f
             // line 121
             echo twig_escape_filter($this->env, $this->getAttribute($context["lugarfisico"], "acceso", []));
             echo "</td>
-                        <td><a class=\"btn btn-warning\" href=\"";
-            // line 122
-            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_lugarfisico", ["id" => $this->getAttribute($context["lugarfisico"], "id", [])]), "html", null, true);
-            echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"><i class=\"fas fa-edit\"></i></a>
-";
+                        <td>
+
+                            ";
             // line 124
-            echo "                            <button type=\"button\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal";
-            echo twig_escape_filter($this->env, ($context["count"] ?? $this->getContext($context, "count")), "html", null, true);
-            echo "\"><i class=\"fas fa-trash-alt\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Eliminar\"></i></button>    
+            $context["accion_habilitada"] = false;
+            // line 125
+            echo "                            ";
+            if (($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "role", []) == "ROLE_ADMIN")) {
+                // line 126
+                echo "                                ";
+                $context["accion_habilitada"] = true;
+                // line 127
+                echo "                            ";
+            } else {
+                // line 128
+                echo "                                ";
+                $context['_parent'] = $context;
+                $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute($context["lugarfisico"], "responsables", []), "getValues", []));
+                foreach ($context['_seq'] as $context["_key"] => $context["responsable"]) {
+                    // line 129
+                    echo "                                    ";
+                    if (($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []) == $this->getAttribute($context["responsable"], "usuario", []))) {
+                        // line 130
+                        echo "                                        ";
+                        $context["accion_habilitada"] = true;
+                        // line 131
+                        echo "                                    ";
+                    }
+                    // line 132
+                    echo "                                ";
+                }
+                $_parent = $context['_parent'];
+                unset($context['_seq'], $context['_iterated'], $context['_key'], $context['responsable'], $context['_parent'], $context['loop']);
+                $context = array_intersect_key($context, $_parent) + $_parent;
+                // line 133
+                echo "                            ";
+            }
+            echo "  
 
+                            ";
+            // line 135
+            if ((($context["accion_habilitada"] ?? $this->getContext($context, "accion_habilitada")) == true)) {
+                // line 136
+                echo "
+                                <a class=\"btn btn-warning\" href=\"";
+                // line 137
+                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_lugarfisico", ["id" => $this->getAttribute($context["lugarfisico"], "id", [])]), "html", null, true);
+                echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"><i class=\"fas fa-edit\"></i></a>
+                                    ";
+                // line 139
+                echo "
+                                <a class=\"btn btn-info\" href=\"";
+                // line 140
+                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("gestionar_lugarfisico_responsables", ["id" => $this->getAttribute($context["lugarfisico"], "id", [])]), "html", null, true);
+                echo "\"  role=\"button\"><i class=\"fas fa-user\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Responsables\"></i></a>
+                                <button type=\"button\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal";
+                // line 141
+                echo twig_escape_filter($this->env, ($context["count"] ?? $this->getContext($context, "count")), "html", null, true);
+                echo "\"><i class=\"fas fa-trash-alt\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Eliminar\"></i></button>    
+                                <!-- The Modal -->
+                                <div class=\"modal fade\" id=\"myModal";
+                // line 143
+                echo twig_escape_filter($this->env, ($context["count"] ?? $this->getContext($context, "count")), "html", null, true);
+                echo "\">
+                                    <div class=\"modal-dialog modal-sm modal-dialog-centered\">
+                                        <div class=\"modal-content\">
 
-                                        <!-- The Modal -->
-                                        <div class=\"modal fade\" id=\"myModal";
-            // line 128
-            echo twig_escape_filter($this->env, ($context["count"] ?? $this->getContext($context, "count")), "html", null, true);
-            echo "\">
-                                            <div class=\"modal-dialog modal-sm modal-dialog-centered\">
-                                                <div class=\"modal-content\">
-
-                                                    <!-- Modal Header -->
-                                                    <div class=\"modal-header-warning\">
-                                                        <button type=\"button\" class=\"close text-danger\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>
-                                                        <h4 class=\"modal-title\">Eliminar Lugar Físico</h4>
-                                                    </div>
-
-                                                    <!-- Modal body -->
-                                                    <div class=\"modal-body\">
-                                                        ¿Desea Eliminar el Lugar Físico: ";
-            // line 140
-            echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["lugarfisico"], "dependencia", []), "descripcion", []), "html", null, true);
-            echo "?
-                                                    </div>
-                                                    <!-- Modal footer -->
-                                                    <div class=\"modal-footer\">
-                                                        <button type=\"button\" class=\"btn btn-primary\"><a class=\"text-type btn-primary\"href=\"";
-            // line 144
-            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("borrar_lugarfisico", ["id" => $this->getAttribute($context["lugarfisico"], "id", [])]), "html", null, true);
-            echo "\"  role=\"button\">SI</a></button>                          
-                                                        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">NO</button>
-                                                    </div>
-
-                                                </div>
+                                            <!-- Modal Header -->
+                                            <div class=\"modal-header-warning\">
+                                                <button type=\"button\" class=\"close text-danger\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>
+                                                <h4 class=\"modal-title\">Eliminar Lugar Físico</h4>
                                             </div>
+
+                                            <!-- Modal body -->
+                                            <div class=\"modal-body\">
+                                                ¿Desea Eliminar el Lugar Físico: ";
+                // line 155
+                echo twig_escape_filter($this->env, $this->getAttribute($context["lugarfisico"], "tipo", []), "html", null, true);
+                echo "?
+                                            </div>
+                                            <!-- Modal footer -->
+                                            <div class=\"modal-footer\">
+                                                <button type=\"button\" class=\"btn btn-primary\"><a class=\"text-type btn-primary\"href=\"";
+                // line 159
+                echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("borrar_lugarfisico", ["id" => $this->getAttribute($context["lugarfisico"], "id", [])]), "html", null, true);
+                echo "\"  role=\"button\">SI</a></button>                          
+                                                <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">NO</button>
+                                            </div>
+
                                         </div>
-                                        ";
-            // line 151
-            $context["count"] = (($context["count"] ?? $this->getContext($context, "count")) + 1);
-            // line 152
-            echo "                            
-                            
-                            
-                            
-                            <a class=\"btn btn-warning\" href=\"";
-            // line 156
-            echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("gestionar_lugarfisico_responsables", ["id" => $this->getAttribute($context["lugarfisico"], "id", [])]), "html", null, true);
-            echo "\"  role=\"button\"><i class=\"fas fa-edit\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Responsables\"></i></a></td>
+                                    </div>
+                                </div>
+                                ";
+                // line 166
+                $context["count"] = (($context["count"] ?? $this->getContext($context, "count")) + 1);
+                echo "                               
+                            ";
+            }
+            // line 168
+            echo "                        </td>
                     </tr>
                 ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['lugarfisico'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 159
+        // line 171
         echo "
             </tbody>
         </table>
 
         ";
-        // line 163
+        // line 175
         if ((twig_length_filter($this->env, ($context["lugarFisico"] ?? $this->getContext($context, "lugarFisico"))) < ($context["totalItems"] ?? $this->getContext($context, "totalItems")))) {
             echo "        
             <ul class=\"pagination\">
                 ";
-            // line 165
+            // line 177
             if ((($context["thisPage"] ?? $this->getContext($context, "thisPage")) == 1)) {
                 echo "           
                 ";
             } else {
-                // line 167
+                // line 179
                 echo "                    ";
                 $context["thisPage"] = (($context["thisPage"] ?? $this->getContext($context, "thisPage")) - 1);
-                // line 168
+                // line 180
                 echo "                ";
             }
-            // line 169
+            // line 181
             echo "
 
                 <li ><a class=\"page-link\" href=\"";
-            // line 171
+            // line 183
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_lugarfisico", ["currentPage" => ($context["thisPage"] ?? $this->getContext($context, "thisPage"))]), "html", null, true);
             echo "\">&laquo</a></li>
                     ";
-            // line 172
+            // line 184
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable(range(1, ($context["maxPages"] ?? $this->getContext($context, "maxPages"))));
             foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
-                // line 173
+                // line 185
                 echo "                    <li><a class=\"page-link\"  href=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_lugarfisico", ["currentPage" => $context["i"]]), "html", null, true);
                 echo "\">";
@@ -382,21 +426,21 @@ class __TwigTemplate_6046505f96e5228ff3587ae9438108e1b7e25c3ebc3edff398671e3a73f
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 175
+            // line 187
             echo "
                 ";
-            // line 176
+            // line 188
             if ((($context["page"] ?? $this->getContext($context, "page")) == ($context["maxPages"] ?? $this->getContext($context, "maxPages")))) {
-                // line 177
+                // line 189
                 echo "                ";
             } else {
-                // line 178
+                // line 190
                 echo "                    ";
                 $context["page"] = (($context["page"] ?? $this->getContext($context, "page")) + 1);
-                // line 179
+                // line 191
                 echo "                ";
             }
-            // line 180
+            // line 192
             echo "                <li><a class=\"page-link\" href=\"";
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_lugarfisico", ["currentPage" => ($context["page"] ?? $this->getContext($context, "page"))]), "html", null, true);
             echo "\">&raquo</a></li>
@@ -406,7 +450,7 @@ class __TwigTemplate_6046505f96e5228ff3587ae9438108e1b7e25c3ebc3edff398671e3a73f
         </div> 
     ";
         }
-        // line 186
+        // line 198
         echo "
     <script>
         \$(function () {
@@ -436,7 +480,7 @@ class __TwigTemplate_6046505f96e5228ff3587ae9438108e1b7e25c3ebc3edff398671e3a73f
 
     public function getDebugInfo()
     {
-        return array (  410 => 186,  400 => 180,  397 => 179,  394 => 178,  391 => 177,  389 => 176,  386 => 175,  375 => 173,  371 => 172,  367 => 171,  363 => 169,  360 => 168,  357 => 167,  352 => 165,  347 => 163,  341 => 159,  332 => 156,  326 => 152,  324 => 151,  314 => 144,  307 => 140,  292 => 128,  284 => 124,  280 => 122,  276 => 121,  272 => 120,  267 => 119,  261 => 117,  259 => 116,  256 => 115,  251 => 114,  249 => 113,  240 => 106,  236 => 104,  234 => 103,  227 => 98,  218 => 95,  215 => 94,  211 => 93,  208 => 92,  199 => 89,  196 => 88,  192 => 87,  181 => 79,  175 => 76,  171 => 75,  161 => 68,  156 => 66,  152 => 65,  145 => 61,  140 => 59,  136 => 58,  132 => 56,  125 => 52,  120 => 50,  116 => 49,  111 => 47,  105 => 44,  93 => 35,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  454 => 198,  444 => 192,  441 => 191,  438 => 190,  435 => 189,  433 => 188,  430 => 187,  419 => 185,  415 => 184,  411 => 183,  407 => 181,  404 => 180,  401 => 179,  396 => 177,  391 => 175,  385 => 171,  377 => 168,  372 => 166,  362 => 159,  355 => 155,  340 => 143,  335 => 141,  331 => 140,  328 => 139,  324 => 137,  321 => 136,  319 => 135,  313 => 133,  307 => 132,  304 => 131,  301 => 130,  298 => 129,  293 => 128,  290 => 127,  287 => 126,  284 => 125,  282 => 124,  276 => 121,  272 => 120,  267 => 119,  261 => 117,  259 => 116,  256 => 115,  251 => 114,  249 => 113,  240 => 106,  236 => 104,  234 => 103,  227 => 98,  218 => 95,  215 => 94,  211 => 93,  208 => 92,  199 => 89,  196 => 88,  192 => 87,  181 => 79,  175 => 76,  171 => 75,  161 => 68,  156 => 66,  152 => 65,  145 => 61,  140 => 59,  136 => 58,  132 => 56,  125 => 52,  120 => 50,  116 => 49,  111 => 47,  105 => 44,  93 => 35,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -570,41 +614,53 @@ class __TwigTemplate_6046505f96e5228ff3587ae9438108e1b7e25c3ebc3edff398671e3a73f
                         <td class=\"text-default\">{{lugarfisico.tipo|e }}</td>
                         <td class=\"text-default\"><p>{{lugarfisico.descripcion|e }}</p></td>
                         <td class=\"text-default\">{{lugarfisico.acceso|e }}</td>
-                        <td><a class=\"btn btn-warning\" href=\"{{ path('editar_lugarfisico',{'id':lugarfisico.id}) }}\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"><i class=\"fas fa-edit\"></i></a>
-{#                            <a class=\"btn btn-danger\" href=\"{{ path('borrar_lugarfisico',{'id':lugarfisico.id}) }}\"  role=\"button\"><i class=\"far fa-file-archive\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Borrar\"></i></a>#}
-                            <button type=\"button\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal{{ count }}\"><i class=\"fas fa-trash-alt\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Eliminar\"></i></button>    
+                        <td>
 
+                            {% set accion_habilitada = false %}
+                            {% if app.user.role == 'ROLE_ADMIN' %}
+                                {% set accion_habilitada = true %}
+                            {%else%}
+                                {% for responsable in lugarfisico.responsables.getValues %}
+                                    {% if app.user == responsable.usuario %}
+                                        {% set accion_habilitada = true %}
+                                    {% endif %}
+                                {%endfor%}
+                            {% endif %}  
 
-                                        <!-- The Modal -->
-                                        <div class=\"modal fade\" id=\"myModal{{count}}\">
-                                            <div class=\"modal-dialog modal-sm modal-dialog-centered\">
-                                                <div class=\"modal-content\">
+                            {% if accion_habilitada == true %}
 
-                                                    <!-- Modal Header -->
-                                                    <div class=\"modal-header-warning\">
-                                                        <button type=\"button\" class=\"close text-danger\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>
-                                                        <h4 class=\"modal-title\">Eliminar Lugar Físico</h4>
-                                                    </div>
+                                <a class=\"btn btn-warning\" href=\"{{ path('editar_lugarfisico',{'id':lugarfisico.id}) }}\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"><i class=\"fas fa-edit\"></i></a>
+                                    {#                            <a class=\"btn btn-danger\" href=\"{{ path('borrar_lugarfisico',{'id':lugarfisico.id}) }}\"  role=\"button\"><i class=\"far fa-file-archive\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Borrar\"></i></a>#}
 
-                                                    <!-- Modal body -->
-                                                    <div class=\"modal-body\">
-                                                        ¿Desea Eliminar el Lugar Físico: {{ lugarfisico.dependencia.descripcion}}?
-                                                    </div>
-                                                    <!-- Modal footer -->
-                                                    <div class=\"modal-footer\">
-                                                        <button type=\"button\" class=\"btn btn-primary\"><a class=\"text-type btn-primary\"href=\"{{ path('borrar_lugarfisico',{'id':lugarfisico.id}) }}\"  role=\"button\">SI</a></button>                          
-                                                        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">NO</button>
-                                                    </div>
+                                <a class=\"btn btn-info\" href=\"{{ path(\"gestionar_lugarfisico_responsables\", {'id':lugarfisico.id}) }}\"  role=\"button\"><i class=\"fas fa-user\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Responsables\"></i></a>
+                                <button type=\"button\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal{{ count }}\"><i class=\"fas fa-trash-alt\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Eliminar\"></i></button>    
+                                <!-- The Modal -->
+                                <div class=\"modal fade\" id=\"myModal{{count}}\">
+                                    <div class=\"modal-dialog modal-sm modal-dialog-centered\">
+                                        <div class=\"modal-content\">
 
-                                                </div>
+                                            <!-- Modal Header -->
+                                            <div class=\"modal-header-warning\">
+                                                <button type=\"button\" class=\"close text-danger\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>
+                                                <h4 class=\"modal-title\">Eliminar Lugar Físico</h4>
                                             </div>
+
+                                            <!-- Modal body -->
+                                            <div class=\"modal-body\">
+                                                ¿Desea Eliminar el Lugar Físico: {{ lugarfisico.tipo}}?
+                                            </div>
+                                            <!-- Modal footer -->
+                                            <div class=\"modal-footer\">
+                                                <button type=\"button\" class=\"btn btn-primary\"><a class=\"text-type btn-primary\"href=\"{{ path('borrar_lugarfisico',{'id':lugarfisico.id}) }}\"  role=\"button\">SI</a></button>                          
+                                                <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">NO</button>
+                                            </div>
+
                                         </div>
-                                        {% set count=count+1 %}
-                            
-                            
-                            
-                            
-                            <a class=\"btn btn-warning\" href=\"{{ path(\"gestionar_lugarfisico_responsables\", {'id':lugarfisico.id}) }}\"  role=\"button\"><i class=\"fas fa-edit\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Responsables\"></i></a></td>
+                                    </div>
+                                </div>
+                                {% set count=count+1 %}                               
+                            {%endif%}
+                        </td>
                     </tr>
                 {% endfor %}
 

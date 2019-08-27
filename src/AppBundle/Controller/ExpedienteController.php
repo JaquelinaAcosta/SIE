@@ -183,7 +183,8 @@ class ExpedienteController extends Controller {
                     'page' => $currentPage,
                     'formExpedienteFilter' => $formExpedienteFilter->createView(),
                     'asociado' => $asociado,
-                    'padre_id' => $padre_id
+                    'padre_id' => $padre_id,
+                    'user'=>$user
         ));
     }
 
