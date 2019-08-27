@@ -47,6 +47,7 @@ security:
         - {path : ^/listaExpediente, roles: [ROLE_USER,ROLE_RESPONSABLE] }
         - {path : ^/add/expediente, roles: [ROLE_RESPONSABLE] }
         - {path : ^/expediente, roles:[ROLE_USER,ROLE_RESPONSABLE] }
+        - {path : ^/usuario/listado/, roles:[ROLE_ADMIN] }
        
 
             # activate different ways to authenticate

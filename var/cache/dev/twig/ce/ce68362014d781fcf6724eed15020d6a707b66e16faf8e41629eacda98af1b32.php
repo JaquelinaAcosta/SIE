@@ -118,59 +118,68 @@ class __TwigTemplate_7696ec8bc5621571ac85c4ee2017015669e76f76def8d1d74f8d193cdd4
         // line 24
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "email", []), 'widget');
         echo "
-        <label class=\"float left\">CONTRASEÑA</label>
-        <div class=\" text-danger\">";
-        // line 26
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "contrasenia", []), 'errors');
-        echo "</div>
-        ";
-        // line 27
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "contrasenia", []), 'widget');
-        echo "
-
         
         ";
-        // line 30
+        // line 26
+        if ($this->getAttribute(($context["form"] ?? null), "contrasenia", [], "any", true, true)) {
+            // line 27
+            echo "            
+            <label class=\"float left\">CONTRASEÑA</label>
+            <div class=\" text-danger\">";
+            // line 29
+            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "contrasenia", []), 'errors');
+            echo "</div>
+            ";
+            // line 30
+            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "contrasenia", []), 'widget');
+            echo "            
+
+        ";
+        }
+        // line 33
+        echo "        
+        ";
+        // line 34
         if ($this->getAttribute(($context["form"] ?? null), "persona", [], "any", true, true)) {
-            // line 31
+            // line 35
             echo "
             <label class=\"float left\">PERSONA GESTIONANTE</label>
             ";
-            // line 33
+            // line 37
             echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "persona", []), 'errors');
             echo "
             ";
-            // line 34
+            // line 38
             echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "persona", []), 'widget');
             echo " 
 
         ";
         }
-        // line 37
+        // line 41
         echo "
         ";
-        // line 38
+        // line 42
         if ($this->getAttribute(($context["form"] ?? null), "role", [], "any", true, true)) {
-            // line 39
-            echo "
+            // line 43
+            echo "            
             <label class=\"float left\">ROLES</label>
             ";
-            // line 41
+            // line 45
             echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "role", []), 'errors');
             echo "
             ";
-            // line 42
+            // line 46
             echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "role", []), 'widget');
-            echo "        
-
+            echo " 
+            
         ";
         }
-        // line 45
+        // line 49
         echo "
 
         <br/>
         ";
-        // line 48
+        // line 52
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "Aceptar", []), 'widget');
         echo "
 
@@ -178,7 +187,7 @@ class __TwigTemplate_7696ec8bc5621571ac85c4ee2017015669e76f76def8d1d74f8d193cdd4
 
 
         ";
-        // line 53
+        // line 57
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_end');
         echo "
     </div>
@@ -186,11 +195,11 @@ class __TwigTemplate_7696ec8bc5621571ac85c4ee2017015669e76f76def8d1d74f8d193cdd4
     <script>
         \$('#usuario_persona').autocompleter({
             url_list: \"";
-        // line 58
+        // line 62
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("persona_search");
         echo "\",
             url_get: \"";
-        // line 59
+        // line 63
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("persona_get");
         echo "\"
         });
@@ -217,7 +226,7 @@ class __TwigTemplate_7696ec8bc5621571ac85c4ee2017015669e76f76def8d1d74f8d193cdd4
 
     public function getDebugInfo()
     {
-        return array (  194 => 59,  190 => 58,  182 => 53,  174 => 48,  169 => 45,  163 => 42,  159 => 41,  155 => 39,  153 => 38,  150 => 37,  144 => 34,  140 => 33,  136 => 31,  134 => 30,  128 => 27,  124 => 26,  119 => 24,  115 => 23,  110 => 21,  106 => 20,  100 => 18,  91 => 15,  88 => 14,  84 => 13,  81 => 12,  72 => 9,  69 => 8,  65 => 7,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  203 => 63,  199 => 62,  191 => 57,  183 => 52,  178 => 49,  172 => 46,  168 => 45,  164 => 43,  162 => 42,  159 => 41,  153 => 38,  149 => 37,  145 => 35,  143 => 34,  140 => 33,  134 => 30,  130 => 29,  126 => 27,  124 => 26,  119 => 24,  115 => 23,  110 => 21,  106 => 20,  100 => 18,  91 => 15,  88 => 14,  84 => 13,  81 => 12,  72 => 9,  69 => 8,  65 => 7,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -254,10 +263,14 @@ class __TwigTemplate_7696ec8bc5621571ac85c4ee2017015669e76f76def8d1d74f8d193cdd4
         <label class=\"float left\">EMAIL</label>
         {{ form_errors(form.email) }}
         {{ form_widget(form.email) }}
-        <label class=\"float left\">CONTRASEÑA</label>
-        <div class=\" text-danger\">{{ form_errors(form.contrasenia) }}</div>
-        {{ form_widget(form.contrasenia) }}
+        
+        {% if form.contrasenia is defined %}
+            
+            <label class=\"float left\">CONTRASEÑA</label>
+            <div class=\" text-danger\">{{ form_errors(form.contrasenia) }}</div>
+            {{ form_widget(form.contrasenia) }}            
 
+        {% endif %}
         
         {% if form.persona is defined %}
 
@@ -268,11 +281,11 @@ class __TwigTemplate_7696ec8bc5621571ac85c4ee2017015669e76f76def8d1d74f8d193cdd4
         {% endif %}
 
         {% if form.role is defined %}
-
+            
             <label class=\"float left\">ROLES</label>
             {{ form_errors(form.role) }}
-            {{ form_widget(form.role) }}        
-
+            {{ form_widget(form.role) }} 
+            
         {% endif %}
 
 

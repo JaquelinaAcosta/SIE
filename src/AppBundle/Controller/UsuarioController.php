@@ -103,11 +103,15 @@ class UsuarioController extends Controller {
                 $em->persist($usuario);
                 $flush = $em->flush();
 
-                if ($flush == false) {
+                if ($flush == false and $usuarioActual->getRole() == 'ROLE_ADMIN') {
                     $this->addFlash('success', "Usuario editado correctamente.");
                     return $this->redirectToRoute('listado_usuario', [
                                 'currentPage' => 1]);
-                } else {
+                }
+                if ($flush == false and $usuarioActual->getRole() == 'ROLE_USER') {
+                    $this->addFlash('success', "Usuario editado correctamente.");
+                    return $this->redirectToRoute('busqueda_expediente');
+                }else {
                     $this->addFlash('danger', "Ocurrió un error en la edicion del usuario.");
                 }
             } else {
