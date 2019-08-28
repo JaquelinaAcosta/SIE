@@ -72,49 +72,65 @@ class __TwigTemplate_1df56ca95c02c4f1a43e3ba8394a8753635add8363edb921cd380120ad2
         }
     </style>
 
-
-
     <div class=\"content\">
 
         <h4 class=\"text-center\">Gestionar los usuarios responsables de  - ";
-        // line 23
+        // line 21
         echo twig_escape_filter($this->env, ($context["lugarfisico"] ?? $this->getContext($context, "lugarfisico")), "html", null, true);
         echo "</h4>
         <hr/>
         ";
-        // line 25
+        // line 23
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_start', ["action" => "", "method" => "POST"]);
         echo "
         <div class=\"filtro\">
             <label class=\"text-default\">USUARIO/S RESPONSABLE/S(<span class=\"text-danger\">*</span>)</label>                 
             <div class=\"responsable_items\">                       
                 ";
-        // line 29
+        // line 27
+        $context["count"] = 0;
+        // line 28
+        echo "                ";
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "responsables", []));
         foreach ($context['_seq'] as $context["_key"] => $context["responsable"]) {
-            // line 30
+            // line 29
             echo "                    ";
-            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($context["responsable"], 'row');
-            echo "
-                ";
+            if ((($context["count"] ?? $this->getContext($context, "count")) == 0)) {
+                // line 30
+                echo "                        ";
+                echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute($context["responsable"], "usuario", []), 'row', ["disabled" => "disabled"]);
+                echo "
+                    ";
+            } else {
+                // line 32
+                echo "                        ";
+                echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($context["responsable"], 'row');
+                echo "
+
+                    ";
+            }
+            // line 35
+            echo "                    ";
+            $context["count"] = (($context["count"] ?? $this->getContext($context, "count")) + 1);
+            // line 36
+            echo "                ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['responsable'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 31
-        echo "                       
+        echo "                              
             </div>
             <div class=\"add col-lg-3\"></div>
             <div class=\"responsables\" data-prototype=\"";
-        // line 34
+        // line 39
         echo twig_escape_filter($this->env, $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute($this->getAttribute($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "responsables", []), "vars", []), "prototype", []), 'widget'), "html_attr");
         echo "\"></div>
             <hr/>
             <div class=\"row col-lg-6\">
                 <div class=\"col-lg-4\">
                     ";
-        // line 38
+        // line 43
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "Guardar", []), 'widget');
         echo "
                 </div>
@@ -122,12 +138,18 @@ class __TwigTemplate_1df56ca95c02c4f1a43e3ba8394a8753635add8363edb921cd380120ad2
         </div>
 
         ";
-        // line 43
+        // line 48
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_end');
         echo "
     </div>
 
     <script>
+        
+         \$(\"#persona_Guardar\").click(function () {
+            \$( \".respon\" ).prop( \"disabled\", false );          
+            return true;
+        });
+        
         var \$collectionHolder;
 
         // setup an \"add a tag\" link
@@ -240,7 +262,7 @@ class __TwigTemplate_1df56ca95c02c4f1a43e3ba8394a8753635add8363edb921cd380120ad2
 
     public function getDebugInfo()
     {
-        return array (  126 => 43,  118 => 38,  111 => 34,  106 => 31,  97 => 30,  93 => 29,  86 => 25,  81 => 23,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  142 => 48,  134 => 43,  127 => 39,  117 => 36,  114 => 35,  107 => 32,  101 => 30,  98 => 29,  93 => 28,  91 => 27,  84 => 23,  79 => 21,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -271,8 +293,6 @@ class __TwigTemplate_1df56ca95c02c4f1a43e3ba8394a8753635add8363edb921cd380120ad2
         }
     </style>
 
-
-
     <div class=\"content\">
 
         <h4 class=\"text-center\">Gestionar los usuarios responsables de  - {{ lugarfisico }}</h4>
@@ -281,9 +301,16 @@ class __TwigTemplate_1df56ca95c02c4f1a43e3ba8394a8753635add8363edb921cd380120ad2
         <div class=\"filtro\">
             <label class=\"text-default\">USUARIO/S RESPONSABLE/S(<span class=\"text-danger\">*</span>)</label>                 
             <div class=\"responsable_items\">                       
+                {%set count = 0%}
                 {% for responsable in form.responsables %}
-                    {{ form_row(responsable) }}
-                {% endfor %}                       
+                    {% if count == 0 %}
+                        {{ form_row(responsable.usuario,{'disabled':'disabled'})}}
+                    {%else%}
+                        {{ form_row(responsable)}}
+
+                    {%endif%}
+                    {% set count = count+1%}
+                {% endfor %}                              
             </div>
             <div class=\"add col-lg-3\"></div>
             <div class=\"responsables\" data-prototype=\"{{ form_widget(form.responsables.vars.prototype)|e('html_attr') }}\"></div>
@@ -299,6 +326,12 @@ class __TwigTemplate_1df56ca95c02c4f1a43e3ba8394a8753635add8363edb921cd380120ad2
     </div>
 
     <script>
+        
+         \$(\"#persona_Guardar\").click(function () {
+            \$( \".respon\" ).prop( \"disabled\", false );          
+            return true;
+        });
+        
         var \$collectionHolder;
 
         // setup an \"add a tag\" link

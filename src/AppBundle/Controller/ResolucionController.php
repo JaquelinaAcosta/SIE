@@ -30,6 +30,9 @@ class ResolucionController extends Controller {
                 $resolucion->setFechaResolucion(date($form['fechaResolucion']->getData()." H:i:s"));
                 $em->persist($resolucion);
                 $em->flush();
+                
+                return $this->redirectToRoute('ver_expediente', ['id'=>$id]);
+
                                
             }
         }

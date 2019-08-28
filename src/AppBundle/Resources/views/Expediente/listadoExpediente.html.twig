@@ -239,9 +239,8 @@
                         {% if asociado == false %}
                             <td class="text-center"><a class="btn btn-info" href="{{ path("ver_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Ver Detalle"><i class="fas fa-search"></i></a>
 
-                                {#<a class="btn btn-danger" href="{{ path("eliminar_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt"></i></a></td>
-#}
-                                 {% set accion_habilitada = false %}
+                                {#<a class="btn btn-danger" href="{{ path("eliminar_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt"></i></a></td>#}
+                                {% set accion_habilitada = false %}
                                 {% if app.user.role == 'ROLE_ADMIN' %}
                                     {% set accion_habilitada = true %}
                                 {%else%}

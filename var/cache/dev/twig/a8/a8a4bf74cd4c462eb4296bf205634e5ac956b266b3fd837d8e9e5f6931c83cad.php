@@ -87,34 +87,52 @@ class __TwigTemplate_8edba1c6e49761ea27746ab49009708f46be5c7f6cc5e51393454268f20
         echo "
         <div class=\"filtro\">
             <label class=\"text-default\">USUARIO/S RESPONSABLE/S(<span class=\"text-danger\">*</span>)</label>                 
-            <div class=\"responsable_items\">                       
+            <div class=\"responsable_items\">
                 ";
         // line 29
+        $context["count"] = 0;
+        // line 30
+        echo "                ";
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "responsables", []));
         foreach ($context['_seq'] as $context["_key"] => $context["responsable"]) {
-            // line 30
+            // line 31
             echo "                    ";
-            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($context["responsable"], 'row');
-            echo "
-                ";
+            if ((($context["count"] ?? $this->getContext($context, "count")) == 0)) {
+                // line 32
+                echo "                        ";
+                echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute($context["responsable"], "usuario", []), 'row', ["disabled" => "disabled"]);
+                echo "
+                    ";
+            } else {
+                // line 34
+                echo "                        ";
+                echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($context["responsable"], 'row');
+                echo "
+                        
+                        ";
+            }
+            // line 37
+            echo "                    ";
+            $context["count"] = (($context["count"] ?? $this->getContext($context, "count")) + 1);
+            // line 38
+            echo "                ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['responsable'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 31
         echo "                       
             </div>
             <div class=\"add col-lg-3\"></div>
             <div class=\"responsables\" data-prototype=\"";
-        // line 34
+        // line 41
         echo twig_escape_filter($this->env, $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute($this->getAttribute($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "responsables", []), "vars", []), "prototype", []), 'widget'), "html_attr");
         echo "\"></div>
             <hr/>
             <div class=\"row col-lg-6\">
                 <div class=\"col-lg-4\">
                     ";
-        // line 38
+        // line 45
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "Guardar", []), 'widget');
         echo "
                 </div>
@@ -122,12 +140,18 @@ class __TwigTemplate_8edba1c6e49761ea27746ab49009708f46be5c7f6cc5e51393454268f20
         </div>
 
         ";
-        // line 43
+        // line 50
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_end');
         echo "
     </div>
 
     <script>
+
+        \$(\"#persona_Guardar\").click(function () {
+            \$( \".respon\" ).prop( \"disabled\", false );          
+            return true;
+        });
+
         var \$collectionHolder;
 
         // setup an \"add a tag\" link
@@ -152,12 +176,12 @@ class __TwigTemplate_8edba1c6e49761ea27746ab49009708f46be5c7f6cc5e51393454268f20
 
 
             for (var i = 0; i <= totalCount; i++) {
-                if(i == 0){
-                    addTagFormDeleteLink(\$('.responsable_items').children().eq(i), \$collectionHolder,true);
-                }else{
-                     addTagFormDeleteLink(\$('.responsable_items').children().eq(i), \$collectionHolder,false);
+                if (i == 0) {
+                    addTagFormDeleteLink(\$('.responsable_items').children().eq(i), \$collectionHolder, true);
+                } else {
+                    addTagFormDeleteLink(\$('.responsable_items').children().eq(i), \$collectionHolder, false);
                 }
-               
+
             }
 
             \$addResponsableButton.on('click', function (e) {
@@ -206,9 +230,9 @@ class __TwigTemplate_8edba1c6e49761ea27746ab49009708f46be5c7f6cc5e51393454268f20
 
             // Display the form in the page in an li, before the \"Add a tag\" link li
             var \$newFormLi = \$('.responsable_items').append(newForm);
-            if (index > 1) {
+            if (index > 0) {
                 //console.log(totalCount);
-                addTagFormDeleteLink(\$(\$newFormLi).children().eq(index - 1), \$collectionHolder,false);
+                addTagFormDeleteLink(\$(\$newFormLi).children().eq(index - 1), \$collectionHolder, false);
             }
 
             //console.log(\$(\$newFormLi).children().eq(index-1));
@@ -240,7 +264,7 @@ class __TwigTemplate_8edba1c6e49761ea27746ab49009708f46be5c7f6cc5e51393454268f20
 
     public function getDebugInfo()
     {
-        return array (  126 => 43,  118 => 38,  111 => 34,  106 => 31,  97 => 30,  93 => 29,  86 => 25,  81 => 23,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  144 => 50,  136 => 45,  129 => 41,  119 => 38,  116 => 37,  109 => 34,  103 => 32,  100 => 31,  95 => 30,  93 => 29,  86 => 25,  81 => 23,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -280,9 +304,16 @@ class __TwigTemplate_8edba1c6e49761ea27746ab49009708f46be5c7f6cc5e51393454268f20
         {{form_start(form,{'action':'','method':'POST'})}}
         <div class=\"filtro\">
             <label class=\"text-default\">USUARIO/S RESPONSABLE/S(<span class=\"text-danger\">*</span>)</label>                 
-            <div class=\"responsable_items\">                       
+            <div class=\"responsable_items\">
+                {%set count = 0%}
                 {% for responsable in form.responsables %}
-                    {{ form_row(responsable) }}
+                    {% if count == 0 %}
+                        {{ form_row(responsable.usuario,{'disabled':'disabled'})}}
+                    {%else%}
+                        {{ form_row(responsable)}}
+                        
+                        {%endif%}
+                    {% set count = count+1%}
                 {% endfor %}                       
             </div>
             <div class=\"add col-lg-3\"></div>
@@ -299,6 +330,12 @@ class __TwigTemplate_8edba1c6e49761ea27746ab49009708f46be5c7f6cc5e51393454268f20
     </div>
 
     <script>
+
+        \$(\"#persona_Guardar\").click(function () {
+            \$( \".respon\" ).prop( \"disabled\", false );          
+            return true;
+        });
+
         var \$collectionHolder;
 
         // setup an \"add a tag\" link
@@ -323,12 +360,12 @@ class __TwigTemplate_8edba1c6e49761ea27746ab49009708f46be5c7f6cc5e51393454268f20
 
 
             for (var i = 0; i <= totalCount; i++) {
-                if(i == 0){
-                    addTagFormDeleteLink(\$('.responsable_items').children().eq(i), \$collectionHolder,true);
-                }else{
-                     addTagFormDeleteLink(\$('.responsable_items').children().eq(i), \$collectionHolder,false);
+                if (i == 0) {
+                    addTagFormDeleteLink(\$('.responsable_items').children().eq(i), \$collectionHolder, true);
+                } else {
+                    addTagFormDeleteLink(\$('.responsable_items').children().eq(i), \$collectionHolder, false);
                 }
-               
+
             }
 
             \$addResponsableButton.on('click', function (e) {
@@ -377,9 +414,9 @@ class __TwigTemplate_8edba1c6e49761ea27746ab49009708f46be5c7f6cc5e51393454268f20
 
             // Display the form in the page in an li, before the \"Add a tag\" link li
             var \$newFormLi = \$('.responsable_items').append(newForm);
-            if (index > 1) {
+            if (index > 0) {
                 //console.log(totalCount);
-                addTagFormDeleteLink(\$(\$newFormLi).children().eq(index - 1), \$collectionHolder,false);
+                addTagFormDeleteLink(\$(\$newFormLi).children().eq(index - 1), \$collectionHolder, false);
             }
 
             //console.log(\$(\$newFormLi).children().eq(index-1));

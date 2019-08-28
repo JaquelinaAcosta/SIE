@@ -48,6 +48,26 @@ security:
         - {path : ^/add/expediente, roles: [ROLE_RESPONSABLE] }
         - {path : ^/expediente, roles:[ROLE_USER,ROLE_RESPONSABLE] }
         - {path : ^/usuario/listado/, roles:[ROLE_ADMIN] }
+        #no anda Editar expediente:
+        - {path : ^/expediente/editar/, roles:[ROLE_ADMIN]}
+        #no anda Movimiento exp:
+        - {path : ^/expediente/editar/[id]/add/movimiento, roles:[ROLE_ADMIN]}
+        - {path : ^/expediente/delete/, roles:[ROLE_ADMIN]}
+        #no anda add caratula agregada: 
+        - {path : ^/expediente/add/caratulaAgregada/, roles:[ROLE_ADMIN]}
+        #no anda add movimiento: 
+        - {path : ^/expediente/[id]/add/movimiento, roles:[ROLE_ADMIN]}
+        #no anda add movimiento: 
+        - {path : ^/expediente/[id]/resolucion, roles:[ROLE_ADMIN]}
+        - {path : ^/dependencia/, roles:[ROLE_ADMIN] }
+        - {path : ^/adm/gestionar/mesa_entrada/, roles:[ROLE_ADMIN] }
+        - {path : ^/persona/, roles:[ROLE_ADMIN] }
+        - {path : ^/adm/gestionar/persona_responsbles/, roles:[ROLE_ADMIN] }
+        - {path : ^/lugar_fisico/edit/, roles:[ROLE_ADMIN] }
+        - {path : ^/lugar_fisico/add, roles:[ROLE_ADMIN] }
+        - {path : ^/adm/gestionar/lugarfisico_responsables/, roles:[ROLE_ADMIN] }
+        
+        
        
 
             # activate different ways to authenticate

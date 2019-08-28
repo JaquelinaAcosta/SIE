@@ -17,20 +17,8 @@ class CaratulaAgregadaFilterType extends AbstractType implements EmbeddedFilterT
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $builder->add('concepto', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType', array(
-            'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
-                if (!empty($values['value'])) {
-                    $qb = $filterQuery->getQueryBuilder();
-                    $qb->andWhere($filterQuery->getExpr()->like($field, ':concepto'));
-                    $qb->setParameter('concepto', '%' . $values['value'] . '%');
-                }
-            },
-            'attr' => ['class' => 'form-control',
-                'placeholder' => 'Búsqueda por concepto...']
-        ));
+        
             
-//            SELECT * FROM `caratula_agregada` LEFT JOIN tema ON caratula_agregada.tema = tema.id WHERE tema.id = 69
-           
         $builder->add('tema', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType', array(
             'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
                 if (!empty($values['value'])) {
@@ -45,6 +33,22 @@ class CaratulaAgregadaFilterType extends AbstractType implements EmbeddedFilterT
             'attr' => ['class' => 'form-control',
                 'placeholder' => 'Ingrese el codigo del tema...']
         ));
+            
+        $builder->add('descripcionTema', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType', array(
+            'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
+                if (!empty($values['value'])) {
+                    $qb = $filterQuery->getQueryBuilder();
+                    $qb->andWhere(
+                            $filterQuery->getExpr()->orX(
+                                    $filterQuery->getExpr()->like('t.descripcion', ':descripcion')
+                            )
+                    )->setParameter('descripcion', '%' . $values['value'] . '%');
+                }
+            },
+            'attr' => ['class' => 'form-control',
+                'placeholder' => 'Ingrese el codigo del tema...']
+        ));
+            
 
         $builder->add('filter', 'Symfony\Component\Form\Extension\Core\Type\SubmitType', array(
             'label' => 'Filtrar',
@@ -55,37 +59,7 @@ class CaratulaAgregadaFilterType extends AbstractType implements EmbeddedFilterT
             'label' => 'Reiniciar',
             'attr' => ['class' => 'btn btn-secondary']
         ));
-
-
-
-//        $builder
-//                
-//                 ->add('tema', 'PUGX\AutocompleterBundle\Form\Type\AutocompleteType', array(
-//                    'class' => 'AppBundle:Tema',
-//                    'label' => 'Responsable',
-//                    'required' => false,
-//                    'attr' => array(
-//                        'class'=>'form form-control',
-//                        'placeholder' => 'Escriba parte del código y seleccione un tema'
-//                    )
-//                ))
-//                ->add('concepto', TextareaType::class,array(
-//            "label"=>"Concepto:","attr"=> array(
-//               "class"=>"form-name form-control" ,
-//               "placeholder"=>"Concepto..."
-//            )
-//        ))
-//                ->add('fojas', TextType::class,array(
-//            "label"=>"Cantidad de Fojas:","attr"=> array(
-//               "class"=>"form-name form-control" ,
-//               "placeholder"=>"1, 2, 3.."
-//            )
-//        ))
-//                ->add('Aceptar', SubmitType::class,array("attr"=> array(
-//               "class"=>"form-submit btn btn-primary" 
-//            )
-//        ));
-//                
+           
     }
 
     /**

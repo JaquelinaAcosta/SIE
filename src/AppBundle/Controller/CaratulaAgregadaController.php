@@ -94,21 +94,6 @@ class CaratulaAgregadaController extends Controller {
         ));
     }
 
-//     /**
-//     * @Route("expediente/{id}/caratula/listado", name="listado_caratula")
-//     */
-//    public function listaMovimientoAction(Request $request,$id) {
-//
-//        $em = $this->getDoctrine()->getEntityManager();
-//        $user = $this->getUser();
-//        $expediente = $em->getRepository('AppBundle:Expediente')->find($id);
-//
-//        // replace this example code with whatever you need
-//        return $this->render('AppBundle:Expediente:listadoCaratulas.html.twig', [
-//                    'expediente' => $expediente
-//        ]);
-//    }
-
     /**
      * @Route("expediente/{id}/caratula/listado/{currentPage}", name="listado_caratula")
      */
@@ -169,6 +154,22 @@ class CaratulaAgregadaController extends Controller {
                     'page' => $currentPage,
                     'formCaratulaAgregadaFilter' => $formCaratulaAgregadaFilter->createView()
         ));
+    }
+    
+    
+    /**
+    * @Route("expediente/ver_caratula/{id}", name="ver_caratula")
+    */
+    public function detalleCaratulaAction(Request $request, $id) {
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $caratulaAgregada = $em->getRepository("AppBundle:CaratulaAgregada")->find($id);
+//        $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
+        
+        // replace this example code with whatever you need
+        return $this->render('AppBundle:Expediente:detalleCaratulaAgregada.html.twig', [
+                    'caratula' => $caratulaAgregada
+        ]);
     }
 
 }
