@@ -93,7 +93,7 @@ class __TwigTemplate_937e2d57c9f0461ce866fd73ed1cc4b0092b24789d325722770234a4432
                 <div class=\"card-header\" id=\"headingOne\">
                     <h2 class=\"mb-0\">
                         <button class=\"btn btn-dark search\" type=\"button\" data-toggle=\"collapse\" data-target=\"#collapseOne\" aria-expanded=\"true\" aria-controls=\"collapseOne\">
-                            <i class=\"fas fa-search-plus\"></i>   Búsqueda de Expediente
+                            <i class=\"fas fa-search-plus\"></i>   Búsqueda de un Expediente
                         </button>
                     </h2>
                 </div>
@@ -423,7 +423,7 @@ class __TwigTemplate_937e2d57c9f0461ce866fd73ed1cc4b0092b24789d325722770234a4432
                 <div class=\"card-header\" id=\"headingOne\">
                     <h2 class=\"mb-0\">
                         <button class=\"btn btn-dark search\" type=\"button\" data-toggle=\"collapse\" data-target=\"#collapseOne\" aria-expanded=\"true\" aria-controls=\"collapseOne\">
-                            <i class=\"fas fa-search-plus\"></i>   Búsqueda de Expediente
+                            <i class=\"fas fa-search-plus\"></i>   Búsqueda de un Expediente
                         </button>
                     </h2>
                 </div>

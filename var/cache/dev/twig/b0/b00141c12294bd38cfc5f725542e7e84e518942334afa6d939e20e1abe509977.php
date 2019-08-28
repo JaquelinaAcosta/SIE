@@ -548,59 +548,59 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
                 echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Ver Detalle\"><i class=\"fas fa-search\"></i></a>
 
                                 ";
-                // line 244
-                echo "                                 ";
+                // line 243
+                echo "                                ";
                 $context["accion_habilitada"] = false;
-                // line 245
+                // line 244
                 echo "                                ";
                 if (($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "role", []) == "ROLE_ADMIN")) {
-                    // line 246
+                    // line 245
                     echo "                                    ";
                     $context["accion_habilitada"] = true;
-                    // line 247
+                    // line 246
                     echo "                                ";
                 } else {
-                    // line 248
+                    // line 247
                     echo "                                    ";
                     $context['_parent'] = $context;
                     $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute($this->getAttribute($context["expediente"], "ubicacionActual", []), "responsables", []), "getValues", []));
                     foreach ($context['_seq'] as $context["_key"] => $context["responsable"]) {
-                        // line 249
+                        // line 248
                         echo "                                        ";
                         if ((($context["user"] ?? $this->getContext($context, "user")) == $this->getAttribute($context["responsable"], "usuario", []))) {
-                            // line 250
+                            // line 249
                             echo "                                            ";
                             $context["accion_habilitada"] = true;
-                            // line 251
+                            // line 250
                             echo "                                        ";
                         }
-                        // line 252
+                        // line 251
                         echo "                                    ";
                     }
                     $_parent = $context['_parent'];
                     unset($context['_seq'], $context['_iterated'], $context['_key'], $context['responsable'], $context['_parent'], $context['loop']);
                     $context = array_intersect_key($context, $_parent) + $_parent;
-                    // line 253
+                    // line 252
                     echo "                                ";
                 }
                 echo "  
 
                                 ";
-                // line 255
+                // line 254
                 if ((($context["accion_habilitada"] ?? $this->getContext($context, "accion_habilitada")) == true)) {
-                    // line 256
+                    // line 255
                     echo "                                    <a class=\"btn btn-warning\" href=\"";
                     echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_expediente", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
                     echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"><i class=\"fas fa-edit\"></i></a>
                                     <a class=\"btn btn-warning\" href=\"";
-                    // line 257
+                    // line 256
                     echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("elegir_movimiento", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
                     echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Realizar un pase\"><i class=\"fas fa-arrow-alt-circle-right\"></i></a>
 
                                     ";
-                    // line 259
+                    // line 258
                     if ((null === $this->getAttribute($context["expediente"], "fechaBaja", []))) {
-                        // line 260
+                        // line 259
                         echo "                                        <button type=\"button\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal";
                         echo twig_escape_filter($this->env, ($context["count"] ?? $this->getContext($context, "count")), "html", null, true);
                         echo "\"><i class=\"fas fa-trash-alt\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Eliminar\"></i></button>    
@@ -608,7 +608,7 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
 
                                         <!-- The Modal -->
                                         <div class=\"modal fade\" id=\"myModal";
-                        // line 264
+                        // line 263
                         echo twig_escape_filter($this->env, ($context["count"] ?? $this->getContext($context, "count")), "html", null, true);
                         echo "\">
                                             <div class=\"modal-dialog modal-sm modal-dialog-centered\">
@@ -623,14 +623,14 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
                                                     <!-- Modal body -->
                                                     <div class=\"modal-body\">
                                                         ¿Desea Eliminar el Expediente: ";
-                        // line 276
+                        // line 275
                         echo twig_escape_filter($this->env, $context["expediente"], "html", null, true);
                         echo "?
                                                     </div>
                                                     <!-- Modal footer -->
                                                     <div class=\"modal-footer\">
                                                         <button type=\"button\" class=\"btn btn-primary\"><a class=\"text-type btn-primary\"href=\"";
-                        // line 280
+                        // line 279
                         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("eliminar_expediente", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
                         echo "\"  role=\"button\">SI</a></button>                          
                                                         <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">NO</button>
@@ -640,24 +640,24 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
                                             </div>
                                         </div>
                                         ";
-                        // line 287
+                        // line 286
                         $context["count"] = (($context["count"] ?? $this->getContext($context, "count")) + 1);
-                        // line 288
+                        // line 287
                         echo "                                    ";
                     } else {
-                        // line 289
+                        // line 288
                         echo "                                        <a class=\"btn btn-success\" href=\"";
                         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("alta_expediente", ["id" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
                         echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Dar de alta\"><i class=\"fas fa-check-square\"></i></a>
                                         ";
                     }
-                    // line 291
+                    // line 290
                     echo "                                    ";
                 }
-                // line 292
+                // line 291
                 echo "                                ";
             } else {
-                // line 293
+                // line 292
                 echo "                            <td class=\"text-center\"><a class=\"btn btn-info\" href=\"";
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nuevo_expediente_asociado", ["id" => ($context["padre_id"] ?? $this->getContext($context, "padre_id")), "id_asoc" => $this->getAttribute($context["expediente"], "id", [])]), "html", null, true);
                 echo "\"  
@@ -666,7 +666,7 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
 
                         ";
             }
-            // line 298
+            // line 297
             echo "
                     </tr>
                 ";
@@ -674,7 +674,7 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['expediente'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 301
+        // line 300
         echo "
             </tbody>
         </table>
@@ -685,16 +685,16 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
 
         \$('#expediente_filter_tema').autocompleter({
             url_list: \"";
-        // line 310
+        // line 309
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("tema_search");
         echo "\",
             url_get: \"";
-        // line 311
+        // line 310
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("tema_get");
         echo "\"
         });
         ";
-        // line 317
+        // line 316
         echo "
                 \$(function () {
                     \$('[data-toggle=\"tooltip\"]').tooltip()
@@ -723,7 +723,7 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
 
     public function getDebugInfo()
     {
-        return array (  698 => 317,  693 => 311,  689 => 310,  678 => 301,  670 => 298,  661 => 293,  658 => 292,  655 => 291,  649 => 289,  646 => 288,  644 => 287,  634 => 280,  627 => 276,  612 => 264,  604 => 260,  602 => 259,  597 => 257,  592 => 256,  590 => 255,  584 => 253,  578 => 252,  575 => 251,  572 => 250,  569 => 249,  564 => 248,  561 => 247,  558 => 246,  555 => 245,  552 => 244,  546 => 240,  544 => 239,  539 => 236,  535 => 234,  532 => 233,  528 => 231,  524 => 229,  521 => 228,  519 => 227,  514 => 225,  510 => 224,  500 => 221,  495 => 218,  490 => 217,  488 => 216,  474 => 204,  468 => 200,  465 => 199,  459 => 197,  456 => 196,  453 => 195,  447 => 193,  444 => 192,  438 => 190,  436 => 189,  433 => 188,  427 => 187,  424 => 186,  421 => 185,  418 => 184,  415 => 183,  412 => 182,  409 => 181,  406 => 180,  403 => 179,  399 => 178,  396 => 177,  393 => 176,  390 => 175,  388 => 174,  383 => 172,  379 => 170,  377 => 169,  370 => 164,  360 => 160,  357 => 159,  353 => 158,  350 => 157,  340 => 153,  337 => 152,  333 => 151,  324 => 145,  318 => 142,  314 => 141,  305 => 135,  301 => 134,  294 => 130,  290 => 129,  284 => 126,  275 => 120,  270 => 118,  266 => 117,  259 => 113,  254 => 111,  250 => 110,  243 => 106,  238 => 104,  234 => 103,  231 => 102,  224 => 98,  219 => 96,  215 => 95,  212 => 94,  210 => 93,  202 => 88,  197 => 86,  190 => 82,  185 => 80,  178 => 76,  173 => 74,  165 => 69,  161 => 68,  152 => 61,  146 => 59,  144 => 58,  138 => 56,  132 => 55,  129 => 54,  126 => 53,  123 => 52,  118 => 51,  115 => 50,  112 => 49,  109 => 48,  107 => 47,  102 => 45,  60 => 5,  51 => 4,  29 => 1,);
+        return array (  698 => 316,  693 => 310,  689 => 309,  678 => 300,  670 => 297,  661 => 292,  658 => 291,  655 => 290,  649 => 288,  646 => 287,  644 => 286,  634 => 279,  627 => 275,  612 => 263,  604 => 259,  602 => 258,  597 => 256,  592 => 255,  590 => 254,  584 => 252,  578 => 251,  575 => 250,  572 => 249,  569 => 248,  564 => 247,  561 => 246,  558 => 245,  555 => 244,  552 => 243,  546 => 240,  544 => 239,  539 => 236,  535 => 234,  532 => 233,  528 => 231,  524 => 229,  521 => 228,  519 => 227,  514 => 225,  510 => 224,  500 => 221,  495 => 218,  490 => 217,  488 => 216,  474 => 204,  468 => 200,  465 => 199,  459 => 197,  456 => 196,  453 => 195,  447 => 193,  444 => 192,  438 => 190,  436 => 189,  433 => 188,  427 => 187,  424 => 186,  421 => 185,  418 => 184,  415 => 183,  412 => 182,  409 => 181,  406 => 180,  403 => 179,  399 => 178,  396 => 177,  393 => 176,  390 => 175,  388 => 174,  383 => 172,  379 => 170,  377 => 169,  370 => 164,  360 => 160,  357 => 159,  353 => 158,  350 => 157,  340 => 153,  337 => 152,  333 => 151,  324 => 145,  318 => 142,  314 => 141,  305 => 135,  301 => 134,  294 => 130,  290 => 129,  284 => 126,  275 => 120,  270 => 118,  266 => 117,  259 => 113,  254 => 111,  250 => 110,  243 => 106,  238 => 104,  234 => 103,  231 => 102,  224 => 98,  219 => 96,  215 => 95,  212 => 94,  210 => 93,  202 => 88,  197 => 86,  190 => 82,  185 => 80,  178 => 76,  173 => 74,  165 => 69,  161 => 68,  152 => 61,  146 => 59,  144 => 58,  138 => 56,  132 => 55,  129 => 54,  126 => 53,  123 => 52,  118 => 51,  115 => 50,  112 => 49,  109 => 48,  107 => 47,  102 => 45,  60 => 5,  51 => 4,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -977,9 +977,8 @@ class __TwigTemplate_30a25b2efbe3082d1ea36eef481e2a46039b69b13e9163915b6143d6c1f
                         {% if asociado == false %}
                             <td class=\"text-center\"><a class=\"btn btn-info\" href=\"{{ path(\"ver_expediente\", {'id':expediente.id}) }}\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Ver Detalle\"><i class=\"fas fa-search\"></i></a>
 
-                                {#<a class=\"btn btn-danger\" href=\"{{ path(\"eliminar_expediente\", {'id':expediente.id}) }}\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Eliminar\"><i class=\"fas fa-trash-alt\"></i></a></td>
-#}
-                                 {% set accion_habilitada = false %}
+                                {#<a class=\"btn btn-danger\" href=\"{{ path(\"eliminar_expediente\", {'id':expediente.id}) }}\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Eliminar\"><i class=\"fas fa-trash-alt\"></i></a></td>#}
+                                {% set accion_habilitada = false %}
                                 {% if app.user.role == 'ROLE_ADMIN' %}
                                     {% set accion_habilitada = true %}
                                 {%else%}

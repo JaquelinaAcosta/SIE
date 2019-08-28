@@ -43,25 +43,22 @@
             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                 <div class="card-body">
                     <form method="post" novalidate="true" id="form_buscar">
-                        {{ form_errors(formCaratulaAgregadaFilter) }}
+                        {{ form_start(formCaratulaAgregadaFilter) }}
+{#                        {{ form_errors(formCaratulaAgregadaFilter) }}#}
                         <div class="row">
-                            <div class="threecol col-lg-4">
-                                {{ form_label(formCaratulaAgregadaFilter.concepto, 'CONCEPTO') }}
-                                {{ form_widget(formCaratulaAgregadaFilter.concepto) }}
-                                <div class="help-block with-errors">
-                                    {{ form_errors(formCaratulaAgregadaFilter.concepto) }}
-                                </div>
-                            </div>
                             <div class="threecol col-lg-4">
                                 {{ form_label(formCaratulaAgregadaFilter.tema, 'CODIGO') }}
                                 {{ form_widget(formCaratulaAgregadaFilter.tema) }}
                                 <div class="help-block with-errors">
                                     {{ form_errors(formCaratulaAgregadaFilter.tema) }}
                                 </div>
-
-
-
-                                {# {{dump(formCaratulaAgregadaFilter.tema)}}#}
+                            </div>
+                            <div class="threecol col-lg-4">
+                                {{ form_label(formCaratulaAgregadaFilter.descripcionTema, 'DESCRIPCION TEMA') }}
+                                {{ form_widget(formCaratulaAgregadaFilter.descripcionTema) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formCaratulaAgregadaFilter.descripcionTema) }}
+                                </div>
                             </div> 
 
                         </div>
@@ -102,10 +99,10 @@
                         <td>{{caratulaAgregada.tema.descripcion}}</td>
                         <td>
                             {% if accion_habilitada == true %}
+                                <a class="btn btn-info" href="{{path("ver_caratula",{'id':caratulaAgregada.id})}}"  role="button" data-toggle="tooltip" data-placement="top" title="Ver Detalle"><i class="fas fa-search"></i></a>
                                 <a class="btn btn-warning" href="{{ path("editar_caratula", {'id':caratulaAgregada.id}) }}"  role="button"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Editar"></i></a>
                                 <a class="btn btn-danger" href="{{ path("eliminar_caratula", {'id':caratulaAgregada.id}) }}"  role="button"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></a></td>
                                 {%endif%}
-
                     </tr>
 
                 {% endfor %}

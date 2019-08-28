@@ -131,46 +131,44 @@ class __TwigTemplate_8107ca37eb8caf829fa9253b3f99b383552ee94053ec04390d65638b6af
         // line 34
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "email", []), "second", []), 'row');
         echo "
+           
             <label class=\"float left\">CONTRASEÑA</label>
-            ";
-        // line 36
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "contrasenia", []), 'errors');
-        echo "
             <div class=\" text-danger\">";
         // line 37
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "contrasenia", []), "first", []), 'row');
-        echo "</div>          
-            <label class=\"float left\">CONFIRMAR CONTRASEÑA</label>
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "contrasenia", []), 'errors');
+        echo "</div>
             ";
-        // line 39
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "contrasenia", []), "second", []), 'row');
+        // line 38
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "contrasenia", []), 'widget');
         echo "
-            <label class=\"float left\">PERSONA GESTIONANTE</label>
+        ";
+        // line 45
+        echo "            <label class=\"float left\">PERSONA GESTIONANTE</label>
             ";
-        // line 41
+        // line 46
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "persona", []), 'errors');
         echo "
             ";
-        // line 42
+        // line 47
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "persona", []), 'widget');
         echo "                  
             <label class=\"float left\">ROLES</label>
             ";
-        // line 44
+        // line 49
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "role", []), 'errors');
         echo "
             ";
-        // line 45
+        // line 50
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "role", []), 'widget');
         echo "                                        
             <br/>
             ";
-        // line 47
+        // line 52
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["form"] ?? $this->getContext($context, "form")), "Aceptar", []), 'widget');
         echo "          
 
             ";
-        // line 49
+        // line 54
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["form"] ?? $this->getContext($context, "form")), 'form_end');
         echo "
         </div>        
@@ -178,11 +176,11 @@ class __TwigTemplate_8107ca37eb8caf829fa9253b3f99b383552ee94053ec04390d65638b6af
     <script>
         \$('#usuario_persona').autocompleter({
             url_list: \"";
-        // line 54
+        // line 59
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("persona_search");
         echo "\",
             url_get: \"";
-        // line 55
+        // line 60
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("persona_get");
         echo "\"
         });
@@ -208,7 +206,7 @@ class __TwigTemplate_8107ca37eb8caf829fa9253b3f99b383552ee94053ec04390d65638b6af
 
     public function getDebugInfo()
     {
-        return array (  186 => 55,  182 => 54,  174 => 49,  169 => 47,  164 => 45,  160 => 44,  155 => 42,  151 => 41,  146 => 39,  141 => 37,  137 => 36,  132 => 34,  127 => 32,  123 => 31,  118 => 29,  114 => 28,  108 => 26,  99 => 23,  96 => 22,  92 => 21,  89 => 20,  80 => 17,  77 => 16,  73 => 15,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  184 => 60,  180 => 59,  172 => 54,  167 => 52,  162 => 50,  158 => 49,  153 => 47,  149 => 46,  146 => 45,  142 => 38,  138 => 37,  132 => 34,  127 => 32,  123 => 31,  118 => 29,  114 => 28,  108 => 26,  99 => 23,  96 => 22,  92 => 21,  89 => 20,  80 => 17,  77 => 16,  73 => 15,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -255,11 +253,16 @@ class __TwigTemplate_8107ca37eb8caf829fa9253b3f99b383552ee94053ec04390d65638b6af
             {{ form_row(form.email.first) }}
             <label class=\"float left\">CONFIRMAR EMAIL</label>
             {{ form_row(form.email.second) }}
+           
             <label class=\"float left\">CONTRASEÑA</label>
-            {{ form_errors(form.contrasenia) }}
+            <div class=\" text-danger\">{{ form_errors(form.contrasenia) }}</div>
+            {{ form_widget(form.contrasenia) }}
+        {#    {{ form_errors(form.contrasenia) }}
             <div class=\" text-danger\">{{ form_row(form.contrasenia.first) }}</div>          
+            
+            
             <label class=\"float left\">CONFIRMAR CONTRASEÑA</label>
-            {{ form_row(form.contrasenia.second) }}
+            {{ form_row(form.contrasenia.second) }}#}
             <label class=\"float left\">PERSONA GESTIONANTE</label>
             {{ form_errors(form.persona) }}
             {{ form_widget(form.persona) }}                  
