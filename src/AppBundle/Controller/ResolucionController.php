@@ -12,7 +12,7 @@ use AppBundle\Entity\Usuario;
 class ResolucionController extends Controller {
 
     /**
-     * @Route("/expediente/{id}/resolucion/", name="nueva_resolucion")
+     * @Route("/expediente/resolucion/{id}", name="nueva_resolucion")
      */
     public function indexAction(Request $request, $id) {
         $em = $this->getDoctrine()->getEntityManager();
@@ -46,7 +46,7 @@ class ResolucionController extends Controller {
     }
     
       /**
-     * @Route("expediente/{id}/resolucion/detalle", name="ver_resolucion")
+     * @Route("expediente/resolucion/detalle/{id}", name="ver_resolucion")
      */
     public function resolucionAction(Request $request, $id) {
 

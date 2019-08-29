@@ -178,29 +178,32 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
                 return $this->mergeDefaults(array_replace($matches, ['_route' => 'alta_expediente']), array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::altaAction',));
             }
 
+            if (0 === strpos($pathinfo, '/expediente/add/movimiento')) {
+                // elegir_movimiento
+                if (preg_match('#^/expediente/add/movimiento/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'elegir_movimiento']), array (  '_controller' => 'AppBundle\\Controller\\MovimientoExpedienteController::indexMovimientoAction',));
+                }
+
+                // movimiento_interno
+                if (0 === strpos($pathinfo, '/expediente/add/movimiento/interno') && preg_match('#^/expediente/add/movimiento/interno/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'movimiento_interno']), array (  '_controller' => 'AppBundle\\Controller\\MovimientoExpedienteController::internoAction',));
+                }
+
+                // movimiento_externo
+                if (0 === strpos($pathinfo, '/expediente/add/movimiento/externo') && preg_match('#^/expediente/add/movimiento/externo/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'movimiento_externo']), array (  '_controller' => 'AppBundle\\Controller\\MovimientoExpedienteController::externoAction',));
+                }
+
+                // movimiento_archivado
+                if (0 === strpos($pathinfo, '/expediente/add/movimiento/archivado') && preg_match('#^/expediente/add/movimiento/archivado/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'movimiento_archivado']), array (  '_controller' => 'AppBundle\\Controller\\MovimientoExpedienteController::archivadoAction',));
+                }
+
+            }
+
             // editar_expediente
             if (0 === strpos($pathinfo, '/expediente/editar') && preg_match('#^/expediente/editar/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, ['_route' => 'editar_expediente']), array (  '_controller' => 'AppBundle\\Controller\\ExpedienteController::editAction',));
-            }
-
-            // elegir_movimiento
-            if (preg_match('#^/expediente/(?P<id>[^/]++)/add/movimiento$#sD', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, ['_route' => 'elegir_movimiento']), array (  '_controller' => 'AppBundle\\Controller\\MovimientoExpedienteController::indexMovimientoAction',));
-            }
-
-            // movimiento_interno
-            if (preg_match('#^/expediente/(?P<id>[^/]++)/add/movimiento/interno$#sD', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, ['_route' => 'movimiento_interno']), array (  '_controller' => 'AppBundle\\Controller\\MovimientoExpedienteController::internoAction',));
-            }
-
-            // movimiento_externo
-            if (preg_match('#^/expediente/(?P<id>[^/]++)/add/movimiento/externo$#sD', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, ['_route' => 'movimiento_externo']), array (  '_controller' => 'AppBundle\\Controller\\MovimientoExpedienteController::externoAction',));
-            }
-
-            // movimiento_archivado
-            if (preg_match('#^/expediente/(?P<id>[^/]++)/add/movimiento/archivado$#sD', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, ['_route' => 'movimiento_archivado']), array (  '_controller' => 'AppBundle\\Controller\\MovimientoExpedienteController::archivadoAction',));
             }
 
             // listado_movimiento
@@ -214,33 +217,26 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             }
 
             // editar_movimiento
-            if (preg_match('#^/expediente/(?P<id>[^/]++)/movimiento/editar$#sD', $pathinfo, $matches)) {
+            if (0 === strpos($pathinfo, '/expediente/movimiento/editar') && preg_match('#^/expediente/movimiento/editar/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, ['_route' => 'editar_movimiento']), array (  '_controller' => 'AppBundle\\Controller\\MovimientoExpedienteController::editMovimientoAction',));
             }
 
             // eliminar_movimiento
-            if (preg_match('#^/expediente/(?P<id>[^/]++)/movimiento/eliminar$#sD', $pathinfo, $matches)) {
+            if (0 === strpos($pathinfo, '/expediente/movimiento/eliminar') && preg_match('#^/expediente/movimiento/eliminar/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
                 return $this->mergeDefaults(array_replace($matches, ['_route' => 'eliminar_movimiento']), array (  '_controller' => 'AppBundle\\Controller\\MovimientoExpedienteController::deleteAction',));
             }
 
-            // nueva_resolucion
-            if (preg_match('#^/expediente/(?P<id>[^/]++)/resolucion/?$#sD', $pathinfo, $matches)) {
-                $ret = $this->mergeDefaults(array_replace($matches, ['_route' => 'nueva_resolucion']), array (  '_controller' => 'AppBundle\\Controller\\ResolucionController::indexAction',));
-                if ('/' === substr($pathinfo, -1)) {
-                    // no-op
-                } elseif ('GET' !== $canonicalMethod) {
-                    goto not_nueva_resolucion;
-                } else {
-                    return array_replace($ret, $this->redirect($rawPathinfo.'/', 'nueva_resolucion'));
+            if (0 === strpos($pathinfo, '/expediente/resolucion')) {
+                // nueva_resolucion
+                if (preg_match('#^/expediente/resolucion/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'nueva_resolucion']), array (  '_controller' => 'AppBundle\\Controller\\ResolucionController::indexAction',));
                 }
 
-                return $ret;
-            }
-            not_nueva_resolucion:
+                // ver_resolucion
+                if (0 === strpos($pathinfo, '/expediente/resolucion/detalle') && preg_match('#^/expediente/resolucion/detalle/(?P<id>[^/]++)$#sD', $pathinfo, $matches)) {
+                    return $this->mergeDefaults(array_replace($matches, ['_route' => 'ver_resolucion']), array (  '_controller' => 'AppBundle\\Controller\\ResolucionController::resolucionAction',));
+                }
 
-            // ver_resolucion
-            if (preg_match('#^/expediente/(?P<id>[^/]++)/resolucion/detalle$#sD', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, ['_route' => 'ver_resolucion']), array (  '_controller' => 'AppBundle\\Controller\\ResolucionController::resolucionAction',));
             }
 
         }
