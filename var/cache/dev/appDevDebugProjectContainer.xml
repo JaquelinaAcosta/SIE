@@ -2777,14 +2777,6 @@
         <argument>null</argument>
       </call>
       <call method="add">
-        <argument type="service" id="security.request_matcher.2mi41nl"/>
-        <argument type="collection">
-          <argument>ROLE_USER</argument>
-          <argument>ROLE_RESPONSABLE</argument>
-        </argument>
-        <argument>null</argument>
-      </call>
-      <call method="add">
         <argument type="service" id="security.request_matcher.rftqeeo"/>
         <argument type="collection">
           <argument>ROLE_ADMIN</argument>
@@ -2794,40 +2786,40 @@
       <call method="add">
         <argument type="service" id="security.request_matcher.bvzvlsk"/>
         <argument type="collection">
-          <argument>ROLE_ADMIN</argument>
-        </argument>
-        <argument>null</argument>
-      </call>
-      <call method="add">
-        <argument type="service" id="security.request_matcher.g1cnxtn"/>
-        <argument type="collection">
-          <argument>ROLE_ADMIN</argument>
+          <argument>ROLE_RESPONSABLE</argument>
         </argument>
         <argument>null</argument>
       </call>
       <call method="add">
         <argument type="service" id="security.request_matcher.2yv5efy"/>
         <argument type="collection">
-          <argument>ROLE_ADMIN</argument>
+          <argument>ROLE_RESPONSABLE</argument>
         </argument>
         <argument>null</argument>
       </call>
       <call method="add">
         <argument type="service" id="security.request_matcher.896edy2"/>
         <argument type="collection">
-          <argument>ROLE_ADMIN</argument>
+          <argument>ROLE_RESPONSABLE</argument>
         </argument>
         <argument>null</argument>
       </call>
       <call method="add">
-        <argument type="service" id="security.request_matcher.s1ngtcr"/>
+        <argument type="service" id="security.request_matcher.umu79r6"/>
         <argument type="collection">
-          <argument>ROLE_ADMIN</argument>
+          <argument>ROLE_RESPONSABLE</argument>
         </argument>
         <argument>null</argument>
       </call>
       <call method="add">
-        <argument type="service" id="security.request_matcher.762hix3"/>
+        <argument type="service" id="security.request_matcher.yljnb2z"/>
+        <argument type="collection">
+          <argument>ROLE_RESPONSABLE</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service" id="security.request_matcher.02tquih"/>
         <argument type="collection">
           <argument>ROLE_ADMIN</argument>
         </argument>
@@ -2848,7 +2840,14 @@
         <argument>null</argument>
       </call>
       <call method="add">
-        <argument type="service" id="security.request_matcher.unr2rk_"/>
+        <argument type="service" id="security.request_matcher.2ozuy_6"/>
+        <argument type="collection">
+          <argument>ROLE_ADMIN</argument>
+        </argument>
+        <argument>null</argument>
+      </call>
+      <call method="add">
+        <argument type="service" id="security.request_matcher.hktwr9w"/>
         <argument type="collection">
           <argument>ROLE_ADMIN</argument>
         </argument>
@@ -3394,17 +3393,11 @@
     <service id="security.request_matcher.o.x6oa3" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
       <argument>^/add/expediente</argument>
     </service>
-    <service id="security.request_matcher.2mi41nl" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-      <argument>^/expediente</argument>
-    </service>
     <service id="security.request_matcher.rftqeeo" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
       <argument>^/usuario/listado/</argument>
     </service>
     <service id="security.request_matcher.bvzvlsk" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
       <argument>^/expediente/editar/</argument>
-    </service>
-    <service id="security.request_matcher.g1cnxtn" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-      <argument>^/expediente/editar/[id]/add/movimiento</argument>
     </service>
     <service id="security.request_matcher.2yv5efy" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
       <argument>^/expediente/delete/</argument>
@@ -3412,11 +3405,14 @@
     <service id="security.request_matcher.896edy2" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
       <argument>^/expediente/add/caratulaAgregada/</argument>
     </service>
-    <service id="security.request_matcher.s1ngtcr" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-      <argument>^/expediente/[id]/add/movimiento</argument>
+    <service id="security.request_matcher.umu79r6" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+      <argument>^/expediente/add/movimiento</argument>
     </service>
-    <service id="security.request_matcher.762hix3" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-      <argument>^/expediente/[id]/resolucion</argument>
+    <service id="security.request_matcher.yljnb2z" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+      <argument>^/expediente/movimiento/editar/</argument>
+    </service>
+    <service id="security.request_matcher.02tquih" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+      <argument>^/expediente/resolucion</argument>
     </service>
     <service id="security.request_matcher.se37mmm" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
       <argument>^/dependencia/</argument>
@@ -3424,8 +3420,11 @@
     <service id="security.request_matcher.thekeou" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
       <argument>^/adm/gestionar/mesa_entrada/</argument>
     </service>
-    <service id="security.request_matcher.unr2rk_" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-      <argument>^/persona/</argument>
+    <service id="security.request_matcher.2ozuy_6" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+      <argument>^/persona/listado</argument>
+    </service>
+    <service id="security.request_matcher.hktwr9w" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
+      <argument>^/persona/add</argument>
     </service>
     <service id="security.request_matcher.ukjbl6b" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
       <argument>^/adm/gestionar/persona_responsbles/</argument>

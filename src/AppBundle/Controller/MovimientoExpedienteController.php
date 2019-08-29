@@ -15,7 +15,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 class MovimientoExpedienteController extends Controller {
 
     /**
-     * @Route("/expediente/{id}/add/movimiento", name="elegir_movimiento")
+     * @Route("/expediente/add/movimiento/{id}", name="elegir_movimiento")
      */
     public function indexMovimientoAction(Request $request, $id) {
         $em = $this->getDoctrine()->getEntityManager();
@@ -45,7 +45,7 @@ class MovimientoExpedienteController extends Controller {
     }
 
     /**
-     * @Route("/expediente/{id}/add/movimiento/interno", name="movimiento_interno")
+     * @Route("/expediente/add/movimiento/interno/{id}", name="movimiento_interno")
      */
     public function internoAction(Request $request, $id) {
         $em = $this->getDoctrine()->getEntityManager();
@@ -93,7 +93,7 @@ class MovimientoExpedienteController extends Controller {
     }
 
     /**
-     * @Route("/expediente/{id}/add/movimiento/externo", name="movimiento_externo")
+     * @Route("/expediente/add/movimiento/externo/{id}", name="movimiento_externo")
      */
     public function externoAction(Request $request, $id) {
         $em = $this->getDoctrine()->getEntityManager();
@@ -158,7 +158,7 @@ class MovimientoExpedienteController extends Controller {
     }
 
     /**
-     * @Route("/expediente/{id}/add/movimiento/archivado", name="movimiento_archivado")
+     * @Route("/expediente/add/movimiento/archivado/{id}", name="movimiento_archivado")
      */
     public function archivadoAction(Request $request, $id) {
         $em = $this->getDoctrine()->getEntityManager();
@@ -291,7 +291,7 @@ class MovimientoExpedienteController extends Controller {
     }
 
     /**
-     * @Route("expediente/{id}/movimiento/editar", name="editar_movimiento")
+     * @Route("expediente/movimiento/editar/{id}", name="editar_movimiento")
      */
     public function editMovimientoAction(Request $request, $id) {
 
@@ -392,7 +392,7 @@ class MovimientoExpedienteController extends Controller {
     }
 
     /**
-     * @Route("expediente/{id}/movimiento/eliminar", name="eliminar_movimiento")
+     * @Route("expediente/movimiento/eliminar/{id}", name="eliminar_movimiento")
      */
     public function deleteAction(Request $request, $id) {
 

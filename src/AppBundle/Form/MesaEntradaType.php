@@ -73,12 +73,12 @@ class MesaEntradaType extends AbstractType {
             ));
         }
 
-        if ($gestion != null) {
-            $builder->add('Guardar', SubmitType::class,
-                    ['attr' => array(
-                            "class" => "form-control btn btn-success"
-            )]);
-        }
+//        if ($gestion != null) {
+//            $builder->add('Guardar', SubmitType::class,
+//                    ['attr' => array(
+//                            "class" => "form-control btn btn-success"
+//            )]);
+//        }
     }
 
 /**
