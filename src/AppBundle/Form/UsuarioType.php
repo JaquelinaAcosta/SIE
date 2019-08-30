@@ -18,9 +18,6 @@ class UsuarioType extends AbstractType {
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options) {
-        $password = $options['contrasenia'];
-        $role = $options['role'];
-
         $builder
                 ->add('iup', TextType::class, array(
                     "label" => "Ej: usuario1:", "attr" => array(
@@ -62,26 +59,24 @@ class UsuarioType extends AbstractType {
             )))
         ;
 
-        if ($password != null) {
+        if ($options['editar'] != null) {
             $builder
                      ->add('email', EmailType::class, array(
                     "label" => "", "attr" => array(
                         "class" => "form-exp form-control",
                         "placeholder" => "ejemplo@ejemplo.com"
                     )
-                ))
-                    
-                       
-            ;
-        }
-        if ($role != null) {
-            $builder
-                    ->add('contrasenia', TextType::class, array(
+                ));
+                                $builder->add('contrasenia', TextType::class, array(
                         "label" => "Contraseña: ", "attr" => array(
                             "class" => "form-exp form-control",
                             "placeholder" => "Contraseña"
                         )
-                    )) 
+                    )) ;
+        }
+        
+        if ($options['role'] == 'su') {
+            $builder
                     ->add('role', ChoiceType::class, array(
                         "placeholder" => "--Seleccione--",
                         "attr" => [
@@ -112,6 +107,7 @@ class UsuarioType extends AbstractType {
             'data_class' => 'AppBundle\Entity\Usuario',
             'contrasenia' => null,
             'role' => null,
+            'editar'=>null,
             'error_mapping' => array(
                 'validarPassword' => 'contrasenia'
             ),

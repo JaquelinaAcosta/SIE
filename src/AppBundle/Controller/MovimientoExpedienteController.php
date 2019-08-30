@@ -20,6 +20,10 @@ class MovimientoExpedienteController extends Controller {
     public function indexMovimientoAction(Request $request, $id) {
         $em = $this->getDoctrine()->getEntityManager();
         $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
+        if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser())) {
+            $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
+            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+        }
         $pase_externo = false;
 
         if ($this->getUser()->getRole() == 'ROLE_RESPONSABLE') {
@@ -51,9 +55,11 @@ class MovimientoExpedienteController extends Controller {
         $em = $this->getDoctrine()->getEntityManager();
         $movimientoExpediente = new MovimientoExpediente();
         $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
-
-        $form = $this->createForm(MovimientoExpedienteType::class,
-                $movimientoExpediente, ['pase' => 'interno']);
+        if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser())) {
+            $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
+            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+        }
+        $form = $this->createForm(MovimientoExpedienteType::class, $movimientoExpediente, ['pase' => 'interno']);
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
@@ -80,9 +86,8 @@ class MovimientoExpedienteController extends Controller {
                 } else {
                     $this->addFlash('danger', 'Ocurrio un error en el pase hacia "' . $persona . '"');
                 }
-                return $this->redirectToRoute('listado_movimiento',
-                                ['id' => $expediente->getId(),
-                                    'currentPage' => 1]);
+                return $this->redirectToRoute('listado_movimiento', ['id' => $expediente->getId(),
+                            'currentPage' => 1]);
             }
         }
         return $this->render('AppBundle:Movimiento:interno.html.twig', [
@@ -99,19 +104,21 @@ class MovimientoExpedienteController extends Controller {
         $em = $this->getDoctrine()->getEntityManager();
         $movimientoExpediente = new MovimientoExpediente();
         $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
+        if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser())) {
+            $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
+            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+        }
         $user = $this->getUser();
-          
+
         if (get_class($expediente->getUbicacionActual()) == \AppBundle\Entity\MesaEntrada::class) {
-            $form = $this->createForm(MovimientoExpedienteType::class,
-                    $movimientoExpediente, ['pase' => 'externo',
-             'dependencia_id' => $expediente->getUbicacionActual()->getDependencia()]);
+            $form = $this->createForm(MovimientoExpedienteType::class, $movimientoExpediente, ['pase' => 'externo',
+                'dependencia_id' => $expediente->getUbicacionActual()->getDependencia()]);
         } else {
-            $form = $this->createForm(MovimientoExpedienteType::class,
-                    $movimientoExpediente, ['pase' => 'externo',
+            $form = $this->createForm(MovimientoExpedienteType::class, $movimientoExpediente, ['pase' => 'externo',
                 'dependencia_id' => $user->getPersona()->getDependencia()->getId()]);
-        }        
+        }
         $form->handleRequest($request);
-             
+
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
                 $movimientoExpediente->setUsuario($this->getUser()->getIup());
@@ -119,7 +126,7 @@ class MovimientoExpedienteController extends Controller {
                                 ->find($form['mesaentrada']
                                         ->getData()->getDependencia()
                                         ->getId())->getMesaentrada();
-                              
+
                 $movimientoExpediente->setTipoSalida('Externo');
                 $movimientoExpediente->setExpediente($expediente);
                 $fechaHoy = date("d-m-Y");
@@ -146,8 +153,7 @@ class MovimientoExpedienteController extends Controller {
                     $this->addFlash('danger', 'Ocurrio un error en el pase hacia "' . $mesaentrada->getDependencia()) . '"';
                 }
 
-                return $this->redirectToRoute('listado_expediente',
-                                ['currentPage' => 1]);
+                return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
             }
         }
         return $this->render('AppBundle:Movimiento:externo.html.twig', [
@@ -164,10 +170,12 @@ class MovimientoExpedienteController extends Controller {
         $em = $this->getDoctrine()->getEntityManager();
         $movimientoExpediente = new MovimientoExpediente();
         $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
-
-        $form = $this->createForm(MovimientoExpedienteType::class,
-                $movimientoExpediente, ['pase' => 'archivar',
-                    'dependencia_id'=>$this->getUser()->getPersona()->getDependencia()]);
+        if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser())) {
+            $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
+            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+        }
+        $form = $this->createForm(MovimientoExpedienteType::class, $movimientoExpediente, ['pase' => 'archivar',
+            'dependencia_id' => $this->getUser()->getPersona()->getDependencia()]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
@@ -199,8 +207,7 @@ class MovimientoExpedienteController extends Controller {
                 }
 
 
-                return $this->redirectToRoute('listado_movimiento',
-                                ['id' => $expediente->getId(), 'currentPage' => 1]);
+                return $this->redirectToRoute('listado_movimiento', ['id' => $expediente->getId(), 'currentPage' => 1]);
             }
         }
         return $this->render('AppBundle:Movimiento:archivar.html.twig', [
@@ -216,6 +223,10 @@ class MovimientoExpedienteController extends Controller {
     public function listaMovimientoAction(Request $request, $id, $currentPage) {
         $em = $this->getDoctrine()->getEntityManager();
         $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
+        if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser(),true)) {
+            $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
+            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+        }
         $user = $this->getUser();
         $limit = 15;
         $totalItems = 0;
@@ -233,8 +244,7 @@ class MovimientoExpedienteController extends Controller {
 
         if ($formMovimientoFilter->isValid()) {
             $filterBuilder = $em->getRepository('AppBundle:MovimientoExpediente')->createQueryBuilder('m');
-            $filterBuilder->leftJoin(Expediente::class, "e", "WITH",
-                            "m.expediente = e.id")
+            $filterBuilder->leftJoin(Expediente::class, "e", "WITH", "m.expediente = e.id")
                     ->where('m.expediente = :expediente')
 //                                ->andWhere('w.id != :expediente_id')
                     ->setParameter('expediente', $expediente);
@@ -266,7 +276,7 @@ class MovimientoExpedienteController extends Controller {
 
         return $this->render('AppBundle:Expediente:listadoMovimientos.html.twig', array(
                     'movimientos' => $movimientos,
-                    'totalMovimientos'=>$totalMovimientos,
+                    'totalMovimientos' => $totalMovimientos,
                     'expediente' => $expediente,
                     'maxPages' => $maxPages,
                     'totalItems' => $totalItems,
@@ -283,7 +293,11 @@ class MovimientoExpedienteController extends Controller {
 
         $em = $this->getDoctrine()->getEntityManager();
         $movimiento = $em->getRepository("AppBundle:MovimientoExpediente")->find($id);
-
+        if (!$this->get("app.util")->VerificarExpediente($movimiento->getExpediente(),
+                $this->getUser(),true)) {
+            $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
+            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+        }
         // replace this example code with whatever you need
         return $this->render('AppBundle:Movimiento:detalleMovimiento.html.twig', [
                     'movimiento' => $movimiento
@@ -298,7 +312,10 @@ class MovimientoExpedienteController extends Controller {
         $em = $this->getDoctrine()->getEntityManager();
         $movimiento = $em->getRepository("AppBundle:MovimientoExpediente")->find($id);
         $expediente = $movimiento->getExpediente();
-
+        if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser())) {
+            $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
+            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+        }
 
         switch ($movimiento->getTipoSalida()) {
             case ('Externo'):
@@ -328,8 +345,7 @@ class MovimientoExpedienteController extends Controller {
 
             case('Interno'):
                 $movimiento->setPersona($movimiento->getUbicacion());
-                $form = $this->createForm(MovimientoExpedienteType::class,
-                        $movimiento, ['pase' => 'interno']);
+                $form = $this->createForm(MovimientoExpedienteType::class, $movimiento, ['pase' => 'interno']);
 
                 $form->handleRequest($request);
                 if ($form->isSubmitted()) {
@@ -355,10 +371,9 @@ class MovimientoExpedienteController extends Controller {
 
             case('Archivado'):
                 $movimiento->setLugarfisico($movimiento->getUbicacion());
-                $form = $this->createForm(MovimientoExpedienteType::class, $movimiento,
-                        ['pase' => 'archivar', 'dependencia_id' => $this->getUser()
-                                    ->getPersona()->getDependencia()
-                                    ->getId()]);
+                $form = $this->createForm(MovimientoExpedienteType::class, $movimiento, ['pase' => 'archivar', 'dependencia_id' => $this->getUser()
+                            ->getPersona()->getDependencia()
+                            ->getId()]);
                 $form->handleRequest($request);
 
                 if ($form->isSubmitted()) {
@@ -398,6 +413,12 @@ class MovimientoExpedienteController extends Controller {
 
         $em = $this->getDoctrine()->getEntityManager();
         $movimiento = $em->getRepository("AppBundle:MovimientoExpediente")->find($id);
+
+        if (!$this->get("app.util")->VerificarExpediente($movimiento->getExpediente(), $this->getUser())) {
+            $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
+            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+        }
+
         $movimiento->getExpediente()->setUbicacionActual($movimiento->getExpediente()->getUltimaUbicacion());
 
         // replace this example code with whatever you need
@@ -412,12 +433,6 @@ class MovimientoExpedienteController extends Controller {
         } else {
             $this->addFlash('danger', 'Ocurrio al intentar eliminar el pase "' . $movimento->getUbicacion()) . '"';
         }
-
-//        if ($flush == null) {
-//            echo "Post se ha borrado correctamente";
-//        } else {
-//            echo "El post no se ha borrado";
-//        }
 
         return $this->redirectToRoute('listado_movimiento', ["id" => $movimiento->getExpediente()->getId(), 'currentPage' => 1]);
     }

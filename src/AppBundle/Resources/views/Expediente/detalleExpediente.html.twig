@@ -1,15 +1,30 @@
 {% extends "AppBundle::layout.html.twig" %}
 
 {% block contentmain %}
+
+    {% set accion_habilitada = false %}
+    {% if app.user.role == 'ROLE_ADMIN' %}
+        {% set accion_habilitada = true %}
+    {%else%}
+        {% for responsable in expediente.ubicacionActual.responsables.getValues %}
+            {% if app.user == responsable.usuario %}
+                {% set accion_habilitada = true %}
+            {% endif %}
+        {%endfor%}
+
+    {% endif %}  
+
     <div class="content">
         <div class="row">
             <table class="table table-bordered"> 
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col"> </th>
-                        <th scope="col"> <i class="fas fa-info-circle "></i> <strong>DETALLE DEL EXPEDIENTE {{expediente.codigoExpediente }}-{{expediente.numeroExpediente }}-{{expediente.digitoExpediente }}<a href="{{ path('editar_expediente',{'id':expediente.id}) }}" class="right btn btn-warning float-right" data-toggle="tooltip" data-placement="top" title="Editar Expediente"><i class="fas fa-edit"></i></a></th>       
+                        <th scope="col"> <i class="fas fa-info-circle "></i> <strong>DETALLE DEL EXPEDIENTE {{expediente}}
+                                {% if accion_habilitada == true %}
+                                    <a href="{{ path('editar_expediente',{'id':expediente.id}) }}" class="right btn btn-warning float-right" data-toggle="tooltip" data-placement="top" title="Editar Expediente"><i class="fas fa-edit"></i></a></th>       
+                                    {% endif%}
                     </tr>
-
                 </thead>
                 <tbody >
                     <tr>
@@ -97,6 +112,7 @@
 
         <div class="row">
             <div class="btn-group float-left">
+                  <a class="btn btn-primary" href="#" onclick="history.back()"  role="button">Volver</a>
                 <a href="{{ path('listado_movimiento',{'id':expediente.id,'currentPage':1}) }}" 
                    class="btn btn-primary" 
                    role="button">MOVIMIENTOS
@@ -139,7 +155,7 @@
                        role="button">VER RESOLUCIÓN</a>
                 {% endif %}
 
-                <a class="btn btn-primary" href="#" onclick="history.back()"  role="button">Volver</a>
+              
             </div>            
         </div>
     </div>

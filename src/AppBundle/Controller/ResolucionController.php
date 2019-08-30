@@ -18,6 +18,10 @@ class ResolucionController extends Controller {
         $em = $this->getDoctrine()->getEntityManager();
         $usuario = $this->getUser();
         $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
+        if (!$this->get("app.util")->VerificarExpediente($expediente, $usuario)) {
+            $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
+            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+        }
         $resolucion = new Resolucion();
         $form = $this->createForm(ResolucionType::class, $resolucion);
 
@@ -27,13 +31,11 @@ class ResolucionController extends Controller {
             if ($form->isValid()) {
                 $resolucion->setUsuario($usuario);
                 $resolucion->setExpediente($expediente);
-                $resolucion->setFechaResolucion(date($form['fechaResolucion']->getData()." H:i:s"));
+                $resolucion->setFechaResolucion(date($form['fechaResolucion']->getData() . " H:i:s"));
                 $em->persist($resolucion);
                 $em->flush();
-                
-                return $this->redirectToRoute('ver_expediente', ['id'=>$id]);
 
-                               
+                return $this->redirectToRoute('ver_expediente', ['id' => $id]);
             }
         }
 
@@ -41,22 +43,25 @@ class ResolucionController extends Controller {
         return $this->render('AppBundle:Expediente:resolucion.html.twig', [
                     'form' => $form->createView(),
                     'usuario' => $usuario,
-                'expediente'=>$expediente
+                    'expediente' => $expediente
         ]);
     }
-    
-      /**
+
+    /**
      * @Route("expediente/resolucion/detalle/{id}", name="ver_resolucion")
      */
     public function resolucionAction(Request $request, $id) {
 
         $em = $this->getDoctrine()->getEntityManager();
         $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
-        
+        if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser())) {
+            $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
+            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+        }
         // replace this example code with whatever you need
         return $this->render('AppBundle:Expediente:detalleResolucion.html.twig', [
                     'expediente' => $expediente
         ]);
     }
-    
+
 }

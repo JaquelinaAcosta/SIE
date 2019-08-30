@@ -158,7 +158,7 @@
                             <td class="text-default">{{persona.dependencia.descripcion|e }}</td>
 
                             <td> <a class="btn btn-warning" href="{{ path("editar_persona", {'id':persona.id}) }}"  role="button"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Editar"></i></a>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{ count }}"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></button>    
+                               
 
                                 {% set accion_responsable = false %}
                                 {% if app.user.role == 'ROLE_ADMIN' %}
@@ -170,9 +170,9 @@
                                     {% endif %}
                                 {%endif%}
                                 {% if accion_responsable == true %}
-                                    <a class="btn btn-warning" href="{{ path("gestionar_persona_responsables", {'id':persona.id}) }}"  role="button"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Responsables"></i></a>
-                                    {%endif%}
-
+                                    <a class="btn btn-info" href="{{ path("gestionar_persona_responsables", {'id':persona.id}) }}"  role="button"><i class="fas fa-user" data-toggle="tooltip" data-placement="top" title="Responsables"></i></a>
+                                {%endif%}
+                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{ count }}"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></button>    
                                 <!-- The Modal -->
                                 <div class="modal fade" id="myModal{{count}}">
                                     <div class="modal-dialog modal-sm modal-dialog-centered">

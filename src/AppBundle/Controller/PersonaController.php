@@ -64,17 +64,12 @@ class PersonaController extends Controller {
      * @Route("/persona/edit/{id}", name="editar_persona")
      */
     public function editPersonaAction(Request $request, $id) {
-
-        $usuarioActual = $this->getUser();
-
-        if ($usuarioActual->getRole() != 'ROLE_ADMIN') {
-            if ($id != $usuarioActual->getPersona()->getId()) {
-                return $this->redirectToRoute('busqueda_expediente');
-            }
-        }
-
         $em = $this->getDoctrine()->getEntityManager();
         $persona = $em->getRepository("AppBundle:Persona")->find($id);
+        if (!$this->get("app.util")->VerificarPersona($persona, $this->getUser())) {
+            $this->addFlash('danger', 'Usted no tiene acceso a esta persona.');
+            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+        }
         $user = $this->getUser();
         $persona->setUsuario($user);
         if ($user->getRole() == 'ROLE_ADMIN') {
@@ -173,7 +168,10 @@ class PersonaController extends Controller {
 
         $em = $this->getDoctrine()->getEntityManager();
         $persona = $em->getRepository("AppBundle:Persona")->find($id);
-
+        if (!$this->get("app.util")->VerificarPersona($persona, $this->getUser())) {
+            $this->addFlash('danger', 'Usted no tiene acceso a esta persona.');
+            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+        }
         // replace this example code with whatever you need
         if (!$persona) {
             throw $this->createNotFoundException('No element found for id ' . $id);
@@ -192,21 +190,22 @@ class PersonaController extends Controller {
     }
 
     /**
-     * @Route("/adm/gestionar/persona_responsbles/{id}", name="gestionar_persona_responsables")
+     * @Route("/gestionar/persona_responsbles/{id}", name="gestionar_persona_responsables")
      */
     public function personaGestionarResponsblesAction(Request $request, $id) {
         $em = $this->getDoctrine()->getEntityManager();
         $persona = $em->getRepository("AppBundle:Persona")->find($id);
-
+        if (!$this->get("app.util")->VerificarPersona($persona, $this->getUser())) {
+            $this->addFlash('danger', 'Usted no tiene acceso a esta persona.');
+            return $this->redirectToRoute('busqueda_expediente');
+        }
         $original_responsables = new ArrayCollection();
 
-        $form = $this->createForm(\AppBundle\Form\PersonaResponsablesType::class, $persona,
-                ['dependencia_id'=>$persona->getDependencia()->getId()]);
+        $form = $this->createForm(\AppBundle\Form\PersonaResponsablesType::class, $persona, ['dependencia_id' => $persona->getDependencia()->getId()]);
 
         foreach ($persona->getResponsables() as $responsable) {
             $original_responsables->add($responsable);
         }
-
 
         $form->handleRequest($request);
 
@@ -214,14 +213,8 @@ class PersonaController extends Controller {
 
             foreach ($original_responsables as $responsable) {
                 if (false === $persona->getResponsables()->contains($responsable)) {
-                    // remove the Task from the Tag
-                    //  $responsable->getUbicacion()->removeElement($mesaentrada);
-                    // if it was a many-to-one relationship, remove the relationship like this
-                    // $tag->setTask(null);
-                    // if you wanted to delete the Tag entirely, you can also do that
-                    // $entityManager->remove($tag);
                     $em->remove($responsable);
-                 } 
+                }
             }
 
             foreach ($form['responsables']->getData() as $responsable) {
@@ -236,7 +229,7 @@ class PersonaController extends Controller {
         // replace this example code with whatever you need
         return $this->render('AppBundle:Ubicacion:personaResponsables.html.twig', [
                     'form' => $form->createView(),
-                    'persona'=>$persona
+                    'persona' => $persona
         ]);
     }
 

@@ -34,14 +34,10 @@
             {{ form_row(form.email.second) }}
            
             <label class="float left">CONTRASEÑA</label>
-            <div class=" text-danger">{{ form_errors(form.contrasenia) }}</div>
-            {{ form_widget(form.contrasenia) }}
-        {#    {{ form_errors(form.contrasenia) }}
+           {{ form_errors(form.contrasenia) }}
             <div class=" text-danger">{{ form_row(form.contrasenia.first) }}</div>          
-            
-            
             <label class="float left">CONFIRMAR CONTRASEÑA</label>
-            {{ form_row(form.contrasenia.second) }}#}
+            {{ form_row(form.contrasenia.second) }}
             <label class="float left">PERSONA GESTIONANTE</label>
             {{ form_errors(form.persona) }}
             {{ form_widget(form.persona) }}                  

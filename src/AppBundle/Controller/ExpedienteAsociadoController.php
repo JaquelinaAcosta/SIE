@@ -22,11 +22,17 @@ class ExpedienteAsociadoController extends Controller {
     public function nuevoAction(Request $request, $id, $id_asoc) {
         $em = $this->getDoctrine()->getEntityManager();
         $expediente_padre = $em->getRepository("AppBundle:Expediente")->find($id);
+
+        if (!$this->get("app.util")->VerificarExpediente($expediente_padre, $this->getUser())) {
+            $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
+            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+        }
+
         $expedienteAsociado = new ExpedienteAsociado();
         $expediente_asoc = $em->getRepository("AppBundle:Expediente")
                 ->findOneBy(['id' => $id_asoc]);
         $expediente_asoc->setEstado('ASOCIADO');
-
+        $expediente_asoc->setUbicacionActual($expediente_padre->getUbicacionActual());
         $expedienteAsociado->setExpedientePadre($expediente_padre);
         $expedienteAsociado->setExpedienteAsociado($expediente_asoc);
         $expedienteAsociado->setFecha(date("d-m-Y H:i:s"));
@@ -49,32 +55,19 @@ class ExpedienteAsociadoController extends Controller {
                     'id' => $expediente_padre->getId()]);
     }
 
-//     /**
-//     * @Route("expediente/{id}/asociado/listado", name="listado_asociado")
-//     */
-//    public function listaAsociadoAction(Request $request,$id) {
-//
-//        $em = $this->getDoctrine()->getEntityManager();
-//        $user = $this->getUser();
-//        $expediente = $em->getRepository('AppBundle:Expediente')->find($id);
-//
-//        // replace this example code with whatever you need
-//        return $this->render('AppBundle:Expediente:listadoExpedienteAsociado.html.twig', [
-//                    'expediente' => $expediente
-//        ]);
-//    }
-//    
-
     /**
      * @Route("/expediente/{id}/delete/expediente_asociado/{id_asoc}", name="remover_expediente_asociado")
      */
     public function deleteAction(Request $request, $id, $id_asoc) {
         $em = $this->getDoctrine()->getEntityManager();
         $expediente = $em->getRepository('AppBundle:Expediente')->find($id);
-//        $expediente_asoc_name= $em->getRepository('AppBundle:Expediente')->find($id_asoc)->toString();
+        if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser())) {
+            $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
+            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+        }
         $expediente_asoc = $em->getRepository("AppBundle:ExpedienteAsociado")
                 ->findOneBy(['expedienteAsociado' => $id_asoc]);
-        
+
         $expediente_asoc->getExpedienteAsociado()->setEstado('NUEVO');
         $em->remove($expediente_asoc);
         $em->persist($expediente);
@@ -99,6 +92,12 @@ class ExpedienteAsociadoController extends Controller {
         $em = $this->getDoctrine()->getEntityManager();
 
         $expediente = $em->getRepository('AppBundle:Expediente')->find($id);
+        if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser(),true)) {
+            $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
+            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+        }
+
+
         $limit = 15;
         $totalItems = 0;
         $maxPages = 0;
