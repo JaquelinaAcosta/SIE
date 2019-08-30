@@ -73,12 +73,12 @@ class MesaEntradaType extends AbstractType {
             ));
         }
 
-//        if ($gestion != null) {
-//            $builder->add('Guardar', SubmitType::class,
-//                    ['attr' => array(
-//                            "class" => "form-control btn btn-success"
-//            )]);
-//        }
+        if ($gestion != null && $options['quitar_guardar'] == null) {
+            $builder->add('Guardar', SubmitType::class,
+                    ['attr' => array(
+                            "class" => "form-control btn btn-success"
+            )]);
+        }
     }
 
 /**
@@ -91,6 +91,7 @@ class MesaEntradaType extends AbstractType {
             'gestion' => null,
             'movimiento' => null,
             'dependencia_id' => null,
+            'quitar_guardar'=>null
             
         ));
     }

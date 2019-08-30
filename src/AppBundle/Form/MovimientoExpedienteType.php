@@ -62,7 +62,8 @@ class MovimientoExpedienteType extends AbstractType
             if($options['dependencia_id'] != null){
                   $builder->add('mesaentrada', MesaEntradaType::class, [
                       'gestion' => 'externo', 'movimiento' => true,
-                      'dependencia_id'=>$options['dependencia_id']]);
+                      'dependencia_id'=>$options['dependencia_id'],
+                      'quitar_guardar'=>true]);
             }else{
                   $builder->add('mesaentrada', MesaEntradaType::class, ['gestion' => null, 'movimiento' => true]);
             }

@@ -21,6 +21,12 @@ class CaratulaAgregadaController extends Controller {
 
         $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
 
+        if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser())) {
+
+            $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
+            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+        }
+
         $form = $this->createForm(CaratulaAgregadaType::class, $caratulaAgregada);
 
         $form->handleRequest($request);
@@ -31,7 +37,7 @@ class CaratulaAgregadaController extends Controller {
             $expediente->getCaratulas()->add($caratulaAgregada);
             $em->persist($expediente);
             $em->flush();
-            
+
             return $this->redirectToRoute('ver_expediente', ['id' => $id]);
         }
 
@@ -52,11 +58,11 @@ class CaratulaAgregadaController extends Controller {
         $em = $this->getDoctrine()->getEntityManager();
         $caratula = $em->getRepository("AppBundle:CaratulaAgregada")->find($id);
 
-
-        // replace this example code with whatever you need
-        if (!$caratula) {
-            throw $this->createNotFoundException('No element found for id ' . $id);
+        if (!$this->get("app.util")->VerificarExpediente($caratula->getExpediente(), $this->getUser())) {
+            $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
+            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
         }
+
 
         $em->remove($caratula);
         $flush = $em->flush();
@@ -71,6 +77,12 @@ class CaratulaAgregadaController extends Controller {
 
         $em = $this->getDoctrine()->getEntityManager();
         $caratulaAgregada = $em->getRepository("AppBundle:CaratulaAgregada")->find($id);
+
+        if (!$this->get("app.util")->VerificarExpediente($caratulaAgregada->getExpediente(), $this->getUser())) {
+            $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
+            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+        }
+
         $expediente = $caratulaAgregada->getExpediente();
         $form = $this->createForm(CaratulaAgregadaType::class, $caratulaAgregada);
         $form->handleRequest($request);
@@ -78,7 +90,7 @@ class CaratulaAgregadaController extends Controller {
         $user = $this->getUser();
 
         if ($form->isSubmitted()) {
-            if ($form->isValid()) {               
+            if ($form->isValid()) {
                 $em->persist($caratulaAgregada);
                 $em->flush();
             }
@@ -101,6 +113,11 @@ class CaratulaAgregadaController extends Controller {
         $em = $this->getDoctrine()->getEntityManager();
 
         $expediente = $em->getRepository('AppBundle:Expediente')->find($id);
+        if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser(),true)) {
+            $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
+            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+        }
+
         $limit = 15;
         $totalItems = 0;
         $maxPages = 0;
@@ -155,17 +172,20 @@ class CaratulaAgregadaController extends Controller {
                     'formCaratulaAgregadaFilter' => $formCaratulaAgregadaFilter->createView()
         ));
     }
-    
-    
+
     /**
-    * @Route("expediente/ver_caratula/{id}", name="ver_caratula")
-    */
+     * @Route("expediente/ver_caratula/{id}", name="ver_caratula")
+     */
     public function detalleCaratulaAction(Request $request, $id) {
 
         $em = $this->getDoctrine()->getEntityManager();
         $caratulaAgregada = $em->getRepository("AppBundle:CaratulaAgregada")->find($id);
+      
+        if (!$this->get("app.util")->VerificarExpediente($caratulaAgregada->getExpediente(), $this->getUser(),true)) {
+            $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
+            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+        }
 //        $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
-        
         // replace this example code with whatever you need
         return $this->render('AppBundle:Expediente:detalleCaratulaAgregada.html.twig', [
                     'caratula' => $caratulaAgregada

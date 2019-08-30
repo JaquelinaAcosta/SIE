@@ -1,6 +1,8 @@
 # To get started with security, check out the documentation:
 # https://symfony.com/doc/current/security.html
 security:
+    access_denied_url: /expediente/listado/1
+    
     encoders:
         AppBundle\Entity\Usuario:
             algorithm: bcrypt
@@ -39,28 +41,43 @@ security:
                 
                 
     role_hierarchy:
-        ROLE_ADMIN: [ROLE_USER,ROLE_RESPONSABLE]
+        ROLE_ADMIN: [ROLE_RESPONSABLE,ROLE_USER]
                 
     #Control de acceso para Usuarios            
     access_control:
-        - {path : ^/listaExpediente, roles: [ROLE_USER,ROLE_RESPONSABLE] }
+        
         - {path : ^/add/expediente, roles: [ROLE_RESPONSABLE] }
-#        - {path : ^/expediente, roles:[ROLE_USER,ROLE_RESPONSABLE] }
-        - {path : ^/usuario/listado/, roles:[ROLE_ADMIN] }
-        - {path : ^/expediente/editar/, roles:[ROLE_RESPONSABLE]}
-        - {path : ^/expediente/delete/, roles:[ROLE_RESPONSABLE]}
-        - {path : ^/expediente/add/caratulaAgregada/, roles:[ROLE_RESPONSABLE]}
-        - {path : ^/expediente/add/movimiento, roles:[ROLE_RESPONSABLE]}
-        - {path : ^/expediente/movimiento/editar/, roles:[ROLE_RESPONSABLE]}  
-        - {path : ^/expediente/resolucion, roles:[ROLE_ADMIN]}
+        - {path : ^/listaExpediente, roles: [ROLE_USER,ROLE_RESPONSABLE] }
+        - {path : ^/expediente/editar/, roles:[ROLE_RESPONSABLE,ROLE_USER]}
+        - {path : ^/expediente/delete/, roles:[ROLE_RESPONSABLE,ROLE_USER]}
+        - {path : ^/expediente/add/caratulaAgregada/, roles:[ROLE_RESPONSABLE,ROLE_USER]}
+        - {path : ^/expediente/delete_caratula/, roles:[ROLE_RESPONSABLE,ROLE_USER]}
+        - {path : ^/expediente//caratula/listado/, roles:[ROLE_RESPONSABLE,ROLE_USER]}
+        - {path : ^/expediente/ver_caratula/, roles:[ROLE_RESPONSABLE,ROLE_USER]}
+        
+        - {path : ^/expediente/add/movimiento, roles:[ROLE_RESPONSABLE,ROLE_USER]}
+        - {path : ^/expediente/movimiento/editar/, roles:[ROLE_RESPONSABLE,ROLE_USER]}  
+        - {path : ^/expediente/resolucion/, roles:[ROLE_RESPONSABLE,ROLE_USER]}
+        - {path : ^/expediente/resolucion/detalle/, roles:[ROLE_RESPONSABLE,ROLE_USER]}
+       
+        - {path : ^/usuario/listado/, roles:[ROLE_ADMIN] }   
+        - {path : ^/usuario/add, roles:[ROLE_ADMIN] }
+        - {path : ^/usuario/delete/, roles:[ROLE_ADMIN] }
+
         - {path : ^/dependencia/, roles:[ROLE_ADMIN] }
+        
         - {path : ^/adm/gestionar/mesa_entrada/, roles:[ROLE_ADMIN] }
-        - {path : ^/persona/listado, roles:[ROLE_ADMIN] }
+        
+        
+        - {path : ^/persona/listado/, roles:[ROLE_ADMIN] }
         - {path : ^/persona/add, roles:[ROLE_ADMIN] }
-        - {path : ^/adm/gestionar/persona_responsbles/, roles:[ROLE_ADMIN] }
-        - {path : ^/lugar_fisico/edit/, roles:[ROLE_ADMIN] }
-        - {path : ^/lugar_fisico/add, roles:[ROLE_ADMIN] }
-        - {path : ^/adm/gestionar/lugarfisico_responsables/, roles:[ROLE_ADMIN] }
+        - {path : ^/persona/delete/, roles:[ROLE_ADMIN] }
+        - {path : ^/persona/edit/, roles:[ROLE_RESPONSABLE,ROLE_USER] }
+        - {path : ^/gestionar/persona_responsbles/, roles:[ROLE_RESPONSABLE,ROLE_USER] }
+       
+        - {path : ^/lugar_fisico/edit/, roles:[ROLE_RESPONSABLE,ROLE_USER] }
+        - {path : ^/lugar_fisico/add, roles:[ROLE_RESPONSABLE,ROLE_USER] }
+        - {path : ^/gestionar/lugarfisico_responsables/, roles:[ROLE_RESPONSABLE,ROLE_USER] }
         
         
        

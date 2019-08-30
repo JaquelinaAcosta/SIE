@@ -14,58 +14,6 @@ use AppBundle\Form\MesaEntradaType;
 class MesaEntradaController extends Controller {
 
     /**
-     * @Route("/gestionar/mesa_entrada/", name="gestionar_mesaentrada")
-     */
-    public function indexAction(Request $request) {
-        $em = $this->getDoctrine()->getEntityManager();
-        $mesaentrada = $this->getUser()->getPersona()->getDependencia()->getMesaentrada();
-
-     
-
-        $form = $this->createForm(MesaEntradaType::class, $mesaentrada, [
-            'gestion' => true,
-            'dependencia_id'=>$mesaentrada->getDependencia()->getId()
-            ]);
-   $original_responsables = new ArrayCollection();
-        foreach ($mesaentrada->getResponsables() as $responsable) {
-            $original_responsables->add($responsable);
-        }
-
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted()) {
-            if ($form->isValid()) {
-                foreach ($original_responsables as $responsable) {
-                    if (false === $mesaentrada->getResponsables()->contains($responsable)) {
-                        // remove the Task from the Tag
-                        //  $responsable->getUbicacion()->removeElement($mesaentrada);
-                        // if it was a many-to-one relationship, remove the relationship like this
-                        // $tag->setTask(null);
-                        // if you wanted to delete the Tag entirely, you can also do that
-                        // $entityManager->remove($tag);
-                        $em->remove($responsable);                       
-                    }
-                }
-
-                foreach ($form['responsables']->getData() as $responsable) {
-                    $responsable->setUbicacion($mesaentrada);
-                    //$mesaentrada->addResponsable($responsable);
-                }
-
-                $em->persist($mesaentrada);
-                $flush = $em->flush();
-            }
-        }
-
-        // replace this example code with whatever you need
-        return $this->render('AppBundle:Ubicacion:mesaEntrada.html.twig', [
-                    'form' => $form->createView(),
-                    'dependencia' => $mesaentrada->getDependencia()
-        ]);
-    }
-
-    /**
      * @Route("/adm/gestionar/mesa_entrada/{id}", name="adm_gestionar_mesaentrada")
      */
     public function admGestionarAction(Request $request, $id) {
@@ -75,12 +23,11 @@ class MesaEntradaController extends Controller {
         $original_responsables = new ArrayCollection();
 
         $form = $this->createForm(MesaEntradaType::class, $mesaentrada, ['gestion' => true,
-            'dependencia_id'=>$mesaentrada->getDependencia()->getId()]);
+            'dependencia_id' => $mesaentrada->getDependencia()->getId()]);
 
         foreach ($mesaentrada->getResponsables() as $responsable) {
             $original_responsables->add($responsable);
         }
-
 
         $form->handleRequest($request);
 
@@ -88,22 +35,13 @@ class MesaEntradaController extends Controller {
 
             foreach ($original_responsables as $responsable) {
                 if (false === $mesaentrada->getResponsables()->contains($responsable)) {
-                    // remove the Task from the Tag
-                    //  $responsable->getUbicacion()->removeElement($mesaentrada);
-                    // if it was a many-to-one relationship, remove the relationship like this
-                    // $tag->setTask(null);
-                    // if you wanted to delete the Tag entirely, you can also do that
-                    // $entityManager->remove($tag);
                     $em->remove($responsable);
-                }
-                else{
+                } else {
                     $responsable->getUsuario()->setRole('ROLE_RESPONSABLE');
                 }
             }
-
             foreach ($form['responsables']->getData() as $responsable) {
                 $responsable->setUbicacion($mesaentrada);
-                //$mesaentrada->addResponsable($responsable);
             }
 
             $em->persist($mesaentrada);

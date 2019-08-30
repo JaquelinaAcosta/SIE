@@ -23,27 +23,22 @@
             margin-bottom: 10px;
             padding:10px;            
         }
-        .col-center{
-            float: none;
-            margin: 0 auto;
-        }
-        .aceptar{
-            float: none;
-            margin: 0 auto;
-        }
-
         .user{
-            margin-top: 10px;
             width:250px;
             margin-left:0;
+        }
+        .delete{
+            width:160px;
+            position:relative;
+            left:265px;
+            bottom:30px;
         }
     </style>
 
 
 
-    {# {{ dump(responsables) }}#}
-    <hr/>
-    <div class="col-lg-4 col-center">
+<div class="content">
+    <div class="col-lg-6">
         <div class="form-group">  
             {{form_start(form,{'action':'' ,'method':'POST'})}}
             <h3>{{ accion }} Dependencia</h3>
@@ -102,22 +97,24 @@
             {{form_end(form)}}
         </div>
     </div>  
-    <script>
-        $('#dependencia_responsable').autocompleter({
-            url_list: "{{ path('persona_search') }}",
-            url_get: "{{ path('persona_get') }}"
+</div>
+   <script>
+
+        $("#mesaentrada_Guardar").click(function () {
+            $(".respon").prop("disabled", false);
+            return true;
         });
-    </script>
-    <script>
+
         var $collectionHolder;
 
         // setup an "add a tag" link
-        var $addResponsableButton = $('<button type="button" class="add_responsable form-control btn btn-danger">Agregar</button>');
+        var $addResponsableButton = $('<button type="button" class="add_responsable form-control btn btn-info">Agregar Usuario</button>');
         var $newLinkLi = $('.add').append($addResponsableButton);
-
+        var totalCount = 0;
         jQuery(document).ready(function () {
             // Get the ul that holds the collection of tags
             $collectionHolder = $('.responsables');
+            $collectionHolder2 = $('.responsable_items');
 
             // add a delete link to all of the existing tag form li elements
 
@@ -126,9 +123,18 @@
 
             // count the current form inputs we have (e.g. 2), use that as the new
             // index when inserting a new item (e.g. 2)
-            $collectionHolder.data('index', $collectionHolder.find(':input').length);
+            $collectionHolder.data('index', $collectionHolder.find(':input').length + $collectionHolder2.find(':input').length);
 
-            addResponsableForm($collectionHolder, $newLinkLi);
+            totalCount = $collectionHolder.data('index');
+
+
+            for (var i = 0; i <= totalCount; i++) {
+               if (i == 0) {
+                    addTagFormDeleteLink($('.responsable_items').children().eq(i), $collectionHolder, true);
+                } else {
+                    addTagFormDeleteLink($('.responsable_items').children().eq(i), $collectionHolder, false);
+                }
+            }
 
             $addResponsableButton.on('click', function (e) {
                 // add a new tag form (see next code block)
@@ -136,16 +142,23 @@
             });
         });
 
-        function addTagFormDeleteLink($tagFormLi, $collectionHolder) {
-            var $removeFormButton = $('<button type="button">Delete this tag</button>');
-            $tagFormLi.append($removeFormButton);
+        function addTagFormDeleteLink($tagFormLi, $collectionHolder, disabled) {
+            if (!disabled) {
+                var $removeFormButton = $('<button class="delete btn btn-danger" type="button">Quitar Usuario</button>');
+                $tagFormLi.append($removeFormButton);
 
-            $removeFormButton.on('click', function (e) {
-                // remove the li for the tag form
-                $tagFormLi.remove();
-                var index = $collectionHolder.data('index');
-                $collectionHolder.data('index', index - 1);
-            });
+                $removeFormButton.on('click', function (e) {
+                    // remove the li for the tag form
+                    var index = $collectionHolder.data('index');
+                    $tagFormLi.remove();
+
+                    $collectionHolder.data('index', index - 1);
+                });
+            } else {
+                var $removeFormButton = $('<button disabled class="delete btn btn-danger" type="button">Quitar Usuario</button>');
+                $tagFormLi.append($removeFormButton);
+            }
+
         }
 
         function addResponsableForm($collectionHolder, $newLinkLi) {
@@ -169,7 +182,8 @@
 
             // Display the form in the page in an li, before the "Add a tag" link li
             var $newFormLi = $('.responsable_items').append(newForm);
-            if (index > 1) {
+            if (index > 0) {
+                //console.log(totalCount);
                 addTagFormDeleteLink($($newFormLi).children().eq(index - 1), $collectionHolder);
             }
 
@@ -177,6 +191,7 @@
             $newLinkLi.before($newFormLi);
 
         }
+
 
     </script>
 {% endblock %}

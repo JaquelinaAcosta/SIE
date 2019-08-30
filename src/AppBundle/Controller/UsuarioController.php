@@ -19,7 +19,7 @@ class UsuarioController extends Controller {
     public function indexAction(Request $request) {
         $em = $this->getDoctrine()->getEntityManager();
         $usuario = new Usuario();
-        $form = $this->createForm(UsuarioType::class, $usuario, ['contrasenia' => null, 'role' => 'su']);
+        $form = $this->createForm(UsuarioType::class, $usuario, ['role' => 'su']);
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
@@ -35,7 +35,7 @@ class UsuarioController extends Controller {
                         $responsable->setUsuario($usuario);
                         $responsable->setUbicacion($usuario->getPersona());
                         $usuario->getPersona()->addResponsable($responsable);
-                        
+
                         $em->persist($usuario);
                         $flush = $em->flush();
 
@@ -69,21 +69,19 @@ class UsuarioController extends Controller {
     public function editUsuarioAction(Request $request, $id) {
         $usuarioActual = $this->getUser();
 
-        if ($usuarioActual->getRole() != 'ROLE_ADMIN') {
-            if ($id != $usuarioActual->getId()) {
-                return $this->redirectToRoute('busqueda_expediente');
-            }
-        }
-
         $em = $this->getDoctrine()->getEntityManager();
         $usuario = $em->getRepository("AppBundle:Usuario")->find($id);
+        if (!$this->get("app.util")->VerificarUsuario($usuario, $this->getUser())) {
+            $this->addFlash('danger', 'Usted no tiene acceso a este usuario.');
+            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+        }
         $last_username = $usuario->getIup();
 
         $usuario->setContrasenia($usuario->getSavedPassword());
         if ($usuarioActual->getRole() == 'ROLE_ADMIN') {
-            $form = $this->createForm(UsuarioType::class, $usuario, ['contrasenia' => true, 'role' => 'su']);
+            $form = $this->createForm(UsuarioType::class, $usuario, ['editar' => true, 'role' => 'su']);
         } else {
-            $form = $this->createForm(UsuarioType::class, $usuario, ['contrasenia' => true]);
+            $form = $this->createForm(UsuarioType::class, $usuario, ['editar' => true]);
         }
 
 
@@ -111,7 +109,7 @@ class UsuarioController extends Controller {
                 if ($flush == false and $usuarioActual->getRole() == 'ROLE_USER') {
                     $this->addFlash('success', "Usuario editado correctamente.");
                     return $this->redirectToRoute('busqueda_expediente');
-                }else {
+                } else {
                     $this->addFlash('danger', "Ocurrió un error en la edicion del usuario.");
                 }
             } else {
@@ -192,14 +190,23 @@ class UsuarioController extends Controller {
 
         $em = $this->getDoctrine()->getEntityManager();
         $usuario = $em->getRepository("AppBundle:Usuario")->find($id);
-
-        // replace this example code with whatever you need
-        if (!$usuario) {
-            throw $this->createNotFoundException('No element found for id ' . $id);
+          if (!$this->get("app.util")->VerificarUsuario($usuario, $this->getUser())) {
+            $this->addFlash('danger', 'Usted no tiene acceso a este usuario.');
+            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+        }
+        foreach ($usuario->getPersona()->getResponsables() as $responsable) {
+            $em->remove($responsable);
         }
 
         $em->remove($usuario);
         $flush = $em->flush();
+
+        if ($flush == false) {
+            $this->addFlash('success', 'Usuario ' . $usuario->getIup() . ' eliminado correctamente.');
+            return $this->redirectToRoute('listado_usuario', ['currentPage' => 1]);
+        } else {
+            $this->addFlash('danger', 'Ocurrio un error al intentar borrar el usuario.');
+        }
 
 
         return $this->redirectToRoute('listado_usuario', ['currentPage' => 1]);

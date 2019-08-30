@@ -25,6 +25,7 @@ class ExpedienteController extends Controller {
     public function indexAction(Request $request) {
         $em = $this->getDoctrine()->getEntityManager();
         $expediente = new Expediente();
+
         $movimientoExpediente = new MovimientoExpediente();
         $form = $this->createForm(ExpedienteType::class, $expediente);
 
@@ -37,7 +38,6 @@ class ExpedienteController extends Controller {
 
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
-                
                 $movimientoExpediente->setUsuario($this->getUser()->getIup());
                 $movimientoExpediente->setTipoSalida('Externo');
                 $movimientoExpediente->setExpediente($expediente);
@@ -47,16 +47,14 @@ class ExpedienteController extends Controller {
                 $fechaHoy = date("d-m-Y");
                 $date = \DateTime::createFromFormat('d-m-Y', $fechaHoy);
                 $movimientoExpediente->setFecha($date);
-                $movimientoExpediente->setUbicacion($expediente->getIniciadorDependencia()->getMesaentrada());               
+                $movimientoExpediente->setUbicacion($expediente->getIniciadorDependencia()->getMesaentrada());
                 $expediente->getMovimientos()->add($movimientoExpediente);
 
-                $fechaIni = \DateTime::createFromFormat('d-m-Y',
-                                $form['fechaInicio']->getData());
+                $fechaIni = \DateTime::createFromFormat('d-m-Y', $form['fechaInicio']->getData());
 //                $fechaIni->format('Y-m-d');
 //                dump($fechaIni);die();
                 if ($form['fechaFin']->getData() != '') {
-                    $fechaFin = \DateTime::createFromFormat('d-m-Y',
-                                    $form['fechaFin']->getData());
+                    $fechaFin = \DateTime::createFromFormat('d-m-Y', $form['fechaFin']->getData());
                     $expediente->setFechaFin($fechaFin);
                 } else {
                     $expediente->setFechaFin(null);
@@ -113,11 +111,9 @@ class ExpedienteController extends Controller {
         $expedientes = array();
 
         if ($this->getUser()->getRole() == 'ROLE_ADMIN') {
-            $formExpedienteFilter = $this->createForm(ExpedienteFilterType::class,
-                    $expedientes, ['role' => 'ROLE_ADMIN']);
+            $formExpedienteFilter = $this->createForm(ExpedienteFilterType::class, $expedientes, ['role' => 'ROLE_ADMIN']);
         } else {
-            $formExpedienteFilter = $this->createForm(ExpedienteFilterType::class,
-                    $expedientes);
+            $formExpedienteFilter = $this->createForm(ExpedienteFilterType::class, $expedientes);
         }
 
         $formExpedienteFilter->handleRequest($request);
@@ -184,7 +180,7 @@ class ExpedienteController extends Controller {
                     'formExpedienteFilter' => $formExpedienteFilter->createView(),
                     'asociado' => $asociado,
                     'padre_id' => $padre_id,
-                    'user'=>$user
+                    'user' => $user
         ));
     }
 
@@ -195,6 +191,11 @@ class ExpedienteController extends Controller {
 
         $em = $this->getDoctrine()->getEntityManager();
         $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
+
+        if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser(), true)) {
+            $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
+            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+        }
 
         $expedientePadre = new Expediente();
         $actualFecha = '';
@@ -208,11 +209,11 @@ class ExpedienteController extends Controller {
         if ($expediente != null) {
             $actualFecha = $em->getRepository('AppBundle:MovimientoExpediente')->findOneBy(
                             [
-                                'ubicacion' => $expediente->getUbicacionActual()
+                        'ubicacion' => $expediente->getUbicacionActual()
                             ], ['fecha' => 'DESC'], ['expediente' => $expediente])->getFecha()->format('d-m-Y');
             $ultimaFecha = $em->getRepository('AppBundle:MovimientoExpediente')->findOneBy(
                             [
-                                'ubicacion' => $expediente->getUltimaUbicacion()
+                        'ubicacion' => $expediente->getUltimaUbicacion()
                             ], ['fecha' => 'DESC'], ['expediente' => $expediente])->getFecha()->format('d-m-Y');
         }
 
@@ -244,8 +245,11 @@ class ExpedienteController extends Controller {
 
         $em = $this->getDoctrine()->getEntityManager();
         $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
-        $fechaBaja = \DateTime::createFromFormat('d-m-Y',
-                        date('d-m-Y'));
+        if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser())) {
+            $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
+            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+        }
+        $fechaBaja = \DateTime::createFromFormat('d-m-Y', date('d-m-Y'));
 
         $expediente->setFechaBaja($fechaBaja);
 
@@ -269,7 +273,10 @@ class ExpedienteController extends Controller {
 
         $em = $this->getDoctrine()->getEntityManager();
         $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
-
+        if ($this->getUser()->getRole() != 'ROLE_ADMIN') {
+            $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
+            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+        }
 
         $expediente->setFechaBaja(null);
         $expediente->setEstado('NUEVO');
@@ -294,7 +301,12 @@ class ExpedienteController extends Controller {
 
         $em = $this->getDoctrine()->getEntityManager();
         $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
-
+         if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser())) {
+            $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
+            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+        }
+        
+        
         //SI NO SE HACE EL FORMAT TIRA ERROR DE OBJETO TIPO DATETIME
         $expediente->setFechaInicio($expediente->getFechaInicio()->format('d-m-Y'));
         IF ($expediente->getFechaFin() != null) {
@@ -305,48 +317,14 @@ class ExpedienteController extends Controller {
         $form = $this->createForm(ExpedienteType::class, $expediente);
         $user = $this->getUser();
 
-//        $original_expedientes_asociados = new ArrayCollection();
-//
-//        foreach ($expediente->getExpedientesAsociados() as $expediente_asoc) {
-//            $original_expedientes_asociados->add($expediente_asoc);
-//        }
-
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
 
-
-
-//                foreach ($original_expedientes_asociados as $expediente_asoc) {
-//                    if (false === $expediente->getExpedientesAsociados()->contains($expediente_asoc)) {
-//                        // remove the Task from the Tag
-//                        $expediente->getExpedientesAsociados()->removeElement($expediente_asoc);
-//                        // if it was a many-to-one relationship, remove the relationship like this
-//                        // $tag->setTask(null);
-//                        // if you wanted to delete the Tag entirely, you can also do that
-//                        // $entityManager->remove($tag);
-//
-//                        $em->remove($expediente_asoc);
-//                    }
-//                }
-//
-//                foreach ($form['expedientes_asociados']->getData() as $expediente_asoc) {
-//                    $expediente_asoc->setExpedientePadre($expediente);
-//                }
-//                $expediente->setFechaInicio(date($form['fechaInicio']->getData()." H:i:s"));
-//                $expediente->setFechaFin(date($form['fechaFin']->getData()." H:i:s"));
-
-                $fechaIni = \DateTime::createFromFormat('d-m-Y',
-                                $form['fechaInicio']->getData());
-//                $fechaIni->format('Y-m-d');
-//                dump($fechaIni);die();
-                $fechaFin = \DateTime::createFromFormat('d-m-Y',
-                                $form['fechaFin']->getData());
-//                $fechaFin->format('Y-m-d');
-//                dump($fechaIni);die();
-//                $expediente->setFechaInicio());
+                $fechaIni = \DateTime::createFromFormat('d-m-Y', $form['fechaInicio']->getData());
+                $fechaFin = \DateTime::createFromFormat('d-m-Y', $form['fechaFin']->getData());
                 $expediente->setFechaInicio($fechaIni);
                 $expediente->setFechaFin($fechaFin);
 

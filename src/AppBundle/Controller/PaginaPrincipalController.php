@@ -19,8 +19,7 @@ class PaginaPrincipalController extends Controller {
         $actualFecha = '';
         $ultimaFecha = '';
 
-        $formExpedienteFilter = $this->createForm(\AppBundle\Form\ExpedienteSearchFilterType::class,
-                $expedientes);
+        $formExpedienteFilter = $this->createForm(\AppBundle\Form\ExpedienteSearchFilterType::class, $expedientes);
 
         $formExpedienteFilter->handleRequest($request);
         if ($formExpedienteFilter->isSubmitted() == false && $this->get('session')->get('expediente_search_listar_request')) {
@@ -43,11 +42,11 @@ class PaginaPrincipalController extends Controller {
                 if (count($expedientes) > 0) {
                     $actualFecha = $em->getRepository('AppBundle:MovimientoExpediente')->findOneBy(
                                     [
-                                        'ubicacion' => $expedientes[0]->getUbicacionActual()
+                                'ubicacion' => $expedientes[0]->getUbicacionActual()
                                     ], ['fecha' => 'DESC'], ['expediente' => $expedientes[0]])->getFecha()->format('d-m-Y');
                     $ultimaFecha = $em->getRepository('AppBundle:MovimientoExpediente')->findOneBy(
                                     [
-                                        'ubicacion' => $expedientes[0]->getUltimaUbicacion()
+                                'ubicacion' => $expedientes[0]->getUltimaUbicacion()
                                     ], ['fecha' => 'DESC'], ['expediente' => $expedientes[0]])->getFecha()->format('d-m-Y');
                 }
             }
@@ -72,15 +71,6 @@ class PaginaPrincipalController extends Controller {
                     'ultima_fecha' => $ultimaFecha,
                     'formExpedienteFilter' => $formExpedienteFilter->createView(),
         ));
-    }
-
-    /**
-     * @Route("/home", name="homepage")
-     */
-    public function homeAction(Request $request) {
-        // replace this example code with whatever you need
-        return $this->render('AppBundle:PaginaPrincipal:index.html.twig', [
-        ]);
     }
 
     /**

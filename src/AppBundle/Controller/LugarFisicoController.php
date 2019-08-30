@@ -63,6 +63,12 @@ class LugarFisicoController extends Controller {
         $em = $this->getDoctrine()->getEntityManager();
         $user = $this->getUser();
         $lugarfisico = $em->getRepository("AppBundle:LugarFisico")->find($id);
+
+        if (!$this->get("app.util")->VerificarLugarFisico($lugarfisico, $this->getUser())) {
+            $this->addFlash('danger', 'Usted no tiene acceso a este lugar.');
+            return $this->redirectToRoute('listado_lugarfisico', ['currentPage' => 1]);
+        }
+
         if ($user->getRole() == "ROLE_ADMIN") {
 
             $form = $this->createForm(LugarFisicoType::class, $lugarfisico, ['edit_mode' => true]);
@@ -98,7 +104,10 @@ class LugarFisicoController extends Controller {
 
         $em = $this->getDoctrine()->getEntityManager();
         $lugarfisico = $em->getRepository("AppBundle:LugarFisico")->find($id);
-
+        if (!$this->get("app.util")->VerificarLugarFisico($lugarfisico, $this->getUser())) {
+            $this->addFlash('danger', 'Usted no tiene acceso a este lugar.');
+            return $this->redirectToRoute('listado_lugarfisico', ['currentPage' => 1]);
+        }
         $form = $this->createForm(LugarFisicoType::class, $lugarfisico);
         $form->handleRequest($request);
 
@@ -181,12 +190,15 @@ class LugarFisicoController extends Controller {
     }
 
     /**
-     * @Route("/adm/gestionar/lugarfisico_responsables/{id}", name="gestionar_lugarfisico_responsables")
+     * @Route("/gestionar/lugarfisico_responsables/{id}", name="gestionar_lugarfisico_responsables")
      */
     public function lugarfisicoGestionarResponsblesAction(Request $request, $id) {
         $em = $this->getDoctrine()->getEntityManager();
         $lugarfisico = $em->getRepository("AppBundle:LugarFisico")->find($id);
-
+        if (!$this->get("app.util")->VerificarLugarFisico($lugarfisico, $this->getUser())) {
+            $this->addFlash('danger', 'Usted no tiene acceso a este lugar.');
+            return $this->redirectToRoute('listado_lugarfisico', ['currentPage' => 1]);
+        }
         $original_responsables = new ArrayCollection();
 
         $form = $this->createForm(\AppBundle\Form\LugarFisicoResponsablesType::class, $lugarfisico, ['dependencia_id' => $lugarfisico->getDependencia()->getId()]);

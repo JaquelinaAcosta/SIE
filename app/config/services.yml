@@ -37,3 +37,8 @@ services:
         class: AppBundle\Form\ResponsableType
         public: true
         arguments:  ['@security.token_storage']
+    
+    app.util:
+        class: AppBundle\Services\Util
+        arguments: ["null"]
+        public: true
