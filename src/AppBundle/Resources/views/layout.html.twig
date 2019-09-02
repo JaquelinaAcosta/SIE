@@ -46,7 +46,7 @@
             .content{
                 margin:0 auto;
                 width:1000px;
-                background-color:#ebebeb;
+                background-color:#fafafa;
 
                 padding:30px;
                 {#  -webkit-box-shadow: -1px 0px 5px 3px rgba(0,0,0,0.31);
@@ -208,30 +208,16 @@
                         </a>
                     </div>
                 </div>
-
-
                 <div class="contentmain">
-
                     {% block contentmain %}
-
                     {% endblock %}
-
                 </div>
             </header>
         {% else %}
-
             <div class="login">
-
                 {% block login %}
-
                 {% endblock %}
-
             </div>
-
-
         {% endif %}
-
-
     </body>
-
 </html>

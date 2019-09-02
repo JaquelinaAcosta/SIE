@@ -253,7 +253,7 @@
 
                                 {% if accion_habilitada == true %}
                                     <a class="btn btn-warning" href="{{ path("editar_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit"></i></a>
-                                    <a class="btn btn-warning" href="{{ path("elegir_movimiento", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Realizar un pase"><i class="fas fa-arrow-alt-circle-right"></i></a>
+                                    <a class="btn btn-primary" href="{{ path("elegir_movimiento", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Realizar un pase"><i class="fas fa-arrow-alt-circle-right"></i></a>
 
                                     {% if expediente.fechaBaja is null %}
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{ count }}"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></button>    
