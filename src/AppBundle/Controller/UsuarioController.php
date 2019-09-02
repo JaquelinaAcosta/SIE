@@ -57,7 +57,7 @@ class UsuarioController extends Controller {
         }
 
         // replace this example code with whatever you need
-        return $this->render('AppBundle:Usuario:index.html.twig', [
+        return $this->render('Usuario/index.html.twig', [
                     'form' => $form->createView(),
                     'usuario' => $usuario
         ]);
@@ -118,7 +118,7 @@ class UsuarioController extends Controller {
         }
 
         // replace this example code with whatever you need
-        return $this->render('AppBundle:Usuario:editarUsuario.html.twig', array(
+        return $this->render('Usuario/editarUsuario.html.twig', array(
                     'form' => $form->createView(),
                     'usuario' => $usuario,
         ));
@@ -173,7 +173,7 @@ class UsuarioController extends Controller {
             }
         }
 
-        return $this->render('AppBundle:Usuario:listadoUsuarios.html.twig', array(
+        return $this->render('Usuario/listadoUsuarios.html.twig', array(
                     'usuario' => $usuario,
                     'maxPages' => $maxPages,
                     'totalItems' => $totalItems,

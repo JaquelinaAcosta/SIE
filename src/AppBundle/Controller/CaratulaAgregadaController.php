@@ -42,7 +42,7 @@ class CaratulaAgregadaController extends Controller {
         }
 
         // replace this example code with whatever you need
-        return $this->render('AppBundle:Expediente:caratulaAgregada.html.twig', [
+        return $this->render('Expediente/caratulaAgregada.html.twig', [
                     'form' => $form->createView(),
                     'expediente' => $expediente,
                     'caratulaAgregada' => $caratulaAgregada,
@@ -98,7 +98,7 @@ class CaratulaAgregadaController extends Controller {
         }
 
         // replace this example code with whatever you need
-        return $this->render('AppBundle:Expediente:caratulaAgregada.html.twig', array(
+        return $this->render('Expediente/caratulaAgregada.html.twig', array(
                     'form' => $form->createView(),
                     'expediente' => $expediente,
                     'caratulaAgregada' => $caratulaAgregada,
@@ -162,7 +162,7 @@ class CaratulaAgregadaController extends Controller {
             }
         }
 
-        return $this->render('AppBundle:Expediente:listadoCaratulas.html.twig', array(
+        return $this->render('Expediente/listadoCaratulas.html.twig', array(
                     'caratulas' => $caratulas,
                     'expediente' => $expediente,
                     'maxPages' => $maxPages,
@@ -187,7 +187,7 @@ class CaratulaAgregadaController extends Controller {
         }
 //        $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
         // replace this example code with whatever you need
-        return $this->render('AppBundle:Expediente:detalleCaratulaAgregada.html.twig', [
+        return $this->render('Expediente/detalleCaratulaAgregada.html.twig', [
                     'caratula' => $caratulaAgregada
         ]);
     }

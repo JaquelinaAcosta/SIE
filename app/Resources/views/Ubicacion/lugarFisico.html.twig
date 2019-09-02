@@ -1,0 +1,55 @@
+{% extends "layout.html.twig" %}
+
+{% block contentmain %}
+
+    <style>
+        input[type=text]{
+            margin-bottom: 10px;
+            padding:10px;            
+        }
+        input[type=submit]{
+            margin-bottom: 10px;
+            padding:10px;            
+        }
+
+    </style>
+
+    <div class="content">   
+        <div class="title">
+            <strong> {{ accion }} Lugar Físico</strong>
+        </div>
+        <hr/>
+        {{form_start(form,{'action':'','method':'POST'})}}
+        <div class="row">
+            <div class="col-lg-6">
+                {% if form.dependencia is defined %}
+                    <label class="text-default">Dependencia</label>
+                    {{ form_errors(form.dependencia) }}
+                    {{ form_widget(form.dependencia) }}
+                {% endif %}
+            </div>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-6">
+                <label class="text-default">Tipo</label>
+                {{ form_errors(form.tipo) }}
+                {{ form_widget(form.tipo) }}
+            </div>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-6">
+                <label class="text-default">Descripción</label>
+                {{ form_errors(form.descripcion) }}
+                {{ form_widget(form.descripcion) }}
+            </div>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-6">
+                <label class="text-default">Acceso</label>
+                {{ form_errors(form.acceso) }}
+                {{ form_widget(form.acceso) }}     
+            </div>
+        </div>
+        <hr/>
+        {{ form_widget(form.Aceptar) }}
+        <button class="btn btn-secondary" type="button" onclick="history.back()"  role="button">Volver</button>
+        {{form_end(form)}}
+    </div>
+{% endblock %}

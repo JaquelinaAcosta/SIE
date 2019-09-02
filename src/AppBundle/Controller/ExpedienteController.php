@@ -17,6 +17,7 @@ use AppBundle\Form\ExpedienteFilterType;
 use Symfony\Component\Validator\Constraints\DateTime;
 use AppBundle\Entity\MovimientoExpediente;
 
+
 class ExpedienteController extends Controller {
 
     /**
@@ -49,10 +50,9 @@ class ExpedienteController extends Controller {
                 $movimientoExpediente->setFecha($date);
                 $movimientoExpediente->setUbicacion($expediente->getIniciadorDependencia()->getMesaentrada());
                 $expediente->getMovimientos()->add($movimientoExpediente);
-
+                $expediente->setFechaCarga($date);
+                
                 $fechaIni = \DateTime::createFromFormat('d-m-Y', $form['fechaInicio']->getData());
-//                $fechaIni->format('Y-m-d');
-//                dump($fechaIni);die();
                 if ($form['fechaFin']->getData() != '') {
                     $fechaFin = \DateTime::createFromFormat('d-m-Y', $form['fechaFin']->getData());
                     $expediente->setFechaFin($fechaFin);
@@ -60,18 +60,8 @@ class ExpedienteController extends Controller {
                     $expediente->setFechaFin(null);
                 }
 
-//                $fechaFin->format('Y-m-d');
-//                dump($fechaIni);die();
-//                $expediente->setFechaInicio());
                 $expediente->setFechaInicio($fechaIni);
-
                 $expediente->setEstado('NUEVO');
-//                foreach ($form['expedientes_asociados']->getData() as $expediente_asoc) {
-//                    $expediente_asoc->setExpedientePadre($expediente);
-//                }
-//                $expediente->setFechaInicio(date($form['fechaInicio']->getData()." H:i:s"));
-//                $expediente->setFechaFin(date($form['fechaFin']->getData()." H:i:s"));
-
                 $em->persist($expediente);
                 $flush = $em->flush();
 
@@ -86,7 +76,7 @@ class ExpedienteController extends Controller {
 
 
         // replace this example code with whatever you need
-        return $this->render('AppBundle:Expediente:add.html.twig', [
+        return $this->render('Expediente/add.html.twig', [
                     'form' => $form->createView(),
                     'accion' => 'Nuevo'
         ]);
@@ -105,7 +95,7 @@ class ExpedienteController extends Controller {
         }
         $em = $this->getDoctrine()->getEntityManager();
         $user = $this->getUser();
-        $limit = 15;
+        $limit = 14;
         $totalItems = 0;
         $maxPages = 0;
         $expedientes = array();
@@ -171,10 +161,11 @@ class ExpedienteController extends Controller {
             }
         }
 
-        return $this->render('AppBundle:Expediente:listadoExpediente.html.twig', array(
-                    'expediente' => $expedientes,
+        return $this->render('Expediente/listadoExpediente.html.twig', array(
+                    'expedientes' => $expedientes,
                     'maxPages' => $maxPages,
                     'totalItems' => $totalItems,
+                    'limite' =>$limit ,
                     'thisPage' => $currentPage,
                     'page' => $currentPage,
                     'formExpedienteFilter' => $formExpedienteFilter->createView(),
@@ -229,7 +220,7 @@ class ExpedienteController extends Controller {
         $em->flush();
 
         // replace this example code with whatever you need
-        return $this->render('AppBundle:Expediente:detalleExpediente.html.twig', [
+        return $this->render('Expediente/detalleExpediente.html.twig', [
                     'expediente' => $expediente,
                     'expedientes_asociados' => $expedientes_asociados,
                     'expediente_padre' => $expedientePadre,
@@ -342,7 +333,7 @@ class ExpedienteController extends Controller {
         }
 
         // replace this example code with whatever you need
-        return $this->render('AppBundle:Expediente:add.html.twig', array(
+        return $this->render('Expediente/add.html.twig', array(
                     'form' => $form->createView(),
                     'expediente' => $expediente,
                     'accion' => 'Editar'

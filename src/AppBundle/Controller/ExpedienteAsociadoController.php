@@ -141,7 +141,7 @@ class ExpedienteAsociadoController extends Controller {
             }
         }
 
-        return $this->render('AppBundle:Expediente:listadoExpedienteAsociado.html.twig', array(
+        return $this->render('Expediente/listadoExpedienteAsociado.html.twig', array(
                     'asociados' => $asociados,
                     'expediente' => $expediente,
                     'maxPages' => $maxPages,

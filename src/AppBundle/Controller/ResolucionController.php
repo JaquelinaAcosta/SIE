@@ -42,7 +42,7 @@ class ResolucionController extends Controller {
         }
 
         // replace this example code with whatever you need
-        return $this->render('AppBundle:Expediente:resolucion.html.twig', [
+        return $this->render('Expediente/resolucion.html.twig', [
                     'form' => $form->createView(),
                     'usuario' => $usuario,
                     'expediente' => $expediente
@@ -61,7 +61,7 @@ class ResolucionController extends Controller {
             return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
         }
         // replace this example code with whatever you need
-        return $this->render('AppBundle:Expediente:detalleResolucion.html.twig', [
+        return $this->render('Expediente/detalleResolucion.html.twig', [
                     'expediente' => $expediente
         ]);
     }

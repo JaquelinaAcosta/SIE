@@ -20,6 +20,7 @@ class MovimientoExpedienteController extends Controller {
     public function indexMovimientoAction(Request $request, $id) {
         $em = $this->getDoctrine()->getEntityManager();
         $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
+        
         if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser())) {
             $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
             return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
@@ -41,7 +42,7 @@ class MovimientoExpedienteController extends Controller {
         $form = $this->createForm(MovimientoExpedienteType::class);
         $form->handleRequest($request);
 
-        return $this->render('AppBundle:Movimiento:chooser.html.twig', [
+        return $this->render('Movimiento/chooser.html.twig', [
                     'form' => $form->createView(),
                     'expediente' => $expediente,
                     'pase_externo' => $pase_externo
@@ -90,7 +91,7 @@ class MovimientoExpedienteController extends Controller {
                             'currentPage' => 1]);
             }
         }
-        return $this->render('AppBundle:Movimiento:interno.html.twig', [
+        return $this->render('Movimiento/interno.html.twig', [
                     'form' => $form->createView(),
                     'expediente' => $expediente,
                     'accion' => 'NUEVO'
@@ -156,7 +157,7 @@ class MovimientoExpedienteController extends Controller {
                 return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
             }
         }
-        return $this->render('AppBundle:Movimiento:externo.html.twig', [
+        return $this->render('Movimiento/externo.html.twig', [
                     'form' => $form->createView(),
                     'expediente' => $expediente,
                     'accion' => 'NUEVO'
@@ -210,7 +211,7 @@ class MovimientoExpedienteController extends Controller {
                 return $this->redirectToRoute('listado_movimiento', ['id' => $expediente->getId(), 'currentPage' => 1]);
             }
         }
-        return $this->render('AppBundle:Movimiento:archivar.html.twig', [
+        return $this->render('Movimiento/archivar.html.twig', [
                     'form' => $form->createView(),
                     'expediente' => $expediente,
                     'accion' => 'NUEVO'
@@ -274,7 +275,7 @@ class MovimientoExpedienteController extends Controller {
             }
         }
 
-        return $this->render('AppBundle:Expediente:listadoMovimientos.html.twig', array(
+        return $this->render('Expediente/listadoMovimientos.html.twig', array(
                     'movimientos' => $movimientos,
                     'totalMovimientos' => $totalMovimientos,
                     'expediente' => $expediente,
@@ -299,7 +300,7 @@ class MovimientoExpedienteController extends Controller {
             return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
         }
         // replace this example code with whatever you need
-        return $this->render('AppBundle:Movimiento:detalleMovimiento.html.twig', [
+        return $this->render('Movimiento/detalleMovimiento.html.twig', [
                     'movimiento' => $movimiento
         ]);
     }
@@ -335,7 +336,7 @@ class MovimientoExpedienteController extends Controller {
                     }
                     return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
                 }
-                return $this->render('AppBundle:Movimiento:externo.html.twig', array(
+                return $this->render('Movimiento/externo.html.twig', array(
                             'movimiento' => $movimiento,
                             'expediente' => $expediente,
                             'form' => $form->createView(),
@@ -361,7 +362,7 @@ class MovimientoExpedienteController extends Controller {
                     }
                     return $this->redirectToRoute('listado_movimiento', ["id" => $movimiento->getExpediente()->getId(), 'currentPage' => 1]);
                 }
-                return $this->render('AppBundle:Movimiento:interno.html.twig', array(
+                return $this->render('Movimiento/interno.html.twig', array(
                             'movimiento' => $movimiento,
                             'expediente' => $expediente,
                             'form' => $form->createView(),
@@ -388,7 +389,7 @@ class MovimientoExpedienteController extends Controller {
                     }
                     return $this->redirectToRoute('listado_movimiento', ["id" => $movimiento->getExpediente()->getId(), 'currentPage' => 1]);
                 }
-                return $this->render('AppBundle:Movimiento:archivar.html.twig', array(
+                return $this->render('Movimiento/archivar.html.twig', array(
                             'movimiento' => $movimiento,
                             'expediente' => $expediente,
                             'form' => $form->createView(),
@@ -399,8 +400,7 @@ class MovimientoExpedienteController extends Controller {
             default:
                 break;
         }
-        // replace this example code with whatever you need
-        return $this->render('AppBundle:Movimiento:detalleMovimiento.html.twig', array(
+        return $this->render('Movimiento/detalleMovimiento.html.twig', array(
                     'form' => $form->createView(),
                     'accion' => 'Editar'
         ));

@@ -35,13 +35,18 @@ class DependenciaController extends Controller {
                 $flush = $em->flush();
 
                 if ($flush == false) {
-                    
+                    $this->addFlash('success', 'Dependencia creada correctamente.');
+                }else{
+                    $this->addFlash('danger', 'Ocurrió un error al intentar crear la dependencia.');
                 }
+                
+                $this->redirectToRoute('listado_dependencia',['currentPage'=>1]);
+                
             }
         }
 
         // replace this example code with whatever you need
-        return $this->render('AppBundle:Dependencia:add.html.twig', [
+        return $this->render('Dependencia/add.html.twig', [
                     'form' => $form->createView(),
                     'accion' => 'Nueva'
         ]);
@@ -94,7 +99,7 @@ class DependenciaController extends Controller {
             }
         }
 
-        return $this->render('AppBundle:Dependencia:listadoDependencia.html.twig', array(
+        return $this->render('Dependencia/listadoDependencia.html.twig', array(
                     'dependencias' => $dependencias,
                     'maxPages' => $maxPages,
                     'totalItems' => $totalItems,
@@ -158,7 +163,7 @@ class DependenciaController extends Controller {
         }
 
         // replace this example code with whatever you need
-        return $this->render('AppBundle:Dependencia:add.html.twig', array(
+        return $this->render('Dependencia/add.html.twig', array(
                     'form' => $form->createView(),
                     'accion' => 'Editar'
         ));

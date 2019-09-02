@@ -1,0 +1,57 @@
+{% extends "layout.html.twig" %}
+
+{% block contentmain %}
+    <div class="content">
+        <div class="row">
+            <table class="table table-bordered"> 
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col"> </th>
+                        <th scope="col"><i class="fas fa-info-circle "></i> <strong> DETALLE DE MOVIMIENTO DE EXPEDIENTE - {{ movimiento.expediente}}</th>
+                    </tr>
+
+                </thead>
+                <tbody >                    
+                    <tr>
+                        <th class="w-25">UBICACIÓN</th>
+                        <td class="bg-white">{{movimiento.ubicacion}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">FOJAS</th>
+                        <td class="bg-white">{{movimiento.fojas}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">USUARIO DEL PASE</th>
+                        <td class="bg-white">{{ movimiento.usuario}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">FECHA</th>
+                        <td class="bg-white">{{ movimiento.fecha|date('d-m-Y')}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">COMENTARIO</th>
+                        <td class="bg-white">{{ movimiento.comentario}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25 ">OBSERVACIÓN</th>
+                        <td class="bg-white">{{ movimiento.observacion}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">TIPO DE SALIDA</th>
+                        <td class="bg-white">{{ movimiento.tiposalida}}</td>
+                    </tr> 
+                </tbody>
+                <tfoot>
+            </table>  
+        <a class="btn btn-primary" href="#" onclick="history.back()"  role="button">Volver</a>
+
+        </div>
+
+    </div>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+
+{% endblock %}

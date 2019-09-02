@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Entity\LugarFisico;
-use AppBundle\Entity\Dependencia;
 use AppBundle\Form\LugarFisicoType;
 use AppBundle\Form\LugarFisicoFilterType;
 use Doctrine\ORM\Tools\Pagination\Paginator;
@@ -30,26 +29,28 @@ class LugarFisicoController extends Controller {
         }
 
         $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
 
-        if ($form->isValid()) {
+                $responsable = new Responsable();
+                $responsable->setUbicacion($lugarFisico);
+                $responsable->setUsuario($this->getUser());
+                $lugarFisico->addResponsable($responsable);
+                $em->persist($lugarFisico);
+                $flush = $em->flush();
 
-            $responsable = new Responsable();
-            $responsable->setUbicacion($lugarFisico);
-            $responsable->setUsuario($this->getUser());
-            $lugarFisico->addResponsable($responsable);
-            $em->persist($lugarFisico);
-            $flush = $em->flush();
-
-            if ($flush == false) {
-                $this->addFlash('success', "Lugar añadido correctamente.");
-            } else {
-                $this->addFlash('danger', "Ocurrió un error en la creacion del lugar.");
+                if ($flush == false) {
+                    $this->addFlash('success', "Lugar añadido correctamente.");
+                } else {
+                    $this->addFlash('danger', "Ocurrió un error en la creacion del lugar.");
+                }
+                return $this->redirectToRoute('listado_lugarfisico', ["currentPage" => 1]);
             }
-            return $this->redirectToRoute('listado_lugarfisico', ["currentPage" => 1]);
         }
 
 
-        return $this->render('AppBundle:Ubicacion:lugarFisico.html.twig', array(
+
+        return $this->render('Ubicacion/lugarFisico.html.twig', array(
                     'form' => $form->createView(),
                     'accion' => 'Nuevo'
         ));
@@ -80,18 +81,19 @@ class LugarFisicoController extends Controller {
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
-
-            $em->persist($lugarfisico);
-            $flush = $em->flush();
-            if ($flush == false) {
-                $this->addFlash('success', "Lugar editado correctamente.");
-            } else {
-                $this->addFlash('danger', "Ocurrió un error en la edición del lugar.");
+            if ($form->isValid()) {
+                $em->persist($lugarfisico);
+                $flush = $em->flush();
+                if ($flush == false) {
+                    $this->addFlash('success', "Lugar editado correctamente.");
+                } else {
+                    $this->addFlash('danger', "Ocurrió un error en la edición del lugar.");
+                }
+                return $this->redirectToRoute('listado_lugarfisico', ["currentPage" => 1]);
             }
-            return $this->redirectToRoute('listado_lugarfisico', ["currentPage" => 1]);
         }
         // replace this example code with whatever you need
-        return $this->render('AppBundle:Ubicacion:lugarFisico.html.twig', array(
+        return $this->render('Ubicacion/lugarFisico.html.twig', array(
                     'form' => $form->createView(),
                     'accion' => 'Editar'
         ));
@@ -179,7 +181,7 @@ class LugarFisicoController extends Controller {
                 return $this->redirectToRoute('listado_lugarfisico', ['currentPage' => 1]);
             }
         }
-        return $this->render('AppBundle:Ubicacion:listadoLugarFisico.html.twig', array(
+        return $this->render('Ubicacion/listadoLugarFisico.html.twig', array(
                     'lugarFisico' => $lugarFisico,
                     'maxPages' => $maxPages,
                     'totalItems' => $totalItems,
@@ -207,26 +209,18 @@ class LugarFisicoController extends Controller {
             $original_responsables->add($responsable);
         }
 
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
             foreach ($original_responsables as $responsable) {
                 if (false === $lugarfisico->getResponsables()->contains($responsable)) {
-                    // remove the Task from the Tag
-                    //  $responsable->getUbicacion()->removeElement($mesaentrada);
-                    // if it was a many-to-one relationship, remove the relationship like this
-                    // $tag->setTask(null);
-                    // if you wanted to delete the Tag entirely, you can also do that
-                    // $entityManager->remove($tag);
                     $em->remove($responsable);
                 }
             }
 
             foreach ($form['responsables']->getData() as $responsable) {
                 $responsable->setUbicacion($lugarfisico);
-                //$mesaentrada->addResponsable($responsable);
             }
 
             $em->persist($lugarfisico);
@@ -234,7 +228,7 @@ class LugarFisicoController extends Controller {
         }
 
         // replace this example code with whatever you need
-        return $this->render('AppBundle:Ubicacion:lugarfisicoResponsables.html.twig', [
+        return $this->render('Ubicacion/lugarfisicoResponsables.html.twig', [
                     'form' => $form->createView(),
                     'lugarfisico' => $lugarfisico
         ]);

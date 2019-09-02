@@ -96,6 +96,13 @@ class Expediente {
     /**
      * @var string
      *
+     * @ORM\Column(name="fecha_carga", type="datetime",nullable=true)
+     */
+    private $fechaCarga;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="fecha_inicio", type="datetime",nullable=true)
      */
     private $fechaInicio;
@@ -713,10 +720,11 @@ class Expediente {
      * @Assert\IsTrue(message="La fecha de inicio debe ser menor que la de fin.")
      */
     public function getValidarFecha() {
-        if (($this->fechaInicio) <= ($this->fechaFin)) {
+        if ($this->fechaFin > null && ($this->fechaInicio) <= ($this->fechaFin)) {
             return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
     /**
@@ -729,4 +737,50 @@ class Expediente {
         return false;
     }
 
+    /**
+     * Set fechaBaja
+     *
+     * @param \DateTime $fechaBaja
+     *
+     * @return Expediente
+     */
+    public function setFechaBaja($fechaBaja) {
+        $this->fechaBaja = $fechaBaja;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaBaja
+     *
+     * @return \DateTime
+     */
+    public function getFechaBaja() {
+        return $this->fechaBaja;
+    }
+
+
+    /**
+     * Set fechaCarga
+     *
+     * @param \DateTime $fechaCarga
+     *
+     * @return Expediente
+     */
+    public function setFechaCarga($fechaCarga)
+    {
+        $this->fecha_carga = $fechaCarga;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaCarga
+     *
+     * @return \DateTime
+     */
+    public function getFechaCarga()
+    {
+        return $this->fecha_carga;
+    }
 }

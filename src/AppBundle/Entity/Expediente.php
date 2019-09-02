@@ -96,6 +96,13 @@ class Expediente {
     /**
      * @var string
      *
+     * @ORM\Column(name="fecha_carga", type="datetime",nullable=true)
+     */
+    private $fechaCarga;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="fecha_inicio", type="datetime",nullable=true)
      */
     private $fechaInicio;
@@ -715,10 +722,9 @@ class Expediente {
     public function getValidarFecha() {
         if ($this->fechaFin > null && ($this->fechaInicio) <= ($this->fechaFin)) {
             return true;
-        }else{
+        } else {
             return false;
         }
-        
     }
 
     /**
@@ -731,7 +737,6 @@ class Expediente {
         return false;
     }
 
-
     /**
      * Set fechaBaja
      *
@@ -739,8 +744,7 @@ class Expediente {
      *
      * @return Expediente
      */
-    public function setFechaBaja($fechaBaja)
-    {
+    public function setFechaBaja($fechaBaja) {
         $this->fechaBaja = $fechaBaja;
 
         return $this;
@@ -751,8 +755,32 @@ class Expediente {
      *
      * @return \DateTime
      */
-    public function getFechaBaja()
-    {
+    public function getFechaBaja() {
         return $this->fechaBaja;
+    }
+
+
+    /**
+     * Set fechaCarga
+     *
+     * @param \DateTime $fechaCarga
+     *
+     * @return Expediente
+     */
+    public function setFechaCarga($fechaCarga)
+    {
+        $this->fechaCarga = $fechaCarga;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaCarga
+     *
+     * @return \DateTime
+     */
+    public function getFechaCarga()
+    {
+        return $this->fechaCarga;
     }
 }

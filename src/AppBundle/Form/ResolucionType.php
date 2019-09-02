@@ -54,7 +54,8 @@ class ResolucionType extends AbstractType {
                     "required"=>false,
                     "label" => false, "attr" => array(
                         "class" => 'datepicker form-control',
-                        "placeholder" => 'Ingrese una observacion...')
+                        "placeholder" => 'Ingrese una observacion...',
+                        "rows"=>5)
                 ))
                 ->add('Aceptar', SubmitType::class, array("attr" => array(
                         "class" => "form-submit btn btn-primary"
