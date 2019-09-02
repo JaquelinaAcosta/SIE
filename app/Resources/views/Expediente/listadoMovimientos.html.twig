@@ -1,0 +1,260 @@
+{% extends "layout.html.twig" %}
+
+{% block contentmain %}
+    <style>
+        input[type=text]{
+            margin-bottom: 10px;
+            padding:10px;            
+        }
+        input[type=submit]{
+            margin-bottom: 10px;           
+        }
+        .expediente{
+            margin-right: 12px;
+            padding:15px;
+        }
+        .expediente p{
+            margin-top:10px;
+        }
+        .titulo{
+            height: 30px;
+            padding:7px;
+            background-color:black;
+            color: #fff;
+        }
+        .panel{
+            font-size: 15px; 
+            margin-bottom: 20px;
+            margin-right: 20px;
+        }
+        .form-exp{
+            font-size:15px;
+            padding:10px;
+        }
+        .title{
+            font-size:16px;
+        }
+
+        p {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px;
+        }
+
+        .modal-header-warning {
+            color:#fff;
+            padding:9px 15px;
+            border-bottom:1px solid #eee;
+            background-color: #060325;
+            -webkit-border-top-left-radius: 5px;
+            -webkit-border-top-right-radius: 5px;
+            -moz-border-radius-topleft: 5px;
+            -moz-border-radius-topright: 5px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+    </style>
+
+    <div class="content">
+        <div class="accordion" id="accordionExample">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-dark search" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <i class="fas fa-search-plus"></i> Filtros de Búsqueda de Movimientos, Expediente {{ expediente }}
+                        </button>
+
+                        {% set accion_habilitada = false %}
+
+                        {% if expediente.estado != 'ASOCIADO' %}
+                            {% if app.user.role == 'ROLE_ADMIN' %}
+                                {% set accion_habilitada = true %}
+                            {%else%}
+                                {% for responsable in expediente.ubicacionActual.responsables.getValues %}
+                                    {% if app.user == responsable.usuario %}
+                                        {% set accion_habilitada = true %}
+                                    {% endif %}
+                                {%endfor%}
+                            {% endif %}  
+                        {% endif %}
+                        {% if expediente.estado != 'ASOCIADO' and accion_habilitada ==true %}
+
+                            <a href="{{ path('elegir_movimiento',
+                                 {'id':expediente.id}) }}" 
+                               role="button" class="btn btn-info float-right">Nuevo Movimiento</a>
+                        {% endif %}
+
+                    </h2>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <form method="post" novalidate="true" id="form_buscar">
+                            {{ form_errors(formMovimientoFilter) }}
+                            <div class="row">
+                                <div class="threecol col-lg-3">
+                                    {{ form_label(formMovimientoFilter.usuario, 'USUARIO') }}
+                                    {{ form_widget(formMovimientoFilter.usuario) }}
+                                    <div class="help-block with-errors">
+                                        {{ form_errors(formMovimientoFilter.usuario) }}
+                                    </div>
+                                </div>  
+                                <div class="threecol col-lg-3">
+                                    {{ form_label(formMovimientoFilter.tipoSalida, 'TIPO DE PASE') }}
+                                    {{ form_widget(formMovimientoFilter.tipoSalida) }}
+                                    <div class="help-block with-errors">
+                                        {{ form_errors(formMovimientoFilter.tipoSalida) }}
+                                    </div>
+                                </div>  
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formMovimientoFilter.fecha) }}
+                                </div>
+                                <div class="threecol col-lg-2">            
+                                    {{ form_row(formMovimientoFilter.fecha.left_date, { 'id': 'date1' })}} 
+                                    {{ form_widget(formMovimientoFilter.fecha.left_date) }}
+
+                                </div>   
+                                <div class="threecol col-lg-2">
+                                    {{ form_row(formMovimientoFilter.fecha.right_date, { 'id': 'date2' })}} 
+                                    {{ form_widget(formMovimientoFilter.fecha.right_date) }}
+
+                                </div>       
+                            </div>
+
+                            <hr/>
+
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    {{ form_widget(formMovimientoFilter.filter) }}
+                                    {{ form_widget(formMovimientoFilter.reset) }}
+                                </div>
+                            </div>
+                            {{ form_end(formMovimientoFilter) }}
+
+                        </form>   
+                    </div>
+                </div>
+            </div>
+
+            <hr/>
+
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+                <hr/>
+            {% endfor %}
+
+            {% for message in app.flashes('danger') %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+                <hr/>
+            {% endfor %}
+
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">UBICACION</th>
+                        <th scope="col">DEPENDENCIA</th>
+                        <th scope="col">TIPO DE PASE</th>
+                        <th scope="col">FECHA</th>
+                        <th scope="col">ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% set count = movimientos|length+1 %}
+                    {% set modalCount = 0 %}
+                    {% for movimiento in movimientos|reverse%}
+                        <tr>
+                            {% set count= count-1 %}
+                            {% if count != movimientos|length %}
+                                <td><i class="fas fa-arrow-up"></i> {{count}} </td>
+                            {% else %}
+                                <td><i class="fas fa-arrows-alt-h"></i> {{ count }} </td>
+                            {% endif %}
+                            <td>{{movimiento.ubicacion}}</td>
+                            <td>{{movimiento.ubicacion.dependencia}}</td>
+                            <td>{{movimiento.tipoSalida}}</td>
+                            <td>{{movimiento.fecha|date('d-m-Y')}}</td>
+                            {% if (movimiento.ubicacion == expediente.ubicacionActual) and (movimiento.ubicacion != expediente.ultimaUbicacion) and (count == movimientos|length) %}
+                                <td><a class="btn btn-info" href="{{ path('ver_movimiento',{'id':movimiento.id}) }}"  role="button" title="Ver Detalle"><i class="fas fa-search"></i></a>
+                                        {% if count >0 and (accion_habilitada == true)%}
+                                        <a class="btn btn-warning" href="{{ path('editar_movimiento',{'id':movimiento.id}) }}"  role="button" title="Modificar"><i class="fas fa-edit"></i></a>                                  
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{ count }}"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></button>    
+
+
+                                        <!-- The Modal -->
+                                        <div class="modal fade" id="myModal{{count}}">
+                                            <div class="modal-dialog modal-sm modal-dialog-centered">
+                                                <div class="modal-content">
+
+                                                    <!-- Modal Header -->
+                                                    <div class="modal-header-warning">
+                                                        <button type="button" class="close text-danger" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                        <h4 class="modal-title">Eliminar Movimento</h4>
+                                                    </div>
+
+                                                    <!-- Modal body -->
+                                                    <div class="modal-body">
+                                                        ¿Desea Eliminar el Movimiento: {{ movimiento.ubicacion }}?
+
+                                                    </div>
+                                                    <!-- Modal footer -->
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-primary"><a class="text-type btn-primary"href="{{ path("eliminar_movimiento", {'id':movimiento.id})  }}"  role="button">SI</a></button>                          
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% set modalCount=modalCount+1 %}
+
+                                        {#                                        <a class="btn btn-danger" href="{{path('eliminar_movimiento',{'id':movimiento.id})}}"  role="button" title="Archivar"><i class="fas fa-trash-alt"></i></a></td>#}
+                                    {% endif %}
+                                {% else %}
+                                <td><a class="btn btn-info" href="{{ path('ver_movimiento',{'id':movimiento.id}) }}"  role="button" title="Ver Detalle"><i class="fas fa-search"></i></a></td>
+                                    {% endif %}
+                        </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+
+            {% if movimientos|length < totalItems %}        
+                <ul class="pagination">
+                    {%if (thisPage==1)%}           
+                    {%else%}
+                        {%set thisPage= thisPage-1%}
+                    {%endif%}
+
+
+                    <li ><a class="page-link" href="{{ path('listado_movimiento', {'id':expediente.id,"currentPage": thisPage}) }}">&laquo</a></li>
+                        {% for i in 1..maxPages %}
+                        <li><a class="page-link"  href="{{ path('listado_movimiento', {'id':expediente.id,"currentPage": i}) }}">{{ i }}</a></li>
+                        {% endfor %}
+
+                    {%if (page==maxPages)%}
+                    {%else%}
+                        {%set page= page+1%}
+                    {%endif%}
+                    <li><a class="page-link" href="{{ path('listado_movimiento', {'id':expediente.id,"currentPage": page}) }}">&raquo</a></li>
+
+                </ul>
+
+            </div> 
+        {%endif%} 
+
+
+    </div>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+    <hr/>
+{% endblock %}

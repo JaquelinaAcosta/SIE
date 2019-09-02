@@ -1,0 +1,79 @@
+
+{% extends "layout.html.twig" %}
+
+{% block login %}
+
+    <style>
+        body{
+            background-color:#474747;
+        }
+        .logincontent{
+            width:525px;
+            margin:0 auto;
+            margin-top: 100px;
+            background-color:#fff;
+
+        } 
+        .logincontent .border{
+            padding:15px;
+
+        }
+        .co{
+            background-color:#2e2e2e;
+            height:10px;
+        }
+        .title{
+            width:525px;
+            padding:15px;
+            margin:0 auto;
+            margin-top: 30px;
+        }
+        p{
+            text-align:center;
+        }
+        .header{
+            {#            background-color:#5294ff;#}
+            color:gray;
+            padding-top:6px;
+            padding-bottom: 3px;
+        }
+        .header p{
+            text-align: center;
+            font-weight: bold;
+
+        }
+        .subcontent{
+            padding:30px;
+        }
+        .btn{
+            width:100%;
+        }
+    </style>
+    {#    <div class="title">
+            <h1 class="text-primary"><p style="color:#5eb5ab;">BIENVENIDO AL SISTEMA DE GESTION INTERNA DE EXPEDIENTES</p></h1>
+        </div>#}
+    <div class="logincontent"> 
+        <hr class="co"/>
+        <div class="border">
+            <form action="{{ path('login_check') }}" method="post">
+                <p>ACCESO AL SISTEMA</p>
+        </div>
+        <div class="subcontent">
+            {# Input para el campo iup #}
+            <label>USUARIO</label>
+            <input style="padding:12px;" placeholder="Email | Usuario(iup)" type="text" id="username" name="_username" value="{{ last_username }}" class="form-control"/>
+
+            <label for="password">CONTRASEÑA</label>
+            <input style="padding:12px;" placeholder="**********" type="password" id="password" name="_password" class="form-control"/>
+            <br/>
+
+            <button style="padding:14px;" type="submit" class="form-submit btn btn-info">ENTRAR</button>
+
+            <input type="hidden" name="_target_path" value="/" />
+        </div>
+    </form>
+</div>
+</div>
+
+
+{% endblock %}

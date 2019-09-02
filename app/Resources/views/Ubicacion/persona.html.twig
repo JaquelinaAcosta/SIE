@@ -1,0 +1,67 @@
+{% extends "layout.html.twig" %}
+
+{% block contentmain %}
+
+    <style>
+        input[type=text]{
+            margin-bottom: 10px;
+            padding:10px;            
+        }
+        input[type=submit]{
+            margin-bottom: 10px;
+            padding:10px;            
+        }
+
+    </style>
+
+    <div class="content"> 
+        <i clas="fas fa-edit"></i> ALTA DE PERSONA
+
+        <hr/>
+        {{form_start(form,{'action':'','method':'POST'})}}
+        <div class="row">
+            {{ form_errors(form) }}
+            <div class="row">
+
+                {% if form.dependencia is defined %}
+                    <div class="col-lg-6">
+                        <label class="text-default">Dependencia</label>
+                        {{ form_errors(form.dependencia) }}
+                        {{ form_widget(form.dependencia) }}
+                    </div>
+                    <div class="col-lg-10"></div>
+                {% endif %}
+
+                <div class="col-lg-6">
+                    <label class="text-default">Nombre</label>
+                    {{ form_errors(form.nombre) }}
+                    {{ form_widget(form.nombre) }}
+                </div>
+                <div class="col-lg-4"></div>
+                <div class="col-lg-6">
+                    <label class="text-default">Apellido</label>
+                    {{ form_errors(form.apellido) }}
+                    {{ form_widget(form.apellido) }}
+                </div>
+                <div class="col-lg-4"></div>
+                <div class="col-lg-6">
+                    <label class="text-default">DNI</label>
+                    <div class=" text-danger">{{ form_errors(form.dni) }}</div>
+                    {{ form_widget(form.dni) }}
+                </div>
+                <div class="col-lg-4"></div>
+                <div class="col-lg-6">
+                    <label class="text-default">Cargo</label>
+                    {{ form_errors(form.cargo) }}
+                    {{ form_widget(form.cargo) }}
+                </div>
+            </div>
+
+        </div>
+        <hr/>
+        {{ form_widget(form.Aceptar) }}
+        <button class="btn btn-secondary" type="button" onclick="history.back()"  role="button">Volver</button>
+
+        {{form_end(form)}}
+    </div>
+{% endblock %}

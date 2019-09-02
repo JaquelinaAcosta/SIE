@@ -1,0 +1,44 @@
+
+{% extends "layout.html.twig" %}
+
+{% block contentmain %}
+    <div class="content">
+        <div class="title">
+            <strong>Resolución, expediente {{expediente}}</strong>
+        </div>
+        <hr/>
+        {{form_start(form,{'action':'','method':'POST'})}}
+        <div class="col-lg-4">
+            <label class="text-default">Fecha de Resolución</label>
+            {{ form_row(form.fechaResolucion, { 'id': 'date1' })}} 
+            {{ form_errors(form.fechaResolucion) }}
+            {{ form_widget(form.fechaResolucion) }}
+        </div>
+
+        <div class="col-lg-3">
+            <label class="text-default">Número de Resolución</label>
+            {{ form_row(form.numeroResolucion, { 'id': 'date1' })}} 
+            {{ form_errors(form.numeroResolucion) }}
+            {{ form_widget(form.numeroResolucion) }}
+        </div>
+
+        <div class="col-lg-4">
+            <label class="text-default">Tipo</label>
+            {{ form_row(form.tipo, { 'id': 'date1' })}} 
+            {{ form_errors(form.tipo) }}
+            {{ form_widget(form.tipo) }}
+        </div>
+        <div class="col-lg-12">
+            <label class="text-default">Observación</label>
+            {{ form_errors(form.observacion) }}
+            {{ form_widget(form.observacion) }}
+        </div>
+        <hr/>
+        <div class="col-lg-4">
+            {{ form_widget(form.Aceptar) }}
+            <button class="btn btn-secondary" type="button" onclick="history.back()"  role="button">Volver</button>
+        </div>
+
+        {{form_end(form)}}
+    </div>
+{% endblock %}

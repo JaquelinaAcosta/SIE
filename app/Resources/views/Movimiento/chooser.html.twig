@@ -1,0 +1,54 @@
+{% extends "layout.html.twig" %}
+
+{% block contentmain %}
+    <style>
+        .botones{
+            width: 50%;
+            margin: 0 auto;
+        }
+        .botones a{
+            padding:20px;
+            font-size: 16px;
+        }
+    </style>
+
+    <div class="content">
+        {% set accion_habilitada = false %}
+        {% if app.user.role == 'ROLE_ADMIN' %}
+            {% set accion_habilitada = true %}
+        {%else%}
+            {% for responsable in app.user.persona.dependencia.mesaentrada.responsables.getValues %}
+                {% if app.user == responsable.usuario %}
+                    {% set accion_habilitada = true %}
+                {% endif %}
+            {%endfor%}
+        {% endif %}  
+
+        <h4 class="text-center">ELIGA EL TIPO DE PASE A REALIZAR</h4>
+        <hr/>
+        <div class="botones">
+            {% if accion_habilitada == true %}
+                <a class="btn btn-primary" href="{{ path("movimiento_externo", {'id':expediente.id}) }}"  
+                   role="button" data-toggle="tooltip" data-placement="top" 
+                   title="Desde una Mesa de Entrada a otra">EXTERNO</a>
+            {% else %}
+                <a class="btn btn-primary disabled" href="{{ path("movimiento_externo", {'id':expediente.id}) }}"  
+                   role="button" data-toggle="tooltip" data-placement="top" 
+                   title="Desde una Mesa de Entrada a otra">EXTERNO</a>
+            {% endif %}
+            <a class="btn btn-primary" href="{{ path("movimiento_interno", {'id':expediente.id}) }}"  
+               role="button" data-toggle="tooltip" data-placement="top" 
+               title="Hacia una Persona">INTERNO</a>
+
+            <a class="btn btn-primary" href="{{ path("movimiento_archivado", {'id':expediente.id}) }}"  
+               role="button" data-toggle="tooltip" data-placement="top" 
+               title="Hacia un lugar Físico">ARCHIVADOR</a>
+        </div>
+    </div>
+
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+{% endblock %}

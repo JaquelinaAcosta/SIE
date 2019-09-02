@@ -64,7 +64,7 @@ class PaginaPrincipalController extends Controller {
 //            return $this->redirectToRoute('busqueda_expediente');
         }
 
-        return $this->render('AppBundle:PaginaPrincipal:inicio.html.twig', array(
+        return $this->render('Expediente/busqueda.html.twig', array(
                     'expedientes' => $expedientes,
                     'expediente_padre' => $expedientePadre,
                     'actual_fecha' => $actualFecha,
@@ -87,7 +87,7 @@ class PaginaPrincipalController extends Controller {
         $lastUsername = $authenticationUtils->getLastUsername();
 
         // Renderiza la plantilla, enviándole, si existen, el último error y nombre de usuario
-        return $this->render('AppBundle:PaginaPrincipal:login.html.twig', array(
+        return $this->render('Login/index.html.twig', array(
                     'last_username' => $lastUsername,
                     'error' => $error,
         ));

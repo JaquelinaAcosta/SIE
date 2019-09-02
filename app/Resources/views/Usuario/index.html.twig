@@ -1,0 +1,94 @@
+{% extends "layout.html.twig" %}
+
+{% block contentmain %}
+
+    <style>
+        input[type=text]{
+            margin-bottom: 10px;
+            padding:10px;            
+        }
+        input[type=password]{
+            margin-bottom: 10px;
+            padding:10px;            
+        }
+        input[type=email]{
+            margin-bottom: 10px;
+            padding:10px;            
+        }
+        input[type=submit]{
+            margin-bottom: 10px;
+            padding:10px;            
+        }
+        .panel-body{
+            padding:30px;
+        }
+    </style>  
+
+    <div class="content">
+
+        <div class="title">
+
+            Nuevo usuario
+
+        </div>
+        <hr/>
+        <br/>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {% for message in app.flashes('danger') %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
+        {{form_start(form,{'action':'','method':'POST'})}}   
+        <div class="row">
+            <div class="col-lg-4">
+                <label class="">Nombre de usuario</label>
+                {{ form_errors(form.iup) }}
+                {{ form_widget(form.iup) }}
+            </div>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-5">
+                <label class="">Email</label>
+                {{ form_errors(form.email) }}
+                {{ form_row(form.email.first) }}
+                <label class="float left">Confirmar Email</label>
+                {{ form_row(form.email.second) }}
+            </div>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">
+                <label class="">Contraseña</label>
+                {{ form_errors(form.contrasenia) }}
+                <div class=" text-danger">{{ form_row(form.contrasenia.first) }}</div>          
+                <label class="">Confirmar Contraseña</label>
+                {{ form_row(form.contrasenia.second) }}
+            </div>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-5">
+                <label class="">Persona</label>
+                {{ form_errors(form.persona) }}
+                {{ form_widget(form.persona) }}   
+            </div>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-4">
+                <label class="">Rol</label>
+                {{ form_errors(form.role) }}
+                {{ form_widget(form.role) }}      
+            </div>
+        </div>
+        <hr/>
+        {{ form_widget(form.Aceptar) }}          
+        <button class="btn btn-secondary" type="button" onclick="history.back()"  role="button">Volver</button>
+        {{form_end(form)}}      
+    </div>
+    <script>
+        $('#usuario_persona').autocompleter({
+            url_list: "{{ path('persona_search') }}",
+            url_get: "{{ path('persona_get') }}"
+        });
+    </script>
+{% endblock %}

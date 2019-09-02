@@ -1,0 +1,123 @@
+{% extends "layout.html.twig" %}
+
+{% block contentmain %}  
+    <style>
+        input[type=text]{
+            margin-bottom: 10px;
+            padding:10px;            
+        }
+        input[type=submit]{
+            margin-bottom: 10px;           
+        }
+        .panel{
+            font-size: 11px;        
+        }
+        .form-exp{
+            font-size:15px;
+            padding:10px;
+        }
+        .title{
+            font-size:16px;
+        }
+
+        .cod{
+            width:60px;
+
+        }
+        .num{
+            width:115px;
+            margin-left:-4px;
+        }
+        .dig{
+            width:35px;
+            margin-left:-19px;
+
+        }
+
+
+    </style>
+
+    <div class="content">
+        <div class="col-ls-12">
+            <br/>
+            <div class="title">
+                <strong>Carga de Expediente</strong>
+            </div>
+            <hr/>
+            {{form_start(form,{'action':'','method':'POST'})}}
+            <div class="filtro_panel"
+                 <label class="text-default">Número de Expediente</label>
+                <div class="row">
+                    <div class="cod col-lg-1">
+                        <label class="exp text-default"></label>
+                        <div class=" text-danger">{{ form_errors(form.codigoExpediente) }}</div>
+                        {{ form_widget(form.codigoExpediente) }}
+                    </div>                   
+                    <div class="num col-lg-2">
+                        <label class="exp text-default"></label>
+                        <div class=" text-danger">{{ form_errors(form.numeroExpediente) }}</div>
+                        {{ form_widget(form.numeroExpediente) }}
+                    </div>
+                    <div class="dig col-lg-1">
+                        <label class="exp text-default"></label>
+                        <div class=" text-danger">{{ form_errors(form.digitoExpediente) }}</div>
+                        {{ form_widget(form.digitoExpediente) }}
+                    </div>
+                </div>
+                <hr/>
+                <div class="row">                   
+                    <div class="col-lg-4 ">
+                        <label class="text-default">Tipo</label>
+                        {{ form_errors(form.tipo) }}
+                        {{ form_widget(form.tipo) }}
+                    </div>
+                    <div class="space col-lg-7"></div>
+                    <div class="col-lg-4">
+                        <label class="text-default">Fojas</label>
+                        <div class=" text-danger">{{ form_errors(form.fojas) }}</div>
+                        {{ form_widget(form.fojas) }}
+                    </div>    
+                    <div class="space col-lg-7"></div>
+                    <div class="col-lg-6">
+                        <label class="text-default">Tema</label>
+                        {{ form_errors(form.tema) }}
+                        {{ form_widget(form.tema) }}
+                    </div>     
+                    <div class="space col-lg-6"></div>
+                    <div class="col-lg-4">
+                        <label class="text-default">Fecha de Inicio</label>
+                        <div class=" text-danger">{{ form_row(form.fechaInicio, { 'id': 'date1' })}} </div>
+                        {#                        {{ form_errors(form.fechaInicio) }}#}
+                        {{ form_widget(form.fechaInicio) }}
+                    </div>  
+                    <div class="col-lg-4">
+                        <label class="text-default">Fecha de Fin.</label>
+                        {{ form_row(form.fechaFin, { 'id': 'date2' })}} 
+                        {{ form_errors(form.fechaFin) }}
+                        {{ form_widget(form.fechaFin) }}
+                    </div>                      
+                </div>
+                <hr/>              
+                <label class="text-default">Concepto</label>
+                {{ form_errors(form.concepto) }}
+                {{ form_widget(form.concepto) }}
+                <hr/>
+
+                <div class="col-lg-3 float left">
+                    {{ form_widget(form.Guardar) }}
+                    <button class="btn btn-secondary" type="button" onclick="history.back()"  role="button">Volver</button>
+                </div>
+            </div>
+            {{form_end(form)}}
+
+        </div>
+        <script>
+            $('#expediente_tema').autocompleter({
+                url_list: "{{ path('tema_search') }}",
+                url_get: "{{ path('tema_get') }}"
+            });
+
+        </script>     
+
+
+    {% endblock %}

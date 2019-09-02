@@ -21,7 +21,6 @@ class PersonaController extends Controller {
         $em = $this->getDoctrine()->getEntityManager();
         $persona = new Persona();
         $user = $this->getUser();
-
         if ($user->getRole() == 'ROLE_ADMIN') {
             $form = $this->createForm(PersonaType::class, $persona, [
                 'movimiento_persona' => null,
@@ -29,7 +28,6 @@ class PersonaController extends Controller {
         } else {
             $form = $this->createForm(PersonaType::class, $persona);
         }
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -55,7 +53,7 @@ class PersonaController extends Controller {
         }
 
         // replace this example code with whatever you need
-        return $this->render('AppBundle:Ubicacion:persona.html.twig', [
+        return $this->render('Ubicacion/persona.html.twig', [
                     'form' => $form->createView()
         ]);
     }
@@ -97,7 +95,7 @@ class PersonaController extends Controller {
 
 
         // replace this example code with whatever you need
-        return $this->render('AppBundle:Ubicacion:editarPersona.html.twig', array(
+        return $this->render('Ubicacion/editarPersona.html.twig', array(
                     'form' => $form->createView(),
                     'persona' => $persona,
         ));
@@ -151,7 +149,7 @@ class PersonaController extends Controller {
             }
         }
 
-        return $this->render('AppBundle:Ubicacion:listadoPersona.html.twig', array(
+        return $this->render('Ubicacion/listadoPersona.html.twig', array(
                     'personas' => $personas,
                     'maxPages' => $maxPages,
                     'totalItems' => $totalItems,
@@ -227,7 +225,7 @@ class PersonaController extends Controller {
         }
 
         // replace this example code with whatever you need
-        return $this->render('AppBundle:Ubicacion:personaResponsables.html.twig', [
+        return $this->render('Ubicacion/personaResponsables.html.twig', [
                     'form' => $form->createView(),
                     'persona' => $persona
         ]);

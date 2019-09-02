@@ -1,0 +1,170 @@
+{% extends "layout.html.twig" %}
+
+{% block contentmain %}
+
+    {% set accion_habilitada = false %}
+    {% if app.user.role == 'ROLE_ADMIN' %}
+        {% set accion_habilitada = true %}
+    {%else%}
+        {% for responsable in expediente.ubicacionActual.responsables.getValues %}
+            {% if app.user == responsable.usuario %}
+                {% set accion_habilitada = true %}
+            {% endif %}
+        {%endfor%}
+
+    {% endif %}  
+
+    <div class="content">
+        <div class="row">
+            <table class="table table-bordered"> 
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col"> </th>
+                        <th scope="col"> <i class="fas fa-info-circle "></i> <strong>DETALLE DEL EXPEDIENTE {{expediente}}
+                                {% if accion_habilitada == true %}
+                                    <a href="{{ path('editar_expediente',{'id':expediente.id}) }}" class="right btn btn-warning float-right" data-toggle="tooltip" data-placement="top" title="Editar Expediente"><i class="fas fa-edit"></i></a></th>       
+                                    {% endif%}
+                    </tr>
+                </thead>
+                <tbody >
+                    <tr>
+                        <th class="w-25 bg-gray">TEMA</th>
+                        <td class="bg-white">{{ expediente.tema}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25 bg-gray">CONCEPTO</th>
+                        <td class="bg-white">{{ expediente.concepto}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25 bg-gray">TOTAL DE FOJAS</th>
+                        <td class="bg-white">
+
+                            {% set fojas = expediente.fojas %}
+
+                            {% for caratula in expediente.caratulas.getValues %}
+
+                                {% set fojas = fojas+caratula.fojas %}
+
+                            {% endfor %}
+
+                            {{ fojas }}
+
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="w-25 bg-gray">TIPO</th>
+                        <td class="bg-white">{{ expediente.tipo}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25 bg-gray">INICIADOR DEPENDENCIA</th>
+                        <td class="bg-white">{{ expediente.iniciadorDependencia}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25 bg-gray">FECHA DE INICIO</th>
+                        <td class="bg-white">{{ expediente.fechaInicio|date('d-m-Y')}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25 bg-gray">FECHA DE FIN</th>
+                        <td class="bg-white">
+                            {% if expediente.fechaFin != null %}
+                                {{ expediente.fechaFin|date('d-m-Y')}}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="w-25 bg-gray">ULTIMO PASE</th>
+                        <td  class="bg-white">
+                            {{ expediente.ultimaUbicacion}}
+
+                            - {{ expediente.ultimaUbicacion.dependencia }}
+
+                            , en fecha <strong>{{ ultima_fecha }}</strong>
+                        </td>
+                    </tr>  
+                    <tr>
+                        <th class="w-25 bg-gray">UBICACION ACTUAL</th>
+                        <td  class="bg-white">
+                            {{ expediente.ubicacionActual}}                          
+                            - {{ expediente.ubicacionActual.dependencia }}
+                            , desde el <strong>{{ actual_fecha }}</strong>
+                        </td>
+                    </tr>   
+
+
+                    {% if expediente.estado == 'ASOCIADO' %}                        
+                        <tr>
+                            <th class="w-25 bg-gray">ASOCIADO A EXPEDIENTE</th>
+                            <td  class="bg-white">
+
+                                {{ expediente_padre }}
+                                <br/>
+                            <td/>
+                        </tr>              
+                    {% endif %}
+
+                </tbody>
+                <tfoot>
+            </table>  
+
+
+        </div>
+
+        <div class="row">
+            <div class="btn-group float-left">
+                <a class="btn btn-primary" href="#" onclick="history.back()"  role="button">Volver</a>
+                <a href="{{ path('listado_movimiento',{'id':expediente.id,'currentPage':1}) }}" 
+                   class="btn btn-primary" 
+                   role="button">MOVIMIENTOS
+                    {% if expediente.movimientos.getValues|length >0 %}
+                        <span class="badge badge-danger badge-pill">
+                            {{ expediente.movimientos.getValues|length }}
+                        </span>
+                    {% endif %}
+                </a>
+                <a href="{{ path('listado_caratula',{'id':expediente.id, 'currentPage':1}) }}" 
+                   class="btn btn-primary" 
+                   role="button">CARATULAS
+                    {% if expediente.caratulas.getValues|length >0 %}
+                        <span class="badge badge-danger badge-pill">
+                            {{ expediente.caratulas.getValues|length }}
+                        </span>
+                    {% endif %}
+                </a>
+                {% if expedientes_asociados|length == 0 %}
+                    <a href="{{ path('listado_asociado',{'id':expediente.id,'currentPage':1}) }}" 
+                       class="btn btn-primary" 
+                       role="button">EXPEDIENTES ASOCIADOS
+                        {% if expediente.expedientesAsociados|length >0 %}
+                            <span class="badge badge-danger badge-pill">
+                                {{ expediente.expedientesAsociados|length }}
+                            </span>
+                        {% endif %}
+
+                    </a>
+                {% endif %}
+                {% if expediente.resolucion == null %} 
+                    {% if app.user.role == 'ROLE_ADMIN' or app.user.role == 'R0LE_RESPONSABLE' %}
+                        <a href="{{ path('nueva_resolucion',{'id':expediente.id}) }}" 
+                           class="btn btn-primary" 
+                           role="button">RESOLUCION</a>
+                    {% endif  %}
+                {% else %}
+                    <a href="{{ path('ver_resolucion',{'id':expediente.id}) }}" 
+                       class="btn btn-primary" 
+                       role="button">VER RESOLUCIÓN</a>
+                {% endif %}
+
+
+            </div>            
+        </div>
+    </div>
+    <script>
+
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+
+{% endblock %}

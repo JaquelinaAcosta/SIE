@@ -1,0 +1,235 @@
+{% extends "layout.html.twig" %}
+
+{% block contentmain %}
+    <style>
+        input[type=text]{
+            margin-bottom: 10px;
+            padding:10px;            
+        }
+        input[type=submit]{
+            margin-bottom: 10px;           
+        }
+        .expediente{
+            margin-right: 12px;
+            padding:15px;
+        }
+        .expediente p{
+            margin-top:10px;
+        }
+        .titulo{
+            height: 30px;
+            padding:7px;
+            background-color:black;
+            color: #fff;
+        }
+        .panel{
+            font-size: 15px; 
+            margin-bottom: 20px;
+            margin-right: 20px;
+        }
+        .form-exp{
+            font-size:15px;
+            padding:10px;
+        }
+        .title{
+            font-size:16px;
+        }        
+        .modal-header-warning {
+            color:#fff;
+            padding:9px 15px;
+            border-bottom:1px solid #eee;
+            background-color: #060325;
+            -webkit-border-top-left-radius: 5px;
+            -webkit-border-top-right-radius: 5px;
+            -moz-border-radius-topleft: 5px;
+            -moz-border-radius-topright: 5px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        p {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 200px;
+        }
+
+    </style>
+
+    <div class="content">
+        <div class="card">
+            <div class="card-header" id="headingOne">
+                <h2 class="mb-0">
+                    <button class="btn btn-dark search" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <i class="fas fa-search-plus"></i> Filtros de Búsqueda de Usuarios
+                    </button>
+                    <a href="{{ path('nuevo_usuario') }}" 
+                       role="button" class="btn btn-info float-right">Nuevo Usuario</a>
+
+                </h2>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    <form method="post" novalidate="true" id="form_buscar">
+                        {{ form_errors(formUsuarioFilter) }}
+                        <div class="row">
+                            <div class="threecol col-lg-4">
+                                {{ form_label(formUsuarioFilter.dependencia, 'DEPENDENCIA') }}
+                                {{ form_widget(formUsuarioFilter.dependencia) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formUsuarioFilter.dependencia) }}
+                                </div>
+                            </div>
+                            <div class="threecol col-lg-4">
+                                {{ form_label(formUsuarioFilter.iup, 'USUARIO') }}
+                                {{ form_widget(formUsuarioFilter.iup) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formUsuarioFilter.iup) }}
+                                </div>
+                            </div>
+                            <div class="threecol col-lg-4">
+                                {{ form_label(formUsuarioFilter.role, 'ROL') }}
+                                {{ form_widget(formUsuarioFilter.role) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formUsuarioFilter.role) }}
+                                </div>
+                            </div>  
+                            <div class="threecol col-lg-4">
+                                {{ form_label(formUsuarioFilter.persona, 'NOMBRE RESPONSABLE') }}
+                                {{ form_widget(formUsuarioFilter.persona) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formUsuarioFilter.persona) }}
+                                </div>
+                            </div>              
+
+                        </div>
+
+                        <hr/>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                {{ form_widget(formUsuarioFilter.filter) }}
+                                {{ form_widget(formUsuarioFilter.reset) }}
+                            </div>
+                        </div>
+                        {{ form_end(formUsuarioFilter) }}
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <hr/>
+
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {% for message in app.flashes('danger') %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">USUARIO</th>
+                    <th scope="col">ROL</th>
+                    <th scope="col">PERSONA RESPONSBLE</th>
+                    <th scope="col">DEPENDENCIA</th>
+                    <th scope="col">ACCIONES</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% set count = 0 %}
+                {% for usuario in usuario|reverse %}
+                    <tr>
+                        <td class="text-default">{{usuario.iup|e }}</td>
+                        <td class="text-default"><p>{{usuario.role|e }}</p></td>
+                        <td class="text-default">{{usuario.persona|e }}</td>
+                        <td class="text-default">{{usuario.persona.dependencia.descripcion|e }}</td>
+
+                        {#   <td><a class="btn btn-info" href="{{ path("ver_expediente", {'id':expediente.id}) }}"  role="button"><i class="fas fa-search"></i></a>#}
+                        {#                        <td><a class="btn btn-info" href="{{ path("editar_usuario", {'id':usuario.id}) }}"  role="button"><i class="fas fa-search"></i></a>#}
+                        <td> <a class="btn btn-warning" href="{{ path("editar_usuario", {'id':usuario.id}) }}"  role="button"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Editar"></i></a>
+{#                            <a class="btn btn-danger" href="{{ path("eliminar_usuario", {'id':usuario.id}) }}"  role="button"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></a></td>#}
+                        
+                         
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{ count }}"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></button>    
+
+
+                                <!-- The Modal -->
+                                <div class="modal fade" id="myModal{{count}}">
+                                    <div class="modal-dialog modal-sm modal-dialog-centered">
+                                        <div class="modal-content">
+
+                                            <!-- Modal Header -->
+                                            <div class="modal-header-warning">
+                                                <button type="button" class="close text-danger" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title">Eliminar Usuario</h4>
+                                            </div>
+
+                                            <!-- Modal body -->
+                                            <div class="modal-body">
+                                                ¿Desea Eliminar a {{usuario.iup}} ?
+                                            </div>
+                                            <!-- Modal footer -->
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary"><a class="text-type btn-primary"href="{{ path("eliminar_usuario", {'id':usuario.id}) }}"  role="button">Si</a></button>                          
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                        {% set count=count+1 %}
+                        
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+
+        {% if usuario|length < totalItems %}
+            <ul class="pagination">
+                {%if (thisPage==1)%}           
+                {%else%}
+                    {%set thisPage= thisPage-1%}
+                {%endif%}
+
+                <li ><a class="page-link" href="{{ path('listado_usuario', {"currentPage": thisPage}) }}">&laquo</a></li>
+                    {% for i in 1..maxPages %}
+                    <li><a class="page-link"  href="{{ path('listado_usuario', {"currentPage": i}) }}">{{ i }}</a></li>
+                    {% endfor %}
+
+                {%if (page==maxPages)%}
+
+                {%else%}
+                    {%set page= page+1%}
+                {%endif%}
+                <li><a class="page-link" href="{{ path('listado_usuario', {"currentPage": page}) }}">&raquo</a></li>
+
+            </ul>
+        {% endif %}
+
+    </div>
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
+
+    <script>
+
+        $('#usuario_filter_persona').autocompleter({
+            url_list: "{{ path('persona_search') }}",
+            url_get: "{{ path('persona_get') }}"
+        });
+    </script>
+    <hr/>
+{% endblock %}

@@ -22,7 +22,7 @@ class UsuarioType extends AbstractType {
                 ->add('iup', TextType::class, array(
                     "label" => "Ej: usuario1:", "attr" => array(
                         "class" => "form-exp form-control",
-                        "placeholder" => "usuario1"
+                        "placeholder" => "Ingrese un nombre de usuario..."
                     )
                 ))
                
@@ -33,11 +33,11 @@ class UsuarioType extends AbstractType {
                     'required' => true,
                     'first_options' => ['label' => false,'attr'=>[
                         'class'=>'form-control',
-                        'placeholder'=>'Ingrese email'
+                        'placeholder'=>'Ingrese su correo...'
                     ]],
                     'second_options' => ['label' => false,'attr'=>[
                         'class'=>'form-control',
-                        'placeholder'=>'Repita su email'
+                        'placeholder'=>'Repita su correo...'
                     ]],
                 ])
                 ->add('contrasenia', RepeatedType::class, [
@@ -47,11 +47,11 @@ class UsuarioType extends AbstractType {
                     'required' => true,
                     'first_options' => ['label' => false,'attr'=>[
                         'class'=>'form-control',
-                        'placeholder'=>'Ingrese contraseña'
+                        'placeholder'=>'Ingrese su contraseña...'
                     ]],
                     'second_options' => ['label' => false,'attr'=>[
                         'class'=>'form-control',
-                        'placeholder'=>'Repita la contraseña'
+                        'placeholder'=>'Repita su contraseña...'
                     ]],
                 ])
                 ->add('Aceptar', SubmitType::class, array("attr" => array(

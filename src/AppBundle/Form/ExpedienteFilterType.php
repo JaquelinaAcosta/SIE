@@ -72,7 +72,7 @@ class ExpedienteFilterType extends AbstractType implements EmbeddedFilterTypeInt
                 'class' => 'dig form-control',
             ]
         ));
-        $builder->add('fechaInicio', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\DateRangeFilterType', array(
+        $builder->add('fechaCarga', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\DateRangeFilterType', array(
             'label' => 'RANGO FECHA DE INICIO',
             'left_date_options' => array(
                 'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {

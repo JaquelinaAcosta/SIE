@@ -49,7 +49,7 @@ class MesaEntradaController extends Controller {
         }
 
         // replace this example code with whatever you need
-        return $this->render('AppBundle:Ubicacion:mesaEntrada.html.twig', [
+        return $this->render('Ubicacion/mesaEntrada.html.twig', [
                     'form' => $form->createView(),
                     'dependencia' => $mesaentrada->getDependencia()
         ]);
