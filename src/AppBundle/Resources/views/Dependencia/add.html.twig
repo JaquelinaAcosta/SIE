@@ -1,197 +1,47 @@
 {% extends "AppBundle::layout.html.twig" %}
 
 {% block contentmain %}
-
-    <style>
-        body{
-            font-size: 11px;
-        }
-        .title{
-            font-size:18px;
-            margin-left:18px;
-            margin-bottom:10px;
-        }
-        input[type=text]{
-            margin-bottom: 10px;
-            padding:10px;            
-        }
-        input[type=textarea]{
-            margin-bottom: 10px;
-            padding:10px;            
-        }
-        input[type=submit]{
-            margin-bottom: 10px;
-            padding:10px;            
-        }
-        .user{
-            width:250px;
-            margin-left:0;
-        }
-        .delete{
-            width:160px;
-            position:relative;
-            left:265px;
-            bottom:30px;
-        }
-    </style>
-
-
-
-<div class="content">
-    <div class="col-lg-6">
-        <div class="form-group">  
-            {{form_start(form,{'action':'' ,'method':'POST'})}}
-            <h3>{{ accion }} Dependencia</h3>
-            <hr/>
-            <div class="">
+    <div class="content">
+        {{form_start(form,{'action':'' ,'method':'POST'})}}
+        <h3>{{ accion }} Dependencia</h3>
+        <hr/>
+        <div class="row">
+            <div class="col-lg-6">
                 <label class="text-default">DESCRIPCION(<span class="text-danger">*</span>)</label>                 
                 {{ form_errors(form.descripcion) }}
                 {{ form_widget(form.descripcion) }}
             </div>
-
-            <div class="">
+            <div class="space col-lg-6"></div>
+            <div class="col-lg-5">
                 <label class="text-default">DEPENDENCIA PADRE(<span class="text-danger">*</span>)</label>                 
                 {{ form_errors(form.dependenciaPadre) }}
                 {{ form_widget(form.dependenciaPadre) }}
             </div>
-
-            <div class="">
+            <div class="space col-lg-6"></div>
+            <div class="col-lg-5">
                 <label class="text-default">RESPONSABLE(<span class="text-danger">*</span>)</label>                 
                 {{ form_errors(form.responsable) }}
                 {{ form_widget(form.responsable) }}
-
-
             </div>
-            <div class="">
+            <div class="space col-lg-6"></div>
+            <div class="col-lg-4">
                 <label class="text-default">NIVEL(<span class="text-danger">*</span>)</label>                 
                 {{ form_errors(form.nivel) }}
                 {{ form_widget(form.nivel) }}
-            </div>
-
-            {% if form.mesaentrada is defined %}
-
-                <div class="">
-                    <hr/>
-                    <h3>Información de la Mesa de Entrada</h3>
-                    <hr/>
-
-                    <label class="text-default">RESPONSABLE/S(<span class="text-danger">*</span>)</label>                 
-                    <div class="responsable_items">
-
-
-                    </div>
-                    <div class="add float right"></div>
-                    <div class="responsables" data-prototype="{{ form_widget(form.mesaentrada.responsables.vars.prototype)|e('html_attr') }}">
-
-                    </div>
-                    <hr/>
-
-                    <label class="text-default">CODIGO DE EXPEDIENTE(<span class="text-danger">*</span>)</label>                 
-                    {{ form_errors(form.mesaentrada.codigoExpediente) }}
-                    {{ form_widget(form.mesaentrada.codigoExpediente) }}
-                </div>
-                <div class="aceptar">
-                    {{ form_widget(form.Aceptar) }}
-                </div>
-            {% endif %}
-            {{form_end(form)}}
+            </div>         
         </div>
-    </div>  
-</div>
-   <script>
-
-        $("#mesaentrada_Guardar").click(function () {
-            $(".respon").prop("disabled", false);
-            return true;
+            <hr/>
+        <div class="col-lg-3 float left">
+            {{ form_widget(form.Aceptar) }}
+            <button class="form-submit btn btn-secondary" onclick="history.back()"  role="button">Volver</button>
+        </div>
+        {{form_end(form)}}
+    </div>
+    <script>
+        $('#dependencia_responsable').autocompleter({
+            url_list: "{{ path('persona_search') }}",
+            url_get: "{{ path('persona_get') }}"
         });
-
-        var $collectionHolder;
-
-        // setup an "add a tag" link
-        var $addResponsableButton = $('<button type="button" class="add_responsable form-control btn btn-info">Agregar Usuario</button>');
-        var $newLinkLi = $('.add').append($addResponsableButton);
-        var totalCount = 0;
-        jQuery(document).ready(function () {
-            // Get the ul that holds the collection of tags
-            $collectionHolder = $('.responsables');
-            $collectionHolder2 = $('.responsable_items');
-
-            // add a delete link to all of the existing tag form li elements
-
-            // add the "add a tag" anchor and li to the tags ul
-            $collectionHolder.append($newLinkLi);
-
-            // count the current form inputs we have (e.g. 2), use that as the new
-            // index when inserting a new item (e.g. 2)
-            $collectionHolder.data('index', $collectionHolder.find(':input').length + $collectionHolder2.find(':input').length);
-
-            totalCount = $collectionHolder.data('index');
-
-
-            for (var i = 0; i <= totalCount; i++) {
-               if (i == 0) {
-                    addTagFormDeleteLink($('.responsable_items').children().eq(i), $collectionHolder, true);
-                } else {
-                    addTagFormDeleteLink($('.responsable_items').children().eq(i), $collectionHolder, false);
-                }
-            }
-
-            $addResponsableButton.on('click', function (e) {
-                // add a new tag form (see next code block)
-                addResponsableForm($collectionHolder, $newLinkLi);
-            });
-        });
-
-        function addTagFormDeleteLink($tagFormLi, $collectionHolder, disabled) {
-            if (!disabled) {
-                var $removeFormButton = $('<button class="delete btn btn-danger" type="button">Quitar Usuario</button>');
-                $tagFormLi.append($removeFormButton);
-
-                $removeFormButton.on('click', function (e) {
-                    // remove the li for the tag form
-                    var index = $collectionHolder.data('index');
-                    $tagFormLi.remove();
-
-                    $collectionHolder.data('index', index - 1);
-                });
-            } else {
-                var $removeFormButton = $('<button disabled class="delete btn btn-danger" type="button">Quitar Usuario</button>');
-                $tagFormLi.append($removeFormButton);
-            }
-
-        }
-
-        function addResponsableForm($collectionHolder, $newLinkLi) {
-            // Get the data-prototype explained earlier
-            var prototype = $collectionHolder.data('prototype');
-            // get the new index
-            var index = $collectionHolder.data('index');
-
-            var newForm = prototype;
-            // You need this only if you didn't set 'label' => false in your tags field in TaskType
-            // Replace '__name__label__' in the prototype's HTML to
-            // instead be a number based on how many items we have
-            // newForm = newForm.replace(/__name__label__/g, index);
-
-            // Replace '__name__' in the prototype's HTML to
-            // instead be a number based on how many items we have
-            newForm = newForm.replace(/__name__/g, index);
-
-            // increase the index with one for the next item
-            $collectionHolder.data('index', index + 1);
-
-            // Display the form in the page in an li, before the "Add a tag" link li
-            var $newFormLi = $('.responsable_items').append(newForm);
-            if (index > 0) {
-                //console.log(totalCount);
-                addTagFormDeleteLink($($newFormLi).children().eq(index - 1), $collectionHolder);
-            }
-
-            //console.log($($newFormLi).children().eq(index-1));
-            $newLinkLi.before($newFormLi);
-
-        }
-
 
     </script>
 {% endblock %}

@@ -2,18 +2,17 @@
 
 {% block contentmain %}
     <style>
-        .panel{
+        .botones{
             width: 50%;
             margin: 0 auto;
         }
-        .panel a{
+        .botones a{
             padding:20px;
             font-size: 16px;
         }
     </style>
 
     <div class="content">
-
         {% set accion_habilitada = false %}
         {% if app.user.role == 'ROLE_ADMIN' %}
             {% set accion_habilitada = true %}
@@ -27,7 +26,7 @@
 
         <h4 class="text-center">ELIGA EL TIPO DE PASE A REALIZAR</h4>
         <hr/>
-        <div class="panel">
+        <div class="botones">
             {% if accion_habilitada == true %}
                 <a class="btn btn-primary" href="{{ path("movimiento_externo", {'id':expediente.id}) }}"  
                    role="button" data-toggle="tooltip" data-placement="top" 
@@ -45,7 +44,6 @@
                role="button" data-toggle="tooltip" data-placement="top" 
                title="Hacia un lugar Físico">ARCHIVADOR</a>
         </div>
-
     </div>
 
     <script>
@@ -53,5 +51,4 @@
             $('[data-toggle="tooltip"]').tooltip()
         })
     </script>
-    <hr/>
 {% endblock %}

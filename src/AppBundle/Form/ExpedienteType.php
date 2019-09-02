@@ -51,7 +51,7 @@ class ExpedienteType extends AbstractType {
                 ->add('concepto', TextareaType::class, array(
                     "label" => "Concepto: ", "attr" => array(
                         "class" => "form-name form-control",
-                        "placeholder" => "Concepto...",
+                        "placeholder" => "",
                         "rows"=>5
                     )
                 ))

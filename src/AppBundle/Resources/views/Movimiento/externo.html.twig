@@ -1,26 +1,6 @@
 {% extends "AppBundle::layout.html.twig" %}
 
 {% block contentmain %}
-
-    <style>
-        body{
-            font-size: 11px;
-        }
-        input[type=text]{
-            margin-bottom: 10px;
-            padding:10px;            
-        }
-        input[type=textarea]{
-            margin-bottom: 10px;
-            padding:10px;            
-        }
-        input[type=submit]{
-            margin-bottom: 10px;
-            padding:10px;            
-        }
-
-    </style>
-
     <div class="content">
         <strong>{{ accion }} PASE EXTERNO, EXPEDIENTE {{expediente.codigoExpediente }}-{{expediente.numeroExpediente }}-{{expediente.digitoExpediente }} </strong>
         <hr/>    
@@ -31,13 +11,13 @@
                 {{ form_errors(form.mesaentrada) }}
                 {{ form_widget(form.mesaentrada) }}
             </div>   
-            <div class="col-lg-2">
+            <div class="space col-lg-6"></div>
+            <div class="col-lg-4">
                 <label class="text-default">FOJAS</label>
                 {{ form_errors(form.fojas) }}
                 {{ form_widget(form.fojas) }}
             </div>   
             <div class="col-lg-12">
-                <hr/>
                 <label class="text-default">OBSERVACIONES</label>
                 {{ form_errors(form.observacion) }}
                 {{ form_widget(form.observacion) }}

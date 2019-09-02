@@ -19,21 +19,21 @@
         .title{
             font-size:16px;
         }
-        
+
         .cod{
             width:60px;
-            
+
         }
         .num{
             width:115px;
-              margin-left:-4px;
+            margin-left:-4px;
         }
         .dig{
             width:35px;
             margin-left:-19px;
-            
+
         }
-        
+
 
     </style>
 
@@ -44,7 +44,7 @@
             <hr/>
             {{form_start(form,{'action':'','method':'POST'})}}
             <div class="filtro_panel"
-                    <label class="text-default">NUMERO DE EXPEDIENTE</label>
+                 <label class="text-default">NUMERO DE EXPEDIENTE</label>
                 <div class="row">
                     <div class="cod col-lg-1">
                         <label class="exp text-default"></label>
@@ -64,28 +64,31 @@
                 </div>
                 <hr/>
                 <div class="row">                   
-                    <div class="col-lg-3 ">
+                    <div class="col-lg-4 ">
                         <label class="text-default">TIPO</label>
                         {{ form_errors(form.tipo) }}
                         {{ form_widget(form.tipo) }}
                     </div>
-                    <div class="col-lg-2">
+                    <div class="space col-lg-7"></div>
+                    <div class="col-lg-4">
                         <label class="text-default">FOJAS</label>
                         <div class=" text-danger">{{ form_errors(form.fojas) }}</div>
                         {{ form_widget(form.fojas) }}
                     </div>    
-                    <div class="col-lg-7">
+                    <div class="space col-lg-7"></div>
+                    <div class="col-lg-6">
                         <label class="text-default">TEMA</label>
                         {{ form_errors(form.tema) }}
                         {{ form_widget(form.tema) }}
                     </div>     
-                    <div class="col-lg-2">
+                    <div class="space col-lg-6"></div>
+                    <div class="col-lg-4">
                         <label class="text-default">FECHA DE INICIO</label>
                         <div class=" text-danger">{{ form_row(form.fechaInicio, { 'id': 'date1' })}} </div>
-{#                        {{ form_errors(form.fechaInicio) }}#}
+                        {#                        {{ form_errors(form.fechaInicio) }}#}
                         {{ form_widget(form.fechaInicio) }}
                     </div>  
-                    <div class="col-lg-2">
+                    <div class="col-lg-4">
                         <label class="text-default">FECHA DE FIN.</label>
                         {{ form_row(form.fechaFin, { 'id': 'date2' })}} 
                         {{ form_errors(form.fechaFin) }}
@@ -97,10 +100,10 @@
                 {{ form_errors(form.concepto) }}
                 {{ form_widget(form.concepto) }}
                 <hr/>
-               
+
                 <div class="col-lg-3 float left">
                     {{ form_widget(form.Guardar) }}
-                    <a class="form-submit btn btn-secondary" onclick="history.back()"  role="button">Volver</a>
+                    <button class="form-submit btn btn-secondary" onclick="history.back()"  role="button">Volver</button>
                 </div>
             </div>
             {{form_end(form)}}
@@ -114,5 +117,5 @@
 
         </script>     
 
-        
+
     {% endblock %}

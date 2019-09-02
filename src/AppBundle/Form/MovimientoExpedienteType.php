@@ -30,13 +30,14 @@ class MovimientoExpedienteType extends AbstractType
                 ->add('observacion', TextareaType::class, array(
                 "label"=>"Observaciones: ","attr"=> array(
                "class"=>"form-control" ,
-                'rows'=> 4
+                'rows'=> 5
             )
         ))
                 ->add('comentario', TextareaType::class, array(
                "label"=>"Comentario: ","attr"=> array(
                "class"=>"form-control" ,
-               "placeholder"=>"Comentario..."
+               "placeholder"=>"",
+                   "rows"=>5
             )
         ))          
                 ->add('Aceptar', SubmitType::class,array("attr"=> array(

@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use AppBundle\Entity\Persona;
+use Doctrine\ORM\EntityRepository;
 
 
 class DependenciaType extends AbstractType
@@ -31,6 +32,10 @@ class DependenciaType extends AbstractType
                 ])
                 ->add('dependenciaPadre', EntityType::class,[      
                     "class"=>'AppBundle:Dependencia',
+                    'query_builder' => function(EntityRepository $er ) {
+                        return $er->createQueryBuilder('w')
+                                        ->where('w.estado IS NOT NULL');
+                    },
                     "attr"=>[
                         "label"=>false,
                         "class"=>"form-control",
@@ -56,15 +61,8 @@ class DependenciaType extends AbstractType
                
                 
                 ->add('Aceptar', SubmitType::class, array("attr" => array(
-                        "class" => "aceptar form-submit btn btn-success"
-                 )));
-        
-                  if($gestion == null){
-                    $builder->add('mesaentrada', MesaEntradaType::class,array(
-                            "label"=>false                    
-                        ));
-                    }
-
+                        "class" => "aceptar form-submit btn btn-primary"
+                 )));      
         
     }/**
      * {@inheritdoc}
