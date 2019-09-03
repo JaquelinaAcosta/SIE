@@ -508,7 +508,7 @@ class __TwigTemplate_1730990c3bdc6d2d20e9c6c9c36a954b9000b822939268071ad77e7e35b
         <div class=\"pagination\">
             <li><a class=\"page-link\" href=\"";
         // line 241
-        echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_persona", ["currentPage" => ($context["thisPage"] ?? $this->getContext($context, "thisPage"))]), "html", null, true);
+        (((0 < (($context["thisPage"] ?? $this->getContext($context, "thisPage")) - 1))) ? (print (twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_persona", ["currentPage" => (($context["thisPage"] ?? $this->getContext($context, "thisPage")) - 1)]), "html", null, true))) : (print ("")));
         echo "\">Anterior</a></li>
                 ";
         // line 242
@@ -923,7 +923,7 @@ class __TwigTemplate_1730990c3bdc6d2d20e9c6c9c36a954b9000b822939268071ad77e7e35b
 
 
         <div class=\"pagination\">
-            <li><a class=\"page-link\" href=\"{{ path('listado_persona', {\"currentPage\": thisPage}) }}\">Anterior</a></li>
+            <li><a class=\"page-link\" href=\"{{ 0 < thisPage-1 ? path('listado_persona', {\"currentPage\": thisPage-1}) }}\">Anterior</a></li>
                 {% for i in minLeftRange..maxLeftRange %}
                 <li class=\"page-item {{  i == thisPage ? 'active' : '' }}\">
                     <a class=\"page-link\"  href=\"{{ path('listado_persona', {\"currentPage\": i}) }}\">{{ i }}</a>
