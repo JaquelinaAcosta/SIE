@@ -158,7 +158,7 @@
                             <td class="text-default">{{persona.dependencia.descripcion|e }}</td>
 
                             <td> <a class="btn btn-warning" href="{{ path("editar_persona", {'id':persona.id}) }}"  role="button"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Editar"></i></a>
-                               
+
 
                                 {% set accion_responsable = false %}
                                 {% if app.user.role == 'ROLE_ADMIN' %}
@@ -171,8 +171,8 @@
                                 {%endif%}
                                 {% if accion_responsable == true %}
                                     <a class="btn btn-info" href="{{ path("gestionar_persona_responsables", {'id':persona.id}) }}"  role="button"><i class="fas fa-user" data-toggle="tooltip" data-placement="top" title="Responsables"></i></a>
-                                {%endif%}
-                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{ count }}"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></button>    
+                                    {%endif%}
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{ count }}"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></button>    
                                 <!-- The Modal -->
                                 <div class="modal fade" id="myModal{{count}}">
                                     <div class="modal-dialog modal-sm modal-dialog-centered">
@@ -206,36 +206,81 @@
                 </tbody>
             </table>
         {% endif %}       
-        {% if personas|length < totalItems %}
-            <div class="row">
-                <ul class="pagination">
 
-                    <li ><a class="page-link" href="{{ path('listado_persona', {"currentPage": thisPage}) }}">&laquo</a></li>
-                        {% for i in 1..maxPages %}
-                            {% if i == thisPage %}
-                                 <li class="page-item active">
-                                    <a class="page-link"  href="{{ path('listado_persona', {"currentPage": i}) }}">{{ i }}</a>
-                                </li>
-                                {%else%}
-                                 <li class="page-item">
-                                    <a class="page-link"  href="{{ path('listado_persona', {"currentPage": i}) }}">{{ i }}</a>
-                                </li>
-                         {%endif%}
-                       
-                        {% endfor %}
+        {% set startLimit = 3 %}
+        {% set limite = 6 %}
+        {% set extremos = 2 %}
 
-                    {%if (page==maxPages)%}
 
-                    {%else%}
-                        {%set page= page+1%}
-                    {%endif%}
-                    <li><a class="page-link" href="{{ path('listado_persona', {"currentPage": page}) }}">&raquo</a></li>
+        {% if thisPage < limite %} 
+            {%set minLeftRange = 1%}
+            {%set maxLeftRange = thisPage+extremos%}
 
-                </ul>
-            </div>
+            {%set minRightRange = maxPages-extremos%}
+            {%set maxRightRange = maxPages %}
+
+
+        {% elseif thisPage >= limite%}
+            {%set minLeftRange = 1 %}
+            {%set maxLeftRange = 2 %}
+
+            {%set extremoIzquierdo = thisPage-extremos%}
+            {%set extremoDerecho = thisPage+extremos%}
+            {%set minRightRange = maxPages-extremos+1 %}
+            
+            {% if extremoDerecho >= minRightRange+extremos%}
+                {%set minRightRange = thisPage %}
+                {%set extremoDerecho = maxPages%}
+                {%set extremoIzquierdo = thisPage-((extremos*2))%}
+            {%endif%}
+            {%set maxRightRange = maxPages %}
+        {%endif%}
+
+
+            {{dump(minRightRange-1)}}
+        <div class="pagination">
+            <li><a class="page-link" href="{{ path('listado_persona', {"currentPage": thisPage}) }}">Anterior</a></li>
+                {% for i in minLeftRange..maxLeftRange %}
+                <li class="page-item {{  i == thisPage ? 'active' : '' }}">
+                    <a class="page-link"  href="{{ path('listado_persona', {"currentPage": i}) }}">{{ i }}</a>
+                </li>
+            {% endfor %}
+            {% if thisPage >= limite %}
+                <li class="page-item disabled">
+                    <a class="page-link"  href="#">...</a>
+                </li>
+                {% for i in extremoIzquierdo..extremoDerecho %}
+                    <li class="page-item {{  i == thisPage ? 'active' : '' }}">
+                        <a class="page-link"  href="{{ path('listado_persona', {"currentPage": i}) }}">{{ i }}</a>
+                    </li>
+                {% endfor %}
+            {%endif%}
+            
+
+            {% if thisPage < minRightRange-1%}
+                <li class="page-item disabled">
+                    <a class="page-link"  href="#">...</a>
+                </li>
+            {% endif%}
+
+
+            {% if thisPage < maxPages-extremos %}
+                {% for i in minRightRange..maxRightRange %}
+                    <li class="page-item">
+                        <a class="page-link"  href="{{ path('listado_persona', {"currentPage": i}) }}">{{ i }}</a>
+                    </li>
+                {% endfor %}
+            {%endif%}
+            {%if (page==maxPages)%}
+
+            {%else%}
+                {%set page= page+1%}
+            {%endif%}
+            <li><a class="page-link" href="{{ path('listado_persona', {"currentPage": page}) }}">Siguiente</a></li>
+
+            </ul>
         </div>
-    {% endif %}
-
+    </div>
 </div>
 <script>
     $(function () {
