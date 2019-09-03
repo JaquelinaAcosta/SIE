@@ -237,7 +237,6 @@
         {%endif%}
 
 
-            {{dump(minRightRange-1)}}
         <div class="pagination">
             <li><a class="page-link" href="{{ path('listado_persona', {"currentPage": thisPage}) }}">Anterior</a></li>
                 {% for i in minLeftRange..maxLeftRange %}
@@ -268,15 +267,13 @@
                 {%endif%}
             {% endif%}
 
-
             {% if thisPage < maxPages-extremos%}
                 {% for i in minRightRange..maxRightRange %}                   
                     <li class="page-item">
                         <a class="page-link"  href="{{ path('listado_persona', {"currentPage": i}) }}">{{ i }}</a>
                     </li>
                 {% endfor %}
-            {%endif%}
-            
+            {%endif%}            
             
             {%if (page==maxPages)%}
 
