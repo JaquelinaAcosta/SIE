@@ -473,14 +473,14 @@ class __TwigTemplate_68858000062feae2ca7461ef8e6b8dd6bd1d195b3e1616c5cba3662df09
         }
         // line 205
         echo "
-        <table class=\"table table-sm table-striped\">
+        <table class=\"table table-sm table-hover table-bordered\">
             <thead class=\"thead-dark\">
                 <tr>
-                    <th scope=\"col\">NUMERO</th>
-                    <th scope=\"col\">TEMA</th>
-                    <th class=\"text-center\" scope=\"col\">UBICACION ACTUAL</th>
-                    <th class=\"text-center\" scope=\"col\">ESTADO</th>
-                    <th class=\"text-center\" scope=\"col\">ACCIONES</th>
+                    <th style=\"padding:15px;\" scope=\"col\">NUMERO</th>
+                    <th style=\"padding:15px;\" scope=\"col\">TEMA</th>
+                    <th style=\"padding:15px;\" class=\"text-center\" scope=\"col\">UBICACION ACTUAL</th>
+                    <th style=\"padding:15px;\" class=\"text-center\" scope=\"col\">ESTADO</th>
+                    <th style=\"padding:15px;\" class=\"text-center\" scope=\"col\">ACCIONES</th>
                 </tr>
             </thead>
             <tbody>
@@ -1023,14 +1023,14 @@ class __TwigTemplate_68858000062feae2ca7461ef8e6b8dd6bd1d195b3e1616c5cba3662df09
 
         {% endif %}
 
-        <table class=\"table table-sm table-striped\">
+        <table class=\"table table-sm table-hover table-bordered\">
             <thead class=\"thead-dark\">
                 <tr>
-                    <th scope=\"col\">NUMERO</th>
-                    <th scope=\"col\">TEMA</th>
-                    <th class=\"text-center\" scope=\"col\">UBICACION ACTUAL</th>
-                    <th class=\"text-center\" scope=\"col\">ESTADO</th>
-                    <th class=\"text-center\" scope=\"col\">ACCIONES</th>
+                    <th style=\"padding:15px;\" scope=\"col\">NUMERO</th>
+                    <th style=\"padding:15px;\" scope=\"col\">TEMA</th>
+                    <th style=\"padding:15px;\" class=\"text-center\" scope=\"col\">UBICACION ACTUAL</th>
+                    <th style=\"padding:15px;\" class=\"text-center\" scope=\"col\">ESTADO</th>
+                    <th style=\"padding:15px;\" class=\"text-center\" scope=\"col\">ACCIONES</th>
                 </tr>
             </thead>
             <tbody>
