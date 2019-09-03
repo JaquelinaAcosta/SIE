@@ -226,7 +226,7 @@
 
             {%set extremoIzquierdo = thisPage-extremos%}
             {%set extremoDerecho = thisPage+extremos%}
-            {%set minRightRange = maxPages-extremos+1 %}
+            {%set minRightRange = maxPages-extremos+2 %}
             
             {% if extremoDerecho >= minRightRange+extremos%}
                 {%set minRightRange = thisPage %}
@@ -245,32 +245,39 @@
                     <a class="page-link"  href="{{ path('listado_persona', {"currentPage": i}) }}">{{ i }}</a>
                 </li>
             {% endfor %}
+            
             {% if thisPage >= limite %}
                 <li class="page-item disabled">
                     <a class="page-link"  href="#">...</a>
                 </li>
-                {% for i in extremoIzquierdo..extremoDerecho %}
+                {% if thisPage == minRightRange-1%}
+                    {%set extremoDerecho = extremoDerecho-1%}
+                {%endif%}
+                {% for i in extremoIzquierdo..extremoDerecho %}                    
                     <li class="page-item {{  i == thisPage ? 'active' : '' }}">
                         <a class="page-link"  href="{{ path('listado_persona', {"currentPage": i}) }}">{{ i }}</a>
-                    </li>
+                    </li>                    
                 {% endfor %}
             {%endif%}
             
-
-            {% if thisPage < minRightRange-1%}
+            {% if thisPage < minRightRange-2%}
+                {%if thisPage!= maxRightRange-3%}
                 <li class="page-item disabled">
                     <a class="page-link"  href="#">...</a>
                 </li>
+                {%endif%}
             {% endif%}
 
 
-            {% if thisPage < maxPages-extremos %}
-                {% for i in minRightRange..maxRightRange %}
+            {% if thisPage < maxPages-extremos%}
+                {% for i in minRightRange..maxRightRange %}                   
                     <li class="page-item">
                         <a class="page-link"  href="{{ path('listado_persona', {"currentPage": i}) }}">{{ i }}</a>
                     </li>
                 {% endfor %}
             {%endif%}
+            
+            
             {%if (page==maxPages)%}
 
             {%else%}
