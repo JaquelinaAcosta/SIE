@@ -237,7 +237,14 @@
         <div class="pagination">
             <li><a class="page-link" href="{{ 0 < thisPage-1 ? path('listado_persona', {"currentPage": thisPage-1}) }}">Anterior</a></li>
 
-                {% for i in minLeftRange..maxLeftRange %}
+            {%if thisPage == maxPages-1%}
+                {%set maxLeftRange = maxLeftRange-1%}
+            {%elseif thisPage == maxPages%}
+                {%set maxLeftRange = maxPages%}
+            {%endif%}
+            
+            
+            {% for i in minLeftRange..maxLeftRange %}
                 <li class="page-item {{  i == thisPage ? 'active' : '' }}">
                     <a class="page-link"  href="{{ path('listado_persona', {"currentPage": i}) }}">{{ i }}</a>
                 </li>

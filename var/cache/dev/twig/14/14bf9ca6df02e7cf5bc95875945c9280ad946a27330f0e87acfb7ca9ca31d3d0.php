@@ -505,17 +505,37 @@ class __TwigTemplate_1730990c3bdc6d2d20e9c6c9c36a954b9000b822939268071ad77e7e35b
         (((0 < (($context["thisPage"] ?? $this->getContext($context, "thisPage")) - 1))) ? (print (twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_persona", ["currentPage" => (($context["thisPage"] ?? $this->getContext($context, "thisPage")) - 1)]), "html", null, true))) : (print ("")));
         echo "\">Anterior</a></li>
 
-                ";
+            ";
         // line 240
+        if ((($context["thisPage"] ?? $this->getContext($context, "thisPage")) == (($context["maxPages"] ?? $this->getContext($context, "maxPages")) - 1))) {
+            // line 241
+            echo "                ";
+            $context["maxLeftRange"] = (($context["maxLeftRange"] ?? $this->getContext($context, "maxLeftRange")) - 1);
+            // line 242
+            echo "            
+            ";
+        } elseif ((        // line 243
+($context["thisPage"] ?? $this->getContext($context, "thisPage")) == ($context["maxPages"] ?? $this->getContext($context, "maxPages")))) {
+            // line 244
+            echo "                ";
+            $context["maxLeftRange"] = ($context["maxPages"] ?? $this->getContext($context, "maxPages"));
+            // line 245
+            echo "            ";
+        }
+        // line 246
+        echo "            
+            
+            ";
+        // line 248
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(range(($context["minLeftRange"] ?? $this->getContext($context, "minLeftRange")), ($context["maxLeftRange"] ?? $this->getContext($context, "maxLeftRange"))));
         foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
-            // line 241
+            // line 249
             echo "                <li class=\"page-item ";
             echo ((($context["i"] == ($context["thisPage"] ?? $this->getContext($context, "thisPage")))) ? ("active") : (""));
             echo "\">
                     <a class=\"page-link\"  href=\"";
-            // line 242
+            // line 250
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_persona", ["currentPage" => $context["i"]]), "html", null, true);
             echo "\">";
             echo twig_escape_filter($this->env, $context["i"], "html", null, true);
@@ -526,36 +546,36 @@ class __TwigTemplate_1730990c3bdc6d2d20e9c6c9c36a954b9000b822939268071ad77e7e35b
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 245
+        // line 253
         echo "
             ";
-        // line 246
+        // line 254
         if ((($context["thisPage"] ?? $this->getContext($context, "thisPage")) >= ($context["limite"] ?? $this->getContext($context, "limite")))) {
-            // line 247
+            // line 255
             echo "                <li class=\"page-item disabled\">
                     <a class=\"page-link\"  href=\"#\">...</a>
                 </li>
                 ";
-            // line 250
+            // line 258
             if ((($context["thisPage"] ?? $this->getContext($context, "thisPage")) == (($context["minRightRange"] ?? $this->getContext($context, "minRightRange")) - 1))) {
-                // line 251
+                // line 259
                 echo "                    ";
                 $context["extremoDerecho"] = (($context["extremoDerecho"] ?? $this->getContext($context, "extremoDerecho")) - 1);
-                // line 252
+                // line 260
                 echo "                ";
             }
-            // line 253
+            // line 261
             echo "                ";
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable(range(($context["extremoIzquierdo"] ?? $this->getContext($context, "extremoIzquierdo")), ($context["extremoDerecho"] ?? $this->getContext($context, "extremoDerecho"))));
             foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
                 echo "                    
                     <li class=\"page-item ";
-                // line 254
+                // line 262
                 echo ((($context["i"] == ($context["thisPage"] ?? $this->getContext($context, "thisPage")))) ? ("active") : (""));
                 echo "\">
                         <a class=\"page-link\"  href=\"";
-                // line 255
+                // line 263
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_persona", ["currentPage" => $context["i"]]), "html", null, true);
                 echo "\">";
                 echo twig_escape_filter($this->env, $context["i"], "html", null, true);
@@ -566,23 +586,6 @@ class __TwigTemplate_1730990c3bdc6d2d20e9c6c9c36a954b9000b822939268071ad77e7e35b
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 258
-            echo "            ";
-        }
-        // line 259
-        echo "
-            ";
-        // line 260
-        if ((($context["thisPage"] ?? $this->getContext($context, "thisPage")) < (($context["minRightRange"] ?? $this->getContext($context, "minRightRange")) - 2))) {
-            // line 261
-            echo "                ";
-            if ((($context["thisPage"] ?? $this->getContext($context, "thisPage")) != (($context["maxRightRange"] ?? $this->getContext($context, "maxRightRange")) - 3))) {
-                // line 262
-                echo "                    <li class=\"page-item disabled\">
-                        <a class=\"page-link\"  href=\"#\">...</a>
-                    </li>
-                ";
-            }
             // line 266
             echo "            ";
         }
@@ -590,8 +593,25 @@ class __TwigTemplate_1730990c3bdc6d2d20e9c6c9c36a954b9000b822939268071ad77e7e35b
         echo "
             ";
         // line 268
-        if ((($context["thisPage"] ?? $this->getContext($context, "thisPage")) < (($context["maxPages"] ?? $this->getContext($context, "maxPages")) - ($context["extremos"] ?? $this->getContext($context, "extremos"))))) {
+        if ((($context["thisPage"] ?? $this->getContext($context, "thisPage")) < (($context["minRightRange"] ?? $this->getContext($context, "minRightRange")) - 2))) {
             // line 269
+            echo "                ";
+            if ((($context["thisPage"] ?? $this->getContext($context, "thisPage")) != (($context["maxRightRange"] ?? $this->getContext($context, "maxRightRange")) - 3))) {
+                // line 270
+                echo "                    <li class=\"page-item disabled\">
+                        <a class=\"page-link\"  href=\"#\">...</a>
+                    </li>
+                ";
+            }
+            // line 274
+            echo "            ";
+        }
+        // line 275
+        echo "
+            ";
+        // line 276
+        if ((($context["thisPage"] ?? $this->getContext($context, "thisPage")) < (($context["maxPages"] ?? $this->getContext($context, "maxPages")) - ($context["extremos"] ?? $this->getContext($context, "extremos"))))) {
+            // line 277
             echo "                ";
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable(range(($context["minRightRange"] ?? $this->getContext($context, "minRightRange")), ($context["maxRightRange"] ?? $this->getContext($context, "maxRightRange"))));
@@ -599,7 +619,7 @@ class __TwigTemplate_1730990c3bdc6d2d20e9c6c9c36a954b9000b822939268071ad77e7e35b
                 echo "                   
                     <li class=\"page-item\">
                         <a class=\"page-link\"  href=\"";
-                // line 271
+                // line 279
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_persona", ["currentPage" => $context["i"]]), "html", null, true);
                 echo "\">";
                 echo twig_escape_filter($this->env, $context["i"], "html", null, true);
@@ -610,25 +630,25 @@ class __TwigTemplate_1730990c3bdc6d2d20e9c6c9c36a954b9000b822939268071ad77e7e35b
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 274
+            // line 282
             echo "            ";
         }
         echo "            
 
             ";
-        // line 276
+        // line 284
         if ((($context["page"] ?? $this->getContext($context, "page")) == ($context["maxPages"] ?? $this->getContext($context, "maxPages")))) {
-            // line 277
+            // line 285
             echo "
             ";
         } else {
-            // line 279
+            // line 287
             echo "                ";
             $context["page"] = (($context["page"] ?? $this->getContext($context, "page")) + 1);
-            // line 280
+            // line 288
             echo "            ";
         }
-        // line 281
+        // line 289
         echo "            <li><a class=\"page-link\" href=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_persona", ["currentPage" => ($context["page"] ?? $this->getContext($context, "page"))]), "html", null, true);
         echo "\">Siguiente</a></li>
@@ -665,7 +685,7 @@ class __TwigTemplate_1730990c3bdc6d2d20e9c6c9c36a954b9000b822939268071ad77e7e35b
 
     public function getDebugInfo()
     {
-        return array (  632 => 281,  629 => 280,  626 => 279,  622 => 277,  620 => 276,  614 => 274,  603 => 271,  595 => 269,  593 => 268,  590 => 267,  587 => 266,  581 => 262,  578 => 261,  576 => 260,  573 => 259,  570 => 258,  559 => 255,  555 => 254,  548 => 253,  545 => 252,  542 => 251,  540 => 250,  535 => 247,  533 => 246,  530 => 245,  519 => 242,  514 => 241,  510 => 240,  505 => 238,  500 => 235,  497 => 234,  494 => 233,  491 => 232,  488 => 231,  485 => 230,  482 => 229,  480 => 228,  477 => 227,  474 => 226,  471 => 225,  469 => 224,  466 => 223,  463 => 222,  460 => 221,  458 => 220,  455 => 219,  452 => 218,  449 => 217,  446 => 216,  444 => 215,  439 => 213,  436 => 212,  433 => 211,  431 => 210,  427 => 208,  420 => 204,  413 => 202,  411 => 201,  400 => 193,  391 => 189,  376 => 177,  370 => 175,  364 => 173,  361 => 172,  358 => 171,  355 => 170,  352 => 169,  349 => 168,  346 => 167,  343 => 166,  340 => 165,  337 => 164,  335 => 163,  329 => 160,  324 => 158,  320 => 157,  316 => 156,  312 => 155,  308 => 154,  305 => 153,  300 => 152,  298 => 151,  284 => 139,  282 => 138,  278 => 136,  268 => 132,  265 => 131,  261 => 130,  258 => 129,  248 => 125,  245 => 124,  241 => 123,  232 => 117,  226 => 114,  222 => 113,  213 => 107,  208 => 105,  204 => 104,  197 => 100,  192 => 98,  188 => 97,  181 => 93,  176 => 91,  172 => 90,  165 => 86,  160 => 84,  156 => 83,  149 => 79,  144 => 77,  140 => 76,  134 => 73,  122 => 64,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  652 => 289,  649 => 288,  646 => 287,  642 => 285,  640 => 284,  634 => 282,  623 => 279,  615 => 277,  613 => 276,  610 => 275,  607 => 274,  601 => 270,  598 => 269,  596 => 268,  593 => 267,  590 => 266,  579 => 263,  575 => 262,  568 => 261,  565 => 260,  562 => 259,  560 => 258,  555 => 255,  553 => 254,  550 => 253,  539 => 250,  534 => 249,  530 => 248,  526 => 246,  523 => 245,  520 => 244,  518 => 243,  515 => 242,  512 => 241,  510 => 240,  505 => 238,  500 => 235,  497 => 234,  494 => 233,  491 => 232,  488 => 231,  485 => 230,  482 => 229,  480 => 228,  477 => 227,  474 => 226,  471 => 225,  469 => 224,  466 => 223,  463 => 222,  460 => 221,  458 => 220,  455 => 219,  452 => 218,  449 => 217,  446 => 216,  444 => 215,  439 => 213,  436 => 212,  433 => 211,  431 => 210,  427 => 208,  420 => 204,  413 => 202,  411 => 201,  400 => 193,  391 => 189,  376 => 177,  370 => 175,  364 => 173,  361 => 172,  358 => 171,  355 => 170,  352 => 169,  349 => 168,  346 => 167,  343 => 166,  340 => 165,  337 => 164,  335 => 163,  329 => 160,  324 => 158,  320 => 157,  316 => 156,  312 => 155,  308 => 154,  305 => 153,  300 => 152,  298 => 151,  284 => 139,  282 => 138,  278 => 136,  268 => 132,  265 => 131,  261 => 130,  258 => 129,  248 => 125,  245 => 124,  241 => 123,  232 => 117,  226 => 114,  222 => 113,  213 => 107,  208 => 105,  204 => 104,  197 => 100,  192 => 98,  188 => 97,  181 => 93,  176 => 91,  172 => 90,  165 => 86,  160 => 84,  156 => 83,  149 => 79,  144 => 77,  140 => 76,  134 => 73,  122 => 64,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -917,7 +937,15 @@ class __TwigTemplate_1730990c3bdc6d2d20e9c6c9c36a954b9000b822939268071ad77e7e35b
         <div class=\"pagination\">
             <li><a class=\"page-link\" href=\"{{ 0 < thisPage-1 ? path('listado_persona', {\"currentPage\": thisPage-1}) }}\">Anterior</a></li>
 
-                {% for i in minLeftRange..maxLeftRange %}
+            {%if thisPage == maxPages-1%}
+                {%set maxLeftRange = maxLeftRange-1%}
+            
+            {%elseif thisPage == maxPages%}
+                {%set maxLeftRange = maxPages%}
+            {%endif%}
+            
+            
+            {% for i in minLeftRange..maxLeftRange %}
                 <li class=\"page-item {{  i == thisPage ? 'active' : '' }}\">
                     <a class=\"page-link\"  href=\"{{ path('listado_persona', {\"currentPage\": i}) }}\">{{ i }}</a>
                 </li>
