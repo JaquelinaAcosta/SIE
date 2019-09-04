@@ -228,8 +228,10 @@
 
                 </tbody>
             </table>
-        {% endif %}       
-
+        {% endif %}    
+        
+        
+{#         -----Paginación-----              #}
         {% set limite = 6 %}
         {% set extremos = 2 %}
 
@@ -262,7 +264,7 @@
 
             {%if thisPage == maxPages-1%}
                 {%set maxLeftRange = maxLeftRange-1%}
-            {%elseif thisPage == maxPages%}
+            {%elseif thisPage == maxPages and thisPage != minRightRange%}
                 {%set maxLeftRange = maxPages%}
             {%endif%}
             
@@ -312,6 +314,8 @@
 
             </ul>
         </div>
+            
+            
     </div>
 </div>
 <script>

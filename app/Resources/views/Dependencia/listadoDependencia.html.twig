@@ -32,7 +32,7 @@
             -moz-border-radius: 3px 0 0 3px;
             border-radius: 3px 0 0 3px;
         }
-
+        
     </style>
 
     <div class="content">
@@ -148,7 +148,7 @@
             </tbody>
         </table>
 
-                
+{#         -----Paginación-----              #}                
         {% set limite = 6 %}
         {% set extremos = 2 %}
 
@@ -181,12 +181,12 @@
 
             {%if thisPage == maxPages-1%}
                 {%set maxLeftRange = maxLeftRange-1%}
-            {%elseif thisPage == maxPages%}
+            {%elseif thisPage == maxPages and thisPage != minRightRange%}
                 {%set maxLeftRange = maxPages%}
             {%endif%}
             
                 {% for i in minLeftRange..maxLeftRange %}
-                <li class="page-item {{  i == thisPage ? 'active' : '' }} ">
+                <li class="page-item {{ i == thisPage ? 'active' : '' }}">
                     <a class="page-link"  href="{{ path('listado_dependencia', {"currentPage": i}) }}">{{ i }}</a>
                 </li>
             {% endfor %}
@@ -199,7 +199,7 @@
                     {%set extremoDerecho = extremoDerecho-1%}
                 {%endif%}
                 {% for i in extremoIzquierdo..extremoDerecho %}                    
-                    <li class="page-item {{  i == thisPage ? 'active' : '' }} ">
+                    <li class="page-item {{  i == thisPage ? 'active' : '' }}">
                         <a class="page-link"  href="{{ path('listado_dependencia', {"currentPage": i}) }}">{{ i }}</a>
                     </li>                    
                 {% endfor %}

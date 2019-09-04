@@ -66,34 +66,29 @@ class __TwigTemplate_c6f7b895287bf33596b5896998f73c4cb98c851bec4b959131fd34799de
             max-width: 200px;
         }
         
-     ";
-        // line 22
-        echo "        
+        .pagination a {
+            float: left;
+            padding: 0 14px;
+            line-height: 34px;
+            color: #060325;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-left-width: 0;
+        }
+
+        .pagination a:hover,
+        .pagination .active a {
+            background-color: #060325;
+            color: #ffffff;
+        }
+
+        .pagination li:first-child a {
+            border-left-width: 1px;
+            -webkit-border-radius: 3px 0 0 3px;
+            -moz-border-radius: 3px 0 0 3px;
+            border-radius: 3px 0 0 3px;
+        }
         
-.pagination a {
-    float: left;
-    padding: 0 14px;
-    line-height: 34px;
-    color: #060325;
-    text-decoration: none;
-    border: 1px solid #ddd;
-    border-left-width: 0;
-}
-
-.pagination a:hover,
-.pagination .active a {
-    background-color: #060325;
-    color: #ffffff;
-}
-
-.pagination li:first-child a {
-    border-left-width: 1px;
-    -webkit-border-radius: 3px 0 0 3px;
-    -moz-border-radius: 3px 0 0 3px;
-    border-radius: 3px 0 0 3px;
-}
-
-
     </style>
 
     <div class=\"content\">
@@ -105,7 +100,7 @@ class __TwigTemplate_c6f7b895287bf33596b5896998f73c4cb98c851bec4b959131fd34799de
                         <i class=\"fas fa-search-plus\"></i> Filtros de Búsqueda de Dependencia
                     </button>
                     <a href=\"";
-        // line 58
+        // line 46
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nueva_dependencia");
         echo "\" 
                        role=\"button\" class=\"btn btn-info float-right\">Nueva Dependencia</a>
@@ -117,86 +112,86 @@ class __TwigTemplate_c6f7b895287bf33596b5896998f73c4cb98c851bec4b959131fd34799de
                 <div class=\"card-body\">
                     <form method=\"post\" novalidate=\"true\" id=\"form_buscar\">
                         ";
-        // line 67
+        // line 55
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), 'errors');
         echo "
                         <div class=\"row\">
                             <div class=\"threecol col-lg-4\">
                                 ";
-        // line 70
+        // line 58
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "descripcion", []), 'label', ["label" => "DESCRIPCIÓN"]);
         echo "
                                 ";
-        // line 71
+        // line 59
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "descripcion", []), 'widget');
         echo "
                                 <div class=\"help-block with-errors\">
                                     ";
-        // line 73
+        // line 61
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "descripcion", []), 'errors');
         echo "
                                 </div>
                             </div>
                             <div class=\"threecol col-lg-4\">
                                 ";
-        // line 77
+        // line 65
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "dependenciaPadre", []), 'label', ["label" => "DEPENDENCIA PADRE"]);
         echo "
                                 ";
-        // line 78
+        // line 66
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "dependenciaPadre", []), 'widget');
         echo "
                                 <div class=\"help-block with-errors\">
                                     ";
-        // line 80
+        // line 68
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "dependenciaPadre", []), 'errors');
         echo "
                                 </div>
                             </div> 
                             <div class=\"threecol col-lg-4\">
                                 ";
-        // line 84
+        // line 72
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "responsable", []), 'label', ["label" => "NOMBRE RESPONSABLE"]);
         echo "
                                 ";
-        // line 85
+        // line 73
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "responsable", []), 'widget');
         echo "
                                 <div class=\"help-block with-errors\">
                                     ";
-        // line 87
+        // line 75
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "responsable", []), 'errors');
         echo "
                                 </div>
                             </div>  
                             <div class=\"twocol col-lg-2\">
                                 ";
-        // line 91
+        // line 79
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "nivel", []), 'label', ["label" => "NIVEL"]);
         echo "
                                 ";
-        // line 92
+        // line 80
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "nivel", []), 'widget');
         echo "
                                 <div class=\"help-block with-errors\">
                                     ";
-        // line 94
+        // line 82
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "nivel", []), 'errors');
         echo "
                                 </div>
                             </div> 
                             <div class=\"twocol col-lg-3\">
                                 ";
-        // line 98
+        // line 86
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "estado", []), 'label', ["label" => "ESTADO"]);
         echo "
                                 ";
-        // line 99
+        // line 87
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "estado", []), 'widget');
         echo "
                                 <div class=\"help-block with-errors\">
                                     ";
-        // line 101
+        // line 89
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "estado", []), 'errors');
         echo "
                                 </div>
@@ -207,17 +202,17 @@ class __TwigTemplate_c6f7b895287bf33596b5896998f73c4cb98c851bec4b959131fd34799de
                         <div class=\"row\">
                             <div class=\"col-lg-4\">
                                 ";
-        // line 109
+        // line 97
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "filter", []), 'widget');
         echo "
                                 ";
-        // line 110
+        // line 98
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), "reset", []), 'widget');
         echo "
                             </div>
                         </div>
                         ";
-        // line 113
+        // line 101
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["formDependenciaFilter"] ?? $this->getContext($context, "formDependenciaFilter")), 'form_end');
         echo "
 
@@ -244,69 +239,69 @@ class __TwigTemplate_c6f7b895287bf33596b5896998f73c4cb98c851bec4b959131fd34799de
             <tbody>
 
                 ";
-        // line 137
+        // line 125
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(twig_reverse_filter($this->env, ($context["dependencias"] ?? $this->getContext($context, "dependencias"))));
         foreach ($context['_seq'] as $context["_key"] => $context["dependencia"]) {
-            // line 138
+            // line 126
             echo "                    <tr>
                         <td class=\"text-default\">";
-            // line 139
+            // line 127
             echo twig_escape_filter($this->env, $this->getAttribute($context["dependencia"], "descripcion", []));
             echo "</td>
                         <td class=\"text-default\"><p>";
-            // line 140
+            // line 128
             echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["dependencia"], "dependenciaPadre", []), "descripcion", []));
             echo "</p></td>
                         <td class=\"text-default\">";
-            // line 141
+            // line 129
             echo twig_escape_filter($this->env, $this->getAttribute($context["dependencia"], "responsable", []));
             echo "</td>
 
                         ";
-            // line 143
+            // line 131
             if (($this->getAttribute($context["dependencia"], "estado", []) != null)) {
-                // line 144
+                // line 132
                 echo "                            <td class=\"text-default\">HABILITADO</td>
                             <td class=\"text-default\">";
-                // line 145
+                // line 133
                 echo twig_escape_filter($this->env, $this->getAttribute($context["dependencia"], "nivel", []));
                 echo "</td>
                             <td> <a class=\"btn btn-info\" href=\"";
-                // line 146
+                // line 134
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("adm_gestionar_mesaentrada", ["id" => $this->getAttribute($context["dependencia"], "id", [])]), "html", null, true);
                 echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Gestionar Mesa de Entrada\">  <i class=\"fas fa-table\"></i></a>
                                 <a class=\"btn btn-warning\" href=\"";
-                // line 147
+                // line 135
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_dependencia", ["id" => $this->getAttribute($context["dependencia"], "id", [])]), "html", null, true);
                 echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"><i class=\"fas fa-edit\"></i></a>
                                 <a class=\"btn btn-danger\" href=\"";
-                // line 148
+                // line 136
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("deshabilitar_dependencia", ["id" => $this->getAttribute($context["dependencia"], "id", [])]), "html", null, true);
                 echo "\"  role=\"button\"><i class=\"far fa-file-archive\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Archivar\"></i></a></td>
                                 ";
             } else {
-                // line 150
+                // line 138
                 echo "                            <td class=\"text-default\">DESHABILITADO</td>
                             <td class=\"text-default\">";
-                // line 151
+                // line 139
                 echo twig_escape_filter($this->env, $this->getAttribute($context["dependencia"], "nivel", []));
                 echo "</td>
                             <td> <a class=\"btn btn-info\" href=\"";
-                // line 152
+                // line 140
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("adm_gestionar_mesaentrada", ["id" => $this->getAttribute($context["dependencia"], "id", [])]), "html", null, true);
                 echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Gestionar mesa de Entrada\">  <i class=\"fas fa-table\"></i></a>
                                 <a class=\"btn btn-warning\" href=\"";
-                // line 153
+                // line 141
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_dependencia", ["id" => $this->getAttribute($context["dependencia"], "id", [])]), "html", null, true);
                 echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar Dependencia\"><i class=\"fas fa-edit\"></i></a>
                                 <a class=\"btn btn-success\" href=\"";
-                // line 154
+                // line 142
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("alta_dependencia", ["id" => $this->getAttribute($context["dependencia"], "id", [])]), "html", null, true);
                 echo "\"  role=\"button\"><i class=\"far fa-calendar-check\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Dar de Alta\"></i></a></td>
                                 ";
             }
-            // line 156
+            // line 144
             echo "
                     </tr>
                 ";
@@ -314,119 +309,121 @@ class __TwigTemplate_c6f7b895287bf33596b5896998f73c4cb98c851bec4b959131fd34799de
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['dependencia'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 159
+        // line 147
         echo "
             </tbody>
         </table>
 
-                
+";
+        // line 151
+        echo "                
         ";
-        // line 164
+        // line 152
         $context["limite"] = 6;
-        // line 165
+        // line 153
         echo "        ";
         $context["extremos"] = 2;
-        // line 166
+        // line 154
         echo "
         ";
-        // line 167
+        // line 155
         if ((($context["thisPage"] ?? $this->getContext($context, "thisPage")) < ($context["limite"] ?? $this->getContext($context, "limite")))) {
             echo " 
 
             ";
-            // line 169
+            // line 157
             $context["minLeftRange"] = 1;
-            // line 170
+            // line 158
             echo "            ";
             $context["maxLeftRange"] = (($context["thisPage"] ?? $this->getContext($context, "thisPage")) + ($context["extremos"] ?? $this->getContext($context, "extremos")));
-            // line 171
+            // line 159
             echo "            ";
             $context["minRightRange"] = (($context["maxPages"] ?? $this->getContext($context, "maxPages")) - ($context["extremos"] ?? $this->getContext($context, "extremos")));
-            // line 172
+            // line 160
             echo "            ";
             $context["maxRightRange"] = ($context["maxPages"] ?? $this->getContext($context, "maxPages"));
-            // line 173
+            // line 161
             echo "
         ";
-        } elseif ((        // line 174
+        } elseif ((        // line 162
 ($context["thisPage"] ?? $this->getContext($context, "thisPage")) >= ($context["limite"] ?? $this->getContext($context, "limite")))) {
-            // line 175
+            // line 163
             echo "            ";
             $context["minLeftRange"] = 1;
-            // line 176
+            // line 164
             echo "            ";
             $context["maxLeftRange"] = 2;
-            // line 177
+            // line 165
             echo "
             ";
-            // line 178
+            // line 166
             $context["extremoIzquierdo"] = (($context["thisPage"] ?? $this->getContext($context, "thisPage")) - ($context["extremos"] ?? $this->getContext($context, "extremos")));
-            // line 179
+            // line 167
             echo "            ";
             $context["extremoDerecho"] = (($context["thisPage"] ?? $this->getContext($context, "thisPage")) + ($context["extremos"] ?? $this->getContext($context, "extremos")));
-            // line 180
+            // line 168
             echo "            ";
             $context["minRightRange"] = ((($context["maxPages"] ?? $this->getContext($context, "maxPages")) - ($context["extremos"] ?? $this->getContext($context, "extremos"))) + 2);
-            // line 181
+            // line 169
             echo "
             ";
-            // line 182
+            // line 170
             if ((($context["extremoDerecho"] ?? $this->getContext($context, "extremoDerecho")) >= (($context["minRightRange"] ?? $this->getContext($context, "minRightRange")) + ($context["extremos"] ?? $this->getContext($context, "extremos"))))) {
-                // line 183
+                // line 171
                 echo "                ";
                 $context["minRightRange"] = ($context["thisPage"] ?? $this->getContext($context, "thisPage"));
-                // line 184
+                // line 172
                 echo "                ";
                 $context["extremoDerecho"] = ($context["maxPages"] ?? $this->getContext($context, "maxPages"));
-                // line 185
+                // line 173
                 echo "                ";
                 $context["extremoIzquierdo"] = (($context["thisPage"] ?? $this->getContext($context, "thisPage")) - (($context["extremos"] ?? $this->getContext($context, "extremos")) * 2));
-                // line 186
+                // line 174
                 echo "            ";
             }
-            // line 187
+            // line 175
             echo "            ";
             $context["maxRightRange"] = ($context["maxPages"] ?? $this->getContext($context, "maxPages"));
-            // line 188
+            // line 176
             echo "        ";
         }
-        // line 189
+        // line 177
         echo "        
         
         <div class=\"pagination\" >
             <li><a class=\"page-link\" href=\"";
-        // line 192
+        // line 180
         (((0 < (($context["thisPage"] ?? $this->getContext($context, "thisPage")) - 1))) ? (print (twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_dependencia", ["currentPage" => (($context["thisPage"] ?? $this->getContext($context, "thisPage")) - 1)]), "html", null, true))) : (print ("")));
         echo "\">Anterior</a></li>
 
             ";
-        // line 194
+        // line 182
         if ((($context["thisPage"] ?? $this->getContext($context, "thisPage")) == (($context["maxPages"] ?? $this->getContext($context, "maxPages")) - 1))) {
-            // line 195
+            // line 183
             echo "                ";
             $context["maxLeftRange"] = (($context["maxLeftRange"] ?? $this->getContext($context, "maxLeftRange")) - 1);
-            // line 196
+            // line 184
             echo "            ";
-        } elseif ((($context["thisPage"] ?? $this->getContext($context, "thisPage")) == ($context["maxPages"] ?? $this->getContext($context, "maxPages")))) {
-            // line 197
+        } elseif (((($context["thisPage"] ?? $this->getContext($context, "thisPage")) == ($context["maxPages"] ?? $this->getContext($context, "maxPages"))) && (($context["thisPage"] ?? $this->getContext($context, "thisPage")) != ($context["minRightRange"] ?? $this->getContext($context, "minRightRange"))))) {
+            // line 185
             echo "                ";
             $context["maxLeftRange"] = ($context["maxPages"] ?? $this->getContext($context, "maxPages"));
-            // line 198
+            // line 186
             echo "            ";
         }
-        // line 199
+        // line 187
         echo "            
                 ";
-        // line 200
+        // line 188
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(range(($context["minLeftRange"] ?? $this->getContext($context, "minLeftRange")), ($context["maxLeftRange"] ?? $this->getContext($context, "maxLeftRange"))));
         foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
-            // line 201
+            // line 189
             echo "                <li class=\"page-item ";
             echo ((($context["i"] == ($context["thisPage"] ?? $this->getContext($context, "thisPage")))) ? ("active") : (""));
-            echo " \">
+            echo "\">
                     <a class=\"page-link\"  href=\"";
-            // line 202
+            // line 190
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_dependencia", ["currentPage" => $context["i"]]), "html", null, true);
             echo "\">";
             echo twig_escape_filter($this->env, $context["i"], "html", null, true);
@@ -437,36 +434,36 @@ class __TwigTemplate_c6f7b895287bf33596b5896998f73c4cb98c851bec4b959131fd34799de
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 205
+        // line 193
         echo "
             ";
-        // line 206
+        // line 194
         if ((($context["thisPage"] ?? $this->getContext($context, "thisPage")) >= ($context["limite"] ?? $this->getContext($context, "limite")))) {
-            // line 207
+            // line 195
             echo "                <li class=\"page-item disabled\">
                     <a class=\"page-link\"  href=\"#\">...</a>
                 </li>
                 ";
-            // line 210
+            // line 198
             if ((($context["thisPage"] ?? $this->getContext($context, "thisPage")) == (($context["minRightRange"] ?? $this->getContext($context, "minRightRange")) - 1))) {
-                // line 211
+                // line 199
                 echo "                    ";
                 $context["extremoDerecho"] = (($context["extremoDerecho"] ?? $this->getContext($context, "extremoDerecho")) - 1);
-                // line 212
+                // line 200
                 echo "                ";
             }
-            // line 213
+            // line 201
             echo "                ";
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable(range(($context["extremoIzquierdo"] ?? $this->getContext($context, "extremoIzquierdo")), ($context["extremoDerecho"] ?? $this->getContext($context, "extremoDerecho"))));
             foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
                 echo "                    
                     <li class=\"page-item ";
-                // line 214
+                // line 202
                 echo ((($context["i"] == ($context["thisPage"] ?? $this->getContext($context, "thisPage")))) ? ("active") : (""));
-                echo " \">
+                echo "\">
                         <a class=\"page-link\"  href=\"";
-                // line 215
+                // line 203
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_dependencia", ["currentPage" => $context["i"]]), "html", null, true);
                 echo "\">";
                 echo twig_escape_filter($this->env, $context["i"], "html", null, true);
@@ -477,32 +474,32 @@ class __TwigTemplate_c6f7b895287bf33596b5896998f73c4cb98c851bec4b959131fd34799de
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 218
+            // line 206
             echo "            ";
         }
-        // line 219
+        // line 207
         echo "
             ";
-        // line 220
+        // line 208
         if ((($context["thisPage"] ?? $this->getContext($context, "thisPage")) < (($context["minRightRange"] ?? $this->getContext($context, "minRightRange")) - 2))) {
-            // line 221
+            // line 209
             echo "                ";
             if ((($context["thisPage"] ?? $this->getContext($context, "thisPage")) != (($context["maxRightRange"] ?? $this->getContext($context, "maxRightRange")) - 3))) {
-                // line 222
+                // line 210
                 echo "                    <li class=\"page-item disabled\">
                         <a class=\"page-link\"  href=\"#\">...</a>
                     </li>
                 ";
             }
-            // line 226
+            // line 214
             echo "            ";
         }
-        // line 227
+        // line 215
         echo "
             ";
-        // line 228
+        // line 216
         if ((($context["thisPage"] ?? $this->getContext($context, "thisPage")) < (($context["maxPages"] ?? $this->getContext($context, "maxPages")) - ($context["extremos"] ?? $this->getContext($context, "extremos"))))) {
-            // line 229
+            // line 217
             echo "                ";
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable(range(($context["minRightRange"] ?? $this->getContext($context, "minRightRange")), ($context["maxRightRange"] ?? $this->getContext($context, "maxRightRange"))));
@@ -510,7 +507,7 @@ class __TwigTemplate_c6f7b895287bf33596b5896998f73c4cb98c851bec4b959131fd34799de
                 echo "                   
                     <li class=\"page-item\">
                         <a class=\"page-link\"  href=\"";
-                // line 231
+                // line 219
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_dependencia", ["currentPage" => $context["i"]]), "html", null, true);
                 echo "\">";
                 echo twig_escape_filter($this->env, $context["i"], "html", null, true);
@@ -521,25 +518,25 @@ class __TwigTemplate_c6f7b895287bf33596b5896998f73c4cb98c851bec4b959131fd34799de
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 234
+            // line 222
             echo "            ";
         }
         echo "            
 
             ";
-        // line 236
+        // line 224
         if ((($context["page"] ?? $this->getContext($context, "page")) == ($context["maxPages"] ?? $this->getContext($context, "maxPages")))) {
-            // line 237
+            // line 225
             echo "
             ";
         } else {
-            // line 239
+            // line 227
             echo "                ";
             $context["page"] = (($context["page"] ?? $this->getContext($context, "page")) + 1);
-            // line 240
+            // line 228
             echo "            ";
         }
-        // line 241
+        // line 229
         echo "            <li><a class=\"page-link\" href=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_dependencia", ["currentPage" => ($context["page"] ?? $this->getContext($context, "page"))]), "html", null, true);
         echo "\">Siguiente</a></li>
@@ -557,11 +554,11 @@ class __TwigTemplate_c6f7b895287bf33596b5896998f73c4cb98c851bec4b959131fd34799de
         <script>
             \$('#dependencia_filter_responsable').autocompleter({
                 url_list: \"";
-        // line 255
+        // line 243
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("persona_search");
         echo "\",
                 url_get: \"";
-        // line 256
+        // line 244
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("persona_get");
         echo "\"
             });
@@ -589,7 +586,7 @@ class __TwigTemplate_c6f7b895287bf33596b5896998f73c4cb98c851bec4b959131fd34799de
 
     public function getDebugInfo()
     {
-        return array (  565 => 256,  561 => 255,  543 => 241,  540 => 240,  537 => 239,  533 => 237,  531 => 236,  525 => 234,  514 => 231,  506 => 229,  504 => 228,  501 => 227,  498 => 226,  492 => 222,  489 => 221,  487 => 220,  484 => 219,  481 => 218,  470 => 215,  466 => 214,  459 => 213,  456 => 212,  453 => 211,  451 => 210,  446 => 207,  444 => 206,  441 => 205,  430 => 202,  425 => 201,  421 => 200,  418 => 199,  415 => 198,  412 => 197,  409 => 196,  406 => 195,  404 => 194,  399 => 192,  394 => 189,  391 => 188,  388 => 187,  385 => 186,  382 => 185,  379 => 184,  376 => 183,  374 => 182,  371 => 181,  368 => 180,  365 => 179,  363 => 178,  360 => 177,  357 => 176,  354 => 175,  352 => 174,  349 => 173,  346 => 172,  343 => 171,  340 => 170,  338 => 169,  333 => 167,  330 => 166,  327 => 165,  325 => 164,  318 => 159,  310 => 156,  305 => 154,  301 => 153,  297 => 152,  293 => 151,  290 => 150,  285 => 148,  281 => 147,  277 => 146,  273 => 145,  270 => 144,  268 => 143,  263 => 141,  259 => 140,  255 => 139,  252 => 138,  248 => 137,  221 => 113,  215 => 110,  211 => 109,  200 => 101,  195 => 99,  191 => 98,  184 => 94,  179 => 92,  175 => 91,  168 => 87,  163 => 85,  159 => 84,  152 => 80,  147 => 78,  143 => 77,  136 => 73,  131 => 71,  127 => 70,  121 => 67,  109 => 58,  71 => 22,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  562 => 244,  558 => 243,  540 => 229,  537 => 228,  534 => 227,  530 => 225,  528 => 224,  522 => 222,  511 => 219,  503 => 217,  501 => 216,  498 => 215,  495 => 214,  489 => 210,  486 => 209,  484 => 208,  481 => 207,  478 => 206,  467 => 203,  463 => 202,  456 => 201,  453 => 200,  450 => 199,  448 => 198,  443 => 195,  441 => 194,  438 => 193,  427 => 190,  422 => 189,  418 => 188,  415 => 187,  412 => 186,  409 => 185,  406 => 184,  403 => 183,  401 => 182,  396 => 180,  391 => 177,  388 => 176,  385 => 175,  382 => 174,  379 => 173,  376 => 172,  373 => 171,  371 => 170,  368 => 169,  365 => 168,  362 => 167,  360 => 166,  357 => 165,  354 => 164,  351 => 163,  349 => 162,  346 => 161,  343 => 160,  340 => 159,  337 => 158,  335 => 157,  330 => 155,  327 => 154,  324 => 153,  322 => 152,  319 => 151,  313 => 147,  305 => 144,  300 => 142,  296 => 141,  292 => 140,  288 => 139,  285 => 138,  280 => 136,  276 => 135,  272 => 134,  268 => 133,  265 => 132,  263 => 131,  258 => 129,  254 => 128,  250 => 127,  247 => 126,  243 => 125,  216 => 101,  210 => 98,  206 => 97,  195 => 89,  190 => 87,  186 => 86,  179 => 82,  174 => 80,  170 => 79,  163 => 75,  158 => 73,  154 => 72,  147 => 68,  142 => 66,  138 => 65,  131 => 61,  126 => 59,  122 => 58,  116 => 55,  104 => 46,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -614,41 +611,29 @@ class __TwigTemplate_c6f7b895287bf33596b5896998f73c4cb98c851bec4b959131fd34799de
             max-width: 200px;
         }
         
-     {#   .active{  
+        .pagination a {
+            float: left;
+            padding: 0 14px;
+            line-height: 34px;
+            color: #060325;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-left-width: 0;
+        }
+
+        .pagination a:hover,
+        .pagination .active a {
             background-color: #060325;
-        } 
+            color: #ffffff;
+        }
+
+        .pagination li:first-child a {
+            border-left-width: 1px;
+            -webkit-border-radius: 3px 0 0 3px;
+            -moz-border-radius: 3px 0 0 3px;
+            border-radius: 3px 0 0 3px;
+        }
         
-        .page_item 
-        {
-            background-color: #060325;
-            color: white;
-        }#}
-        
-        
-.pagination a {
-    float: left;
-    padding: 0 14px;
-    line-height: 34px;
-    color: #060325;
-    text-decoration: none;
-    border: 1px solid #ddd;
-    border-left-width: 0;
-}
-
-.pagination a:hover,
-.pagination .active a {
-    background-color: #060325;
-    color: #ffffff;
-}
-
-.pagination li:first-child a {
-    border-left-width: 1px;
-    -webkit-border-radius: 3px 0 0 3px;
-    -moz-border-radius: 3px 0 0 3px;
-    border-radius: 3px 0 0 3px;
-}
-
-
     </style>
 
     <div class=\"content\">
@@ -764,7 +749,7 @@ class __TwigTemplate_c6f7b895287bf33596b5896998f73c4cb98c851bec4b959131fd34799de
             </tbody>
         </table>
 
-                
+{#         -----Paginación-----              #}                
         {% set limite = 6 %}
         {% set extremos = 2 %}
 
@@ -797,12 +782,12 @@ class __TwigTemplate_c6f7b895287bf33596b5896998f73c4cb98c851bec4b959131fd34799de
 
             {%if thisPage == maxPages-1%}
                 {%set maxLeftRange = maxLeftRange-1%}
-            {%elseif thisPage == maxPages%}
+            {%elseif thisPage == maxPages and thisPage != minRightRange%}
                 {%set maxLeftRange = maxPages%}
             {%endif%}
             
                 {% for i in minLeftRange..maxLeftRange %}
-                <li class=\"page-item {{  i == thisPage ? 'active' : '' }} \">
+                <li class=\"page-item {{ i == thisPage ? 'active' : '' }}\">
                     <a class=\"page-link\"  href=\"{{ path('listado_dependencia', {\"currentPage\": i}) }}\">{{ i }}</a>
                 </li>
             {% endfor %}
@@ -815,7 +800,7 @@ class __TwigTemplate_c6f7b895287bf33596b5896998f73c4cb98c851bec4b959131fd34799de
                     {%set extremoDerecho = extremoDerecho-1%}
                 {%endif%}
                 {% for i in extremoIzquierdo..extremoDerecho %}                    
-                    <li class=\"page-item {{  i == thisPage ? 'active' : '' }} \">
+                    <li class=\"page-item {{  i == thisPage ? 'active' : '' }}\">
                         <a class=\"page-link\"  href=\"{{ path('listado_dependencia', {\"currentPage\": i}) }}\">{{ i }}</a>
                     </li>                    
                 {% endfor %}
