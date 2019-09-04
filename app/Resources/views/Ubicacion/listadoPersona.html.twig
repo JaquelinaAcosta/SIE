@@ -233,7 +233,7 @@
             {%set maxRightRange = maxPages %}
         {%endif%}
 
-
+{#hola#}
         <div class="pagination">
             <li><a class="page-link" href="{{ 0 < thisPage-1 ? path('listado_persona', {"currentPage": thisPage-1}) }}">Anterior</a></li>
                 {% for i in minLeftRange..maxLeftRange %}
