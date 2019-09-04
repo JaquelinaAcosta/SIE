@@ -720,7 +720,7 @@ class Expediente {
      * @Assert\IsTrue(message="La fecha de inicio debe ser menor que la de fin.")
      */
     public function getValidarFecha() {
-        if ($this->fechaFin > null && ($this->fechaInicio) <= ($this->fechaFin)) {
+        if ($this->fechaFin == null or ($this->fechaInicio) <= ($this->fechaFin)) {
             return true;
         } else {
             return false;
