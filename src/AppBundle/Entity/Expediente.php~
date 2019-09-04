@@ -769,7 +769,7 @@ class Expediente {
      */
     public function setFechaCarga($fechaCarga)
     {
-        $this->fecha_carga = $fechaCarga;
+        $this->fechaCarga = $fechaCarga;
 
         return $this;
     }
@@ -781,6 +781,6 @@ class Expediente {
      */
     public function getFechaCarga()
     {
-        return $this->fecha_carga;
+        return $this->fechaCarga;
     }
 }

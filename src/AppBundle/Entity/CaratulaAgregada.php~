@@ -40,7 +40,7 @@ class CaratulaAgregada
     /**
      * @var string
      *
-     * @ORM\Column(name="concepto", type="string", length=255)
+     * @ORM\Column(name="concepto", type="text", length=21845)
      */
     private $concepto;
 

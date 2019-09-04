@@ -46,7 +46,7 @@ class Resolucion
     /**
      * @var string
      *
-     * @ORM\Column(name="observacion", type="string", length=255)
+     * @ORM\Column(name="observacion", type="text", length=21845)
      */
     private $observacion;
     
