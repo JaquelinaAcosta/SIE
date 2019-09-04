@@ -9,6 +9,29 @@
             text-overflow: ellipsis;
             max-width: 200px;
         }
+        
+        .pagination a {
+            float: left;
+            padding: 0 14px;
+            line-height: 34px;
+            color: #060325;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-left-width: 0;
+        }
+
+        .pagination a:hover,
+        .pagination .active a {
+            background-color: #060325;
+            color: #ffffff;
+        }
+
+        .pagination li:first-child a {
+            border-left-width: 1px;
+            -webkit-border-radius: 3px 0 0 3px;
+            -moz-border-radius: 3px 0 0 3px;
+            border-radius: 3px 0 0 3px;
+        }
 
     </style>
 
@@ -153,7 +176,7 @@
         {%endif%}
         
         
-        <div class="pagination">
+        <div class="pagination" >
             <li><a class="page-link" href="{{ 0 < thisPage-1 ? path('listado_dependencia', {"currentPage": thisPage-1}) }}">Anterior</a></li>
 
             {%if thisPage == maxPages-1%}
@@ -163,7 +186,7 @@
             {%endif%}
             
                 {% for i in minLeftRange..maxLeftRange %}
-                <li class="page-item {{  i == thisPage ? 'active' : '' }}">
+                <li class="page-item {{  i == thisPage ? 'active' : '' }} ">
                     <a class="page-link"  href="{{ path('listado_dependencia', {"currentPage": i}) }}">{{ i }}</a>
                 </li>
             {% endfor %}
@@ -176,7 +199,7 @@
                     {%set extremoDerecho = extremoDerecho-1%}
                 {%endif%}
                 {% for i in extremoIzquierdo..extremoDerecho %}                    
-                    <li class="page-item {{  i == thisPage ? 'active' : '' }}">
+                    <li class="page-item {{  i == thisPage ? 'active' : '' }} ">
                         <a class="page-link"  href="{{ path('listado_dependencia', {"currentPage": i}) }}">{{ i }}</a>
                     </li>                    
                 {% endfor %}
