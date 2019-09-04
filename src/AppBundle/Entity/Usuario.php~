@@ -6,10 +6,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 
+<<<<<<< HEAD
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Symfony\Component\Validator\Constraints\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 
+=======
+>>>>>>> 1d691b1dae4d65b56f6df4cb34a85e17b69c2ecb
 /**
  * Usuario
  *
@@ -383,6 +386,7 @@ class Usuario implements UserInterface
     {
         return $this->saved_password;
     }
+<<<<<<< HEAD
     
     /**
      * @Assert\IsTrue(message="La clave debe tener al menos 6 caracteres,
@@ -414,4 +418,6 @@ class Usuario implements UserInterface
         
         return true;
      } 
+=======
+>>>>>>> 1d691b1dae4d65b56f6df4cb34a85e17b69c2ecb
 }

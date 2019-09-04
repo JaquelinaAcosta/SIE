@@ -163,6 +163,11 @@ class Ubicacion
      */
     public function addResponsable(\AppBundle\Entity\Responsable $responsable)
     {
+<<<<<<< HEAD
+=======
+        $responsable->getUsuario()
+                ->setRole('ROLE_RESPONSABLE');
+>>>>>>> 1d691b1dae4d65b56f6df4cb34a85e17b69c2ecb
         $this->responsables[] = $responsable;
 
         return $this;
