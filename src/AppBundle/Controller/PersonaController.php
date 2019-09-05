@@ -165,15 +165,21 @@ class PersonaController extends Controller {
     public function deleteAction(Request $request, $id) {
 
         $em = $this->getDoctrine()->getEntityManager();
-        $persona = $em->getRepository("AppBundle:Persona")->find($id);
+        $persona = $em->getRepository("AppBundle:Ubicacion")->find($id);
         if (!$this->get("app.util")->VerificarPersona($persona, $this->getUser())) {
             $this->addFlash('danger', 'Usted no tiene acceso a esta persona.');
             return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
         }
-        // replace this example code with whatever you need
-        if (!$persona) {
-            throw $this->createNotFoundException('No element found for id ' . $id);
+        
+        
+       foreach ($persona->getResponsables() as $responsable) {
+            $em->remove($responsable);
+
         }
+        
+        
+//         dump($persona);
+//         die();
 
         $em->remove($persona);
         $flush = $em->flush();
@@ -184,7 +190,12 @@ class PersonaController extends Controller {
         } else {
             $this->addFlash('danger', "Ocurrió un error ");
         }
-        return $this->redirectToRoute('listado_persona', ["currentPage" => 1]);
+        if ($persona->getUsuario()!=null){
+        return $this->redirectToRoute('eliminar_usuario', ["id" => $persona->getUsuario(), 'modo'=>'borrar']);
+        } else{
+          return $this->redirectToRoute('listado_persona', ["currentPage" => 1]);
+
+        }
     }
 
     /**

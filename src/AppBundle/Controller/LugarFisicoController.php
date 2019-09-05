@@ -110,6 +110,11 @@ class LugarFisicoController extends Controller {
             $this->addFlash('danger', 'Usted no tiene acceso a este lugar.');
             return $this->redirectToRoute('listado_lugarfisico', ['currentPage' => 1]);
         }
+                
+        foreach ($lugarfisico->getResponsables() as $responsable) {
+            $em->remove($responsable);
+        }
+        
         $form = $this->createForm(LugarFisicoType::class, $lugarfisico);
         $form->handleRequest($request);
 

@@ -169,7 +169,7 @@ class __TwigTemplate_e356325e20a7d2e371e95930f0e17168195d4b0aa6fc52da4e18070146b
         echo "                </h2>
             </div>
 
-            <div id=\"collapseOne\" class=\"collapse show\" aria-labelledby=\"headingOne\" data-parent=\"#accordionExample\">
+            <div id=\"collapseOne\" class=\"collapse\" aria-labelledby=\"headingOne\" data-parent=\"#accordionExample\">
                 <div class=\"card-body\">
                     <form method=\"post\" novalidate=\"true\" id=\"form_buscar\">
                         ";
@@ -715,7 +715,7 @@ class __TwigTemplate_e356325e20a7d2e371e95930f0e17168195d4b0aa6fc52da4e18070146b
                 </h2>
             </div>
 
-            <div id=\"collapseOne\" class=\"collapse show\" aria-labelledby=\"headingOne\" data-parent=\"#accordionExample\">
+            <div id=\"collapseOne\" class=\"collapse\" aria-labelledby=\"headingOne\" data-parent=\"#accordionExample\">
                 <div class=\"card-body\">
                     <form method=\"post\" novalidate=\"true\" id=\"form_buscar\">
                         {{ form_start(formCaratulaAgregadaFilter) }}

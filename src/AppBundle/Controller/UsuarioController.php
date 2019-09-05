@@ -187,14 +187,14 @@ class UsuarioController extends Controller {
      * @Route("usuario/delete/{id}", name="eliminar_usuario")
      */
     public function deleteAction(Request $request, $id) {
-
+        $q = $request->query->get('modo');
         $em = $this->getDoctrine()->getEntityManager();
         $usuario = $em->getRepository("AppBundle:Usuario")->find($id);
-          if (!$this->get("app.util")->VerificarUsuario($usuario, $this->getUser())) {
+        if (!$this->get("app.util")->VerificarUsuario($usuario, $this->getUser())) {
             $this->addFlash('danger', 'Usted no tiene acceso a este usuario.');
             return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
         }
-        
+
         foreach ($usuario->getPersona()->getResponsables() as $responsable) {
             $em->remove($responsable);
         }
@@ -208,8 +208,14 @@ class UsuarioController extends Controller {
         } else {
             $this->addFlash('danger', 'Ocurrio un error al intentar borrar el usuario.');
         }
-        
-        return $this->redirectToRoute('listado_usuario', ['currentPage' => 1]);
+
+
+
+        if ($q == 'borrar') {
+            return $this->redirectToRoute('listado_persona', ["currentPage" => 1]);
+        } else {
+            return $this->redirectToRoute('listado_usuario', ['currentPage' => 1]);
+        }
     }
 
 }
