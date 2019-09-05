@@ -194,6 +194,7 @@ class UsuarioController extends Controller {
             $this->addFlash('danger', 'Usted no tiene acceso a este usuario.');
             return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
         }
+        
         foreach ($usuario->getPersona()->getResponsables() as $responsable) {
             $em->remove($responsable);
         }
@@ -207,8 +208,7 @@ class UsuarioController extends Controller {
         } else {
             $this->addFlash('danger', 'Ocurrio un error al intentar borrar el usuario.');
         }
-
-
+        
         return $this->redirectToRoute('listado_usuario', ['currentPage' => 1]);
     }
 

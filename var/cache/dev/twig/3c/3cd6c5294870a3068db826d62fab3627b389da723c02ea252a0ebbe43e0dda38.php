@@ -473,7 +473,7 @@ class __TwigTemplate_68858000062feae2ca7461ef8e6b8dd6bd1d195b3e1616c5cba3662df09
         }
         // line 205
         echo "
-        <table class=\"table table-sm table-hover table-bordered\">
+        <table class=\"table table-striped\">
             <thead class=\"thead-dark\">
                 <tr>
                     <th style=\"padding:15px;\" scope=\"col\">NUMERO</th>
@@ -1023,7 +1023,7 @@ class __TwigTemplate_68858000062feae2ca7461ef8e6b8dd6bd1d195b3e1616c5cba3662df09
 
         {% endif %}
 
-        <table class=\"table table-sm table-hover table-bordered\">
+        <table class=\"table table-striped\">
             <thead class=\"thead-dark\">
                 <tr>
                     <th style=\"padding:15px;\" scope=\"col\">NUMERO</th>

@@ -96,7 +96,7 @@ class __TwigTemplate_7876c60c1d2f34ce9083df23632e1c16bb523caae299f42f449a640c8ef
                 width:1000px;
                 background-color:#fafafa;
 
-                padding:30px;
+                padding:22px;
                 ";
         // line 56
         echo "            }
@@ -472,7 +472,7 @@ class __TwigTemplate_7876c60c1d2f34ce9083df23632e1c16bb523caae299f42f449a640c8ef
                 width:1000px;
                 background-color:#fafafa;
 
-                padding:30px;
+                padding:22px;
                 {#  -webkit-box-shadow: -1px 0px 5px 3px rgba(0,0,0,0.31);
               -moz-box-shadow: -1px 0px 5px 3px rgba(0,0,0,0.31);
               box-shadow: -1px 0px 5px 3px rgba(0,0,0,0.31);#}

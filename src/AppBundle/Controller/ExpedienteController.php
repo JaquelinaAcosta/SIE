@@ -17,7 +17,6 @@ use AppBundle\Form\ExpedienteFilterType;
 use Symfony\Component\Validator\Constraints\DateTime;
 use AppBundle\Entity\MovimientoExpediente;
 
-
 class ExpedienteController extends Controller {
 
     /**
@@ -51,7 +50,7 @@ class ExpedienteController extends Controller {
                 $movimientoExpediente->setUbicacion($expediente->getIniciadorDependencia()->getMesaentrada());
                 $expediente->getMovimientos()->add($movimientoExpediente);
                 $expediente->setFechaCarga($date);
-                
+
                 $fechaIni = \DateTime::createFromFormat('d-m-Y', $form['fechaInicio']->getData());
                 if ($form['fechaFin']->getData() != '') {
                     $fechaFin = \DateTime::createFromFormat('d-m-Y', $form['fechaFin']->getData());
@@ -73,7 +72,6 @@ class ExpedienteController extends Controller {
                 }
             }
         }
-
 
         // replace this example code with whatever you need
         return $this->render('Expediente/add.html.twig', [
@@ -119,8 +117,6 @@ class ExpedienteController extends Controller {
                 $filterBuilder = $em->getRepository('AppBundle:Expediente')
                         ->createExpedienteFilterQuery($user, $padre_id);
             }
-
-
             $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($formExpedienteFilter, $filterBuilder);
             $totalItems = count($filterBuilder->getQuery()->getResult());
 
@@ -128,6 +124,15 @@ class ExpedienteController extends Controller {
             $filterBuilder->setMaxResults($limit);
 
             $paginator = new Paginator($filterBuilder, $fetchJoinCollection = true);
+            $expedientes = $paginator->getQuery()->getResult();
+            $maxPages = ceil($totalItems / $limit);
+        } else {
+            $expedientes_repo = $em->getRepository('AppBundle:Expediente')
+                    ->createExpedienteFilterQuery($this->getUser());
+            $totalItems = count($expedientes_repo->getQuery()->getResult());
+            $expedientes_repo->setFirstResult($limit * (1 - 1));
+            $expedientes_repo->setMaxResults($limit);
+            $paginator = new Paginator($expedientes_repo, $fetchJoinCollection = true);
             $expedientes = $paginator->getQuery()->getResult();
             $maxPages = ceil($totalItems / $limit);
         }
@@ -161,11 +166,12 @@ class ExpedienteController extends Controller {
             }
         }
 
+
         return $this->render('Expediente/listadoExpediente.html.twig', array(
                     'expedientes' => $expedientes,
                     'maxPages' => $maxPages,
                     'totalItems' => $totalItems,
-                    'limite' =>$limit ,
+                    'limite' => $limit,
                     'thisPage' => $currentPage,
                     'page' => $currentPage,
                     'formExpedienteFilter' => $formExpedienteFilter->createView(),
@@ -292,12 +298,12 @@ class ExpedienteController extends Controller {
 
         $em = $this->getDoctrine()->getEntityManager();
         $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
-         if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser())) {
+        if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser())) {
             $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
             return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
         }
-        
-        
+
+
         //SI NO SE HACE EL FORMAT TIRA ERROR DE OBJETO TIPO DATETIME
         $expediente->setFechaInicio($expediente->getFechaInicio()->format('d-m-Y'));
         IF ($expediente->getFechaFin() != null) {
