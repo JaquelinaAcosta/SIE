@@ -108,7 +108,7 @@ class __TwigTemplate_c6f7b895287bf33596b5896998f73c4cb98c851bec4b959131fd34799de
                 </h2>
             </div>
 
-            <div id=\"collapseOne\" class=\"collapse show\" aria-labelledby=\"headingOne\" data-parent=\"#accordionExample\">
+            <div id=\"collapseOne\" class=\"collapse\" aria-labelledby=\"headingOne\" data-parent=\"#accordionExample\">
                 <div class=\"card-body\">
                     <form method=\"post\" novalidate=\"true\" id=\"form_buscar\">
                         ";
@@ -650,7 +650,7 @@ class __TwigTemplate_c6f7b895287bf33596b5896998f73c4cb98c851bec4b959131fd34799de
                 </h2>
             </div>
 
-            <div id=\"collapseOne\" class=\"collapse show\" aria-labelledby=\"headingOne\" data-parent=\"#accordionExample\">
+            <div id=\"collapseOne\" class=\"collapse\" aria-labelledby=\"headingOne\" data-parent=\"#accordionExample\">
                 <div class=\"card-body\">
                     <form method=\"post\" novalidate=\"true\" id=\"form_buscar\">
                         {{ form_errors(formDependenciaFilter) }}
