@@ -35,8 +35,8 @@
 
         </div>
     </div>
-
-    <script>
+            
+   <script>
         $('#expedienteasociado_expedienteAsociado').autocompleter({
             url_list: "{{ path('expediente_asociado_search',{'id':expediente.id}) }}",
             url_get: "{{ path('expediente_asociado_get') }}"

@@ -169,6 +169,7 @@ class CaratulaAgregadaController extends Controller {
                     'totalItems' => $totalItems,
                     'thisPage' => $currentPage,
                     'page' => $currentPage,
+                    'caratula'=>$id,
                     'formCaratulaAgregadaFilter' => $formCaratulaAgregadaFilter->createView()
         ));
     }

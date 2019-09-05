@@ -54,6 +54,29 @@
             border-top-left-radius: 5px;
             border-top-right-radius: 5px;
         }
+        
+          .pagination a {
+            float: left;
+            padding: 0 14px;
+            line-height: 34px;
+            color: #060325;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-left-width: 0;
+        }
+
+        .pagination a:hover,
+        .pagination .active a {
+            background-color: #060325;
+            color: #ffffff;
+        }
+
+        .pagination li:first-child a {
+            border-left-width: 1px;
+            -webkit-border-radius: 3px 0 0 3px;
+            -moz-border-radius: 3px 0 0 3px;
+            border-radius: 3px 0 0 3px;
+        } 
 
     </style>
 
@@ -224,8 +247,94 @@
 
                 </tbody>
             </table>
+                    
+                    
+                                    
+       {#         -----Paginación-----              #}
+        {% set limite = 6 %}
+        {% set extremos = 2 %}
 
-            {% if movimientos|length < totalItems %}        
+        {% if thisPage < limite %} 
+
+            {%set minLeftRange = 1%}
+            {%set maxLeftRange = thisPage+extremos%}
+            {%set minRightRange = maxPages-extremos%}
+            {%set maxRightRange = maxPages %}
+
+        {% elseif thisPage >= limite%}
+            {%set minLeftRange = 1 %}
+            {%set maxLeftRange = 2 %}
+
+            {%set extremoIzquierdo = thisPage-extremos%}
+            {%set extremoDerecho = thisPage+extremos%}
+            {%set minRightRange = maxPages-extremos+2 %}
+
+            {% if extremoDerecho >= minRightRange+extremos%}
+                {%set minRightRange = thisPage %}
+                {%set extremoDerecho = maxPages%}
+                {%set extremoIzquierdo = thisPage-((extremos*2))%}
+            {%endif%}
+            {%set maxRightRange = maxPages %}
+        {%endif%}
+
+
+        <div class="pagination">
+            <li><a class="page-link" href="{{ 0 < thisPage-1 ? path('listado_movimiento', {'id':expediente.id,"currentPage": thisPage}) }}">Anterior</a></li>
+
+            {%if thisPage == maxPages-1%}
+                {%set maxLeftRange = maxLeftRange-1%}
+            {%elseif thisPage == maxPages and thisPage != minRightRange%}
+                {%set maxLeftRange = maxPages%}
+            {%endif%}
+            
+            
+            {% for i in minLeftRange..maxLeftRange %}
+                <li class="page-item {{  i == thisPage ? 'active' : '' }}">
+                    <a class="page-link"  href="{{ path('listado_movimiento', {'id':expediente.id,"currentPage": thisPage}) }}">{{ i }}</a>
+                </li>
+            {% endfor %}
+
+            {% if thisPage >= limite %}
+                <li class="page-item disabled">
+                    <a class="page-link"  href="#">...</a>
+                </li>
+                {% if thisPage == minRightRange-1%}
+                    {%set extremoDerecho = extremoDerecho-1%}
+                {%endif%}
+                {% for i in extremoIzquierdo..extremoDerecho %}                    
+                    <li class="page-item {{  i == thisPage ? 'active' : '' }}">
+                        <a class="page-link"  href="{{ path('listado_movimiento', {'id':expediente.id,"currentPage": thisPage}) }}">{{ i }}</a>
+                    </li>                    
+                {% endfor %}
+            {%endif%}
+
+            {% if thisPage < minRightRange-2%}
+                {%if thisPage!= maxRightRange-3%}
+                    <li class="page-item disabled">
+                        <a class="page-link"  href="#">...</a>
+                    </li>
+                {%endif%}
+            {% endif%}
+
+            {% if thisPage < maxPages-extremos%}
+                {% for i in minRightRange..maxRightRange %}                   
+                    <li class="page-item">
+                        <a class="page-link"  href="{{ path('listado_movimiento', {'id':expediente.id,"currentPage": thisPage}) }}">{{ i }}</a>
+                    </li>
+                {% endfor %}
+            {%endif%}            
+
+            {%if (page==maxPages)%}
+
+            {%else%}
+                {%set page= page+1%}
+            {%endif%}
+            <li><a class="page-link" href="{{path('listado_movimiento', {'id':expediente.id,"currentPage": thisPage}) }}">Siguiente</a></li>
+
+            </ul>
+        </div> 
+
+     {#       {% if movimientos|length < totalItems %}        
                 <ul class="pagination">
                     {%if (thisPage==1)%}           
                     {%else%}
@@ -247,7 +356,7 @@
                 </ul>
 
             </div> 
-        {%endif%} 
+        {%endif%}#} 
 
 
     </div>
