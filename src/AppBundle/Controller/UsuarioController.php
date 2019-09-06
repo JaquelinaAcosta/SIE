@@ -197,13 +197,24 @@ class UsuarioController extends Controller {
      * @Route("usuario/delete/{id}", name="eliminar_usuario")
      */
     public function deleteAction(Request $request, $id) {
-
+        $q = $request->query->get('modo');
         $em = $this->getDoctrine()->getEntityManager();
+<<<<<<< HEAD
         $usuario = $em->getRepository("AppBundle:Usuario")->findByUsuario($id);
+=======
+        $usuario = $em->getRepository("AppBundle:Usuario")->find($id);
+>>>>>>> 715b9df962b1e36e175ee8dde49fdbfc37520d08
         if (!$this->get("app.util")->VerificarUsuario($usuario, $this->getUser())) {
             $this->addFlash('danger', 'Usted no tiene acceso a este usuario.');
             return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
         }
+<<<<<<< HEAD
+=======
+
+        foreach ($usuario->getPersona()->getResponsables() as $responsable) {
+            $em->remove($responsable);
+        }
+>>>>>>> 715b9df962b1e36e175ee8dde49fdbfc37520d08
 
         $usuario->setFechaBaja(new \DateTime('now'));
         
@@ -216,7 +227,17 @@ class UsuarioController extends Controller {
             $this->addFlash('danger', 'Ocurrio un error al intentar borrar el usuario.');
         }
 
+<<<<<<< HEAD
         return $this->redirectToRoute('listado_usuario', ['currentPage' => 1]);
+=======
+
+
+        if ($q == 'borrar') {
+            return $this->redirectToRoute('listado_persona', ["currentPage" => 1]);
+        } else {
+            return $this->redirectToRoute('listado_usuario', ['currentPage' => 1]);
+        }
+>>>>>>> 715b9df962b1e36e175ee8dde49fdbfc37520d08
     }
 
 }

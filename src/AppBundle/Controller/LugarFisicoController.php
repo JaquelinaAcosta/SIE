@@ -112,6 +112,16 @@ class LugarFisicoController extends Controller {
             $this->addFlash('danger', 'Usted no tiene acceso a este lugar.');
             return $this->redirectToRoute('listado_lugarfisico', ['currentPage' => 1]);
         }
+<<<<<<< HEAD
+=======
+                
+        foreach ($lugarfisico->getResponsables() as $responsable) {
+            $em->remove($responsable);
+        }
+        
+        $form = $this->createForm(LugarFisicoType::class, $lugarfisico);
+        $form->handleRequest($request);
+>>>>>>> 715b9df962b1e36e175ee8dde49fdbfc37520d08
 
 
         $lugarfisico->setFechaBaja(new \DateTime('now'));
