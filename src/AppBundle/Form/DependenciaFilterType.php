@@ -36,8 +36,8 @@ class DependenciaFilterType extends AbstractType implements EmbeddedFilterTypeIn
             'query_builder' => function (EntityRepository $repositorio) {
                 return $repositorio
                                 ->createQueryBuilder('e')
-                                ->where('e.estado IS NOT NULL')
-                                ->orderBy('e.responsable', 'ASC');
+                                ->where('e.fechaBaja IS NULL')
+                                ->orderBy('e.descripcion', 'ASC');
             },
             'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
                 if (!empty($values['value'])) {
@@ -68,18 +68,6 @@ class DependenciaFilterType extends AbstractType implements EmbeddedFilterTypeIn
                 '10' => '10'
             )
         ));
-
-        $builder->add('estado', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\ChoiceFilterType', array(
-            'placeholder' => '--Seleccione--',
-            'attr' => [
-                'class' => 'form-control'
-            ],
-            'choices' => array(
-                'Habilitado' => 'HABILITADO',
-                'Deshabilitado' => 'DESHABILITADO'
-            )
-        ));
-
         $builder->add('responsable', 'PUGX\AutocompleterBundle\Form\Type\AutocompleteFilterType', array(
             'class' => 'AppBundle:Persona',
             'required' => false,

@@ -4,15 +4,15 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\Expediente;
-
+USE Symfony\Component\Validator\Constraints as Assert;
 /**
  * Resolucion
  *
  * @ORM\Table(name="resolucion")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ResolucionRepository")
  */
-class Resolucion
-{
+class Resolucion {
+
     /**
      * @var int
      *
@@ -42,14 +42,14 @@ class Resolucion
      * @ORM\Column(name="tipo", type="string", length=255)
      */
     private $tipo;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="observacion", type="text", length=21845)
      */
     private $observacion;
-    
+
     /**
      * @var string
      *
@@ -66,12 +66,41 @@ class Resolucion
     private $usuario;
 
     /**
+     * @ORM\Column(type="date", nullable=true)
+     * @Assert\Date()
+     */
+    protected $fechaBaja;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="fecha_alta", type="datetime",nullable=true)
+     *
+     */
+    private $fechaAlta;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="fecha_ultima_modificacion", type="datetime",nullable=true)
+     *
+     */
+    private $fechaUltimaModificacion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="usuario_ultima_modificacion", type="string",length=255,nullable=true)
+     *
+     */
+    private $usuarioUltimaModificacion;
+
+    /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -82,8 +111,7 @@ class Resolucion
      *
      * @return Resolucion
      */
-    public function setExpediente($expediente)
-    {
+    public function setExpediente($expediente) {
         $this->expediente = $expediente;
 
         return $this;
@@ -94,8 +122,7 @@ class Resolucion
      *
      * @return int
      */
-    public function getExpediente()
-    {
+    public function getExpediente() {
         return $this->expediente;
     }
 
@@ -106,8 +133,7 @@ class Resolucion
      *
      * @return Resolucion
      */
-    public function setNumeroResolucion($numeroResolucion)
-    {
+    public function setNumeroResolucion($numeroResolucion) {
         $this->numeroResolucion = $numeroResolucion;
 
         return $this;
@@ -118,8 +144,7 @@ class Resolucion
      *
      * @return int
      */
-    public function getNumeroResolucion()
-    {
+    public function getNumeroResolucion() {
         return $this->numeroResolucion;
     }
 
@@ -130,8 +155,7 @@ class Resolucion
      *
      * @return Resolucion
      */
-    public function setTipo($tipo)
-    {
+    public function setTipo($tipo) {
         $this->tipo = $tipo;
 
         return $this;
@@ -142,8 +166,7 @@ class Resolucion
      *
      * @return string
      */
-    public function getTipo()
-    {
+    public function getTipo() {
         return $this->tipo;
     }
 
@@ -154,8 +177,7 @@ class Resolucion
      *
      * @return Resolucion
      */
-    public function setFechaIngreso($fechaIngreso)
-    {
+    public function setFechaIngreso($fechaIngreso) {
         $this->fechaIngreso = $fechaIngreso;
 
         return $this;
@@ -166,8 +188,7 @@ class Resolucion
      *
      * @return \DateTime
      */
-    public function getFechaIngreso()
-    {
+    public function getFechaIngreso() {
         return $this->fechaIngreso;
     }
 
@@ -178,8 +199,7 @@ class Resolucion
      *
      * @return Resolucion
      */
-    public function setResponsable($responsable)
-    {
+    public function setResponsable($responsable) {
         $this->responsable = $responsable;
 
         return $this;
@@ -190,8 +210,7 @@ class Resolucion
      *
      * @return string
      */
-    public function getResponsable()
-    {
+    public function getResponsable() {
         return $this->responsable;
     }
 
@@ -202,8 +221,7 @@ class Resolucion
      *
      * @return Resolucion
      */
-    public function setFechaEntrada($fechaEntrada)
-    {
+    public function setFechaEntrada($fechaEntrada) {
         $this->fechaEntrada = $fechaEntrada;
 
         return $this;
@@ -214,8 +232,7 @@ class Resolucion
      *
      * @return \DateTime
      */
-    public function getFechaEntrada()
-    {
+    public function getFechaEntrada() {
         return $this->fechaEntrada;
     }
 
@@ -226,8 +243,7 @@ class Resolucion
      *
      * @return Resolucion
      */
-    public function setFechaFinalizacion($fechaFinalizacion)
-    {
+    public function setFechaFinalizacion($fechaFinalizacion) {
         $this->fechaFinalizacion = $fechaFinalizacion;
 
         return $this;
@@ -238,8 +254,7 @@ class Resolucion
      *
      * @return \DateTime
      */
-    public function getFechaFinalizacion()
-    {
+    public function getFechaFinalizacion() {
         return $this->fechaFinalizacion;
     }
 
@@ -250,8 +265,7 @@ class Resolucion
      *
      * @return Resolucion
      */
-    public function setFechaResolucion($fechaResolucion)
-    {
+    public function setFechaResolucion($fechaResolucion) {
         $this->fechaResolucion = $fechaResolucion;
 
         return $this;
@@ -262,8 +276,7 @@ class Resolucion
      *
      * @return \DateTime
      */
-    public function getFechaResolucion()
-    {
+    public function getFechaResolucion() {
         return $this->fechaResolucion;
     }
 
@@ -274,8 +287,7 @@ class Resolucion
      *
      * @return Resolucion
      */
-    public function setUsuario(\AppBundle\Entity\Usuario $usuario)
-    {
+    public function setUsuario(\AppBundle\Entity\Usuario $usuario) {
         $this->usuario = $usuario;
 
         return $this;
@@ -286,8 +298,7 @@ class Resolucion
      *
      * @return \AppBundle\Entity\Usuario
      */
-    public function getUsuario()
-    {
+    public function getUsuario() {
         return $this->usuario;
     }
 
@@ -298,8 +309,7 @@ class Resolucion
      *
      * @return Resolucion
      */
-    public function setObservacion($observacion)
-    {
+    public function setObservacion($observacion) {
         $this->observacion = $observacion;
 
         return $this;
@@ -310,8 +320,98 @@ class Resolucion
      *
      * @return string
      */
-    public function getObservacion()
-    {
+    public function getObservacion() {
         return $this->observacion;
+    }
+
+    /**
+     * Set fechaAlta
+     *
+     * @param \DateTime $fechaAlta
+     *
+     * @return Resolucion
+     */
+    public function setFechaAlta($fechaAlta) {
+        $this->fechaAlta = $fechaAlta;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaAlta
+     *
+     * @return \DateTime
+     */
+    public function getFechaAlta() {
+        return $this->fechaAlta;
+    }
+
+    /**
+     * Set fechaUltimaModificacion
+     *
+     * @param \DateTime $fechaUltimaModificacion
+     *
+     * @return Resolucion
+     */
+    public function setFechaUltimaModificacion($fechaUltimaModificacion) {
+        $this->fechaUltimaModificacion = $fechaUltimaModificacion;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaUltimaModificacion
+     *
+     * @return \DateTime
+     */
+    public function getFechaUltimaModificacion() {
+        return $this->fechaUltimaModificacion;
+    }
+
+    /**
+     * Set usuarioUltimaModificacion
+     *
+     * @param string $usuarioUltimaModificacion
+     *
+     * @return Resolucion
+     */
+    public function setUsuarioUltimaModificacion($usuarioUltimaModificacion) {
+        $this->usuarioUltimaModificacion = $usuarioUltimaModificacion;
+
+        return $this;
+    }
+
+    /**
+     * Get usuarioUltimaModificacion
+     *
+     * @return string
+     */
+    public function getUsuarioUltimaModificacion() {
+        return $this->usuarioUltimaModificacion;
+    }
+
+
+    /**
+     * Set fechaBaja
+     *
+     * @param \DateTime $fechaBaja
+     *
+     * @return Resolucion
+     */
+    public function setFechaBaja($fechaBaja)
+    {
+        $this->fechaBaja = $fechaBaja;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaBaja
+     *
+     * @return \DateTime
+     */
+    public function getFechaBaja()
+    {
+        return $this->fechaBaja;
     }
 }

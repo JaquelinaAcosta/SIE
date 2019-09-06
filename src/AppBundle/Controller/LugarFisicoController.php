@@ -31,11 +31,13 @@ class LugarFisicoController extends Controller {
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
+                if ($user->getRole() != 'ROLE_ADMIN') {
+                    $responsable = new Responsable();
+                    $responsable->setUbicacion($lugarFisico);
+                    $responsable->setUsuario($this->getUser());
+                    $lugarFisico->addResponsable($responsable);
+                }
 
-                $responsable = new Responsable();
-                $responsable->setUbicacion($lugarFisico);
-                $responsable->setUsuario($this->getUser());
-                $lugarFisico->addResponsable($responsable);
                 $em->persist($lugarFisico);
                 $flush = $em->flush();
 
@@ -63,7 +65,7 @@ class LugarFisicoController extends Controller {
 
         $em = $this->getDoctrine()->getEntityManager();
         $user = $this->getUser();
-        $lugarfisico = $em->getRepository("AppBundle:LugarFisico")->find($id);
+        $lugarfisico = $em->getRepository("AppBundle:LugarFisico")->findByLugar($id);
 
         if (!$this->get("app.util")->VerificarLugarFisico($lugarfisico, $this->getUser())) {
             $this->addFlash('danger', 'Usted no tiene acceso a este lugar.');
@@ -100,24 +102,19 @@ class LugarFisicoController extends Controller {
     }
 
     /**
-     * @Route("/lugar_fisico/delete/{id}", name="borrar_lugarfisico")
+     * @Route("/lugar_fisico/delete/{id}", name="baja_lugarfisico")
      */
     public function borrarLugarFisicoAction(Request $request, $id) {
 
         $em = $this->getDoctrine()->getEntityManager();
-        $lugarfisico = $em->getRepository("AppBundle:LugarFisico")->find($id);
+        $lugarfisico = $em->getRepository("AppBundle:LugarFisico")->findByLugar($id);
         if (!$this->get("app.util")->VerificarLugarFisico($lugarfisico, $this->getUser())) {
             $this->addFlash('danger', 'Usted no tiene acceso a este lugar.');
             return $this->redirectToRoute('listado_lugarfisico', ['currentPage' => 1]);
         }
-        $form = $this->createForm(LugarFisicoType::class, $lugarfisico);
-        $form->handleRequest($request);
 
-        if (!$lugarfisico) {
-            throw $this->createNotFoundException('No element found for id ' . $id);
-        }
 
-        $em->remove($lugarfisico);
+        $lugarfisico->setFechaBaja(new \DateTime('now'));
         $flush = $em->flush();
 
         if ($flush == false) {
@@ -163,6 +160,15 @@ class LugarFisicoController extends Controller {
             $paginator = new Paginator($filterBuilder, $fetchJoinCollection = true);
             $lugarFisico = $paginator->getQuery()->getResult();
             $maxPages = ceil($totalItems / $limit);
+        } else {
+            $lugarfisico_repo = $em->getRepository('AppBundle:LugarFisico')
+                    ->createLugarFilter($user);
+            $totalItems = count($lugarfisico_repo->getQuery()->getResult());
+            $lugarfisico_repo->setFirstResult($limit * ($currentPage - 1));
+            $lugarfisico_repo->setMaxResults($limit);
+            $paginator = new Paginator($lugarfisico_repo, $fetchJoinCollection = true);
+            $lugarFisico = $paginator->getQuery()->getResult();
+            $maxPages = (count($lugarFisico) > 0) ? $maxPages = ceil($totalItems / $limit) : $maxPages = 1;
         }
 
         if ($formLugarFisicoFilter->get('reset')->isClicked()) {
@@ -182,6 +188,7 @@ class LugarFisicoController extends Controller {
             }
         }
         return $this->render('Ubicacion/listadoLugarFisico.html.twig', array(
+                    'limite' => $limit,
                     'lugarFisico' => $lugarFisico,
                     'maxPages' => $maxPages,
                     'totalItems' => $totalItems,

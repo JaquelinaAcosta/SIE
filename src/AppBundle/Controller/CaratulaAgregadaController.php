@@ -143,6 +143,15 @@ class CaratulaAgregadaController extends Controller {
             $paginator = new Paginator($filterBuilder, $fetchJoinCollection = true);
             $caratulas = $paginator->getQuery()->getResult();
             $maxPages = ceil($totalItems / $limit);
+        }else {
+            $caratulas_repo = $em->getRepository('AppBundle:CaratulaAgregada')
+                    ->createCaratulaFilterQuery($expediente);
+            $totalItems = count($caratulas_repo->getQuery()->getResult());
+            $caratulas_repo->setFirstResult($limit * (1 - 1));
+            $caratulas_repo->setMaxResults($limit);
+            $paginator = new Paginator($caratulas_repo, $fetchJoinCollection = true);
+            $caratulas = $paginator->getQuery()->getResult();
+            $maxPages = (count($caratulas) > 0)?  $maxPages = ceil($totalItems / $limit):$maxPages=1;
         }
 
         if ($formCaratulaAgregadaFilter->get('reset')->isClicked()) {
@@ -163,6 +172,7 @@ class CaratulaAgregadaController extends Controller {
         }
 
         return $this->render('Expediente/listadoCaratulas.html.twig', array(
+                    'limite'=>$limit,
                     'caratulas' => $caratulas,
                     'expediente' => $expediente,
                     'maxPages' => $maxPages,

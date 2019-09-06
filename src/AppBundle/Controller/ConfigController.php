@@ -31,7 +31,6 @@ class ConfigController extends Controller {
             $dependencia->setDescripcion($dependenciasArray[$i]['descripcion']);
             $dependencia->setNivel($dependenciasArray[$i]['categoriaProgramatica']);
             $dependencia->setId($dependenciasArray[$i]['id']);
-            $dependencia->setEstado('HABILITADO');
             $em->persist($dependencia);
             $em->flush();
         }
@@ -143,7 +142,7 @@ class ConfigController extends Controller {
             $em->persist($mesaentrada);
             $em->flush();
         }
-        return $this->redirectToRoute('homepage');
+        return $this->redirectToRoute('loginUsuario');
     }
 
 }

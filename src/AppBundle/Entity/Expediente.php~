@@ -96,23 +96,9 @@ class Expediente {
     /**
      * @var string
      *
-     * @ORM\Column(name="fecha_carga", type="datetime",nullable=true)
-     */
-    private $fechaCarga;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="fecha_inicio", type="datetime",nullable=true)
      */
     private $fechaInicio;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="fecha_baja", type="datetime",nullable=true)
-     */
-    private $fechaBaja;
 
     /**
      * @var string
@@ -167,6 +153,36 @@ class Expediente {
      * @Assert\Valid
      */
     private $lugarfisico;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     * @Assert\Date()
+     */
+    protected $fechaBaja;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="fecha_alta", type="datetime",nullable=true)
+     *
+     */
+    private $fechaAlta;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="fecha_ultima_modificacion", type="datetime",nullable=true)
+     *
+     */
+    private $fechaUltimaModificacion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="usuario_ultima_modificacion", type="string",length=255,nullable=true)
+     *
+     */
+    private $usuarioUltimaModificacion;
 
     public function __toString() {
         return $this->codigoExpediente . "-" . $this->numeroExpediente . "-" . $this->digitoExpediente;
@@ -720,7 +736,7 @@ class Expediente {
      * @Assert\IsTrue(message="La fecha de inicio debe ser menor que la de fin.")
      */
     public function getValidarFecha() {
-        if ($this->fechaFin > null && ($this->fechaInicio) <= ($this->fechaFin)) {
+        if ($this->fechaFin == null or ( $this->fechaInicio) <= ($this->fechaFin)) {
             return true;
         } else {
             return false;
@@ -759,7 +775,6 @@ class Expediente {
         return $this->fechaBaja;
     }
 
-
     /**
      * Set fechaCarga
      *
@@ -767,13 +782,8 @@ class Expediente {
      *
      * @return Expediente
      */
-    public function setFechaCarga($fechaCarga)
-    {
-<<<<<<< HEAD
+    public function setFechaCarga($fechaCarga) {
         $this->fechaCarga = $fechaCarga;
-=======
-        $this->fecha_carga = $fechaCarga;
->>>>>>> 1d691b1dae4d65b56f6df4cb34a85e17b69c2ecb
 
         return $this;
     }
@@ -783,12 +793,74 @@ class Expediente {
      *
      * @return \DateTime
      */
-    public function getFechaCarga()
-    {
-<<<<<<< HEAD
+    public function getFechaCarga() {
         return $this->fechaCarga;
-=======
-        return $this->fecha_carga;
->>>>>>> 1d691b1dae4d65b56f6df4cb34a85e17b69c2ecb
     }
+
+    /**
+     * Set fechaAlta
+     *
+     * @param \DateTime $fechaAlta
+     *
+     * @return Expediente
+     */
+    public function setFechaAlta($fechaAlta) {
+        $this->fechaAlta = $fechaAlta;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaAlta
+     *
+     * @return \DateTime
+     */
+    public function getFechaAlta() {
+        return $this->fechaAlta;
+    }
+
+    /**
+     * Set fechaUltimaModificacion
+     *
+     * @param \DateTime $fechaUltimaModificacion
+     *
+     * @return Expediente
+     */
+    public function setFechaUltimaModificacion($fechaUltimaModificacion) {
+        $this->fechaUltimaModificacion = $fechaUltimaModificacion;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaUltimaModificacion
+     *
+     * @return \DateTime
+     */
+    public function getFechaUltimaModificacion() {
+        return $this->fechaUltimaModificacion;
+    }
+
+    /**
+     * Set usuarioUltimaModificacion
+     *
+     * @param string $usuarioUltimaModificacion
+     *
+     * @return Expediente
+     */
+    public function setUsuarioUltimaModificacion($usuarioUltimaModificacion) {
+        $this->usuarioUltimaModificacion = $usuarioUltimaModificacion;
+
+        return $this;
+    }
+
+    /**
+     * Get usuarioUltimaModificacion
+     *
+     * @return string
+     */
+    public function getUsuarioUltimaModificacion() {
+        return $this->usuarioUltimaModificacion;
+    }
+
 }

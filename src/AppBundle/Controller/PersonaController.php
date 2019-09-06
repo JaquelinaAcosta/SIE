@@ -6,9 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Entity\Persona;
-use AppBundle\Entity\Dependencia;
 use AppBundle\Form\PersonaType;
 use AppBundle\Form\PersonaFilterType;
+use Symfony\Component\Validator\Constraints\DateTime;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -63,7 +63,7 @@ class PersonaController extends Controller {
      */
     public function editPersonaAction(Request $request, $id) {
         $em = $this->getDoctrine()->getEntityManager();
-        $persona = $em->getRepository("AppBundle:Persona")->find($id);
+        $persona = $em->getRepository("AppBundle:Persona")->findByPersona($id);
         if (!$this->get("app.util")->VerificarPersona($persona, $this->getUser())) {
             $this->addFlash('danger', 'Usted no tiene acceso a esta persona.');
             return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
@@ -130,6 +130,14 @@ class PersonaController extends Controller {
             $paginator = new Paginator($filterBuilder, $fetchJoinCollection = true);
             $personas = $paginator->getQuery()->getResult();
             $maxPages = ceil($totalItems / $limit);
+        } else {
+            $personas_repo = $em->getRepository('AppBundle:Persona')->createPersonaFilter();
+            $totalItems = count($personas_repo->getQuery()->getResult());
+            $personas_repo->setFirstResult($limit * ($currentPage- 1));
+            $personas_repo->setMaxResults($limit);
+            $paginator = new Paginator($personas_repo, $fetchJoinCollection = true);
+            $personas = $paginator->getQuery()->getResult();
+            $maxPages = (count($personas) > 0) ? $maxPages = ceil($totalItems / $limit) : $maxPages = 1;
         }
 
         if ($formPersonaFilter->get('reset')->isClicked()) {
@@ -150,6 +158,7 @@ class PersonaController extends Controller {
         }
 
         return $this->render('Ubicacion/listadoPersona.html.twig', array(
+                    'limite' => $limit,
                     'personas' => $personas,
                     'maxPages' => $maxPages,
                     'totalItems' => $totalItems,
@@ -165,17 +174,19 @@ class PersonaController extends Controller {
     public function deleteAction(Request $request, $id) {
 
         $em = $this->getDoctrine()->getEntityManager();
+        $persona = new Persona();
         $persona = $em->getRepository("AppBundle:Persona")->find($id);
         if (!$this->get("app.util")->VerificarPersona($persona, $this->getUser())) {
             $this->addFlash('danger', 'Usted no tiene acceso a esta persona.');
             return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
         }
-        // replace this example code with whatever you need
-        if (!$persona) {
-            throw $this->createNotFoundException('No element found for id ' . $id);
-        }
 
-        $em->remove($persona);
+        $usuario = $persona->getUsuario();
+        if ($usuario) {
+            $usuario->setFechaBaja(new \DateTime('now'));
+        }
+        $persona->setFechaBaja(new \DateTime('now'));
+
         $flush = $em->flush();
 
         if ($flush == false) {
@@ -192,7 +203,7 @@ class PersonaController extends Controller {
      */
     public function personaGestionarResponsblesAction(Request $request, $id) {
         $em = $this->getDoctrine()->getEntityManager();
-        $persona = $em->getRepository("AppBundle:Persona")->find($id);
+        $persona = $em->getRepository("AppBundle:Persona")->findByPersona($id);
         if (!$this->get("app.util")->VerificarPersona($persona, $this->getUser())) {
             $this->addFlash('danger', 'Usted no tiene acceso a esta persona.');
             return $this->redirectToRoute('busqueda_expediente');

@@ -229,7 +229,18 @@
                             </td>
                         </tr>
                     {% endfor %}
-
+                     {% if asociados|length < limite %}
+                    {% set filas_vacias = limite - asociados|length %}
+                    {% for i in totalItems..filas_vacias %}
+                        <tr>
+                            <td style="padding:23px;"></td>
+                            <td style="padding:23px;"></td>
+                            <td style="padding:23px;"></td>
+                            <td style="padding:23px;"></td>
+                            <td style="padding:23px;"></td>
+                        </tr>
+                    {% endfor %}
+                {%endif%}
                 </tbody>
             </table>
 

@@ -10,7 +10,6 @@ use AppBundle\Entity\LugarFisico;
 use AppBundle\Entity\MovimientoExpediente;
 use Doctrine\Common\Collections\ArrayCollection;
 
-
 /**
  * Ubicacion
  *
@@ -20,8 +19,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\DiscriminatorColumn(name="tipos",type="string")
  * @ORM\DiscriminatorMap({"ubicacion"="Ubicacion","persona"="Persona","lugarfisico"="LugarFisico","mesaentrada" = "MesaEntrada"})
  */
-class Ubicacion
-{
+class Ubicacion {
+
     /**
      * @var int
      *
@@ -40,34 +39,59 @@ class Ubicacion
     private $dependencia;
 
     /**
-    *@ORM\OneToMany(targetEntity="MovimientoExpediente",mappedBy="ubicacion")
-    */
+     * @ORM\OneToMany(targetEntity="MovimientoExpediente",mappedBy="ubicacion")
+     */
     private $movimientosExpedientes;
-    
-    
+
     /**
-    * @ORM\OneToMany(targetEntity="Responsable",mappedBy="ubicacion",cascade={"persist"})
-    */
+     * @ORM\OneToMany(targetEntity="Responsable",mappedBy="ubicacion",cascade={"persist"})
+     */
     private $responsables;
 
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     * @Assert\Date()
+     */
+    protected $fechaBaja;
 
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="fecha_alta", type="datetime",nullable=true)
+     *
+     */
+    private $fechaAlta;
 
-    public function getUsuario()
-    {
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="fecha_ultima_modificacion", type="datetime",nullable=true)
+     *
+     */
+    private $fechaUltimaModificacion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="usuario_ultima_modificacion", type="string",length=255,nullable=true)
+     *
+     */
+    private $usuarioUltimaModificacion;
+
+    public function getUsuario() {
         return $this->usuario;
     }
 
-    public function setUsuario(Usuario $usuario = null)
-    {
+    public function setUsuario(Usuario $usuario = null) {
         $this->usuario = $usuario;
     }
-    
-    public function __construct(){
+
+    public function __construct() {
         $this->movimientosExpedientes = new ArrayCollection();
         $this->responsables = new ArrayCollection();
     }
 
-    public function getUbicacionId(){
+    public function getUbicacionId() {
         return $this->id;
     }
 
@@ -76,26 +100,23 @@ class Ubicacion
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
-        /**
+    /**
      * Set id
      *
      * @param integer $id
      *
      * @return Ubicacion
      */
-    public function setId($id)
-    {
+    public function setId($id) {
         $this->id = $id;
 
         return $this;
     }
-    
-    
+
     /**
      * Set dependencia
      *
@@ -103,8 +124,7 @@ class Ubicacion
      *
      * @return Ubicacion
      */
-    public function setDependencia($dependencia)
-    {
+    public function setDependencia($dependencia) {
         $this->dependencia = $dependencia;
 
         return $this;
@@ -115,8 +135,7 @@ class Ubicacion
      *
      * @return int
      */
-    public function getDependencia()
-    {
+    public function getDependencia() {
         return $this->dependencia;
     }
 
@@ -127,8 +146,7 @@ class Ubicacion
      *
      * @return Ubicacion
      */
-    public function addMovimientosExpediente(\AppBundle\Entity\MovimientoExpediente $movimientosExpediente)
-    {
+    public function addMovimientosExpediente(\AppBundle\Entity\MovimientoExpediente $movimientosExpediente) {
         $this->movimientosExpedientes[] = $movimientosExpediente;
 
         return $this;
@@ -139,8 +157,7 @@ class Ubicacion
      *
      * @param \AppBundle\Entity\MovimientoExpediente $movimientosExpediente
      */
-    public function removeMovimientosExpediente(\AppBundle\Entity\MovimientoExpediente $movimientosExpediente)
-    {
+    public function removeMovimientosExpediente(\AppBundle\Entity\MovimientoExpediente $movimientosExpediente) {
         $this->movimientosExpedientes->removeElement($movimientosExpediente);
     }
 
@@ -149,8 +166,7 @@ class Ubicacion
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getMovimientosExpedientes()
-    {
+    public function getMovimientosExpedientes() {
         return $this->movimientosExpedientes;
     }
 
@@ -161,13 +177,7 @@ class Ubicacion
      *
      * @return Ubicacion
      */
-    public function addResponsable(\AppBundle\Entity\Responsable $responsable)
-    {
-<<<<<<< HEAD
-=======
-        $responsable->getUsuario()
-                ->setRole('ROLE_RESPONSABLE');
->>>>>>> 1d691b1dae4d65b56f6df4cb34a85e17b69c2ecb
+    public function addResponsable(\AppBundle\Entity\Responsable $responsable) {
         $this->responsables[] = $responsable;
 
         return $this;
@@ -179,12 +189,10 @@ class Ubicacion
      * @param \AppBundle\Entity\Responsable $responsable    
      * @return Ubicacion
      */
-    public function removeResponsable(\AppBundle\Entity\Responsable $responsable)
-    {
+    public function removeResponsable(\AppBundle\Entity\Responsable $responsable) {
         $responsable->getUsuario()
                 ->setRole('ROLE_USER');
         $this->responsables->removeElement($responsable);
-
     }
 
     /**
@@ -192,8 +200,7 @@ class Ubicacion
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getResponsable()
-    {
+    public function getResponsable() {
         return $this->responsable;
     }
 
@@ -202,10 +209,74 @@ class Ubicacion
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getResponsables()
-    {
+    public function getResponsables() {
         return $this->responsables;
     }
-    
-    
+
+    /**
+     * Set fechaAlta
+     *
+     * @param \DateTime $fechaAlta
+     *
+     * @return Ubicacion
+     */
+    public function setFechaAlta($fechaAlta) {
+        $this->fechaAlta = $fechaAlta;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaAlta
+     *
+     * @return \DateTime
+     */
+    public function getFechaAlta() {
+        return $this->fechaAlta;
+    }
+
+    /**
+     * Set fechaUltimaModificacion
+     *
+     * @param \DateTime $fechaUltimaModificacion
+     *
+     * @return Ubicacion
+     */
+    public function setFechaUltimaModificacion($fechaUltimaModificacion) {
+        $this->fechaUltimaModificacion = $fechaUltimaModificacion;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaUltimaModificacion
+     *
+     * @return \DateTime
+     */
+    public function getFechaUltimaModificacion() {
+        return $this->fechaUltimaModificacion;
+    }
+
+    /**
+     * Set usuarioUltimaModificacion
+     *
+     * @param string $usuarioUltimaModificacion
+     *
+     * @return Ubicacion
+     */
+    public function setUsuarioUltimaModificacion($usuarioUltimaModificacion) {
+        $this->usuarioUltimaModificacion = $usuarioUltimaModificacion;
+
+        return $this;
+    }
+
+    /**
+     * Get usuarioUltimaModificacion
+     *
+     * @return string
+     */
+    public function getUsuarioUltimaModificacion() {
+        return $this->usuarioUltimaModificacion;
+    }
+
 }

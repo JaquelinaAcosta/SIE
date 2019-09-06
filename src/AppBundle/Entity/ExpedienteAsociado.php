@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+USE Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * ExpedienteAsociado
@@ -46,11 +47,41 @@ class ExpedienteAsociado {
      * @ORM\Column(name="orden_asociacion", type="integer")
      */
     private $ordenAsociacion;
-    
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     * @Assert\Date()
+     */
+    protected $fechaBaja;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="fecha_alta", type="datetime",nullable=true)
+     *
+     */
+    private $fechaAlta;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="fecha_ultima_modificacion", type="datetime",nullable=true)
+     *
+     */
+    private $fechaUltimaModificacion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="usuario_ultima_modificacion", type="string",length=255,nullable=true)
+     *
+     */
+    private $usuarioUltimaModificacion;
+
     public function __toString() {
         return $this->expedientePadre->getNroExpediente();
     }
-    
+
     /**
      * Get id
      *
@@ -148,4 +179,94 @@ class ExpedienteAsociado {
         return $this->ordenAsociacion;
     }
 
+    /**
+     * Set fechaAlta
+     *
+     * @param \DateTime $fechaAlta
+     *
+     * @return ExpedienteAsociado
+     */
+    public function setFechaAlta($fechaAlta) {
+        $this->fechaAlta = $fechaAlta;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaAlta
+     *
+     * @return \DateTime
+     */
+    public function getFechaAlta() {
+        return $this->fechaAlta;
+    }
+
+    /**
+     * Set fechaUltimaModificacion
+     *
+     * @param \DateTime $fechaUltimaModificacion
+     *
+     * @return ExpedienteAsociado
+     */
+    public function setFechaUltimaModificacion($fechaUltimaModificacion) {
+        $this->fechaUltimaModificacion = $fechaUltimaModificacion;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaUltimaModificacion
+     *
+     * @return \DateTime
+     */
+    public function getFechaUltimaModificacion() {
+        return $this->fechaUltimaModificacion;
+    }
+
+    /**
+     * Set usuarioUltimaModificacion
+     *
+     * @param string $usuarioUltimaModificacion
+     *
+     * @return ExpedienteAsociado
+     */
+    public function setUsuarioUltimaModificacion($usuarioUltimaModificacion) {
+        $this->usuarioUltimaModificacion = $usuarioUltimaModificacion;
+
+        return $this;
+    }
+
+    /**
+     * Get usuarioUltimaModificacion
+     *
+     * @return string
+     */
+    public function getUsuarioUltimaModificacion() {
+        return $this->usuarioUltimaModificacion;
+    }
+
+
+    /**
+     * Set fechaBaja
+     *
+     * @param \DateTime $fechaBaja
+     *
+     * @return ExpedienteAsociado
+     */
+    public function setFechaBaja($fechaBaja)
+    {
+        $this->fechaBaja = $fechaBaja;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaBaja
+     *
+     * @return \DateTime
+     */
+    public function getFechaBaja()
+    {
+        return $this->fechaBaja;
+    }
 }

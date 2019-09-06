@@ -92,7 +92,7 @@ class ExpedienteAsociadoController extends Controller {
         $em = $this->getDoctrine()->getEntityManager();
 
         $expediente = $em->getRepository('AppBundle:Expediente')->find($id);
-        if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser(),true)) {
+        if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser(), true)) {
             $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
             return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
         }
@@ -122,6 +122,15 @@ class ExpedienteAsociadoController extends Controller {
             $paginator = new Paginator($filterBuilder, $fetchJoinCollection = true);
             $asociados = $paginator->getQuery()->getResult();
             $maxPages = ceil($totalItems / $limit);
+        } else {
+            $expedientes_repo = $em->getRepository('AppBundle:ExpedienteAsociado')
+                    ->createAsociadoFilterQuery($expediente);
+            $totalItems = count($expedientes_repo->getQuery()->getResult());
+            $expedientes_repo->setFirstResult($limit * (1 - 1));
+            $expedientes_repo->setMaxResults($limit);
+            $paginator = new Paginator($expedientes_repo, $fetchJoinCollection = true);
+            $asociados = $paginator->getQuery()->getResult();
+            $maxPages = (count($asociados) > 0) ? $maxPages = ceil($totalItems / $limit) : $maxPages = 1;
         }
 
         if ($formExpedienteAsociadoFilter->get('reset')->isClicked()) {
@@ -142,6 +151,7 @@ class ExpedienteAsociadoController extends Controller {
         }
 
         return $this->render('Expediente/listadoExpedienteAsociado.html.twig', array(
+                    'limite' => $limit,
                     'asociados' => $asociados,
                     'expediente' => $expediente,
                     'maxPages' => $maxPages,

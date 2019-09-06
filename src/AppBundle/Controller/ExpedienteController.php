@@ -9,12 +9,8 @@ use AppBundle\Entity\Expediente;
 use AppBundle\Entity\Persona;
 use AppBundle\Entity\Tema;
 use AppBundle\Form\ExpedienteType;
-use \AppBundle\Entity\MesaEntrada;
-use AppBundle\Entity\ExpedienteAsociado;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use AppBundle\Form\ExpedienteFilterType;
-use Symfony\Component\Validator\Constraints\DateTime;
 use AppBundle\Entity\MovimientoExpediente;
 
 class ExpedienteController extends Controller {
@@ -127,14 +123,21 @@ class ExpedienteController extends Controller {
             $expedientes = $paginator->getQuery()->getResult();
             $maxPages = ceil($totalItems / $limit);
         } else {
-            $expedientes_repo = $em->getRepository('AppBundle:Expediente')
-                    ->createExpedienteFilterQuery($this->getUser());
+            
+             if ($asociado == false) {
+                $expedientes_repo = $em->getRepository('AppBundle:Expediente')
+                        ->createExpedienteFilterQuery($user);
+            } else {
+                 $expedientes_repo = $em->getRepository('AppBundle:Expediente')
+                        ->createExpedienteFilterQuery($user, $padre_id);
+            }
+
             $totalItems = count($expedientes_repo->getQuery()->getResult());
-            $expedientes_repo->setFirstResult($limit * (1 - 1));
+            $expedientes_repo->setFirstResult($limit * ($currentPage - 1));
             $expedientes_repo->setMaxResults($limit);
             $paginator = new Paginator($expedientes_repo, $fetchJoinCollection = true);
             $expedientes = $paginator->getQuery()->getResult();
-            $maxPages = ceil($totalItems / $limit);
+            $maxPages = (count($expedientes) > 0)?  $maxPages = ceil($totalItems / $limit):$maxPages=1;
         }
 
         if ($formExpedienteFilter->get('reset')->isClicked()) {
@@ -187,7 +190,7 @@ class ExpedienteController extends Controller {
     public function expedienteAction(Request $request, $id) {
 
         $em = $this->getDoctrine()->getEntityManager();
-        $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
+        $expediente = $em->getRepository("AppBundle:Expediente")->findByExpediente($id);
 
         if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser(), true)) {
             $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
@@ -220,8 +223,6 @@ class ExpedienteController extends Controller {
             $expediente->setEstado('VISTO');
         }
 
-
-
         $em->persist($expediente);
         $em->flush();
 
@@ -246,9 +247,7 @@ class ExpedienteController extends Controller {
             $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
             return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
         }
-        $fechaBaja = \DateTime::createFromFormat('d-m-Y', date('d-m-Y'));
-
-        $expediente->setFechaBaja($fechaBaja);
+        $expediente->setFechaBaja(new \DateTime('now'));
 
         $em->persist($expediente);
         $flush = $em->flush();
@@ -264,40 +263,12 @@ class ExpedienteController extends Controller {
     }
 
     /**
-     * @Route("expediente/alta/{id}", name="alta_expediente")
-     */
-    public function altaAction(Request $request, $id) {
-
-        $em = $this->getDoctrine()->getEntityManager();
-        $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
-        if ($this->getUser()->getRole() != 'ROLE_ADMIN') {
-            $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
-            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
-        }
-
-        $expediente->setFechaBaja(null);
-        $expediente->setEstado('NUEVO');
-
-        $em->persist($expediente);
-        $flush = $em->flush();
-
-        if ($flush == false) {
-            $this->addFlash('success', "El Expediente: " . $expediente . " se dio de alta correctamente.");
-            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
-        } else {
-            $this->addFlash('danger', "Ocurrió un error en el alta del Expediente.");
-        }
-
-        return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
-    }
-
-    /**
      * @Route("expediente/editar/{id}", name="editar_expediente")
      */
     public function editAction(Request $request, $id) {
 
         $em = $this->getDoctrine()->getEntityManager();
-        $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
+        $expediente = $em->getRepository("AppBundle:Expediente")->findByExpediente($id);
         if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser())) {
             $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
             return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
@@ -306,7 +277,7 @@ class ExpedienteController extends Controller {
 
         //SI NO SE HACE EL FORMAT TIRA ERROR DE OBJETO TIPO DATETIME
         $expediente->setFechaInicio($expediente->getFechaInicio()->format('d-m-Y'));
-        IF ($expediente->getFechaFin() != null) {
+        if ($expediente->getFechaFin() != null) {
             $expediente->setFechaFin($expediente->getFechaFin()->format('d-m-Y'));
         }
 

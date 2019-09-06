@@ -18,7 +18,14 @@ class MesaEntrada extends Ubicacion {
      * @ORM\Column(name="codigoExpediente", type="string",length=255)
      */
     private $codigoExpediente;
-
+    
+        /**
+     * @var string
+     *
+     * @ORM\Column(name="telefono", type="string",length=255)
+     */
+    private $telefono;
+    
 
     public function __toString() {
 //        return "Mesa de Entrada - ".parent::getDependencia()->getDescripcion();
@@ -78,4 +85,52 @@ class MesaEntrada extends Ubicacion {
         return $this->idUbicacion;
     }
     
+
+    /**
+     * Set fechaBaja
+     *
+     * @param \DateTime $fechaBaja
+     *
+     * @return MesaEntrada
+     */
+    public function setFechaBaja($fechaBaja)
+    {
+        $this->fechaBaja = $fechaBaja;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaBaja
+     *
+     * @return \DateTime
+     */
+    public function getFechaBaja()
+    {
+        return $this->fechaBaja;
+    }
+
+    /**
+     * Set telefono
+     *
+     * @param string $telefono
+     *
+     * @return MesaEntrada
+     */
+    public function setTelefono($telefono)
+    {
+        $this->telefono = $telefono;
+
+        return $this;
+    }
+
+    /**
+     * Get telefono
+     *
+     * @return string
+     */
+    public function getTelefono()
+    {
+        return $this->telefono;
+    }
 }

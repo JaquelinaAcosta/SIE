@@ -42,3 +42,9 @@ services:
         class: AppBundle\Services\Util
         arguments: ["null"]
         public: true
+               
+    modelo_listener:
+        class:      AppBundle\Event\Listener\ModeloListener
+        arguments: ["@service_container"]
+        tags:
+            - { name: doctrine.event_listener, event: onFlush }

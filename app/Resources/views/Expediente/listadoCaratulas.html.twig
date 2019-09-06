@@ -9,7 +9,7 @@
             text-overflow: ellipsis;
             max-width: 200px;
         }
-        
+
         .title{
             font-size:16px;
         }  
@@ -25,7 +25,7 @@
             border-top-left-radius: 5px;
             border-top-right-radius: 5px;
         }
-        
+
         .pagination a {
             float: left;
             padding: 0 14px;
@@ -83,7 +83,7 @@
                 <div class="card-body">
                     <form method="post" novalidate="true" id="form_buscar">
                         {{ form_start(formCaratulaAgregadaFilter) }}
-{#                        {{ form_errors(formCaratulaAgregadaFilter) }}#}
+                        {#                        {{ form_errors(formCaratulaAgregadaFilter) }}#}
                         <div class="row">
                             <div class="threecol col-lg-4">
                                 {{ form_label(formCaratulaAgregadaFilter.tema, 'CODIGO') }}
@@ -140,49 +140,58 @@
                             {% if accion_habilitada == true %}
                                 <a class="btn btn-info" href="{{path("ver_caratula",{'id':caratulaAgregada.id})}}"  role="button" data-toggle="tooltip" data-placement="top" title="Ver Detalle"><i class="fas fa-search"></i></a>
                                 <a class="btn btn-warning" href="{{ path("editar_caratula", {'id':caratulaAgregada.id}) }}"  role="button"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Editar"></i></a>
-{#                                <a class="btn btn-danger" href="{{ path("eliminar_caratula", {'id':caratulaAgregada.id}) }}"  role="button"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></a></td>#}
-                            
+                                    {#                                <a class="btn btn-danger" href="{{ path("eliminar_caratula", {'id':caratulaAgregada.id}) }}"  role="button"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></a></td>#}
+
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{ count }}"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></button>    
 
 
-                                    <!-- The Modal -->
-                                    <div class="modal fade" id="myModal{{count}}">
-                                        <div class="modal-dialog modal-sm modal-dialog-centered">
-                                            <div class="modal-content">
+                                <!-- The Modal -->
+                                <div class="modal fade" id="myModal{{count}}">
+                                    <div class="modal-dialog modal-sm modal-dialog-centered">
+                                        <div class="modal-content">
 
-                                                <!-- Modal Header -->
-                                                <div class="modal-header-warning">
-                                                    <button type="button" class="close text-danger" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    <h4 class="modal-title">Eliminar Carátula Agregada</h4>
-                                                </div>
-
-                                                <!-- Modal body -->
-                                                <div class="modal-body">
-                                                    ¿Está seguro de quitar la carátula {{caratulaAgregada.tema}} del expediente?
-                                                </div>
-
-                                                <!-- Modal footer -->
-                                                <div class="modal-footer">                                          
-                                                    <button type="button" class="btn btn-primary"><a class="text-type btn-primary"href="{{ path("eliminar_caratula", {'id':caratulaAgregada.id}) }}"  role="button">Si</a></button>                                   
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                                </div>
-
+                                            <!-- Modal Header -->
+                                            <div class="modal-header-warning">
+                                                <button type="button" class="close text-danger" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title">Eliminar Carátula Agregada</h4>
                                             </div>
+
+                                            <!-- Modal body -->
+                                            <div class="modal-body">
+                                                ¿Está seguro de quitar la carátula {{caratulaAgregada.tema}} del expediente?
+                                            </div>
+
+                                            <!-- Modal footer -->
+                                            <div class="modal-footer">                                          
+                                                <button type="button" class="btn btn-primary"><a class="text-type btn-primary"href="{{ path("eliminar_caratula", {'id':caratulaAgregada.id}) }}"  role="button">Si</a></button>                                   
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                            </div>
+
                                         </div>
                                     </div>
+                                </div>
                                 {% set count=count+1 %}                     
-                        {%endif%}
+                            {%endif%}
                     </tr>
 
                 {% endfor %}
-
+                {% if caratulas|length < limite %}
+                    {% set filas_vacias = limite - caratulas|length %}
+                    {% for i in totalItems..filas_vacias %}
+                        <tr>
+                            <td style="padding:23px;"></td>
+                            <td style="padding:23px;"></td>
+                            <td style="padding:23px;"></td>
+                        </tr>
+                    {% endfor %}
+                {%endif%}
             </tbody>
 
         </table>
 
-                
-                
-                     {#         -----Paginación-----              #}
+
+
+        {#         -----Paginación-----              #}
         {% set limite = 6 %}
         {% set extremos = 2 %}
 
@@ -218,8 +227,8 @@
             {%elseif thisPage == maxPages and thisPage != minRightRange%}
                 {%set maxLeftRange = maxPages%}
             {%endif%}
-            
-            
+
+
             {% for i in minLeftRange..maxLeftRange %}
                 <li class="page-item {{  i == thisPage ? 'active' : '' }}">
                     <a class="page-link"  href="{{ path('listado_caratula', {'id':caratula, "currentPage": thisPage}) }}">{{ i }}</a>

@@ -9,6 +9,7 @@ use Lexik\Bundle\FormFilterBundle\Filter\Form\Type\EmbeddedFilterTypeInterface;
 use Lexik\Bundle\FormFilterBundle\Filter\Query\QueryInterface;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 class PersonaFilterType extends AbstractType implements EmbeddedFilterTypeInterface {
 
     /**
@@ -22,7 +23,7 @@ class PersonaFilterType extends AbstractType implements EmbeddedFilterTypeInterf
             'query_builder' => function (EntityRepository $repositorio) {
                 return $repositorio
                                 ->createQueryBuilder('e')
-                                ->where("e.estado IS NOT NULL")
+                                ->where("e.fechaBaja IS NULL")
                                 ->orderBy('e.descripcion', 'ASC');
             },
             'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
@@ -78,6 +79,7 @@ class PersonaFilterType extends AbstractType implements EmbeddedFilterTypeInterf
             'attr' => ['class' => 'form-control',
                 'placeholder' => 'Ingrese un cargo...']
         ));
+
         $builder->add('filter', 'Symfony\Component\Form\Extension\Core\Type\SubmitType', array(
             'label' => 'Filtrar',
             'attr' => ['class' => 'btn btn-primary']

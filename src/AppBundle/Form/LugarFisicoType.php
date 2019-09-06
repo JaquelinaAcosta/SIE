@@ -47,7 +47,7 @@ class LugarFisicoType extends AbstractType {
                     "placeholder" => "--Seleccione--",
                     'query_builder' => function (EntityRepository $er) {
                         return $er->createQueryBuilder('u')
-                                        ->where('u.estado IS NOT NULL')
+                                        ->where('u.fechaBaja IS NULL')
                                         ->orderBy('u.descripcion', 'ASC');
                     },
                     "class" => 'AppBundle:Dependencia', "attr" => array(
@@ -65,7 +65,8 @@ class LugarFisicoType extends AbstractType {
                                     ->leftJoin(\AppBundle\Entity\Ubicacion::class, "u", "WITH",
                                             "l.id = u.id")
                                     ->where('u.dependencia = :dependencia_id')
-                                    ->orderBy('l.descripcion', 'ASC')
+                                    ->andWhere('u.fechaBaja IS NULL')
+                                    ->orderBy('l.tipo', 'ASC')
                                     ->setParameter('dependencia_id',$dependencia_id);
                 },
                 "class" => 'AppBundle:LugarFisico', "attr" => array(

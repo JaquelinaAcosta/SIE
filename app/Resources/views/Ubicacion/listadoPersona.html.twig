@@ -52,7 +52,7 @@
             text-overflow: ellipsis;
             max-width: 200px;
         }
-        
+
         .pagination a {
             float: left;
             padding: 0 14px;
@@ -224,14 +224,12 @@
                                 {% set count=count+1 %}
                         </tr>             
                     {% endfor %}
-
-
                 </tbody>
             </table>
         {% endif %}    
-        
-        
-{#         -----Paginación-----              #}
+
+
+        {#         -----Paginación-----              #}
         {% set limite = 6 %}
         {% set extremos = 2 %}
 
@@ -267,8 +265,8 @@
             {%elseif thisPage == maxPages and thisPage != minRightRange%}
                 {%set maxLeftRange = maxPages%}
             {%endif%}
-            
-            
+
+
             {% for i in minLeftRange..maxLeftRange %}
                 <li class="page-item {{  i == thisPage ? 'active' : '' }}">
                     <a class="page-link"  href="{{ path('listado_persona', {"currentPage": i}) }}">{{ i }}</a>
@@ -314,8 +312,8 @@
 
             </ul>
         </div>
-            
-            
+
+
     </div>
 </div>
 <script>

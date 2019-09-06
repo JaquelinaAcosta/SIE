@@ -1,7 +1,7 @@
 <?php
 
 namespace AppBundle\Repository;
-use Doctrine\ORM\Tools\Pagination\Paginator;
+
 
 /**
  * DependenciaRepository
@@ -10,14 +10,27 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
  * repository methods below.
  */
 class DependenciaRepository extends \Doctrine\ORM\EntityRepository {
-    
-       public function createDependenciaFilter() {
+
+    public function createDependenciaFilter() {
         $qb = $this->getEntityManager()->createQueryBuilder('d');
         $result = $qb->select('d')
                 ->from(\AppBundle\Entity\Dependencia::class, 'd')
+                ->where('d.fechaBaja IS NULL')
                 ->addOrderBy('d.descripcion', 'ASC');
-        
+
         return $result;
-    }  
+    }
+
+    public function findByDependencia($dependencia) {
+        $qb = $this->getEntityManager()->createQueryBuilder('d');
+        $result = $qb->select('d')
+                ->from(\AppBundle\Entity\Dependencia::class, 'd')
+                ->where('d.id = :dependencia')
+                ->andWhere('d.fechaBaja IS NULL')
+                ->setParameter('dependencia', $dependencia);
+
+        $dependencia = $result->getQuery()->getResult();
+        return $dependencia[0];
+    }
 
 }

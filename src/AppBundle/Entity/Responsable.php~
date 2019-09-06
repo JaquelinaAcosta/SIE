@@ -3,15 +3,15 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+USE Symfony\Component\Validator\Constraints as Assert;
 /**
  * Responsable
  *
  * @ORM\Table(name="responsable")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ResponsableRepository")
  */
-class Responsable
-{
+class Responsable {
+
     /**
      * @var int
      *
@@ -37,14 +37,42 @@ class Responsable
      */
     private $usuario;
 
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     * @Assert\Date()
+     */
+    protected $fechaBaja;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="fecha_alta", type="datetime",nullable=true)
+     *
+     */
+    private $fechaAlta;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="fecha_ultima_modificacion", type="datetime",nullable=true)
+     *
+     */
+    private $fechaUltimaModificacion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="usuario_ultima_modificacion", type="string",length=255,nullable=true)
+     *
+     */
+    private $usuarioUltimaModificacion;
 
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -55,8 +83,7 @@ class Responsable
      *
      * @return Responsable
      */
-    public function setUbicacion($ubicacion)
-    {
+    public function setUbicacion($ubicacion) {
         $this->ubicacion = $ubicacion;
 
         return $this;
@@ -67,8 +94,7 @@ class Responsable
      *
      * @return int
      */
-    public function getUbicacion()
-    {
+    public function getUbicacion() {
         return $this->ubicacion;
     }
 
@@ -79,8 +105,7 @@ class Responsable
      *
      * @return Responsable
      */
-    public function setUsuario($usuario)
-    {
+    public function setUsuario($usuario) {
         $this->usuario = $usuario;
 
         return $this;
@@ -91,8 +116,74 @@ class Responsable
      *
      * @return string
      */
-    public function getUsuario()
-    {
+    public function getUsuario() {
         return $this->usuario;
     }
+
+    /**
+     * Set fechaAlta
+     *
+     * @param \DateTime $fechaAlta
+     *
+     * @return Responsable
+     */
+    public function setFechaAlta($fechaAlta) {
+        $this->fechaAlta = $fechaAlta;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaAlta
+     *
+     * @return \DateTime
+     */
+    public function getFechaAlta() {
+        return $this->fechaAlta;
+    }
+
+    /**
+     * Set fechaUltimaModificacion
+     *
+     * @param \DateTime $fechaUltimaModificacion
+     *
+     * @return Responsable
+     */
+    public function setFechaUltimaModificacion($fechaUltimaModificacion) {
+        $this->fechaUltimaModificacion = $fechaUltimaModificacion;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaUltimaModificacion
+     *
+     * @return \DateTime
+     */
+    public function getFechaUltimaModificacion() {
+        return $this->fechaUltimaModificacion;
+    }
+
+    /**
+     * Set usuarioUltimaModificacion
+     *
+     * @param string $usuarioUltimaModificacion
+     *
+     * @return Responsable
+     */
+    public function setUsuarioUltimaModificacion($usuarioUltimaModificacion) {
+        $this->usuarioUltimaModificacion = $usuarioUltimaModificacion;
+
+        return $this;
+    }
+
+    /**
+     * Get usuarioUltimaModificacion
+     *
+     * @return string
+     */
+    public function getUsuarioUltimaModificacion() {
+        return $this->usuarioUltimaModificacion;
+    }
+
 }

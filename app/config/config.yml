@@ -82,3 +82,23 @@ lexik_form_filter:
         doctrine_orm: true
         doctrine_dbal: false
         doctrine_mongodb: false
+        
+simple_things_entity_audit:
+    audited_entities:
+        - AppBundle\Entity\Dependencia
+        - AppBundle\Entity\Expediente
+        - AppBundle\Entity\ExpedienteAsociado
+        - AppBundle\Entity\MovimientoExpediente
+        - AppBundle\Entity\Persona
+        - AppBundle\Entity\Resolucion
+        - AppBundle\Entity\Responsable
+        - AppBundle\Entity\Ubicacion
+        - AppBundle\Entity\Usuario
+        
+    global_ignore_columns:
+        - fechaAlta
+        - fechaUltimaModificacion
+        - usuarioUltimaModificacion
+#        - fechaBaja
+
+

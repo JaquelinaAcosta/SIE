@@ -53,7 +53,7 @@
             text-overflow: ellipsis;
             max-width: 200px;
         }
-        
+
         .pagination a {
             float: left;
             padding: 0 14px;
@@ -145,7 +145,6 @@
 
         <hr/>
 
-
         {% for message in app.flashes('success') %}
             <div class="alert alert-success">
                 {{ message }}
@@ -169,7 +168,7 @@
             </thead>
             <tbody>
                 {% set count = 0 %}
-                {% for usuario in usuario|reverse %}
+                {% for usuario in usuarios|reverse %}
                     <tr>
                         <td class="text-default">{{usuario.iup|e }}</td>
                         <td class="text-default"><p>{{usuario.role|e }}</p></td>
@@ -179,45 +178,43 @@
                         {#   <td><a class="btn btn-info" href="{{ path("ver_expediente", {'id':expediente.id}) }}"  role="button"><i class="fas fa-search"></i></a>#}
                         {#                        <td><a class="btn btn-info" href="{{ path("editar_usuario", {'id':usuario.id}) }}"  role="button"><i class="fas fa-search"></i></a>#}
                         <td> <a class="btn btn-warning" href="{{ path("editar_usuario", {'id':usuario.id}) }}"  role="button"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Editar"></i></a>
-{#                            <a class="btn btn-danger" href="{{ path("eliminar_usuario", {'id':usuario.id}) }}"  role="button"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></a></td>#}
-                        
-                         
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{ count }}"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></button>    
+                                {#                            <a class="btn btn-danger" href="{{ path("eliminar_usuario", {'id':usuario.id}) }}"  role="button"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></a></td>#}
 
 
-                                <!-- The Modal -->
-                                <div class="modal fade" id="myModal{{count}}">
-                                    <div class="modal-dialog modal-sm modal-dialog-centered">
-                                        <div class="modal-content">
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{ count }}"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></button>    
 
-                                            <!-- Modal Header -->
-                                            <div class="modal-header-warning">
-                                                <button type="button" class="close text-danger" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                <h4 class="modal-title">Eliminar Usuario</h4>
-                                            </div>
 
-                                            <!-- Modal body -->
-                                            <div class="modal-body">
-                                                ¿Desea Eliminar a {{usuario.iup}} ?
-                                            </div>
-                                            <!-- Modal footer -->
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary"><a class="text-type btn-primary"href="{{ path("eliminar_usuario", {'id':usuario.id}) }}"  role="button">Si</a></button>                          
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                            </div>
+                            <!-- The Modal -->
+                            <div class="modal fade" id="myModal{{count}}">
+                                <div class="modal-dialog modal-sm modal-dialog-centered">
+                                    <div class="modal-content">
 
+                                        <!-- Modal Header -->
+                                        <div class="modal-header-warning">
+                                            <button type="button" class="close text-danger" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title">Eliminar Usuario</h4>
                                         </div>
+
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            ¿Desea Eliminar a {{usuario.iup}} ?
+                                        </div>
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary"><a class="text-type btn-primary"href="{{ path("eliminar_usuario", {'id':usuario.id}) }}"  role="button">Si</a></button>                          
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                        </div>
+
                                     </div>
                                 </div>
-                        {% set count=count+1 %}
-                        
+                            </div>
+                            {% set count=count+1 %}
                     </tr>
                 {% endfor %}
-
             </tbody>
         </table>
 
-{#         -----Paginación-----              #}
+        {#         -----Paginación-----              #}
         {% set limite = 6 %}
         {% set extremos = 2 %}
 
@@ -243,7 +240,7 @@
             {%endif%}
             {%set maxRightRange = maxPages %}
         {%endif%}
-        
+
         <div class="pagination" >
             <li><a class="page-link" href="{{ 0 < thisPage-1 ? path('listado_usuario', {"currentPage": thisPage-1}) }}">Anterior</a></li>
 
@@ -252,8 +249,8 @@
             {%elseif thisPage == maxPages and thisPage != minRightRange%}
                 {%set maxLeftRange = maxPages%}
             {%endif%}
-            
-                {% for i in minLeftRange..maxLeftRange %}
+
+            {% for i in minLeftRange..maxLeftRange %}
                 <li class="page-item {{  i == thisPage ? 'active' : '' }} ">
                     <a class="page-link"  href="{{ path('listado_usuario', {"currentPage": i}) }}">{{ i }}</a>
                 </li>
@@ -298,8 +295,8 @@
 
             </ul>
         </div>
-                
-            
+
+
     </div>
     <script>
         $(function () {

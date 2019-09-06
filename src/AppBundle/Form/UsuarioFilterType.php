@@ -37,7 +37,7 @@ class UsuarioFilterType extends AbstractType implements EmbeddedFilterTypeInterf
             'query_builder' => function (EntityRepository $repositorio) {
                 return $repositorio
                                 ->createQueryBuilder('e')
-                                 ->where("e.estado IS NOT NULL")
+                                 ->where("e.fechaBaja IS NULL")
                                 ->orderBy('e.descripcion', 'ASC');
             },
             'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {

@@ -9,7 +9,7 @@
             text-overflow: ellipsis;
             max-width: 200px;
         }
-        
+
         .pagination a {
             float: left;
             padding: 0 14px;
@@ -32,7 +32,7 @@
             -moz-border-radius: 3px 0 0 3px;
             border-radius: 3px 0 0 3px;
         }
-        
+
     </style>
 
     <div class="content">
@@ -82,13 +82,6 @@
                                     {{ form_errors(formDependenciaFilter.nivel) }}
                                 </div>
                             </div> 
-                            <div class="twocol col-lg-3">
-                                {{ form_label(formDependenciaFilter.estado, 'ESTADO') }}
-                                {{ form_widget(formDependenciaFilter.estado) }}
-                                <div class="help-block with-errors">
-                                    {{ form_errors(formDependenciaFilter.estado) }}
-                                </div>
-                            </div> 
                         </div>
 
                         <hr/>
@@ -115,7 +108,6 @@
                     <th scope="col">Descripción</th>
                     <th scope="col">Dependencia Padre</th>
                     <th scope="col">Responsable</th>
-                    <th scope="col">Estado</th>
                     <th scope="col">Nivel</th>
                     <th scope="col">Acciones</th>
                 </tr>
@@ -128,19 +120,11 @@
                         <td class="text-default"><p>{{dependencia.dependenciaPadre.descripcion|e }}</p></td>
                         <td class="text-default">{{dependencia.responsable|e }}</td>
 
-                        {% if dependencia.estado != null %}
-                            <td class="text-default">HABILITADO</td>
-                            <td class="text-default">{{dependencia.nivel|e }}</td>
-                            <td> <a class="btn btn-info" href="{{ path('adm_gestionar_mesaentrada',{'id':dependencia.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Gestionar Mesa de Entrada">  <i class="fas fa-table"></i></a>
-                                <a class="btn btn-warning" href="{{ path('editar_dependencia',{'id':dependencia.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit"></i></a>
-                                <a class="btn btn-danger" href="{{ path('deshabilitar_dependencia',{'id':dependencia.id}) }}"  role="button"><i class="far fa-file-archive" data-toggle="tooltip" data-placement="top" title="Archivar"></i></a></td>
-                                {% else %}
-                            <td class="text-default">DESHABILITADO</td>
-                            <td class="text-default">{{dependencia.nivel|e }}</td>
-                            <td> <a class="btn btn-info" href="{{ path('adm_gestionar_mesaentrada',{'id':dependencia.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Gestionar mesa de Entrada">  <i class="fas fa-table"></i></a>
-                                <a class="btn btn-warning" href="{{ path('editar_dependencia',{'id':dependencia.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Editar Dependencia"><i class="fas fa-edit"></i></a>
-                                <a class="btn btn-success" href="{{ path('alta_dependencia',{'id':dependencia.id}) }}"  role="button"><i class="far fa-calendar-check" data-toggle="tooltip" data-placement="top" title="Dar de Alta"></i></a></td>
-                                {% endif %}
+                        <td class="text-default">{{dependencia.nivel|e }}</td>
+                        <td> <a class="btn btn-info" href="{{ path('gestionar_mesaentrada',{'id':dependencia.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Gestionar Mesa de Entrada">  <i class="fas fa-table"></i></a>
+                            <a class="btn btn-warning" href="{{ path('editar_dependencia',{'id':dependencia.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit"></i></a>
+                            <a class="btn btn-danger" href="{{ path('baja_dependencia',{'id':dependencia.id}) }}"  role="button"><i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="Borrar"></i></a></td>
+
 
                     </tr>
                 {% endfor %}
@@ -148,7 +132,7 @@
             </tbody>
         </table>
 
-{#         -----Paginación-----              #}                
+        {#         -----Paginación-----              #}                
         {% set limite = 6 %}
         {% set extremos = 2 %}
 
@@ -174,8 +158,8 @@
             {%endif%}
             {%set maxRightRange = maxPages %}
         {%endif%}
-        
-        
+
+
         <div class="pagination" >
             <li><a class="page-link" href="{{ 0 < thisPage-1 ? path('listado_dependencia', {"currentPage": thisPage-1}) }}">Anterior</a></li>
 
@@ -184,8 +168,8 @@
             {%elseif thisPage == maxPages and thisPage != minRightRange%}
                 {%set maxLeftRange = maxPages%}
             {%endif%}
-            
-                {% for i in minLeftRange..maxLeftRange %}
+
+            {% for i in minLeftRange..maxLeftRange %}
                 <li class="page-item {{ i == thisPage ? 'active' : '' }}">
                     <a class="page-link"  href="{{ path('listado_dependencia', {"currentPage": i}) }}">{{ i }}</a>
                 </li>
@@ -230,7 +214,7 @@
 
             </ul>
         </div>
-        
+
 
         <script>
             $(function () {

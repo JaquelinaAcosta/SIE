@@ -244,11 +244,9 @@ class MovimientoExpedienteController extends Controller {
         }
 
         if ($formMovimientoFilter->isValid()) {
-            $filterBuilder = $em->getRepository('AppBundle:MovimientoExpediente')->createQueryBuilder('m');
-            $filterBuilder->leftJoin(Expediente::class, "e", "WITH", "m.expediente = e.id")
-                    ->where('m.expediente = :expediente')
-//                                ->andWhere('w.id != :expediente_id')
-                    ->setParameter('expediente', $expediente);
+            $filterBuilder = $em->getRepository('AppBundle:MovimientoExpediente')
+                    ->createMovimientoFilter($expediente);
+
             $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($formMovimientoFilter, $filterBuilder);
             $totalItems = count($filterBuilder->getQuery()->getResult());
 
@@ -258,6 +256,15 @@ class MovimientoExpedienteController extends Controller {
             $paginator = new Paginator($filterBuilder, $fetchJoinCollection = true);
             $movimientos = $paginator->getQuery()->getResult();
             $maxPages = ceil($totalItems / $limit);
+        }else {
+            $movimientos_repo = $em->getRepository('AppBundle:MovimientoExpediente')
+                    ->createMovimientoFilter($expediente);
+            $totalItems = count($movimientos_repo->getQuery()->getResult());
+            $movimientos_repo->setFirstResult($limit * (1 - 1));
+            $movimientos_repo->setMaxResults($limit);
+            $paginator = new Paginator($movimientos_repo, $fetchJoinCollection = true);
+            $movimientos = $paginator->getQuery()->getResult();
+            $maxPages = ($movimientos > 0) ? $maxPages = ceil($totalItems / $limit): $maxPages=1;
         }
 
         if ($formMovimientoFilter->get('reset')->isClicked()) {
@@ -276,6 +283,7 @@ class MovimientoExpedienteController extends Controller {
         }
 
         return $this->render('Expediente/listadoMovimientos.html.twig', array(
+                    'limite'=>$limit,
                     'movimientos' => $movimientos,
                     'totalMovimientos' => $totalMovimientos,
                     'expediente' => $expediente,

@@ -200,6 +200,11 @@
                                 Usuarios
                             </a>
                         {% endif %}
+                        <a href="{{ path('listado_mesaentrada',{'currentPage':1}) }}" class="list-group-item list-group-item-action text-center">
+                            <i class="fas fa-archive" style="font-size:27px;"></i>
+                            <br/>
+                           Mesas de Entrada
+                        </a>
                         <a href="{{ path('listado_lugarfisico',{'currentPage':1}) }}" class="list-group-item list-group-item-action text-center">
                             <i class="fas fa-archive" style="font-size:27px;"></i>
                             <br/>

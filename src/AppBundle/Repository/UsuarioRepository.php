@@ -33,9 +33,22 @@ class UsuarioRepository extends \Doctrine\ORM\EntityRepository {
                         "p.id=ub.id")
                 ->innerJoin(\AppBundle\Entity\Dependencia::class, "d", "WITH",
                         "ub.dependencia=d.id")
+                ->where('u.fechaBaja IS NULL')
                 ->addOrderBy('u.iup', 'ASC');
 
         return $result;
     }
+    
+    public function findByUsuario($usuario) {
+        $qb = $this->getEntityManager()->createQueryBuilder('u');
+        $result = $qb->select('u')
+                ->from(\AppBundle\Entity\Usuario::class, 'u')
+                ->where('u.id = :usuario')
+                ->andWhere('u.fechaBaja IS NULL')
+                ->setParameter('usuario', $usuario);
 
+        $usuario = $result->getQuery()->getResult();
+        return $usuario[0];
+    }
+    
 }

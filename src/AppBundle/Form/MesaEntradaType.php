@@ -26,7 +26,7 @@ class MesaEntradaType extends AbstractType {
                 $builder->add('dependencia', EntityType::class, array(
                     'query_builder' => function(EntityRepository $er )use($dependenciaId) {
                         return $er->createQueryBuilder('w')
-                                        ->where('w.estado IS NOT NULL')
+                                        ->where('w.estado IS NULL')
                                 ->andWhere('w.id!=:id')
                                 ->setParameter('id',$dependenciaId);
                     },
@@ -41,7 +41,7 @@ class MesaEntradaType extends AbstractType {
                     'query_builder' => function(EntityRepository $er ) use ($dependenciaId) {
                         return $er->createQueryBuilder('w')
                                         ->where('w.id = ?1')
-                                        ->andWhere('w.estado IS NOT NULL')
+                                        ->andWhere('w.estado IS NULL')
                                         ->setParameter(1, $dependenciaId);
                     },
                     "label" => false,

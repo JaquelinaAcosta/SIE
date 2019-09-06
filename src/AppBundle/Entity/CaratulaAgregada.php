@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+USE Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use AppBundle\Entity\Expediente;
 
@@ -11,8 +12,8 @@ use AppBundle\Entity\Expediente;
  * @ORM\Table(name="caratula_agregada")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CaratulaAgregadaRepository")
  */
-class CaratulaAgregada
-{
+class CaratulaAgregada {
+
     /**
      * @var int
      *
@@ -27,7 +28,7 @@ class CaratulaAgregada
      *
      * @ORM\ManyToOne(targetEntity="Expediente", inversedBy="caratulas")
      * @ORM\JoinColumn(name="expediente", referencedColumnName="id", nullable=false)
-     */    
+     */
     private $expediente;
 
     /**
@@ -51,14 +52,42 @@ class CaratulaAgregada
      */
     private $fojas;
 
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     * @Assert\Date()
+     */
+    protected $fechaBaja;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="fecha_alta", type="datetime",nullable=true)
+     *
+     */
+    private $fechaAlta;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="fecha_ultima_modificacion", type="datetime",nullable=true)
+     *
+     */
+    private $fechaUltimaModificacion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="usuario_ultima_modificacion", type="string",length=255,nullable=true)
+     *
+     */
+    private $usuarioUltimaModificacion;
 
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -69,8 +98,7 @@ class CaratulaAgregada
      *
      * @return CaratulaAgregada
      */
-    public function setExpediente($expediente)
-    {
+    public function setExpediente($expediente) {
         $this->expediente = $expediente;
 
         return $this;
@@ -81,8 +109,7 @@ class CaratulaAgregada
      *
      * @return int
      */
-    public function getExpediente()
-    {
+    public function getExpediente() {
         return $this->expediente;
     }
 
@@ -93,8 +120,7 @@ class CaratulaAgregada
      *
      * @return CaratulaAgregada
      */
-    public function setTema($tema)
-    {
+    public function setTema($tema) {
         $this->tema = $tema;
 
         return $this;
@@ -105,8 +131,7 @@ class CaratulaAgregada
      *
      * @return int
      */
-    public function getTema()
-    {
+    public function getTema() {
         return $this->tema;
     }
 
@@ -117,8 +142,7 @@ class CaratulaAgregada
      *
      * @return CaratulaAgregada
      */
-    public function setConcepto($concepto)
-    {
+    public function setConcepto($concepto) {
         $this->concepto = $concepto;
 
         return $this;
@@ -129,8 +153,7 @@ class CaratulaAgregada
      *
      * @return string
      */
-    public function getConcepto()
-    {
+    public function getConcepto() {
         return $this->concepto;
     }
 
@@ -141,8 +164,7 @@ class CaratulaAgregada
      *
      * @return CaratulaAgregada
      */
-    public function setFojas($fojas)
-    {
+    public function setFojas($fojas) {
         $this->fojas = $fojas;
 
         return $this;
@@ -153,8 +175,98 @@ class CaratulaAgregada
      *
      * @return int
      */
-    public function getFojas()
-    {
+    public function getFojas() {
         return $this->fojas;
+    }
+
+    /**
+     * Set fechaAlta
+     *
+     * @param \DateTime $fechaAlta
+     *
+     * @return CaratulaAgregada
+     */
+    public function setFechaAlta($fechaAlta) {
+        $this->fechaAlta = $fechaAlta;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaAlta
+     *
+     * @return \DateTime
+     */
+    public function getFechaAlta() {
+        return $this->fechaAlta;
+    }
+
+    /**
+     * Set fechaUltimaModificacion
+     *
+     * @param \DateTime $fechaUltimaModificacion
+     *
+     * @return CaratulaAgregada
+     */
+    public function setFechaUltimaModificacion($fechaUltimaModificacion) {
+        $this->fechaUltimaModificacion = $fechaUltimaModificacion;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaUltimaModificacion
+     *
+     * @return \DateTime
+     */
+    public function getFechaUltimaModificacion() {
+        return $this->fechaUltimaModificacion;
+    }
+
+    /**
+     * Set usuarioUltimaModificacion
+     *
+     * @param string $usuarioUltimaModificacion
+     *
+     * @return CaratulaAgregada
+     */
+    public function setUsuarioUltimaModificacion($usuarioUltimaModificacion) {
+        $this->usuarioUltimaModificacion = $usuarioUltimaModificacion;
+
+        return $this;
+    }
+
+    /**
+     * Get usuarioUltimaModificacion
+     *
+     * @return string
+     */
+    public function getUsuarioUltimaModificacion() {
+        return $this->usuarioUltimaModificacion;
+    }
+
+
+    /**
+     * Set fechaBaja
+     *
+     * @param \DateTime $fechaBaja
+     *
+     * @return CaratulaAgregada
+     */
+    public function setFechaBaja($fechaBaja)
+    {
+        $this->fechaBaja = $fechaBaja;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaBaja
+     *
+     * @return \DateTime
+     */
+    public function getFechaBaja()
+    {
+        return $this->fechaBaja;
     }
 }

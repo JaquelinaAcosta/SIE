@@ -10,6 +10,7 @@ use AppBundle\Form\UsuarioType;
 use AppBundle\Form\UsuarioFilterType;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use AppBundle\Entity\Responsable;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class UsuarioController extends Controller {
 
@@ -70,7 +71,7 @@ class UsuarioController extends Controller {
         $usuarioActual = $this->getUser();
 
         $em = $this->getDoctrine()->getEntityManager();
-        $usuario = $em->getRepository("AppBundle:Usuario")->find($id);
+        $usuario = $em->getRepository("AppBundle:Usuario")->findByUsuario($id);
         if (!$this->get("app.util")->VerificarUsuario($usuario, $this->getUser())) {
             $this->addFlash('danger', 'Usted no tiene acceso a este usuario.');
             return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
@@ -154,8 +155,16 @@ class UsuarioController extends Controller {
             $paginator = new Paginator($filterBuilder, $fetchJoinCollection = true);
             $usuario = $paginator->getQuery()->getResult();
             $maxPages = ceil($totalItems / $limit);
+        } else {
+            $usuarios_repo = $em->getRepository('AppBundle:Usuario')
+                    ->createUsuarioFilter();
+            $totalItems = count($usuarios_repo->getQuery()->getResult());
+            $usuarios_repo->setFirstResult($limit * ($currentPage - 1));
+            $usuarios_repo->setMaxResults($limit);
+            $paginator = new Paginator($usuarios_repo, $fetchJoinCollection = true);
+            $usuario = $paginator->getQuery()->getResult();
+            $maxPages = (count($usuario) > 0) ?$maxPages = ceil($totalItems / $limit):$maxPages=1;
         }
-
         if ($formUsuarioFilter->get('reset')->isClicked()) {
             $this->get('session')->remove('usuario_listar_request');
             return $this->redirectToRoute('listado_usuario', ['currentPage' => 1]);
@@ -174,7 +183,8 @@ class UsuarioController extends Controller {
         }
 
         return $this->render('Usuario/listadoUsuarios.html.twig', array(
-                    'usuario' => $usuario,
+                    'limite' => $limit,
+                    'usuarios' => $usuario,
                     'maxPages' => $maxPages,
                     'totalItems' => $totalItems,
                     'thisPage' => $currentPage,
@@ -189,17 +199,14 @@ class UsuarioController extends Controller {
     public function deleteAction(Request $request, $id) {
 
         $em = $this->getDoctrine()->getEntityManager();
-        $usuario = $em->getRepository("AppBundle:Usuario")->find($id);
-          if (!$this->get("app.util")->VerificarUsuario($usuario, $this->getUser())) {
+        $usuario = $em->getRepository("AppBundle:Usuario")->findByUsuario($id);
+        if (!$this->get("app.util")->VerificarUsuario($usuario, $this->getUser())) {
             $this->addFlash('danger', 'Usted no tiene acceso a este usuario.');
             return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
         }
-        
-        foreach ($usuario->getPersona()->getResponsables() as $responsable) {
-            $em->remove($responsable);
-        }
 
-        $em->remove($usuario);
+        $usuario->setFechaBaja(new \DateTime('now'));
+        
         $flush = $em->flush();
 
         if ($flush == false) {
@@ -208,7 +215,7 @@ class UsuarioController extends Controller {
         } else {
             $this->addFlash('danger', 'Ocurrio un error al intentar borrar el usuario.');
         }
-        
+
         return $this->redirectToRoute('listado_usuario', ['currentPage' => 1]);
     }
 

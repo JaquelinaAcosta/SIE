@@ -10,6 +10,7 @@ use AppBundle\Entity\MesaEntrada;
 use AppBundle\Form\DependenciaType;
 use AppBundle\Form\DependenciaFilterType;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class DependenciaController extends Controller {
 
@@ -30,21 +31,18 @@ class DependenciaController extends Controller {
                 $mesaentrada->setDependencia($dependencia);
                 $mesaentrada->setCodigoExpediente('Sin codigo asignado');
                 $dependencia->setMesaentrada($mesaentrada);
-                $dependencia->setEstado('HABILITADO');
                 $em->persist($mesaentrada);
                 $flush = $em->flush();
 
                 if ($flush == false) {
                     $this->addFlash('success', 'Dependencia creada correctamente.');
-                }else{
+                } else {
                     $this->addFlash('danger', 'Ocurrió un error al intentar crear la dependencia.');
                 }
-                
-                $this->redirectToRoute('listado_dependencia',['currentPage'=>1]);
-                
+
+                $this->redirectToRoute('listado_dependencia', ['currentPage' => 1]);
             }
         }
-
         // replace this example code with whatever you need
         return $this->render('Dependencia/add.html.twig', [
                     'form' => $form->createView(),
@@ -80,6 +78,14 @@ class DependenciaController extends Controller {
             $paginator = new Paginator($filterBuilder, $fetchJoinCollection = true);
             $dependencias = $paginator->getQuery()->getResult();
             $maxPages = ceil($totalItems / $limit);
+        } else {
+            $dependencia_repo = $em->getRepository('AppBundle:Dependencia')->createDependenciaFilter();
+            $totalItems = count($dependencia_repo->getQuery()->getResult());
+            $dependencia_repo->setFirstResult($limit * ($currentPage - 1));
+            $dependencia_repo->setMaxResults($limit);
+            $paginator = new Paginator($dependencia_repo, $fetchJoinCollection = true);
+            $dependencias = $paginator->getQuery()->getResult();
+            $maxPages = (count($dependencias) > 0) ? $maxPages = ceil($totalItems / $limit) : $maxPages = 1;
         }
 
         if ($formDependenciaFilter->get('reset')->isClicked()) {
@@ -100,6 +106,7 @@ class DependenciaController extends Controller {
         }
 
         return $this->render('Dependencia/listadoDependencia.html.twig', array(
+                    'limite' => $limit,
                     'dependencias' => $dependencias,
                     'maxPages' => $maxPages,
                     'totalItems' => $totalItems,
@@ -110,35 +117,23 @@ class DependenciaController extends Controller {
     }
 
     /**
-     * @Route("dependencia/archivar/{id}", name="deshabilitar_dependencia")
+     * @Route("dependencia/archivar/{id}", name="baja_dependencia")
      */
     public function archivarAction(Request $request, $id) {
 
         $em = $this->getDoctrine()->getEntityManager();
-        $dependencia = $em->getRepository("AppBundle:Dependencia")->find($id);
+        $dependencia = $em->getRepository("AppBundle:Dependencia")->findByDependencia($id);
 
-        $dependencia->setEstado(null);
-
-        $em->persist($dependencia);
-        $flush = $em->flush();
-
-        return $this->redirectToRoute('listado_dependencia', ["currentPage" => 1]);
-    }
-
-    /**
-     * @Route("dependencia/alta/{id}", name="alta_dependencia")
-     */
-    public function altaAction(Request $request, $id) {
-
-        $em = $this->getDoctrine()->getEntityManager();
-        $dependencia = $em->getRepository("AppBundle:Dependencia")->find($id);
-
-        // $em->remove($mesaentrada);
-
-        $dependencia->setEstado('HABILITADO');
+        $dependencia->setFechaBaja(new \DateTime('now'));
 
         $em->persist($dependencia);
         $flush = $em->flush();
+
+        if (!$flush) {
+            $this->addFlash('success', 'La dependencia se borró exitosamente.');
+        } else {
+            $this->addFlash('danger', 'La dependencia no se ha podido borrar porque ocurrió un error.');
+        }
 
         return $this->redirectToRoute('listado_dependencia', ["currentPage" => 1]);
     }
@@ -149,17 +144,24 @@ class DependenciaController extends Controller {
     public function editPersonaAction(Request $request, $id) {
 
         $em = $this->getDoctrine()->getEntityManager();
-        $dependencia = $em->getRepository("AppBundle:Dependencia")->find($id);
+        $dependencia = $em->getRepository("AppBundle:Dependencia")->findByDependencia($id);
 
         $form = $this->createForm(DependenciaType::class, $dependencia, ['gestion' => 'Administrador']);
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $em->persist($dependencia);
+                $flush = $em->flush();
 
-            $em->persist($dependencia);
-            $em->flush();
+                if (!$flush) {
+                    $this->addFlash('success', 'La dependencia se modificó exitosamente.');
+                } else {
+                    $this->addFlash('danger', 'La dependencia no se ha podido borrar porque ocurrió un error.');
+                }
 
-            return $this->redirectToRoute('listado_dependencia', ["currentPage" => 1]);
+                return $this->redirectToRoute('listado_dependencia', ["currentPage" => 1]);
+            }
         }
 
         // replace this example code with whatever you need

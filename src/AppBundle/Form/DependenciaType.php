@@ -34,7 +34,8 @@ class DependenciaType extends AbstractType
                     "class"=>'AppBundle:Dependencia',
                     'query_builder' => function(EntityRepository $er ) {
                         return $er->createQueryBuilder('w')
-                                        ->where('w.estado IS NOT NULL');
+                                        ->where('w.fechaBaja IS NULL')
+                                        ->orderBy('w.descripcion', 'ASC');;
                     },
                     "attr"=>[
                         "label"=>false,

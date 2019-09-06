@@ -17,22 +17,19 @@ class ExpedienteRepository extends \Doctrine\ORM\EntityRepository {
         $qb = $this->getEntityManager()->createQueryBuilder('e');
         $result = $qb->select('e')
                 ->from('AppBundle:Expediente', 'e')
-                ->where("e.estado <>'ASOCIADO'");           
+                ->where("e.estado <>'ASOCIADO'")
+                ->andWhere('e.fechaBaja IS NULL');
         if ($padre_id != null) {
             $result->andWhere('e.id != :expediente_padre_id')
                     ->setParameter('expediente_padre_id', $padre_id);
         }
         if ($user->getRole() != "ROLE_ADMIN") {
-            $result->leftJoin(\AppBundle\Entity\Ubicacion::class, "u", "WITH",
-                            "e.ubicacionActual = u.id")
-                    ->andWhere('e.fechaBaja IS NULL')
+            $result->leftJoin(\AppBundle\Entity\Ubicacion::class, "u", "WITH", "e.ubicacionActual = u.id")
                     ->andWhere('u.dependencia= :dependencia')
                     ->setParameter('dependencia', $user->getPersona()->getDependencia());
         } else {
-            $result->innerJoin(\AppBundle\Entity\Ubicacion::class, "u", "WITH",
-                            "e.ubicacionActual = u.id")
-                    ->innerJoin(\AppBundle\Entity\Dependencia::class, "d", "WITH",
-                            "u.dependencia = d.id");
+            $result->innerJoin(\AppBundle\Entity\Ubicacion::class, "u", "WITH", "e.ubicacionActual = u.id")
+                    ->innerJoin(\AppBundle\Entity\Dependencia::class, "d", "WITH", "u.dependencia = d.id");
         }
         return $result;
     }
@@ -40,8 +37,21 @@ class ExpedienteRepository extends \Doctrine\ORM\EntityRepository {
     public function createExpedienteFastFilterQuery() {
         $qb = $this->getEntityManager()->createQueryBuilder('e');
         $result = $qb->select('e')
-                ->from('AppBundle:Expediente', 'e');
+                ->from('AppBundle:Expediente', 'e')
+                 ->where('e.fechaBaja IS NULL');
         return $result;
+    }
+
+    public function findByExpediente($expediente) {
+        $qb = $this->getEntityManager()->createQueryBuilder('e');
+        $result = $qb->select('e')
+                ->from(\AppBundle\Entity\Expediente::class, 'e')
+                ->where('e.id = :expediente')
+                ->andWhere('e.fechaBaja IS NULL')
+                ->setParameter('expediente', $expediente);
+
+        $expediente = $result->getQuery()->getResult();
+        return $expediente[0];
     }
 
 }

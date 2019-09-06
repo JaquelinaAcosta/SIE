@@ -42,6 +42,7 @@ class ComposerStaticInitf7b6897739164129fd02333276a42b47
             'Symfony\\Bridge\\PhpUnit\\' => 23,
             'Symfony\\Bridge\\Monolog\\' => 23,
             'Symfony\\Bridge\\Doctrine\\' => 24,
+            'SimpleThings\\EntityAudit\\' => 25,
             'Sensio\\Bundle\\GeneratorBundle\\' => 30,
             'Sensio\\Bundle\\FrameworkExtraBundle\\' => 35,
             'Sensio\\Bundle\\DistributionBundle\\' => 33,
@@ -160,6 +161,10 @@ class ComposerStaticInitf7b6897739164129fd02333276a42b47
         'Symfony\\Bridge\\Doctrine\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/symfony/src/Symfony/Bridge/Doctrine',
+        ),
+        'SimpleThings\\EntityAudit\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/simplethings/entity-audit-bundle/src/SimpleThings/EntityAudit',
         ),
         'Sensio\\Bundle\\GeneratorBundle\\' => 
         array (

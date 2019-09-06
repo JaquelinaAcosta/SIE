@@ -1757,6 +1757,60 @@
         "description": "A security checker for your composer.lock"
     },
     {
+        "name": "simplethings/entity-audit-bundle",
+        "version": "v1.0.9",
+        "version_normalized": "1.0.9.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/simplethings/EntityAuditBundle.git",
+            "reference": "5725ecab2d132288842d9a075d1a8662520829c5"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/simplethings/EntityAuditBundle/zipball/5725ecab2d132288842d9a075d1a8662520829c5",
+            "reference": "5725ecab2d132288842d9a075d1a8662520829c5",
+            "shasum": ""
+        },
+        "require": {
+            "doctrine/dbal": "~2.5",
+            "doctrine/orm": "~2.4",
+            "php": "^5.3.9|~7.0"
+        },
+        "conflict": {
+            "doctrine/dbal": "2.7.0",
+            "doctrine/doctrine-bundle": "<1.4",
+            "gedmo/doctrine-extensions": "<2.3.1",
+            "symfony/framework-bundle": "<2.7"
+        },
+        "require-dev": {
+            "doctrine/doctrine-bundle": "~1.4",
+            "fabpot/php-cs-fixer": "^1.11",
+            "gedmo/doctrine-extensions": "^2.3.1",
+            "matthiasnoback/symfony-dependency-injection-test": "^1.0",
+            "phpunit/phpunit": "^4.8",
+            "symfony/framework-bundle": "~2.7|~3.0",
+            "symfony/var-dumper": "^2.7"
+        },
+        "time": "2018-04-10T08:14:31+00:00",
+        "type": "symfony-bundle",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "SimpleThings\\EntityAudit\\": "src/SimpleThings/EntityAudit"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "LGPL-2.1"
+        ],
+        "description": "Audit for Doctrine Entities",
+        "keywords": [
+            "Audit",
+            "database",
+            "persistence"
+        ]
+    },
+    {
         "name": "swiftmailer/swiftmailer",
         "version": "v5.4.12",
         "version_normalized": "5.4.12.0",

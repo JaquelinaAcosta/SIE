@@ -15,22 +15,31 @@ class LugarFisicoRepository extends \Doctrine\ORM\EntityRepository {
     public function createLugarFilter($user) {
         $qb = $this->getEntityManager()->createQueryBuilder('l');
         $result = $qb->select('l')
-                ->from('AppBundle:LugarFisico', 'l');
+                ->from('AppBundle:LugarFisico', 'l')
+                ->innerJoin(\AppBundle\Entity\Ubicacion::class, "u", "WITH", "l.id = u.id")
+                ->innerJoin(\AppBundle\Entity\Dependencia::class, "d", "WITH", "l.dependencia = d.id")
+                ->where('u.fechaBaja IS NULL');
         if ($user->getRole() != "ROLE_ADMIN") {
             $result
-                    ->innerJoin(\AppBundle\Entity\Ubicacion::class, "u", "WITH",
-                            "l.id = u.id")
                     ->where('l.dependencia= :dependencia')
                     ->setParameter('dependencia', $user->getPersona()->getDependencia());
-        } else {
-            $result
-                    ->innerJoin(\AppBundle\Entity\Ubicacion::class, "u", "WITH",
-                            "l.id = u.id")
-                    ->innerJoin(\AppBundle\Entity\Dependencia::class, "d", "WITH",
-                            "l.dependencia = d.id");
         }
 
         return $result;
+    }
+
+    public function findByLugar($lugarfisico) {
+        $qb = $this->getEntityManager()->createQueryBuilder('l');
+        $result = $qb->select('l')
+                ->from(\AppBundle\Entity\LugarFisico::class, 'l')
+                ->innerJoin(\AppBundle\Entity\Ubicacion::class, "u", "WITH", "l.id=u.id")
+                ->where('l.id = :lugarfisico')
+                ->andWhere('u.fechaBaja IS NULL')
+                ->addOrderBy('l.tipo', 'ASC')
+                ->setParameter('lugarfisico', $lugarfisico);
+
+        $lugarfisico = $result->getQuery()->getResult();
+        return $lugarfisico[0];
     }
 
 }

@@ -4,10 +4,6 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Doctrine\Common\Collections\ArrayCollection;
-
-use Symfony\Component\Validator\Context\ExecutionContextInterface;
-use Symfony\Component\Validator\Constraints\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -16,8 +12,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="usuario")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UsuarioRepository")
  */
-class Usuario implements UserInterface
-{
+class Usuario implements UserInterface {
+
     /**
      * @var int
      *
@@ -33,21 +29,21 @@ class Usuario implements UserInterface
      * @ORM\Column(name="iup", type="string", length=255)
      */
     private $iup;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="contrasenia", type="string", length=255)
      */
     private $contrasenia;
-    
-     /**
+
+    /**
      * @var string
      *
      * @ORM\Column(name="saved_password", type="string", length=255)
      */
     private $saved_password;
-    
+
     /**
      * @var string
      *
@@ -70,92 +66,112 @@ class Usuario implements UserInterface
      */
     private $persona;
 
-    
     /**
-    * @ORM\OneToMany(targetEntity="Responsable",mappedBy="usuario")
-    */
+     * @ORM\OneToMany(targetEntity="Responsable",mappedBy="usuario")
+     */
     private $responsables;
-    
-    
+
     /**
-    * @ORM\OneToMany(targetEntity="Resolucion",mappedBy="usuario")
-    */
+     * @ORM\OneToMany(targetEntity="Resolucion",mappedBy="usuario")
+     */
     private $resolucion;
-    
-    
-    
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     * @Assert\Date()
+     */
+    protected $fechaBaja;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="fecha_alta", type="datetime",nullable=true)
+     *
+     */
+    private $fechaAlta;
+
+    /**
+     * @var datetime
+     *
+     * @ORM\Column(name="fecha_ultima_modificacion", type="datetime",nullable=true)
+     *
+     */
+    private $fechaUltimaModificacion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="usuario_ultima_modificacion", type="string",length=255,nullable=true)
+     *
+     */
+    private $usuarioUltimaModificacion;
+
     public function __toString() {
-       return $this->persona->getApellido().", ".$this->persona->getNombre();
+        return $this->persona->getApellido() . ", " . $this->persona->getNombre();
     }
-    
-        /**
+
+    /**
      * Constructor
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->responsable = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
+
     //AUTENTICACION PARA LOGIN
-  
-    function loadUserByUsername($username){
 
-        $qb = $this->createQueryBuilder('u') ;
-        return 
-        $qb->select('u')
-        ->where(
-            $qb->expr()->orx(
-                $qb->expr()->like('u.iup' ,':username') ,
-                $qb->expr()->like('u.email' ,':username')
-            )
-        )
-        //->andWhere($qb->expr()->eq('u.enabled' ,'true') )
-        ->setParameters(array('username' =>$username ) )        
-        ->getQuery()
-        ->getResult() ;                  
+    function loadUserByUsername($username) {
+
+        $qb = $this->createQueryBuilder('u');
+        return
+                        $qb->select('u')
+                        ->where(
+                                $qb->expr()->orx(
+                                        $qb->expr()->like('u.iup', ':username'), $qb->expr()->like('u.email', ':username')
+                                )
+                        )
+                        //->andWhere($qb->expr()->eq('u.enabled' ,'true') )
+                        ->setParameters(array('username' => $username))
+                        ->getQuery()
+                        ->getResult();
     }
 
-    function refreshUser(UserInterface $user){
-        return $this->loadUserByUsername($user->getUsername() );
+    function refreshUser(UserInterface $user) {
+        return $this->loadUserByUsername($user->getUsername());
     }
 
-    function supportsClass($class){
+    function supportsClass($class) {
         return $class === 'My\UserBundle\Entity\User';
     }
-      
-    
+
     public function getUsername() {
         return $this->iup;
     }
-    
+
     public function getSalt() {
         return null;
     }
 
-
-    public function getRoles(){
+    public function getRoles() {
         return array($this->getRole());
     }
-    
+
     public function eraseCredentials() {
         
     }
-    
+
     public function getPassword() {
-        return $this->contrasenia;;
+        return $this->contrasenia;
+        ;
     }
 
-
     //FIN AUTENTICACION PARA LOGIN
-    
-    
+
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -166,8 +182,7 @@ class Usuario implements UserInterface
      *
      * @return Usuario
      */
-    public function setIup($iup)
-    {
+    public function setIup($iup) {
         $this->iup = $iup;
 
         return $this;
@@ -178,22 +193,19 @@ class Usuario implements UserInterface
      *
      * @return string
      */
-    public function getIup()
-    {
+    public function getIup() {
         return $this->iup;
     }
-    
-    
+
     /**
      * Get contrasenia
      *
      * @return string
      */
-    public function getContrasenia()
-    {
+    public function getContrasenia() {
         return $this->contrasenia;
     }
-    
+
     /**
      * Set contrasenia
      *
@@ -201,8 +213,7 @@ class Usuario implements UserInterface
      *
      * @return Usuario
      */
-    public function setContrasenia($contrasenia)
-    {
+    public function setContrasenia($contrasenia) {
         $this->contrasenia = $contrasenia;
 
         return $this;
@@ -213,11 +224,10 @@ class Usuario implements UserInterface
      *
      * @return string
      */
-    public function getEmail()
-    {
+    public function getEmail() {
         return $this->email;
     }
-    
+
     /**
      * Set email
      *
@@ -225,13 +235,11 @@ class Usuario implements UserInterface
      *
      * @return Usuario
      */
-    public function setEmail($email)
-    {
+    public function setEmail($email) {
         $this->email = $email;
 
         return $this;
     }
-
 
     /**
      * Set role
@@ -240,8 +248,7 @@ class Usuario implements UserInterface
      *
      * @return Usuario
      */
-    public function setRole($role)
-    {
+    public function setRole($role) {
         $this->role = $role;
 
         return $this;
@@ -252,11 +259,10 @@ class Usuario implements UserInterface
      *
      * @return string
      */
-    public function getRole()
-    {
+    public function getRole() {
         return $this->role;
     }
-   
+
     /**
      * Set persona
      *
@@ -264,8 +270,7 @@ class Usuario implements UserInterface
      *
      * @return Usuario
      */
-    public function setPersona($persona)
-    {
+    public function setPersona($persona) {
         $this->persona = $persona;
 
         return $this;
@@ -276,11 +281,9 @@ class Usuario implements UserInterface
      *
      * @return int
      */
-    public function getPersona()
-    {
+    public function getPersona() {
         return $this->persona;
     }
-
 
     /**
      * Add responsable
@@ -289,8 +292,7 @@ class Usuario implements UserInterface
      *
      * @return Usuario
      */
-    public function addResponsable(\AppBundle\Entity\Responsable $responsable)
-    {
+    public function addResponsable(\AppBundle\Entity\Responsable $responsable) {
         $this->responsable[] = $responsable;
 
         return $this;
@@ -301,8 +303,7 @@ class Usuario implements UserInterface
      *
      * @param \AppBundle\Entity\Responsable $responsable
      */
-    public function removeResponsable(\AppBundle\Entity\Responsable $responsable)
-    {
+    public function removeResponsable(\AppBundle\Entity\Responsable $responsable) {
         $this->responsable->removeElement($responsable);
     }
 
@@ -311,8 +312,7 @@ class Usuario implements UserInterface
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getResponsable()
-    {
+    public function getResponsable() {
         return $this->responsable;
     }
 
@@ -323,8 +323,7 @@ class Usuario implements UserInterface
      *
      * @return Usuario
      */
-    public function addResolucion(\AppBundle\Entity\Resolucion $resolucion)
-    {
+    public function addResolucion(\AppBundle\Entity\Resolucion $resolucion) {
         $this->resolucion[] = $resolucion;
 
         return $this;
@@ -335,8 +334,7 @@ class Usuario implements UserInterface
      *
      * @param \AppBundle\Entity\Resolucion $resolucion
      */
-    public function removeResolucion(\AppBundle\Entity\Resolucion $resolucion)
-    {
+    public function removeResolucion(\AppBundle\Entity\Resolucion $resolucion) {
         $this->resolucion->removeElement($resolucion);
     }
 
@@ -345,8 +343,7 @@ class Usuario implements UserInterface
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getResolucion()
-    {
+    public function getResolucion() {
         return $this->resolucion;
     }
 
@@ -355,8 +352,7 @@ class Usuario implements UserInterface
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getResponsables()
-    {
+    public function getResponsables() {
         return $this->responsables;
     }
 
@@ -367,8 +363,7 @@ class Usuario implements UserInterface
      *
      * @return Usuario
      */
-    public function setSavedPassword($savedPassword)
-    {
+    public function setSavedPassword($savedPassword) {
         $this->saved_password = $savedPassword;
 
         return $this;
@@ -379,39 +374,129 @@ class Usuario implements UserInterface
      *
      * @return string
      */
-    public function getSavedPassword()
-    {
+    public function getSavedPassword() {
         return $this->saved_password;
     }
-    
+
     /**
      * @Assert\IsTrue(message="La clave debe tener al menos 6 caracteres,
      * No puede tener más de 16 caracteres, 
      * Debe tener al menos una letra minúscula y una mayúscula, 
      * Debe tener al menos un caracter numérico")
      */
-    public function getValidarPassword(){
-        if(strlen($this->contrasenia) < 6){
-           // La clave debe tener al menos 6 caracteres
-           return false;
+    public function getValidarPassword() {
+        if (strlen($this->contrasenia) < 6) {
+            // La clave debe tener al menos 6 caracteres
+            return false;
         }
-        if(strlen(($this->contrasenia)) > 16){
-           // La clave no puede tener más de 16 caracteres
-           return false;
+        if (strlen(($this->contrasenia)) > 16) {
+            // La clave no puede tener más de 16 caracteres
+            return false;
         }
-        if (!preg_match('`[a-z]`',$this->contrasenia)){
-           // La clave debe tener al menos una letra minúscula
-           return false;
+        if (!preg_match('`[a-z]`', $this->contrasenia)) {
+            // La clave debe tener al menos una letra minúscula
+            return false;
         }
-        if (!preg_match('`[A-Z]`',$this->contrasenia)){
-           // La clave debe tener al menos una letra mayúscula
-           return false;
+        if (!preg_match('`[A-Z]`', $this->contrasenia)) {
+            // La clave debe tener al menos una letra mayúscula
+            return false;
         }
-        if (!preg_match('`[0-9]`',$this->contrasenia)){
-           // La clave debe tener al menos un caracter numérico
-           return false;
+        if (!preg_match('`[0-9]`', $this->contrasenia)) {
+            // La clave debe tener al menos un caracter numérico
+            return false;
         }
-        
+
         return true;
-     } 
+    }
+
+    /**
+     * Set fechaAlta
+     *
+     * @param \DateTime $fechaAlta
+     *
+     * @return Usuario
+     */
+    public function setFechaAlta($fechaAlta) {
+        $this->fechaAlta = $fechaAlta;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaAlta
+     *
+     * @return \DateTime
+     */
+    public function getFechaAlta() {
+        return $this->fechaAlta;
+    }
+
+    /**
+     * Set fechaUltimaModificacion
+     *
+     * @param \DateTime $fechaUltimaModificacion
+     *
+     * @return Usuario
+     */
+    public function setFechaUltimaModificacion($fechaUltimaModificacion) {
+        $this->fechaUltimaModificacion = $fechaUltimaModificacion;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaUltimaModificacion
+     *
+     * @return \DateTime
+     */
+    public function getFechaUltimaModificacion() {
+        return $this->fechaUltimaModificacion;
+    }
+
+    /**
+     * Set usuarioUltimaModificacion
+     *
+     * @param string $usuarioUltimaModificacion
+     *
+     * @return Usuario
+     */
+    public function setUsuarioUltimaModificacion($usuarioUltimaModificacion) {
+        $this->usuarioUltimaModificacion = $usuarioUltimaModificacion;
+
+        return $this;
+    }
+
+    /**
+     * Get usuarioUltimaModificacion
+     *
+     * @return string
+     */
+    public function getUsuarioUltimaModificacion() {
+        return $this->usuarioUltimaModificacion;
+    }
+
+
+    /**
+     * Set fechaBaja
+     *
+     * @param \DateTime $fechaBaja
+     *
+     * @return Usuario
+     */
+    public function setFechaBaja($fechaBaja)
+    {
+        $this->fechaBaja = $fechaBaja;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaBaja
+     *
+     * @return \DateTime
+     */
+    public function getFechaBaja()
+    {
+        return $this->fechaBaja;
+    }
 }
