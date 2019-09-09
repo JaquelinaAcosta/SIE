@@ -136,6 +136,7 @@ class ConfigController extends Controller {
             $mesaentrada = new MesaEntrada();
             $mesaentrada->setCodigoExpediente('Sin codigo asignado');
             $mesaentrada->setDependencia($dependencia);
+            $mesaentrada->setTelefono('Sin Teléfono Asignado');
             $dependencia->setMesaentrada($mesaentrada);
             $lastUbicacion = $em->getRepository('AppBundle:Ubicacion')->findOneBy(array(), array('id' => 'DESC'), 0, 1);
             $mesaentrada->setId($lastUbicacion->getId() + 1);

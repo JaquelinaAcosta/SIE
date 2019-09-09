@@ -35,9 +35,9 @@ class ExpedienteAsociado {
     private $expedienteAsociado;
 
     /**
-     * @var string
+     * @var datetime
      *
-     * @ORM\Column(name="fecha", type="string",length=255)
+     * @ORM\Column(name="fecha", type="datetime",length=255)
      */
     private $fecha;
 
@@ -78,9 +78,6 @@ class ExpedienteAsociado {
      */
     private $usuarioUltimaModificacion;
 
-    public function __toString() {
-        return $this->expedientePadre->getNroExpediente();
-    }
 
     /**
      * Get id

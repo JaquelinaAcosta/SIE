@@ -2,8 +2,6 @@
 
 namespace AppBundle\Repository;
 
-
-
 /**
  * PersonaRepository
  *
@@ -21,6 +19,7 @@ class PersonaRepository extends \Doctrine\ORM\EntityRepository {
                                 ->like('n.nombre', $qb->expr()
                                         ->literal('%' . $term . '%')))
                         ->andWhere('u.fechaBaja IS NULL')
+                                 ->andWhere('n.id <> 1038')
                         ->setMaxResults(10)->getQuery()->getResult();
         return $result;
     }
@@ -34,6 +33,7 @@ class PersonaRepository extends \Doctrine\ORM\EntityRepository {
                         ->where('u.dependencia = :dependencia')
                         ->andWhere('e.ubicacionActual != u.id')
                         ->andWhere('u.fechaBaja IS NULL')
+                        ->andWhere('n.id <> 1038')
                         ->andWhere($qb->expr()
                                 ->like('n.nombre', $qb->expr()
                                         ->literal('%' . $term . '%')))
@@ -43,7 +43,7 @@ class PersonaRepository extends \Doctrine\ORM\EntityRepository {
         return $result;
     }
 
-    public function createPersonaFilter() {
+    public function createPersonaFilter($dependencia = null) {
         $qb = $this->getEntityManager()->createQueryBuilder('p');
         $result = $qb->select('p')
                 ->from(\AppBundle\Entity\Persona::class, 'p')
@@ -51,6 +51,12 @@ class PersonaRepository extends \Doctrine\ORM\EntityRepository {
                 ->innerJoin(\AppBundle\Entity\Dependencia::class, "d", "WITH", "u.dependencia=d.id")
                 ->where('u.fechaBaja IS NULL')
                 ->addOrderBy('p.apellido', 'ASC');
+        if ($dependencia != null) {
+            $result->andWhere('d.id = :dependencia')
+                             ->andWhere('p.id <> 1038')
+                    ->setParameter('dependencia', $dependencia);
+        }
+
 
         return $result;
     }
@@ -63,7 +69,7 @@ class PersonaRepository extends \Doctrine\ORM\EntityRepository {
                 ->where('p.id = :persona')
                 ->andWhere('u.fechaBaja IS NULL')
                 ->addOrderBy('p.apellido', 'ASC')
-                ->setParameter('persona',$persona);
+                ->setParameter('persona', $persona);
 
         $persona = $result->getQuery()->getResult();
         return $persona[0];

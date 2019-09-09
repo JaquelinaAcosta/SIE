@@ -124,16 +124,16 @@
 
 
                             <div class="help-block with-errors">
-                                {{ form_errors(formExpedienteFilter.fechaCarga) }}
+                                {{ form_errors(formExpedienteFilter.fechaInicio) }}
                             </div>
-                            <div class="threecol col-lg-2">            
-                                {{ form_row(formExpedienteFilter.fechaCarga.left_date, { 'id': 'date1' })}} 
-                                {{ form_widget(formExpedienteFilter.fechaCarga.left_date) }}
+                            <div class="threecol col-lg-3">            
+                                {{ form_row(formExpedienteFilter.fechaInicio.left_date, { 'id': 'date1' })}} 
+                                {{ form_widget(formExpedienteFilter.fechaInicio.left_date) }}
 
                             </div>   
-                            <div class="threecol col-lg-2">
-                                {{ form_row(formExpedienteFilter.fechaCarga.right_date, { 'id': 'date2' })}} 
-                                {{ form_widget(formExpedienteFilter.fechaCarga.right_date) }}
+                            <div class="threecol col-lg-3">
+                                {{ form_row(formExpedienteFilter.fechaInicio.right_date, { 'id': 'date2' })}} 
+                                {{ form_widget(formExpedienteFilter.fechaInicio.right_date) }}
                             </div>
                         </div>
                         <hr/>
@@ -149,12 +149,14 @@
             </div>
 
             {% for message in app.flashes('success') %}
+                <hr/>
                 <div class="alert alert-success">
                     {{ message }}
                 </div>
             {% endfor %}
 
             {% for message in app.flashes('danger') %}
+                <hr/>
                 <div class="alert alert-danger">
                     {{ message }}
                 </div>
@@ -165,7 +167,7 @@
         </div>
 
         {% if expedientes|length >0 %}
-
+            <hr/>
             <div class="alert alert-info">
                 <i class="fas fa-search"></i> Resultados de la búsqueda: {{ expedientes|length }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 

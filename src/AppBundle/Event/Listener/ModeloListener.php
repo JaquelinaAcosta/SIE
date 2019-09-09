@@ -43,7 +43,7 @@ class ModeloListener {
             $entity->setUsuarioUltimaModificacion($user);
             // Instead of $em->flush() cos we're already in flush process
             $entityMetadata = $entityManager->getClassMetadata(get_class($entity));
-            $uow->recomputeSingleEntityChangeSet($entityMetadata, $entity);
+//            $uow->recomputeSingleEntityChangeSet($entityMetadata, $entity);
         }
     }
 

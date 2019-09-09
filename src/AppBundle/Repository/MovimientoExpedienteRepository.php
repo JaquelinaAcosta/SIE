@@ -16,10 +16,20 @@ class MovimientoExpedienteRepository extends \Doctrine\ORM\EntityRepository {
                 ->from(\AppBundle\Entity\MovimientoExpediente::class, 'm')
                 ->leftJoin(\AppBundle\Entity\Expediente::class, "e", "WITH", "m.expediente = e.id")
                 ->where('m.expediente = :expediente')
-//                                ->andWhere('w.id != :expediente_id')
+                ->andWhere('m.fechaBaja IS NULL')
                 ->setParameter('expediente', $expediente);
 
         return $result;
     }
-
+    
+    public function findByMovimiento($movimiento){       
+        $qb = $this->getEntityManager()->createQueryBuilder('m');
+        $result = $qb->select('m')
+                ->from(\AppBundle\Entity\MovimientoExpediente::class, 'm')
+                ->where('m.id = :movimiento')
+                ->andWhere('m.fechaBaja IS NULL')
+                ->setParameter('movimiento', $movimiento);
+        $movimiento = $result->getQuery()->getResult();
+        return $movimiento[0];       
+    }
 }

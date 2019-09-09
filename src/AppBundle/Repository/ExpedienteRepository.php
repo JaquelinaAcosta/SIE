@@ -38,7 +38,7 @@ class ExpedienteRepository extends \Doctrine\ORM\EntityRepository {
         $qb = $this->getEntityManager()->createQueryBuilder('e');
         $result = $qb->select('e')
                 ->from('AppBundle:Expediente', 'e')
-                 ->where('e.fechaBaja IS NULL');
+                ->where('e.fechaBaja IS NULL');
         return $result;
     }
 
@@ -51,7 +51,9 @@ class ExpedienteRepository extends \Doctrine\ORM\EntityRepository {
                 ->setParameter('expediente', $expediente);
 
         $expediente = $result->getQuery()->getResult();
-        return $expediente[0];
+        if (count($expediente) > 0) {
+            return $expediente[0];
+        } 
     }
 
 }

@@ -39,7 +39,7 @@
             border-top-left-radius: 5px;
             border-top-right-radius: 5px;
         }
-        
+
         .pagination a {
             float: left;
             padding: 0 14px;
@@ -180,7 +180,7 @@
                         <th scope="col">ACCIONES</th>
                     </tr>
                 </thead>
-                
+
                 <tbody>
                     {% set count = 0 %}
                     {% for expediente_asoc in asociados %}
@@ -228,27 +228,15 @@
                                 {%endif%}
                             </td>
                         </tr>
-                    {% endfor %}
-                     {% if asociados|length < limite %}
-                    {% set filas_vacias = limite - asociados|length %}
-                    {% for i in totalItems..filas_vacias %}
-                        <tr>
-                            <td style="padding:23px;"></td>
-                            <td style="padding:23px;"></td>
-                            <td style="padding:23px;"></td>
-                            <td style="padding:23px;"></td>
-                            <td style="padding:23px;"></td>
-                        </tr>
-                    {% endfor %}
-                {%endif%}
+                    {% endfor %}                  
                 </tbody>
             </table>
 
         </div>
-                    
-                    
-                   
-     {#         -----Paginación-----              #}
+
+
+
+        {#         -----Paginación-----              #}
         {% set limite = 6 %}
         {% set extremos = 2 %}
 
@@ -284,8 +272,8 @@
             {%elseif thisPage == maxPages and thisPage != minRightRange%}
                 {%set maxLeftRange = maxPages%}
             {%endif%}
-            
-            
+
+
             {% for i in minLeftRange..maxLeftRange %}
                 <li class="page-item {{  i == thisPage ? 'active' : '' }}">
                     <a class="page-link"  href="{{ path('listado_asociado', {"id": padre_id, "currentPage": i}) }}">{{ i }}</a>

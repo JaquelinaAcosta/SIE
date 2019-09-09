@@ -210,11 +210,16 @@ class ExpedienteController extends Controller {
             $actualFecha = $em->getRepository('AppBundle:MovimientoExpediente')->findOneBy(
                             [
                         'ubicacion' => $expediente->getUbicacionActual()
-                            ], ['fecha' => 'DESC'], ['expediente' => $expediente])->getFecha()->format('d-m-Y');
+                            ], ['fecha' => 'DESC'], 
+                               ['expediente' => $expediente],
+                               ['fechaBaja' => 'IS NULL'])->getFecha()->format('d-m-Y');
             $ultimaFecha = $em->getRepository('AppBundle:MovimientoExpediente')->findOneBy(
                             [
                         'ubicacion' => $expediente->getUltimaUbicacion()
-                            ], ['fecha' => 'DESC'], ['expediente' => $expediente])->getFecha()->format('d-m-Y');
+                            ], 
+                               ['fecha' => 'DESC'], 
+                               ['expediente' => $expediente],
+                               ['fechaBaja' => 'IS NULL'])->getFecha()->format('d-m-Y');
         }
 
         $expedientes_asociados = $em->getRepository('AppBundle:ExpedienteAsociado')->findBy([
@@ -242,13 +247,17 @@ class ExpedienteController extends Controller {
     public function deleteAction(Request $request, $id) {
 
         $em = $this->getDoctrine()->getEntityManager();
-        $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
+        $expediente = $em->getRepository("AppBundle:Expediente")->findByExpediente($id);
         if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser())) {
             $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
             return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
         }
         $expediente->setFechaBaja(new \DateTime('now'));
-
+        
+//        foreach($expediente->getExpedientesAsociados()->getValues() as $expediente_asoc){
+//            $expediente_asoc->setFechaBaja(new \DateTime('now'));
+//        }
+        
         $em->persist($expediente);
         $flush = $em->flush();
 

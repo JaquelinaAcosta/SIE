@@ -72,7 +72,7 @@ class ExpedienteFilterType extends AbstractType implements EmbeddedFilterTypeInt
                 'class' => 'dig form-control',
             ]
         ));
-        $builder->add('fechaCarga', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\DateRangeFilterType', array(
+        $builder->add('fechaInicio', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\DateRangeFilterType', array(
             'label' => 'RANGO FECHA DE INICIO',
             'left_date_options' => array(
                 'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
@@ -83,7 +83,7 @@ class ExpedienteFilterType extends AbstractType implements EmbeddedFilterTypeInt
                 },
                 'widget' => 'single_text',
                 'format' => 'dd-MM-yyyy',
-                'label' => 'FECHA DESDE',
+                'label' => 'FECHA INICIO DESDE',
                 'attr' => array(
                     'class' => 'datepicker form-control',
                     'placeholder' => 'DD-MM-YYYY'
@@ -103,7 +103,7 @@ class ExpedienteFilterType extends AbstractType implements EmbeddedFilterTypeInt
                 },
                 'widget' => 'single_text',
                 'format' => 'dd-MM-yyyy',
-                'label' => 'FECHA HASTA',
+                'label' => 'FECHA INICIO HASTA',
                 'attr' => array(
                     'class' => 'datepicker form-control',
                     'placeholder' => 'DD-MM-YYYY'

@@ -10,4 +10,15 @@ namespace AppBundle\Repository;
  */
 class ResolucionRepository extends \Doctrine\ORM\EntityRepository
 {
+        public function findByResolucion($resolucion){       
+        $qb = $this->getEntityManager()->createQueryBuilder('r');
+        $result = $qb->select('r')
+                ->from(\AppBundle\Entity\Resolucion::class, 'r')
+                ->where('r.id = :resolucion')
+                ->andWhere('r.fechaBaja IS NULL')
+                ->setParameter('resolucion', $resolucion);
+        $resolucion_resu = $result->getQuery()->getResult();
+        return $resolucion_resu[0];       
+    }
+    
 }

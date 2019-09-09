@@ -51,9 +51,9 @@ class Resolucion {
     private $observacion;
 
     /**
-     * @var string
+     * @var datetime
      *
-     * @ORM\Column(name="fecha_resolucion", type="string",length=255)
+     * @ORM\Column(name="fecha_resolucion", type="datetime",length=255)
      */
     private $fechaResolucion;
 

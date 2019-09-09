@@ -107,7 +107,7 @@ class Usuario implements UserInterface {
     private $usuarioUltimaModificacion;
 
     public function __toString() {
-        return $this->persona->getApellido() . ", " . $this->persona->getNombre();
+        return $this->iup." - ".$this->persona;
     }
 
     /**
@@ -129,6 +129,7 @@ class Usuario implements UserInterface {
                                         $qb->expr()->like('u.iup', ':username'), $qb->expr()->like('u.email', ':username')
                                 )
                         )
+                        ->andWhere('u.fechaBaja IS NULL')
                         //->andWhere($qb->expr()->eq('u.enabled' ,'true') )
                         ->setParameters(array('username' => $username))
                         ->getQuery()

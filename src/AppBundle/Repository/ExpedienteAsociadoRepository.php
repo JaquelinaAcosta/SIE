@@ -18,9 +18,22 @@ class ExpedienteAsociadoRepository extends \Doctrine\ORM\EntityRepository
                         "ea.expedienteAsociado=e.id")
                 ->innerJoin(\AppBundle\Entity\Tema::class, "t", "WITH",
                         "e.tema=t.id")
-                ->where("ea.expedientePadre = :expediente_padre")
+                ->where('ea.fechaBaja IS NULL')
+                ->andWhere("ea.expedientePadre = :expediente_padre")
                 ->setParameter('expediente_padre',$expediente);
 
         return $result;
     }
+    
+        public function findByAsociado($asociado){       
+        $qb = $this->getEntityManager()->createQueryBuilder('ea');
+        $result = $qb->select('ea')
+                ->from(\AppBundle\Entity\ExpedienteAsociado::class, 'ea')
+                ->where('ea.id = :asociado')
+                ->andWhere('ea.fechaBaja IS NULL')
+                ->setParameter('asociado', $asociado);
+        $exp_asociado = $result->getQuery()->getResult();
+        return $exp_asociado[0];       
+    }
+    
 }

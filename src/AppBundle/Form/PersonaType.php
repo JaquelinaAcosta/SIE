@@ -66,7 +66,8 @@ class PersonaType extends AbstractType {
                     "placeholder" => "--Seleccione--",
                     'query_builder' => function (EntityRepository $er) {
                         return $er->createQueryBuilder('d')
-                                        ->where("d.fechaBaja IS NULL");
+                                        ->where("d.fechaBaja IS NULL")
+                                        ->addOrderBy('d.descripcion','ASC');
                     },
                     "class" => 'AppBundle:Dependencia', "attr" => array(
                         "class" => "form-control"

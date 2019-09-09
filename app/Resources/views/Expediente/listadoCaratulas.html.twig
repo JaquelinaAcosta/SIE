@@ -173,18 +173,7 @@
                                 {% set count=count+1 %}                     
                             {%endif%}
                     </tr>
-
                 {% endfor %}
-                {% if caratulas|length < limite %}
-                    {% set filas_vacias = limite - caratulas|length %}
-                    {% for i in totalItems..filas_vacias %}
-                        <tr>
-                            <td style="padding:23px;"></td>
-                            <td style="padding:23px;"></td>
-                            <td style="padding:23px;"></td>
-                        </tr>
-                    {% endfor %}
-                {%endif%}
             </tbody>
 
         </table>

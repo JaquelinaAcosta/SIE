@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Entity\Persona;
 use AppBundle\Form\PersonaType;
 use AppBundle\Form\PersonaFilterType;
+use AppBundle\Form\PersonalFilterType;
 use Symfony\Component\Validator\Constraints\DateTime;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -167,7 +168,76 @@ class PersonaController extends Controller {
                     'formPersonaFilter' => $formPersonaFilter->createView()
         ));
     }
+    
+    /**
+     * @Route("/personal/listado/{currentPage}", name="listado_personal")
+     */
+    public function listaPersonalAction(Request $request, $currentPage) {
+        $em = $this->getDoctrine()->getEntityManager();
 
+        $limit = 15;
+        $totalItems = 0;
+        $maxPages = 0;
+        $personas = array();
+
+        $formPersonaFilter = $this->createForm(PersonalFilterType::class);
+        $formPersonaFilter->handleRequest($request);
+        if ($formPersonaFilter->isSubmitted() == false && $this->get('session')->get('personal_listar_request')) {
+            $formPersonaFilter->handleRequest($this->get('session')->get('personal_listar_request'));
+        }
+
+        if ($formPersonaFilter->isValid()) {
+            $filterBuilder = $em->getRepository('AppBundle:Persona')->createPersonaFilter(
+                    $this->getUser()->getPersona()->getDependencia());
+
+            $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($formPersonaFilter, $filterBuilder);
+            $totalItems = count($filterBuilder->getQuery()->getResult());
+
+            $filterBuilder->setFirstResult($limit * ($currentPage - 1));
+            $filterBuilder->setMaxResults($limit);
+
+            $paginator = new Paginator($filterBuilder, $fetchJoinCollection = true);
+            $personas = $paginator->getQuery()->getResult();
+            $maxPages = ceil($totalItems / $limit);
+        } else {
+            $personas_repo = $em->getRepository('AppBundle:Persona')->createPersonaFilter(
+                    $this->getUser()->getPersona()->getDependencia());
+            $totalItems = count($personas_repo->getQuery()->getResult());
+            $personas_repo->setFirstResult($limit * ($currentPage- 1));
+            $personas_repo->setMaxResults($limit);
+            $paginator = new Paginator($personas_repo, $fetchJoinCollection = true);
+            $personas = $paginator->getQuery()->getResult();
+            $maxPages = (count($personas) > 0) ? $maxPages = ceil($totalItems / $limit) : $maxPages = 1;
+        }
+
+        if ($formPersonaFilter->get('reset')->isClicked()) {
+            $this->get('session')->remove('personal_listar_request');
+            return $this->redirectToRoute('listado_personal', ['currentPage' => 1]);
+        }
+
+        if ($formPersonaFilter->get('filter')->isClicked()) {
+            $personaListarFilterRequest = $request->request->get('personal_filter');
+            unset($personaListarFilterRequest['filter']);
+
+            $request->request->set('personal_filter', $personaListarFilterRequest);
+            $request->request->set('currentPage', 1);
+            $this->get('session')->set('personal_listar_request', $request);
+            if ($request->get('currentPage') > $maxPages) {
+                return $this->redirectToRoute('listado_personal', ['currentPage' => 1]);
+            }
+        }
+
+        return $this->render('Ubicacion/listadoPersonal.html.twig', array(
+                    'limite' => $limit,
+                    'personas' => $personas,
+                    'maxPages' => $maxPages,
+                    'totalItems' => $totalItems,
+                    'thisPage' => $currentPage,
+                    'page' => $currentPage,
+                    'formPersonaFilter' => $formPersonaFilter->createView()
+        ));
+    }
+    
     /**
      * @Route("persona/delete/{id}", name="eliminar_persona")
      */
@@ -199,15 +269,24 @@ class PersonaController extends Controller {
     }
 
     /**
-     * @Route("/gestionar/persona_responsbles/{id}", name="gestionar_persona_responsables")
+     * @Route("/gestionar/persona_responsables/{id}", name="gestionar_persona_responsables")
      */
     public function personaGestionarResponsblesAction(Request $request, $id) {
         $em = $this->getDoctrine()->getEntityManager();
         $persona = $em->getRepository("AppBundle:Persona")->findByPersona($id);
-        if (!$this->get("app.util")->VerificarPersona($persona, $this->getUser())) {
+        $modo = $request->query->get('modo');
+        if($modo == 'personal'){
+               if (!$this->get("app.util")->VerificarPersonal($persona, $this->getUser())) {
+            $this->addFlash('danger', 'Usted no tiene acceso a esta persona.');
+            return $this->redirectToRoute('listado_personal',["currentPage" => 1]);
+        }
+    }else{
+         if (!$this->get("app.util")->VerificarPersona($persona, $this->getUser())) {
             $this->addFlash('danger', 'Usted no tiene acceso a esta persona.');
             return $this->redirectToRoute('busqueda_expediente');
         }
+    }
+       
         $original_responsables = new ArrayCollection();
 
         $form = $this->createForm(\AppBundle\Form\PersonaResponsablesType::class, $persona, ['dependencia_id' => $persona->getDependencia()->getId()]);

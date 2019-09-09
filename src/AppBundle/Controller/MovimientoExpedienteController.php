@@ -10,7 +10,6 @@ use AppBundle\Entity\Expediente;
 use AppBundle\Form\MovimientoExpedienteFilterType;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use AppBundle\Form\MovimientoExpedienteType;
-use Doctrine\Common\Collections\ArrayCollection;
 
 class MovimientoExpedienteController extends Controller {
 
@@ -19,7 +18,7 @@ class MovimientoExpedienteController extends Controller {
      */
     public function indexMovimientoAction(Request $request, $id) {
         $em = $this->getDoctrine()->getEntityManager();
-        $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
+        $expediente = $em->getRepository("AppBundle:Expediente")->findByExpediente($id);
         
         if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser())) {
             $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
@@ -55,7 +54,7 @@ class MovimientoExpedienteController extends Controller {
     public function internoAction(Request $request, $id) {
         $em = $this->getDoctrine()->getEntityManager();
         $movimientoExpediente = new MovimientoExpediente();
-        $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
+        $expediente = $em->getRepository("AppBundle:Expediente")->findByExpediente($id);
         if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser())) {
             $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
             return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
@@ -69,9 +68,7 @@ class MovimientoExpedienteController extends Controller {
                 $persona = $form['persona']->getData();
                 $movimientoExpediente->setTipoSalida('Interno');
                 $movimientoExpediente->setExpediente($expediente);
-                $fechaHoy = date("d-m-Y");
-                $date = \DateTime::createFromFormat('d-m-Y', $fechaHoy);
-                $movimientoExpediente->setFecha($date);
+                $movimientoExpediente->setFecha(new \DateTime('now'));
                 $movimientoExpediente->setUbicacion($persona);
                 foreach ($expediente->getExpedientesAsociados()->getValues() as $expediente_asoc) {
                     $expediente_asoc->getExpedienteAsociado()->setUltimaUbicacion($expediente_asoc
@@ -104,7 +101,7 @@ class MovimientoExpedienteController extends Controller {
     public function externoAction(Request $request, $id) {
         $em = $this->getDoctrine()->getEntityManager();
         $movimientoExpediente = new MovimientoExpediente();
-        $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
+        $expediente = $em->getRepository("AppBundle:Expediente")->findByExpediente($id);
         if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser())) {
             $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
             return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
@@ -124,15 +121,11 @@ class MovimientoExpedienteController extends Controller {
             if ($form->isValid()) {
                 $movimientoExpediente->setUsuario($this->getUser()->getIup());
                 $mesaentrada = $em->getRepository("AppBundle:Dependencia")
-                                ->find($form['mesaentrada']
-                                        ->getData()->getDependencia()
-                                        ->getId())->getMesaentrada();
-
+                                ->findByDependencia($form['mesaentrada']->getData()->getDependencia())
+                                ->getMesaentrada();
                 $movimientoExpediente->setTipoSalida('Externo');
                 $movimientoExpediente->setExpediente($expediente);
-                $fechaHoy = date("d-m-Y");
-                $date = \DateTime::createFromFormat('d-m-Y', $fechaHoy);
-                $movimientoExpediente->setFecha($date);
+                $movimientoExpediente->setFecha(new \DateTime('now'));
                 $movimientoExpediente->setUbicacion($mesaentrada);
                 foreach ($expediente->getExpedientesAsociados()->getValues() as $expediente_asoc) {
                     $expediente_asoc->getExpedienteAsociado()->setUltimaUbicacion($expediente_asoc
@@ -170,7 +163,7 @@ class MovimientoExpedienteController extends Controller {
     public function archivadoAction(Request $request, $id) {
         $em = $this->getDoctrine()->getEntityManager();
         $movimientoExpediente = new MovimientoExpediente();
-        $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
+        $expediente = $em->getRepository("AppBundle:Expediente")->findByExpediente($id);
         if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser())) {
             $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
             return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
@@ -182,12 +175,10 @@ class MovimientoExpedienteController extends Controller {
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
                 $movimientoExpediente->setUsuario($this->getUser()->getIup());
-                $lugarfisico = $em->getRepository("AppBundle:LugarFisico")->find($form['lugarfisico']['tipo']->getData()->getId());
+                $lugarfisico = $em->getRepository("AppBundle:LugarFisico")->findByLugar($form['lugarfisico']['tipo']->getData()->getId());
                 $movimientoExpediente->setTipoSalida('Archivado');
                 $movimientoExpediente->setExpediente($expediente);
-                $fechaHoy = date("d-m-Y");
-                $date = \DateTime::createFromFormat('d-m-Y', $fechaHoy);
-                $movimientoExpediente->setFecha($date);
+                $movimientoExpediente->setFecha(new \DateTime('now'));
                 $movimientoExpediente->setUbicacion($lugarfisico);
                 foreach ($expediente->getExpedientesAsociados()->getValues() as $expediente_asoc) {
 
@@ -223,7 +214,7 @@ class MovimientoExpedienteController extends Controller {
      */
     public function listaMovimientoAction(Request $request, $id, $currentPage) {
         $em = $this->getDoctrine()->getEntityManager();
-        $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
+        $expediente = $em->getRepository("AppBundle:Expediente")->findByExpediente($id);
         if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser(),true)) {
             $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
             return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
@@ -301,7 +292,7 @@ class MovimientoExpedienteController extends Controller {
     public function verMovimientoAction(Request $request, $id) {
 
         $em = $this->getDoctrine()->getEntityManager();
-        $movimiento = $em->getRepository("AppBundle:MovimientoExpediente")->find($id);
+        $movimiento = $em->getRepository("AppBundle:MovimientoExpediente")->findByMovimiento($id);
         if (!$this->get("app.util")->VerificarExpediente($movimiento->getExpediente(),
                 $this->getUser(),true)) {
             $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
@@ -319,7 +310,7 @@ class MovimientoExpedienteController extends Controller {
     public function editMovimientoAction(Request $request, $id) {
 
         $em = $this->getDoctrine()->getEntityManager();
-        $movimiento = $em->getRepository("AppBundle:MovimientoExpediente")->find($id);
+        $movimiento = $em->getRepository("AppBundle:MovimientoExpediente")->findByMovimiento($id);
         $expediente = $movimiento->getExpediente();
         if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser())) {
             $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
@@ -329,7 +320,8 @@ class MovimientoExpedienteController extends Controller {
         switch ($movimiento->getTipoSalida()) {
             case ('Externo'):
                 $movimiento->setMesaentrada($movimiento->getUbicacion());
-                $form = $this->createForm(MovimientoExpedienteType::class, $movimiento, ['pase' => 'externo']);
+                $form = $this->createForm(MovimientoExpedienteType::class, $movimiento, ['pase' => 'externo',
+                    'dependencia_id'=>$this->getUser()->getPersona()->getDependencia()]);
                 $form->handleRequest($request);
 
                 if ($form->isSubmitted()) {
@@ -420,21 +412,13 @@ class MovimientoExpedienteController extends Controller {
     public function deleteAction(Request $request, $id) {
 
         $em = $this->getDoctrine()->getEntityManager();
-        $movimiento = $em->getRepository("AppBundle:MovimientoExpediente")->find($id);
-
+        $movimiento = $em->getRepository("AppBundle:MovimientoExpediente")->findByMovimiento($id);
         if (!$this->get("app.util")->VerificarExpediente($movimiento->getExpediente(), $this->getUser())) {
             $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
             return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
         }
-
         $movimiento->getExpediente()->setUbicacionActual($movimiento->getExpediente()->getUltimaUbicacion());
-
-        // replace this example code with whatever you need
-        if (!$movimiento) {
-            throw $this->createNotFoundException('No element found for id ' . $id);
-        }
-
-        $em->remove($movimiento);
+        $movimiento->setFechaBaja(new \DateTime('now'));
         $flush = $em->flush();
         if ($flush == false) {
             $this->addFlash('success', 'Pase "' . $movimiento->getUbicacion() . '" eliminado correctamente.');

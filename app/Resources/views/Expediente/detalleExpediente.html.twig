@@ -147,17 +147,29 @@
                     {% if app.user.role == 'ROLE_ADMIN' or app.user.role == 'R0LE_RESPONSABLE' %}
                         <a href="{{ path('nueva_resolucion',{'id':expediente.id}) }}" 
                            class="btn btn-primary" 
-                           role="button">RESOLUCION</a>
+                           role="button">NUEVA RESOLUCIÓN</a>
                     {% endif  %}
                 {% else %}
                     <a href="{{ path('ver_resolucion',{'id':expediente.id}) }}" 
                        class="btn btn-primary" 
                        role="button">VER RESOLUCIÓN</a>
                 {% endif %}
-
-
-            </div>            
+            </div>    
+            
         </div>
+             {% for message in app.flashes('success') %}
+                    <hr/>
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+
+                {% for message in app.flashes('danger') %}
+                     <hr/>
+                    <div class="alert alert-danger">
+                        {{ message }}
+                    </div>
+                {% endfor %}
     </div>
     <script>
 

@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Form\CaratulaAgregadaFilterType;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class CaratulaAgregadaController extends Controller {
 
@@ -19,7 +20,7 @@ class CaratulaAgregadaController extends Controller {
         $em = $this->getDoctrine()->getEntityManager();
         $caratulaAgregada = new CaratulaAgregada();
 
-        $expediente = $em->getRepository("AppBundle:Expediente")->find($id);
+        $expediente = $em->getRepository("AppBundle:Expediente")->findByExpediente($id);
 
         if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser())) {
 
@@ -56,18 +57,25 @@ class CaratulaAgregadaController extends Controller {
     public function deleteAction(Request $request, $id) {
 
         $em = $this->getDoctrine()->getEntityManager();
-        $caratula = $em->getRepository("AppBundle:CaratulaAgregada")->find($id);
+        $caratula = $em->getRepository("AppBundle:CaratulaAgregada")->findByCaratula($id);
 
         if (!$this->get("app.util")->VerificarExpediente($caratula->getExpediente(), $this->getUser())) {
             $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
             return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
         }
 
-
-        $em->remove($caratula);
+        $caratula->setFechaBaja(new \DateTime('now'));
         $flush = $em->flush();
 
-        return $this->redirectToRoute('ver_expediente', ['id' => $caratula->getExpediente()->getId()]);
+        if ($flush == false) {
+            $this->addFlash('success', 'Caratula eliminada correctamente.');
+        } else {
+            $this->addFlash('success', 'Hubo un problema al intentar borrar la caratula.');
+        }
+
+
+        return $this->redirectToRoute('listado_caratula', ['id' => $caratula->getExpediente()->getId(),
+                    'currentPage' => 1]);
     }
 
     /**
@@ -76,7 +84,7 @@ class CaratulaAgregadaController extends Controller {
     public function editCaratulaAction(Request $request, $id) {
 
         $em = $this->getDoctrine()->getEntityManager();
-        $caratulaAgregada = $em->getRepository("AppBundle:CaratulaAgregada")->find($id);
+        $caratulaAgregada = $em->getRepository("AppBundle:CaratulaAgregada")->findByCaratula($id);
 
         if (!$this->get("app.util")->VerificarExpediente($caratulaAgregada->getExpediente(), $this->getUser())) {
             $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
@@ -92,9 +100,17 @@ class CaratulaAgregadaController extends Controller {
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
                 $em->persist($caratulaAgregada);
-                $em->flush();
+                $flush = $em->flush();
+
+                if ($flush == false) {
+                    $this->addFlash('success', 'Caratula editada correctamente.');
+                } else {
+                    $this->addFlash('success', 'Hubo un problema al intentar editar la caratula.');
+                }
+
+                return $this->redirectToRoute('listado_caratula', ['id' => $caratula->getExpediente()->getId(),
+                            'currentPage' => 1]);
             }
-            return $this->redirectToRoute('ver_expediente', ['id' => $expediente->getId()]);
         }
 
         // replace this example code with whatever you need
@@ -112,8 +128,8 @@ class CaratulaAgregadaController extends Controller {
     public function listaCaratulaAction(Request $request, $id, $currentPage) {
         $em = $this->getDoctrine()->getEntityManager();
 
-        $expediente = $em->getRepository('AppBundle:Expediente')->find($id);
-        if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser(),true)) {
+        $expediente = $em->getRepository('AppBundle:Expediente')->findByExpediente($id);
+        if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser(), true)) {
             $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
             return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
         }
@@ -143,7 +159,7 @@ class CaratulaAgregadaController extends Controller {
             $paginator = new Paginator($filterBuilder, $fetchJoinCollection = true);
             $caratulas = $paginator->getQuery()->getResult();
             $maxPages = ceil($totalItems / $limit);
-        }else {
+        } else {
             $caratulas_repo = $em->getRepository('AppBundle:CaratulaAgregada')
                     ->createCaratulaFilterQuery($expediente);
             $totalItems = count($caratulas_repo->getQuery()->getResult());
@@ -151,7 +167,7 @@ class CaratulaAgregadaController extends Controller {
             $caratulas_repo->setMaxResults($limit);
             $paginator = new Paginator($caratulas_repo, $fetchJoinCollection = true);
             $caratulas = $paginator->getQuery()->getResult();
-            $maxPages = (count($caratulas) > 0)?  $maxPages = ceil($totalItems / $limit):$maxPages=1;
+            $maxPages = (count($caratulas) > 0) ? $maxPages = ceil($totalItems / $limit) : $maxPages = 1;
         }
 
         if ($formCaratulaAgregadaFilter->get('reset')->isClicked()) {
@@ -172,14 +188,14 @@ class CaratulaAgregadaController extends Controller {
         }
 
         return $this->render('Expediente/listadoCaratulas.html.twig', array(
-                    'limite'=>$limit,
+                    'limite' => $limit,
                     'caratulas' => $caratulas,
                     'expediente' => $expediente,
                     'maxPages' => $maxPages,
                     'totalItems' => $totalItems,
                     'thisPage' => $currentPage,
                     'page' => $currentPage,
-                    'caratula'=>$id,
+                    'caratula' => $id,
                     'formCaratulaAgregadaFilter' => $formCaratulaAgregadaFilter->createView()
         ));
     }
@@ -190,9 +206,9 @@ class CaratulaAgregadaController extends Controller {
     public function detalleCaratulaAction(Request $request, $id) {
 
         $em = $this->getDoctrine()->getEntityManager();
-        $caratulaAgregada = $em->getRepository("AppBundle:CaratulaAgregada")->find($id);
-      
-        if (!$this->get("app.util")->VerificarExpediente($caratulaAgregada->getExpediente(), $this->getUser(),true)) {
+        $caratulaAgregada = $em->getRepository("AppBundle:CaratulaAgregada")->findByCaratula($id);
+
+        if (!$this->get("app.util")->VerificarExpediente($caratulaAgregada->getExpediente(), $this->getUser(), true)) {
             $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
             return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
         }

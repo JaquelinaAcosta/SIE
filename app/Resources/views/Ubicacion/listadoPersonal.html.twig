@@ -82,10 +82,9 @@
             <div class="card-header" id="headingOne">
                 <h2 class="mb-0">
                     <button class="btn btn-dark search" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        <i class="fas fa-search-plus"></i> Filtros de Búsqueda de Persona
+                        <i class="fas fa-search-plus"></i> Filtros de Búsqueda del Personal
                     </button>
-                    <a href="{{ path('nueva_persona') }}" 
-                       role="button" class="btn btn-info float-right">Nueva Persona</a>
+
 
                 </h2>
             </div>
@@ -95,14 +94,6 @@
                     <form method="post" novalidate="true" id="form_buscar">
                         {{ form_errors(formPersonaFilter) }}
                         <div class="row">
-                            <div class="threecol col-lg-6">
-                                {{ form_label(formPersonaFilter.dependencia, 'DEPENDENCIA') }}
-                                {{ form_widget(formPersonaFilter.dependencia) }}
-                                <div class="help-block with-errors">
-                                    {{ form_errors(formPersonaFilter.dependencia) }}
-                                </div>
-                            </div>
-                                <div class="col-lg-6"></div>
                             <div class="threecol col-lg-3">
                                 {{ form_label(formPersonaFilter.apellido, 'APELLIDO') }}
                                 {{ form_widget(formPersonaFilter.apellido) }}
@@ -166,9 +157,8 @@
                         <th scope="col">APELLIDO</th>
                         <th scope="col">NOMBRE</th>
                         <th scope="col">DNI</th>
-                        <th scope="col">CARGO</th>
-                        <th scope="col">DEPENDENCIA</th>
-                        <th scope="col">ACCIONES</th>
+                        <th class="text-center"scope="col">CARGO</th>
+                        <th class="text-center" scope="col">ACCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -178,53 +168,17 @@
                             <td class="text-default">{{persona.apellido|e }}</td>
                             <td class="text-default"><p>{{persona.nombre|e }}</p></td>
                             <td class="text-default">{{persona.dni|e }}</td>
-                            <td class="text-default">{{persona.cargo|e }}</td>
-                            <td class="text-default">{{persona.dependencia.descripcion|e }}</td>
+                            <td class="text-center">{{persona.cargo|e }}</td>
 
-                            <td> <a class="btn btn-warning" href="{{ path("editar_persona", {'id':persona.id}) }}"  role="button"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Editar"></i></a>
-
-
-                                {% set accion_responsable = false %}
-                                {% if app.user.role == 'ROLE_ADMIN' %}
-                                    {% set accion_responsable = true %}
-                                {% endif%}
-                                {% if persona.responsables|length>0%}
-                                    {% if persona.usuario != null and persona.responsables[0].usuario == app.user %}
-                                        {% set accion_responsable = true %}
-                                    {% endif %}
-                                {%endif%}
-                                {% if accion_responsable == true %}
-                                    <a class="btn btn-info" href="{{ path("gestionar_persona_responsables", {'id':persona.id}) }}"  role="button"><i class="fas fa-user" data-toggle="tooltip" data-placement="top" title="Responsables"></i></a>
-                                    {%endif%}
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{ count }}"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></button>    
-                                <!-- The Modal -->
-                                <div class="modal fade" id="myModal{{count}}">
-                                    <div class="modal-dialog modal-sm modal-dialog-centered">
-                                        <div class="modal-content">
-
-                                            <!-- Modal Header -->
-                                            <div class="modal-header-warning">
-                                                <button type="button" class="close text-danger" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                <h4 class="modal-title">Eliminar Persona</h4>
-                                            </div>
-
-                                            <!-- Modal body -->
-                                            <div class="modal-body">
-                                                ¿Desea Eliminar a {{persona.nombre}} {{ persona.apellido}}?
-                                            </div>
-                                            <!-- Modal footer -->
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary"><a class="text-type btn-primary"href="{{ path("eliminar_persona", {'id':persona.id}) }}"  role="button">Si</a></button>                          
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {% set count=count+1 %}
-                        </tr>             
-                    {% endfor %}
+                            {% set accion_responsable = false %}
+                            {% if app.user.role == 'ROLE_RESPONSABLE' %}
+                                {% set accion_responsable = true %}
+                            {% endif%}
+                            {% if accion_responsable == true %}
+                                <td class="text-center"><a class="btn btn-info" href="{{ path("gestionar_persona_responsables", {'id':persona.id,'modo':'personal'}) }}"  role="button">Gestionar Responsables</a></td>
+                        {%endif%}                                   
+                    </tr>             
+                {% endfor %}
                 </tbody>
             </table>
         {% endif %}    
@@ -259,7 +213,7 @@
 
 
         <div class="pagination">
-            <li><a class="page-link" href="{{ 0 < thisPage-1 ? path('listado_persona', {"currentPage": thisPage-1}) }}">Anterior</a></li>
+            <li><a class="page-link" href="{{ 0 < thisPage-1 ? path('listado_personal', {"currentPage": thisPage-1}) }}">Anterior</a></li>
 
             {%if thisPage == maxPages-1%}
                 {%set maxLeftRange = maxLeftRange-1%}
@@ -270,7 +224,7 @@
 
             {% for i in minLeftRange..maxLeftRange %}
                 <li class="page-item {{  i == thisPage ? 'active' : '' }}">
-                    <a class="page-link"  href="{{ path('listado_persona', {"currentPage": i}) }}">{{ i }}</a>
+                    <a class="page-link"  href="{{ path('listado_personal', {"currentPage": i}) }}">{{ i }}</a>
                 </li>
             {% endfor %}
 
@@ -283,7 +237,7 @@
                 {%endif%}
                 {% for i in extremoIzquierdo..extremoDerecho %}                    
                     <li class="page-item {{  i == thisPage ? 'active' : '' }}">
-                        <a class="page-link"  href="{{ path('listado_persona', {"currentPage": i}) }}">{{ i }}</a>
+                        <a class="page-link"  href="{{ path('listado_personal', {"currentPage": i}) }}">{{ i }}</a>
                     </li>                    
                 {% endfor %}
             {%endif%}
@@ -299,7 +253,7 @@
             {% if thisPage < maxPages-extremos%}
                 {% for i in minRightRange..maxRightRange %}                   
                     <li class="page-item">
-                        <a class="page-link"  href="{{ path('listado_persona', {"currentPage": i}) }}">{{ i }}</a>
+                        <a class="page-link"  href="{{ path('listado_personal', {"currentPage": i}) }}">{{ i }}</a>
                     </li>
                 {% endfor %}
             {%endif%}            
@@ -309,7 +263,7 @@
             {%else%}
                 {%set page= page+1%}
             {%endif%}
-            <li><a class="page-link" href="{{ path('listado_persona', {"currentPage": page}) }}">Siguiente</a></li>
+            <li><a class="page-link" href="{{ path('listado_personal', {"currentPage": page}) }}">Siguiente</a></li>
 
             </ul>
         </div>

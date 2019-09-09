@@ -1,0 +1,113 @@
+*{
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 13px;
+}
+.sidebar{
+    width:125px;
+    height:1200px;
+    background-color:#e3e3e3;
+    /* float:left  Removed*/
+    left:0; /* Added */
+    position: fixed;
+    border: #b3b3b3 .2px;
+    -webkit-box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.26);
+    -moz-box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.26);
+    box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.26);
+}
+.contentmain{
+    margin-top:30px;
+    margin-left:150px; /* Added */
+    margin-right:25px;
+
+}
+body{
+    background-color:#bfbfbf;
+    color:#616161;
+}
+.content{
+    margin:0 auto;
+    width:1000px;
+    background-color:#fafafa;
+
+    padding:30px;
+    -webkit-box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.26);
+    -moz-box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.26);
+    box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.26);
+}
+.filtro{
+    background-color: #e8e8e8;
+    padding:20px;
+}
+
+table{
+    color:#616161;
+}
+
+.right{
+    margin-left: auto;
+    margin-right: 0;
+
+}
+
+.card-header{
+    background-color:#3d3d3d;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+.card-body{
+    background-color:#f5f5f5;
+}
+.search{
+    outline: none;
+    border: 0;
+    box-shadow: none;
+    background-color: transparent;
+}
+table{
+    color:#616161;
+}
+
+
+.pull-left{
+    right: 0;
+    left: auto;
+    padding-left: 1px;
+    padding-right: 1px;
+
+}
+
+input[type=text]{
+    margin-bottom: 10px;
+    padding:10px;            
+}
+input[type=submit]{
+    margin-bottom: 10px;
+    padding:10px;            
+}
+.footer{
+  background: #3d3d3d;
+  color:white;
+  .links{
+    ul {list-style-type: none;}
+    li a{
+      color: white;
+      transition: color .2s;
+      &:hover{
+        text-decoration:none;
+        color:#4180CB;
+        }
+    }
+  }  
+  .about-company{
+    i{font-size: 25px;}
+    a{
+      color:white;
+      transition: color .2s;
+      &:hover{color:#4180CB}
+    }
+  } 
+  .location{
+    i{font-size: 18px;}
+  }
+  .copyright p{border-top:1px solid rgba(255,255,255,.1);} 
+}

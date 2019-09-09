@@ -25,7 +25,7 @@ class UsuarioController extends Controller {
 
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
-                if (count($em->getRepository("AppBundle:Usuario")->findBy(['iup' => $form['iup']->getData()])) == 0) {
+                if (!$em->getRepository("AppBundle:Usuario")->chequearIup($form['iup']->getData())) {
                     if ($usuario->getPersona()->getUsuario() == null) {
                         $factory = $this->get("security.encoder_factory");
                         $encoder = $factory->getEncoder($usuario);

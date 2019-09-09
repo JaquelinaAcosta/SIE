@@ -243,20 +243,7 @@
                                 <td><a class="btn btn-info" href="{{ path('ver_movimiento',{'id':movimiento.id}) }}"  role="button" title="Ver Detalle"><i class="fas fa-search"></i></a></td>
                                     {% endif %}
                         </tr>
-                    {% endfor %}
-                    {% if movimientos|length < limite %}
-                        {% set filas_vacias = limite - movimientos|length %}
-                        {% for i in totalItems..filas_vacias %}
-                            <tr>
-                                <td style="padding:23px;"></td>
-                                <td style="padding:23px;"></td>
-                                <td style="padding:23px;"></td>
-                                <td style="padding:23px;"></td>
-                                <td style="padding:23px;"></td>
-                                <td style="padding:23px;"></td>
-                            </tr>
-                        {% endfor %}
-                    {%endif%}
+                    {% endfor %}                  
                 </tbody>
             </table>
 

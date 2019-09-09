@@ -2,8 +2,54 @@
 
 {% block contentmain %}
 
+    <style>
+        label{
+            margin-top:6px;
+        }
+        .cod{
+            width:60px;
+
+        }
+        .num{
+            width:115px;
+            margin-left:-4px;
+        }
+        .dig{
+            width:35px;
+            margin-left:-32px;
+
+        }
+        .modal-header-warning {
+            color:#fff;
+            padding:9px 15px;
+            border-bottom:1px solid #eee;
+            background-color: #060325;
+            -webkit-border-top-left-radius: 5px;
+            -webkit-border-top-right-radius: 5px;
+            -moz-border-radius-topleft: 5px;
+            -moz-border-radius-topright: 5px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+
+        }
+
+    </style>
+
+
     <div class="content">
         <div class="row">
+            {% set accion_habilitada = false %}
+            {% if app.user.role == 'ROLE_ADMIN' %}
+                {% set accion_habilitada = true %}
+            {%else%}
+                {% for responsable in expediente.ubicacionActual.responsables.getValues %}
+                    {% if app.user == responsable.usuario %}
+                        {% set accion_habilitada = true %}
+                    {% endif %}
+                {%endfor%}
+            {% endif %}  
+
+
             <table class="table table-bordered"> 
                 <thead class="thead-dark">
                     <tr>
@@ -12,34 +58,66 @@
                     </tr>
 
                 </thead>
-                
+
                 <tbody>
-                        <tr>
-                            <th class="w-25">USUARIO</th>
-                            <td class="bg-white">{{ expediente.resolucion.usuario}}</td>
-                        </tr>
-                        <tr>
-                            <th class="w-25">NUMERO DE RESOLUCION</th>
-                            <td class="bg-white">{{ expediente.resolucion.numeroResolucion}}</td>
-                        </tr>
-                        <tr>
-                            <th class="w-25">TIPO</th>
-                            <td class="bg-white">{{ expediente.resolucion.tipo}}</td>
-                        </tr>
-                         <tr>
-                            <th class="w-25">OBSERVACION</th>
-                            <td class="bg-white">{{ expediente.resolucion.observacion}}</td>
-                        </tr>
-                        <tr>
-                            <th class="w-25">FECHA</th>
-                            <td class="bg-white">{{ expediente.resolucion.fechaResolucion}}</td>
-                        </tr>
-                    </tbody>
-                
+                    <tr>
+                        <th class="w-25">USUARIO</th>
+                        <td class="bg-white">{{ expediente.resolucion.usuario}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">NUMERO DE RESOLUCION</th>
+                        <td class="bg-white">{{ expediente.resolucion.numeroResolucion}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">TIPO</th>
+                        <td class="bg-white">{{ expediente.resolucion.tipo}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">OBSERVACION</th>
+                        <td class="bg-white">{{ expediente.resolucion.observacion}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">FECHA</th>
+                        <td class="bg-white">{{ expediente.resolucion.fechaResolucion|date('d-m-Y')}}</td>
+                    </tr>
+                </tbody>
+
                 <tfoot>
             </table>  
-        <button class="btn btn-secondary" type="button" onclick="history.back()"  role="button">Volver</button>
+            <hr/>
 
+            <button class="btn btn-secondary" type="button" onclick="history.back()"  role="button">Volver</button>
+            {% if accion_habilitada == true %}
+                <a href="{{path('editar_resolucion',{'id':expediente.resolucion.id})}}" class="btn btn-warning" type="button" role="button">Editar</a>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal">Eliminar</button>    
+
+
+                <!-- The Modal -->
+                <div class="modal fade" id="myModal">
+                    <div class="modal-dialog modal-sm modal-dialog-centered">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header-warning">
+                                <button type="button" class="close text-danger" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">Eliminar Resolucion</h4>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+                                ¿Está seguro de eliminar la Resolucion?
+
+                            </div>
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary"><a class="text-type btn-primary"href="{{ path("eliminar_resolucion", {'id':expediente.resolucion.id})  }}"  role="button">SI</a></button>                          
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            {%endif%}
         </div>
 
     </div>

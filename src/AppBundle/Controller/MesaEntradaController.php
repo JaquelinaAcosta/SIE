@@ -105,11 +105,10 @@ class MesaEntradaController extends Controller {
                 foreach ($original_responsables as $responsable) {
                     if (false === $mesaentrada->getResponsables()->contains($responsable)) {
                         $em->remove($responsable);
-                    } else {
-                        $responsable->getUsuario()->setRole('ROLE_RESPONSABLE');
                     }
                 }
                 foreach ($form['responsables']->getData() as $responsable) {
+                     $responsable->getUsuario()->setRole('ROLE_RESPONSABLE');
                     $responsable->setUbicacion($mesaentrada);
                 }
 
