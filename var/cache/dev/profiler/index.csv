@@ -303,3 +303,9 @@ df3aa6,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/dependencia/listado/1,
 6c8ec4,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/persona/listado/1,1568128263,,200
 956922,127.0.0.1,POST,http://localhost/SIE/web/app_dev.php/persona/listado/1,1568128275,,200
 20f7ab,127.0.0.1,POST,http://localhost/SIE/web/app_dev.php/persona/listado/1,1568128335,,200
+6cf6c4,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/dependencia/listado/1,1568128394,,200
+633c0a,127.0.0.1,POST,http://localhost/SIE/web/app_dev.php/dependencia/listado/1,1568128404,,302
+3f8b3e,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/dependencia/listado/1,1568128404,,200
+a9b22c,127.0.0.1,POST,http://localhost/SIE/web/app_dev.php/dependencia/listado/1,1568128407,,302
+5518dc,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/dependencia/listado/1,1568128407,,200
+09ed20,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/expediente/listado/1,1568128417,,200
