@@ -10,7 +10,6 @@ use AppBundle\Form\UsuarioType;
 use AppBundle\Form\UsuarioFilterType;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use AppBundle\Entity\Responsable;
-use Symfony\Component\Validator\Constraints\DateTime;
 
 class UsuarioController extends Controller {
 

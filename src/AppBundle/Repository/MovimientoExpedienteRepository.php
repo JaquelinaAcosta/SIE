@@ -21,8 +21,8 @@ class MovimientoExpedienteRepository extends \Doctrine\ORM\EntityRepository {
 
         return $result;
     }
-    
-    public function findByMovimiento($movimiento){       
+
+    public function findByMovimiento($movimiento) {
         $qb = $this->getEntityManager()->createQueryBuilder('m');
         $result = $qb->select('m')
                 ->from(\AppBundle\Entity\MovimientoExpediente::class, 'm')
@@ -30,6 +30,11 @@ class MovimientoExpedienteRepository extends \Doctrine\ORM\EntityRepository {
                 ->andWhere('m.fechaBaja IS NULL')
                 ->setParameter('movimiento', $movimiento);
         $movimiento = $result->getQuery()->getResult();
-        return $movimiento[0];       
+        if (count($movimiento) > 0) {
+            return $movimiento[0];
+        } else {
+            return null;
+        }
     }
+
 }

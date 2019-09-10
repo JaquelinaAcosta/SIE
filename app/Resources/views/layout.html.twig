@@ -119,7 +119,7 @@
                             <a href="{{ path('listado_personal',{'currentPage':1}) }}" class="list-group-item list-group-item-action text-center">
                                 <i class="fas fa-male" style="font-size:27px; margin:0 auto;"></i>
                                 <br/>
-                                Personas
+                                Personal
                             </a>
                         {%endif%}
                         <a href="{{ path('listado_mesaentrada',{'currentPage':1}) }}" class="list-group-item list-group-item-action text-center">
@@ -155,39 +155,6 @@
 
                 </div>
             </header>
-            <div class="mt-5 pt-5 pb-5 footer" style="margin-left:125px;">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-5 col-xs-12 about-company">
-                            <h4>Sistema de Gestion Interna de Expedientes</h4>
-                            <p class="pr-5 text-white-50">Por cualquier inquietud, consultar al administrador del sistema.</p>
-                            <p><a href="#"><i class="fa fa-facebook-square mr-1"></i></a><a href="#"><i class="fa fa-linkedin-square"></i></a></p>
-                        </div>
-                        <div class="col-lg-3 col-xs-12 links">
-                            <h4 class="mt-lg-0 mt-sm-3">Otras paginas de la Dirección Provincial de Vialidad</h4>
-                            <ul class="m-0 p-0">
-                                <li>- <a href="#">Lorem ipsum</a></li>
-                                <li>- <a href="#">Nam mauris velit</a></li>
-                                <li>- <a href="#">Etiam vitae mauris</a></li>
-                                <li>- <a href="#">Fusce scelerisque</a></li>
-                                <li>- <a href="#">Sed faucibus</a></li>
-                                <li>- <a href="#">Mauris efficitur nulla</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-lg-4 col-xs-12 location">
-                            <h4 class="mt-lg-0 mt-sm-4">Location</h4>
-                            <p>22, Lorem ipsum dolor, consectetur adipiscing</p>
-                            <p class="mb-0"><i class="fa fa-phone mr-3"></i>(541) 754-3010</p>
-                            <p><i class="fa fa-envelope-o mr-3"></i>info@hsdf.com</p>
-                        </div>
-                    </div>
-                    <div class="row mt-5">
-                        <div class="col copyright">
-                            <p class=""><small class="text-white-50">© 2019. All Rights Reserved.</small></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
         {% else %}
             <div class="login">
                 {% block login %}

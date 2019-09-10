@@ -61,7 +61,11 @@ class UsuarioRepository extends \Doctrine\ORM\EntityRepository {
                 ->setParameter('usuario', $usuario);
 
         $usuario = $result->getQuery()->getResult();
-        return $usuario[0];
+        if (count($usuario) > 0) {
+            return $usuario[0];
+        } else {
+            return null;
+        }
     }
 
 }

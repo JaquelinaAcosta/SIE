@@ -14,18 +14,16 @@ class CaratulaAgregadaRepository extends \Doctrine\ORM\EntityRepository {
         $qb = $this->getEntityManager()->createQueryBuilder('c');
         $result = $qb->select('c')
                 ->from('AppBundle:CaratulaAgregada', 'c')
-                ->innerJoin(\AppBundle\Entity\Expediente::class, "e", "WITH",
-                        "c.expediente=e.id")
-                ->innerJoin(\AppBundle\Entity\Tema::class, "t", "WITH",
-                        "c.tema=t.id")
+                ->innerJoin(\AppBundle\Entity\Expediente::class, "e", "WITH", "c.expediente=e.id")
+                ->innerJoin(\AppBundle\Entity\Tema::class, "t", "WITH", "c.tema=t.id")
                 ->where('c.fechaBaja IS NULL')
                 ->andWhere('e.id = :expediente')
                 ->setParameter('expediente', $expediente);
 
         return $result;
     }
-    
-     public function findByCaratula($caratula){       
+
+    public function findByCaratula($caratula) {
         $qb = $this->getEntityManager()->createQueryBuilder('c');
         $result = $qb->select('c')
                 ->from(\AppBundle\Entity\CaratulaAgregada::class, 'c')
@@ -33,7 +31,11 @@ class CaratulaAgregadaRepository extends \Doctrine\ORM\EntityRepository {
                 ->andWhere('c.fechaBaja IS NULL')
                 ->setParameter('caratula', $caratula);
         $caratula = $result->getQuery()->getResult();
-        return $caratula[0];        
+        if (count($caratula) > 0) {
+            return $caratula[0];
+        } else {
+            return null;
+        }
     }
-    
+
 }

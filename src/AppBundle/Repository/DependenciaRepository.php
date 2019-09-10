@@ -2,7 +2,6 @@
 
 namespace AppBundle\Repository;
 
-
 /**
  * DependenciaRepository
  *
@@ -30,7 +29,11 @@ class DependenciaRepository extends \Doctrine\ORM\EntityRepository {
                 ->setParameter('dependencia', $dependencia);
 
         $dependencia = $result->getQuery()->getResult();
-        return $dependencia[0];
+        if (count($dependencia) > 0) {
+            return $dependencia[0];
+        } else {
+            return null;
+        }
     }
 
 }

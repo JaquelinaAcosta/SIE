@@ -2,24 +2,7 @@
 
 
 {% block contentmain %}
-
     <style>
-        label{
-            margin-top:6px;
-        }
-        .cod{
-            width:60px;
-
-        }
-        .num{
-            width:115px;
-            margin-left:-4px;
-        }
-        .dig{
-            width:35px;
-            margin-left:-32px;
-
-        }
         .modal-header-warning {
             color:#fff;
             padding:9px 15px;
@@ -31,11 +14,8 @@
             -moz-border-radius-topright: 5px;
             border-top-left-radius: 5px;
             border-top-right-radius: 5px;
-
         }
-
     </style>
-
 
     <div class="content">
         <div class="accordion" id="accordionExample">
@@ -43,7 +23,7 @@
                 <div class="card-header" id="headingOne">
                     <h2 class="mb-0">
                         <button class="btn btn-dark search" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            <i class="fas fa-search-plus"></i> Filtros de Búsqueda de Expediente - {{ app.user.persona.dependencia }}
+                            <i class="fas fa-plus"></i> &ensp;Filtros de Búsqueda de Expediente ( Haga click aquí para expandir )
                         </button>
                         {% set accion_habilitada = false %}
                         {% if app.user.role == 'ROLE_ADMIN' %}

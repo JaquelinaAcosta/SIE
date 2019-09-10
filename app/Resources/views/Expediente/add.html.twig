@@ -47,20 +47,22 @@
             {{form_start(form,{'action':'','method':'POST'})}}
             <div class="filtro_panel"
                  <label class="text-default">Número de Expediente</label>
+                <div class=" text-danger">{{ form_errors(form.codigoExpediente) }}</div>
+                <div class=" text-danger">{{ form_errors(form.numeroExpediente) }}</div>
+                <div class=" text-danger">{{ form_errors(form.digitoExpediente) }}</div>
                 <div class="row">
                     <div class="cod col-lg-1">
                         <label class="exp text-default"></label>
-                        <div class=" text-danger">{{ form_errors(form.codigoExpediente) }}</div>
                         {{ form_widget(form.codigoExpediente) }}
                     </div>                   
                     <div class="num col-lg-2">
                         <label class="exp text-default"></label>
-                        <div class=" text-danger">{{ form_errors(form.numeroExpediente) }}</div>
+
                         {{ form_widget(form.numeroExpediente) }}
                     </div>
                     <div class="dig col-lg-1">
                         <label class="exp text-default"></label>
-                        <div class=" text-danger">{{ form_errors(form.digitoExpediente) }}</div>
+
                         {{ form_widget(form.digitoExpediente) }}
                     </div>
                 </div>
@@ -87,13 +89,12 @@
                     <div class="col-lg-4">
                         <label class="text-default">Fecha de Inicio</label>
                         <div class=" text-danger">{{ form_row(form.fechaInicio, { 'id': 'date1' })}} </div>
-                        {#                        {{ form_errors(form.fechaInicio) }}#}
                         {{ form_widget(form.fechaInicio) }}
                     </div>  
+                    {{ form_errors(form.fechaFin) }}
                     <div class="col-lg-4">
                         <label class="text-default">Fecha de Fin.</label>
                         {{ form_row(form.fechaFin, { 'id': 'date2' })}} 
-                        {{ form_errors(form.fechaFin) }}
                         {{ form_widget(form.fechaFin) }}
                     </div>                      
                 </div>

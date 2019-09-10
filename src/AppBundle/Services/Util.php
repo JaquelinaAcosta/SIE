@@ -6,6 +6,7 @@ use AppBundle\Entity\Expediente;
 use AppBundle\Entity\Persona;
 use AppBundle\Entity\LugarFisico;
 use AppBundle\Entity\Usuario;
+use AppBundle\Entity\MesaEntrada;
 
 class Util {
 
@@ -156,5 +157,29 @@ class Util {
             return true;
         }
     }
-
+    
+    public function VerificarMesaEntrada(MesaEntrada $mesaentrada=null, $usuario) {
+        //si la dependencia del usuario  no corresponde a la dependencia
+        //de la ubicacion actual del expediente, se retorna al listado.
+        if ($mesaentrada == null) {
+            return false;
+        }
+         if($mesaentrada != null && $mesaentrada->getFechaBaja() != null){
+             return false;
+        }       
+        if ($usuario->getRole() != 'ROLE_ADMIN') {
+            if ($usuario->getPersona()->getDependencia() != $mesaentrada->getDependencia()) {
+                return false;
+            } else {
+                if ($mesaentrada == $usuario->getPersona()->getDependencia()->getMesaentrada()) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        } else {
+            return true;
+        }
+    }
+    
 }

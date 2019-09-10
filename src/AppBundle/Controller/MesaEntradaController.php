@@ -14,7 +14,6 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
 
 class MesaEntradaController extends Controller {
 
-    
     /**
      * @Route("/mesaentrada/listado/{currentPage}", name="listado_mesaentrada")
      */
@@ -47,7 +46,7 @@ class MesaEntradaController extends Controller {
         } else {
             $mesa_repo = $em->getRepository('AppBundle:MesaEntrada')->createMesaentradaFilter();
             $totalItems = count($mesa_repo->getQuery()->getResult());
-            $mesa_repo->setFirstResult($limit * ($currentPage- 1));
+            $mesa_repo->setFirstResult($limit * ($currentPage - 1));
             $mesa_repo->setMaxResults($limit);
             $paginator = new Paginator($mesa_repo, $fetchJoinCollection = true);
             $mesaentradas = $paginator->getQuery()->getResult();
@@ -81,13 +80,17 @@ class MesaEntradaController extends Controller {
                     'formMesaentradaFilter' => $formMesaentradaFilter->createView()
         ));
     }
-    
+
     /**
      * @Route("/gestionar/mesa_entrada/{id}", name="gestionar_mesaentrada")
      */
     public function admGestionarAction(Request $request, $id) {
         $em = $this->getDoctrine()->getEntityManager();
         $mesaentrada = $em->getRepository("AppBundle:Dependencia")->findByDependencia($id)->getMesaentrada();
+        if (!$this->get("app.util")->VerificarMesaEntrada($mesaentrada, $this->getUser())) {
+            $this->addFlash('danger', 'Usted no tiene acceso a esta mesa de entrada.');
+            return $this->redirectToRoute('listado_mesaentrada', ['currentPage' => 1]);
+        }
 
         $original_responsables = new ArrayCollection();
 
@@ -108,18 +111,20 @@ class MesaEntradaController extends Controller {
                     }
                 }
                 foreach ($form['responsables']->getData() as $responsable) {
-                     $responsable->getUsuario()->setRole('ROLE_RESPONSABLE');
+                    $responsable->getUsuario()->setRole('ROLE_RESPONSABLE');
                     $responsable->setUbicacion($mesaentrada);
                 }
 
                 $em->persist($mesaentrada);
                 $flush = $em->flush();
-                
-                if(!$flush){
+
+                if (!$flush) {
                     $this->addFlash('success', 'Mesa de Entrada editada correctamente.');
-                }else{
+                } else {
                     $this->addFlash('danger', 'Mesa de Entrada editada correctamente.');
                 }
+                
+                return $this->redirectToRoute('listado_mesaentrada', ['currentPage' => 1]);
                 
             }
         }

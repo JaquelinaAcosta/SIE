@@ -19,7 +19,7 @@ class PersonaRepository extends \Doctrine\ORM\EntityRepository {
                                 ->like('n.nombre', $qb->expr()
                                         ->literal('%' . $term . '%')))
                         ->andWhere('u.fechaBaja IS NULL')
-                                 ->andWhere('n.id <> 1038')
+                        ->andWhere('n.id <> 1038')
                         ->setMaxResults(10)->getQuery()->getResult();
         return $result;
     }
@@ -53,7 +53,7 @@ class PersonaRepository extends \Doctrine\ORM\EntityRepository {
                 ->addOrderBy('p.apellido', 'ASC');
         if ($dependencia != null) {
             $result->andWhere('d.id = :dependencia')
-                             ->andWhere('p.id <> 1038')
+                    ->andWhere('p.id <> 1038')
                     ->setParameter('dependencia', $dependencia);
         }
 
@@ -72,7 +72,12 @@ class PersonaRepository extends \Doctrine\ORM\EntityRepository {
                 ->setParameter('persona', $persona);
 
         $persona = $result->getQuery()->getResult();
-        return $persona[0];
+
+        if (count($persona) > 0) {
+            return $persona[0];
+        } else {
+            return null;
+        }
     }
 
 }

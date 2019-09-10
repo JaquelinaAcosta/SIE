@@ -53,7 +53,9 @@ class ExpedienteRepository extends \Doctrine\ORM\EntityRepository {
         $expediente = $result->getQuery()->getResult();
         if (count($expediente) > 0) {
             return $expediente[0];
-        } 
+        } else{
+            return null;
+        }
     }
 
 }

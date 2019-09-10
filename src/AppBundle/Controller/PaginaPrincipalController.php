@@ -43,11 +43,13 @@ class PaginaPrincipalController extends Controller {
                     $actualFecha = $em->getRepository('AppBundle:MovimientoExpediente')->findOneBy(
                                     [
                                 'ubicacion' => $expedientes[0]->getUbicacionActual()
-                                    ], ['fecha' => 'DESC'], ['expediente' => $expedientes[0]])->getFecha()->format('d-m-Y');
+                                    ], ['fecha' => 'DESC'], ['expediente' => $expedientes[0],
+                                ['fechaBaja' => 'IS NULL']])->getFecha()->format('d-m-Y');
                     $ultimaFecha = $em->getRepository('AppBundle:MovimientoExpediente')->findOneBy(
                                     [
                                 'ubicacion' => $expedientes[0]->getUltimaUbicacion()
-                                    ], ['fecha' => 'DESC'], ['expediente' => $expedientes[0]])->getFecha()->format('d-m-Y');
+                                    ], ['fecha' => 'DESC'], ['expediente' => $expedientes[0],
+                                ['fechaBaja' => 'IS NULL']])->getFecha()->format('d-m-Y');
                 }
             }
         }
@@ -77,6 +79,11 @@ class PaginaPrincipalController extends Controller {
      * @Route("/login", name="loginUsuario")
      */
     public function loginAction(Request $request) {
+
+        if ($this->getUser() != null) {
+            return $this->redirectToRoute('busqueda_expediente');
+        }
+
         // Recupera el servicio de autenticación
         $authenticationUtils = $this->get('security.authentication_utils');
 

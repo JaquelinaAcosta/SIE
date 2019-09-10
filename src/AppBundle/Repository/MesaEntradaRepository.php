@@ -30,7 +30,11 @@ class MesaEntradaRepository extends \Doctrine\ORM\EntityRepository {
                 ->setParameter('mesaentrada', $mesaentrada);
 
         $mesaentrada = $result->getQuery()->getResult();
-        return $mesaentrada[0];
+         if (count($mesaentrada) > 0) {
+            return $mesaentrada[0];
+        } else {
+            return null;
+        }
     }
 
 }

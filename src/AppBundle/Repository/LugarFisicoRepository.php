@@ -39,7 +39,11 @@ class LugarFisicoRepository extends \Doctrine\ORM\EntityRepository {
                 ->setParameter('lugarfisico', $lugarfisico);
 
         $lugarfisico = $result->getQuery()->getResult();
-        return $lugarfisico[0];
+        if (count($lugarfisico) > 0) {
+            return $lugarfisico[0];
+        } else {
+            return null;
+        }
     }
 
 }
