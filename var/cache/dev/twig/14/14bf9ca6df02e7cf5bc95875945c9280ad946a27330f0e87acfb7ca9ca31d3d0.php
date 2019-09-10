@@ -247,7 +247,7 @@ class __TwigTemplate_1730990c3bdc6d2d20e9c6c9c36a954b9000b822939268071ad77e7e35b
             <div class=\"alert alert-info\">
                 <i class=\"fas fa-search\"></i> Resultados de la búsqueda: ";
             // line 103
-            echo twig_escape_filter($this->env, twig_length_filter($this->env, ($context["personas"] ?? $this->getContext($context, "personas"))), "html", null, true);
+            echo twig_escape_filter($this->env, ($context["totalItems"] ?? $this->getContext($context, "totalItems")), "html", null, true);
             echo " &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
             </div>
             <hr/>
@@ -786,7 +786,7 @@ class __TwigTemplate_1730990c3bdc6d2d20e9c6c9c36a954b9000b822939268071ad77e7e35b
         {% if personas|length >0 %}
             <hr/>
             <div class=\"alert alert-info\">
-                <i class=\"fas fa-search\"></i> Resultados de la búsqueda: {{ personas|length }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <i class=\"fas fa-search\"></i> Resultados de la búsqueda: {{ totalItems  }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
             </div>
             <hr/>
         {% else %}
