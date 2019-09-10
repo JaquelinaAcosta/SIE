@@ -419,6 +419,7 @@ class MovimientoExpedienteController extends Controller {
         }
         $movimiento->getExpediente()->setUbicacionActual($movimiento->getExpediente()->getUltimaUbicacion());
         $movimiento->setFechaBaja(new \DateTime('now'));
+         $this->get('session')->remove('movimiento_listar_request');
         $flush = $em->flush();
         if ($flush == false) {
             $this->addFlash('success', 'Pase "' . $movimiento->getUbicacion() . '" eliminado correctamente.');

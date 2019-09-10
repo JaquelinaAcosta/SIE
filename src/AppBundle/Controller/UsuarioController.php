@@ -205,7 +205,7 @@ class UsuarioController extends Controller {
         }
 
         $usuario->setFechaBaja(new \DateTime('now'));
-        
+        $this->get('session')->remove('usuario_listar_request');
         $flush = $em->flush();
 
         if ($flush == false) {

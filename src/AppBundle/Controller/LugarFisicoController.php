@@ -115,6 +115,7 @@ class LugarFisicoController extends Controller {
 
 
         $lugarfisico->setFechaBaja(new \DateTime('now'));
+        $this->get('session')->remove('lugarFisico_listar_request');
         $flush = $em->flush();
 
         if ($flush == false) {

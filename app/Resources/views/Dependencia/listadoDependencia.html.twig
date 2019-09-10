@@ -86,9 +86,20 @@
             </div>
         </div>
 
+        {% for message in app.flashes('success') %}
+            <hr/>
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
 
+        {% for message in app.flashes('danger') %}
+            <hr/>
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
         <hr/>
-
 
         <table class="table table-striped">
             <thead class="thead-dark">

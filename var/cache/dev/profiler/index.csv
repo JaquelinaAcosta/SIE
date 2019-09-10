@@ -248,3 +248,14 @@ e3e569,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/dependencia/listado/1,
 4f6cba,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/expediente/listado/1,1568114473,,500
 7d78af,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/expediente/listado/1,1568114490,,200
 fc63b6,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/expediente/listado/1,1568114934,,200
+d39912,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/expediente/listado/1,1568115742,,200
+1f1d42,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/logout,1568115752,,302
+e35ec7,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/login,1568115752,,200
+a3f52b,127.0.0.1,POST,http://localhost/SIE/web/app_dev.php/login_check,1568115757,,302
+e7859f,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/,1568115757,,200
+d6d227,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/expediente/listado/1,1568115759,,200
+2d4259,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/dependencia/listado/1,1568115762,,200
+a268da,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/dependencia/listado/3,1568115764,,200
+7a875e,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/dependencia/listado/2,1568115766,,200
+6135a3,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/dependencia/archivar/218,1568115772,,302
+48fe0c,127.0.0.1,GET,http://localhost/SIE/web/app_dev.php/dependencia/listado/1,1568115772,,200

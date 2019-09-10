@@ -65,6 +65,7 @@ class CaratulaAgregadaController extends Controller {
         }
 
         $caratula->setFechaBaja(new \DateTime('now'));
+         $this->get('session')->remove('caratula_listar_request');          
         $flush = $em->flush();
 
         if ($flush == false) {

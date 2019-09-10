@@ -36,8 +36,8 @@ class ExpedienteAsociadoController extends Controller {
         $expedienteAsociado->setExpedientePadre($expediente_padre);
         $expedienteAsociado->setExpedienteAsociado($expediente_asoc);
         $expedienteAsociado->setFecha(new \DateTime('now'));
-        
-        $expedienteAsociado->setOrdenAsociacion(count($expediente_padre->getExpedientesAsociados()->getValues())+1);
+
+        $expedienteAsociado->setOrdenAsociacion(count($expediente_padre->getExpedientesAsociados()->getValues()) + 1);
 
         $expediente_padre->getExpedientesAsociados()->add($expedienteAsociado);
 
@@ -70,6 +70,7 @@ class ExpedienteAsociadoController extends Controller {
                 ->findOneBy(['expedienteAsociado' => $id_asoc]);
 
         $expediente_asoc->getExpedienteAsociado()->setEstado('NUEVO');
+        $this->get('session')->remove('asociado_listar_request');
 //        $expediente_asoc->setFechaBaja(new \DateTime('now'));
         $em->remove($expediente_asoc);
         $em->persist($expediente);

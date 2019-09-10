@@ -125,7 +125,8 @@ class DependenciaController extends Controller {
         $dependencia = $em->getRepository("AppBundle:Dependencia")->findByDependencia($id);
 
         $dependencia->setFechaBaja(new \DateTime('now'));
-
+        $dependenciaListarFilterRequest = $request->request->get('dependencia_filter');
+        unset($dependenciaListarFilterRequest['filter']);
         $em->persist($dependencia);
         $flush = $em->flush();
 

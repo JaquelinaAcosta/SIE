@@ -123,12 +123,12 @@ class ExpedienteController extends Controller {
             $expedientes = $paginator->getQuery()->getResult();
             $maxPages = ceil($totalItems / $limit);
         } else {
-            
-             if ($asociado == false) {
+
+            if ($asociado == false) {
                 $expedientes_repo = $em->getRepository('AppBundle:Expediente')
                         ->createExpedienteFilterQuery($user);
             } else {
-                 $expedientes_repo = $em->getRepository('AppBundle:Expediente')
+                $expedientes_repo = $em->getRepository('AppBundle:Expediente')
                         ->createExpedienteFilterQuery($user, $padre_id);
             }
 
@@ -137,7 +137,7 @@ class ExpedienteController extends Controller {
             $expedientes_repo->setMaxResults($limit);
             $paginator = new Paginator($expedientes_repo, $fetchJoinCollection = true);
             $expedientes = $paginator->getQuery()->getResult();
-            $maxPages = (count($expedientes) > 0)?  $maxPages = ceil($totalItems / $limit):$maxPages=1;
+            $maxPages = (count($expedientes) > 0) ? $maxPages = ceil($totalItems / $limit) : $maxPages = 1;
         }
 
         if ($formExpedienteFilter->get('reset')->isClicked()) {
@@ -210,16 +210,11 @@ class ExpedienteController extends Controller {
             $actualFecha = $em->getRepository('AppBundle:MovimientoExpediente')->findOneBy(
                             [
                         'ubicacion' => $expediente->getUbicacionActual()
-                            ], ['fecha' => 'DESC'], 
-                               ['expediente' => $expediente],
-                               ['fechaBaja' => 'IS NULL'])->getFecha()->format('d-m-Y');
+                            ], ['fecha' => 'DESC'], ['expediente' => $expediente], ['fechaBaja' => 'IS NULL'])->getFecha()->format('d-m-Y');
             $ultimaFecha = $em->getRepository('AppBundle:MovimientoExpediente')->findOneBy(
                             [
                         'ubicacion' => $expediente->getUltimaUbicacion()
-                            ], 
-                               ['fecha' => 'DESC'], 
-                               ['expediente' => $expediente],
-                               ['fechaBaja' => 'IS NULL'])->getFecha()->format('d-m-Y');
+                            ], ['fecha' => 'DESC'], ['expediente' => $expediente], ['fechaBaja' => 'IS NULL'])->getFecha()->format('d-m-Y');
         }
 
         $expedientes_asociados = $em->getRepository('AppBundle:ExpedienteAsociado')->findBy([
@@ -253,11 +248,13 @@ class ExpedienteController extends Controller {
             return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
         }
         $expediente->setFechaBaja(new \DateTime('now'));
-        
+
+        $this->get('session')->remove('expediente_listar_request');
+       
 //        foreach($expediente->getExpedientesAsociados()->getValues() as $expediente_asoc){
 //            $expediente_asoc->setFechaBaja(new \DateTime('now'));
 //        }
-        
+
         $em->persist($expediente);
         $flush = $em->flush();
 

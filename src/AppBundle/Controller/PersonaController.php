@@ -256,7 +256,7 @@ class PersonaController extends Controller {
             $usuario->setFechaBaja(new \DateTime('now'));
         }
         $persona->setFechaBaja(new \DateTime('now'));
-
+        $this->get('session')->remove('persona_listar_request');
         $flush = $em->flush();
 
         if ($flush == false) {
