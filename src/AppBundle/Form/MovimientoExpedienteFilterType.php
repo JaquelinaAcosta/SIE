@@ -118,7 +118,7 @@ class MovimientoExpedienteFilterType extends AbstractType implements EmbeddedFil
      */
     public function getBlockPrefix()
     {
-        return 'lugarfisico_filter';
+        return 'movimiento_filter';
     }
 
 
