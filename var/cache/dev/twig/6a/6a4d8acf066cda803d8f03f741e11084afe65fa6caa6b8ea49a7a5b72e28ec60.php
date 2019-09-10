@@ -227,7 +227,7 @@ class __TwigTemplate_b16aceda9a74560a2d124bd300ae95b941b19609031d97cca7a1cd0b6ab
             <div class=\"alert alert-info\">
                 <i class=\"fas fa-search\"></i> Resultados de la búsqueda: ";
             // line 93
-            echo twig_escape_filter($this->env, twig_length_filter($this->env, ($context["lugarFisico"] ?? $this->getContext($context, "lugarFisico"))), "html", null, true);
+            echo twig_escape_filter($this->env, ($context["totalItems"] ?? $this->getContext($context, "totalItems")), "html", null, true);
             echo " &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
             </div>
             <hr/>
@@ -766,7 +766,7 @@ class __TwigTemplate_b16aceda9a74560a2d124bd300ae95b941b19609031d97cca7a1cd0b6ab
         {% if lugarFisico|length >0 %}
             <hr/>
             <div class=\"alert alert-info\">
-                <i class=\"fas fa-search\"></i> Resultados de la búsqueda: {{ lugarFisico|length }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <i class=\"fas fa-search\"></i> Resultados de la búsqueda: {{ totalItems  }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
             </div>
             <hr/>
         {% else %}

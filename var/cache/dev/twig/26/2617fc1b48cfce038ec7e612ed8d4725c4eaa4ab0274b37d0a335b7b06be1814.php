@@ -210,7 +210,7 @@ class __TwigTemplate_83522bc336ee22111023528b97a34507bc17ef6fff4e4806f0ca3910165
             <div class=\"alert alert-info\">
                 <i class=\"fas fa-search\"></i> Resultados de la búsqueda: ";
             // line 87
-            echo twig_escape_filter($this->env, twig_length_filter($this->env, ($context["mesaentradas"] ?? $this->getContext($context, "mesaentradas"))), "html", null, true);
+            echo twig_escape_filter($this->env, ($context["totalItems"] ?? $this->getContext($context, "totalItems")), "html", null, true);
             echo " &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
             </div>
             <hr/>
@@ -225,7 +225,7 @@ class __TwigTemplate_83522bc336ee22111023528b97a34507bc17ef6fff4e4806f0ca3910165
         }
         // line 96
         echo "
-        <hr/>
+       
             <table class=\"table table-striped\">
                 <thead class=\"thead-dark\">
                     <tr>
@@ -688,7 +688,7 @@ class __TwigTemplate_83522bc336ee22111023528b97a34507bc17ef6fff4e4806f0ca3910165
         {% if mesaentradas|length >0 %}
             <hr/>
             <div class=\"alert alert-info\">
-                <i class=\"fas fa-search\"></i> Resultados de la búsqueda: {{ mesaentradas|length }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <i class=\"fas fa-search\"></i> Resultados de la búsqueda: {{totalItems }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
             </div>
             <hr/>
         {% else %}
@@ -698,7 +698,7 @@ class __TwigTemplate_83522bc336ee22111023528b97a34507bc17ef6fff4e4806f0ca3910165
             <hr/>
         {%endif%}
 
-        <hr/>
+       
             <table class=\"table table-striped\">
                 <thead class=\"thead-dark\">
                     <tr>

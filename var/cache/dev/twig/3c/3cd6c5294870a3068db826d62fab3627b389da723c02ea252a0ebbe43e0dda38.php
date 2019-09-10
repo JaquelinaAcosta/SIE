@@ -357,7 +357,7 @@ class __TwigTemplate_68858000062feae2ca7461ef8e6b8dd6bd1d195b3e1616c5cba3662df09
             <div class=\"alert alert-info\">
                 <i class=\"fas fa-search\"></i> Resultados de la búsqueda: ";
             // line 152
-            echo twig_escape_filter($this->env, twig_length_filter($this->env, ($context["expedientes"] ?? $this->getContext($context, "expedientes"))), "html", null, true);
+            echo twig_escape_filter($this->env, ($context["totalItems"] ?? $this->getContext($context, "totalItems")), "html", null, true);
             echo " &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 
                 ";
@@ -1091,7 +1091,7 @@ class __TwigTemplate_68858000062feae2ca7461ef8e6b8dd6bd1d195b3e1616c5cba3662df09
         {% if expedientes|length >0 %}
             <hr/>
             <div class=\"alert alert-info\">
-                <i class=\"fas fa-search\"></i> Resultados de la búsqueda: {{ expedientes|length }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <i class=\"fas fa-search\"></i> Resultados de la búsqueda: {{totalItems }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 
                 {% set nuevoCount=0 %}
                 {% set vistoCount=0 %}
