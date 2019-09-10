@@ -99,7 +99,22 @@
                 {{ message }}
             </div>
         {% endfor %}
-        <hr/>
+        
+        
+        
+        {% if dependencias|length >0 %}
+            <hr/>
+            <div class="alert alert-info">
+                <i class="fas fa-search"></i> Resultados de la búsqueda: {{ dependencias|length }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            </div>
+            <hr/>
+        {% else %}
+            <div class="alert alert-info">
+                <i class="fas fa-search"></i> Búsqueda con 0 resultados! &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            </div>
+            <hr/>
+        {%endif%}
+            
 
         <table class="table table-striped">
             <thead class="thead-dark">
@@ -113,6 +128,7 @@
             </thead>
             <tbody>
 
+                {% set count=0 %}
                 {% for dependencia in dependencias|reverse %}
                     <tr>
                         <td class="text-default">{{dependencia.descripcion|e }}</td>
@@ -122,8 +138,35 @@
                         <td class="text-default">{{dependencia.nivel|e }}</td>
                         <td> <a class="btn btn-info" href="{{ path('gestionar_mesaentrada',{'id':dependencia.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Gestionar Mesa de Entrada">  <i class="fas fa-table"></i></a>
                             <a class="btn btn-warning" href="{{ path('editar_dependencia',{'id':dependencia.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit"></i></a>
-                            <a class="btn btn-danger" href="{{ path('baja_dependencia',{'id':dependencia.id}) }}"  role="button"><i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="Borrar"></i></a></td>
+{#                            <a class="btn btn-danger" href="{{ path('baja_dependencia',{'id':dependencia.id}) }}"  role="button"><i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="Borrar"></i></a></td>#}
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{ count }}"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></button>    
 
+
+                                        <!-- The Modal -->
+                                        <div class="modal fade" id="myModal{{count}}">
+                                            <div class="modal-dialog modal-sm modal-dialog-centered">
+                                                <div class="modal-content">
+
+                                                    <!-- Modal Header -->
+                                                    <div class="modal-header-warning">
+                                                        <button type="button" class="close text-danger" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                        <h4 class="modal-title">Eliminar Dependencia</h4>
+                                                    </div>
+
+                                                    <!-- Modal body -->
+                                                    <div class="modal-body">
+                                                        ¿Desea Eliminar la Dependencia: {{ dependencia.descripcion }}?
+                                                    </div>
+                                                    <!-- Modal footer -->
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-primary"><a class="text-type btn-primary"href="{{ path('baja_dependencia',{'id':dependencia.id}) }}"  role="button">SI</a></button>                          
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% set count=count+1 %}   
 
                     </tr>
                 {% endfor %}

@@ -96,7 +96,21 @@
             </div>
         {% endfor %}
 
-        <hr/>
+        
+        {% if personas|length >0 %}
+            <hr/>
+            <div class="alert alert-info">
+                <i class="fas fa-search"></i> Resultados de la búsqueda: {{ personas|length }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            </div>
+            <hr/>
+        {% else %}
+            <div class="alert alert-info">
+                <i class="fas fa-search"></i> Búsqueda con 0 resultados! &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            </div>
+            <hr/>
+        {%endif%}
+        
+        
         {% if personas|length >0 %}
             <table class="table table-striped">
                 <thead class="thead-dark">

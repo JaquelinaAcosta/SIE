@@ -118,6 +118,20 @@
                 </div>
                 <hr/>
             {% endfor %}
+            
+            {% if asociados|length >0 %}
+            <hr/>
+            <div class="alert alert-info">
+                <i class="fas fa-search"></i> Resultados de la búsqueda: {{ asociados|length }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            </div>
+            <hr/>
+            {% else %}
+                <div class="alert alert-info">
+                    <i class="fas fa-search"></i> Búsqueda con 0 resultados! &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                </div>
+                <hr/>
+            {%endif%}
+        
             <table class="table table-striped">
                 <thead class="thead-dark">
                     <tr>

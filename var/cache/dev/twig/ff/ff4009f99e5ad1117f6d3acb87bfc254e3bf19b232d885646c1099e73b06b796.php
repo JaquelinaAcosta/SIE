@@ -224,7 +224,7 @@ class __TwigTemplate_7876c60c1d2f34ce9083df23632e1c16bb523caae299f42f449a640c8ef
             echo "                        <a href=\"";
             echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_mesaentrada", ["currentPage" => 1]);
             echo "\" class=\"list-group-item list-group-item-action text-center\">
-                            <i class=\"fas fa-archive\" style=\"font-size:27px;\"></i>
+                            <i class=\"fas fa-table\" style=\"font-size:27px;\"></i>
                             <br/>
                             Mesas de Entrada
                         </a>
@@ -490,7 +490,7 @@ class __TwigTemplate_7876c60c1d2f34ce9083df23632e1c16bb523caae299f42f449a640c8ef
                             </a>
                         {%endif%}
                         <a href=\"{{ path('listado_mesaentrada',{'currentPage':1}) }}\" class=\"list-group-item list-group-item-action text-center\">
-                            <i class=\"fas fa-archive\" style=\"font-size:27px;\"></i>
+                            <i class=\"fas fa-table\" style=\"font-size:27px;\"></i>
                             <br/>
                             Mesas de Entrada
                         </a>

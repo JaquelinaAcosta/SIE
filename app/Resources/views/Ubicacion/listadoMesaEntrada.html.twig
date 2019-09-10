@@ -80,6 +80,19 @@
                 {{ message }}
             </div>
         {% endfor %}
+        
+        {% if mesaentradas|length >0 %}
+            <hr/>
+            <div class="alert alert-info">
+                <i class="fas fa-search"></i> Resultados de la búsqueda: {{ mesaentradas|length }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            </div>
+            <hr/>
+        {% else %}
+            <div class="alert alert-info">
+                <i class="fas fa-search"></i> Búsqueda con 0 resultados! &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            </div>
+            <hr/>
+        {%endif%}
 
         <hr/>
             <table class="table table-striped">

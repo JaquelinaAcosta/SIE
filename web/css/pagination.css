@@ -1,7 +1,7 @@
    .pagination > li > a
             {
                 background-color: white;
-                color: #5A4181;
+                color: #060325;
             }
 
             .pagination > li > a:focus,
@@ -9,7 +9,7 @@
             .pagination > li > span:focus,
             .pagination > li > span:hover
             {
-                color: #5a5a5a;
+                color: #060325;
                 background-color: #eee;
                 border-color: #ddd;
             }

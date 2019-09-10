@@ -57,18 +57,32 @@ class __TwigTemplate_b16aceda9a74560a2d124bd300ae95b941b19609031d97cca7a1cd0b6ab
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "contentmain"));
 
         // line 4
-        echo "    <div class=\"content\">
+        echo "    <style>
+        .modal-header-warning {
+            color:#fff;
+            padding:9px 15px;
+            border-bottom:1px solid #eee;
+            background-color: #060325;
+            -webkit-border-top-left-radius: 5px;
+            -webkit-border-top-right-radius: 5px;
+            -moz-border-radius-topleft: 5px;
+            -moz-border-radius-topright: 5px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+    </style>
+    <div class=\"content\">
         <div class=\"card\">
             <div class=\"card-header\" id=\"headingOne\">
                 <h2 class=\"mb-0\">
                     <button class=\"btn btn-dark search\" type=\"button\" data-toggle=\"collapse\" data-target=\"#collapseOne\" aria-expanded=\"true\" aria-controls=\"collapseOne\">
                         <i class=\"fas fa-plus\"></i> &ensp;Filtros de Búsqueda de Lugares - ";
-        // line 9
+        // line 23
         echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "persona", []), "dependencia", []), "html", null, true);
         echo " ( Haga click aquí para expandir )
                     </button>
                     <a href=\"";
-        // line 11
+        // line 25
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("nuevo_lugarfisico");
         echo "\"
                        role=\"button\" class=\"btn btn-info float-right\">Nuevo Lugar</a>
@@ -80,63 +94,63 @@ class __TwigTemplate_b16aceda9a74560a2d124bd300ae95b941b19609031d97cca7a1cd0b6ab
                 <div class=\"card-body\">
                     <form method=\"post\" novalidate=\"true\" id=\"form_buscar\">
                         ";
-        // line 20
+        // line 34
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(($context["formLugarFisicoFilter"] ?? $this->getContext($context, "formLugarFisicoFilter")), 'errors');
         echo "
                         <div class=\"row\">
 
                             ";
-        // line 23
+        // line 37
         if ($this->getAttribute(($context["formLugarFisicoFilter"] ?? null), "dependencia", [], "any", true, true)) {
             echo "                    
                                 <div class=\"threecol col-lg-4\">
                                     ";
-            // line 25
+            // line 39
             echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formLugarFisicoFilter"] ?? $this->getContext($context, "formLugarFisicoFilter")), "dependencia", []), 'label', ["label" => "DEPENDENCIA"]);
             echo "
                                     ";
-            // line 26
+            // line 40
             echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formLugarFisicoFilter"] ?? $this->getContext($context, "formLugarFisicoFilter")), "dependencia", []), 'widget');
             echo "
                                     <div class=\"help-block with-errors\">
                                         ";
-            // line 28
+            // line 42
             echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formLugarFisicoFilter"] ?? $this->getContext($context, "formLugarFisicoFilter")), "dependencia", []), 'errors');
             echo "
                                     </div>
                                 </div>
                             ";
         }
-        // line 32
+        // line 46
         echo "
                             <div class=\"threecol col-lg-3\">
                                 ";
-        // line 34
+        // line 48
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formLugarFisicoFilter"] ?? $this->getContext($context, "formLugarFisicoFilter")), "tipo", []), 'label', ["label" => "TIPO"]);
         echo "
                                 ";
-        // line 35
+        // line 49
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formLugarFisicoFilter"] ?? $this->getContext($context, "formLugarFisicoFilter")), "tipo", []), 'widget');
         echo "
                                 <div class=\"help-block with-errors\">
                                     ";
-        // line 37
+        // line 51
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formLugarFisicoFilter"] ?? $this->getContext($context, "formLugarFisicoFilter")), "tipo", []), 'errors');
         echo "
                                 </div>
                             </div>  
                             <div class=\"threecol col-lg-3\">
                                 ";
-        // line 41
+        // line 55
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formLugarFisicoFilter"] ?? $this->getContext($context, "formLugarFisicoFilter")), "descripcion", []), 'label', ["label" => "DESCRIPCIÓN"]);
         echo "
                                 ";
-        // line 42
+        // line 56
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formLugarFisicoFilter"] ?? $this->getContext($context, "formLugarFisicoFilter")), "descripcion", []), 'widget');
         echo "
                                 <div class=\"help-block with-errors\">
                                     ";
-        // line 44
+        // line 58
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formLugarFisicoFilter"] ?? $this->getContext($context, "formLugarFisicoFilter")), "descripcion", []), 'errors');
         echo "
                                 </div>
@@ -146,17 +160,17 @@ class __TwigTemplate_b16aceda9a74560a2d124bd300ae95b941b19609031d97cca7a1cd0b6ab
                         <div class=\"row\">
                             <div class=\"col-lg-4\">
                                 ";
-        // line 51
+        // line 65
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formLugarFisicoFilter"] ?? $this->getContext($context, "formLugarFisicoFilter")), "filter", []), 'widget');
         echo "
                                 ";
-        // line 52
+        // line 66
         echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock($this->getAttribute(($context["formLugarFisicoFilter"] ?? $this->getContext($context, "formLugarFisicoFilter")), "reset", []), 'widget');
         echo "
                             </div>
                         </div>
                         ";
-        // line 55
+        // line 69
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(($context["formLugarFisicoFilter"] ?? $this->getContext($context, "formLugarFisicoFilter")), 'form_end');
         echo "
 
@@ -167,14 +181,14 @@ class __TwigTemplate_b16aceda9a74560a2d124bd300ae95b941b19609031d97cca7a1cd0b6ab
 
         <hr/>
         ";
-        // line 63
+        // line 77
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "flashes", [0 => "success"], "method"));
         foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
-            // line 64
+            // line 78
             echo "            <div class=\"alert alert-success\">
                 ";
-            // line 65
+            // line 79
             echo twig_escape_filter($this->env, $context["message"], "html", null, true);
             echo "
             </div>
@@ -183,17 +197,17 @@ class __TwigTemplate_b16aceda9a74560a2d124bd300ae95b941b19609031d97cca7a1cd0b6ab
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 68
+        // line 82
         echo "
         ";
-        // line 69
+        // line 83
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "flashes", [0 => "danger"], "method"));
         foreach ($context['_seq'] as $context["_key"] => $context["message"]) {
-            // line 70
+            // line 84
             echo "            <div class=\"alert alert-danger\">
                 ";
-            // line 71
+            // line 85
             echo twig_escape_filter($this->env, $context["message"], "html", null, true);
             echo "
             </div>
@@ -202,20 +216,42 @@ class __TwigTemplate_b16aceda9a74560a2d124bd300ae95b941b19609031d97cca7a1cd0b6ab
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['message'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 74
+        // line 88
         echo "
-
+        ";
+        // line 89
+        if ((twig_length_filter($this->env, ($context["lugarFisico"] ?? $this->getContext($context, "lugarFisico"))) > 0)) {
+            // line 90
+            echo "            <hr/>
+            <div class=\"alert alert-info\">
+                <i class=\"fas fa-search\"></i> Resultados de la búsqueda: ";
+            // line 92
+            echo twig_escape_filter($this->env, twig_length_filter($this->env, ($context["lugarFisico"] ?? $this->getContext($context, "lugarFisico"))), "html", null, true);
+            echo " &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            </div>
+            <hr/>
+        ";
+        } else {
+            // line 96
+            echo "            <div class=\"alert alert-info\">
+                <i class=\"fas fa-search\"></i> Búsqueda con 0 resultados! &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            </div>
+            <hr/>
+        ";
+        }
+        // line 101
+        echo "
         <table class=\"table table-striped\">
             <thead class=\"thead-dark\">
                 <tr>
                     ";
-        // line 79
+        // line 105
         if (($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "role", []) == "ROLE_ADMIN")) {
-            // line 80
+            // line 106
             echo "                        <th scope=\"col\">Lugar de origen</th>
                         ";
         }
-        // line 82
+        // line 108
         echo "                    <th scope=\"col\">Tipo</th>
                     <th scope=\"col\">Descripción</th> 
                     <th scope=\"col\">Acceso</th>
@@ -224,98 +260,98 @@ class __TwigTemplate_b16aceda9a74560a2d124bd300ae95b941b19609031d97cca7a1cd0b6ab
             </thead>
             <tbody>
                 ";
-        // line 89
+        // line 115
         $context["count"] = 0;
-        // line 90
+        // line 116
         echo "                ";
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(twig_reverse_filter($this->env, ($context["lugarFisico"] ?? $this->getContext($context, "lugarFisico"))));
         foreach ($context['_seq'] as $context["_key"] => $context["lugarfisico"]) {
-            // line 91
+            // line 117
             echo "                    <tr>
                         ";
-            // line 92
+            // line 118
             if (($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "role", []) == "ROLE_ADMIN")) {
-                // line 93
+                // line 119
                 echo "                            <td class=\"text-default\">";
                 echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["lugarfisico"], "dependencia", []), "descripcion", []));
                 echo "</td>
                         ";
             }
-            // line 95
+            // line 121
             echo "                        <td class=\"text-default\">";
             echo twig_escape_filter($this->env, $this->getAttribute($context["lugarfisico"], "tipo", []));
             echo "</td>
                         <td class=\"text-default\"><p>";
-            // line 96
+            // line 122
             echo twig_escape_filter($this->env, $this->getAttribute($context["lugarfisico"], "descripcion", []));
             echo "</p></td>
                         <td class=\"text-default\">";
-            // line 97
+            // line 123
             echo twig_escape_filter($this->env, $this->getAttribute($context["lugarfisico"], "acceso", []));
             echo "</td>
                         <td>
 
                             ";
-            // line 100
+            // line 126
             $context["accion_habilitada"] = false;
-            // line 101
+            // line 127
             echo "                            ";
             if ((($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "role", []) == "ROLE_ADMIN") || ($this->getAttribute($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []), "role", []) == "ROLE_RESPONSABLE"))) {
-                // line 102
+                // line 128
                 echo "                                ";
                 $context["accion_habilitada"] = true;
-                // line 103
+                // line 129
                 echo "                            ";
             } else {
-                // line 104
+                // line 130
                 echo "                                ";
                 $context['_parent'] = $context;
                 $context['_seq'] = twig_ensure_traversable($this->getAttribute($this->getAttribute($context["lugarfisico"], "responsables", []), "getValues", []));
                 foreach ($context['_seq'] as $context["_key"] => $context["responsable"]) {
-                    // line 105
+                    // line 131
                     echo "                                    ";
                     if (($this->getAttribute(($context["app"] ?? $this->getContext($context, "app")), "user", []) == $this->getAttribute($context["responsable"], "usuario", []))) {
-                        // line 106
+                        // line 132
                         echo "                                        ";
                         $context["accion_habilitada"] = true;
-                        // line 107
+                        // line 133
                         echo "                                    ";
                     }
-                    // line 108
+                    // line 134
                     echo "                                ";
                 }
                 $_parent = $context['_parent'];
                 unset($context['_seq'], $context['_iterated'], $context['_key'], $context['responsable'], $context['_parent'], $context['loop']);
                 $context = array_intersect_key($context, $_parent) + $_parent;
-                // line 109
+                // line 135
                 echo "                            ";
             }
             echo "  
 
                             ";
-            // line 111
+            // line 137
             if ((($context["accion_habilitada"] ?? $this->getContext($context, "accion_habilitada")) == true)) {
-                // line 112
+                // line 138
                 echo "
                                 <a class=\"btn btn-warning\" href=\"";
-                // line 113
+                // line 139
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editar_lugarfisico", ["id" => $this->getAttribute($context["lugarfisico"], "id", [])]), "html", null, true);
                 echo "\"  role=\"button\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Editar\"><i class=\"fas fa-edit\"></i></a>
                                     ";
-                // line 115
+                // line 141
                 echo "
                                 <a class=\"btn btn-info\" href=\"";
-                // line 116
+                // line 142
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("gestionar_lugarfisico_responsables", ["id" => $this->getAttribute($context["lugarfisico"], "id", [])]), "html", null, true);
                 echo "\"  role=\"button\"><i class=\"fas fa-user\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Responsables\"></i></a>
                                 <button type=\"button\" class=\"btn btn-danger\" data-toggle=\"modal\" data-target=\"#myModal";
-                // line 117
+                // line 143
                 echo twig_escape_filter($this->env, ($context["count"] ?? $this->getContext($context, "count")), "html", null, true);
                 echo "\"><i class=\"fas fa-trash-alt\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Eliminar\"></i></button>    
                                 <!-- The Modal -->
                                 <div class=\"modal fade\" id=\"myModal";
-                // line 119
+                // line 145
                 echo twig_escape_filter($this->env, ($context["count"] ?? $this->getContext($context, "count")), "html", null, true);
                 echo "\">
                                     <div class=\"modal-dialog modal-sm modal-dialog-centered\">
@@ -330,14 +366,14 @@ class __TwigTemplate_b16aceda9a74560a2d124bd300ae95b941b19609031d97cca7a1cd0b6ab
                                             <!-- Modal body -->
                                             <div class=\"modal-body\">
                                                 ¿Desea Eliminar el Lugar Físico: ";
-                // line 131
+                // line 157
                 echo twig_escape_filter($this->env, $this->getAttribute($context["lugarfisico"], "tipo", []), "html", null, true);
                 echo "?
                                             </div>
                                             <!-- Modal footer -->
                                             <div class=\"modal-footer\">
                                                 <button type=\"button\" class=\"btn btn-primary\"><a class=\"text-type btn-primary\"href=\"";
-                // line 135
+                // line 161
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("baja_lugarfisico", ["id" => $this->getAttribute($context["lugarfisico"], "id", [])]), "html", null, true);
                 echo "\"  role=\"button\">SI</a></button>                          
                                                 <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">NO</button>
@@ -347,12 +383,12 @@ class __TwigTemplate_b16aceda9a74560a2d124bd300ae95b941b19609031d97cca7a1cd0b6ab
                                     </div>
                                 </div>
                                 ";
-                // line 142
+                // line 168
                 $context["count"] = (($context["count"] ?? $this->getContext($context, "count")) + 1);
                 echo "                               
                             ";
             }
-            // line 144
+            // line 170
             echo "                        </td>
                     </tr>
                 ";
@@ -360,120 +396,120 @@ class __TwigTemplate_b16aceda9a74560a2d124bd300ae95b941b19609031d97cca7a1cd0b6ab
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['lugarfisico'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 147
+        // line 173
         echo "
             </tbody>
         </table>
 
         ";
-        // line 152
+        // line 178
         echo "        ";
         $context["limite"] = 6;
-        // line 153
+        // line 179
         echo "        ";
         $context["extremos"] = 2;
-        // line 154
+        // line 180
         echo "
         ";
-        // line 155
+        // line 181
         if ((($context["thisPage"] ?? $this->getContext($context, "thisPage")) < ($context["limite"] ?? $this->getContext($context, "limite")))) {
             echo " 
 
             ";
-            // line 157
+            // line 183
             $context["minLeftRange"] = 1;
-            // line 158
+            // line 184
             echo "            ";
             $context["maxLeftRange"] = (($context["thisPage"] ?? $this->getContext($context, "thisPage")) + ($context["extremos"] ?? $this->getContext($context, "extremos")));
-            // line 159
+            // line 185
             echo "            ";
             $context["minRightRange"] = (($context["maxPages"] ?? $this->getContext($context, "maxPages")) - ($context["extremos"] ?? $this->getContext($context, "extremos")));
-            // line 160
+            // line 186
             echo "            ";
             $context["maxRightRange"] = ($context["maxPages"] ?? $this->getContext($context, "maxPages"));
-            // line 161
+            // line 187
             echo "
         ";
-        } elseif ((        // line 162
+        } elseif ((        // line 188
 ($context["thisPage"] ?? $this->getContext($context, "thisPage")) >= ($context["limite"] ?? $this->getContext($context, "limite")))) {
-            // line 163
+            // line 189
             echo "            ";
             $context["minLeftRange"] = 1;
-            // line 164
+            // line 190
             echo "            ";
             $context["maxLeftRange"] = 2;
-            // line 165
+            // line 191
             echo "
             ";
-            // line 166
+            // line 192
             $context["extremoIzquierdo"] = (($context["thisPage"] ?? $this->getContext($context, "thisPage")) - ($context["extremos"] ?? $this->getContext($context, "extremos")));
-            // line 167
+            // line 193
             echo "            ";
             $context["extremoDerecho"] = (($context["thisPage"] ?? $this->getContext($context, "thisPage")) + ($context["extremos"] ?? $this->getContext($context, "extremos")));
-            // line 168
+            // line 194
             echo "            ";
             $context["minRightRange"] = ((($context["maxPages"] ?? $this->getContext($context, "maxPages")) - ($context["extremos"] ?? $this->getContext($context, "extremos"))) + 2);
-            // line 169
+            // line 195
             echo "
             ";
-            // line 170
+            // line 196
             if ((($context["extremoDerecho"] ?? $this->getContext($context, "extremoDerecho")) >= (($context["minRightRange"] ?? $this->getContext($context, "minRightRange")) + ($context["extremos"] ?? $this->getContext($context, "extremos"))))) {
-                // line 171
+                // line 197
                 echo "                ";
                 $context["minRightRange"] = ($context["thisPage"] ?? $this->getContext($context, "thisPage"));
-                // line 172
+                // line 198
                 echo "                ";
                 $context["extremoDerecho"] = ($context["maxPages"] ?? $this->getContext($context, "maxPages"));
-                // line 173
+                // line 199
                 echo "                ";
                 $context["extremoIzquierdo"] = (($context["thisPage"] ?? $this->getContext($context, "thisPage")) - (($context["extremos"] ?? $this->getContext($context, "extremos")) * 2));
-                // line 174
+                // line 200
                 echo "            ";
             }
-            // line 175
+            // line 201
             echo "            ";
             $context["maxRightRange"] = ($context["maxPages"] ?? $this->getContext($context, "maxPages"));
-            // line 176
+            // line 202
             echo "        ";
         }
-        // line 177
+        // line 203
         echo "
 
         <div class=\"pagination\">
             <li><a class=\"page-link\" href=\"";
-        // line 180
+        // line 206
         (((0 < (($context["thisPage"] ?? $this->getContext($context, "thisPage")) - 1))) ? (print (twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_lugarfisico", ["currentPage" => (($context["thisPage"] ?? $this->getContext($context, "thisPage")) - 1)]), "html", null, true))) : (print ("")));
         echo "\">Anterior</a></li>
 
             ";
-        // line 182
+        // line 208
         if ((($context["thisPage"] ?? $this->getContext($context, "thisPage")) == (($context["maxPages"] ?? $this->getContext($context, "maxPages")) - 1))) {
-            // line 183
+            // line 209
             echo "                ";
             $context["maxLeftRange"] = (($context["maxLeftRange"] ?? $this->getContext($context, "maxLeftRange")) - 1);
-            // line 184
+            // line 210
             echo "            ";
         } elseif (((($context["thisPage"] ?? $this->getContext($context, "thisPage")) == ($context["maxPages"] ?? $this->getContext($context, "maxPages"))) && (($context["thisPage"] ?? $this->getContext($context, "thisPage")) != ($context["minRightRange"] ?? $this->getContext($context, "minRightRange"))))) {
-            // line 185
+            // line 211
             echo "                ";
             $context["maxLeftRange"] = ($context["maxPages"] ?? $this->getContext($context, "maxPages"));
-            // line 186
+            // line 212
             echo "            ";
         }
-        // line 187
+        // line 213
         echo "
 
             ";
-        // line 189
+        // line 215
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(range(($context["minLeftRange"] ?? $this->getContext($context, "minLeftRange")), ($context["maxLeftRange"] ?? $this->getContext($context, "maxLeftRange"))));
         foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
-            // line 190
+            // line 216
             echo "                <li class=\"page-item ";
             echo ((($context["i"] == ($context["thisPage"] ?? $this->getContext($context, "thisPage")))) ? ("active") : (""));
             echo "\">
                     <a class=\"page-link\"  href=\"";
-            // line 191
+            // line 217
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_lugarfisico", ["currentPage" => $context["i"]]), "html", null, true);
             echo "\">";
             echo twig_escape_filter($this->env, $context["i"], "html", null, true);
@@ -484,36 +520,36 @@ class __TwigTemplate_b16aceda9a74560a2d124bd300ae95b941b19609031d97cca7a1cd0b6ab
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 194
+        // line 220
         echo "
             ";
-        // line 195
+        // line 221
         if ((($context["thisPage"] ?? $this->getContext($context, "thisPage")) >= ($context["limite"] ?? $this->getContext($context, "limite")))) {
-            // line 196
+            // line 222
             echo "                <li class=\"page-item disabled\">
                     <a class=\"page-link\"  href=\"#\">...</a>
                 </li>
                 ";
-            // line 199
+            // line 225
             if ((($context["thisPage"] ?? $this->getContext($context, "thisPage")) == (($context["minRightRange"] ?? $this->getContext($context, "minRightRange")) - 1))) {
-                // line 200
+                // line 226
                 echo "                    ";
                 $context["extremoDerecho"] = (($context["extremoDerecho"] ?? $this->getContext($context, "extremoDerecho")) - 1);
-                // line 201
+                // line 227
                 echo "                ";
             }
-            // line 202
+            // line 228
             echo "                ";
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable(range(($context["extremoIzquierdo"] ?? $this->getContext($context, "extremoIzquierdo")), ($context["extremoDerecho"] ?? $this->getContext($context, "extremoDerecho"))));
             foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
                 echo "                    
                     <li class=\"page-item ";
-                // line 203
+                // line 229
                 echo ((($context["i"] == ($context["thisPage"] ?? $this->getContext($context, "thisPage")))) ? ("active") : (""));
                 echo "\">
                         <a class=\"page-link\"  href=\"";
-                // line 204
+                // line 230
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_lugarfisico", ["currentPage" => $context["i"]]), "html", null, true);
                 echo "\">";
                 echo twig_escape_filter($this->env, $context["i"], "html", null, true);
@@ -524,32 +560,32 @@ class __TwigTemplate_b16aceda9a74560a2d124bd300ae95b941b19609031d97cca7a1cd0b6ab
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 207
+            // line 233
             echo "            ";
         }
-        // line 208
+        // line 234
         echo "
             ";
-        // line 209
+        // line 235
         if ((($context["thisPage"] ?? $this->getContext($context, "thisPage")) < (($context["minRightRange"] ?? $this->getContext($context, "minRightRange")) - 2))) {
-            // line 210
+            // line 236
             echo "                ";
             if ((($context["thisPage"] ?? $this->getContext($context, "thisPage")) != (($context["maxRightRange"] ?? $this->getContext($context, "maxRightRange")) - 3))) {
-                // line 211
+                // line 237
                 echo "                    <li class=\"page-item disabled\">
                         <a class=\"page-link\"  href=\"#\">...</a>
                     </li>
                 ";
             }
-            // line 215
+            // line 241
             echo "            ";
         }
-        // line 216
+        // line 242
         echo "
             ";
-        // line 217
+        // line 243
         if ((($context["thisPage"] ?? $this->getContext($context, "thisPage")) < (($context["maxPages"] ?? $this->getContext($context, "maxPages")) - ($context["extremos"] ?? $this->getContext($context, "extremos"))))) {
-            // line 218
+            // line 244
             echo "                ";
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable(range(($context["minRightRange"] ?? $this->getContext($context, "minRightRange")), ($context["maxRightRange"] ?? $this->getContext($context, "maxRightRange"))));
@@ -557,7 +593,7 @@ class __TwigTemplate_b16aceda9a74560a2d124bd300ae95b941b19609031d97cca7a1cd0b6ab
                 echo "                   
                     <li class=\"page-item\">
                         <a class=\"page-link\"  href=\"";
-                // line 220
+                // line 246
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_lugarfisico", ["currentPage" => $context["i"]]), "html", null, true);
                 echo "\">";
                 echo twig_escape_filter($this->env, $context["i"], "html", null, true);
@@ -568,25 +604,25 @@ class __TwigTemplate_b16aceda9a74560a2d124bd300ae95b941b19609031d97cca7a1cd0b6ab
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['i'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 223
+            // line 249
             echo "            ";
         }
         echo "            
 
             ";
-        // line 225
+        // line 251
         if ((($context["page"] ?? $this->getContext($context, "page")) == ($context["maxPages"] ?? $this->getContext($context, "maxPages")))) {
-            // line 226
+            // line 252
             echo "
             ";
         } else {
-            // line 228
+            // line 254
             echo "                ";
             $context["page"] = (($context["page"] ?? $this->getContext($context, "page")) + 1);
-            // line 229
+            // line 255
             echo "            ";
         }
-        // line 230
+        // line 256
         echo "            <li><a class=\"page-link\" href=\"";
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("listado_lugarfisico", ["currentPage" => ($context["page"] ?? $this->getContext($context, "page"))]), "html", null, true);
         echo "\">Siguiente</a></li>
@@ -623,7 +659,7 @@ class __TwigTemplate_b16aceda9a74560a2d124bd300ae95b941b19609031d97cca7a1cd0b6ab
 
     public function getDebugInfo()
     {
-        return array (  590 => 230,  587 => 229,  584 => 228,  580 => 226,  578 => 225,  572 => 223,  561 => 220,  553 => 218,  551 => 217,  548 => 216,  545 => 215,  539 => 211,  536 => 210,  534 => 209,  531 => 208,  528 => 207,  517 => 204,  513 => 203,  506 => 202,  503 => 201,  500 => 200,  498 => 199,  493 => 196,  491 => 195,  488 => 194,  477 => 191,  472 => 190,  468 => 189,  464 => 187,  461 => 186,  458 => 185,  455 => 184,  452 => 183,  450 => 182,  445 => 180,  440 => 177,  437 => 176,  434 => 175,  431 => 174,  428 => 173,  425 => 172,  422 => 171,  420 => 170,  417 => 169,  414 => 168,  411 => 167,  409 => 166,  406 => 165,  403 => 164,  400 => 163,  398 => 162,  395 => 161,  392 => 160,  389 => 159,  386 => 158,  384 => 157,  379 => 155,  376 => 154,  373 => 153,  370 => 152,  364 => 147,  356 => 144,  351 => 142,  341 => 135,  334 => 131,  319 => 119,  314 => 117,  310 => 116,  307 => 115,  303 => 113,  300 => 112,  298 => 111,  292 => 109,  286 => 108,  283 => 107,  280 => 106,  277 => 105,  272 => 104,  269 => 103,  266 => 102,  263 => 101,  261 => 100,  255 => 97,  251 => 96,  246 => 95,  240 => 93,  238 => 92,  235 => 91,  230 => 90,  228 => 89,  219 => 82,  215 => 80,  213 => 79,  206 => 74,  197 => 71,  194 => 70,  190 => 69,  187 => 68,  178 => 65,  175 => 64,  171 => 63,  160 => 55,  154 => 52,  150 => 51,  140 => 44,  135 => 42,  131 => 41,  124 => 37,  119 => 35,  115 => 34,  111 => 32,  104 => 28,  99 => 26,  95 => 25,  90 => 23,  84 => 20,  72 => 11,  67 => 9,  60 => 4,  51 => 3,  29 => 1,);
+        return array (  626 => 256,  623 => 255,  620 => 254,  616 => 252,  614 => 251,  608 => 249,  597 => 246,  589 => 244,  587 => 243,  584 => 242,  581 => 241,  575 => 237,  572 => 236,  570 => 235,  567 => 234,  564 => 233,  553 => 230,  549 => 229,  542 => 228,  539 => 227,  536 => 226,  534 => 225,  529 => 222,  527 => 221,  524 => 220,  513 => 217,  508 => 216,  504 => 215,  500 => 213,  497 => 212,  494 => 211,  491 => 210,  488 => 209,  486 => 208,  481 => 206,  476 => 203,  473 => 202,  470 => 201,  467 => 200,  464 => 199,  461 => 198,  458 => 197,  456 => 196,  453 => 195,  450 => 194,  447 => 193,  445 => 192,  442 => 191,  439 => 190,  436 => 189,  434 => 188,  431 => 187,  428 => 186,  425 => 185,  422 => 184,  420 => 183,  415 => 181,  412 => 180,  409 => 179,  406 => 178,  400 => 173,  392 => 170,  387 => 168,  377 => 161,  370 => 157,  355 => 145,  350 => 143,  346 => 142,  343 => 141,  339 => 139,  336 => 138,  334 => 137,  328 => 135,  322 => 134,  319 => 133,  316 => 132,  313 => 131,  308 => 130,  305 => 129,  302 => 128,  299 => 127,  297 => 126,  291 => 123,  287 => 122,  282 => 121,  276 => 119,  274 => 118,  271 => 117,  266 => 116,  264 => 115,  255 => 108,  251 => 106,  249 => 105,  243 => 101,  236 => 96,  229 => 92,  225 => 90,  223 => 89,  220 => 88,  211 => 85,  208 => 84,  204 => 83,  201 => 82,  192 => 79,  189 => 78,  185 => 77,  174 => 69,  168 => 66,  164 => 65,  154 => 58,  149 => 56,  145 => 55,  138 => 51,  133 => 49,  129 => 48,  125 => 46,  118 => 42,  113 => 40,  109 => 39,  104 => 37,  98 => 34,  86 => 25,  81 => 23,  60 => 4,  51 => 3,  29 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
@@ -639,6 +675,20 @@ class __TwigTemplate_b16aceda9a74560a2d124bd300ae95b941b19609031d97cca7a1cd0b6ab
         return new Source("{% extends \"layout.html.twig\" %}
 
 {% block contentmain %}
+    <style>
+        .modal-header-warning {
+            color:#fff;
+            padding:9px 15px;
+            border-bottom:1px solid #eee;
+            background-color: #060325;
+            -webkit-border-top-left-radius: 5px;
+            -webkit-border-top-right-radius: 5px;
+            -moz-border-radius-topleft: 5px;
+            -moz-border-radius-topright: 5px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+    </style>
     <div class=\"content\">
         <div class=\"card\">
             <div class=\"card-header\" id=\"headingOne\">
@@ -710,6 +760,18 @@ class __TwigTemplate_b16aceda9a74560a2d124bd300ae95b941b19609031d97cca7a1cd0b6ab
             </div>
         {% endfor %}
 
+        {% if lugarFisico|length >0 %}
+            <hr/>
+            <div class=\"alert alert-info\">
+                <i class=\"fas fa-search\"></i> Resultados de la búsqueda: {{ lugarFisico|length }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            </div>
+            <hr/>
+        {% else %}
+            <div class=\"alert alert-info\">
+                <i class=\"fas fa-search\"></i> Búsqueda con 0 resultados! &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            </div>
+            <hr/>
+        {%endif%}
 
         <table class=\"table table-striped\">
             <thead class=\"thead-dark\">
