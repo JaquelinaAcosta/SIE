@@ -178,10 +178,10 @@ class LugarFisicoController extends Controller {
         }
 
         if ($formLugarFisicoFilter->get('filter')->isClicked()) {
-            $usuarioListarFilterRequest = $request->request->get('lugarFisico_filter');
-            unset($usuarioListarFilterRequest['filter']);
+            $lugarFisicoListarFilterRequest = $request->request->get('lugarfisico_filter');
+            unset($lugarFisicoListarFilterRequest['filter']);
 
-            $request->request->set('lugarFisico_filter', $usuarioListarFilterRequest);
+            $request->request->set('lugarfisico_filter', $lugarFisicoListarFilterRequest);
             $request->request->set('currentPage', 1);
             $this->get('session')->set('lugarFisico_listar_request', $request);
             if ($request->get('currentPage') > $maxPages) {

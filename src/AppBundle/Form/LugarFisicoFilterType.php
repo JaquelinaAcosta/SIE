@@ -40,24 +40,44 @@ class LugarFisicoFilterType extends AbstractType implements EmbeddedFilterTypeIn
         ));
 
         if ($role == 'ROLE_ADMIN') {
-            $builder->add('dependencia', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\EntityFilterType', array(
-                'class' => 'AppBundle\Entity\Dependencia',
-                'placeholder' => '--Seleccione--',
-                'query_builder' => function (EntityRepository $repositorio) {
-                    return $repositorio
-                                    ->createQueryBuilder('e')
-                                    ->where("e.fechaBaja IS NULL")
-                                    ->orderBy('e.descripcion', 'ASC');
-                },
-                'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
-                    if (!empty($values['value'])) {
-                        $qb = $filterQuery->getQueryBuilder();
-                        $qb->andWhere($filterQuery->getExpr()->eq('d.descripcion', ':dependencia'));
-                        $qb->setParameter('dependencia', '' . $values['value'] . '');
-                    }
-                },
-                'attr' => ['class' => 'form-control']
-            ));
+//            $builder->add('dependencia', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\EntityFilterType', array(
+//                'class' => 'AppBundle\Entity\Dependencia',
+//                'placeholder' => '--Seleccione--',
+//                'query_builder' => function (EntityRepository $repositorio) {
+//                    return $repositorio
+//                                    ->createQueryBuilder('e')
+//                                    ->where("e.fechaBaja IS NULL")
+//                                    ->orderBy('e.descripcion', 'ASC');
+//                },
+//                'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
+//                    if (!empty($values['value'])) {
+//                        $qb = $filterQuery->getQueryBuilder();
+//                        $qb->andWhere($filterQuery->getExpr()->eq('d.descripcion', ':dependencia'));
+//                        $qb->setParameter('dependencia', '' . $values['value'] . '');
+//                    }
+//                },
+//                'attr' => ['class' => 'form-control']
+//            ));
+                
+                
+        $builder->add('dependencia', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\EntityFilterType', array(
+            'class' => 'AppBundle\Entity\Dependencia',
+            'placeholder' => '--Seleccione--',
+            'query_builder' => function (EntityRepository $repositorio) {
+                return $repositorio
+                                ->createQueryBuilder('e')
+                                ->where("e.fechaBaja IS NULL")
+                                ->orderBy('e.descripcion', 'ASC');
+            },
+            'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
+                if (!empty($values['value'])) {
+                    $qb = $filterQuery->getQueryBuilder();
+                    $qb->andWhere($filterQuery->getExpr()->eq('d.descripcion', ':dependencia'));
+                    $qb->setParameter('dependencia', '' . $values['value'] . '');
+                }
+            },
+            'attr' => ['class' => 'form-control']
+        ));
         }
 
 
