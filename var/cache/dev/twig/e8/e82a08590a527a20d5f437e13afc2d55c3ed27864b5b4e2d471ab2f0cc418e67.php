@@ -106,7 +106,7 @@ class __TwigTemplate_1946b94b5f4b7604d38e3750b3234973bd2209d7bb2f6797425a76743fe
         }
         echo "  
 
-        <h4 class=\"text-center\">ELIGA EL TIPO DE PASE A REALIZAR</h4>
+        <h4 class=\"text-center\">ELIJA EL TIPO DE PASE A REALIZAR</h4>
         <hr/>
         <div class=\"botones\">
             ";
@@ -209,7 +209,7 @@ class __TwigTemplate_1946b94b5f4b7604d38e3750b3234973bd2209d7bb2f6797425a76743fe
             {%endfor%}
         {% endif %}  
 
-        <h4 class=\"text-center\">ELIGA EL TIPO DE PASE A REALIZAR</h4>
+        <h4 class=\"text-center\">ELIJA EL TIPO DE PASE A REALIZAR</h4>
         <hr/>
         <div class=\"botones\">
             {% if accion_habilitada == true %}
