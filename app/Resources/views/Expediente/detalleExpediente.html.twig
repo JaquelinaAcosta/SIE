@@ -40,13 +40,11 @@
                         <td class="bg-white">
 
                             {% set fojas = expediente.fojas %}
-
                             {% for caratula in expediente.caratulas.getValues %}
-
-                                {% set fojas = fojas+caratula.fojas %}
-
+                                {% if caratula.fechaBaja == null %}
+                                    {% set fojas = fojas+caratula.fojas %}
+                                {%endif%}
                             {% endfor %}
-
                             {{ fojas }}
 
 
@@ -118,7 +116,15 @@
                    role="button">MOVIMIENTOS
                     {% if expediente.movimientos.getValues|length >0 %}
                         <span class="badge badge-danger badge-pill">
-                            {{ expediente.movimientos.getValues|length }}
+                            {% set countMovimiento=0 %}
+                            {% for movimiento in expediente.movimientos.getValues %}
+                                {% if movimiento.fechaBaja == null %}
+                                    {% set countMovimiento=countMovimiento+1 %}
+                                {%endif%}
+                            {% endfor %}
+                            {% if countMovimiento >0 %}
+                                {{countMovimiento}}
+                            {%endif%}
                         </span>
                     {% endif %}
                 </a>
@@ -127,7 +133,15 @@
                    role="button">CARATULAS
                     {% if expediente.caratulas.getValues|length >0 %}
                         <span class="badge badge-danger badge-pill">
-                            {{ expediente.caratulas.getValues|length }}
+                            {% set countCaratula=0 %}
+                            {% for caratula in expediente.caratulas.getValues %}
+                                {% if caratula.fechaBaja == null %}
+                                    {% set countCaratula=countCaratula+1 %}
+                                {%endif%}
+                            {% endfor %}
+                            {% if countCaratula >0 %}
+                                {{countCaratula}}
+                            {%endif%}
                         </span>
                     {% endif %}
                 </a>
@@ -137,7 +151,15 @@
                        role="button">EXPEDIENTES ASOCIADOS
                         {% if expediente.expedientesAsociados|length >0 %}
                             <span class="badge badge-danger badge-pill">
-                                {{ expediente.expedientesAsociados|length }}
+                                {% set countAsociado=0 %}
+                                {% for asociado in expediente.expedientesAsociados.getValues %}
+                                    {% if asociado.fechaBaja == null %}
+                                        {% set countAsociado=countAsociado+1 %}
+                                    {%endif%}
+                                {% endfor %}
+                                {% if countAsociado >0 %}
+                                    {{countAsociado}}
+                                {%endif%}
                             </span>
                         {% endif %}
 
@@ -155,21 +177,21 @@
                        role="button">VER RESOLUCIÓN</a>
                 {% endif %}
             </div>    
-            
-        </div>
-             {% for message in app.flashes('success') %}
-                    <hr/>
-                    <div class="alert alert-success">
-                        {{ message }}
-                    </div>
-                {% endfor %}
 
-                {% for message in app.flashes('danger') %}
-                     <hr/>
-                    <div class="alert alert-danger">
-                        {{ message }}
-                    </div>
-                {% endfor %}
+        </div>
+        {% for message in app.flashes('success') %}
+            <hr/>
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {% for message in app.flashes('danger') %}
+            <hr/>
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
     </div>
     <script>
 
