@@ -13,83 +13,84 @@ class PaginaPrincipalController extends Controller {
      * @Route("/", name="busqueda_expediente")
      */
     public function indexAction(Request $request) {
-        $em = $this->getDoctrine()->getEntityManager();
-        $expedientes = array();
-        $expedientePadre = new Expediente();
-        $actualFecha = '';
-        $ultimaFecha = '';
 
-        $formExpedienteFilter = $this->createForm(\AppBundle\Form\ExpedienteSearchFilterType::class, $expedientes);
+        if ($this->getUser()->getFechaBaja() == null) {
+            $em = $this->getDoctrine()->getEntityManager();
+            $expedientes = array();
+            $expedientePadre = new Expediente();
+            $actualFecha = '';
+            $ultimaFecha = '';    
 
-        $formExpedienteFilter->handleRequest($request);
-        if ($formExpedienteFilter->isSubmitted() == false && $this->get('session')->get('expediente_search_listar_request')) {
-            $formExpedienteFilter->handleRequest($this->get('session')->get('expediente_search_listar_request'));
-        }
+            $formExpedienteFilter = $this->createForm(\AppBundle\Form\ExpedienteSearchFilterType::class, $expedientes);
 
-        if ($formExpedienteFilter->isValid()) {
-            $filterBuilder = $em->getRepository('AppBundle:Expediente')
-                    ->createExpedienteFastFilterQuery();
+            $formExpedienteFilter->handleRequest($request);
+            if ($formExpedienteFilter->isSubmitted() == false && $this->get('session')->get('expediente_search_listar_request')) {
+                $formExpedienteFilter->handleRequest($this->get('session')->get('expediente_search_listar_request'));
+            }
 
-            $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($formExpedienteFilter, $filterBuilder);
-            $expedientes = $filterBuilder->getQuery()->getResult();
+            if ($formExpedienteFilter->isValid()) {
+                $filterBuilder = $em->getRepository('AppBundle:Expediente')
+                        ->createExpedienteFastFilterQuery();
 
-            if (count($expedientes) > 0) {
-                if ($expedientes[0]->getEstado() == 'ASOCIADO') {
-                    $expedientePadre = $em->getRepository('AppBundle:ExpedienteAsociado')->findOneBy([
-                                'expedienteAsociado' => $expedientes[0]
-                            ])->getExpedientePadre();
-                }
+                $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($formExpedienteFilter, $filterBuilder);
+                $expedientes = $filterBuilder->getQuery()->getResult();
+
                 if (count($expedientes) > 0) {
-                    $actualFecha = $em->getRepository('AppBundle:MovimientoExpediente')->findOneBy(
-                                    [
-                                'ubicacion' => $expedientes[0]->getUbicacionActual()
-                                    ], ['fecha' => 'DESC'], ['expediente' => $expedientes[0],
-                                ['fechaBaja' => 'IS NULL']])->getFecha()->format('d-m-Y');
-                    $ultimaFecha = $em->getRepository('AppBundle:MovimientoExpediente')->findOneBy(
-                                    [
-                                'ubicacion' => $expedientes[0]->getUltimaUbicacion()
-                                    ], ['fecha' => 'DESC'], ['expediente' => $expedientes[0],
-                                ['fechaBaja' => 'IS NULL']])->getFecha()->format('d-m-Y');
+                    if ($expedientes[0]->getEstado() == 'ASOCIADO') {
+                        $expedientePadre = $em->getRepository('AppBundle:ExpedienteAsociado')->findOneBy([
+                                    'expedienteAsociado' => $expedientes[0]
+                                ])->getExpedientePadre();
+                    }
+                    if (count($expedientes) > 0) {
+                        $actualFecha = $em->getRepository('AppBundle:MovimientoExpediente')->findOneBy(
+                                        [
+                                    'ubicacion' => $expedientes[0]->getUbicacionActual()
+                                        ], ['fecha' => 'DESC'], ['expediente' => $expedientes[0],
+                                    ['fechaBaja' => 'IS NULL']])->getFecha()->format('d-m-Y');
+                        $ultimaFecha = $em->getRepository('AppBundle:MovimientoExpediente')->findOneBy(
+                                        [
+                                    'ubicacion' => $expedientes[0]->getUltimaUbicacion()
+                                        ], ['fecha' => 'DESC'], ['expediente' => $expedientes[0],
+                                    ['fechaBaja' => 'IS NULL']])->getFecha()->format('d-m-Y');
+                    }
                 }
             }
-        }
-        if ($formExpedienteFilter->get('Limpiar')->isClicked()) {
-            $this->get('session')->remove('expediente_search_listar_request');
-            return $this->redirectToRoute('busqueda_expediente');
-        }
+            if ($formExpedienteFilter->get('Limpiar')->isClicked()) {
+                $this->get('session')->remove('expediente_search_listar_request');
+                return $this->redirectToRoute('busqueda_expediente');
+            }
 
-        if ($formExpedienteFilter->get('Buscar')->isClicked()) {
-            $expedienteListarFilterRequest = $request->request->get('expediente_fast_filter');
-            unset($expedienteListarFilterRequest['Limpiar']);
-            $request->request->set('expediente_fast_filter', $expedienteListarFilterRequest);
-            $this->get('session')->set('expediente_search_listar_request', $request);
+            if ($formExpedienteFilter->get('Buscar')->isClicked()) {
+                $expedienteListarFilterRequest = $request->request->get('expediente_fast_filter');
+                unset($expedienteListarFilterRequest['Limpiar']);
+                $request->request->set('expediente_fast_filter', $expedienteListarFilterRequest);
+                $this->get('session')->set('expediente_search_listar_request', $request);
 //            return $this->redirectToRoute('busqueda_expediente');
-        }
+            }
 
-        return $this->render('Expediente/busqueda.html.twig', array(
-                    'expedientes' => $expedientes,
-                    'expediente_padre' => $expedientePadre,
-                    'actual_fecha' => $actualFecha,
-                    'ultima_fecha' => $ultimaFecha,
-                    'formExpedienteFilter' => $formExpedienteFilter->createView(),
-        ));
+            return $this->render('Expediente/busqueda.html.twig', array(
+                        'expedientes' => $expedientes,
+                        'expediente_padre' => $expedientePadre,
+                        'actual_fecha' => $actualFecha,
+                        'ultima_fecha' => $ultimaFecha,
+                        'formExpedienteFilter' => $formExpedienteFilter->createView(),
+            ));
+        } else {
+            return $this->redirectToRoute('logout');
+        }
     }
 
     /**
      * @Route("/login", name="loginUsuario")
      */
     public function loginAction(Request $request) {
-
-        if ($this->getUser() != null) {
-            return $this->redirectToRoute('busqueda_expediente');
-        }
-
+            
         // Recupera el servicio de autenticación
         $authenticationUtils = $this->get('security.authentication_utils');
 
         // Recupera, si existe, el último error al intentar hacer login
         $error = $authenticationUtils->getLastAuthenticationError();
-
+      
         // Recupera el último nombre de usuario introducido
         $lastUsername = $authenticationUtils->getLastUsername();
 
@@ -104,7 +105,7 @@ class PaginaPrincipalController extends Controller {
      * @Route("login_check", name="login_check")
      */
     public function loginCheckAction() {
-        
+
     }
 
     /**
