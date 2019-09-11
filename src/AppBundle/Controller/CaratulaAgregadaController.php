@@ -109,8 +109,8 @@ class CaratulaAgregadaController extends Controller {
                     $this->addFlash('success', 'Hubo un problema al intentar editar la caratula.');
                 }
 
-                return $this->redirectToRoute('listado_caratula', ['id' => $caratula->getExpediente()->getId(),
-                            'currentPage' => 1]);
+                return $this->redirectToRoute('listado_caratula', ['id' => $caratulaAgregada->getExpediente()->getId(),
+                    'currentPage' => 1]);
             }
         }
 

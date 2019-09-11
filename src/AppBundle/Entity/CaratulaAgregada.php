@@ -269,4 +269,14 @@ class CaratulaAgregada {
     {
         return $this->fechaBaja;
     }
+    
+    /**
+     * @Assert\IsTrue(message="La cantidad de fojas debe ser un número entero mayor a 0")
+     */
+    public function getValidarFojas() {
+        if (($this->fojas) > 0) {
+            return true;
+        }
+        return false;
+    }
 }
