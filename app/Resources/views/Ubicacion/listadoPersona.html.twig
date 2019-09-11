@@ -87,10 +87,11 @@
             <div class="alert alert-success">
                 {{ message }}
             </div>
-            <hr/>
+           
         {% endfor %}
 
         {% for message in app.flashes('danger') %}
+             <hr/>
             <div class="alert alert-danger">
                 {{ message }}
             </div>

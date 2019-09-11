@@ -33,7 +33,7 @@ class CaratulaAgregada {
 
     /**
      * @var int
-     * @ORM\OneToOne(targetEntity="Tema")
+     * @ORM\ManyToOne(targetEntity="Tema",inversedBy="caratulas") 
      * @ORM\JoinColumn(name="tema", referencedColumnName="id", nullable=false)
      */
     private $tema;

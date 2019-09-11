@@ -64,10 +64,10 @@ class Tema extends \AppBundle\Entity\Tema implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'AppBundle\\Entity\\Tema' . "\0" . 'id', '' . "\0" . 'AppBundle\\Entity\\Tema' . "\0" . 'codigo', '' . "\0" . 'AppBundle\\Entity\\Tema' . "\0" . 'descripcion', '' . "\0" . 'AppBundle\\Entity\\Tema' . "\0" . 'expedientes'];
+            return ['__isInitialized__', '' . "\0" . 'AppBundle\\Entity\\Tema' . "\0" . 'id', '' . "\0" . 'AppBundle\\Entity\\Tema' . "\0" . 'codigo', '' . "\0" . 'AppBundle\\Entity\\Tema' . "\0" . 'descripcion', '' . "\0" . 'AppBundle\\Entity\\Tema' . "\0" . 'expedientes', '' . "\0" . 'AppBundle\\Entity\\Tema' . "\0" . 'caratulas'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'AppBundle\\Entity\\Tema' . "\0" . 'id', '' . "\0" . 'AppBundle\\Entity\\Tema' . "\0" . 'codigo', '' . "\0" . 'AppBundle\\Entity\\Tema' . "\0" . 'descripcion', '' . "\0" . 'AppBundle\\Entity\\Tema' . "\0" . 'expedientes'];
+        return ['__isInitialized__', '' . "\0" . 'AppBundle\\Entity\\Tema' . "\0" . 'id', '' . "\0" . 'AppBundle\\Entity\\Tema' . "\0" . 'codigo', '' . "\0" . 'AppBundle\\Entity\\Tema' . "\0" . 'descripcion', '' . "\0" . 'AppBundle\\Entity\\Tema' . "\0" . 'expedientes', '' . "\0" . 'AppBundle\\Entity\\Tema' . "\0" . 'caratulas'];
     }
 
     /**
@@ -274,6 +274,39 @@ class Tema extends \AppBundle\Entity\Tema implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getExpedientes', []);
 
         return parent::getExpedientes();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addCaratula(\AppBundle\Entity\CaratulaAgregada $caratula)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addCaratula', [$caratula]);
+
+        return parent::addCaratula($caratula);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeCaratula(\AppBundle\Entity\CaratulaAgregada $caratula)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeCaratula', [$caratula]);
+
+        return parent::removeCaratula($caratula);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCaratulas()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCaratulas', []);
+
+        return parent::getCaratulas();
     }
 
 }
