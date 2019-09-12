@@ -78,7 +78,7 @@ class ExpedienteFilterType extends AbstractType implements EmbeddedFilterTypeInt
                 'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
                     if (!empty($values['value'])) {
                         $qb = $filterQuery->getQueryBuilder();
-                        $qb->andWhere($filterQuery->getExpr()->gte($field, '\'' . $values['value']->format("Y-m-d H:i:s") . '\''));
+                        $qb->andWhere($filterQuery->getExpr()->gte($field, '\'' . $values['value']->format("d-m-Y") . '\''));
                     }
                 },
                 'widget' => 'single_text',
@@ -88,17 +88,17 @@ class ExpedienteFilterType extends AbstractType implements EmbeddedFilterTypeInt
                     'class' => 'datepicker form-control',
                     'placeholder' => 'DD-MM-YYYY'
                 ),
-                'empty_data' => function () {
-                    $fecha = new \DateTime('today');
-                    $fecha->sub(new \DateInterval('P23D'));
-                    return $fecha->format('d-m-Y');
-                },
+//                'empty_data' => function () {
+//                    $fecha = new \DateTime('today');
+//                    $fecha->sub(new \DateInterval('P23D'));
+//                    return $fecha->format('d-m-Y');
+//                },
             ),
             'right_date_options' => array(
                 'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
                     if (!empty($values['value'])) {
                         $qb = $filterQuery->getQueryBuilder();
-                        $qb->andWhere($filterQuery->getExpr()->lte($field, '\'' . $values['value']->format("Y-m-d H:i:s") . '\''));
+                        $qb->andWhere($filterQuery->getExpr()->lte($field, '\'' . $values['value']->format("d-m-Y") . '\''));
                     }
                 },
                 'widget' => 'single_text',
@@ -108,11 +108,11 @@ class ExpedienteFilterType extends AbstractType implements EmbeddedFilterTypeInt
                     'class' => 'datepicker form-control',
                     'placeholder' => 'DD-MM-YYYY'
                 ),
-                'empty_data' => function () {
-                    $fecha = new \DateTime('today');
-                    $fecha->add(new \DateInterval('P7D'));
-                    return $fecha->format('d-m-Y');
-                },
+//                'empty_data' => function () {
+//                    $fecha = new \DateTime('today');
+//                    $fecha->add(new \DateInterval('P7D'));
+//                    return $fecha->format('d-m-Y');
+//                },
             )
         ));
 

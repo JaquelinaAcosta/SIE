@@ -8,8 +8,6 @@ use AppBundle\Entity\CaratulaAgregada;
 use AppBundle\Entity\Resolucion;
 use AppBundle\Entity\Dependencia;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Context\ExecutionContextInterface;
-use Symfony\Component\Validator\Constraints\Collection;
 
 /**
  * Expediente
@@ -78,7 +76,9 @@ class Expediente {
      * @ORM\Column(name="fojas", type="integer")
      */
     private $fojas;
-
+    
+    private $totalFojas;
+    
     /**
      * @var string
      *
@@ -94,7 +94,7 @@ class Expediente {
     private $iniciadorDependencia;
 
     /**
-     * @var string
+     * @var datetime
      *
      * @ORM\Column(name="fecha_inicio", type="datetime",nullable=true)
      */
@@ -107,14 +107,14 @@ class Expediente {
     private $fechaFin;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Ubicacion")
+     * @ORM\ManyToOne(targetEntity="MovimientoExpediente",cascade={"persist"})
      */
-    private $ubicacionActual;
+    private $movimientoActual;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Ubicacion")
+     * @ORM\ManyToOne(targetEntity="MovimientoExpediente",cascade={"persist"})
      */
-    private $ultimaUbicacion;
+    private $ultimoMovimiento;
 
     /**
      * @ORM\OneToOne(targetEntity="Resolucion", mappedBy="expediente")
@@ -401,28 +401,6 @@ class Expediente {
      */
     public function getFechaFin() {
         return $this->fechaFin;
-    }
-
-    /**
-     * Set ubicacionActual
-     *
-     * @param string $ubicacionActual
-     *
-     * @return Expediente
-     */
-    public function setUbicacionActual($ubicacionActual) {
-        $this->ubicacionActual = $ubicacionActual;
-
-        return $this;
-    }
-
-    /**
-     * Get ubicacionActual
-     *
-     * @return string
-     */
-    public function getUbicacionActual() {
-        return $this->ubicacionActual;
     }
 
     /**
@@ -863,4 +841,83 @@ class Expediente {
         return $this->usuarioUltimaModificacion;
     }
 
+
+    /**
+     * Set movimientoActual
+     *
+     * @param \AppBundle\Entity\MovimientoExpediente $movimientoActual
+     *
+     * @return Expediente
+     */
+    public function setMovimientoActual(\AppBundle\Entity\MovimientoExpediente $movimientoActual = null)
+    {
+        $this->movimientoActual = $movimientoActual;
+
+        return $this;
+    }
+
+    /**
+     * Get movimientoActual
+     *
+     * @return \AppBundle\Entity\MovimientoExpediente
+     */
+    public function getMovimientoActual()
+    {
+        return $this->movimientoActual;
+    }
+
+    /**
+     * Set ultimoMovimiento
+     *
+     * @param \AppBundle\Entity\MovimientoExpediente $ultimoMovimiento
+     *
+     * @return Expediente
+     */
+    public function setUltimoMovimiento(\AppBundle\Entity\MovimientoExpediente $ultimoMovimiento = null)
+    {
+        $this->ultimoMovimiento = $ultimoMovimiento;
+
+        return $this;
+    }
+
+    /**
+     * Get ultimoMovimiento
+     *
+     * @return \AppBundle\Entity\MovimientoExpediente
+     */
+    public function getUltimoMovimiento()
+    {
+        return $this->ultimoMovimiento;
+    }
+    
+    public function getTotalFojas(){
+         $fojasIniciales = $this->fojas;
+
+        foreach ($this->getCaratulas() as $caratula) {
+            if ($caratula->getFechaBaja() == null) {
+                $fojasIniciales = $fojasIniciales + $caratula->getFojas();
+            }
+        }
+
+        foreach ($this->getMovimientos() as $movimiento) {
+            if ($movimiento->getFechaBaja() == null) {
+                $fojasIniciales = $fojasIniciales + $movimiento->getFojas();
+            }
+        }
+
+        foreach ($this->getExpedientesAsociados() as $asociado) {
+            if ($asociado->getFechaBaja() == null) {
+                $fojasIniciales = $fojasIniciales + $asociado->getExpedienteAsociado()->getFojas();
+                foreach ($asociado->getExpedienteAsociado()->getCaratulas() as $caratula) {
+                    $fojasIniciales = $fojasIniciales + $caratula->getFojas();
+                }
+                foreach ($asociado->getExpedienteAsociado()->getMovimientos() as $movimiento) {
+                    $fojasIniciales = $fojasIniciales + $movimiento->getFojas();
+                }
+            }
+        }
+        $this->totalFojas = $fojasIniciales;
+        return $this->totalFojas;
+    }
+    
 }

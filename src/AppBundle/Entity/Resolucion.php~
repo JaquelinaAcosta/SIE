@@ -51,9 +51,9 @@ class Resolucion {
     private $observacion;
 
     /**
-     * @var string
+     * @var datetime
      *
-     * @ORM\Column(name="fecha_resolucion", type="string",length=255)
+     * @ORM\Column(name="fecha_resolucion", type="datetime",length=255)
      */
     private $fechaResolucion;
 
@@ -390,4 +390,28 @@ class Resolucion {
         return $this->usuarioUltimaModificacion;
     }
 
+
+    /**
+     * Set fechaBaja
+     *
+     * @param \DateTime $fechaBaja
+     *
+     * @return Resolucion
+     */
+    public function setFechaBaja($fechaBaja)
+    {
+        $this->fechaBaja = $fechaBaja;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaBaja
+     *
+     * @return \DateTime
+     */
+    public function getFechaBaja()
+    {
+        return $this->fechaBaja;
+    }
 }

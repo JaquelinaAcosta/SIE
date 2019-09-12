@@ -4,34 +4,29 @@
 {% block contentmain %}
 
     <style>
-        input[type=text]{
-            margin-bottom: 10px;
-            padding:10px;            
-        }
-        input[type=submit]{
-            margin-bottom: 10px;
-            padding:10px;            
+        .modal-header-warning {
+            color:#fff;
+            padding:9px 15px;
+            border-bottom:1px solid #eee;
+            background-color: #060325;
+            -webkit-border-top-left-radius: 5px;
+            -webkit-border-top-right-radius: 5px;
+            -moz-border-radius-topleft: 5px;
+            -moz-border-radius-topright: 5px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
         }
 
-        .cod{
-            width:60px;
-
+        /* Important part */
+        .modal-dialog{
+            overflow-y: initial !important
         }
-        .num{
-            width:115px;
-            margin-left:-4px;
-        }
-        .dig{
-            width:35px;
-            margin-left:-32px;
-
-        }
-        .bg-white{
-            background-color:red;
+        .modal-body{
+            height: 500px;
+            overflow-y: auto;
         }
     </style>
-    
-    
+
     <div class="content">
         <div class="accordion" id="accordionExample">
             <div class="card">
@@ -46,9 +41,9 @@
                     <div class="card-body">
                         {{ form_start(formExpedienteFilter) }}
                         {{ form_errors(formExpedienteFilter) }}
-                        
+
                         <label class="text-default">Número de expediente</label><br/>
-                        <label class="text-info">Ingrese el Número de Expediente con: 5 (cinco) digitos para código - 7 (siete) dígitos para número - 1 (un) dígito</label>
+                        <label class="text-info">Código de la Mesa - Número - Dígito</label>
                         <div class="row">
                             <div class="threecol col-lg-1">
                                 {{ form_widget(formExpedienteFilter.codigoExpediente) }}
@@ -69,115 +64,106 @@
                                 </div>
                             </div>
                         </div>
-                             
-                        <div class="threecol col-lg-1">
-                                {{ form_widget(formExpedienteFilter.digitoExpediente) }}
-                                <div class="help-block with-errors">
-                                    {{ form_errors(formExpedienteFilter.digitoExpediente) }}
-                                </div>
-                        </div>
-                            <hr/>
-                        <div class="threecol col-lg-4">
-                                {{ form_widget(formExpedienteFilter.Buscar) }}
-                                {{ form_widget(formExpedienteFilter.Limpiar) }}
-                                
-                            </div>
-                        
-                </div>
-        </div>
-        </div>
-        
-        
-        
-        {% if expedientes|length >0 %}
-        
-            {% set expediente =  expedientes[0]%}
-  
-            <table class="table table-bordered"> 
-                <thead class="thead-dark">
-                   
-                    <tr>
-                        <th scope="col"> </th>
-                        <th scope="col"><i class="fas fa-info-circle "></i> <strong> EXPEDIENTE NÚMERO: {{expediente.codigoExpediente }}-{{expediente.numeroExpediente }}-{{expediente.digitoExpediente }}</th>
-                    </tr>
 
-                </thead>
-                
-                <tbody>
+                        <div class="threecol col-lg-1">
+                            {{ form_widget(formExpedienteFilter.digitoExpediente) }}
+                            <div class="help-block with-errors">
+                                {{ form_errors(formExpedienteFilter.digitoExpediente) }}
+                            </div>
+                        </div>
+                        <hr/>
+                        <div class="threecol col-lg-4">
+                            {{ form_widget(formExpedienteFilter.Buscar) }}
+                            {{ form_widget(formExpedienteFilter.Limpiar) }}
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            {% if expedientes|length >0 %}
+                <hr/>
+                {% set expediente =  expedientes[0]%}
+
+                <table class="table table-bordered"> 
+                    <thead class="thead-dark">
+
                         <tr>
-                            <th class="w-25">TEMA</th>
+                            <th scope="col"> <strong> EXPEDIENTE NÚMERO: {{expediente}} </th>
+                            <th scope="col"><i class="fas fa-info-circle "></i> DETALLE</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <th class="w-25">Iniciador Dependencia</th>
+                            <td  class="bg-white">{{ expediente.iniciadorDependencia}}</td>
+                        </tr>
+                        <tr>
+                            <th class="w-25">Tema</th>
                             <td class="bg-white">{{ expediente.tema}}</td>
                         </tr>
                         <tr>
-                            <th class="w-25">CONCEPTO</th>
+                            <th class="w-25">Concepto</th>
                             <td class="bg-white">{{ expediente.concepto}}</td>
                         </tr>
                         <tr>
-                            <th class="w-25">TOTAL DE FOJAS</th>
-                            <td class="bg-white">{% set fojas = expediente.fojas %}
-
-                            {% for caratula in expediente.caratulas.getValues %}
-
-                                {% set fojas = fojas+caratula.fojas %}
-
-                            {% endfor %}
-
-                            {{ fojas }} </td>
+                            <th class="w-25">Total de Fojas</th>
+                            <td class="bg-white">{{ expediente.totalFojas }} </td>
                         </tr>
-                            <tr>
-                        <th class="w-25">TIPO</th>
-                        <td  class="bg-white">{{ expediente.tipo}}</td>
-                    </tr>
-                    <tr>
-                        <th class="w-25">INICIADOR DEPENDENCIA</th>
-                        <td  class="bg-white">{{ expediente.iniciadorDependencia}}</td>
-                    </tr>
-                    <tr>
-                        <th class="w-25">FECHA DE INICIO</th>
-                        <td class="bg-white">{{ expediente.fechaInicio|date('d-m-Y')}}</td>
-                    </tr>
-                    <tr>
-                        <th class="w-25">FECHA DE FIN</th>
-                        <td  class="bg-white">{{ expediente.fechaFin|date('d-m-Y')}}</td>
-                    </tr>
-                    <tr>
-                        <th class="w-25">ULTIMO PASE</th>
-                        <td  class="bg-white">
-                            {{ expediente.ultimaUbicacion}}
-
-                            - {{ expediente.ultimaUbicacion.dependencia }}
-
-                            , en fecha <strong>{{ ultima_fecha }}</strong>
-                        </td>
-                    </tr>  
-                    <tr>
-                        <th class="w-25">UBICACION ACTUAL</th>
-                        <td  class="bg-white">
-                            {{ expediente.ubicacionActual}}                          
-                            - {{ expediente.ubicacionActual.dependencia }}
-                            , desde el <strong>{{ actual_fecha }}</strong>
-                        </td>
-                    </tr>   
-
-
-                    {% if expediente.estado == 'ASOCIADO' %}                        
                         <tr>
-                            <th class="w-25 bg-gray">ASOCIADO A EXPEDIENTE</th>
+                            <th class="w-25">Tipo</th>
+                            <td  class="bg-white">{{ expediente.tipo}}</td>
+                        </tr>
+                        <tr>
+                            <th class="w-25">Fecha de inicio</th>
+                            <td class="bg-white">{{ expediente.fechaInicio|date('d-m-Y')}}</td>
+                        </tr>
+                        <tr>
+                            <th class="w-25">Fecha de fin</th>
+                            <td  class="bg-white">{{ expediente.fechaFin|date('d-m-Y')}}</td>
+                        </tr>
+                        <tr>
+                            <th class="w-25 bg-gray">Último Pase</th>
                             <td  class="bg-white">
+                                {{ expediente.ultimoMovimiento.ubicacion}}
 
-                                {{ expediente_padre }}
-                                <br/>
-                            <td/>
-                        </tr>              
-                    {% endif %}
+                                - {{ expediente.ultimoMovimiento.ubicacion.dependencia }}
 
-                </tbody>
-                <tfoot>
-            </table> 
-    
+                                , <strong>fecha {{  expediente.ultimoMovimiento.fecha|date('d-m-Y') }},  a las {{ expediente.ultimoMovimiento.fecha|date('H:i') }} hs</strong>
+                            </td>
+                        </tr>  
+                        <tr>
+                            <th class="w-25 bg-gray">Ubicacion Actual</th>
+                            <td  class="bg-white">
+                                {{ expediente.movimientoActual.ubicacion}}                          
+                                - {{ expediente.movimientoActual.ubicacion.dependencia }}
+                                , <strong>fecha {{ expediente.movimientoActual.fecha|date('d-m-Y') }}, a las {{ expediente.movimientoActual.fecha|date('H:i') }} hs</strong>
+                            </td>
+                        </tr>   
 
-        {% endif %}
+                        {% if expediente.estado == 'ASOCIADO' and expediente.fechaBaja == null%}                        
+                            <tr>
+                                <th class="w-25 bg-gray">ASOCIADO A EXPEDIENTE</th>
+                                <td  class="bg-white">
+
+                                    {{ expediente_padre }}
+                                    <br/>
+                                <td/>
+                            </tr>              
+                        {% endif %}
+
+                    </tbody>
+                    <tfoot>
+                </table> 
+
+
+            {% endif %}
+        </div>
+
     </div>
-         
-         </div>
 {% endblock %}

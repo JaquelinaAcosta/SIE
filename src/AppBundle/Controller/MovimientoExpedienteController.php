@@ -19,7 +19,7 @@ class MovimientoExpedienteController extends Controller {
     public function indexMovimientoAction(Request $request, $id) {
         $em = $this->getDoctrine()->getEntityManager();
         $expediente = $em->getRepository("AppBundle:Expediente")->findByExpediente($id);
-        
+
         if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser())) {
             $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
             return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
@@ -54,6 +54,7 @@ class MovimientoExpedienteController extends Controller {
     public function internoAction(Request $request, $id) {
         $em = $this->getDoctrine()->getEntityManager();
         $movimientoExpediente = new MovimientoExpediente();
+        $movimiento_hijo = new MovimientoExpediente();
         $expediente = $em->getRepository("AppBundle:Expediente")->findByExpediente($id);
         if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser())) {
             $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
@@ -70,14 +71,16 @@ class MovimientoExpedienteController extends Controller {
                 $movimientoExpediente->setExpediente($expediente);
                 $movimientoExpediente->setFecha(new \DateTime('now'));
                 $movimientoExpediente->setUbicacion($persona);
-                foreach ($expediente->getExpedientesAsociados()->getValues() as $expediente_asoc) {
-                    $expediente_asoc->getExpedienteAsociado()->setUltimaUbicacion($expediente_asoc
-                                    ->getExpedienteAsociado()->getUbicacionActual());
-                    $expediente_asoc->getExpedienteAsociado()->setUbicacionActual($persona);
-                }
                 $expediente->getMovimientos()->add($movimientoExpediente);
-                $expediente->setUltimaUbicacion($expediente->getUbicacionActual());
-                $expediente->setUbicacionActual($persona);
+                $expediente->setUltimoMovimiento($expediente->getMovimientoActual());
+                $expediente->setMovimientoActual($movimientoExpediente);
+
+                foreach ($expediente->getExpedientesAsociados()->getValues() as $expediente_asoc) {
+                    $expediente_asoc->getExpedienteAsociado()->setUltimoMovimiento($expediente->getUltimoMovimiento());
+                    $expediente_asoc->getExpedienteAsociado()->setMovimientoActual($expediente->getMovimientoActual());
+                }
+
+                $em->persist($expediente);
                 $flush = $em->flush();
                 if ($flush == false) {
                     $this->addFlash('success', 'Pase hacia "' . $persona . '" exitoso.');
@@ -91,7 +94,7 @@ class MovimientoExpedienteController extends Controller {
         return $this->render('Movimiento/interno.html.twig', [
                     'form' => $form->createView(),
                     'expediente' => $expediente,
-                    'accion' => 'NUEVO'
+                    'accion' => 'Nuevo'
         ]);
     }
 
@@ -108,9 +111,9 @@ class MovimientoExpedienteController extends Controller {
         }
         $user = $this->getUser();
 
-        if (get_class($expediente->getUbicacionActual()) == \AppBundle\Entity\MesaEntrada::class) {
+        if (get_class($expediente->getMovimientoActual()->getUbicacion()) == \AppBundle\Entity\MesaEntrada::class) {
             $form = $this->createForm(MovimientoExpedienteType::class, $movimientoExpediente, ['pase' => 'externo',
-                'dependencia_id' => $expediente->getUbicacionActual()->getDependencia()]);
+                'dependencia_id' => $expediente->getMovimientoActual()->getUbicacion()->getDependencia()]);
         } else {
             $form = $this->createForm(MovimientoExpedienteType::class, $movimientoExpediente, ['pase' => 'externo',
                 'dependencia_id' => $user->getPersona()->getDependencia()->getId()]);
@@ -121,21 +124,21 @@ class MovimientoExpedienteController extends Controller {
             if ($form->isValid()) {
                 $movimientoExpediente->setUsuario($this->getUser()->getIup());
                 $mesaentrada = $em->getRepository("AppBundle:Dependencia")
-                                ->findByDependencia($form['mesaentrada']->getData()->getDependencia())
-                                ->getMesaentrada();
+                        ->findByDependencia($form['mesaentrada']->getData()->getDependencia())
+                        ->getMesaentrada();
                 $movimientoExpediente->setTipoSalida('Externo');
                 $movimientoExpediente->setExpediente($expediente);
                 $movimientoExpediente->setFecha(new \DateTime('now'));
                 $movimientoExpediente->setUbicacion($mesaentrada);
-                foreach ($expediente->getExpedientesAsociados()->getValues() as $expediente_asoc) {
-                    $expediente_asoc->getExpedienteAsociado()->setUltimaUbicacion($expediente_asoc
-                                    ->getExpedienteAsociado()->getUbicacionActual());
-                    $expediente_asoc->getExpedienteAsociado()->setUbicacionActual($mesaentrada);
-                }
                 $expediente->getMovimientos()->add($movimientoExpediente);
-                $expediente->setUltimaUbicacion($expediente->getUbicacionActual());
-                $expediente->setUbicacionActual($mesaentrada);
-                if ($expediente->getUltimaUbicacion()->getDependencia() != $expediente->getUbicacionActual()->getDependencia()) {
+                $expediente->setUltimoMovimiento($expediente->getMovimientoActual());
+                $expediente->setMovimientoActual($movimientoExpediente);
+
+                foreach ($expediente->getExpedientesAsociados()->getValues() as $expediente_asoc) {
+                    $expediente_asoc->getExpedienteAsociado()->setUltimoMovimiento($expediente->getUltimoMovimiento());
+                    $expediente_asoc->getExpedienteAsociado()->setMovimientoActual($expediente->getMovimientoActual());
+                }
+                if ($expediente->getUltimoMovimiento()->getUbicacion()->getDependencia() != $expediente->getMovimientoActual()->getUbicacion()->getDependencia()) {
                     $expediente->setEstado('NUEVO');
                 }
                 $em->persist($expediente);
@@ -180,16 +183,14 @@ class MovimientoExpedienteController extends Controller {
                 $movimientoExpediente->setExpediente($expediente);
                 $movimientoExpediente->setFecha(new \DateTime('now'));
                 $movimientoExpediente->setUbicacion($lugarfisico);
-                foreach ($expediente->getExpedientesAsociados()->getValues() as $expediente_asoc) {
-
-                    $expediente_asoc->getExpedienteAsociado()->setUltimaUbicacion($expediente_asoc
-                                    ->getExpedienteAsociado()->getUbicacionActual());
-                    $expediente_asoc->getExpedienteAsociado()->setUbicacionActual($lugarfisico);
-                }
-
                 $expediente->getMovimientos()->add($movimientoExpediente);
-                $expediente->setUltimaUbicacion($expediente->getUbicacionActual());
-                $expediente->setUbicacionActual($lugarfisico);
+                $expediente->setUltimoMovimiento($expediente->getMovimientoActual());
+                $expediente->setMovimientoActual($movimientoExpediente);
+
+                foreach ($expediente->getExpedientesAsociados()->getValues() as $expediente_asoc) {
+                    $expediente_asoc->getExpedienteAsociado()->setUltimoMovimiento($expediente->getUltimoMovimiento());
+                    $expediente_asoc->getExpedienteAsociado()->setMovimientoActual($expediente->getMovimientoActual());
+                }
                 $em->persist($expediente);
                 $flush = $em->flush();
                 if ($flush == false) {
@@ -215,7 +216,7 @@ class MovimientoExpedienteController extends Controller {
     public function listaMovimientoAction(Request $request, $id, $currentPage) {
         $em = $this->getDoctrine()->getEntityManager();
         $expediente = $em->getRepository("AppBundle:Expediente")->findByExpediente($id);
-        if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser(),true)) {
+        if (!$this->get("app.util")->VerificarExpediente($expediente, $this->getUser(), true)) {
             $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
             return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
         }
@@ -247,7 +248,7 @@ class MovimientoExpedienteController extends Controller {
             $paginator = new Paginator($filterBuilder, $fetchJoinCollection = true);
             $movimientos = $paginator->getQuery()->getResult();
             $maxPages = ceil($totalItems / $limit);
-        }else {
+        } else {
             $movimientos_repo = $em->getRepository('AppBundle:MovimientoExpediente')
                     ->createMovimientoFilter($expediente);
             $totalItems = count($movimientos_repo->getQuery()->getResult());
@@ -255,7 +256,7 @@ class MovimientoExpedienteController extends Controller {
             $movimientos_repo->setMaxResults($limit);
             $paginator = new Paginator($movimientos_repo, $fetchJoinCollection = true);
             $movimientos = $paginator->getQuery()->getResult();
-            $maxPages = ($movimientos > 0) ? $maxPages = ceil($totalItems / $limit): $maxPages=1;
+            $maxPages = ($movimientos > 0) ? $maxPages = ceil($totalItems / $limit) : $maxPages = 1;
         }
 
         if ($formMovimientoFilter->get('reset')->isClicked()) {
@@ -274,7 +275,7 @@ class MovimientoExpedienteController extends Controller {
         }
 
         return $this->render('Expediente/listadoMovimientos.html.twig', array(
-                    'limite'=>$limit,
+                    'limite' => $limit,
                     'movimientos' => $movimientos,
                     'totalMovimientos' => $totalMovimientos,
                     'expediente' => $expediente,
@@ -293,8 +294,7 @@ class MovimientoExpedienteController extends Controller {
 
         $em = $this->getDoctrine()->getEntityManager();
         $movimiento = $em->getRepository("AppBundle:MovimientoExpediente")->findByMovimiento($id);
-        if (!$this->get("app.util")->VerificarExpediente($movimiento->getExpediente(),
-                $this->getUser(),true)) {
+        if (!$this->get("app.util")->VerificarExpediente($movimiento->getExpediente(), $this->getUser(), true)) {
             $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
             return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
         }
@@ -321,12 +321,12 @@ class MovimientoExpedienteController extends Controller {
             case ('Externo'):
                 $movimiento->setMesaentrada($movimiento->getUbicacion());
                 $form = $this->createForm(MovimientoExpedienteType::class, $movimiento, ['pase' => 'externo',
-                    'dependencia_id'=>$this->getUser()->getPersona()->getDependencia()]);
+                    'dependencia_id' => $this->getUser()->getPersona()->getDependencia()]);
                 $form->handleRequest($request);
 
                 if ($form->isSubmitted()) {
                     $movimiento->setUbicacion($form['mesaentrada']->getData());
-                    $expediente->setUbicacionActual($movimiento->getUbicacion());
+                    $expediente->setMovimientoActual($movimiento);
                     $em->persist($expediente);
                     $flush = $em->flush();
                     if ($flush == false) {
@@ -351,7 +351,7 @@ class MovimientoExpedienteController extends Controller {
                 $form->handleRequest($request);
                 if ($form->isSubmitted()) {
                     $movimiento->setUbicacion($form['persona']->getData());
-                    $expediente->setUbicacionActual($movimiento->getUbicacion());
+                    $expediente->setMovimientoActual($movimiento);
                     $em->persist($expediente);
 
                     $flush = $em->flush();
@@ -379,7 +379,7 @@ class MovimientoExpedienteController extends Controller {
 
                 if ($form->isSubmitted()) {
                     $movimiento->setUbicacion($form['lugarfisico']->getData());
-                    $expediente->setUbicacionActual($movimiento->getUbicacion());
+                    $expediente->setMovimientoActual($movimiento);
                     $em->persist($expediente);
                     $flush = $em->flush();
                     if ($flush == false) {
@@ -417,9 +417,9 @@ class MovimientoExpedienteController extends Controller {
             $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
             return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
         }
-        $movimiento->getExpediente()->setUbicacionActual($movimiento->getExpediente()->getUltimaUbicacion());
+        $movimiento->getExpediente()->setMovimientoActual($movimiento->getExpediente()->getUltimoMovimiento());
         $movimiento->setFechaBaja(new \DateTime('now'));
-         $this->get('session')->remove('movimiento_listar_request');
+        $this->get('session')->remove('movimiento_listar_request');
         $flush = $em->flush();
         if ($flush == false) {
             $this->addFlash('success', 'Pase "' . $movimiento->getUbicacion() . '" eliminado correctamente.');

@@ -45,8 +45,14 @@ class Tema
     */
     private $expedientes;
     
+    /**
+    * @ORM\OneToMany(targetEntity="CaratulaAgregada",mappedBy="tema")
+    */
+    private $caratulas;
+    
     public function __construct() {
         $this->expedientes = new ArrayCollection();
+        $this->caratulas = new ArrayCollection();
     }
     
     public function __toString() {
@@ -143,5 +149,42 @@ class Tema
     public function getExpedientes()
     {
         return $this->expedientes;
+    }
+    
+    
+    
+    
+    /**
+     * Add caratula
+     *
+     * @param \AppBundle\Entity\CaratulaAgregada $caratula
+     *
+     * @return Tema
+     */
+    public function addCaratula(\AppBundle\Entity\CaratulaAgregada $caratula)
+    {
+        $this->caratulas[] = $caratula;
+
+        return $this;
+    }
+
+    /**
+     * Remove caratula
+     *
+     * @param \AppBundle\Entity\CaratulaAgregada $caratula
+     */
+    public function removeCaratula(\AppBundle\Entity\CaratulaAgregada $caratula)
+    {
+        $this->caratulas->removeElement($caratula);
+    }
+
+    /**
+     * Get caratulas
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCaratulas()
+    {
+        return $this->caratulas;
     }
 }

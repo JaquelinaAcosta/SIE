@@ -1,7 +1,7 @@
 {% extends "layout.html.twig" %}
 
 {% block contentmain %}   
-      <style>
+    <style>
         .modal-header-warning {
             color:#fff;
             padding:9px 15px;
@@ -95,7 +95,7 @@
                     </div>
                 </div>
             </div>
-                            
+
 
             {% for message in app.flashes('success') %}
                 <div class="alert alert-success">
@@ -110,13 +110,13 @@
                 </div>
                 <hr/>
             {% endfor %}
-            
+
             {% if movimientos|length >0 %}
-            <hr/>
-            <div class="alert alert-info">
-                <i class="fas fa-search"></i> Resultados de la búsqueda: {{ totalItems }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-            </div>
-            <hr/>
+                <hr/>
+                <div class="alert alert-info">
+                    <i class="fas fa-search"></i> Resultados de la búsqueda: {{ totalItems }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                </div>
+                <hr/>
             {% else %}
                 <div class="alert alert-info">
                     <i class="fas fa-search"></i> Búsqueda con 0 resultados! &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
@@ -128,11 +128,12 @@
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col"></th>
-                        <th scope="col">UBICACION</th>
-                        <th scope="col">DEPENDENCIA</th>
-                        <th scope="col">TIPO DE PASE</th>
-                        <th scope="col">FECHA</th>
-                        <th scope="col">ACCIONES</th>
+                        <th scope="col">Ubicación</th>
+                        <th scope="col">Dependencia</th>
+                        <th class="text-center" scope="col">Fojas Agregadas</th>
+                        <th class="text-center" scope="col">Tipo de Pase</th>
+                        <th class="text-center" scope="col">Fecha</th>
+                        <th class="text-center" scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -148,15 +149,14 @@
                             {% endif %}
                             <td>{{movimiento.ubicacion}}</td>
                             <td>{{movimiento.ubicacion.dependencia}}</td>
-                            <td>{{movimiento.tipoSalida}}</td>
-                            <td>{{movimiento.fecha|date('d-m-Y')}}</td>
-                            {% if (movimiento.ubicacion == expediente.ubicacionActual) and (movimiento.ubicacion != expediente.ultimaUbicacion) and (count == movimientos|length) %}
-                                <td><a class="btn btn-info" href="{{ path('ver_movimiento',{'id':movimiento.id}) }}"  role="button" title="Ver Detalle"><i class="fas fa-search"></i></a>
+                            <td class="text-center">{{movimiento.fojas}}</td>
+                            <td class="text-center">{{movimiento.tipoSalida}}</td>
+                            <td class="text-center">{{movimiento.fecha|date('d-m-Y')}}</td>
+                            {% if (movimiento == expediente.movimientoActual) and (movimiento.ubicacion != expediente.ultimoMovimiento) and (count>1) and (count == movimientos|length) %}
+                                <td class="text-center"><a class="btn btn-info" href="{{ path('ver_movimiento',{'id':movimiento.id}) }}"  role="button" title="Ver Detalle"><i class="fas fa-search"></i></a>
                                         {% if count >0 and (accion_habilitada == true)%}
                                         <a class="btn btn-warning" href="{{ path('editar_movimiento',{'id':movimiento.id}) }}"  role="button" title="Modificar"><i class="fas fa-edit"></i></a>                                  
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{ count }}"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></button>    
-
-
                                         <!-- The Modal -->
                                         <div class="modal fade" id="myModal{{count}}">
                                             <div class="modal-dialog modal-sm modal-dialog-centered">
@@ -187,7 +187,7 @@
                                         {#                                        <a class="btn btn-danger" href="{{path('eliminar_movimiento',{'id':movimiento.id})}}"  role="button" title="Archivar"><i class="fas fa-trash-alt"></i></a></td>#}
                                     {% endif %}
                                 {% else %}
-                                <td><a class="btn btn-info" href="{{ path('ver_movimiento',{'id':movimiento.id}) }}"  role="button" title="Ver Detalle"><i class="fas fa-search"></i></a></td>
+                                <td class="text-center"><a class="btn btn-info" href="{{ path('ver_movimiento',{'id':movimiento.id}) }}"  role="button" title="Ver Detalle"><i class="fas fa-search"></i></a></td>
                                     {% endif %}
                         </tr>
                     {% endfor %}                  

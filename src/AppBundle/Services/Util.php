@@ -10,14 +10,14 @@ use AppBundle\Entity\MesaEntrada;
 
 class Util {
 
-    public function VerificarExpediente(Expediente $expediente=null, $usuario, $visible = null) {
+    public function VerificarExpediente(Expediente $expediente = null, $usuario, $visible = null) {
         //si la dependencia del usuario  no corresponde a la dependencia
         //de la ubicacion actual del expediente, se retorna al listado.
         if ($expediente == null) {
             return false;
         }
-        if($expediente != null && $expediente->getFechaBaja() != null){
-             return false;
+        if ($expediente != null && $expediente->getFechaBaja() != null) {
+            return false;
         }
 
         if ($usuario->getRole() != 'ROLE_ADMIN') {
@@ -40,17 +40,17 @@ class Util {
         }
     }
 
-    public function VerificarPersona(Persona $persona=null, $usuario) {
+    public function VerificarPersona(Persona $persona = null, $usuario) {
         //si la dependencia del usuario  no corresponde a la dependencia
         //de la ubicacion actual del expediente, se retorna al listado.
         if ($persona == null) {
             return false;
         }
-         if($persona != null && $persona->getFechaBaja() != null){
-             return false;
+        if ($persona != null && $persona->getFechaBaja() != null) {
+            return false;
         }
 
-        
+
         if ($usuario->getRole() != 'ROLE_ADMIN') {
             if ($usuario->getPersona()->getDependencia() != $persona->getDependencia()) {
                 return false;
@@ -65,18 +65,18 @@ class Util {
             return true;
         }
     }
-    
-    public function VerificarPersonal(Persona $personal=null, $usuario) {
+
+    public function VerificarPersonal(Persona $personal = null, $usuario) {
         //si la dependencia del usuario  no corresponde a la dependencia
         //de la ubicacion actual del expediente, se retorna al listado.
         if ($personal == null) {
             return false;
         }
-         if($personal != null && $personal->getFechaBaja() != null){
-             return false;
+        if ($personal != null && $personal->getFechaBaja() != null) {
+            return false;
         }
 
-        
+
         if ($usuario->getRole() == 'ROLE_USER') {
             if ($usuario->getPersona()->getDependencia() != $personal->getDependencia()) {
                 return false;
@@ -87,30 +87,29 @@ class Util {
                     return false;
                 }
             }
-        } else if($usuario->getRole() == 'ROLE_RESPONSABLE') {
-            if($usuario->getPersona()->getDependencia() == $personal->getDependencia()){
-                            return true;
-            }else{
+        } else if ($usuario->getRole() == 'ROLE_RESPONSABLE') {
+            if ($usuario->getPersona()->getDependencia() == $personal->getDependencia()) {
+                return true;
+            } else {
                 return false;
             }
-
-        }else if($usuaro->getRole() == 'ROLE_ADMIN'){
+        } else if ($usuaro->getRole() == 'ROLE_ADMIN') {
             return true;
         }
     }
-    
-    public function VerificarUsuario(Usuario $usuario1=null, $usuario2) {
+
+    public function VerificarUsuario(Usuario $usuario1 = null, $usuario2) {
         //si la dependencia del usuario  no corresponde a la dependencia
         //de la ubicacion actual del expediente, se retorna al listado.
         if ($usuario1 == null) {
             return false;
         }
-         if($usuario1 != null && $usuario1->getFechaBaja() != null){
-             return false;
+        if ($usuario1 != null && $usuario1->getFechaBaja() != null) {
+            return false;
         }
 
-        
-        
+
+
         if ($usuario2->getRole() != 'ROLE_ADMIN') {
             if ($usuario1->getPersona()->getDependencia() != $usuario2->getPersona()->getDependencia()) {
                 return false;
@@ -126,18 +125,18 @@ class Util {
         }
     }
 
-    public function VerificarLugarFisico(LugarFisico $lugarfisico=null, $usuario, $visible = null) {
+    public function VerificarLugarFisico(LugarFisico $lugarfisico = null, $usuario, $visible = null) {
         //si la dependencia del usuario  no corresponde a la dependencia
 
 
         if ($lugarfisico == null) {
             return false;
         }//de la ubicacion actual del expediente, se retorna al listado.
-        
-         if($lugarfisico != null && $lugarfisico->getFechaBaja() != null){
-             return false;
+
+        if ($lugarfisico != null && $lugarfisico->getFechaBaja() != null) {
+            return false;
         }
-      
+
         if ($usuario->getRole() != 'ROLE_ADMIN') {
             if ($usuario->getPersona()->getDependencia() != $lugarfisico->getDependencia()) {
                 return false;
@@ -157,16 +156,16 @@ class Util {
             return true;
         }
     }
-    
-    public function VerificarMesaEntrada(MesaEntrada $mesaentrada=null, $usuario) {
+
+    public function VerificarMesaEntrada(MesaEntrada $mesaentrada = null, $usuario) {
         //si la dependencia del usuario  no corresponde a la dependencia
         //de la ubicacion actual del expediente, se retorna al listado.
         if ($mesaentrada == null) {
             return false;
         }
-         if($mesaentrada != null && $mesaentrada->getFechaBaja() != null){
-             return false;
-        }       
+        if ($mesaentrada != null && $mesaentrada->getFechaBaja() != null) {
+            return false;
+        }
         if ($usuario->getRole() != 'ROLE_ADMIN') {
             if ($usuario->getPersona()->getDependencia() != $mesaentrada->getDependencia()) {
                 return false;
@@ -181,5 +180,5 @@ class Util {
             return true;
         }
     }
-    
+
 }

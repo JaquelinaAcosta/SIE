@@ -67,7 +67,13 @@
                     </div>
                 </div>
                 <hr/>
-                <div class="row">                   
+                <div class="row">    
+                    <div class="col-lg-6">
+                        <label class="text-default">Tema</label>
+                        {{ form_errors(form.tema) }}
+                        {{ form_widget(form.tema) }}
+                    </div>     
+                    <div class="space col-lg-6"></div>
                     <div class="col-lg-4 ">
                         <label class="text-default">Tipo</label>
                         {{ form_errors(form.tipo) }}
@@ -79,13 +85,7 @@
                         <div class=" text-danger">{{ form_errors(form.fojas) }}</div>
                         {{ form_widget(form.fojas) }}
                     </div>    
-                    <div class="space col-lg-7"></div>
-                    <div class="col-lg-6">
-                        <label class="text-default">Tema</label>
-                        {{ form_errors(form.tema) }}
-                        {{ form_widget(form.tema) }}
-                    </div>     
-                    <div class="space col-lg-6"></div>
+                    <div class="space col-lg-7"></div>                 
                     <div class="col-lg-4">
                         <label class="text-default">Fecha de Inicio</label>
                         <div class=" text-danger">{{ form_row(form.fechaInicio, { 'id': 'date1' })}} </div>

@@ -4,12 +4,14 @@
 }
 .sidebar{
     width:125px;
-    height:1200px;
+    height: 1200px;
     background-color:#e3e3e3;
     /* float:left  Removed*/
+        margin-bottom: 300px;
     left:0; /* Added */
     position: fixed;
     border: #b3b3b3 .2px;
+
     -webkit-box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.26);
     -moz-box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.26);
     box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.26);
@@ -26,9 +28,8 @@ body{
 }
 .content{
     margin:0 auto;
-    width:1000px;
     background-color:#fafafa;
-
+    margin-bottom: 100px;
     padding:30px;
     -webkit-box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.26);
     -moz-box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.26);

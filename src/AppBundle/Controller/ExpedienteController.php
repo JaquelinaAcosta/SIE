@@ -22,31 +22,16 @@ class ExpedienteController extends Controller {
         $em = $this->getDoctrine()->getEntityManager();
         $expediente = new Expediente();
 
-        $movimientoExpediente = new MovimientoExpediente();
         $form = $this->createForm(ExpedienteType::class, $expediente);
 
         $form->handleRequest($request);
-
         $user = $this->getUser();
         $expediente->setIniciadorDependencia($user->getPersona()->getDependencia());
-        $expediente->setUbicacionActual($expediente->getIniciadorDependencia()->getMesaentrada());
-        $expediente->setUltimaUbicacion($expediente->getIniciadorDependencia()->getMesaentrada());
 
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
-                $movimientoExpediente->setUsuario($this->getUser()->getIup());
-                $movimientoExpediente->setTipoSalida('Externo');
-                $movimientoExpediente->setExpediente($expediente);
-                $movimientoExpediente->setFojas($expediente->getFojas());
-                $movimientoExpediente->setObservacion('Movimiento generado automaticamente en la carga del expediente en la mesa de entrada.');
-                $movimientoExpediente->setComentario('Carga automática.');
-                $fechaHoy = date("d-m-Y");
-                $date = \DateTime::createFromFormat('d-m-Y', $fechaHoy);
-                $movimientoExpediente->setFecha($date);
-                $movimientoExpediente->setUbicacion($expediente->getIniciadorDependencia()->getMesaentrada());
-                $expediente->getMovimientos()->add($movimientoExpediente);
-                $expediente->setFechaCarga($date);
-
+                $expediente = $this->GenerarMovimientoAutomatico($expediente);
+                
                 $fechaIni = \DateTime::createFromFormat('d-m-Y', $form['fechaInicio']->getData());
                 if ($form['fechaFin']->getData() != '') {
                     $fechaFin = \DateTime::createFromFormat('d-m-Y', $form['fechaFin']->getData());
@@ -206,17 +191,7 @@ class ExpedienteController extends Controller {
                         'expedienteAsociado' => $expediente
                     ])->getExpedientePadre();
         }
-        if ($expediente != null) {
-            $actualFecha = $em->getRepository('AppBundle:MovimientoExpediente')->findOneBy(
-                            [
-                        'ubicacion' => $expediente->getUbicacionActual()
-                            ], ['fecha' => 'DESC'], ['expediente' => $expediente], ['fechaBaja' => 'IS NULL'])->getFecha()->format('d-m-Y');
-            $ultimaFecha = $em->getRepository('AppBundle:MovimientoExpediente')->findOneBy(
-                            [
-                        'ubicacion' => $expediente->getUltimaUbicacion()
-                            ], ['fecha' => 'DESC'], ['expediente' => $expediente], ['fechaBaja' => 'IS NULL'])->getFecha()->format('d-m-Y');
-        }
-
+      
         $expedientes_asociados = $em->getRepository('AppBundle:ExpedienteAsociado')->findBy([
             'expedienteAsociado' => $expediente->getId()]);
         if ($expediente->getEstado() != 'ASOCIADO') {
@@ -230,9 +205,7 @@ class ExpedienteController extends Controller {
         return $this->render('Expediente/detalleExpediente.html.twig', [
                     'expediente' => $expediente,
                     'expedientes_asociados' => $expedientes_asociados,
-                    'expediente_padre' => $expedientePadre,
-                    'actual_fecha' => $actualFecha,
-                    'ultima_fecha' => $ultimaFecha,
+                    'expediente_padre' => $expedientePadre
         ]);
     }
 
@@ -250,7 +223,7 @@ class ExpedienteController extends Controller {
         $expediente->setFechaBaja(new \DateTime('now'));
 
         $this->get('session')->remove('expediente_listar_request');
-       
+
 //        foreach($expediente->getExpedientesAsociados()->getValues() as $expediente_asoc){
 //            $expediente_asoc->setFechaBaja(new \DateTime('now'));
 //        }
@@ -321,6 +294,23 @@ class ExpedienteController extends Controller {
                     'expediente' => $expediente,
                     'accion' => 'Editar'
         ));
+    }
+
+    public function GenerarMovimientoAutomatico(Expediente $expediente) {
+        $movimientoExpediente = new MovimientoExpediente();
+        $movimientoExpediente->setUsuario($this->getUser()->getIup());
+        $movimientoExpediente->setTipoSalida('Externo');
+        $movimientoExpediente->setExpediente($expediente);
+        $movimientoExpediente->setFojas(0);
+        $movimientoExpediente->setObservacion('Movimiento generado automaticamente.');
+        $movimientoExpediente->setComentario('Carga automática.');
+        $movimientoExpediente->setFecha(new \DateTime('now'));
+        $movimientoExpediente->setUbicacion($expediente->getIniciadorDependencia()->getMesaentrada());
+        $expediente->getMovimientos()->add($movimientoExpediente);
+        $expediente->setMovimientoActual($movimientoExpediente);
+        $expediente->setUltimoMovimiento($movimientoExpediente);
+        
+        return $expediente;
     }
 
 }

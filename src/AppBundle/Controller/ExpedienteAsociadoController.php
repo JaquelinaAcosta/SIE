@@ -32,7 +32,7 @@ class ExpedienteAsociadoController extends Controller {
         $expediente_asoc = $em->getRepository("AppBundle:Expediente")
                 ->findByExpediente($id_asoc);
         $expediente_asoc->setEstado('ASOCIADO');
-        $expediente_asoc->setUbicacionActual($expediente_padre->getUbicacionActual());
+        $expediente_asoc->setMovimientoActual($expediente_padre->getMovimientoActual());
         $expedienteAsociado->setExpedientePadre($expediente_padre);
         $expedienteAsociado->setExpedienteAsociado($expediente_asoc);
         $expedienteAsociado->setFecha(new \DateTime('now'));

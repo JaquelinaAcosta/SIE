@@ -208,7 +208,7 @@
 
                         </td>            
                         <td class="" style="padding:10px;">{{expediente.tema|e }}</td>         
-                        <td class="text-center" style="padding:10px;">{{expediente.ubicacionActual|e }}</td>
+                        <td class="text-center" style="padding:10px;">{{expediente.movimientoActual.ubicacion|e }}</td>
                         <td class="text-center" style="padding:10px;">
                             {% if expediente.fechaBaja == null %}
                                 {% if expediente.estado == 'NUEVO' %}

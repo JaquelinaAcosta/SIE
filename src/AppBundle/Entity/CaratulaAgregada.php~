@@ -33,7 +33,7 @@ class CaratulaAgregada {
 
     /**
      * @var int
-     * @ORM\OneToOne(targetEntity="Tema")
+     * @ORM\ManyToOne(targetEntity="Tema",inversedBy="caratulas") 
      * @ORM\JoinColumn(name="tema", referencedColumnName="id", nullable=false)
      */
     private $tema;
@@ -245,4 +245,38 @@ class CaratulaAgregada {
         return $this->usuarioUltimaModificacion;
     }
 
+
+    /**
+     * Set fechaBaja
+     *
+     * @param \DateTime $fechaBaja
+     *
+     * @return CaratulaAgregada
+     */
+    public function setFechaBaja($fechaBaja)
+    {
+        $this->fechaBaja = $fechaBaja;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaBaja
+     *
+     * @return \DateTime
+     */
+    public function getFechaBaja()
+    {
+        return $this->fechaBaja;
+    }
+    
+    /**
+     * @Assert\IsTrue(message="La cantidad de fojas debe ser un número entero mayor a 0")
+     */
+    public function getValidarFojas() {
+        if (($this->fojas) > 0) {
+            return true;
+        }
+        return false;
+    }
 }

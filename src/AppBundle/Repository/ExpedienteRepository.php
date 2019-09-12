@@ -24,11 +24,13 @@ class ExpedienteRepository extends \Doctrine\ORM\EntityRepository {
                     ->setParameter('expediente_padre_id', $padre_id);
         }
         if ($user->getRole() != "ROLE_ADMIN") {
-            $result->leftJoin(\AppBundle\Entity\Ubicacion::class, "u", "WITH", "e.ubicacionActual = u.id")
+            $result->leftJoin(\AppBundle\Entity\MovimientoExpediente::class, "m", "WITH", "e.movimientoActual = m.id")
+                    ->leftJoin(\AppBundle\Entity\Ubicacion::class, "u", "WITH", "m.ubicacion = u.id")
                     ->andWhere('u.dependencia= :dependencia')
                     ->setParameter('dependencia', $user->getPersona()->getDependencia());
         } else {
-            $result->innerJoin(\AppBundle\Entity\Ubicacion::class, "u", "WITH", "e.ubicacionActual = u.id")
+            $result->leftJoin(\AppBundle\Entity\MovimientoExpediente::class, "m", "WITH", "e.movimientoActual = m.id")
+                    ->leftJoin(\AppBundle\Entity\Ubicacion::class, "u", "WITH", "m.ubicacion = u.id")
                     ->innerJoin(\AppBundle\Entity\Dependencia::class, "d", "WITH", "u.dependencia = d.id");
         }
         return $result;
@@ -53,7 +55,7 @@ class ExpedienteRepository extends \Doctrine\ORM\EntityRepository {
         $expediente = $result->getQuery()->getResult();
         if (count($expediente) > 0) {
             return $expediente[0];
-        } else{
+        } else {
             return null;
         }
     }

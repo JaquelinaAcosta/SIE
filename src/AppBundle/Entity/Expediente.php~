@@ -8,8 +8,6 @@ use AppBundle\Entity\CaratulaAgregada;
 use AppBundle\Entity\Resolucion;
 use AppBundle\Entity\Dependencia;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Context\ExecutionContextInterface;
-use Symfony\Component\Validator\Constraints\Collection;
 
 /**
  * Expediente
@@ -94,7 +92,7 @@ class Expediente {
     private $iniciadorDependencia;
 
     /**
-     * @var string
+     * @var datetime
      *
      * @ORM\Column(name="fecha_inicio", type="datetime",nullable=true)
      */
@@ -107,14 +105,14 @@ class Expediente {
     private $fechaFin;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Ubicacion")
+     * @ORM\ManyToOne(targetEntity="MovimientoExpediente")
      */
-    private $ubicacionActual;
+    private $movimientoActual;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Ubicacion")
+     * @ORM\ManyToOne(targetEntity="MovimientoExpediente")
      */
-    private $ultimaUbicacion;
+    private $ultimoMovimiento;
 
     /**
      * @ORM\OneToOne(targetEntity="Resolucion", mappedBy="expediente")
@@ -863,4 +861,52 @@ class Expediente {
         return $this->usuarioUltimaModificacion;
     }
 
+
+    /**
+     * Set movimientoActual
+     *
+     * @param \AppBundle\Entity\MovimientoExpediente $movimientoActual
+     *
+     * @return Expediente
+     */
+    public function setMovimientoActual(\AppBundle\Entity\MovimientoExpediente $movimientoActual = null)
+    {
+        $this->movimientoActual = $movimientoActual;
+
+        return $this;
+    }
+
+    /**
+     * Get movimientoActual
+     *
+     * @return \AppBundle\Entity\MovimientoExpediente
+     */
+    public function getMovimientoActual()
+    {
+        return $this->movimientoActual;
+    }
+
+    /**
+     * Set ultimoMovimiento
+     *
+     * @param \AppBundle\Entity\MovimientoExpediente $ultimoMovimiento
+     *
+     * @return Expediente
+     */
+    public function setUltimoMovimiento(\AppBundle\Entity\MovimientoExpediente $ultimoMovimiento = null)
+    {
+        $this->ultimoMovimiento = $ultimoMovimiento;
+
+        return $this;
+    }
+
+    /**
+     * Get ultimoMovimiento
+     *
+     * @return \AppBundle\Entity\MovimientoExpediente
+     */
+    public function getUltimoMovimiento()
+    {
+        return $this->ultimoMovimiento;
+    }
 }

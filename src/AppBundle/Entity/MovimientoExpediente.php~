@@ -403,4 +403,26 @@ class MovimientoExpediente {
         return $this->usuarioUltimaModificacion;
     }
 
+    /**
+     * Set fechaBaja
+     *
+     * @param \DateTime $fechaBaja
+     *
+     * @return MovimientoExpediente
+     */
+    public function setFechaBaja($fechaBaja) {
+        $this->fechaBaja = $fechaBaja;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaBaja
+     *
+     * @return \DateTime
+     */
+    public function getFechaBaja() {
+        return $this->fechaBaja;
+    }
+
 }
