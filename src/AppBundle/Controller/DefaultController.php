@@ -8,19 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class DefaultController extends Controller {
-    
-    /**
-     * @Route("/, name="homepage")
-     */
-    public function checkHome(Request $request) {
-        if($this->getUser() == null){
-            return $this->redirectToRoute('loginUsuario');
-        }else{
-              return $this->redirectToRoute('busqueda_expediente');
-        }
 
-    }
-    
     /**
      * @Route("/ajax-form", name="add_evento")
      */
@@ -54,10 +42,10 @@ class DefaultController extends Controller {
     /**
      * @Route("/persona_search_dependencia/{id}", name="persona_search_dependencia")
      */
-    public function searchPersonaByDependenciaAction(Request $request,$id) {
+    public function searchPersonaByDependenciaAction(Request $request, $id) {
         $q = $request->query->get('term'); // use "term" instead of "q" for jquery-ui
         $dependencia = $this->getUser()->getPersona()->getDependencia();
-        $personas = $this->getDoctrine()->getRepository('AppBundle:Persona')->findByDependencia($q, $dependencia,$id);
+        $personas = $this->getDoctrine()->getRepository('AppBundle:Persona')->findByDependencia($q, $dependencia, $id);
         $results = array();
         foreach ($personas as $persona) {
             $results[] = array('id' => $persona->getId(),
@@ -139,12 +127,11 @@ class DefaultController extends Controller {
     /**
      * @Route("/expediente_asociado_search/{id}", name="expediente_asociado_search")
      */
-    public function searchExpedienteAction(Request $request,$id) {
+    public function searchExpedienteAction(Request $request, $id) {
         $q = $request->query->get('term'); // use "term" instead of "q" for jquery-ui
         $user = $this->getUser();
         $expedientes = $this->getDoctrine()->getRepository('AppBundle:Expediente')
-                ->findExpedientesAsociados($q,$id,
-                        $user->getPersona()->getDependencia());
+                ->findExpedientesAsociados($q, $id, $user->getPersona()->getDependencia());
 
         $results = array();
         foreach ($expedientes as $expediente) {
@@ -166,7 +153,5 @@ class DefaultController extends Controller {
         }
         return new JsonResponse(trim($expediente->__toString()));
     }
-    
-     
-    
+
 }

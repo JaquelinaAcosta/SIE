@@ -44,8 +44,7 @@ security:
         ROLE_ADMIN: [ROLE_RESPONSABLE,ROLE_USER]
                 
     #Control de acceso para Usuarios            
-    access_control:
-        
+    access_control:        
         - {path : ^/add/expediente, roles: [ROLE_RESPONSABLE] }
         - {path : ^/listaExpediente, roles: [ROLE_USER,ROLE_RESPONSABLE] }
         - {path : ^/expediente/editar/, roles:[ROLE_RESPONSABLE,ROLE_USER]}

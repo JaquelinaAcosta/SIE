@@ -12,8 +12,10 @@ class PaginaPrincipalController extends Controller {
     /**
      * @Route("/", name="busqueda_expediente")
      */
-    public function indexAction(Request $request) {
-
+    public function indexAction(Request $request) {    
+        
+        if($this->getUser() == null)return $this->redirectToRoute ('loginUsuario');
+        
         if ($this->getUser()->getFechaBaja() == null) {
             $em = $this->getDoctrine()->getEntityManager();
             $expedientes = array();
