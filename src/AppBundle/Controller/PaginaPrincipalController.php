@@ -32,9 +32,11 @@ class PaginaPrincipalController extends Controller {
 
                 $this->get('lexik_form_filter.query_builder_updater')->addFilterConditions($formExpedienteFilter, $filterBuilder);
                 $expedientes = $filterBuilder->getQuery()->getResult();
-                $expedientePadre = $em->getRepository('AppBundle:ExpedienteAsociado')->findOneBy([
-                            'expedienteAsociado' => $expedientes[0]
-                        ])->getExpedientePadre();
+                if ($expedientes[0] != null && $expedientes[0]->getEstado() == 'Asociado') {
+                    $expedientePadre = $em->getRepository('AppBundle:ExpedienteAsociado')->findOneBy([
+                                'expedienteAsociado' => $expedientes[0]
+                            ])->getExpedientePadre();
+                }
             }
             if ($formExpedienteFilter->get('Limpiar')->isClicked()) {
                 $this->get('session')->remove('expediente_search_listar_request');

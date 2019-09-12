@@ -8,7 +8,19 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class DefaultController extends Controller {
+    
+    /**
+     * @Route("/, name="homepage")
+     */
+    public function checkHome(Request $request) {
+        if($this->getUser() == null){
+            return $this->redirectToRoute('loginUsuario');
+        }else{
+              return $this->redirectToRoute('busqueda_expediente');
+        }
 
+    }
+    
     /**
      * @Route("/ajax-form", name="add_evento")
      */

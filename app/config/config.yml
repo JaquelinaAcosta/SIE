@@ -86,6 +86,7 @@ lexik_form_filter:
 simple_things_entity_audit:
     audited_entities:
         - AppBundle\Entity\Dependencia
+        - AppBundle\Entity\CaratulaAgregada
         - AppBundle\Entity\Expediente
         - AppBundle\Entity\ExpedienteAsociado
         - AppBundle\Entity\MovimientoExpediente

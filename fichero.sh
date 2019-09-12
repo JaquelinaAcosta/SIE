@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /var/www/html/blogvial/var
+cd /var/www/html/siedpv/var
 
 sudo chmod -R 777 logs
 sudo chmod -R 777 cache
