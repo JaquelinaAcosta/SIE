@@ -1,5 +1,7 @@
 {% extends "layout.html.twig" %}
 
+{% block title %}GIE DPV - Gestionar Persona{% endblock %}          
+
 {% block contentmain %}
 
     <style>
@@ -25,15 +27,8 @@
         <div class="filtro">
             <label class="text-default">Usuarios Responsables</label>                 
             <div class="responsable_items">
-                {%set count = 0%}
                 {% for responsable in form.responsables %}
-                    {% if count == 0 %}
-                        {{ form_row(responsable.usuario,{'disabled':'disabled'})}}
-                    {%else%}
                         {{ form_row(responsable)}}
-
-                    {%endif%}
-                    {% set count = count+1%}
                 {% endfor %}                       
             </div>
             <div class="add col-lg-3"></div>

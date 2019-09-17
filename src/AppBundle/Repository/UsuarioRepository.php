@@ -31,7 +31,7 @@ class UsuarioRepository extends \Doctrine\ORM\EntityRepository {
                 ->innerJoin(\AppBundle\Entity\Ubicacion::class, "ub", "WITH", "p.id=ub.id")
                 ->innerJoin(\AppBundle\Entity\Dependencia::class, "d", "WITH", "ub.dependencia=d.id")
                 ->where('u.fechaBaja IS NULL')
-                ->addOrderBy('u.iup', 'ASC');
+                ->addOrderBy('u.id', 'DESC');
 
         return $result;
     }

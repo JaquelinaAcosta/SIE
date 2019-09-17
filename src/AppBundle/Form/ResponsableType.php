@@ -24,10 +24,12 @@ class ResponsableType extends AbstractType {
                     'query_builder' => function(EntityRepository $er ) use ($id) {
                         return $er->createQueryBuilder('u')
                                 ->leftJoin(\AppBundle\Entity\Persona::class, "p", "WITH", "p.id= u.persona")
-                                ->leftJoin(\AppBundle\Entity\Ubicacion::class, "ub", "WITH", "ub.id = p.id")
-                                ->where('ub.dependencia = :id')
-                                ->andWhere("u.role != 'ROLE_ADMIN'")
-                                ->setParameter('id', $id);
+                                ->leftJoin(\AppBundle\Entity\Ubicacion::class, "ub", "WITH", "ub.id = p.id");
+                                if($id != null){
+                                    $er->where('ub.dependencia = :id');
+                                }                               
+                                $er->andWhere("u.role != 'ROLE_ADMIN'")
+                                   ->setParameter('id', $id);
                     },
                     'label' => false,
                     'placeholder' => '--Seleccione--',

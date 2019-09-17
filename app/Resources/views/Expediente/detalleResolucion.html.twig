@@ -1,5 +1,7 @@
 {% extends "layout.html.twig" %}
 
+{% block title %}GIE DPV - Detalle de Resolución{% endblock %}          
+
 {% block contentmain %}
 
     <style>
@@ -42,7 +44,7 @@
             {% if app.user.role == 'ROLE_ADMIN' %}
                 {% set accion_habilitada = true %}
             {%else%}
-                {% for responsable in expediente.ubicacionActual.responsables.getValues %}
+                {% for responsable in expediente.movimientoActual.ubicacion.responsables.getValues %}
                     {% if app.user == responsable.usuario %}
                         {% set accion_habilitada = true %}
                     {% endif %}

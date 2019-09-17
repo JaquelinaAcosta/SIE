@@ -50,7 +50,7 @@ class CaratulaAgregada {
      *
      * @ORM\Column(name="fojas", type="integer")
      */
-    private $fojas;
+    private $fojas = 0;
 
     /**
      * @ORM\Column(type="date", nullable=true)
@@ -270,13 +270,5 @@ class CaratulaAgregada {
         return $this->fechaBaja;
     }
     
-    /**
-     * @Assert\IsTrue(message="La cantidad de fojas debe ser un número entero mayor a 0")
-     */
-    public function getValidarFojas() {
-        if (($this->fojas) > 0) {
-            return true;
-        }
-        return false;
-    }
+  
 }

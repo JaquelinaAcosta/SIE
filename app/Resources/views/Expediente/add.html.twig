@@ -1,5 +1,7 @@
 {% extends "layout.html.twig" %}
 
+{% block title %}GIE DPV - Carga de Expediente{% endblock %}          
+
 {% block contentmain %}  
     <style>
         input[type=text]{
@@ -34,19 +36,18 @@
 
         }
 
-
     </style>
 
     <div class="content">
         <div class="col-ls-12">
             <br/>
             <div class="title">
-                <strong>Carga de Expediente</strong>
+                <h5 class="text-center">Carga de Expediente</h5>
             </div>
             <hr/>
             {{form_start(form,{'action':'','method':'POST'})}}
             <div class="filtro_panel"
-                 <label class="text-default">Número de Expediente</label>
+                 <label class="text-default"><strong>Número de Expediente</strong>(<span class="text-danger">*</span>)</label>
                 <div class=" text-danger">{{ form_errors(form.codigoExpediente) }}</div>
                 <div class=" text-danger">{{ form_errors(form.numeroExpediente) }}</div>
                 <div class=" text-danger">{{ form_errors(form.digitoExpediente) }}</div>
@@ -69,25 +70,25 @@
                 <hr/>
                 <div class="row">    
                     <div class="col-lg-6">
-                        <label class="text-default">Tema</label>
+                        <label class="text-default">Tema(<span class="text-danger">*</span>)</label>
                         {{ form_errors(form.tema) }}
                         {{ form_widget(form.tema) }}
                     </div>     
                     <div class="space col-lg-6"></div>
                     <div class="col-lg-4 ">
-                        <label class="text-default">Tipo</label>
+                        <label class="text-default">Tipo(<span class="text-danger">*</span>)</label>
                         {{ form_errors(form.tipo) }}
                         {{ form_widget(form.tipo) }}
                     </div>
                     <div class="space col-lg-7"></div>
                     <div class="col-lg-4">
-                        <label class="text-default">Fojas</label>
+                        <label class="text-default">Fojas(<span class="text-danger">*</span>)</label>
                         <div class=" text-danger">{{ form_errors(form.fojas) }}</div>
                         {{ form_widget(form.fojas) }}
                     </div>    
                     <div class="space col-lg-7"></div>                 
                     <div class="col-lg-4">
-                        <label class="text-default">Fecha de Inicio</label>
+                        <label class="text-default">Fecha de Inicio(<span class="text-danger">*</span>)</label>
                         <div class=" text-danger">{{ form_row(form.fechaInicio, { 'id': 'date1' })}} </div>
                         {{ form_widget(form.fechaInicio) }}
                     </div>  
@@ -99,7 +100,7 @@
                     </div>                      
                 </div>
                 <hr/>              
-                <label class="text-default">Concepto</label>
+                <label class="text-default">Concepto(<span class="text-danger">*</span>)</label>
                 {{ form_errors(form.concepto) }}
                 {{ form_widget(form.concepto) }}
                 <hr/>

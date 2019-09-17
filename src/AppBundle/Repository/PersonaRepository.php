@@ -18,6 +18,9 @@ class PersonaRepository extends \Doctrine\ORM\EntityRepository {
                         ->where($qb->expr()
                                 ->like('n.nombre', $qb->expr()
                                         ->literal('%' . $term . '%')))
+                        ->orWhere($qb->expr()
+                                ->like('n.apellido', $qb->expr()
+                                        ->literal('%' . $term . '%')))
                         ->andWhere('u.fechaBaja IS NULL')
                         ->andWhere('n.id <> 1038')
                         ->setMaxResults(10)->getQuery()->getResult();
@@ -30,16 +33,20 @@ class PersonaRepository extends \Doctrine\ORM\EntityRepository {
                         ->from('AppBundle:Persona', 'n')
                         ->leftJoin(\AppBundle\Entity\Ubicacion::class, "u", "WITH", "n.id = u.id")
                         ->leftJoin(\AppBundle\Entity\Expediente::class, "e", "WITH", "e.id = :id")
-                        ->leftJoin(\AppBundle\Entity\MovimientoExpediente::class, "m", "WITH", "e.movimientoActual = m.id")                   
-                        ->where('u.dependencia = :dependencia')
+                        ->leftJoin(\AppBundle\Entity\MovimientoExpediente::class, "m", "WITH", "e.movimientoActual = m.id")
+                        ->leftJoin(\AppBundle\Entity\Ubicacion::class, "u2", "WITH", "m.ubicacion = u2.id")
+                        ->leftJoin(\AppBundle\Entity\Dependencia::class, "d", "WITH", "d.id = u2.dependencia")                                          
                         ->andWhere('m.ubicacion != u.id')
                         ->andWhere('u.fechaBaja IS NULL')
                         ->andWhere('n.id <> 1038')
                         ->andWhere($qb->expr()
                                 ->like('n.nombre', $qb->expr()
                                         ->literal('%' . $term . '%')))
-                        ->setParameters(['dependencia' => $dependencia,
-                            'id' => $expediente_id])
+                        ->orWhere($qb->expr()
+                                ->like('n.apellido', $qb->expr()
+                                        ->literal('%' . $term . '%')))
+                        ->andWhere('u.dependencia = u2.dependencia')
+                        ->setParameter('id' ,$expediente_id)
                         ->setMaxResults(10)->getQuery()->getResult();
         return $result;
     }
@@ -60,6 +67,17 @@ class PersonaRepository extends \Doctrine\ORM\EntityRepository {
 
 
         return $result;
+    }
+
+    public function findAllPersonas() {
+        $qb = $this->getEntityManager()->createQueryBuilder('p');
+        $result = $qb->select('p')
+                ->from(\AppBundle\Entity\Persona::class, 'p')
+                ->innerJoin(\AppBundle\Entity\Ubicacion::class, "u", "WITH", "p.id=u.id")
+                ->where('u.fechaBaja IS NULL');
+
+        return $result->getQuery()->getResult();
+
     }
 
     public function findByPersona($persona) {

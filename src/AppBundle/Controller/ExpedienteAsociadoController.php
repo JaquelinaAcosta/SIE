@@ -39,7 +39,7 @@ class ExpedienteAsociadoController extends Controller {
 
         $expedienteAsociado->setOrdenAsociacion(count($expediente_padre->getExpedientesAsociados()->getValues()) + 1);
 
-        $expediente_padre->getExpedientesAsociados()->add($expedienteAsociado);
+        $expediente_padre->addExpedientesAsociado($expedienteAsociado);
 
         $em->persist($expediente_padre);
         $flush = $em->flush();

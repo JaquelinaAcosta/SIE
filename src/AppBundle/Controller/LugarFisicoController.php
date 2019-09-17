@@ -233,6 +233,13 @@ class LugarFisicoController extends Controller {
 
             $em->persist($lugarfisico);
             $flush = $em->flush();
+
+            if(!$flush){
+                $this->addFlash('success','Responsable añadido correctamente.');
+            }else{
+                $this->addFlash('danger','Hubo un problema al intentar añadir el responsable.');
+            }
+
         }
 
         // replace this example code with whatever you need

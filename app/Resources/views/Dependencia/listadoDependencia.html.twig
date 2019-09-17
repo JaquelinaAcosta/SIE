@@ -1,5 +1,7 @@
 {% extends "layout.html.twig" %}
 
+{% block title %}GIE DPV - Listado de Dependencias{% endblock %}          
+
 {% block contentmain %}
     <style>
 
@@ -9,7 +11,6 @@
             text-overflow: ellipsis;
             max-width: 200px;
         }
-
         .modal-header-warning {
             color:#fff;
             padding:9px 15px;
@@ -43,28 +44,28 @@
                         {{ form_errors(formDependenciaFilter) }}
                         <div class="row">
                             <div class="threecol col-lg-4">
-                                {{ form_label(formDependenciaFilter.descripcion, 'DESCRIPCIÓN') }}
+                                {{ form_label(formDependenciaFilter.descripcion, 'Descripción') }}
                                 {{ form_widget(formDependenciaFilter.descripcion) }}
                                 <div class="help-block with-errors">
                                     {{ form_errors(formDependenciaFilter.descripcion) }}
                                 </div>
                             </div>
                             <div class="threecol col-lg-4">
-                                {{ form_label(formDependenciaFilter.dependenciaPadre, 'DEPENDENCIA PADRE') }}
+                                {{ form_label(formDependenciaFilter.dependenciaPadre, 'Dependencia Padre') }}
                                 {{ form_widget(formDependenciaFilter.dependenciaPadre) }}
                                 <div class="help-block with-errors">
                                     {{ form_errors(formDependenciaFilter.dependenciaPadre) }}
                                 </div>
                             </div> 
                             <div class="threecol col-lg-4">
-                                {{ form_label(formDependenciaFilter.responsable, 'NOMBRE RESPONSABLE') }}
+                                {{ form_label(formDependenciaFilter.responsable, 'Responsable') }}
                                 {{ form_widget(formDependenciaFilter.responsable) }}
                                 <div class="help-block with-errors">
                                     {{ form_errors(formDependenciaFilter.responsable) }}
                                 </div>
                             </div>  
                             <div class="twocol col-lg-2">
-                                {{ form_label(formDependenciaFilter.nivel, 'NIVEL') }}
+                                {{ form_label(formDependenciaFilter.nivel, 'Nivel') }}
                                 {{ form_widget(formDependenciaFilter.nivel) }}
                                 <div class="help-block with-errors">
                                     {{ form_errors(formDependenciaFilter.nivel) }}
@@ -122,8 +123,8 @@
                     <th scope="col">Descripción</th>
                     <th scope="col">Dependencia Padre</th>
                     <th scope="col">Responsable</th>
-                    <th scope="col">Nivel</th>
-                    <th scope="col">Acciones</th>
+                    <th class="text-center" scope="col">Nivel</th>
+                    <th class="text-center" scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -135,8 +136,8 @@
                         <td class="text-default"><p>{{dependencia.dependenciaPadre.descripcion|e }}</p></td>
                         <td class="text-default">{{dependencia.responsable|e }}</td>
 
-                        <td class="text-default">{{dependencia.nivel|e }}</td>
-                        <td> <a class="btn btn-info" href="{{ path('gestionar_mesaentrada',{'id':dependencia.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Gestionar Mesa de Entrada">  <i class="fas fa-table"></i></a>
+                        <td class="text-center">{{dependencia.nivel|e }}</td>
+                        <td class="text-center"> <a class="btn btn-info" href="{{ path('gestionar_mesaentrada',{'id':dependencia.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Gestionar Mesa de Entrada">  <i class="fas fa-table"></i></a>
                             <a class="btn btn-warning" href="{{ path('editar_dependencia',{'id':dependencia.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit"></i></a>
 {#                            <a class="btn btn-danger" href="{{ path('baja_dependencia',{'id':dependencia.id}) }}"  role="button"><i class="fas fa-trash" data-toggle="tooltip" data-placement="top" title="Borrar"></i></a></td>#}
                             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{ count }}"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></button>    
@@ -201,61 +202,62 @@
             {%set maxRightRange = maxPages %}
         {%endif%}
 
+        {%if totalItems > 0 %}
+            <div class="pagination" >
+                <li><a class="page-link" href="{{ 0 < thisPage-1 ? path('listado_dependencia', {"currentPage": thisPage-1}) }}">Anterior</a></li>
 
-        <div class="pagination" >
-            <li><a class="page-link" href="{{ 0 < thisPage-1 ? path('listado_dependencia', {"currentPage": thisPage-1}) }}">Anterior</a></li>
-
-            {%if thisPage == maxPages-1%}
-                {%set maxLeftRange = maxLeftRange-1%}
-            {%elseif thisPage == maxPages and thisPage != minRightRange%}
-                {%set maxLeftRange = maxPages%}
-            {%endif%}
-
-            {% for i in minLeftRange..maxLeftRange %}
-                <li class="page-item {{ i == thisPage ? 'active' : '' }}">
-                    <a class="page-link"  href="{{ path('listado_dependencia', {"currentPage": i}) }}">{{ i }}</a>
-                </li>
-            {% endfor %}
-
-            {% if thisPage >= limite %}
-                <li class="page-item disabled">
-                    <a class="page-link"  href="#">...</a>
-                </li>
-                {% if thisPage == minRightRange-1%}
-                    {%set extremoDerecho = extremoDerecho-1%}
+                {%if thisPage == maxPages-1%}
+                    {%set maxLeftRange = maxLeftRange-1%}
+                {%elseif thisPage == maxPages and thisPage != minRightRange%}
+                    {%set maxLeftRange = maxPages%}
                 {%endif%}
-                {% for i in extremoIzquierdo..extremoDerecho %}                    
-                    <li class="page-item {{  i == thisPage ? 'active' : '' }}">
-                        <a class="page-link"  href="{{ path('listado_dependencia', {"currentPage": i}) }}">{{ i }}</a>
-                    </li>                    
-                {% endfor %}
-            {%endif%}
 
-            {% if thisPage < minRightRange-2%}
-                {%if thisPage!= maxRightRange-3%}
+                {% for i in minLeftRange..maxLeftRange %}
+                    <li class="page-item {{ i == thisPage ? 'active' : '' }}">
+                        <a class="page-link"  href="{{ path('listado_dependencia', {"currentPage": i}) }}">{{ i }}</a>
+                    </li>
+                {% endfor %}
+
+                {% if thisPage >= limite %}
                     <li class="page-item disabled">
                         <a class="page-link"  href="#">...</a>
                     </li>
+                    {% if thisPage == minRightRange-1%}
+                        {%set extremoDerecho = extremoDerecho-1%}
+                    {%endif%}
+                    {% for i in extremoIzquierdo..extremoDerecho %}                    
+                        <li class="page-item {{  i == thisPage ? 'active' : '' }}">
+                            <a class="page-link"  href="{{ path('listado_dependencia', {"currentPage": i}) }}">{{ i }}</a>
+                        </li>                    
+                    {% endfor %}
                 {%endif%}
-            {% endif%}
 
-            {% if thisPage < maxPages-extremos%}
-                {% for i in minRightRange..maxRightRange %}                   
-                    <li class="page-item">
-                        <a class="page-link"  href="{{ path('listado_dependencia', {"currentPage": i}) }}">{{ i }}</a>
-                    </li>
-                {% endfor %}
-            {%endif%}            
+                {% if thisPage < minRightRange-2%}
+                    {%if thisPage!= maxRightRange-3%}
+                        <li class="page-item disabled">
+                            <a class="page-link"  href="#">...</a>
+                        </li>
+                    {%endif%}
+                {% endif%}
 
-            {%if (page==maxPages)%}
+                {% if thisPage < maxPages-extremos%}
+                    {% for i in minRightRange..maxRightRange %}                   
+                        <li class="page-item">
+                            <a class="page-link"  href="{{ path('listado_dependencia', {"currentPage": i}) }}">{{ i }}</a>
+                        </li>
+                    {% endfor %}
+                {%endif%}            
 
-            {%else%}
-                {%set page= page+1%}
-            {%endif%}
-            <li><a class="page-link" href="{{ path('listado_dependencia', {"currentPage": page}) }}">Siguiente</a></li>
+                {%if (page==maxPages)%}
 
-            </ul>
-        </div>
+                {%else%}
+                    {%set page= page+1%}
+                {%endif%}
+                <li><a class="page-link" href="{{ path('listado_dependencia', {"currentPage": page}) }}">Siguiente</a></li>
+
+                </ul>
+            </div>
+        {%endif%}
 
 
         <script>

@@ -218,4 +218,112 @@ class UsuarioController extends Controller {
         return $this->redirectToRoute('listado_usuario', ['currentPage' => 1]);
     }
 
+
+    /**
+     * @Route("usuario/todo-responsable/{id}", name="generar_todo_responsable")
+     */
+    public function generarTodoResponsableAction(Request $request, $id) {
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $usuario = $em->getRepository("AppBundle:Usuario")->findByUsuario($id);
+        if (!$this->get("app.util")->VerificarUsuario($usuario, $this->getUser())) {
+            $this->addFlash('danger', 'Usted no tiene acceso a esta función.');
+            return $this->redirectToRoute('busqueda_expediente', ['currentPage' => 1]);
+        }
+
+        $mesas_de_entrada = $em->getRepository('AppBundle:MesaEntrada')->findAllMesas();
+        $personas = $em->getRepository('AppBundle:Persona')->findAllPersonas();
+
+
+        foreach($mesas_de_entrada as $mesa){
+            $usuario_existe = true;
+            foreach ($mesa->getResponsables() as $res) {
+                if($usuario == $res->getUsuario()){
+                        $usuario_existe = false;  
+                }else{
+                        $usuario_existe = true;  
+                }         
+            }
+            if($usuario_existe){
+                $responsable = new Responsable();
+                $responsable->setUsuario($usuario);
+                $responsable->setUbicacion($mesa);
+                $usuario->addResponsable($responsable);
+            }
+        }
+
+        foreach($personas as $persona){
+            $usuario_existe = true;
+            foreach ($persona->getResponsables() as $res) {
+                if($usuario == $res->getUsuario()){
+                        $usuario_existe = false;  
+                }else{
+                        $usuario_existe = true;  
+                }         
+            }
+            if($usuario_existe){
+                $responsable = new Responsable();
+                $responsable->setUsuario($usuario);
+                $responsable->setUbicacion($persona);
+                $usuario->addResponsable($responsable);
+            }
+        }
+        $em->persist($usuario);
+        $flush = $em->flush();
+
+        
+        if ($flush == false) {
+            $this->addFlash('success', 'El usuario ' . $usuario->getPersona() . '  ahora es responsables de todas las Mesas de Entrada y Personas disponibles en el sistema.');
+            return $this->redirectToRoute('listado_usuario', ['currentPage' => 1]);
+        } else {
+            $this->addFlash('danger', 'Ocurrio un error!.');
+        }
+
+        return $this->redirectToRoute('listado_usuario', ['currentPage' => 1]);
+    }
+
+/**
+     * @Route("usuario/borrar-todo-responsable/{id}", name="borrar_todo_responsable")
+     */
+    public function borrarTodoResponsableAction(Request $request, $id) {
+
+        $em = $this->getDoctrine()->getEntityManager();
+        $usuario = $em->getRepository("AppBundle:Usuario")->findByUsuario($id);
+        if (!$this->get("app.util")->VerificarUsuario($usuario, $this->getUser())) {
+            $this->addFlash('danger', 'Usted no tiene acceso a esta función.');
+            return $this->redirectToRoute('busqueda_expediente', ['currentPage' => 1]);
+        }
+
+        $mesas_de_entrada = $em->getRepository('AppBundle:MesaEntrada')->findAllMesas();
+        $personas = $em->getRepository('AppBundle:Persona')->findAllPersonas();
+
+
+        foreach($mesas_de_entrada as $mesa){
+            foreach ($mesa->getResponsables()->getValues() as $res) {
+                if($usuario == $res->getUsuario()){
+                      $usuario->removeResponsable($res);
+                }      
+            }
+        }
+
+        foreach($personas as $persona){
+             foreach ($persona->getResponsables()->getValues() as $res) {
+                if($usuario == $res->getUsuario()){
+                         if($usuario == $res->getUsuario()){
+                      $usuario->removeResponsable($res);
+                     }     
+                }      
+            }
+        }
+
+         $em->persist($usuario);
+          $flush = $em->flush();
+
+        
+            $this->addFlash('success', 'El usuario ' . $usuario->getPersona() . ' ha sido removido como responsable de todas las Mesas de Entrada y Personas disponibles en el sistema.');
+            return $this->redirectToRoute('listado_usuario', ['currentPage' => 1]);
+      
+    }
+
+
 }

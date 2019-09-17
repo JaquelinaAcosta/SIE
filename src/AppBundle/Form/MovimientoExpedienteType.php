@@ -28,12 +28,14 @@ class MovimientoExpedienteType extends AbstractType
             )
         ))
                 ->add('observacion', TextareaType::class, array(
+                   "required"=>false,
                 "label"=>"Observaciones: ","attr"=> array(
                "class"=>"form-control" ,
                 'rows'=> 5
             )
         ))
                 ->add('comentario', TextareaType::class, array(
+               "required"=>false,
                "label"=>"Comentario: ","attr"=> array(
                "class"=>"form-control" ,
                "placeholder"=>"",
@@ -52,7 +54,6 @@ class MovimientoExpedienteType extends AbstractType
            $builder->add('persona', 'PUGX\AutocompleterBundle\Form\Type\AutocompleteType', array(
                 'class' => 'AppBundle:Persona',
                 'label' => false,
-                'required' => false,
                 'attr' => array(
                     'class' => 'form form-control',
                     'placeholder' => 'Escriba parte del nombre y seleccione una opción'
@@ -69,6 +70,12 @@ class MovimientoExpedienteType extends AbstractType
                   $builder->add('mesaentrada', MesaEntradaType::class, ['gestion' => null, 'movimiento' => true]);
             }
           
+        }
+        if($options['pase'] == 'interno-externo'){
+                  $builder->add('mesaentrada', MesaEntradaType::class, [
+                      'gestion' => null, 'movimiento' => true,
+                      'dependencia_id'=>$options['dependencia_id'],
+                      'quitar_guardar'=>true]);        
         }
         if($options['pase'] == 'archivar'){
             $builder->add('lugarfisico', LugarFisicoType::class, [

@@ -1,6 +1,6 @@
 
 {% extends "layout.html.twig" %}
-
+{% block title %}GIE DPV - Iniciar Sesión{% endblock %}          
 {% block login %}
 
     <style>
@@ -61,11 +61,19 @@
         <div class="subcontent">
             {# Input para el campo iup #}
             <label>USUARIO</label>
-            <input style="padding:12px;" placeholder="Email | Usuario(iup)" type="text" id="username" name="_username" value="{{ last_username }}" class="form-control"/>
+            <input style="padding:12px;" placeholder="Email | IUP" type="text" id="username" name="_username" value="{{ last_username }}" class="form-control"/>
 
             <label for="password">CONTRASEÑA</label>
-            <input style="padding:12px;" placeholder="**********" type="password" id="password" name="_password" class="form-control"/>
+            <input style="padding:12px;" placeholder="Ingrese su contraseña" type="password" id="password" name="_password" class="form-control"/>
             <br/>
+
+            {% for message in app.flashes('danger') %}
+                <hr/>
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+                <hr/>
+            {% endfor %}
 
             <button style="padding:14px;" type="submit" class="form-submit btn btn-info">ENTRAR</button>
 

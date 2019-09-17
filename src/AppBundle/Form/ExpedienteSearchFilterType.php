@@ -27,6 +27,7 @@ class ExpedienteSearchFilterType extends AbstractType implements EmbeddedFilterT
             'required' => true,
             'attr' => [
                 'class' => 'cod form-control',
+                "maxlength"=>5
             ]
         ));
         $builder->add('numeroExpediente', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType', array(
@@ -40,6 +41,7 @@ class ExpedienteSearchFilterType extends AbstractType implements EmbeddedFilterT
             'required' => true,
             'attr' => [
                 'class' => 'num form-control',
+                "maxlength"=>7
             ]
         ));
         $builder->add('digitoExpediente', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType', array(
@@ -53,6 +55,7 @@ class ExpedienteSearchFilterType extends AbstractType implements EmbeddedFilterT
             'required' => true,
             'attr' => [
                 'class' => 'dig form-control',
+                "maxlength"=>1
             ]
         ));
 

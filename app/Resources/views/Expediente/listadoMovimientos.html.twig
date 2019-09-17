@@ -1,5 +1,6 @@
 {% extends "layout.html.twig" %}
 
+{% block title %}GIE DPV - Movimientos{% endblock %}          
 {% block contentmain %}   
     <style>
         .modal-header-warning {
@@ -30,7 +31,7 @@
                             {% if app.user.role == 'ROLE_ADMIN' %}
                                 {% set accion_habilitada = true %}
                             {%else%}
-                                {% for responsable in expediente.ubicacionActual.responsables.getValues %}
+                                {% for responsable in expediente.movimientoActual.ubicacion.responsables.getValues %}
                                     {% if app.user == responsable.usuario %}
                                         {% set accion_habilitada = true %}
                                     {% endif %}
@@ -98,21 +99,23 @@
 
 
             {% for message in app.flashes('success') %}
+                            <hr/>
                 <div class="alert alert-success">
                     {{ message }}
                 </div>
-                <hr/>
+
             {% endfor %}
 
             {% for message in app.flashes('danger') %}
+                            <hr/>
                 <div class="alert alert-danger">
                     {{ message }}
                 </div>
-                <hr/>
+
             {% endfor %}
 
             {% if movimientos|length >0 %}
-                <hr/>
+                                <hr/>
                 <div class="alert alert-info">
                     <i class="fas fa-search"></i> Resultados de la búsqueda: {{ totalItems }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                 </div>
@@ -139,7 +142,7 @@
                 <tbody>
                     {% set count = movimientos|length+1 %}
                     {% set modalCount = 0 %}
-                    {% for movimiento in movimientos|reverse%}
+                    {% for movimiento in movimientos%}
                         <tr>
                             {% set count= count-1 %}
                             {% if count != movimientos|length %}
@@ -224,8 +227,10 @@
             {%endif%}
 
 
-            <div class="pagination">
-                <li><a class="page-link" href="{{ 0 < thisPage-1 ? path('listado_movimiento', {'id':expediente.id,"currentPage": thisPage}) }}">Anterior</a></li>
+            {% if totalItems > 0 %}
+
+            <div class="pagination text-right">
+                <li><a class="page-link" href="{{ 0 < thisPage-1 ? path('listado_movimiento', {'id':expediente.id,"currentPage": thisPage-1}) }}">Anterior</a></li>
 
                 {%if thisPage == maxPages-1%}
                     {%set maxLeftRange = maxLeftRange-1%}
@@ -236,7 +241,7 @@
 
                 {% for i in minLeftRange..maxLeftRange %}
                     <li class="page-item {{  i == thisPage ? 'active' : '' }}">
-                        <a class="page-link"  href="{{ path('listado_movimiento', {'id':expediente.id,"currentPage": thisPage}) }}">{{ i }}</a>
+                        <a class="page-link"  href="{{ path('listado_movimiento', {'id':expediente.id,"currentPage": i}) }}">{{ i }}</a>
                     </li>
                 {% endfor %}
 
@@ -249,7 +254,7 @@
                     {%endif%}
                     {% for i in extremoIzquierdo..extremoDerecho %}                    
                         <li class="page-item {{  i == thisPage ? 'active' : '' }}">
-                            <a class="page-link"  href="{{ path('listado_movimiento', {'id':expediente.id,"currentPage": thisPage}) }}">{{ i }}</a>
+                            <a class="page-link"  href="{{ path('listado_movimiento', {'id':expediente.id,"currentPage": i}) }}">{{ i }}</a>
                         </li>                    
                     {% endfor %}
                 {%endif%}
@@ -265,7 +270,7 @@
                 {% if thisPage < maxPages-extremos%}
                     {% for i in minRightRange..maxRightRange %}                   
                         <li class="page-item">
-                            <a class="page-link"  href="{{ path('listado_movimiento', {'id':expediente.id,"currentPage": thisPage}) }}">{{ i }}</a>
+                            <a class="page-link"  href="{{ path('listado_movimiento', {'id':expediente.id,"currentPage": i}) }}">{{ i }}</a>
                         </li>
                     {% endfor %}
                 {%endif%}            
@@ -275,37 +280,14 @@
                 {%else%}
                     {%set page= page+1%}
                 {%endif%}
-                <li><a class="page-link" href="{{path('listado_movimiento', {'id':expediente.id,"currentPage": thisPage}) }}">Siguiente</a></li>
+                <li><a class="page-link" href="{{path('listado_movimiento', {'id':expediente.id,"currentPage": page}) }}">Siguiente</a></li>
 
                 </ul>
             </div> 
-
-            {#       {% if movimientos|length < totalItems %}        
-                       <ul class="pagination">
-                           {%if (thisPage==1)%}           
-                           {%else%}
-                               {%set thisPage= thisPage-1%}
-                           {%endif%}
-       
-       
-                           <li ><a class="page-link" href="{{ path('listado_movimiento', {'id':expediente.id,"currentPage": thisPage}) }}">&laquo</a></li>
-                               {% for i in 1..maxPages %}
-                               <li><a class="page-link"  href="{{ path('listado_movimiento', {'id':expediente.id,"currentPage": i}) }}">{{ i }}</a></li>
-                               {% endfor %}
-       
-                           {%if (page==maxPages)%}
-                           {%else%}
-                               {%set page= page+1%}
-                           {%endif%}
-                           <li><a class="page-link" href="{{ path('listado_movimiento', {'id':expediente.id,"currentPage": page}) }}">&raquo</a></li>
-       
-                       </ul>
-       
-                   </div> 
-               {%endif%}#} 
-
-
+            {% endif %}
+           
         </div>
+
         <script>
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()

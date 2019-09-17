@@ -178,6 +178,9 @@ class Ubicacion {
      * @return Ubicacion
      */
     public function addResponsable(\AppBundle\Entity\Responsable $responsable) {
+        if(get_class($responsable->getUbicacion()) == \AppBundle\Entity\MesaEntrada::class){
+                $responsable->getUsuario()->setRole('ROLE_RESPONSABLE');
+            }
         $this->responsables[] = $responsable;
 
         return $this;
@@ -190,9 +193,9 @@ class Ubicacion {
      * @return Ubicacion
      */
     public function removeResponsable(\AppBundle\Entity\Responsable $responsable) {
-        $responsable->getUsuario()
-                ->setRole('ROLE_USER');
-        $this->responsables->removeElement($responsable);
+        $responsable->getUsuario()->setRole('ROLE_USER');
+        $responsable->setFechaBaja(new \DateTime('now'));
+       // $this->responsables->removeElement($responsable);
     }
 
     /**
@@ -210,7 +213,13 @@ class Ubicacion {
      * @return \Doctrine\Common\Collections\Collection
      */
     public function getResponsables() {
-        return $this->responsables;
+        $responsables = new ArrayCollection();
+        foreach($this->responsables as $res){
+            if($res->getFechaBaja() == null){
+                $responsables[] = $res;
+            }
+         }
+         return $responsables;
     }
 
     /**

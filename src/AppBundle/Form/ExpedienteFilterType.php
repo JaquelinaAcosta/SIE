@@ -46,6 +46,7 @@ class ExpedienteFilterType extends AbstractType implements EmbeddedFilterTypeInt
             },
             'attr' => [
                 'class' => 'cod form-control',
+                "maxlength"=>5
             ]
         ));
         $builder->add('numeroExpediente', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType', array(
@@ -58,6 +59,7 @@ class ExpedienteFilterType extends AbstractType implements EmbeddedFilterTypeInt
             },
             'attr' => [
                 'class' => 'num form-control',
+                "maxlength"=>7
             ]
         ));
         $builder->add('digitoExpediente', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType', array(
@@ -70,6 +72,7 @@ class ExpedienteFilterType extends AbstractType implements EmbeddedFilterTypeInt
             },
             'attr' => [
                 'class' => 'dig form-control',
+                "maxlength"=>1
             ]
         ));
         $builder->add('fechaInicio', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\DateRangeFilterType', array(
@@ -115,8 +118,6 @@ class ExpedienteFilterType extends AbstractType implements EmbeddedFilterTypeInt
 //                },
             )
         ));
-
-
         $builder->add('tipo', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType', array(
             'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
                 if (!empty($values['value'])) {
@@ -128,6 +129,19 @@ class ExpedienteFilterType extends AbstractType implements EmbeddedFilterTypeInt
             'attr' => [
                 'class' => 'form-control',
                 'placeholder' => 'Ejemplo: Jurídico, Varios, Etc.'
+            ]
+        ));
+         $builder->add('concepto', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType', array(
+            'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
+                if (!empty($values['value'])) {
+                    $qb = $filterQuery->getQueryBuilder();
+                    $qb->andWhere($filterQuery->getExpr()->like($field, ':concepto'));
+                    $qb->setParameter('concepto', '%' . $values['value'] . '%');
+                }
+            },
+            'attr' => [
+                'class' => 'form-control',
+                'placeholder' => ''
             ]
         ));
 

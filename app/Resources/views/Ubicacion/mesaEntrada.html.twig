@@ -1,5 +1,7 @@
 {% extends "layout.html.twig" %}
 
+{% block title %}GIE DPV - Gestionar Mesa de Entrada{% endblock %}          
+
 {% block contentmain %}
 
     <style>
@@ -16,29 +18,24 @@
         }
     </style>
 
-
-
     <div class="content">
 
         <h4 class="text-center">Gestionar mesa de Entrada - {{ dependencia.descripcion }}</h4>
         <hr/>
         {{form_start(form,{'action':'','method':'POST'})}}
         <div class="filtro">
-            <label class="text-default">Código de Expediente</label>                 
+            <label class="text-default">Código de Expediente</label>                
             {{ form_errors(form.codigoExpediente) }}
             {{ form_widget(form.codigoExpediente) }}
+            <label class="text-default">Teléfono</label>                
+            {{ form_errors(form.telefono) }}
+            {{ form_widget(form.telefono) }}
             <hr/>
             <label class="text-default">Usuarios Responsables</label>                 
             <div class="responsable_items">                       
                 {%set count = 0%}
                 {% for responsable in form.responsables %}
-                    {% if count == 0 %}
-                        {{ form_row(responsable.usuario,{'disabled':'disabled'})}}
-                    {%else%}
                         {{ form_row(responsable)}}
-
-                    {%endif%}
-                    {% set count = count+1%}
                 {% endfor %}                      
             </div>
             <div class="add col-lg-3"></div>
@@ -47,6 +44,10 @@
             <div class="row col-lg-6">
                 <div class="col-lg-4">
                     {{ form_widget(form.Guardar) }}
+                </div>
+                <div class="col-lg-4">
+                    <button class="btn btn-secondary" type="button" onclick="history.back()"  role="button">Volver</button>
+                  
                 </div>
             </div>
         </div>

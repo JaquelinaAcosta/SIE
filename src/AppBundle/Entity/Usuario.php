@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Usuario
@@ -67,7 +68,7 @@ class Usuario implements UserInterface {
     private $persona;
 
     /**
-     * @ORM\OneToMany(targetEntity="Responsable",mappedBy="usuario")
+     * @ORM\OneToMany(targetEntity="Responsable",mappedBy="usuario",cascade={"persist"})
      */
     private $responsables;
 
@@ -114,7 +115,7 @@ class Usuario implements UserInterface {
      * Constructor
      */
     public function __construct() {
-        $this->responsable = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->responsables = new ArrayCollection();
     }
 
     //AUTENTICACION PARA LOGIN
@@ -294,7 +295,10 @@ class Usuario implements UserInterface {
      * @return Usuario
      */
     public function addResponsable(\AppBundle\Entity\Responsable $responsable) {
-        $this->responsable[] = $responsable;
+        if(get_class($responsable->getUbicacion()) == \AppBundle\Entity\MesaEntrada::class){
+                $responsable->getUsuario()->setRole('ROLE_RESPONSABLE');
+            }
+        $this->responsables[] = $responsable;
 
         return $this;
     }
@@ -305,7 +309,9 @@ class Usuario implements UserInterface {
      * @param \AppBundle\Entity\Responsable $responsable
      */
     public function removeResponsable(\AppBundle\Entity\Responsable $responsable) {
-        $this->responsable->removeElement($responsable);
+        $responsable->getUsuario()->setRole('ROLE_USER');
+        $responsable->setFechaBaja(new \DateTime('now'));
+        //$this->responsables->removeElement($responsable);
     }
 
     /**
@@ -314,7 +320,7 @@ class Usuario implements UserInterface {
      * @return \Doctrine\Common\Collections\Collection
      */
     public function getResponsable() {
-        return $this->responsable;
+       return $this->responsable;
     }
 
     /**
@@ -354,7 +360,13 @@ class Usuario implements UserInterface {
      * @return \Doctrine\Common\Collections\Collection
      */
     public function getResponsables() {
-        return $this->responsables;
+         $responsables = new ArrayCollection();
+        foreach($this->responsables as $res){
+            if($res->getFechaBaja() == null){
+                $responsables[] = $res;
+            }
+         }
+         return $responsables;
     }
 
     /**
@@ -385,6 +397,7 @@ class Usuario implements UserInterface {
      * Debe tener al menos una letra minúscula y una mayúscula, 
      * Debe tener al menos un caracter numérico")
      */
+
     public function getValidarPassword() {
         if (strlen($this->contrasenia) < 6) {
             // La clave debe tener al menos 6 caracteres
@@ -393,20 +406,7 @@ class Usuario implements UserInterface {
         if (strlen(($this->contrasenia)) > 16) {
             // La clave no puede tener más de 16 caracteres
             return false;
-        }
-        if (!preg_match('`[a-z]`', $this->contrasenia)) {
-            // La clave debe tener al menos una letra minúscula
-            return false;
-        }
-        if (!preg_match('`[A-Z]`', $this->contrasenia)) {
-            // La clave debe tener al menos una letra mayúscula
-            return false;
-        }
-        if (!preg_match('`[0-9]`', $this->contrasenia)) {
-            // La clave debe tener al menos un caracter numérico
-            return false;
-        }
-
+        }            
         return true;
     }
 

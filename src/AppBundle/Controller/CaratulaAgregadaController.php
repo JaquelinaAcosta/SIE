@@ -35,7 +35,7 @@ class CaratulaAgregadaController extends Controller {
 
         if ($form->isValid()) {
             $caratulaAgregada->setExpediente($expediente);
-            $expediente->getCaratulas()->add($caratulaAgregada);
+            $expediente->addCaratula($caratulaAgregada);
             $em->persist($expediente);
             $em->flush();
 

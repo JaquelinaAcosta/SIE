@@ -1,5 +1,7 @@
 {% extends "layout.html.twig" %}
 
+{% block title %}GIE DPV - Mesas de Entrada{% endblock %}          
+
 {% block contentmain %}
       <style>
         .modal-header-warning {
@@ -88,6 +90,7 @@
             </div>
             <hr/>
         {% else %}
+        <hr/>
             <div class="alert alert-info">
                 <i class="fas fa-search"></i> Búsqueda con 0 resultados! &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
             </div>
@@ -101,7 +104,7 @@
                         <th scope="col">Dependencia</th>
                         <th scope="col">Código Expediente</th>
                         <th scope="col">Teléfono</th>
-                        <th scope="col">Acciones</th>
+                        <th class="text-center" scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -123,10 +126,8 @@
                             <td class="text-default">{{mesaentrada.codigoExpediente|e }}</td>
                             <td class="text-default">{{mesaentrada.telefono|e }}</td>
 
-
-
                             {% if accion_habilitada == true %}
-                                <td> <a class="btn btn-warning" href="{{ path("gestionar_mesaentrada", {'id':mesaentrada.dependencia.id}) }}"  role="button"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Editar"></i></a></td>
+                                <td class="text-center"> <a class="btn btn-info" href="{{ path('gestionar_mesaentrada',{'id':mesaentrada.dependencia.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Gestionar Mesa de Entrada">Gestionar</a></td>
                         {%else%}
                         <td class="text-default"></td>
                         {%endif%}
@@ -165,62 +166,64 @@
             {%set maxRightRange = maxPages %}
         {%endif%}
 
+        {%if totalItems > 0 %}
+            <div class="pagination">
+                <li><a class="page-link" href="{{ 0 < thisPage-1 ? path('listado_mesaentrada', {"currentPage": thisPage-1}) }}">Anterior</a></li>
 
-        <div class="pagination">
-            <li><a class="page-link" href="{{ 0 < thisPage-1 ? path('listado_mesaentrada', {"currentPage": thisPage-1}) }}">Anterior</a></li>
-
-            {%if thisPage == maxPages-1%}
-                {%set maxLeftRange = maxLeftRange-1%}
-            {%elseif thisPage == maxPages and thisPage != minRightRange%}
-                {%set maxLeftRange = maxPages%}
-            {%endif%}
-
-
-            {% for i in minLeftRange..maxLeftRange %}
-                <li class="page-item {{  i == thisPage ? 'active' : '' }}">
-                    <a class="page-link"  href="{{ path('listado_mesaentrada', {"currentPage": i}) }}">{{ i }}</a>
-                </li>
-            {% endfor %}
-
-            {% if thisPage >= limite %}
-                <li class="page-item disabled">
-                    <a class="page-link"  href="#">...</a>
-                </li>
-                {% if thisPage == minRightRange-1%}
-                    {%set extremoDerecho = extremoDerecho-1%}
+                {%if thisPage == maxPages-1%}
+                    {%set maxLeftRange = maxLeftRange-1%}
+                {%elseif thisPage == maxPages and thisPage != minRightRange%}
+                    {%set maxLeftRange = maxPages%}
                 {%endif%}
-                {% for i in extremoIzquierdo..extremoDerecho %}                    
+
+
+                {% for i in minLeftRange..maxLeftRange %}
                     <li class="page-item {{  i == thisPage ? 'active' : '' }}">
                         <a class="page-link"  href="{{ path('listado_mesaentrada', {"currentPage": i}) }}">{{ i }}</a>
-                    </li>                    
+                    </li>
                 {% endfor %}
-            {%endif%}
 
-            {% if thisPage < minRightRange-2%}
-                {%if thisPage!= maxRightRange-3%}
+                {% if thisPage >= limite %}
                     <li class="page-item disabled">
                         <a class="page-link"  href="#">...</a>
                     </li>
+                    {% if thisPage == minRightRange-1%}
+                        {%set extremoDerecho = extremoDerecho-1%}
+                    {%endif%}
+                    {% for i in extremoIzquierdo..extremoDerecho %}                    
+                        <li class="page-item {{  i == thisPage ? 'active' : '' }}">
+                            <a class="page-link"  href="{{ path('listado_mesaentrada', {"currentPage": i}) }}">{{ i }}</a>
+                        </li>                    
+                    {% endfor %}
                 {%endif%}
-            {% endif%}
 
-            {% if thisPage < maxPages-extremos%}
-                {% for i in minRightRange..maxRightRange %}                   
-                    <li class="page-item">
-                        <a class="page-link"  href="{{ path('listado_mesaentrada', {"currentPage": i}) }}">{{ i }}</a>
-                    </li>
-                {% endfor %}
-            {%endif%}            
+                {% if thisPage < minRightRange-2%}
+                    {%if thisPage!= maxRightRange-3%}
+                        <li class="page-item disabled">
+                            <a class="page-link"  href="#">...</a>
+                        </li>
+                    {%endif%}
+                {% endif%}
 
-            {%if (page==maxPages)%}
+                {% if thisPage < maxPages-extremos%}
+                    {% for i in minRightRange..maxRightRange %}                   
+                        <li class="page-item">
+                            <a class="page-link"  href="{{ path('listado_mesaentrada', {"currentPage": i}) }}">{{ i }}</a>
+                        </li>
+                    {% endfor %}
+                {%endif%}            
 
-            {%else%}
-                {%set page= page+1%}
-            {%endif%}
-            <li><a class="page-link" href="{{ path('listado_mesaentrada', {"currentPage": page}) }}">Siguiente</a></li>
+                {%if (page==maxPages)%}
 
-            </ul>
-        </div>
+                {%else%}
+                    {%set page= page+1%}
+                {%endif%}
+                <li><a class="page-link" href="{{ path('listado_mesaentrada', {"currentPage": page}) }}">Siguiente</a></li>
+
+                </ul>
+            </div>
+        {%endif%}
+
 
 
     </div>

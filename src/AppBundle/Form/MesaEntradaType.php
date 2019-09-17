@@ -28,7 +28,9 @@ class MesaEntradaType extends AbstractType {
                         return $er->createQueryBuilder('w')
                                         ->where('w.fechaBaja IS NULL')
                                         ->andWhere('w.id!=:id')
+                                        ->orderBy('w.descripcion', 'ASC')
                                         ->setParameter('id', $dependenciaId);
+
                     },
                     "label" => false,
                     "placeholder" => "--Seleccione--",
@@ -39,10 +41,11 @@ class MesaEntradaType extends AbstractType {
             } else {
                 $builder->add('dependencia', EntityType::class, array(
                     'query_builder' => function(EntityRepository $er )use($dependenciaId) {
-                        return $er->createQueryBuilder('w')
-                                        ->where('w.id = ?1')
-                                        ->andWhere('w.fechaBaja IS NULL')
-                                        ->setParameter(1, $dependenciaId);
+                        return $er->createQueryBuilder('d')
+                                        ->where('d.id = :dependencia')
+                                        ->andWhere('d.fechaBaja IS NULL')
+                                        ->orderBy('d.descripcion', 'ASC')
+                                        ->setParameter('dependencia', $dependenciaId);
                     },
                     "label" => false,
                     "placeholder" => "--Seleccione--",
@@ -58,7 +61,7 @@ class MesaEntradaType extends AbstractType {
                         'label' => false,
                         'entry_options' => [
                             'label' => false,
-                            'dependencia_id' => $dependenciaId
+                            'dependencia_id' => null
                         ],
                         'prototype' => true,
                         'allow_add' => true,
@@ -69,6 +72,12 @@ class MesaEntradaType extends AbstractType {
                         "label" => "Nro. de Expediente:", "attr" => array(
                             "class" => "form-exp form-control",
                             "placeholder" => "Código de expediente..."
+                        )
+            ))          
+                     ->add('telefono', TextType::class, array(
+                        "label" => "Teléfono:", "attr" => array(
+                            "class" => "form-exp form-control",
+                            "placeholder" => ""
                         )
             ));
         }

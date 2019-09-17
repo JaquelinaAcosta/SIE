@@ -1,6 +1,8 @@
 
 {% extends "layout.html.twig" %}
 
+{% block title %}GIE DPV - Búsqueda de Expediente{% endblock %}          
+
 {% block contentmain %}
 
     <style>
@@ -17,13 +19,20 @@
             border-top-right-radius: 5px;
         }
 
-        /* Important part */
+   /* Important part */
         .modal-dialog{
             overflow-y: initial !important
         }
         .modal-body{
             height: 500px;
             overflow-y: auto;
+            padding:30px;
+        }
+        .modal-body2{
+            height: 325px;
+            overflow-y: auto;
+            padding:30px;
+            padding-top: 3px;
         }
     </style>
 
@@ -33,11 +42,11 @@
                 <div class="card-header" id="headingOne">
                     <h2 class="mb-0">
                         <button class="btn btn-dark search" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            <i class="fas fa-search-plus"></i>   Búsqueda de un Expediente
+                            <i class="fas fa-search-plus"></i> Búsqueda de un Expediente
                         </button>
                     </h2>
                 </div>
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div id="collapseOne" class="collapse {{action}}" aria-labelledby="headingOne" data-parent="#accordionExample">
                     <div class="card-body">
                         {{ form_start(formExpedienteFilter) }}
                         {{ form_errors(formExpedienteFilter) }}
@@ -81,89 +90,353 @@
                     </div>
                 </div>
             </div>
+            
+              {% for message in app.flashes('success') %}
+                <hr/>
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
 
-
+            {% for message in app.flashes('danger') %}
+                <hr/>
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+            {% endfor %}
 
             {% if expedientes|length >0 %}
                 <hr/>
                 {% set expediente =  expedientes[0]%}
 
                 <table class="table table-bordered"> 
-                    <thead class="thead-dark">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col"> </th>
+                        <th scope="col"> <i class="fas fa-info-circle "></i> <strong>DETALLE DEL EXPEDIENTE {{expediente}}
+                                
+                    </tr>
+                </thead>
+                <tbody >
+                    <tr>
+                        <th class="w-25 bg-gray">Iniciador Dependencia</th>
+                        <td class="bg-white">{{ expediente.iniciadorDependencia}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25 bg-gray">Tema</th>
+                        <td class="bg-white">{{ expediente.tema}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25 bg-gray">Concepto</th>
+                        <td class="bg-white">{{ expediente.concepto}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25 bg-gray">Total de Fojas</th>
+                        <td class="bg-white">                          
+                            {{ expediente.totalFojas }}
+                            {% if expediente.caratulas.getValues|length > 0 or expediente.movimientos.getValues|length > 0 or expediente.expedientes_asociados.getValues|length > 0%}
+                                <a href="#" data-toggle="modal" data-target="#myModal">&ensp;<i class="fas fa-search"></i></a>    
 
-                        <tr>
-                            <th scope="col"> <strong> EXPEDIENTE NÚMERO: {{expediente}} </th>
-                            <th scope="col"><i class="fas fa-info-circle "></i> DETALLE</th>
-                        </tr>
+                                <!-- The Modal -->
+                                <div class="modal fade" id="myModal">
+                                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                                        <div class="modal-content">
 
-                    </thead>
+                                            <!-- Modal Header -->
+                                            <div class="modal-header-warning">
+                                                <button type="button" class="close text-danger" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title">Detalle de las Fojas del expediente {{expediente}}</h4>
+                                            </div>
 
-                    <tbody>
+                                            <!-- Modal body -->
+                                            <div class="modal-body">
+                                                <div class="alert alert-info" role="alert">
+                                                    <h5 >Fojas del Expediente</h5>
+                                                    <ul>
+
+                                                        <li>+{{expediente.fojas}}, fojas iniciales</li>
+                                                    </ul>
+                                                </div>
+                                                <hr/>
+                                                {% if expediente.caratulas.getValues|length > 0 %}
+                                                    <div class="alert alert-info" role="alert">
+
+                                                        <h5>Fojas agregadas por Carátulas</h5>
+                                                        <ul>
+                                                            {% for caratula in expediente.caratulas.getValues %}
+                                                                {% if caratula.fechaBaja == null and caratula.fojas > 0  %}
+                                                                    <li>+{{caratula.fojas}}, carátula {{caratula.tema}} </li>
+                                                                    {%endif%}
+                                                                {% endfor %}
+                                                        </ul>
+                                                    </div>
+                                                    <hr/>
+                                                {%endif %}
+                                                {% if expediente.movimientos.getValues|length > 0 %}
+                                                    <div class="alert alert-info" role="alert">
+                                                        <h5>Fojas agregadas por Pases</h5>
+                                                        <ul>
+
+                                                            {% for movimiento in expediente.movimientos.getValues %}
+                                                                {% if movimiento.fechaBaja == null and movimiento.fojas > 0 %}
+                                                                    <li>+{{movimiento.fojas}}, pase a {{movimiento.ubicacion}} - {{movimiento.ubicacion.dependencia}} </li>
+                                                                    {%endif%}
+                                                                {% endfor %}
+                                                        </ul>
+                                                    </div>
+                                                    <hr/>
+                                                {%endif %}
+                                                {% if expediente.expedientesAsociados.getValues|length > 0 %}
+                                                    <div class="alert alert-info" role="alert">
+                                                        <h5>Fojas agregadas por Expedientes Asociados</h5>
+                                                        <ul>
+                                                            {% for asociado in expediente.expedientesAsociados.getValues %}
+                                                                {% if asociado.fechaBaja == null %}
+                                                                    <li>+{{asociado.expedienteAsociado.totalFojas}}, del expediente {{asociado.expedienteAsociado}} </li>
+                                                                    {%endif%}
+                                                                {% endfor %}
+                                                        </ul>
+                                                    </div>
+                                                    <hr/>
+                                                {%endif %}
+                                            </div>
+                                            <!-- Modal footer -->
+                                            {# <div class="modal-footer">
+                                                 <button type="button" class="btn btn-primary"><a class="text-type btn-primary"href="{{ path("eliminar_expediente", {'id':expediente.id})  }}"  role="button">SI</a></button>                          
+                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+                                             </div>#}
+
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="w-25 bg-gray">Tipo</th>
+                        <td class="bg-white">{{ expediente.tipo}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25 bg-gray">Fecha de Inicio</th>
+                        <td class="bg-white">{{ expediente.fechaInicio|date('d-m-Y')}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25 bg-gray">Fecha de Fin</th>
+                        <td class="bg-white">
+                            {% if expediente.fechaFin != null %}
+                                {{ expediente.fechaFin|date('d-m-Y')}}
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="w-25 bg-gray">Último Pase</th>
+                        <td  class="bg-white"><a href="#" data-toggle="modal" data-target="#ultimoModal">
+                            {{ expediente.ultimoMovimiento.ubicacion}}
+
+                            - {{ expediente.ultimoMovimiento.ubicacion.dependencia }}
+
+                            , <strong>fecha {{  expediente.ultimoMovimiento.fecha|date('d-m-Y') }},  a las {{ expediente.ultimoMovimiento.fecha|date('H:i') }} hs</strong></a>
+                        </td>
+                    </tr>  
+                    <tr>
+                        <th class="w-25 bg-gray">Ubicacion Actual</th>
+                        <td  class="bg-white"><a href="#" data-toggle="modal" data-target="#actualModal">
+                            {{ expediente.movimientoActual.ubicacion}}                          
+                            - {{ expediente.movimientoActual.ubicacion.dependencia }}
+                            , <strong>fecha {{ expediente.movimientoActual.fecha|date('d-m-Y') }}, a las {{ expediente.movimientoActual.fecha|date('H:i') }} hs</strong></a>
+                        </td>
+                    </tr>   
+
+
+                    {% if expediente.estado == 'ASOCIADO' %}                        
                         <tr>
-                            <th class="w-25">Iniciador Dependencia</th>
-                            <td  class="bg-white">{{ expediente.iniciadorDependencia}}</td>
-                        </tr>
-                        <tr>
-                            <th class="w-25">Tema</th>
-                            <td class="bg-white">{{ expediente.tema}}</td>
-                        </tr>
-                        <tr>
-                            <th class="w-25">Concepto</th>
-                            <td class="bg-white">{{ expediente.concepto}}</td>
-                        </tr>
-                        <tr>
-                            <th class="w-25">Total de Fojas</th>
-                            <td class="bg-white">{{ expediente.totalFojas }} </td>
-                        </tr>
-                        <tr>
-                            <th class="w-25">Tipo</th>
-                            <td  class="bg-white">{{ expediente.tipo}}</td>
-                        </tr>
-                        <tr>
-                            <th class="w-25">Fecha de inicio</th>
-                            <td class="bg-white">{{ expediente.fechaInicio|date('d-m-Y')}}</td>
-                        </tr>
-                        <tr>
-                            <th class="w-25">Fecha de fin</th>
-                            <td  class="bg-white">{{ expediente.fechaFin|date('d-m-Y')}}</td>
-                        </tr>
-                        <tr>
-                            <th class="w-25 bg-gray">Último Pase</th>
+                            <th class="w-25 bg-gray">Asociado a Expediente</th>
                             <td  class="bg-white">
-                                {{ expediente.ultimoMovimiento.ubicacion}}
+                                {{ expediente_padre }}
+                                <br/>
+                            <td/>
+                        </tr>              
+                    {% endif %}
 
-                                - {{ expediente.ultimoMovimiento.ubicacion.dependencia }}
+                </tbody>
+                <tfoot>
+            </table>  
+        </div>
 
-                                , <strong>fecha {{  expediente.ultimoMovimiento.fecha|date('d-m-Y') }},  a las {{ expediente.ultimoMovimiento.fecha|date('H:i') }} hs</strong>
-                            </td>
-                        </tr>  
-                        <tr>
-                            <th class="w-25 bg-gray">Ubicacion Actual</th>
-                            <td  class="bg-white">
-                                {{ expediente.movimientoActual.ubicacion}}                          
-                                - {{ expediente.movimientoActual.ubicacion.dependencia }}
-                                , <strong>fecha {{ expediente.movimientoActual.fecha|date('d-m-Y') }}, a las {{ expediente.movimientoActual.fecha|date('H:i') }} hs</strong>
-                            </td>
-                        </tr>   
+        <div class="modales">
 
-                        {% if expediente.estado == 'ASOCIADO' and expediente.fechaBaja == null%}                        
-                            <tr>
-                                <th class="w-25 bg-gray">ASOCIADO A EXPEDIENTE</th>
-                                <td  class="bg-white">
+              <!-- The Modal -->
+                                <div class="modal fade" id="ultimoModal">
+                                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                                        <div class="modal-content">
 
-                                    {{ expediente_padre }}
-                                    <br/>
-                                <td/>
-                            </tr>              
-                        {% endif %}
+                                            <!-- Modal Header -->
+                                            <div class="modal-header-warning">
+                                                <button type="button" class="close text-danger" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title">Detalles del ultimo pase</h4>
+                                            </div>
 
-                    </tbody>
-                    <tfoot>
-                </table> 
+                                            <!-- Modal body -->
+                                            <div class="modal-body2">
+                                                
+                                                <div class="row">
+            <table class="table table-bordered"> 
+                
+                <tbody >                    
+                    <tr>
+                        <th class="w-25">Ubicación</th>
+                        <td class="bg-white">{{expediente.ultimoMovimiento.ubicacion}} - {{expediente.ultimoMovimiento.ubicacion.dependencia}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">Fojas Agregadas</th>
+                        <td class="bg-white">{{expediente.ultimoMovimiento.fojas}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">Usuario del pase</th>
+                        <td class="bg-white">{{ expediente.ultimoMovimiento.usuario}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">Fecha del pase</th>
+                        <td class="bg-white">{{ expediente.ultimoMovimiento.fecha|date('d-m-Y')}} a las {{ expediente.ultimoMovimiento.fecha|date('H:i')}} hs</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">Comentario</th>
+                        <td class="bg-white">{{ expediente.ultimoMovimiento.comentario}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25 ">Observación</th>
+                        <td class="bg-white">{{ expediente.ultimoMovimiento.observacion}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">Tipo de pase</th>
+                        <td class="bg-white">{{ expediente.ultimoMovimiento.tiposalida}}</td>
+                    </tr> 
+                </tbody>
+                <tfoot>
+            </table>  
+
+        </div>
+
+                                            </div>
+                                            <!-- Modal footer -->
+                                            {# <div class="modal-footer">
+                                                 <button type="button" class="btn btn-primary"><a class="text-type btn-primary"href="{{ path("eliminar_expediente", {'id':expediente.id})  }}"  role="button">SI</a></button>                          
+                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+                                             </div>#}
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                 <!-- The Modal -->
+                                <div class="modal fade" id="actualModal">
+                                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                                        <div class="modal-content">
+
+                                            <!-- Modal Header -->
+                                            <div class="modal-header-warning">
+                                                <button type="button" class="close text-danger" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title">Detalles del pase actual</h4>
+                                            </div>
+
+                                            <!-- Modal body -->
+                                            <div class="modal-body2">
+                                                
+                                                <div class="row">
+            <table class="table table-bordered"> 
+                
+                <tbody >                    
+                    <tr>
+                        <th class="w-25">Ubicación</th>
+                        <td class="bg-white">{{expediente.MovimientoActual.ubicacion}} - {{expediente.MovimientoActual.ubicacion.dependencia}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">Fojas Agregadas</th>
+                        <td class="bg-white">{{expediente.MovimientoActual.fojas}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">Usuario del pase</th>
+                        <td class="bg-white">{{ expediente.MovimientoActual.usuario}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">Fecha del pase</th>
+                        <td class="bg-white">{{ expediente.MovimientoActual.fecha|date('d-m-Y')}} a las {{ expediente.MovimientoActual.fecha|date('H:i')}} hs</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">Comentario</th>
+                        <td class="bg-white">{{ expediente.MovimientoActual.comentario}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25 ">Observación</th>
+                        <td class="bg-white">{{ expediente.MovimientoActual.observacion}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">Tipo de pase</th>
+                        <td class="bg-white">{{ expediente.MovimientoActual.tiposalida}}</td>
+                    </tr> 
+                </tbody>
+                <tfoot>
+            </table>  
+
+        </div>
+
+                                            </div>
+                                            <!-- Modal footer -->
+                                            {# <div class="modal-footer">
+                                                 <button type="button" class="btn btn-primary"><a class="text-type btn-primary"href="{{ path("eliminar_expediente", {'id':expediente.id})  }}"  role="button">SI</a></button>                          
+                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+                                             </div>#}
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+        </div>
+        {% if app.user.role == 'ROLE_SUPERVISOR' or app.user.role == 'ROLE_ADMIN' %}
+        <div class="row">
+            <div class="btn-group float-left">
+                <a class="btn btn-primary" href="#" onclick="history.back()"  role="button">Volver</a>
+                <a href="{{ path('listado_movimiento',{'id':expediente.id,'currentPage':1}) }}" 
+                   class="btn btn-primary" 
+                   role="button">MOVIMIENTOS
+                    {% if expediente.movimientos.getValues|length >0 %}
+                        <span class="badge badge-danger badge-pill">
+                            {{ expediente.movimientos.getValues|length }}                                
+                        </span>
+                    {% endif %}
+                </a>
+                <a href="{{ path('listado_caratula',{'id':expediente.id, 'currentPage':1}) }}" 
+                   class="btn btn-primary" 
+                   role="button">CARATULAS
+                    {% if expediente.caratulas.getValues|length >0 %}
+                        <span class="badge badge-danger badge-pill">
+                            {{ expediente.caratulas.getValues|length}}                               
+                        </span>
+                    {% endif %}
+                </a>
+                    <a href="{{ path('listado_asociado',{'id':expediente.id,'currentPage':1}) }}" 
+                       class="btn btn-primary" 
+                       role="button">EXPEDIENTES ASOCIADOS
+                        {% if expediente.expedientesAsociados|length >0 %}
+                            <span class="badge badge-danger badge-pill">
+                               {{ expediente.expedientesAsociados.getValues|length }}                                   
+                            </span>
+                                            {% endif %}
+                    </a>
+
+                {% if expediente.resolucion != null %} 
+                    <a href="{{ path('ver_resolucion',{'id':expediente.id}) }}" class="btn btn-primary" role="button">VER RESOLUCIÓN</a>                  
+                {% endif %}
+            </div>    
+
+        </div>
+        {% endif %}
 
 
             {% endif %}
         </div>
-
     </div>
 {% endblock %}

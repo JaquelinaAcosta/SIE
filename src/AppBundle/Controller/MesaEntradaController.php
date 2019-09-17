@@ -107,7 +107,8 @@ class MesaEntradaController extends Controller {
             if ($form->isValid()) {
                 foreach ($original_responsables as $responsable) {
                     if (false === $mesaentrada->getResponsables()->contains($responsable)) {
-                        $em->remove($responsable);
+                       // $em->remove($responsable);
+                        $responsable->setFechaBaja(new \DateTime('now'));
                     }
                 }
                 foreach ($form['responsables']->getData() as $responsable) {

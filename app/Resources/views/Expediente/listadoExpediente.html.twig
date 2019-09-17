@@ -1,5 +1,5 @@
 {% extends "layout.html.twig" %}
-
+{% block title %}GIE DPV - Expedientes{% endblock %}          
 
 {% block contentmain %}
     <style>
@@ -25,22 +25,20 @@
                         <button class="btn btn-dark search" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                             <i class="fas fa-plus"></i> &ensp;Filtros de Búsqueda de Expediente ( Haga click aquí para expandir )
                         </button>
-                        {% set accion_habilitada = false %}
-                        {% if app.user.role == 'ROLE_ADMIN' %}
-                            {% set accion_habilitada = true %}
+                        {% set responsable_habilitado = false %}
+                        {% if app.user.role == 'ROLE_ADMIN' or app.user.role == 'ROLE_RESPONSABLE' %}
+                            {% set responsable_habilitado = true %}
                         {%else%}
                             {% for responsable in app.user.persona.dependencia.mesaentrada.responsables.getValues %}
                                 {% if user == responsable.usuario %}
-                                    {% set accion_habilitada = true %}
+                                    {% set responsable_habilitado = true %}
                                 {% endif %}
                             {%endfor%}
                         {% endif %}  
-
-                        {% if asociado == false and accion_habilitada == true %}
+                        
+                        {% if asociado == false and responsable_habilitado == true %}
                             <a href="{{ path('nuevo_expediente') }}" role="button" class="btn btn-info float-right"><i class="fas fa-file-alt"></i> Nuevo Expediente</a>
                         {% endif %}
-
-
                     </h2>
                 </div>
 
@@ -49,7 +47,7 @@
                         {{ form_start(formExpedienteFilter) }}
                         {{ form_errors(formExpedienteFilter) }}
 
-                        <label class="text-default">NUMERO DE EXPEDIENTE</label>
+                        <label class="text-default">Número de Expediente</label>
                         <div class="row">
                             <div class="threecol col-lg-1">
                                 {{ form_widget(formExpedienteFilter.codigoExpediente) }}
@@ -73,29 +71,36 @@
                         <div class="row">
                             {% if formExpedienteFilter.dependencia is defined %}
                                 <div class="threecol col-lg-4">
-                                    {{ form_label(formExpedienteFilter.dependencia, 'DEPENDENCIA') }}
+                                    {{ form_label(formExpedienteFilter.dependencia, 'Dependencia') }}
                                     {{ form_widget(formExpedienteFilter.dependencia) }}
                                     <div class="help-block with-errors">
                                         {{ form_errors(formExpedienteFilter.dependencia) }}
                                     </div>
                                 </div>
                             {% endif %}
+                             <div class="threecol col-lg-8">
+                                {{ form_label(formExpedienteFilter.concepto, 'Concepto') }}
+                                {{ form_widget(formExpedienteFilter.concepto) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formExpedienteFilter.concepto) }}
+                                </div>
+                            </div>    
                             <div class="threecol col-lg-5">
-                                {{ form_label(formExpedienteFilter.tema, 'TEMA') }}
+                                {{ form_label(formExpedienteFilter.tema, 'Tema') }}
                                 {{ form_widget(formExpedienteFilter.tema) }}
                                 <div class="help-block with-errors">
                                     {{ form_errors(formExpedienteFilter.tema) }}
                                 </div>
                             </div>    
                             <div class="threecol col-lg-3">
-                                {{ form_label(formExpedienteFilter.tipo, 'TIPO') }}
+                                {{ form_label(formExpedienteFilter.tipo, 'Tipo') }}
                                 {{ form_widget(formExpedienteFilter.tipo) }}
                                 <div class="help-block with-errors">
                                     {{ form_errors(formExpedienteFilter.tipo) }}
                                 </div>
                             </div>  
                             <div class="threecol col-lg-3">
-                                {{ form_label(formExpedienteFilter.estado, 'ESTADO') }}
+                                {{ form_label(formExpedienteFilter.estado, 'Estado') }}
                                 {{ form_widget(formExpedienteFilter.estado) }}
                                 <div class="help-block with-errors">
                                     {{ form_errors(formExpedienteFilter.estado) }}
@@ -172,7 +177,7 @@
                 {% if vistoCount > 0 %}
                     <i class="fas fa-check"></i> Visto: {{vistoCount}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                 {% endif %}
-                {% if app.user.role == 'ROLE_ADMIN' %}
+                {% if app.user.role == 'ROLE_ADMIN' or app.user.role == 'ROLE_SUPERVISOR' %}
                     {% if bajaCount >0 %}
                         <i class="fas fa-trash-alt"></i> Baja: {{bajaCount}} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
                     {% endif %}
@@ -181,8 +186,9 @@
             <hr/>
 
         {% else %}
+        <hr/>
             <div class="alert alert-info">
-                <i class="fas fa-search"></i> Búsqueda con 0 resultados, Cargue un expediente! &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <i class="fas fa-search"></i> Búsqueda con 0 resultados &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
             </div>
             <hr/>
         {%endif%}
@@ -191,24 +197,26 @@
         <table class="table table-striped">
             <thead class="thead-dark">
                 <tr>
-                    <th style="padding:15px;" scope="col">NUMERO</th>
-                    <th style="padding:15px;" scope="col">TEMA</th>
-                    <th style="padding:15px;" class="text-center" scope="col">UBICACION ACTUAL</th>
-                    <th style="padding:15px;" class="text-center" scope="col">ESTADO</th>
-                    <th style="padding:15px;" class="text-center" scope="col">ACCIONES</th>
+                    <th style="padding:15px;" scope="col">Número</th>
+                    <th style="padding:15px;" scope="col">Concepto</th>
+                    <th style="padding:15px;" scope="col">Tema</th>
+                    <th style="padding:15px;" class="text-center" scope="col">Ubicación</th>
+                    <th style="padding:15px;" class="text-center" scope="col">Estado</th>
+                    <th style="padding:15px;" class="text-center" scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 {% set count=0 %}
-                {% for expediente in expedientes|reverse %}
+                {% for expediente in expedientes %}
                     <tr>
                         <td class="" style="padding:10px;">
 
-                            {{expediente}}
+                            <strong>{{expediente}}</strong>
 
-                        </td>            
-                        <td class="" style="padding:10px;">{{expediente.tema|e }}</td>         
-                        <td class="text-center" style="padding:10px;">{{expediente.movimientoActual.ubicacion|e }}</td>
+                        </td>       
+                           <td class="" style="padding:10px; display:block;text-overflow: ellipsis;width: 300px;overflow: hidden; white-space: nowrap;">{{expediente.concepto|e }}</td>           
+                        <td class="" style="padding:10px;">{{expediente.tema|e }}</td>       
+                        <td class="text-center" style="padding:10px;"> <strong>{{expediente.movimientoActual.ubicacion|e }}</strong> <br/>{{expediente.movimientoActual.ubicacion.dependencia|e}}</td>
                         <td class="text-center" style="padding:10px;">
                             {% if expediente.fechaBaja == null %}
                                 {% if expediente.estado == 'NUEVO' %}
@@ -223,14 +231,14 @@
                         </td>  
 
                         {% if asociado == false %}
-                            <td class="text-center" style="padding:10px;"><a class="btn btn-info" href="{{ path("ver_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Ver Detalle"><i class="fas fa-search"></i></a>
+                            <td class="text-center col-sm-2" style="padding:10px;"><a class="btn btn-info" href="{{ path("ver_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Ver Detalle"><i class="fas fa-search"></i></a>
 
                                 {#<a class="btn btn-danger" href="{{ path("eliminar_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Eliminar"><i class="fas fa-trash-alt"></i></a></td>#}
                                 {% set accion_habilitada = false %}
                                 {% if app.user.role == 'ROLE_ADMIN' %}
                                     {% set accion_habilitada = true %}
                                 {%else%}
-                                    {% for responsable in expediente.ubicacionActual.responsables.getValues %}
+                                    {% for responsable in expediente.movimientoActual.ubicacion.responsables.getValues %}
                                         {% if user == responsable.usuario %}
                                             {% set accion_habilitada = true %}
                                         {% endif %}
@@ -238,10 +246,12 @@
                                 {% endif %}  
 
                                 {% if accion_habilitada == true %}
+                                    {% if expediente.usuarioAlta == app.user or app.user.role == 'ROLE_ADMIN' %}
                                     <a class="btn btn-warning" href="{{ path("editar_expediente", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Editar"><i class="fas fa-edit"></i></a>
+                                    {% endif %}
                                     <a class="btn btn-primary" href="{{ path("elegir_movimiento", {'id':expediente.id}) }}"  role="button" data-toggle="tooltip" data-placement="top" title="Realizar un pase"><i class="fas fa-arrow-alt-circle-right"></i></a>
 
-                                    {% if expediente.fechaBaja is null %}
+                                    {% if expediente.fechaBaja is null and (expediente.movimientos.getValues|length <= 1 or app.user.role == 'ROLE_ADMIN') %}
                                         <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{ count }}"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></button>    
 
 
@@ -312,7 +322,7 @@
             {%set maxRightRange = maxPages %}
         {%endif%}
 
-
+        {% if totalItems > 0 %}
         <div class="pagination">
             <li><a class="page-link" href="{{ 0 < thisPage-1 ? path('listado_expediente', {"currentPage": thisPage-1}) }}">Anterior</a></li>
 
@@ -368,6 +378,7 @@
 
             </ul>
         </div>
+        {% endif %}
     </div>
 
 </div>

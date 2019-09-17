@@ -1,6 +1,8 @@
 
 {% extends "layout.html.twig" %}
 
+{% block title %}GIE DPV - Nueva Resolución{% endblock %}          
+
 {% block contentmain %}
     <div class="content">
         <div class="title">
@@ -9,21 +11,21 @@
         <hr/>
         {{form_start(form,{'action':'','method':'POST'})}}
         <div class="col-lg-4">
-            <label class="text-default">Fecha de Resolución</label>
+            <label class="text-default">Fecha de Resolución(<span class="text-danger">*</span>)</label>
             {{ form_row(form.fechaResolucion, { 'id': 'date1' })}} 
             {{ form_errors(form.fechaResolucion) }}
             {{ form_widget(form.fechaResolucion) }}
         </div>
 
         <div class="col-lg-3">
-            <label class="text-default">Número de Resolución</label>
+            <label class="text-default">Número de Resolución(<span class="text-danger">*</span>)</label>
             {{ form_row(form.numeroResolucion, { 'id': 'date1' })}} 
             {{ form_errors(form.numeroResolucion) }}
             {{ form_widget(form.numeroResolucion) }}
         </div>
 
         <div class="col-lg-4">
-            <label class="text-default">Tipo</label>
+            <label class="text-default">Tipo(<span class="text-danger">*</span>)</label>
             {{ form_row(form.tipo, { 'id': 'date1' })}} 
             {{ form_errors(form.tipo) }}
             {{ form_widget(form.tipo) }}

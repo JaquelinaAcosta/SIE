@@ -1,5 +1,7 @@
 {% extends "layout.html.twig" %}
 
+{% block title %}GIE DPV - Detalle de Expediente{% endblock %}          
+
 {% block contentmain %}
     <style>
         .modal-header-warning {
@@ -22,13 +24,20 @@
         .modal-body{
             height: 500px;
             overflow-y: auto;
+            padding:30px;
+        }
+        .modal-body2{
+            height: 325px;
+            overflow-y: auto;
+            padding:30px;
+            padding-top: 3px;
         }
     </style>
     {% set accion_habilitada = false %}
     {% if app.user.role == 'ROLE_ADMIN' %}
         {% set accion_habilitada = true %}
     {%else%}
-        {% for responsable in expediente.ubicacionActual.responsables.getValues %}
+        {% for responsable in expediente.movimientoActual.ubicacion.responsables.getValues %}
             {% if app.user == responsable.usuario %}
                 {% set accion_habilitada = true %}
             {% endif %}
@@ -66,7 +75,7 @@
                         <td class="bg-white">                          
                             {{ expediente.totalFojas }}
                             {% if expediente.caratulas.getValues|length > 0 or expediente.movimientos.getValues|length > 0 or expediente.expedientes_asociados.getValues|length > 0%}
-                                <a href="#" data-toggle="modal" data-target="#myModal">, Ver Detalle</a>    
+                                <a href="#" data-toggle="modal" data-target="#myModal"> &ensp;<i class="fas fa-search"></i></a>    
 
                                 <!-- The Modal -->
                                 <div class="modal fade" id="myModal">
@@ -162,20 +171,20 @@
                     </tr>
                     <tr>
                         <th class="w-25 bg-gray">Último Pase</th>
-                        <td  class="bg-white">
+                        <td  class="bg-white"><a href="#" data-toggle="modal" data-target="#ultimoModal">
                             {{ expediente.ultimoMovimiento.ubicacion}}
 
                             - {{ expediente.ultimoMovimiento.ubicacion.dependencia }}
 
-                            , <strong>fecha {{  expediente.ultimoMovimiento.fecha|date('d-m-Y') }},  a las {{ expediente.ultimoMovimiento.fecha|date('H:i') }} hs</strong>
+                            , <strong>fecha {{  expediente.ultimoMovimiento.fecha|date('d-m-Y') }},  a las {{ expediente.ultimoMovimiento.fecha|date('H:i') }} hs</strong></a>
                         </td>
                     </tr>  
                     <tr>
                         <th class="w-25 bg-gray">Ubicacion Actual</th>
-                        <td  class="bg-white">
+                        <td  class="bg-white"><a href="#" data-toggle="modal" data-target="#actualModal">
                             {{ expediente.movimientoActual.ubicacion}}                          
                             - {{ expediente.movimientoActual.ubicacion.dependencia }}
-                            , <strong>fecha {{ expediente.movimientoActual.fecha|date('d-m-Y') }}, a las {{ expediente.movimientoActual.fecha|date('H:i') }} hs</strong>
+                            , <strong>fecha {{ expediente.movimientoActual.fecha|date('d-m-Y') }}, a las {{ expediente.movimientoActual.fecha|date('H:i') }} hs</strong></a>
                         </td>
                     </tr>   
 
@@ -193,6 +202,136 @@
                 </tbody>
                 <tfoot>
             </table>  
+        </div>
+
+        <div class="modales">
+
+              <!-- The Modal -->
+                                <div class="modal fade" id="ultimoModal">
+                                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                                        <div class="modal-content">
+
+                                            <!-- Modal Header -->
+                                            <div class="modal-header-warning">
+                                                <button type="button" class="close text-danger" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title">Detalles del ultimo pase</h4>
+                                            </div>
+
+                                            <!-- Modal body -->
+                                            <div class="modal-body2">
+                                                
+                                                <div class="row">
+            <table class="table table-bordered"> 
+                
+                <tbody >                    
+                    <tr>
+                        <th class="w-25">Ubicación</th>
+                        <td class="bg-white">{{expediente.ultimoMovimiento.ubicacion}} - {{expediente.ultimoMovimiento.ubicacion.dependencia}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">Fojas Agregadas</th>
+                        <td class="bg-white">{{expediente.ultimoMovimiento.fojas}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">Usuario del pase</th>
+                        <td class="bg-white">{{ expediente.ultimoMovimiento.usuario}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">Fecha del pase</th>
+                        <td class="bg-white">{{ expediente.ultimoMovimiento.fecha|date('d-m-Y')}} a las {{ expediente.ultimoMovimiento.fecha|date('H:i')}} hs</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">Comentario</th>
+                        <td class="bg-white">{{ expediente.ultimoMovimiento.comentario}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25 ">Observación</th>
+                        <td class="bg-white">{{ expediente.ultimoMovimiento.observacion}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">Tipo de pase</th>
+                        <td class="bg-white">{{ expediente.ultimoMovimiento.tiposalida}}</td>
+                    </tr> 
+                </tbody>
+                <tfoot>
+            </table>  
+
+        </div>
+
+                                            </div>
+                                            <!-- Modal footer -->
+                                            {# <div class="modal-footer">
+                                                 <button type="button" class="btn btn-primary"><a class="text-type btn-primary"href="{{ path("eliminar_expediente", {'id':expediente.id})  }}"  role="button">SI</a></button>                          
+                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+                                             </div>#}
+
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                 <!-- The Modal -->
+                                <div class="modal fade" id="actualModal">
+                                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                                        <div class="modal-content">
+
+                                            <!-- Modal Header -->
+                                            <div class="modal-header-warning">
+                                                <button type="button" class="close text-danger" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title">Detalles del pase actual</h4>
+                                            </div>
+
+                                            <!-- Modal body -->
+                                            <div class="modal-body2">
+                                                
+                                                <div class="row">
+            <table class="table table-bordered"> 
+                
+                <tbody >                    
+                    <tr>
+                        <th class="w-25">Ubicación</th>
+                        <td class="bg-white">{{expediente.MovimientoActual.ubicacion}} - {{expediente.MovimientoActual.ubicacion.dependencia}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">Fojas Agregadas</th>
+                        <td class="bg-white">{{expediente.MovimientoActual.fojas}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">Usuario del pase</th>
+                        <td class="bg-white">{{ expediente.MovimientoActual.usuario}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">Fecha del pase</th>
+                        <td class="bg-white">{{ expediente.MovimientoActual.fecha|date('d-m-Y')}} a las {{ expediente.MovimientoActual.fecha|date('H:i')}} hs</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">Comentario</th>
+                        <td class="bg-white">{{ expediente.MovimientoActual.comentario}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25 ">Observación</th>
+                        <td class="bg-white">{{ expediente.MovimientoActual.observacion}}</td>
+                    </tr>
+                    <tr>
+                        <th class="w-25">Tipo de pase</th>
+                        <td class="bg-white">{{ expediente.MovimientoActual.tiposalida}}</td>
+                    </tr> 
+                </tbody>
+                <tfoot>
+            </table>  
+
+        </div>
+
+                                            </div>
+                                            <!-- Modal footer -->
+                                            {# <div class="modal-footer">
+                                                 <button type="button" class="btn btn-primary"><a class="text-type btn-primary"href="{{ path("eliminar_expediente", {'id':expediente.id})  }}"  role="button">SI</a></button>                          
+                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
+                                             </div>#}
+
+                                        </div>
+                                    </div>
+                                </div>
 
 
         </div>

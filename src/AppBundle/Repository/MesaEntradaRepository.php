@@ -20,6 +20,17 @@ class MesaEntradaRepository extends \Doctrine\ORM\EntityRepository {
         return $result;
     }
     
+    public function findAllMesas() {
+        $qb = $this->getEntityManager()->createQueryBuilder('m');
+        $result = $qb->select('m')
+                ->from(\AppBundle\Entity\MesaEntrada::class, 'm')
+                ->innerJoin(\AppBundle\Entity\Ubicacion::class, "u", "WITH", "m.id=u.id")
+                ->where('u.fechaBaja IS NULL');
+
+        return $result->getQuery()->getResult();
+
+    }
+
     public function findByMesaentrada($mesaentrada) {
         $qb = $this->getEntityManager()->createQueryBuilder('m');
         $result = $qb->select('m')

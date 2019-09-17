@@ -41,37 +41,42 @@ security:
                 
                 
     role_hierarchy:
-        ROLE_ADMIN: [ROLE_RESPONSABLE,ROLE_USER]
+        ROLE_ADMIN: [ROLE_RESPONSABLE,ROLE_USER,ROLE_SUPERVISOR]
                 
     #Control de acceso para Usuarios            
-    access_control:        
+    access_control:
+        
         - {path : ^/add/expediente, roles: [ROLE_RESPONSABLE] }
-        - {path : ^/listaExpediente, roles: [ROLE_USER,ROLE_RESPONSABLE] }
+        - {path : ^/listaExpediente, roles: [ROLE_USER,ROLE_RESPONSABLE,  ROLE_SUPERVISOR] }
         - {path : ^/expediente/editar/, roles:[ROLE_RESPONSABLE,ROLE_USER]}
         - {path : ^/expediente/delete/, roles:[ROLE_RESPONSABLE,ROLE_USER]}
         - {path : ^/expediente/add/caratulaAgregada/, roles:[ROLE_RESPONSABLE,ROLE_USER]}
         - {path : ^/expediente/delete_caratula/, roles:[ROLE_RESPONSABLE,ROLE_USER]}
         - {path : ^/expediente//caratula/listado/, roles:[ROLE_RESPONSABLE,ROLE_USER]}
-        - {path : ^/expediente/ver_caratula/, roles:[ROLE_RESPONSABLE,ROLE_USER]}
+        - {path : ^/expediente/ver_caratula/, roles:[ROLE_RESPONSABLE,ROLE_USER, ROLE_SUPERVISOR]}
         
         - {path : ^/expediente/add/movimiento, roles:[ROLE_RESPONSABLE,ROLE_USER]}
         - {path : ^/expediente/movimiento/editar/, roles:[ROLE_RESPONSABLE,ROLE_USER]}  
-        - {path : ^/expediente/resolucion/, roles:[ROLE_RESPONSABLE,ROLE_USER]}
-        - {path : ^/expediente/resolucion/detalle/, roles:[ROLE_RESPONSABLE,ROLE_USER]}
+        - {path : ^/expediente/resolucion/, roles:[ROLE_RESPONSABLE,ROLE_USER,ROLE_SUPERVISOR]}
+        - {path : ^/expediente/resolucion/detalle/, roles:[ROLE_RESPONSABLE,ROLE_USER,ROLE_SUPERVISOR]}
        
         - {path : ^/usuario/listado/, roles:[ROLE_ADMIN] }   
         - {path : ^/usuario/add, roles:[ROLE_ADMIN] }
         - {path : ^/usuario/delete/, roles:[ROLE_ADMIN] }
+        - {path : ^/usuario/todo-responsable/, roles:[ROLE_ADMIN] }
+        - {path : ^/usuario/borrar-todo-responsable/, roles:[ROLE_ADMIN] }
+
 
         - {path : ^/dependencia/, roles:[ROLE_ADMIN] }
         
         - {path : ^/adm/gestionar/mesa_entrada/, roles:[ROLE_ADMIN] }
+        - {path : ^/mesaentrada/listado/, roles:[ROLE_RESPONSABLE] }
         
         
         - {path : ^/persona/listado/, roles:[ROLE_ADMIN] }
         - {path : ^/persona/add, roles:[ROLE_ADMIN] }
         - {path : ^/persona/delete/, roles:[ROLE_ADMIN] }
-        - {path : ^/persona/edit/, roles:[ROLE_RESPONSABLE,ROLE_USER] }
+        - {path : ^/persona/edit/, roles:[ROLE_RESPONSABLE,ROLE_USER, ROLE_SUPERVISOR] }
         - {path : ^/gestionar/persona_responsbles/, roles:[ROLE_RESPONSABLE,ROLE_USER] }
        
         - {path : ^/lugar_fisico/edit/, roles:[ROLE_RESPONSABLE,ROLE_USER] }

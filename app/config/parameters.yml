@@ -2,7 +2,7 @@
 parameters:
     database_host: 127.0.0.1
     database_port: null
-    database_name: sie_dpv
+    database_name: gie_dpv
     database_user: admin
     database_password: admin
     mailer_transport: smtp

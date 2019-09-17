@@ -19,25 +19,16 @@ class Util {
         if ($expediente != null && $expediente->getFechaBaja() != null) {
             return false;
         }
-
-        if ($usuario->getRole() != 'ROLE_ADMIN') {
-            if ($usuario->getPersona()->getDependencia() != $expediente->getUbicacionActual()->getDependencia()) {
-                return false;
-            } else {
-                if ($visible == null) {
-                    //Sinó, verifico que el usuario sea responsable de la ubicacion actual.
-                    foreach ($expediente->getUbicacionActual()->getResponsables() as $responsable) {
-                        if ($usuario == $responsable->getUsuario()) {
-                            return true;
-                        }
-                    }
-                } else {
+        if ($usuario->getRole() == 'ROLE_ADMIN' or $usuario->getRole() == 'ROLE_SUPERVISOR') {
+            return true;
+         }else {
+             foreach($expediente->getMovimientoActual()->getUbicacion()->getResponsables() as $res){
+                if($res->getUsuario() == $usuario){
                     return true;
                 }
             }
-        } else {
-            return true;
-        }
+            
+        }         
     }
 
     public function VerificarPersona(Persona $persona = null, $usuario) {
@@ -137,21 +128,12 @@ class Util {
             return false;
         }
 
-        if ($usuario->getRole() != 'ROLE_ADMIN') {
-            if ($usuario->getPersona()->getDependencia() != $lugarfisico->getDependencia()) {
-                return false;
-            } else {
-                if ($visible == null) {
-                    //Sinó, verifico que el usuario sea responsable de la ubicacion actual.
+        if ($usuario->getRole() == 'ROLE_USER') {
                     foreach ($lugarfisico->getResponsables() as $responsable) {
                         if ($usuario == $responsable->getUsuario()) {
                             return true;
                         }
                     }
-                } else {
-                    return true;
-                }
-            }
         } else {
             return true;
         }
@@ -167,15 +149,13 @@ class Util {
             return false;
         }
         if ($usuario->getRole() != 'ROLE_ADMIN') {
-            if ($usuario->getPersona()->getDependencia() != $mesaentrada->getDependencia()) {
-                return false;
-            } else {
-                if ($mesaentrada == $usuario->getPersona()->getDependencia()->getMesaentrada()) {
+                
+             foreach($mesaentrada->getResponsables() as $res){
+                if($res->getUsuario() == $usuario){
                     return true;
-                } else {
-                    return false;
                 }
             }
+
         } else {
             return true;
         }

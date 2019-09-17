@@ -1,5 +1,6 @@
 {% extends "layout.html.twig" %}
 
+{% block title %}GIE DPV - Carátulas{% endblock %}          
 {% block contentmain %}
     <style>
         .modal-header-warning {
@@ -28,7 +29,7 @@
                         {% set accion_habilitada = true %}
                     {%else%}
 
-                        {% for responsable in expediente.ubicacionActual.responsables.getValues %}
+                        {% for responsable in expediente.movimientoActual.ubicacion.responsables.getValues %}
                             {% if app.user == responsable.usuario %}
                                 {% set accion_habilitada = true %}
                             {% endif %}
@@ -95,9 +96,10 @@
         <table class="table table-striped table-hover"> 
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col">CODIGO TEMA</th>
-                    <th scope="col">DESCRIPCION</th>
-                    <th scope="col">ACCIONES</th>
+                    <th scope="col">Código del Tema</th>
+                    <th scope="col">Descripción</th>
+                    <th class="text-center" scope="col">Fojas</th>
+                    <th class="text-center" scope="col">Acciones</th>
 
                 </tr>
             </thead>
@@ -109,7 +111,8 @@
                     <tr>
                         <td>{{caratulaAgregada.tema.codigo}}</td>
                         <td>{{caratulaAgregada.tema.descripcion}}</td>
-                        <td>
+                        <td class="text-center">{{caratulaAgregada.fojas}}</td>
+                        <td class="text-center">
                             {% if accion_habilitada == true %}
                                 <a class="btn btn-info" href="{{path("ver_caratula",{'id':caratulaAgregada.id})}}"  role="button" data-toggle="tooltip" data-placement="top" title="Ver Detalle"><i class="fas fa-search"></i></a>
                                 <a class="btn btn-warning" href="{{ path("editar_caratula", {'id':caratulaAgregada.id}) }}"  role="button"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Editar"></i></a>
@@ -177,7 +180,7 @@
             {%set maxRightRange = maxPages %}
         {%endif%}
 
-
+        {% if totalItems > 0 %}
         <div class="pagination">
             <li><a class="page-link" href="{{ 0 < thisPage-1 ? path('listado_caratula', {'id':caratula, "currentPage": thisPage}) }}">Anterior</a></li>
 
@@ -233,7 +236,7 @@
 
             </ul>
         </div> 
-
+        {% endif %}
     </div>
 
 

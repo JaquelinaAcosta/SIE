@@ -75,9 +75,9 @@ class Expediente {
      *
      * @ORM\Column(name="fojas", type="integer")
      */
-    private $fojas;
+    private $fojas = 0;
     
-    private $totalFojas;
+    private $totalFojas = 0;
     
     /**
      * @var string
@@ -155,6 +155,11 @@ class Expediente {
     private $lugarfisico;
 
     /**
+    * @ORM\ManyToOne(targetEntity="Usuario",cascade={"persist"})
+    */
+    private $usuarioAlta;
+
+    /**
      * @ORM\Column(type="date", nullable=true)
      * @Assert\Date()
      */
@@ -191,7 +196,6 @@ class Expediente {
     public function __construct() {
         $this->expedientes_asociados = new ArrayCollection();
         $this->caratulas = new ArrayCollection();
-//        $this->caratulas = new ArrayCollection();
         $this->movimientos = new ArrayCollection();
     }
 
@@ -431,7 +435,13 @@ class Expediente {
      * @return \Doctrine\Common\Collections\Collection
      */
     public function getCaratulas() {
-        return $this->caratulas;
+         $caratulas = new ArrayCollection();
+        foreach($this->caratulas as $car){
+            if($car->getFechaBaja() == null){
+                $caratulas[] = $car;
+            }
+         }
+         return $caratulas;
     }
 
     /**
@@ -514,7 +524,13 @@ class Expediente {
      * @return \Doctrine\Common\Collections\Collection
      */
     public function getExpedientesAsociados() {
-        return $this->expedientes_asociados;
+        $expedientes_asociados = new ArrayCollection();
+        foreach($this->expedientes_asociados as $aso){
+            if($aso->getExpedienteAsociado()->getFechaBaja() == null){
+                $expedientes_asociados[] = $aso;
+            }
+         }
+         return $expedientes_asociados;
     }
 
     /**
@@ -545,8 +561,14 @@ class Expediente {
      * @return \Doctrine\Common\Collections\Collection
      */
     public function getMovimientos() {
-        return $this->movimientos;
-    }
+        $movimientos = new ArrayCollection();
+        foreach($this->movimientos as $mov){
+            if($mov->getFechaBaja() == null){
+                $movimientos[] = $mov;
+            }
+         }
+         return $movimientos;
+    }   
 
     /**
      * Set estado
@@ -721,15 +743,7 @@ class Expediente {
         }
     }
 
-    /**
-     * @Assert\IsTrue(message="La cantidad de fojas debe ser mayor que 0")
-     */
-    public function getValidarFojas() {
-        if (($this->fojas) > 0) {
-            return true;
-        }
-        return false;
-    }
+   
 
     /**
      * Set fechaBaja
@@ -920,4 +934,28 @@ class Expediente {
         return $this->totalFojas;
     }
     
+
+    /**
+     * Set usuarioAlta
+     *
+     * @param \AppBundle\Entity\Usuario $usuarioAlta
+     *
+     * @return Expediente
+     */
+    public function setUsuarioAlta(\AppBundle\Entity\Usuario $usuarioAlta = null)
+    {
+        $this->usuarioAlta = $usuarioAlta;
+
+        return $this;
+    }
+
+    /**
+     * Get usuarioAlta
+     *
+     * @return \AppBundle\Entity\Usuario
+     */
+    public function getUsuarioAlta()
+    {
+        return $this->usuarioAlta;
+    }
 }

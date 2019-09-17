@@ -42,6 +42,7 @@ class ExpedienteController extends Controller {
 
                 $expediente->setFechaInicio($fechaIni);
                 $expediente->setEstado('NUEVO');
+                $expediente->setUsuarioAlta($user);
                 $em->persist($expediente);
                 $flush = $em->flush();
 
@@ -65,6 +66,7 @@ class ExpedienteController extends Controller {
      * @Route("expediente/listado/{currentPage}", name="listado_expediente")
      */
     public function listaExpedientesAction(Request $request, $currentPage) {
+
         $q = $request->query->get('modo');
         $asociado = false;
         $padre_id = null;
@@ -78,7 +80,7 @@ class ExpedienteController extends Controller {
         $totalItems = 0;
         $maxPages = 0;
         $expedientes = array();
-
+        $responsable_de_mesa = false;
         if ($this->getUser()->getRole() == 'ROLE_ADMIN') {
             $formExpedienteFilter = $this->createForm(ExpedienteFilterType::class, $expedientes, ['role' => 'ROLE_ADMIN']);
         } else {
@@ -252,7 +254,13 @@ class ExpedienteController extends Controller {
             $this->addFlash('danger', 'Usted no tiene acceso a este expediente.');
             return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
         }
-
+        if($this->getUser()->getRole() != 'ROLE_ADMIN'){
+            if($expediente->getUsuarioAlta() != $this->getUser()){
+            $this->addFlash('danger', 'Usted no puede editar este expediente.');
+            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+             }
+        }
+        
 
         //SI NO SE HACE EL FORMAT TIRA ERROR DE OBJETO TIPO DATETIME
         $expediente->setFechaInicio($expediente->getFechaInicio()->format('d-m-Y'));
@@ -271,9 +279,13 @@ class ExpedienteController extends Controller {
             if ($form->isValid()) {
 
                 $fechaIni = \DateTime::createFromFormat('d-m-Y', $form['fechaInicio']->getData());
-                $fechaFin = \DateTime::createFromFormat('d-m-Y', $form['fechaFin']->getData());
+                if ($form['fechaFin']->getData() != '') {
+                    $fechaFin = \DateTime::createFromFormat('d-m-Y', $form['fechaFin']->getData());
+                    $expediente->setFechaFin($fechaFin);
+                } else {
+                    $expediente->setFechaFin(null);
+                }
                 $expediente->setFechaInicio($fechaIni);
-                $expediente->setFechaFin($fechaFin);
 
                 $em->persist($expediente);
                 $flush = $em->flush();
@@ -306,6 +318,7 @@ class ExpedienteController extends Controller {
         $movimientoExpediente->setComentario('Carga automática.');
         $movimientoExpediente->setFecha(new \DateTime('now'));
         $movimientoExpediente->setUbicacion($expediente->getIniciadorDependencia()->getMesaentrada());
+        $movimientoExpediente->setUsuario($this->getUser());
         $expediente->getMovimientos()->add($movimientoExpediente);
         $expediente->setMovimientoActual($movimientoExpediente);
         $expediente->setUltimoMovimiento($movimientoExpediente);

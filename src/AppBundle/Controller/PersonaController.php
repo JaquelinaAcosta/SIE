@@ -312,6 +312,13 @@ class PersonaController extends Controller {
 
             $em->persist($persona);
             $flush = $em->flush();
+
+            if(!$flush){
+                $this->addFlash('success','Responsable añadido correctamente.');
+            }else{
+                $this->addFlash('danger','Hubo un problema al intentar añadir el responsable.');
+            }
+
         }
 
         // replace this example code with whatever you need

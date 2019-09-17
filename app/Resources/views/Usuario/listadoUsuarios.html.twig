@@ -1,5 +1,7 @@
 {% extends "layout.html.twig" %}
 
+{% block title %}GIE DPV - Usuarios{% endblock %}          
+
 {% block contentmain %}
     <style>
         .modal-header-warning {
@@ -109,22 +111,24 @@
         <table class="table table-striped">
             <thead class="thead-dark">
                 <tr>
-                    <th scope="col">USUARIO</th>
-                    <th scope="col">ROL</th>
-                    <th scope="col">PERSONA RESPONSBLE</th>
-                    <th scope="col">DEPENDENCIA</th>
-                    <th scope="col">ACCIONES</th>
+                    <th scope="col">Iup</th>
+                    <th scope="col">Rol</th>
+                    <th scope="col">Responsable</th>
+                    <th scope="col">Dependencia</th>
+                    <th class="text-center" scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 {% set count = 0 %}
-                {% for usuario in usuarios|reverse %}
+                {% for usuario in usuarios %}
                     <tr>
                         <td class="text-default">{{usuario.iup|e }}</td>
                         {% if usuario.role == 'ROLE_ADMIN' %}
                             <td class="text-default"><p>Administrador</p></td>
                         {% elseif usuario.role == 'ROLE_RESPONSABLE' %}
-                            <td class="text-default"><p>Responsble de M. E.</p></td>
+                            <td class="text-default"><p>Responsble de Mesa de Entrada</p></td>
+                        {% elseif usuario.role == 'ROLE_SUPERVISOR' %}
+                            <td class="text-default"><p>Supervisor</p></td>
                         {% elseif usuario.role == 'ROLE_USER'%}
                             <td class="text-default"><p>Usuario</p></td>
                         {% endif %}
@@ -133,12 +137,12 @@
 
                         {#   <td><a class="btn btn-info" href="{{ path("ver_expediente", {'id':expediente.id}) }}"  role="button"><i class="fas fa-search"></i></a>#}
                         {#                        <td><a class="btn btn-info" href="{{ path("editar_usuario", {'id':usuario.id}) }}"  role="button"><i class="fas fa-search"></i></a>#}
-                        <td> <a class="btn btn-warning" href="{{ path("editar_usuario", {'id':usuario.id}) }}"  role="button"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Editar"></i></a>
+                        <td class="text-center"> <a class="btn btn-warning" href="{{ path("editar_usuario", {'id':usuario.id}) }}"  role="button"><i class="fas fa-edit" data-toggle="tooltip" data-placement="top" title="Editar"></i></a>
                                 {#                            <a class="btn btn-danger" href="{{ path("eliminar_usuario", {'id':usuario.id}) }}"  role="button"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></a></td>#}
 
+                             <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModalTodoUser{{ count }}"><i class="fas fa-users" data-toggle="tooltip" data-placement="top" title="Asignar como responsble a todas las mesas y personas"></i></button>    
 
                             <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#myModal{{ count }}"><i class="fas fa-trash-alt" data-toggle="tooltip" data-placement="top" title="Eliminar"></i></button>    
-
 
                             <!-- The Modal -->
                             <div class="modal fade" id="myModal{{count}}">
@@ -164,6 +168,53 @@
                                     </div>
                                 </div>
                             </div>
+
+                             <!-- The Modal -->
+                            <div class="modal fade" id="myModalTodoUser{{count}}">
+                                <div class="modal-dialog modal-lg modal-dialog-centered">
+                                    <div class="modal-content">
+
+                                        <!-- Modal Header -->
+                                        <div class="modal-header-warning">
+                                            <button type="button" class="close text-danger" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title">Gestionar Responsables</h4>
+                                        </div>
+
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            <div class="alert alert-info">
+                                            <h5>¿Desea hacer a <strong>{{usuario.persona}}</strong> Responsable de todas las Mesas de Entrada y Personas?</h5>
+                                            <hr/>
+                                                <h6>Tenga en cuenta que:</h6>
+                                               <ol>
+                                               <li> Ésta acción puede tardar varios minutos.</li>
+                                                <li>Ésta acción hará que el usuario seleccionado sea responsable de todas las Mesas de Entrada y Personas que hay en el sistema.</li>
+                                               </ol>
+                                               <hr/>
+                                              <button type="button" class="btn btn-primary"><a class="text-type btn-primary"href="{{ path("generar_todo_responsable", {'id':usuario.id}) }}"  role="button">Confirmar</a></button>
+                                           </div>
+                                           <hr/>
+                                           <div class="alert alert-danger"> 
+                                            <h5>En caso de haber realizado esta acción por accidente y quiere revertirlo:</h5>
+                                            <hr/>
+                                             <h6>Tenga en cuenta que:</h6>
+                                               <ol>
+                                                <li>Ésta acción puede tardar varios minutos.</li>
+                                               <li> Ésta acción eliminará este usuario de cualquier Mesa de Entrada y Persona que esté como responsable.</li>
+                                               </ol>
+                                               <hr/>
+                                               <button type="button" class="btn btn-danger"><a class="text-type btn-danger"href="{{ path("borrar_todo_responsable", {'id':usuario.id}) }}"  role="button">Revertir</a></button>
+                                        </div>
+                                        <!-- Modal footer -->
+                                        <div class="modal-footer">                          
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            
                             {% set count=count+1 %}
                     </tr>
                 {% endfor %}
@@ -197,61 +248,62 @@
             {%set maxRightRange = maxPages %}
         {%endif%}
 
-        <div class="pagination" >
-            <li><a class="page-link" href="{{ 0 < thisPage-1 ? path('listado_usuario', {"currentPage": thisPage-1}) }}">Anterior</a></li>
+        {%if totalItems > 0 %}
+            <div class="pagination" >
+                <li><a class="page-link" href="{{ 0 < thisPage-1 ? path('listado_usuario', {"currentPage": thisPage-1}) }}">Anterior</a></li>
 
-            {%if thisPage == maxPages-1%}
-                {%set maxLeftRange = maxLeftRange-1%}
-            {%elseif thisPage == maxPages and thisPage != minRightRange%}
-                {%set maxLeftRange = maxPages%}
-            {%endif%}
-
-            {% for i in minLeftRange..maxLeftRange %}
-                <li class="page-item {{  i == thisPage ? 'active' : '' }} ">
-                    <a class="page-link"  href="{{ path('listado_usuario', {"currentPage": i}) }}">{{ i }}</a>
-                </li>
-            {% endfor %}
-
-            {% if thisPage >= limite %}
-                <li class="page-item disabled">
-                    <a class="page-link"  href="#">...</a>
-                </li>
-                {% if thisPage == minRightRange-1%}
-                    {%set extremoDerecho = extremoDerecho-1%}
+                {%if thisPage == maxPages-1%}
+                    {%set maxLeftRange = maxLeftRange-1%}
+                {%elseif thisPage == maxPages and thisPage != minRightRange%}
+                    {%set maxLeftRange = maxPages%}
                 {%endif%}
-                {% for i in extremoIzquierdo..extremoDerecho %}                    
+
+                {% for i in minLeftRange..maxLeftRange %}
                     <li class="page-item {{  i == thisPage ? 'active' : '' }} ">
                         <a class="page-link"  href="{{ path('listado_usuario', {"currentPage": i}) }}">{{ i }}</a>
-                    </li>                    
+                    </li>
                 {% endfor %}
-            {%endif%}
 
-            {% if thisPage < minRightRange-2%}
-                {%if thisPage!= maxRightRange-3%}
+                {% if thisPage >= limite %}
                     <li class="page-item disabled">
                         <a class="page-link"  href="#">...</a>
                     </li>
+                    {% if thisPage == minRightRange-1%}
+                        {%set extremoDerecho = extremoDerecho-1%}
+                    {%endif%}
+                    {% for i in extremoIzquierdo..extremoDerecho %}                    
+                        <li class="page-item {{  i == thisPage ? 'active' : '' }} ">
+                            <a class="page-link"  href="{{ path('listado_usuario', {"currentPage": i}) }}">{{ i }}</a>
+                        </li>                    
+                    {% endfor %}
                 {%endif%}
-            {% endif%}
 
-            {% if thisPage < maxPages-extremos%}
-                {% for i in minRightRange..maxRightRange %}                   
-                    <li class="page-item">
-                        <a class="page-link"  href="{{ path('listado_usuario', {"currentPage": i}) }}">{{ i }}</a>
-                    </li>
-                {% endfor %}
-            {%endif%}            
+                {% if thisPage < minRightRange-2%}
+                    {%if thisPage!= maxRightRange-3%}
+                        <li class="page-item disabled">
+                            <a class="page-link"  href="#">...</a>
+                        </li>
+                    {%endif%}
+                {% endif%}
 
-            {%if (page==maxPages)%}
+                {% if thisPage < maxPages-extremos%}
+                    {% for i in minRightRange..maxRightRange %}                   
+                        <li class="page-item">
+                            <a class="page-link"  href="{{ path('listado_usuario', {"currentPage": i}) }}">{{ i }}</a>
+                        </li>
+                    {% endfor %}
+                {%endif%}            
 
-            {%else%}
-                {%set page= page+1%}
-            {%endif%}
-            <li><a class="page-link" href="{{ path('listado_usuario', {"currentPage": page}) }}">Siguiente</a></li>
+                {%if (page==maxPages)%}
 
-            </ul>
-        </div>
+                {%else%}
+                    {%set page= page+1%}
+                {%endif%}
+                <li><a class="page-link" href="{{ path('listado_usuario', {"currentPage": page}) }}">Siguiente</a></li>
 
+                </ul>
+            </div>
+        {%endif%}
 
     </div>
     <script>

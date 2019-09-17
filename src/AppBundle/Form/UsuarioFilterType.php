@@ -59,7 +59,8 @@ class UsuarioFilterType extends AbstractType implements EmbeddedFilterTypeInterf
             'choices' => array(
                 'Administrador' => 'ROLE_ADMIN',
                 'Usuario' => 'ROLE_USER',
-                'Responsable' => 'ROLE_RESPONSABLE'
+                'Responsable' => 'ROLE_RESPONSABLE',
+                'Supervisor'=>'ROLE_SUPERVISOR'
             )
         ));
 

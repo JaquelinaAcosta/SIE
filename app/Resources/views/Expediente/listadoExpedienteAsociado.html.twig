@@ -1,5 +1,5 @@
 {% extends "layout.html.twig" %}
-
+{% block title %}GIE DPV - Expedientes Asociados{% endblock %}          
 {% block contentmain %}
       <style>
         .modal-header-warning {
@@ -29,7 +29,7 @@
                             {% set accion_habilitada = true %}
                         {%else%}
 
-                            {% for responsable in expediente.ubicacionActual.responsables.getValues %}
+                            {% for responsable in expediente.movimientoActual.ubicacion.responsables.getValues %}
                                 {% if app.user == responsable.usuario %}
                                     {% set accion_habilitada = true %}
                                 {% endif %}
@@ -49,7 +49,7 @@
                     <div class="card-body">
                         <form method="post" novalidate="true" id="form_buscar">
                             {{ form_errors(formExpedienteAsociadoFilter) }}
-                            <label class="text-default">NUMERO DE EXPEDIENTE</label>
+                            <label class="text-default">Número de Expediente</label>
                             <div class="row">
                                 <div class="threecol col-lg-1">
                                     {{ form_widget(formExpedienteAsociadoFilter.codigoExpediente) }}
@@ -72,21 +72,26 @@
                             </div>
                             <div class="row">
                                 <div class="threecol col-lg-4">
-                                    {{ form_label(formExpedienteAsociadoFilter.descripcion, 'DESCRIPCION') }}
+                                    {{ form_label(formExpedienteAsociadoFilter.concepto, 'Concepto') }}
+                                    {{ form_widget(formExpedienteAsociadoFilter.concepto) }}
+                                    <div class="help-block with-errors">
+                                        {{ form_errors(formExpedienteAsociadoFilter.concepto) }}
+                                    </div>
+                                </div> 
+                                <div class="threecol col-lg-4">
+                                    {{ form_label(formExpedienteAsociadoFilter.descripcion, 'Descripción') }}
                                     {{ form_widget(formExpedienteAsociadoFilter.descripcion) }}
                                     <div class="help-block with-errors">
                                         {{ form_errors(formExpedienteAsociadoFilter.descripcion) }}
                                     </div>
                                 </div> 
                                 <div class="threecol col-lg-4">
-                                    {{ form_label(formExpedienteAsociadoFilter.tema, 'CODIGO DE TEMA') }}
+                                    {{ form_label(formExpedienteAsociadoFilter.tema, 'Código del Tema') }}
                                     {{ form_widget(formExpedienteAsociadoFilter.tema) }}
                                     <div class="help-block with-errors">
                                         {{ form_errors(formExpedienteAsociadoFilter.tema) }}
                                     </div>
-                                </div> 
-
-
+                                </div>                                 
                             </div>
 
                             <hr/>
@@ -120,7 +125,6 @@
             {% endfor %}
             
             {% if asociados|length >0 %}
-            <hr/>
             <div class="alert alert-info">
                 <i class="fas fa-search"></i> Resultados de la búsqueda: {{ totalItems  }} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
             </div>
@@ -135,11 +139,12 @@
             <table class="table table-striped">
                 <thead class="thead-dark">
                     <tr>
-                        <th scope="col">EXPEDIENTE</th>
-                        <th scope="col">DESCRIPCION</th>
-                        <th scope="col">FOJAS</th>
-                        <th scope="col">CODIGO</th>
-                        <th scope="col">ACCIONES</th>
+                        <th scope="col">Expediente</th>
+                        <th scope="col">Concepto</th>
+                        <th class="text-center" scope="col">Código</th>
+                        <th scope="col">Descripción</th>
+                        <th class="text-center" scope="col">Fojas</th>
+                        <th class="text-center" scope="col">Acciones</th>
                     </tr>
                 </thead>
 
@@ -148,10 +153,11 @@
                     {% for expediente_asoc in asociados %}
                         <tr>
                             <td>{{expediente_asoc.expedienteAsociado}}</td>
+                             <td>{{expediente_asoc.expedienteAsociado.concepto}}</td>
+                              <td class="text-center">{{expediente_asoc.expedienteAsociado.tema.codigo}}</td>
                             <td>{{expediente_asoc.expedienteAsociado.tema.descripcion}}</td>
-                            <td>{{expediente_asoc.expedienteAsociado.fojas}}</td>
-                            <td>{{expediente_asoc.expedienteAsociado.tema.codigo}}</td>
-                            <td><a class="btn btn-info" href="{{ path("ver_expediente", {'id':expediente_asoc.expedienteAsociado.id}) }}"  role="button" title="Ver Detalle"><i class="fas fa-search"></i></a>
+                            <td class="text-center">{{expediente_asoc.expedienteAsociado.fojas}}</td>
+                            <td class="text-center"><a class="btn btn-info" href="{{ path("ver_expediente", {'id':expediente_asoc.expedienteAsociado.id}) }}"  role="button" title="Ver Detalle"><i class="fas fa-search"></i></a>
 
                                 {% if accion_habilitada == true  %}
                                     <a class="btn btn-warning" href="{{ path("editar_expediente", {'id':expediente_asoc.expedienteAsociado.id}) }}"  role="button" title="Modificar"><i class="fas fa-edit"></i></a>
@@ -225,7 +231,7 @@
             {%set maxRightRange = maxPages %}
         {%endif%}
 
-
+        {% if totalItems > 0 %}
         <div class="pagination">
             <li><a class="page-link" href="{{ 0 < thisPage-1 ? path('listado_asociado', {"id":padre_id, "currentPage": thisPage-1}) }}">Anterior</a></li>
 
@@ -282,7 +288,7 @@
             </ul>
         </div>  
 
-
+        {% endif %}
         <script>
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()

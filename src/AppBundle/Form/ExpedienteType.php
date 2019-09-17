@@ -26,19 +26,22 @@ class ExpedienteType extends AbstractType {
                 ->add('codigoExpediente', TextType::class, array(
                     "label" => "Nro. de Expediente:", "attr" => array(
                         "class" => "cod form-control",
-                        "placeholder" => ""
+                        "placeholder" => "",
+                        "maxlength"=>5
                     )
                 ))
                 ->add('numeroExpediente', TextType::class, array(
                     "label" => "Nro. de Expediente:", "attr" => array(
                         "class" => "num form-control",
-                        "placeholder" => ""
+                        "placeholder" => "",
+                        "maxlength"=>7
                     )
                 ))
                 ->add('digitoExpediente', TextType::class, array(
                     "label" => "Nro. de Expediente:", "attr" => array(
                         "class" => "dig form-control",
-                        "placeholder" => ""
+                        "placeholder" => "",
+                        "maxlength"=>1
                     )
                 ))
 //                ->add('iniciadorDependencia', EntityType::class, array(
@@ -129,8 +132,8 @@ class ExpedienteType extends AbstractType {
                 'validarCodigoExpediente' => 'codigoExpediente',
                 'validarNumeroExpediente' => 'numeroExpediente',
                 'validarDigitoExpediente' => 'digitoExpediente',
-                'validarFecha'=>'fechaInicio',
-                'validarFojas'=>'fojas'
+                'validarFecha'=>'fechaInicio'
+                
             ),
         ));
     }

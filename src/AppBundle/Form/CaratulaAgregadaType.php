@@ -52,10 +52,8 @@ class CaratulaAgregadaType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\CaratulaAgregada',
-            'error_mapping' => array(
-                'validarFojas'=>'fojas'
-            ),
+            'data_class' => 'AppBundle\Entity\CaratulaAgregada'
+           
         ));
     }
 

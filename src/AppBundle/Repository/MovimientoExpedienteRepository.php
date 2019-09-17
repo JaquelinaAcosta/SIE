@@ -17,6 +17,7 @@ class MovimientoExpedienteRepository extends \Doctrine\ORM\EntityRepository {
                 ->leftJoin(\AppBundle\Entity\Expediente::class, "e", "WITH", "m.expediente = e.id")
                 ->where('m.expediente = :expediente')
                 ->andWhere('m.fechaBaja IS NULL')
+                ->addOrderBy('m.id','DESC')
                 ->setParameter('expediente', $expediente);
 
         return $result;

@@ -83,7 +83,8 @@ class UsuarioType extends AbstractType {
                             "class" => "form-control"],
                         'choices' => array(
                             'Usuario' => 'ROLE_USER',
-                            'Administrador' => 'ROLE_ADMIN'
+                            'Administrador' => 'ROLE_ADMIN',
+                            'Supervisor' => 'ROLE_SUPERVISOR'
                 )))
                     ->add('persona', 'PUGX\AutocompleterBundle\Form\Type\AutocompleteType', array(
                         'class' => 'AppBundle:Persona',

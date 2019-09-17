@@ -21,7 +21,7 @@ class LugarFisicoRepository extends \Doctrine\ORM\EntityRepository {
                 ->where('u.fechaBaja IS NULL');
         if ($user->getRole() != "ROLE_ADMIN") {
             $result
-                    ->where('l.dependencia= :dependencia')
+                    ->andWhere('l.dependencia= :dependencia')
                     ->setParameter('dependencia', $user->getPersona()->getDependencia());
         }
 

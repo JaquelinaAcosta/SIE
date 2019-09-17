@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /var/www/html/siedpv/var
+cd /var/www/html/giedpv/var
 
 sudo chmod -R 777 logs
 sudo chmod -R 777 cache

@@ -43,12 +43,10 @@ class MovimientoExpediente {
      *
      * @ORM\Column(name="fojas", type="integer")
      */
-    private $fojas;
+    private $fojas = 0;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="usuario", type="string",length=255)
+     * @ORM\ManyToOne(targetEntity="Usuario",cascade={"persist"})
      */
     private $usuario;
 

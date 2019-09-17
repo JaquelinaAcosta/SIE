@@ -25,6 +25,7 @@ class ExpedienteAsociadoFilterType extends AbstractType implements EmbeddedFilte
             },
             'attr' => [
                 'class' => 'cod form-control',
+                "maxlength"=>5
             ]
         ));
         $builder->add('numeroExpediente', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType', array(
@@ -37,6 +38,7 @@ class ExpedienteAsociadoFilterType extends AbstractType implements EmbeddedFilte
             },
             'attr' => [
                 'class' => 'num form-control',
+                "maxlength"=>7
             ]
         ));
         $builder->add('digitoExpediente', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType', array(
@@ -49,10 +51,22 @@ class ExpedienteAsociadoFilterType extends AbstractType implements EmbeddedFilte
             },
             'attr' => [
                 'class' => 'dig form-control',
+                "maxlength"=>1
             ]
         ));
         
-            
+        $builder->add('concepto', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType', array(
+            'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
+                if (!empty($values['value'])) {
+                    $qb = $filterQuery->getQueryBuilder();
+                    $qb->andWhere($filterQuery->getExpr()->like('e.concepto', ':concepto'));
+                    $qb->setParameter('concepto', '%' . $values['value'] . '%');
+                }
+            },
+            'attr' => [
+                'class' => 'form-control',
+            ]
+        ));     
        $builder->add('descripcion', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType', array(
             'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
                 if (!empty($values['value'])) {
