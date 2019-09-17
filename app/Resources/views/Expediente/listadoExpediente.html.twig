@@ -66,9 +66,26 @@
                                 <div class="help-block with-errors">
                                     {{ form_errors(formExpedienteFilter.digitoExpediente) }}
                                 </div>
-                            </div>
+                            </div>                        
                         </div>
+                        
                         <div class="row">
+   
+                          {#   <div class="threecol col-lg-2">
+                                {{ form_label(formExpedienteFilter.persona, 'PERSONA') }}
+                                {{ form_widget(formExpedienteFilter.persona) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formExpedienteFilter.persona) }}
+                                </div>
+                            </div>#}
+                        {#    <div class="threecol col-lg-2">
+                                {{ form_label(formExpedienteFilter.nombre, 'NOMBRE') }}
+                                {{ form_widget(formExpedienteFilter.nombre) }}
+                                <div class="help-block with-errors">
+                                    {{ form_errors(formExpedienteFilter.nombre) }}
+                                </div>
+                            </div>  #}  
+                                
                             {% if formExpedienteFilter.dependencia is defined %}
                                 <div class="threecol col-lg-4">
                                     {{ form_label(formExpedienteFilter.dependencia, 'Dependencia') }}

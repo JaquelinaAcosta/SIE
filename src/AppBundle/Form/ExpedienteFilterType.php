@@ -131,6 +131,40 @@ class ExpedienteFilterType extends AbstractType implements EmbeddedFilterTypeInt
                 'placeholder' => 'Ejemplo: Jurídico, Varios, Etc.'
             ]
         ));
+//            $builder->add('persona', 'PUGX\AutocompleterBundle\Form\Type\AutocompleteFilterType', array(
+//            'class' => 'AppBundle:Persona',
+//            'required' => false,
+//            'attr' => ['class' => 'form-control',
+//                'placeholder' => 'Ingrese parte del nombre y seleccione...']
+//        ));
+            
+//        $builder->add('apellido', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType', array(
+//            'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
+//                if (!empty($values['value'])) {
+//                    $qb = $filterQuery->getQueryBuilder();
+//                    $qb->andWhere($filterQuery->getExpr()->like($field, ':apellido'));
+//                    $qb->setParameter('apellido', '%' . $values['value'] . '%');
+//                }
+//            },
+//            'attr' => ['class' => 'form-control',
+//                'placeholder' => 'Ingrese un apellido...']
+//        ));
+            
+//        $builder->add('nombre', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType', array(
+//            'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
+//                if (!empty($values['value'])) {
+//                    $qb = $filterQuery->getQueryBuilder();
+//                    $qb->andWhere($filterQuery->getExpr()->like($field, ':nombre'));
+//                    $qb->setParameter('nombre', '%' . $values['value'] . '%');
+//                }
+//            },
+//            'attr' => [
+//                'class' => 'form-control',
+//                'placeholder' => 'Ejemplo: Juan'
+//            ]
+//        ));
+            
+            
          $builder->add('concepto', 'Lexik\Bundle\FormFilterBundle\Filter\Form\Type\TextFilterType', array(
             'apply_filter' => function(QueryInterface $filterQuery, $field, $values) {
                 if (!empty($values['value'])) {

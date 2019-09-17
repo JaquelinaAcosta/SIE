@@ -14,6 +14,9 @@ class PaginaPrincipalController extends Controller {
      */
     public function indexAction(Request $request) {  
 
+        if($this->getUser()->getRole() == 'ROLE_SUPERVISOR'){
+            return $this->redirectToRoute('listado_expediente', ['currentPage' => 1]);
+        }
         if($this->getUser() == null){
             return $this->redirectToRoute('loginUsuario');
         }

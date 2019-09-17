@@ -86,18 +86,21 @@
                     </div>
                 </nav>
 
+                {% if app.user.role != 'ROLE_SUPERVISOR' %}
                 <div class="sidebar"> 
                     <div class="list-group" style="margin-top:15px;">
+                        
                         <a href="{{ path('busqueda_expediente') }}" class="list-group-item list-group-item-action text-center">
                             <i class="fas fa-search" style="font-size:27px; margin:0 auto;"></i>
                             <br/>
                             Búscar un Expediente
                         </a>
-                        <a href="{{ path('listado_expediente',{'currentPage':1}) }}" class="list-group-item list-group-item-action text-center">
+                         <a href="{{ path('listado_expediente',{'currentPage':1}) }}" class="list-group-item list-group-item-action text-center">
                             <i class="far fa-file-alt" style="font-size:27px; margin:0 auto;"></i>
                             <br/>
                             Listado de Expedientes
                         </a>
+                     
                         {% if app.user.role == 'ROLE_ADMIN' %}
                             <a href="{{ path('listado_dependencia',{'currentPage':1}) }}" class="list-group-item list-group-item-action text-center">
                                 <i class="fas fa-building" style="font-size:27px; margin:0 auto;"></i>
@@ -122,7 +125,7 @@
                                 Personal
                             </a>
                         {%endif%}
-                        {% if app.user.role != 'ROLE_SUPERVISOR' %}
+                       
                         <a href="{{ path('listado_mesaentrada',{'currentPage':1}) }}" class="list-group-item list-group-item-action text-center">
                             <i class="fas fa-table" style="font-size:27px;"></i>
                             <br/>
@@ -133,12 +136,6 @@
                             <br/>
                             Lugares
                         </a>
-                        {%endif%}
-                        {# <a href="#" class="list-group-item list-group-item-action text-center">
-                             <i class="fas fa-history" style="font-size:27px;"></i>
-                             <br/>
-                             Últimos Registros
-                         </a>#}
                         <a href="#" class="list-group-item list-group-item-action text-center">
                             <i class="fas fa-question-circle" style="font-size:27px;"></i>
                             <br/>
@@ -149,8 +146,16 @@
                             <br/>
                             Salir
                         </a>
+                       
+                        {# <a href="#" class="list-group-item list-group-item-action text-center">
+                             <i class="fas fa-history" style="font-size:27px;"></i>
+                             <br/>
+                             Últimos Registros
+                         </a>#}
+                       
                     </div>
                 </div>
+                 {% endif %}
                 <div class="contentmain">
                     {% block contentmain %}
                     {% endblock %}
